@@ -1,0 +1,1 @@
+MainPackage=D:\programming\retrix.2.1.1\RetriX.UWP\bin\x86\Release\RetriX.UWP_2.7.95.0_x86.appx

@@ -1,0 +1,155 @@
+﻿<views:MvxWindowsPage
+    x:Class="RetriX.UWP.Pages.AboutView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="using:MvvmCross.Uwp.Views"
+    mc:Ignorable="d">
+
+    <views:MvxWindowsPage.Resources>
+        <Style x:Key="SectionTBStyle" TargetType="TextBlock">
+            <Setter Property="Margin" Value="0,32,0,0"/>
+        </Style>
+    </views:MvxWindowsPage.Resources>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <Image x:Name="BackgroundWide" Source="ms-appx:///Assets/Backgrounds/ParallexWide.png" Stretch="UniformToFill" Visibility="Visible"/>
+        <Image x:Name="BackgroundVertical" Source="ms-appx:///Assets/Backgrounds/ParallexVertical.png" Stretch="UniformToFill" Visibility="Visible" Grid.RowSpan="2"/>
+
+   
+    <ScrollViewer Style="{StaticResource RootScrollViewerStyle}">
+        <StackPanel Orientation="Vertical" Margin="{StaticResource DafaultContentMargin}">
+            <TextBlock x:Uid="AboutHeader" Style="{StaticResource PageHeaderTextBlockStyle}"/>
+            <TextBlock x:Uid="AppName" Text="RetriX (Gold)" Style="{ThemeResource HeaderTextBlockStyle}"/>
+            <TextBlock Style="{StaticResource SectionTBStyle}">
+                <Run x:Uid="VersionLabel" Text="VersionDesign"/> <Run Text="{x:Bind VM.Version}"/>
+                <LineBreak/>
+                <Run x:Uid="CopyrightLabel" Text="CopyrightDesign" FontWeight="Bold"/> <Hyperlink Foreground="RoyalBlue" NavigateUri="https://www.aftnet.net">Aftnet</Hyperlink>
+            </TextBlock>
+            <TextBlock Style="{StaticResource SectionTBStyle}" Margin="0,20,0,0">
+                <Run  Text="Original Developer" FontWeight="Bold"/> <Hyperlink Foreground="RoyalBlue" NavigateUri="https://www.aftnet.net">Alberto Fustinoni</Hyperlink>
+            </TextBlock>
+            <TextBlock Style="{StaticResource SectionTBStyle}" Margin="0,20,0,0">
+                <Run Text="Gold Development" FontWeight="Bold"/> <Hyperlink Foreground="RoyalBlue" NavigateUri="https://astifan.online">Bashar Astifan</Hyperlink>
+            </TextBlock>
+            <TextBlock Style="{StaticResource SectionTBStyle}" Margin="0,20,0,0">
+                <Run x:Uid="EmulationCodeThanksToLabel" Text="EmuCoreThanks" FontWeight="Bold"/> <Hyperlink Foreground="RoyalBlue" NavigateUri="https://www.libretro.com/">Libretro</Hyperlink>
+            </TextBlock>
+                <TextBlock Style="{StaticResource SectionTBStyle}" Margin="0,20,0,0">
+                <Bold>Icons pack</Bold>
+                </TextBlock>
+                <TextBlock Style="{StaticResource SectionTBStyle}" Margin="0,20,0,0">
+                <Hyperlink Foreground="RoyalBlue" NavigateUri="https://elements.envato.com/user/kerismaker">Keris Maker</Hyperlink> - <Hyperlink Foreground="RoyalBlue" NavigateUri="https://www.hiclipart.com/">Hi Clip Art</Hyperlink>
+                </TextBlock>
+                <TextBlock Style="{StaticResource SectionTBStyle}" Margin="0,20,0,0">
+                <Hyperlink Foreground="RoyalBlue" NavigateUri="https://www.deviantart.com/blueamnesiac">BLUEamnesiac</Hyperlink> - <Hyperlink Foreground="RoyalBlue" NavigateUri="https://www.deviantart.com/alforata">Alforata</Hyperlink>
+            </TextBlock>
+                <TextBlock Style="{StaticResource SectionTBStyle}" Margin="0,20,0,0">
+                <Hyperlink Foreground="RoyalBlue" NavigateUri="https://www.deviantart.com/raiderxxx">RaiderXXX</Hyperlink> - <Hyperlink Foreground="RoyalBlue" NavigateUri="https://www.deviantart.com/voidsentinel">VoidSentinel</Hyperlink>
+            </TextBlock>
+                <TextBlock Style="{StaticResource SectionTBStyle}" Margin="0,20,0,0">
+                <Hyperlink Foreground="RoyalBlue" NavigateUri="https://www.deviantart.com/pitmankeks">PitManKeks</Hyperlink> - <Hyperlink Foreground="RoyalBlue" NavigateUri="https://www.deviantart.com/half-left">half-left</Hyperlink>
+            </TextBlock>
+                <TextBlock Style="{StaticResource SectionTBStyle}" Margin="0,20,0,0">
+                <Hyperlink Foreground="RoyalBlue" NavigateUri="https://www.deviantart.com/terwilf">Terwilf</Hyperlink> - <Hyperlink Foreground="RoyalBlue" NavigateUri="https://www.deviantart.com/blagoicons">Blagoicons</Hyperlink>
+            </TextBlock>
+            <TextBlock Style="{StaticResource SectionTBStyle}" Margin="0,20,0,0">
+                <Bold>Consoles Information</Bold>
+                <Hyperlink Foreground="RoyalBlue" NavigateUri="https://en.wikipedia.org">Wikipedia</Hyperlink>
+            </TextBlock>
+                <TextBlock Style="{StaticResource SectionTBStyle}" Margin="0,20,0,0">
+                <Bold>Testing (Surface)</Bold>
+                <Hyperlink Foreground="RoyalBlue" NavigateUri="#">Ranomez</Hyperlink>
+                </TextBlock>
+                <TextBlock Style="{StaticResource SectionTBStyle}" Margin="0,20,0,0">
+                <Bold>Follow updates</Bold>
+                <Hyperlink Foreground="RoyalBlue" NavigateUri="https://retrix.astifan.online">Retrix Gold</Hyperlink>
+            </TextBlock>
+
+                <TextBlock TextWrapping="WrapWholeWords">
+           <LineBreak></LineBreak>     
+            <Bold Foreground="PaleVioletRed">Please read 'Terms and conditions'</Bold>
+                </TextBlock>
+
+                <TextBlock Foreground="MediumSlateBlue" Style="{StaticResource SectionTBStyle}" FontWeight="Bold" Margin="0,45,0,0" FontSize="25">
+                Terms and conditions
+            </TextBlock>
+            <TextBlock Style="{StaticResource SectionTBStyle}" Margin="0,5,0,0" TextWrapping="WrapWholeWords">
+                <Bold Foreground="DarkMagenta">
+                    Experimental
+                </Bold>
+                <LineBreak></LineBreak>
+             This software created as experimental tool provided 
+              without any warranty.
+                <LineBreak></LineBreak>
+                <LineBreak></LineBreak>
+                <Bold Foreground="DarkMagenta">No Tracking</Bold>
+                <LineBreak></LineBreak>
+                This is guarantee that this software is free from any
+                tracking services or tracking third parties
+                <LineBreak></LineBreak>
+                <LineBreak></LineBreak>
+                <Bold Foreground="DarkMagenta">
+                    Legal Responsibility
+                </Bold>
+                <LineBreak></LineBreak>
+                The authors and developers of this software are not
+                responsible for any legal issues could be caused
+                by using illegal content.
+                <LineBreak></LineBreak>
+                <LineBreak></LineBreak>
+                <Bold Foreground="DarkMagenta">Certification</Bold>
+                <LineBreak></LineBreak>
+                This software use debug certificate created by the latest author.
+                You might get a security notice related to the certificate
+                , no worries this software completely free from any
+                harmful content.
+                <LineBreak></LineBreak>
+                <LineBreak></LineBreak>
+                <Bold Foreground="DarkMagenta">Project Terms</Bold>
+                <LineBreak></LineBreak>
+                 Redistributions or derivatives may not be sold, nor may they be used in a commercial product or activity.
+                <LineBreak></LineBreak>
+                Redistributions must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+                <LineBreak></LineBreak>
+                <LineBreak></LineBreak>
+                THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+                <LineBreak></LineBreak>
+                <LineBreak></LineBreak>
+                <LineBreak></LineBreak>
+                <Bold Foreground="DarkMagenta">Contact</Bold>
+                <LineBreak></LineBreak>
+                If you have any concerns or questions please contact:
+                <LineBreak></LineBreak>
+                <Bold Foreground="MediumSlateBlue"><Hyperlink Foreground="RoyalBlue" NavigateUri="mailto:services@astifan.online">services@astifan.online</Hyperlink></Bold>
+            <LineBreak></LineBreak><LineBreak></LineBreak>
+            </TextBlock>
+        </StackPanel>
+    </ScrollViewer>
+
+    <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup>
+            <VisualState>
+                <VisualState.Setters>
+
+                    <Setter Target="BackgroundVertical.Visibility" Value="Visible"/>
+                    <Setter Target="BackgroundWide.Visibility" Value="Collapsed"/>
+
+                </VisualState.Setters>
+            </VisualState>
+            <VisualState>
+                <VisualState.StateTriggers>
+                    <AdaptiveTrigger MinWindowWidth="{StaticResource WideLayoutSplitPoint}"/>
+                </VisualState.StateTriggers>
+                <VisualState.Setters>
+
+                    <Setter Target="BackgroundVertical.Visibility" Value="Collapsed"/>
+                    <Setter Target="BackgroundWide.Visibility" Value="Visible"/>
+
+                </VisualState.Setters>
+            </VisualState>
+        </VisualStateGroup>
+    </VisualStateManager.VisualStateGroups>
+    </Grid>
+</views:MvxWindowsPage>

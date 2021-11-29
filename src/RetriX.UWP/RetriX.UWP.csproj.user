@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <UapAppxPackageBuildMode>SideloadOnly</UapAppxPackageBuildMode>
+    <AppxShowAllApps>False</AppxShowAllApps>
+    <AppxBuildConfigurationSelection>x86|x64|arm</AppxBuildConfigurationSelection>
+    <PackageOptionalProjectsInIdeBuilds>False</PackageOptionalProjectsInIdeBuilds>
+    <Source>D:\Icons\Playstation.png</Source>
+    <SmallTileSource>D:\Logo Pack\SmallTile.scale-400.png</SmallTileSource>
+    <MediumTileSource>D:\Logo Pack\RetrixLogo Large.png</MediumTileSource>
+    <WideTileSource>D:\Logo Pack\RetrixLogo Wide.png</WideTileSource>
+    <LargeTileSource>D:\Logo Pack\RetrixLogo Large.png</LargeTileSource>
+    <AppIconSource>D:\Logo Pack\RetrixLogo.png</AppIconSource>
+    <SplashScreenSource>D:\Logo Pack\Splash.png</SplashScreenSource>
+    <BadgeLogoSource>D:\New Icons\Logo Pack\RetrixLogo Badget.png</BadgeLogoSource>
+    <PackageLogoSource>D:\Logo Pack\Package.scale-400-Light.png</PackageLogoSource>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DeviceId>30f105c9-681e-420b-a277-7c086ead8a4e</DeviceId>
+    <UseEmulator>false</UseEmulator>
+    <RemoteDebugMachine>192.168.137.128</RemoteDebugMachine>
+    <AuthenticationMode>Windows</AuthenticationMode>
+    <RemoteDebugEnabled>true</RemoteDebugEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <DeviceId>30f105c9-681e-420b-a277-7c086ead8a4e</DeviceId>
+    <UseEmulator>true</UseEmulator>
+    <RemoteDebugMachine>127.0.0.1:4024 (WinDev2009Eval)</RemoteDebugMachine>
+    <RemoteDebugEnabled>false</RemoteDebugEnabled>
+    <CreateCleanLayout>true</CreateCleanLayout>
+    <DeployOptionalPackages>false</DeployOptionalPackages>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <UseSimulator>false</UseSimulator>
+    <DeviceId>30f105c9-681e-420b-a277-7c086ead8a4e</DeviceId>
+    <UseEmulator>false</UseEmulator>
+    <RemoteDebugMachine>172.16.80.3</RemoteDebugMachine>
+    <AuthenticationMode>Universal</AuthenticationMode>
+    <RemoteDebugEnabled>false</RemoteDebugEnabled>
+    <CreateCleanLayout>true</CreateCleanLayout>
+  </PropertyGroup>
+</Project>

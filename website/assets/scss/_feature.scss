@@ -1,0 +1,158 @@
+/*----------------------------------------*/
+/*  05. Feature CSS
+/*----------------------------------------*/
+/*-- Feature Content --*/
+.feature-content{
+    padding-left: 10px;
+    // Responsive
+    @media #{$laptop-device}{
+        padding-left: 0;
+    }
+    @media #{$tablet-device}{
+        padding-left: 0;
+    }
+    @media #{$large-mobile}{
+        padding-left: 0;
+    }
+    & h3{
+        font-weight: 400;
+        margin-bottom: 15px;
+        font-size: 40px;
+        line-height: 45px;
+        letter-spacing: 1px;
+        //Responsive
+        @media #{$desktop-device}{
+            font-size: 30px;
+        }
+        @media #{$large-mobile}{
+            font-size: 30px;
+        }
+        @media #{$extra-small-mobile}{
+            font-size: 24px;
+            line-height: 34px;
+        }
+        & span.color-red{
+            color: $hover-color;
+        }
+        & span.color-blue{
+            color: $theme-color;
+        }
+    }
+    & p{
+        font-size: 18px;
+        line-height: 28px;
+        max-width: 545px;
+        // Responsive
+        @media #{$large-mobile}{
+            font-size: 16px;
+            line-height: 24px;
+        }
+    }
+}
+/*-- Feature Image --*/
+.feature-image {
+	position: relative;
+	right: -70px;
+    // Responsive
+    @media #{$laptop-xl-device}{
+        right: 0;
+    }
+    @media #{$laptop-device}{
+        right: 0;
+    }
+    @media #{$desktop-device}{
+        right: 0;
+    }
+    @media #{$tablet-device}{
+        right: 0;
+        margin-top: 30px;
+    }
+    @media #{$large-mobile}{
+        right: 0;
+        margin-top: 30px;
+    }
+    & img{
+        max-width: 100%;
+        // Responsive
+        @media #{$laptop-device}{
+            width: 100%;
+        }
+        @media #{$desktop-device}{
+            width: 100%;
+        }
+        @media #{$tablet-device}{
+            width: 100%;
+        }
+        @media #{$large-mobile}{
+            width: 100%;
+        }
+    }
+}
+
+/*-- feature section 2 css --*/
+.featured-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    //Responsive 
+    @media #{$large-mobile}{
+        flex-wrap: wrap;
+    }
+    & h2{
+        font-size: 36px;
+        line-height: 45px;
+        color: $white;
+        padding: 20px 135px;
+        background-color: #081b1f;
+        margin-bottom: 0;
+        //Responsive 
+        @media #{$laptop-device}{
+            padding: 20px 100px;
+        }
+        @media #{$desktop-device}{
+            padding: 20px 60px;
+        }
+        @media #{$tablet-device}{
+            padding: 20px 60px;
+        }
+        @media #{$large-mobile}{
+            padding: 20px 30px;
+            font-size: 24px;
+            line-height: 30px;
+        }
+    }
+    & a{
+        font-size: 18px;
+        line-height: 70px;
+        font-family: $heading-font;
+        text-decoration: underline;
+        margin-right: 60px;
+        //Responsive
+        @media #{$large-mobile}{
+            margin-right: 15px;
+            margin-left: 0px;
+        }
+        @media #{$extra-small-mobile}{
+            margin-right: 0;
+            margin-left: 15px;
+        }
+    }
+}
+.single-featured{
+    position: relative;
+    overflow: hidden;
+    & a{
+        display: block;
+        & img{
+           transition: all 3s cubic-bezier(.25,.46,.45,.94); 
+        }
+    }
+    &:hover{
+        & img{
+            transform: scale(1.15);
+        }
+    }
+}
+
+
+

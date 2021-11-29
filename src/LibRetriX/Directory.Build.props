@@ -1,0 +1,16 @@
+<Project>
+    <PropertyGroup>
+        <MinClientVersion>4.0</MinClientVersion>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Version>0.1.0</Version>
+        <Company>Alberto Fustinoni</Company>
+        <Authors>Alberto Fustinoni</Authors>
+        <PackageProjectUrl>https://github.com/Aftnet/LibRetriX</PackageProjectUrl>
+        <PackageIconUrl>https://gitlab.com/aftnet/LibRetriX/raw/master/icon.png</PackageIconUrl>
+        <PackageTags>RetriX;Libretro;Emulators</PackageTags>
+        <PackageLicenseUrl>https://github.com/Aftnet/LibRetriX/raw/master/license.txt</PackageLicenseUrl>
+        <Copyright>2018</Copyright>
+        <RepositoryUrl>https://github.com/Aftnet/LibRetriX</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>        
+    </PropertyGroup>
+</Project>

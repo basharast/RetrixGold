@@ -1,0 +1,75 @@
+{
+  "format": 1,
+  "restore": {
+    "B:\\Universal Tool\\Universal Tool\\RavinduL.LocalNotifications\\RavinduL.LocalNotifications.csproj": {}
+  },
+  "projects": {
+    "B:\\Universal Tool\\Universal Tool\\RavinduL.LocalNotifications\\RavinduL.LocalNotifications.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "B:\\Universal Tool\\Universal Tool\\RavinduL.LocalNotifications\\RavinduL.LocalNotifications.csproj",
+        "projectName": "RavinduL.LocalNotifications",
+        "projectPath": "B:\\Universal Tool\\Universal Tool\\RavinduL.LocalNotifications\\RavinduL.LocalNotifications.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "B:\\Universal Tool\\Universal Tool\\RavinduL.LocalNotifications\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "uap10.0.14393"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://www.myget.org/F/megaapiclient/api/v3/index.json": {}
+        },
+        "frameworks": {
+          "uap10.0.14393": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "uap10.0.14393": {
+          "dependencies": {
+            "Microsoft.NETCore.UniversalWindowsPlatform": {
+              "target": "Package",
+              "version": "[5.2.3, )"
+            }
+          }
+        }
+      },
+      "runtimes": {
+        "win10-arm": {
+          "#import": []
+        },
+        "win10-arm-aot": {
+          "#import": []
+        },
+        "win10-arm64-aot": {
+          "#import": []
+        },
+        "win10-x64": {
+          "#import": []
+        },
+        "win10-x64-aot": {
+          "#import": []
+        },
+        "win10-x86": {
+          "#import": []
+        },
+        "win10-x86-aot": {
+          "#import": []
+        }
+      }
+    }
+  }
+}

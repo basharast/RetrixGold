@@ -1,0 +1,209 @@
+/*----------------------------------------*/
+/*  17. Login Register CSS
+/*----------------------------------------*/
+
+/*-- Login CSS --*/
+.login-section{
+    //Responsive
+    @media #{$laptop-device}{
+        margin-bottom: -5px;
+    }
+    @media #{$tablet-device}{
+        margin-bottom: -5px;
+    }
+}
+.gilbard-login{
+    & h3{
+        font-size: 24px;
+        line-height: 28px;
+        margin-bottom: 15px;
+    }
+    & p{
+        font-size: 16px;
+        line-height: 28px;
+        font-weight: 400;
+    }
+    & form{
+        max-width: 450px;
+        width: 100%;
+        margin-top: 30px;
+        margin-bottom: 40px;
+        clear: both;
+        float: left;
+        //Responsive
+        @media #{$tablet-device}{
+            margin-top: 20px;
+        }
+        @media #{$large-mobile}{
+            margin-top: 10px;
+        }
+        & input{
+            width: 100%;
+            border: 1px solid #999999;
+            line-height: 28px;
+            border-radius: 50px;
+            padding: 10px 30px;
+            color: #444444;
+            font-size: 14px;
+            background-color: transparent;
+        }
+        & input[type="checkbox"]{
+            display: none;
+            &+ label{
+                position: relative;
+                padding-left: 30px;
+                line-height: 20px;
+                font-size: 14px;
+                font-weight: 400;
+                color: $body-color;
+                margin: 0 0 15px;
+                &::before{
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 20px;
+                    height: 20px;
+                    display: block;
+                    border: 2px solid #999999;
+                    content: "";
+                    transition: all 0.3s ease 0s;
+                }
+                &::after{
+                    position: absolute;
+                    left: 5px;
+                    top: 5px;
+                    display: block;
+                    content: "";
+                    opacity: 0;
+                    background-color: #202020;
+                    width: 10px;
+                    text-align: center;
+                    height: 10px;
+                    -webkit-transition: all 0.3s ease 0s;
+                    -o-transition: all 0.3s ease 0s;
+                    transition: all 0.3s ease 0s;
+                }
+            }
+            &:checked{
+                &+ label{
+                    &::before{
+                        border: 2px solid #202020;
+                    }
+                    &::after{
+                        opacity: 1; 
+                    }
+                }
+                
+            }
+        }
+        & input[type="submit"]{
+            font-size: 16px;
+            line-height: 25px;
+            padding: 10px 15px;
+            width: 150px;
+            text-align: center;
+            background-color: $theme-color;
+            border: none;
+            color: $white;
+            font-family: $heading-font;
+            &:hover{
+                background-color: $hover-color;
+            }
+        }
+        & a{
+            float: right;
+            line-height: 20px;
+            font-size: 14px;
+            font-weight: 400;
+            display: inline-block;
+            margin-top: 4px;
+        }
+    }
+    & h4{
+        float: left;
+        font-size: 20px;
+        margin-bottom: 0;
+    }
+}
+.login-reg-vertical-boder {
+	height: 340px;
+	width: 1px;
+	margin: auto;
+	background-color: $theme-color;
+	position: relative;
+    //Responsive
+    @media #{$large-mobile}{
+        height: 100px;
+        margin: 40px auto;
+    }
+    &::before, &::after{
+        position: absolute;
+        top: 25px;
+        bottom: 25px;
+        left: -15px;
+        right: auto;
+        width: 1px;
+        content: "";
+        background-color: $theme-color;
+    }
+    &::after{
+       right: -15px;
+       left: auto; 
+    }
+}
+.gilbard-social-login{
+    margin: auto;
+    max-width: 310px;
+    & h3{
+        font-size: 24px;
+        line-height: 28px;
+        margin-bottom: 45px;
+    }
+    & a{
+       width: 250px;
+       height: 50px;
+       padding: 10px 50px 10px 30px;
+       color: $white;
+       font-size: 14px;
+       text-transform: uppercase;
+       font-weight: 600;
+       line-height: 30px;
+       border-radius: 50px;
+       text-align: left;
+       position: relative;
+       margin-bottom: 30px; 
+       &.facebook-login {
+           background-color: $facebook;
+           & i{
+               color: $facebook;
+           }
+       }
+
+       &.twitter-login {
+           background-color: $twitter;
+           & i{
+               color: $twitter;
+           }
+       }
+
+       &.google-plus-login {
+           background-color: $google-plus;
+           & i{
+               color: $google-plus;
+           }
+       }
+       & i {
+            width: 42px;
+            height: 42px;
+            line-height: 42px;
+            font-size: 18px;
+            text-align: center;
+            border-radius: 50%;
+            background-color: #ffffff;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+            transition: all 0.3s ease 0s;
+       } 
+    }
+}

@@ -1,0 +1,98 @@
+/*----------------------------------------*/
+/*  04. About CSS
+/*----------------------------------------*/
+/*-- About Image --*/
+.about-image {
+    position: relative;
+    margin-left: -100px;
+    // Responsive
+    @media #{$laptop-device}{
+        margin-left: 0;
+    }
+    @media #{$desktop-device}{
+        margin-left: 0;
+    }
+    @media #{$tablet-device}{
+        margin-left: 0;
+    }
+    @media #{$large-mobile}{
+        margin-left: 0;
+    }
+    & img {
+        max-width: none;
+        // Responsive
+        @media #{$laptop-device}{
+            width: 100%;
+        }
+        @media #{$desktop-device}{
+            width: 100%;
+        }
+        @media #{$tablet-device}{
+            width: 100%;
+        }
+        @media #{$large-mobile}{
+            width: 100%;
+        }
+    }
+}
+/*-- About Content --*/
+.about-content {
+    margin-top: 200px;
+    float: right;
+    // Responsive
+    @media #{$laptop-device}{
+        margin-top: 115px;
+    }
+    @media #{$desktop-device}{
+        margin-top: 0px;
+    }
+    @media #{$tablet-device}{
+        margin-top: 20px;
+        float: left;
+    }
+    @media #{$large-mobile}{
+        margin-top: 0px;
+        float: left;
+    }
+    & h3 {
+        font-weight: 400;
+        margin-bottom: 15px;
+        font-size: 40px;
+        line-height: 45px;
+        letter-spacing: 1px;
+        & span.color-red{
+            color: $hover-color;
+        }
+        & span.color-blue{
+            color: $theme-color;
+        }
+        // Responsive
+        @media #{$desktop-device}{
+            font-size: 30px;
+        }
+        @media #{$large-mobile}{
+            font-size: 30px;
+        }
+        @media #{$extra-small-mobile}{
+            font-size: 24px;
+            line-height: 34px;
+        }
+    }
+    & p {
+        font-size: 18px;
+        line-height: 28px;
+        margin-bottom: 20px;
+        max-width: 530px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+        // Responsive
+        @media #{$large-mobile}{
+            font-size: 16px;
+            line-height: 24px;
+        }
+    }
+    & .btn {
+        margin-top: 10px;
+    }
+}
