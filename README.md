@@ -10,7 +10,7 @@
 
 # Important
 
-As per the original license, you are <b>not allowed</b> to:
+You are <b>not allowed</b> to:
 
 - Sell this app or any of it's components, it should be free
 
