@@ -14,7 +14,7 @@ You are <b>not allowed</b> to:
 
 - Sell this app or any of it's components, it should be free
 
-- Not to be part of any comercial action
+- Not to be part of any commercial action
 
 - No tracking or analytics should be added, The project built with privacy respect
 
