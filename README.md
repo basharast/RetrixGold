@@ -80,6 +80,8 @@ No GPU render available, but the current CPU render provides good performance fo
 
 It will work with build 16299 and above, ARM - x64 - x86
 
+The attached releases already retargeted to support Windows 10 Mobile 1709
+
 If you want to run it on device with lower build, you need to customize the package <b>MSIX Packaging tool</b>
 
 it might work fine without any problems.
