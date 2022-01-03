@@ -43,7 +43,7 @@ namespace LibRetriX
 
             private static readonly Tuple<string, uint>[] Options =
             {
-                Tuple.Create("beetle_psx_frame_duping", 1U),
+                //Tuple.Create("beetle_psx_frame_duping", 1U),
                 Tuple.Create("beetle_psx_analog_calibration", 1U),
                 Tuple.Create("beetle_psx_cpu_freq_scale", 42U),
                 Tuple.Create("beetle_psx_gte_overclock", 0U),

@@ -1,42 +1,38 @@
 ﻿using Plugin.FileSystem.Abstractions;
+using RetriX.Shared.Components;
 using RetriX.Shared.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace RetriX.Shared.StreamProviders
 {
     public class ArchiveStreamProvider : IStreamProvider
     {
-        public static ISet<string> SupportedExtensions { get; } = new HashSet<string> { ".zip" };
+        public static ISet<string> SupportedExtensions { get; } = new HashSet<string> { ".zip", ".7z", ".rar", ".gz", ".tar" };
 
         private string HandledScheme { get; }
         private IFileInfo ArchiveFile { get; }
         private IPlatformService PlatformService { get; }
-        private ZipArchive Archive { get; set; }
 
-        private IDictionary<string, ZipArchiveEntry> EntriesMapping { get; } = new SortedDictionary<string, ZipArchiveEntry>();
-        private HashSet<Stream> OpenStreams { get; } = new HashSet<Stream>();
+        private IDictionary<string, ArchiveData> EntriesMapping { get; } = new SortedDictionary<string, ArchiveData>();
 
-        public ArchiveStreamProvider(string handledScheme, IFileInfo archiveFile)
+        public ArchiveStreamProvider(string handledScheme, IFileInfo archiveFile, IPlatformService platformService)
         {
             HandledScheme = handledScheme;
             ArchiveFile = archiveFile;
+            PlatformService = platformService;
         }
 
         public void Dispose()
         {
             try
             {
-                Archive?.Dispose();
-                foreach (var i in OpenStreams)
-                {
-                    i.Dispose();
-                }
-
-                OpenStreams.Clear();
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
             }
             catch (Exception e)
             {
@@ -46,7 +42,18 @@ namespace RetriX.Shared.StreamProviders
                 }
             }
         }
+        public void GCCollectForList<T>(T ListToCollect)
+        {
+            try
+            {
+                int identificador = GC.GetGeneration(ListToCollect);
+                GC.Collect(identificador, GCCollectionMode.Forced);
+            }
+            catch (Exception e)
+            {
 
+            }
+        }
         public async Task<IEnumerable<string>> ListEntriesAsync()
         {
             try
@@ -74,20 +81,32 @@ namespace RetriX.Shared.StreamProviders
                     return default(Stream);
                 }
 
-                var entry = EntriesMapping[path];
-                using (var archiveStream = entry.Open())
-                {
-                    var backingStore = new byte[entry.Length];
-                    using (var tempStream = new MemoryStream(backingStore, true))
-                    {
-                        await archiveStream.CopyToAsync(tempStream);
-                    }
+                var archiveData = EntriesMapping[path];
+                var writeable = accessType == FileAccess.ReadWrite || accessType == FileAccess.Write;
 
-                    var writeable = accessType == FileAccess.ReadWrite || accessType == FileAccess.Write;
-                    var output = new MemoryStream(backingStore, writeable);
-                    OpenStreams.Add(output);
-                    return output;
+                var backingStore = new byte[archiveData.streamSize];
+                var totalSize = backingStore.Length;
+                IProgress<double> progress = new Progress<double>(value =>
+                {
+                    try
+                    {
+                        FramebufferConverter.currentFileEntry = archiveData.entryKey;
+                        var totalCopied = (value * 1d) / (totalSize * 1d) * 100;
+                        FramebufferConverter.currentFileProgress = totalCopied;
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                });
+                using (var tempStream = new MemoryStream(backingStore, true))
+                {
+                    archiveData.WriteEntryTo(tempStream, progress);
                 }
+                var output = new MemoryStream(backingStore, writeable);
+                backingStore = null;
+                GCCollectForList(backingStore);
+                return output;
             }
             catch (Exception e)
             {
@@ -103,10 +122,15 @@ namespace RetriX.Shared.StreamProviders
         {
             try
             {
-                if (OpenStreams.Contains(stream))
+                try
                 {
                     stream.Dispose();
-                    OpenStreams.Remove(stream);
+                    stream = null;
+                    GCCollectForList(stream);
+                }
+                catch (Exception e)
+                {
+
                 }
             }
             catch (Exception e)
@@ -122,17 +146,23 @@ namespace RetriX.Shared.StreamProviders
         {
             try
             {
-                if (Archive != null)
+                if (PlatformService != null)
                 {
-                    return;
+                    var stream = await ArchiveFile.OpenAsync(FileAccess.Read);
+                    var EntriesMappingTemp = await PlatformService.GetFilesStreams(stream, HandledScheme);
+                    if (EntriesMappingTemp != null)
+                    {
+                        foreach (var item in EntriesMappingTemp)
+                        {
+                            ArchiveData test;
+                            if (!EntriesMapping.TryGetValue(item.Key, out test))
+                            {
+                                EntriesMapping.Add(item);
+                            }
+                        }
+                    }
                 }
 
-                var stream = await ArchiveFile.OpenAsync(FileAccess.Read);
-                Archive = new ZipArchive(stream, ZipArchiveMode.Read, false);
-                foreach (var i in Archive.Entries)
-                {
-                    EntriesMapping.Add(Path.Combine(HandledScheme, i.FullName.Replace('/', Path.DirectorySeparatorChar)), i);
-                }
             }
             catch (Exception e)
             {

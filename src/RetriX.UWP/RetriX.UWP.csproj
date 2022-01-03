@@ -35,7 +35,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x86\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NETFX_CORE;WINDOWS_UWP</DefineConstants>
     <NoWarn>;2008</NoWarn>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
@@ -43,6 +43,8 @@
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <UseDotNetNativeToolchain>false</UseDotNetNativeToolchain>
+    <Optimize>true</Optimize>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -56,11 +58,12 @@
     <Prefer32Bit>true</Prefer32Bit>
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <EnableGatekeeperAnalysis>false</EnableGatekeeperAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\ARM\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NETFX_CORE;WINDOWS_UWP;CODE_ANALYSIS;TARGET_ARM</DefineConstants>
     <NoWarn>;2008</NoWarn>
     <DebugType>full</DebugType>
     <PlatformTarget>ARM</PlatformTarget>
@@ -68,10 +71,12 @@
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <UseDotNetNativeToolchain>false</UseDotNetNativeToolchain>
+    <Optimize>false</Optimize>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
     <OutputPath>bin\ARM\Release\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP;CODE_ANALYSIS;TARGET_ARM</DefineConstants>
     <Optimize>true</Optimize>
     <NoWarn>;2008</NoWarn>
     <DebugType>pdbonly</DebugType>
@@ -81,11 +86,12 @@
     <Prefer32Bit>true</Prefer32Bit>
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <EnableGatekeeperAnalysis>false</EnableGatekeeperAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x64\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NETFX_CORE;WINDOWS_UWP</DefineConstants>
     <NoWarn>;2008</NoWarn>
     <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
@@ -93,6 +99,8 @@
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <UseDotNetNativeToolchain>false</UseDotNetNativeToolchain>
+    <Optimize>false</Optimize>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\x64\Release\</OutputPath>
@@ -106,6 +114,7 @@
     <Prefer32Bit>true</Prefer32Bit>
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <EnableGatekeeperAnalysis>false</EnableGatekeeperAnalysis>
   </PropertyGroup>
   <PropertyGroup>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
@@ -541,6 +550,47 @@
     <Content Include="Assets\Menus\8010 - Super Intelligence.png" />
     <Content Include="Assets\Menus\8011 - Unstructured Data.png" />
     <Content Include="Assets\Menus\8012 - User Predictions.png" />
+    <Content Include="Assets\Menus\bw.png" />
+    <Content Include="Assets\Menus\cbuf.png" />
+    <Content Include="Assets\Menus\close.png" />
+    <Content Include="Assets\Menus\controls.png" />
+    <Content Include="Assets\Menus\core.png" />
+    <Content Include="Assets\Menus\default.png" />
+    <Content Include="Assets\Menus\dim.png" />
+    <Content Include="Assets\Menus\echo.png" />
+    <Content Include="Assets\Menus\fps.png" />
+    <Content Include="Assets\Menus\grid.png" />
+    <Content Include="Assets\Menus\help.png" />
+    <Content Include="Assets\Menus\high.png" />
+    <Content Include="Assets\Menus\left.png" />
+    <Content Include="Assets\Menus\line.png" />
+    <Content Include="Assets\Menus\lines.png" />
+    <Content Include="Assets\Menus\logs.png" />
+    <Content Include="Assets\Menus\low.png" />
+    <Content Include="Assets\Menus\memory.png" />
+    <Content Include="Assets\Menus\multi.png" />
+    <Content Include="Assets\Menus\mute.png" />
+    <Content Include="Assets\Menus\near.png" />
+    <Content Include="Assets\Menus\none.png" />
+    <Content Include="Assets\Menus\pause.png" />
+    <Content Include="Assets\Menus\play.png" />
+    <Content Include="Assets\Menus\quicksave.png" />
+    <Content Include="Assets\Menus\retro.png" />
+    <Content Include="Assets\Menus\right.png" />
+    <Content Include="Assets\Menus\saves.png" />
+    <Content Include="Assets\Menus\sensors.png" />
+    <Content Include="Assets\Menus\sepia.png" />
+    <Content Include="Assets\Menus\skipframes.png" />
+    <Content Include="Assets\Menus\stop.png" />
+    <Content Include="Assets\Menus\threads2.png" />
+    <Content Include="Assets\Menus\threads4.png" />
+    <Content Include="Assets\Menus\threads8.png" />
+    <Content Include="Assets\Menus\threadsnone.png" />
+    <Content Include="Assets\Menus\threadswait.png" />
+    <Content Include="Assets\Menus\timer30.png" />
+    <Content Include="Assets\Menus\timer60.png" />
+    <Content Include="Assets\Menus\timer95.png" />
+    <Content Include="Assets\Menus\timernotify.png" />
     <Content Include="Assets\ParallexVertical.png" />
     <Content Include="Assets\ParallexWide.png" />
     <Content Include="Assets\RomsIcons\32X.png" />
@@ -576,6 +626,7 @@
     <Content Include="Assets\RomsIcons\GBM.png" />
     <Content Include="Assets\RomsIcons\GN.png" />
     <Content Include="Assets\RomsIcons\GNFail.png" />
+    <Content Include="Assets\RomsIcons\GZ.png" />
     <Content Include="Assets\RomsIcons\LowResNX.png" />
     <Content Include="Assets\RomsIcons\Lynx.png" />
     <Content Include="Assets\RomsIcons\MasterSystem.png" />
@@ -604,6 +655,7 @@
     <Content Include="Assets\RomsIcons\PS4.png" />
     <Content Include="Assets\RomsIcons\PSP.png" />
     <Content Include="Assets\RomsIcons\Quake.png" />
+    <Content Include="Assets\RomsIcons\RAR.png" />
     <Content Include="Assets\RomsIcons\Reminiscence.png" />
     <Content Include="Assets\RomsIcons\RickDangrous.png" />
     <Content Include="Assets\RomsIcons\Saturn.png" />
@@ -890,9 +942,12 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.2.12</Version>
+      <Version>6.2.13</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI">
+      <Version>4.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Animations">
       <Version>4.0.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
@@ -906,10 +961,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\LocalNotifications\src\RavinduL.LocalNotifications\RavinduL.LocalNotifications.csproj">
-      <Project>{6474e959-68ee-403a-b1c9-50f7a37d8420}</Project>
-      <Name>RavinduL.LocalNotifications</Name>
-    </ProjectReference>
     <ProjectReference Include="..\LibRetriX\LibRetriX\LibRetriX.csproj">
       <Project>{8624B1E6-5030-4DD2-BA61-B74CDC6E8856}</Project>
       <Name>LibRetriX</Name>
@@ -1154,6 +1205,10 @@
       <Project>{26ac3f67-dcc4-4ef1-afc2-034b4cacef94}</Project>
       <Name>LibRetriX.XRick</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RavinduL.LocalNotifications\RavinduL.LocalNotifications.csproj">
+      <Project>{6474e959-68ee-403a-b1c9-50f7a37d8420}</Project>
+      <Name>RavinduL.LocalNotifications</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RetriX.Shared\RetriX.Shared.csproj">
       <Project>{58b82d57-a956-4492-96fb-3e82fa82798a}</Project>
       <Name>RetriX.Shared</Name>
@@ -1161,6 +1216,10 @@
     <ProjectReference Include="..\RetriX.UWP.Unsafe\RetriX.UWP.Unsafe.csproj">
       <Project>{0d8d76f1-1383-437c-9482-bbd3c9723768}</Project>
       <Name>RetriX.UWP.Unsafe</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SharpCompress\SharpCompress.csproj">
+      <Project>{8f9bb3ee-e365-4fe0-b5ee-fb45d7e7fe41}</Project>
+      <Name>SharpCompress</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

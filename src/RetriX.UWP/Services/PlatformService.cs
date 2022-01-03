@@ -5,13 +5,17 @@ using Newtonsoft.Json;
 using Plugin.FileSystem;
 using Plugin.FileSystem.Abstractions;
 using RetriX.Shared.Services;
+using RetriX.Shared.StreamProviders;
 using RetriX.Shared.ViewModels;
+using SharpCompress.Archives;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Devices.Input;
@@ -155,6 +159,18 @@ namespace RetriX.UWP.Services
         public static bool isGamesList = false;
         public static event EventHandler RestoreGamesListStateGlobal;
         public static GameSystemRecentModel gameSystemViewModel = null;
+        static double vscrollS = 0;
+        public static double vScrollS
+        {
+            get
+            {
+                return vscrollS;
+            }
+            set
+            {
+                vscrollS = value;
+            }
+        }
         static double vscroll = 0;
         public static double vScroll
         {
@@ -198,12 +214,12 @@ namespace RetriX.UWP.Services
                 localNotificationData.time = time;
                 NotificationHandler(null, localNotificationData);
             }
-            catch(Exception x)
+            catch (Exception x)
             {
                 return false;
             }
             return true;
-        } 
+        }
         public bool ShowNotificationMain(string text, int time)
         {
             if (NotificationHandlerMain == null)
@@ -218,7 +234,7 @@ namespace RetriX.UWP.Services
                 localNotificationData.time = time;
                 NotificationHandlerMain(null, localNotificationData);
             }
-            catch(Exception x)
+            catch (Exception x)
             {
                 return false;
             }
@@ -227,6 +243,29 @@ namespace RetriX.UWP.Services
 
         public void SaveGamesListState()
         {
+            try
+            {
+                MemoryTimer?.Dispose();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            if (SaveListStateGlobal != null)
+            {
+                SaveListStateGlobal.Invoke(null, EventArgs.Empty);
+            }
+        }
+        public static void SaveGamesListStateDirect()
+        {
+            try
+            {
+                MemoryTimer?.Dispose();
+            }
+            catch (Exception ex)
+            {
+
+            }
             if (SaveListStateGlobal != null)
             {
                 SaveListStateGlobal.Invoke(null, EventArgs.Empty);
@@ -281,6 +320,21 @@ namespace RetriX.UWP.Services
             return result;
         }
 
+
+        public static Timer MemoryTimer;
+
+        public static string GetMemoryUsageDirect()
+        {
+            try
+            {
+                var appMemory = (long)MemoryManager.AppMemoryUsage;
+                return appMemory.ToFileSize();
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
         public string GetMemoryUsage()
         {
             try
@@ -288,7 +342,7 @@ namespace RetriX.UWP.Services
                 var appMemory = (long)MemoryManager.AppMemoryUsage;
                 return appMemory.ToFileSize();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return ex.Message;
             }
@@ -300,7 +354,7 @@ namespace RetriX.UWP.Services
                 var appMemory = (long)MemoryManager.AppMemoryUsage;
                 return appMemory;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return 0;
             }
@@ -533,8 +587,8 @@ namespace RetriX.UWP.Services
                         }
                         catch (Exception e)
                         {
-                        //ShowErrorMessage(e);
-                    }
+                            //ShowErrorMessage(e);
+                        }
                     });
                 }
                 else
@@ -629,11 +683,29 @@ namespace RetriX.UWP.Services
 
 
         static string TempError = "";
+        //dialogInProgress made only Windows Phone, as the app will crash if two dialogs appears at once
+        public bool DialogInProgress
+        {
+            get
+            {
+                return dialogInProgress;
+            }
+            set
+            {
+                dialogInProgress = value;
+            }
+        }
+        static bool dialogInProgress = false;
         public async void ShowErrorMessage(Exception e,
         [CallerMemberName] string memberName = "",
         [CallerFilePath] string sourceFilePath = "",
         [CallerLineNumber] int sourceLineNumber = 0)
         {
+            if (dialogInProgress)
+            {
+                return;
+            }
+            dialogInProgress = true;
             if (TempError == e.Message)
             {
 
@@ -654,12 +726,18 @@ namespace RetriX.UWP.Services
             {
 
             }
+            dialogInProgress = false;
         }
         public static async void ShowErrorMessageDirect(Exception e,
         [CallerMemberName] string memberName = "",
         [CallerFilePath] string sourceFilePath = "",
         [CallerLineNumber] int sourceLineNumber = 0)
         {
+            if (dialogInProgress)
+            {
+                return;
+            }
+            dialogInProgress = true;
             string ExtraData = "";
             if (memberName.Length > 0 && sourceLineNumber > 0)
             {
@@ -676,10 +754,16 @@ namespace RetriX.UWP.Services
             {
 
             }
+            dialogInProgress = false;
         }
 
         public static async void ShowMessageDirect(String message)
         {
+            if (dialogInProgress)
+            {
+                return;
+            }
+            dialogInProgress = true;
             try
             {
                 PlayNotificationSoundDirect("alert.mp3");
@@ -690,9 +774,15 @@ namespace RetriX.UWP.Services
             {
 
             }
+            dialogInProgress = false;
         }
         public static async void ShowMessageDirect(String message, string sound)
         {
+            if (dialogInProgress)
+            {
+                return;
+            }
+            dialogInProgress = true;
             try
             {
                 PlayNotificationSoundDirect(sound);
@@ -703,6 +793,7 @@ namespace RetriX.UWP.Services
             {
 
             }
+            dialogInProgress = false;
         }
 
         public bool gameNoticeShowed = false;
@@ -1436,7 +1527,8 @@ namespace RetriX.UWP.Services
                     }
                     return await StorageApplicationPermissions.FutureAccessList.GetFolderAsync(fileToken);
                 }
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
 
             }
@@ -1444,21 +1536,123 @@ namespace RetriX.UWP.Services
         }
         public bool CheckDirectoryToken(string systemName)
         {
-            try { 
-            var fileToken = Plugin.Settings.CrossSettings.Current.GetValueOrDefault($"{systemName}_GamesFolder", "");
-            if (fileToken.Length > 0)
+            try
             {
-                if (!StorageApplicationPermissions.FutureAccessList.ContainsItem(fileToken))
+                var fileToken = Plugin.Settings.CrossSettings.Current.GetValueOrDefault($"{systemName}_GamesFolder", "");
+                if (fileToken.Length > 0)
                 {
-                    return false;
+                    if (!StorageApplicationPermissions.FutureAccessList.ContainsItem(fileToken))
+                    {
+                        return false;
+                    }
+                    return true;
                 }
-                return true;
             }
-            }catch(Exception e)
+            catch (Exception e)
             {
 
             }
             return false;
+        }
+
+        public async Task<List<byte[]>> getShader()
+        {
+            try
+            {
+                var filePicker = new FileOpenPicker();
+                filePicker.SuggestedStartLocation = PickerLocationId.Downloads;
+                filePicker.FileTypeFilter.Add(".bin");
+                var TargetFiles = await filePicker.PickMultipleFilesAsync();
+                if (TargetFiles != null && TargetFiles.Count > 0)
+                {
+                    List<byte[]> byteArrays = new List<byte[]>();
+                    foreach (var fItem in TargetFiles)
+                    {
+                        byte[] resultInBytes = (await FileIO.ReadBufferAsync(fItem)).ToArray();
+                        byteArrays.Add(resultInBytes);
+                    }
+                    if (byteArrays.Count > 0)
+                    {
+                        return byteArrays;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage(ex);
+            }
+            return null;
+        }
+        public async Task<List<byte[]>> getOverlay()
+        {
+            try
+            {
+                var filePicker = new FileOpenPicker();
+                filePicker.SuggestedStartLocation = PickerLocationId.Downloads;
+                filePicker.FileTypeFilter.Add(".png");
+                filePicker.FileTypeFilter.Add(".jpg");
+                filePicker.FileTypeFilter.Add(".jpeg");
+                filePicker.FileTypeFilter.Add(".gif");
+                var TargetFiles = await filePicker.PickMultipleFilesAsync();
+                if (TargetFiles != null && TargetFiles.Count > 0)
+                {
+                    List<byte[]> byteArrays = new List<byte[]>();
+                    foreach (var fItem in TargetFiles)
+                    {
+                        byte[] resultInBytes = (await FileIO.ReadBufferAsync(fItem)).ToArray();
+                        byteArrays.Add(resultInBytes);
+                    }
+                    if (byteArrays.Count > 0)
+                    {
+                        return byteArrays;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage(ex);
+            }
+            return null;
+        }
+
+        public async Task<IDictionary<string, ArchiveData>> GetFilesStreams(Stream stream, string HandledScheme)
+        {
+            try
+            {
+                IDictionary<string, ArchiveData> EntriesMapping = new SortedDictionary<string, ArchiveData>();
+                var zipArchive = ArchiveFactory.Open(stream);
+                //It should support 7z, zip, rar, gz, tar
+                var reader = zipArchive.Entries;
+                foreach (var entry in reader)
+                {
+                    if (!entry.IsDirectory)
+                    {
+                        var testStreamSize = entry.Size;
+                        try
+                        {
+                            //Entry size will do the job, for some reason OpenEntryStream is not working
+                            //testStreamSize = entry.OpenEntryStream().Length;
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                        ArchiveData data = new ArchiveData(entry.WriteTo, entry.Size, testStreamSize, entry.Key);
+                        var key = Path.Combine(HandledScheme, data.entryKey.Replace('/', Path.DirectorySeparatorChar));
+                        ArchiveData test;
+                        if (!EntriesMapping.TryGetValue(key, out test))
+                        {
+                            EntriesMapping.Add(key, data);
+                        }
+                    }
+                }
+                return EntriesMapping;
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage(ex);
+            }
+            return null;
         }
     }
     public class LocalNotificationData : EventArgs

@@ -93,7 +93,7 @@
     </UserControl.Resources>
 
     <Grid VerticalAlignment="Bottom" Background="{StaticResource BackgroundBrush}" Padding="18,18,18,18">
- 
+        
         <CommandBar  AllowFocusOnInteraction="False" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" VerticalAlignment="Center" HorizontalAlignment="Center">
 
             <AppBarButton x:Name="StopButton" Icon="Stop" Label="Stop" Command="{x:Bind ViewModel.StopCommand}">
@@ -107,81 +107,25 @@
             <AppBarButton x:Name="ResetButton" Icon="Refresh" Label="Reset" Command="{x:Bind ViewModel.ResetCommand}" IsEnabled="{x:Bind ViewModel.ShowMainActions,Mode=OneWay}">
 
             </AppBarButton>
-            
-            <AppBarButton x:Name="SavesMenu" Icon="Save" Label="Saves" IsEnabled="{x:Bind ViewModel.ShowMainActions,Mode=OneWay}">
-                <AppBarButton.Flyout>
-                    <MenuFlyout>
-                        <MenuFlyoutItem x:Uid="ShowListMenuFlyoutItem" Command="{x:Bind ViewModel.ShowSavesList}" IsEnabled="True"/>
-                        <MenuFlyoutItem x:Uid="ClearAllMenuFlyoutItem" Command="{x:Bind ViewModel.ClearAllSaves}" IsEnabled="True"/>
-                        <MenuFlyoutSubItem x:Uid="AutoSaveFilteringMenuFlyout" Text="FilteringDesign">
-                            <ToggleMenuFlyoutItem x:Uid="OnStopFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.AutoSave, Mode=OneWay}" Command="{x:Bind ViewModel.SetAutoSave}" IsEnabled="True"/>
-                            <ToggleMenuFlyoutItem x:Uid="Seconds15FilteringMenuFlyout" IsChecked="{x:Bind ViewModel.AutoSave15Sec, Mode=OneWay}" Command="{x:Bind ViewModel.SetAutoSave15Sec}" IsEnabled="True"/>
-                            <ToggleMenuFlyoutItem x:Uid="Seconds30FilteringMenuFlyout" IsChecked="{x:Bind ViewModel.AutoSave30Sec, Mode=OneWay}" Command="{x:Bind ViewModel.SetAutoSave30Sec}" IsEnabled="True"/>
-                            <ToggleMenuFlyoutItem x:Uid="Seconds60FilteringMenuFlyout" IsChecked="{x:Bind ViewModel.AutoSave60Sec, Mode=OneWay}" Command="{x:Bind ViewModel.SetAutoSave60Sec}" IsEnabled="True"/>
-                            <ToggleMenuFlyoutItem x:Uid="Seconds90FilteringMenuFlyout" IsChecked="{x:Bind ViewModel.AutoSave90Sec, Mode=OneWay}" Command="{x:Bind ViewModel.SetAutoSave90Sec}" IsEnabled="True"/>
-                            <ToggleMenuFlyoutItem x:Uid="AutoSaveNotifyFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.AutoSaveNotify, Mode=OneWay}" Command="{x:Bind ViewModel.SetAutoSaveNotify}" IsEnabled="True"/>
-                        </MenuFlyoutSubItem>
-                        <MenuFlyoutSubItem x:Uid="Slot1MenuFlyoutItem" Text="Design 1">
-                            <MenuFlyoutItem x:Uid="LoadMenuFlyoutItem" Command="{x:Bind ViewModel.LoadStateSlot1}" IsEnabled="True"/>
-                            <MenuFlyoutItem x:Uid="SaveMenuFlyoutItem" Command="{x:Bind ViewModel.SaveStateSlot1}" IsEnabled="True"/>
-                        </MenuFlyoutSubItem>
-                        <MenuFlyoutSubItem x:Uid="Slot2MenuFlyoutItem" Text="Design 2">
-                            <MenuFlyoutItem x:Uid="LoadMenuFlyoutItem" Command="{x:Bind ViewModel.LoadStateSlot2}" IsEnabled="True"/>
-                            <MenuFlyoutItem x:Uid="SaveMenuFlyoutItem" Command="{x:Bind ViewModel.SaveStateSlot2}" IsEnabled="True"/>
-                        </MenuFlyoutSubItem>
-                        <MenuFlyoutSubItem x:Uid="Slot3MenuFlyoutItem" Text="Design 3">
-                            <MenuFlyoutItem x:Uid="LoadMenuFlyoutItem" Command="{x:Bind ViewModel.LoadStateSlot3}" IsEnabled="True"/>
-                            <MenuFlyoutItem x:Uid="SaveMenuFlyoutItem" Command="{x:Bind ViewModel.SaveStateSlot3}" IsEnabled="True"/>
-                        </MenuFlyoutSubItem>
-                        <MenuFlyoutSubItem x:Uid="Slot4MenuFlyoutItem" Text="Design 4">
-                            <MenuFlyoutItem x:Uid="LoadMenuFlyoutItem" Command="{x:Bind ViewModel.LoadStateSlot4}" IsEnabled="True"/>
-                            <MenuFlyoutItem x:Uid="SaveMenuFlyoutItem" Command="{x:Bind ViewModel.SaveStateSlot4}" IsEnabled="True"/>
-                        </MenuFlyoutSubItem>
-                        <MenuFlyoutSubItem x:Uid="Slot5MenuFlyoutItem" Text="Design 5">
-                            <MenuFlyoutItem x:Uid="LoadMenuFlyoutItem" Command="{x:Bind ViewModel.LoadStateSlot5}" IsEnabled="True"/>
-                            <MenuFlyoutItem x:Uid="SaveMenuFlyoutItem" Command="{x:Bind ViewModel.SaveStateSlot5}" IsEnabled="True"/>
-                        </MenuFlyoutSubItem>
-                        <MenuFlyoutSubItem x:Uid="MoreMenuFlyoutItem" Text="Design 11">
-                            <MenuFlyoutSubItem x:Uid="Slot6MenuFlyoutItem" Text="Design 6">
-                                <MenuFlyoutItem x:Uid="LoadMenuFlyoutItem" Command="{x:Bind ViewModel.LoadStateSlot6}" IsEnabled="True"/>
-                                <MenuFlyoutItem x:Uid="SaveMenuFlyoutItem" Command="{x:Bind ViewModel.SaveStateSlot6}" IsEnabled="True"/>
-                            </MenuFlyoutSubItem>
-                            <MenuFlyoutSubItem x:Uid="Slot7MenuFlyoutItem" Text="Design 7">
-                                <MenuFlyoutItem x:Uid="LoadMenuFlyoutItem" Command="{x:Bind ViewModel.LoadStateSlot7}" IsEnabled="True"/>
-                                <MenuFlyoutItem x:Uid="SaveMenuFlyoutItem" Command="{x:Bind ViewModel.SaveStateSlot7}" IsEnabled="True"/>
-                            </MenuFlyoutSubItem>
-                            <MenuFlyoutSubItem x:Uid="Slot8MenuFlyoutItem" Text="Design 8">
-                                <MenuFlyoutItem x:Uid="LoadMenuFlyoutItem" Command="{x:Bind ViewModel.LoadStateSlot8}" IsEnabled="True"/>
-                                <MenuFlyoutItem x:Uid="SaveMenuFlyoutItem" Command="{x:Bind ViewModel.SaveStateSlot8}" IsEnabled="True"/>
-                            </MenuFlyoutSubItem>
-                            <MenuFlyoutSubItem x:Uid="Slot9MenuFlyoutItem" Text="Design 9">
-                                <MenuFlyoutItem x:Uid="LoadMenuFlyoutItem" Command="{x:Bind ViewModel.LoadStateSlot9}" IsEnabled="True"/>
-                                <MenuFlyoutItem x:Uid="SaveMenuFlyoutItem" Command="{x:Bind ViewModel.SaveStateSlot9}" IsEnabled="True"/>
-                            </MenuFlyoutSubItem>
-                            <MenuFlyoutSubItem x:Uid="Slot10MenuFlyoutItem" Text="Design 10">
-                                <MenuFlyoutItem x:Uid="LoadMenuFlyoutItem" Command="{x:Bind ViewModel.LoadStateSlot10}" IsEnabled="True"/>
-                                <MenuFlyoutItem x:Uid="SaveMenuFlyoutItem" Command="{x:Bind ViewModel.SaveStateSlot10}" IsEnabled="True"/>
-                            </MenuFlyoutSubItem>
-                        </MenuFlyoutSubItem>
-                    </MenuFlyout>
-                </AppBarButton.Flyout>
-            </AppBarButton>
-
+ 
             <AppBarButton x:Name="AdvancedMenu" Icon="Favorite" Label="Advanced" IsEnabled="{x:Bind ViewModel.ShowMainActions,Mode=OneWay}">
                 <AppBarButton.Flyout>
                     <MenuFlyout>
-                        <MenuFlyoutSubItem x:Uid="RestoreMenuFlyoutItem" Text="Design 11">
-                            <MenuFlyoutItem x:Uid="SavedSlotsMenuFlyoutItem" Text="Import Slots" Command="{x:Bind ViewModel.ImportSavedSlots}" IsEnabled="True"/>
-                            <MenuFlyoutItem x:Uid="ActionsSlotsMenuFlyoutItem" Text="Import Actions" Command="{x:Bind ViewModel.ImportActionsSlots}" IsEnabled="True"/>
-                        </MenuFlyoutSubItem>
-                        <MenuFlyoutSubItem x:Uid="BackupMenuFlyoutItem" Text="Design 11">
-                            <MenuFlyoutItem x:Uid="SavedSlotsMenuFlyoutItem" Text="Export Slots" Command="{x:Bind ViewModel.ExportSavedSlots}" IsEnabled="True"/>
-                            <MenuFlyoutItem x:Uid="ActionsSlotsMenuFlyoutItem" Text="Export Actions" Command="{x:Bind ViewModel.ExportActionsSlots}" IsEnabled="True"/>
+                        <MenuFlyoutSubItem Text="Manage">
+                            <MenuFlyoutSubItem x:Uid="RestoreMenuFlyoutItem" Text="Design 11">
+                                <MenuFlyoutItem x:Uid="SavedSlotsMenuFlyoutItem" Text="Import Slots" Command="{x:Bind ViewModel.ImportSavedSlots}" IsEnabled="True"/>
+                                <MenuFlyoutItem x:Uid="ActionsSlotsMenuFlyoutItem" Text="Import Actions" Command="{x:Bind ViewModel.ImportActionsSlots}" IsEnabled="True"/>
+                            </MenuFlyoutSubItem>
+                            <MenuFlyoutSubItem x:Uid="BackupMenuFlyoutItem" Text="Design 11">
+                                <MenuFlyoutItem x:Uid="SavedSlotsMenuFlyoutItem" Text="Export Slots" Command="{x:Bind ViewModel.ExportSavedSlots}" IsEnabled="True"/>
+                                <MenuFlyoutItem x:Uid="ActionsSlotsMenuFlyoutItem" Text="Export Actions" Command="{x:Bind ViewModel.ExportActionsSlots}" IsEnabled="True"/>
+                            </MenuFlyoutSubItem>
                         </MenuFlyoutSubItem>
                         <MenuFlyoutSubItem x:Uid="AssistantMenuFlyoutItem" Text="Design 11">
                             <MenuFlyoutItem x:Uid="Action1tMenuFlyoutItem" Text="Import" Command="{x:Bind ViewModel.ShowActionsGrid1}" IsEnabled="True"/>
                             <MenuFlyoutItem x:Uid="Action2tMenuFlyoutItem" Text="Export" Command="{x:Bind ViewModel.ShowActionsGrid2}" IsEnabled="True"/>
                             <MenuFlyoutItem x:Uid="Action3tMenuFlyoutItem" Text="Export" Command="{x:Bind ViewModel.ShowActionsGrid3}" IsEnabled="True"/>
+                            <MenuFlyoutSeparator></MenuFlyoutSeparator>
                             <MenuFlyoutSubItem x:Uid="DelayMenuFlyoutItem" Text="Design 11">
                                 <ToggleMenuFlyoutItem x:Uid="Delay1MenuFlyoutItem" Text="100" IsChecked="{x:Bind ViewModel.ActionsDelay1, Mode=OneWay}" Command="{x:Bind ViewModel.SetActionsDelay1}" IsEnabled="True"/>
                                 <ToggleMenuFlyoutItem x:Uid="Delay2MenuFlyoutItem" Text="200" IsChecked="{x:Bind ViewModel.ActionsDelay2, Mode=OneWay}" Command="{x:Bind ViewModel.SetActionsDelay2}" IsEnabled="True"/>
@@ -197,7 +141,7 @@
                             <ToggleMenuFlyoutItem x:Uid="HideXYZTouchGamepadMenuFlyoutItem" Text="ShowXYZ" IsChecked="{x:Bind ViewModel.ShowXYZ, Mode=OneWay}" Command="{x:Bind ViewModel.SetShowXYZ}" Visibility="{x:Bind ViewModel.IsSegaSystem, Converter={StaticResource BoolToVisibilityConverter},Mode=OneWay}"  IsEnabled="True"/>
                             <ToggleMenuFlyoutItem x:Uid="ShowSpeicalButtonsFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.ShowSpecialButtons, Mode=OneWay}" Command="{x:Bind ViewModel.SetShowSpecialButtons}" IsEnabled="True"/>
                             <ToggleMenuFlyoutItem x:Uid="ShowActionsButtonsFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.ShowActionsButtons, Mode=OneWay}" Command="{x:Bind ViewModel.SetShowActionsButtons}" IsEnabled="True"/>
-
+                            <MenuFlyoutSeparator></MenuFlyoutSeparator>
                             <MenuFlyoutSubItem x:Uid="AdjustmentsMenuFlyout" Text="Design 11">
                                 <ToggleMenuFlyoutItem x:Uid="ScaleFactorVisibleMenuFlyoutItem" Text="ScaleFactorVisible" IsChecked="{x:Bind ViewModel.ScaleFactorVisible, Mode=OneWay}" Command="{x:Bind ViewModel.SetScaleFactorVisible}"  IsEnabled="True"/>
                                 <ToggleMenuFlyoutItem x:Uid="CustomScaleFactorVisibleMenuFlyoutItem" Text="CustomScaleFactorVisible" IsChecked="{x:Bind ViewModel.CustomConsoleEditMode, Mode=OneWay}" Command="{x:Bind ViewModel.SetSetCustomConsoleEditMode}"  IsEnabled="True"/>
@@ -206,37 +150,39 @@
                             </MenuFlyoutSubItem>
                         </MenuFlyoutSubItem>
 
-                        <MenuFlyoutSubItem Text="Render Threads">
-                            <ToggleMenuFlyoutItem Text="Wait Threads" IsChecked="{x:Bind ViewModel.DontWaitThreadsState, Mode=OneWay}" Command="{x:Bind ViewModel.DontWaitThreads}" IsEnabled="True"/>
-                            <MenuFlyoutSeparator></MenuFlyoutSeparator>
-                            <ToggleMenuFlyoutItem Text="None" IsChecked="{x:Bind ViewModel.RCore1, Mode=TwoWay}" Command="{x:Bind ViewModel.SetRCore}"  IsEnabled="True"/>
-                            <ToggleMenuFlyoutItem Text="2 Threads" IsChecked="{x:Bind ViewModel.RCore2, Mode=TwoWay}" Command="{x:Bind ViewModel.SetRCore}"  IsEnabled="True"/>
-                            <ToggleMenuFlyoutItem Text="4 Threads" IsChecked="{x:Bind ViewModel.RCore4, Mode=TwoWay}" Command="{x:Bind ViewModel.SetRCore}"  IsEnabled="True"/>
-                            <ToggleMenuFlyoutItem Text="6 Threads" IsChecked="{x:Bind ViewModel.RCore6, Mode=TwoWay}" Command="{x:Bind ViewModel.SetRCore}"  IsEnabled="True"/>
-                            <ToggleMenuFlyoutItem Text="8 Threads" IsChecked="{x:Bind ViewModel.RCore8, Mode=TwoWay}" Command="{x:Bind ViewModel.SetRCore}"  IsEnabled="True"/>
-                            <ToggleMenuFlyoutItem Text="12 Thread" IsChecked="{x:Bind ViewModel.RCore12, Mode=TwoWay}" Command="{x:Bind ViewModel.SetRCore}"  IsEnabled="True"/>
-                            <ToggleMenuFlyoutItem Text="18 Thread" IsChecked="{x:Bind ViewModel.RCore20, Mode=TwoWay}" Command="{x:Bind ViewModel.SetRCore}"  IsEnabled="True"/>
-                            <ToggleMenuFlyoutItem Text="32 Thread" IsChecked="{x:Bind ViewModel.RCore32, Mode=TwoWay}" Command="{x:Bind ViewModel.SetRCore}"  IsEnabled="True"/>
-                        </MenuFlyoutSubItem>
                         <ToggleMenuFlyoutItem x:Uid="CoreOptionsMenuFlyout" IsChecked="{x:Bind ViewModel.CoreOptionsVisible, Mode=OneWay}" Command="{x:Bind ViewModel.SetCoreOptionsVisible}" Visibility="{x:Bind ViewModel.InGameOptionsActive, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" IsEnabled="True"/>
 
                         <!--<ToggleMenuFlyoutItem x:Uid="ControlsKeyBoardFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.ControlsMapVisible, Mode=OneWay}" Command="{x:Bind ViewModel.SetControlsMapVisible}"/>-->
-                        <ToggleMenuFlyoutItem x:Uid="SensorsFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.SensorsMovement, Mode=OneWay}" Command="{x:Bind ViewModel.SetSensorsMovement}" Visibility="{x:Bind ViewModel.SensorsMovementActive, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" IsEnabled="True"/>
-                        <ToggleMenuFlyoutItem x:Uid="AnalogDirectionFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.UseAnalogDirections, Mode=OneWay}" Command="{x:Bind ViewModel.SetUseAnalogDirections}" IsEnabled="True"/>
-
+                        <ToggleMenuFlyoutItem x:Uid="SensorsFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.SensorsMovement, Mode=OneWay}" Command="{x:Bind ViewModel.SetSensorsMovement}" Visibility="Collapsed" IsEnabled="True"/>
+                        <ToggleMenuFlyoutItem x:Uid="AnalogDirectionFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.UseAnalogDirections, Mode=OneWay}" Command="{x:Bind ViewModel.SetUseAnalogDirections}" Visibility="Collapsed" IsEnabled="True"/>
                         <ToggleMenuFlyoutItem x:Uid="XBoxMenuFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.MenuGridActive, Mode=OneWay}" Command="{x:Bind ViewModel.SetToggleMenuGrid}" IsEnabled="True"/>
 
                     </MenuFlyout>
                 </AppBarButton.Flyout>
             </AppBarButton>
-
+            
             <AppBarButton x:Name="SettingsMenu" Icon="Setting" Label="Settings" IsEnabled="{x:Bind ViewModel.ShowMainActions,Mode=OneWay}">
                 <AppBarButton.Flyout>
-                    <MenuFlyout>
+                    <MenuFlyout Closed="MenuFlyout_Closed" Closing="MenuFlyout_Closing">
+                        <MenuFlyoutSubItem x:Uid="TouckPadMenuFlyoutItem33">
+                            <ToggleMenuFlyoutItem Text="Show Effects" IsChecked="{x:Bind ViewModel.EffectsVisible, Mode=OneWay}" Command="{x:Bind ViewModel.ShowAllEffects}" IsEnabled="True"/>
+                            <MenuFlyoutSeparator></MenuFlyoutSeparator>
+                            <ToggleMenuFlyoutItem Text="Set Overlays" IsChecked="{x:Bind ViewModel.AddOverlays, Mode=TwoWay}" IsEnabled="True"/>
+                            <ToggleMenuFlyoutItem Text="Set Shaders" IsChecked="{x:Bind ViewModel.AddShaders, Mode=TwoWay}" IsEnabled="True"/>
+                        </MenuFlyoutSubItem>
+                       
+                        <MenuFlyoutSeparator></MenuFlyoutSeparator>
                         <MenuFlyoutSubItem x:Uid="TouckPadMenuFlyoutItem" Text="Design 11">
                             <ToggleMenuFlyoutItem x:Uid="ForceDisplayTouchGamepadMenuFlyoutItem" Text="TouchPadDesign" IsChecked="{x:Bind ViewModel.ForceDisplayTouchGamepad, Mode=TwoWay}" Visibility="{x:Bind ViewModel.TouchScreenAvailable, Converter={StaticResource BoolToVisibilityConverter}}"  IsEnabled="True"/>
                             <ToggleMenuFlyoutItem x:Uid="FitScreenMenuFlyoutItem" Command="{x:Bind ViewModel.SetScreenFit}" Text="TouchPadDesign" IsChecked="{x:Bind ViewModel.FitScreenState, Mode=TwoWay}"  IsEnabled="True"/>
                             <ToggleMenuFlyoutItem x:Uid="ShowFPSMenuFlyoutItem" Command="{x:Bind ViewModel.ShowFPSCounterCommand}" Text="ShowFPS" IsChecked="{x:Bind ViewModel.ShowFPSCounter, Mode=OneWay}"  IsEnabled="True"/>
+
+                            <MenuFlyoutSeparator></MenuFlyoutSeparator>
+                            <MenuFlyoutSubItem x:Uid="FilteringMenuFlyoutItem" Text="FilteringDesign">
+                                <ToggleMenuFlyoutItem x:Uid="Scanlines2FilteringMenuFlyout" IsChecked="{x:Bind ViewModel.ScanLines2, Mode=OneWay}" Command="{x:Bind ViewModel.SetScanlines2}" IsEnabled="True"/>
+                                <ToggleMenuFlyoutItem x:Uid="Scanlines3FilteringMenuFlyout" IsChecked="{x:Bind ViewModel.ScanLines3, Mode=OneWay}" Command="{x:Bind ViewModel.SetScanlines3}" IsEnabled="True"/>
+                                <ToggleMenuFlyoutItem x:Uid="Scanlines1FilteringMenuFlyout" IsChecked="{x:Bind ViewModel.ScanLines1, Mode=OneWay}" Command="{x:Bind ViewModel.SetScanlines1}" IsEnabled="True"/>
+                            </MenuFlyoutSubItem>
                             <MenuFlyoutSubItem x:Uid="RotateMenuFlyout" Text="Design 11">
                                 <ToggleMenuFlyoutItem x:Uid="Rotate90PMenuFlyout" Text="Right" Command="{x:Bind ViewModel.SetRotateDegreePlus}" IsChecked="{x:Bind ViewModel.RotateDegreePlusActive, Mode=TwoWay}" IsEnabled="True"/>
                                 <ToggleMenuFlyoutItem x:Uid="Rotate90MMenuFlyout" Text="Left" Command="{x:Bind ViewModel.SetRotateDegreeMinus}" IsChecked="{x:Bind ViewModel.RotateDegreeMinusActive, Mode=TwoWay}" IsEnabled="True"/>
@@ -248,64 +194,68 @@
                             <ToggleMenuFlyoutItem x:Uid="AudioMediumMenuFlyout" Text="Medium Level" Command="{x:Bind ViewModel.SetAudioMediumLevel}" IsChecked="{x:Bind ViewModel.AudioMediumLevel, Mode=TwoWay}" IsEnabled="True"/>
                             <ToggleMenuFlyoutItem x:Uid="AudioLowMenuFlyout" Text="Low Level" Command="{x:Bind ViewModel.SetAudioLevelLow}" IsChecked="{x:Bind ViewModel.AudioLowLevel, Mode=TwoWay}" IsEnabled="True"/>
                             <ToggleMenuFlyoutItem x:Uid="AudioMuteMenuFlyout" Command="{x:Bind ViewModel.SetAudioLevelMute}" Text="Mute" IsChecked="{x:Bind ViewModel.AudioMuteLevel, Mode=TwoWay}"  IsEnabled="True"/>
+                            <MenuFlyoutSeparator></MenuFlyoutSeparator>
                             <MenuFlyoutSubItem x:Uid="AudioEffectsMenuFlyout" Text="Design 11">
                                 <ToggleMenuFlyoutItem x:Uid="AudioEchoMenuFlyout" Text="Echo" Command="{x:Bind ViewModel.SetAudioEcho}" IsChecked="{x:Bind ViewModel.AudioEcho, Mode=OneWay}" IsEnabled="True"/>
                                 <ToggleMenuFlyoutItem x:Uid="AudioReverebMenuFlyout" Text="Reverb" Command="{x:Bind ViewModel.SetAudioReverb}" IsChecked="{x:Bind ViewModel.AudioReverb, Mode=OneWay}" IsEnabled="True"/>
                             </MenuFlyoutSubItem>
                         </MenuFlyoutSubItem>
-                        <MenuFlyoutSubItem x:Uid="FilteringMenuFlyoutItem" Text="FilteringDesign">
-                            <ToggleMenuFlyoutItem x:Uid="Scanlines2FilteringMenuFlyout" IsChecked="{x:Bind ViewModel.ScanLines2, Mode=OneWay}" Command="{x:Bind ViewModel.SetScanlines2}" IsEnabled="True"/>
-                            <ToggleMenuFlyoutItem x:Uid="Scanlines3FilteringMenuFlyout" IsChecked="{x:Bind ViewModel.ScanLines3, Mode=OneWay}" Command="{x:Bind ViewModel.SetScanlines3}" IsEnabled="True"/>
-                            <ToggleMenuFlyoutItem x:Uid="Scanlines1FilteringMenuFlyout" IsChecked="{x:Bind ViewModel.ScanLines1, Mode=OneWay}" Command="{x:Bind ViewModel.SetScanlines1}" IsEnabled="True"/>
-                        </MenuFlyoutSubItem>
-                        <MenuFlyoutSubItem x:Uid="RenderFilteringMenuFlyoutItem" Text="FilteringDesign">
-                            <MenuFlyoutSubItem x:Uid="QualityFilteringMenuFlyoutItem" Text="FilteringDesign">
-                                <ToggleMenuFlyoutItem x:Uid="NearestNeighborFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.NearestNeighbor, Mode=OneWay}" Command="{x:Bind ViewModel.SetNearestNeighbor}" IsEnabled="True"/>
-                                <ToggleMenuFlyoutItem x:Uid="AnisotropicFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.Anisotropic, Mode=OneWay}" Command="{x:Bind ViewModel.SetAnisotropic}" IsEnabled="True"/>
-                                <ToggleMenuFlyoutItem x:Uid="CubicFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.Cubic, Mode=OneWay}" Command="{x:Bind ViewModel.SetCubic}" IsEnabled="True"/>
-                                <ToggleMenuFlyoutItem x:Uid="HighQualityCubicFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.HighQualityCubic, Mode=OneWay}" Command="{x:Bind ViewModel.SetHighQualityCubic}" IsEnabled="True"/>
-                                <ToggleMenuFlyoutItem x:Uid="LinearFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.Linear, Mode=OneWay}" Command="{x:Bind ViewModel.SetLinear}" IsEnabled="True"/>
-                                <ToggleMenuFlyoutItem x:Uid="MultiSampleLinearFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.MultiSampleLinear, Mode=OneWay}" Command="{x:Bind ViewModel.SetMultiSampleLinear}" IsEnabled="True"/>
-                            </MenuFlyoutSubItem>
-                            <ToggleMenuFlyoutItem x:Uid="AliasedFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.Aliased, Mode=OneWay}" Command="{x:Bind ViewModel.SetAliased}" IsEnabled="True"/>
-                            <!--<ToggleMenuFlyoutItem x:Uid="DoublePixelFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.DoublePixel, Mode=OneWay}" Command="{x:Bind ViewModel.SetDoublePixel}"/>-->
-                        </MenuFlyoutSubItem>
-                        <MenuFlyoutSubItem x:Uid="ColorFilterFilteringMenuFlyout" Text="Design 11">
-                            <ToggleMenuFlyoutItem x:Uid="ColorFilterNoneFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.ColorFilters[0], Mode=OneWay}" Command="{x:Bind ViewModel.SetColorFilterNone}" IsEnabled="True"/>
-                            <ToggleMenuFlyoutItem x:Uid="ColorFilterGrayscaleFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.ColorFilters[1], Mode=OneWay}" Command="{x:Bind ViewModel.SetColorFilterGrayscale}" IsEnabled="True"/>
-                            <ToggleMenuFlyoutItem x:Uid="ColorFilterCoolFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.ColorFilters[2], Mode=OneWay}" Command="{x:Bind ViewModel.SetColorFilterCool}" IsEnabled="True"/>
-                            <ToggleMenuFlyoutItem x:Uid="ColorFilterWarmFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.ColorFilters[3], Mode=OneWay}" Command="{x:Bind ViewModel.SetColorFilterWarm}" IsEnabled="True"/>
-                            <ToggleMenuFlyoutItem x:Uid="ColorFilterBurnFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.ColorFilters[4], Mode=OneWay}" Command="{x:Bind ViewModel.SetColorFilterBurn}" IsEnabled="True"/>
-                            <ToggleMenuFlyoutItem x:Uid="ColorFilterRetroFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.ColorFilters[5], Mode=OneWay}" Command="{x:Bind ViewModel.SetColorFilterRetro}" IsEnabled="True"/>
-                            <ToggleMenuFlyoutItem x:Uid="ColorFilterBlueFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.ColorFilters[6], Mode=OneWay}" Command="{x:Bind ViewModel.SetColorFilterBlue}" IsEnabled="True"/>
-                            <ToggleMenuFlyoutItem x:Uid="ColorFilterGreenFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.ColorFilters[7], Mode=OneWay}" Command="{x:Bind ViewModel.SetColorFilterGreen}" IsEnabled="True"/>
-                            <ToggleMenuFlyoutItem x:Uid="ColorFilterRedFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.ColorFilters[8], Mode=OneWay}" Command="{x:Bind ViewModel.SetColorFilterRed}" IsEnabled="True"/>
-                        </MenuFlyoutSubItem>
+                        
                         <MenuFlyoutSubItem Text="Performance">
+                            <MenuFlyoutSubItem Text="Render">
+                                <MenuFlyoutSubItem Text="Threads">
+                                    <ToggleMenuFlyoutItem Text="Wait Threads" IsChecked="{x:Bind ViewModel.DontWaitThreadsState, Mode=OneWay}" Command="{x:Bind ViewModel.DontWaitThreads}" IsEnabled="True"/>
+                                    <MenuFlyoutSeparator></MenuFlyoutSeparator>
+                                    <ToggleMenuFlyoutItem Text="None" IsChecked="{x:Bind ViewModel.RCore1, Mode=TwoWay}" Command="{x:Bind ViewModel.SetRCore}"  IsEnabled="True"/>
+                                    <ToggleMenuFlyoutItem Text="2 Threads" IsChecked="{x:Bind ViewModel.RCore2, Mode=TwoWay}" Command="{x:Bind ViewModel.SetRCore}"  IsEnabled="True"/>
+                                    <ToggleMenuFlyoutItem Text="4 Threads" IsChecked="{x:Bind ViewModel.RCore4, Mode=TwoWay}" Command="{x:Bind ViewModel.SetRCore}"  IsEnabled="True"/>
+                                    <ToggleMenuFlyoutItem Text="6 Threads" IsChecked="{x:Bind ViewModel.RCore6, Mode=TwoWay}" Command="{x:Bind ViewModel.SetRCore}"  IsEnabled="True"/>
+                                    <ToggleMenuFlyoutItem Text="8 Threads" IsChecked="{x:Bind ViewModel.RCore8, Mode=TwoWay}" Command="{x:Bind ViewModel.SetRCore}"  IsEnabled="True"/>
+                                    <ToggleMenuFlyoutItem Text="12 Thread" IsChecked="{x:Bind ViewModel.RCore12, Mode=TwoWay}" Command="{x:Bind ViewModel.SetRCore}"  IsEnabled="True"/>
+                                    <ToggleMenuFlyoutItem Text="18 Thread" IsChecked="{x:Bind ViewModel.RCore20, Mode=TwoWay}" Command="{x:Bind ViewModel.SetRCore}"  IsEnabled="True"/>
+                                    <ToggleMenuFlyoutItem Text="32 Thread" IsChecked="{x:Bind ViewModel.RCore32, Mode=TwoWay}" Command="{x:Bind ViewModel.SetRCore}"  IsEnabled="True"/>
+                                </MenuFlyoutSubItem>
+                                <MenuFlyoutSubItem x:Uid="QualityFilteringMenuFlyoutItem" Text="FilteringDesign">
+                                    <ToggleMenuFlyoutItem x:Uid="NearestNeighborFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.NearestNeighbor, Mode=OneWay}" Command="{x:Bind ViewModel.SetNearestNeighbor}" IsEnabled="True"/>
+                                    <ToggleMenuFlyoutItem x:Uid="AnisotropicFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.Anisotropic, Mode=OneWay}" Command="{x:Bind ViewModel.SetAnisotropic}" IsEnabled="True"/>
+                                    <ToggleMenuFlyoutItem x:Uid="CubicFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.Cubic, Mode=OneWay}" Command="{x:Bind ViewModel.SetCubic}" IsEnabled="True"/>
+                                    <ToggleMenuFlyoutItem x:Uid="HighQualityCubicFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.HighQualityCubic, Mode=OneWay}" Command="{x:Bind ViewModel.SetHighQualityCubic}" IsEnabled="True"/>
+                                    <ToggleMenuFlyoutItem x:Uid="LinearFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.Linear, Mode=OneWay}" Command="{x:Bind ViewModel.SetLinear}" IsEnabled="True"/>
+                                    <ToggleMenuFlyoutItem x:Uid="MultiSampleLinearFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.MultiSampleLinear, Mode=OneWay}" Command="{x:Bind ViewModel.SetMultiSampleLinear}" IsEnabled="True"/>
+                                    <ToggleMenuFlyoutItem x:Uid="AliasedFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.Aliased, Mode=OneWay}" Command="{x:Bind ViewModel.SetAliased}" IsEnabled="True"/>
+                                </MenuFlyoutSubItem>
+                            </MenuFlyoutSubItem>
+                            <MenuFlyoutSubItem Text="Memory"  Visibility="{x:Bind ViewModel.isMemoryHelpersVisible, Converter={StaticResource BoolToVisibilityConverter}}" >
+                                <ToggleMenuFlyoutItem Text="Buffer.CopyMemory" IsChecked="{x:Bind ViewModel.BufferCopyMemory, Mode=TwoWay}" IsEnabled="True"/>
+                                <ToggleMenuFlyoutItem Text="memcpy (msvcrt.dll)" IsChecked="{x:Bind ViewModel.memCPYMemory, Mode=TwoWay}" IsEnabled="True"/>
+                                <ToggleMenuFlyoutItem Text="Marshal.CopyTo" IsChecked="{x:Bind ViewModel.MarshalMemory, Mode=TwoWay}" IsEnabled="True"/>
+                                <ToggleMenuFlyoutItem Text="Span.CopyTo" IsChecked="{x:Bind ViewModel.SpanlMemory, Mode=TwoWay}" IsEnabled="True"/>
+                            </MenuFlyoutSubItem>
+                            <MenuFlyoutSeparator></MenuFlyoutSeparator>
                             <ToggleMenuFlyoutItem Text="Random Skip" IsChecked="{x:Bind ViewModel.SkipFramesRandom, Mode=OneWay}" Command="{x:Bind ViewModel.SetSkipFramesRandom}" IsEnabled="True"/>
                             <ToggleMenuFlyoutItem x:Uid="SkipFramesFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.SkipFrames, Mode=OneWay}" Command="{x:Bind ViewModel.SetSkipFrames}" IsEnabled="True"/>
                             <ToggleMenuFlyoutItem x:Uid="DelayFramesFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.DelayFrames, Mode=OneWay}" Command="{x:Bind ViewModel.SetDelayFrames}" IsEnabled="True"/>
                             <MenuFlyoutSeparator></MenuFlyoutSeparator>
                             <ToggleMenuFlyoutItem x:Uid="ReduceFreezesFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.ReduceFreezes, Mode=OneWay}" Command="{x:Bind ViewModel.SetReduceFreezes}" IsEnabled="True"/>
-                            <ToggleMenuFlyoutItem x:Uid="SpeedupFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.Speedup, Mode=OneWay}" Command="{x:Bind ViewModel.SetSpeedup}" IsEnabled="True"/>
-                            </MenuFlyoutSubItem>
-                        <MenuFlyoutSubItem x:Uid="PerformanceMenuFlyoutItem" Text="FilteringDesign">
-                            <ToggleMenuFlyoutItem x:Uid="VideoOnlyFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.VideoOnly, Mode=OneWay}" Command="{x:Bind ViewModel.SetVideoOnly}" IsEnabled="True"/>
-                            <ToggleMenuFlyoutItem x:Uid="AudioOnlyFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.AudioOnly, Mode=OneWay}" Command="{x:Bind ViewModel.SetAudioOnly}" IsEnabled="True"/>
+                            <ToggleMenuFlyoutItem Text="Crazy Buffer" IsChecked="{x:Bind ViewModel.CrazyBufferActive, Mode=OneWay}" Command="{x:Bind ViewModel.SetCrazyBufferActive}" IsEnabled="True"/>
+                            
                         </MenuFlyoutSubItem>
+                        
                         <MenuFlyoutSubItem x:Uid="DebugMenuFlyoutItem" Text="Debug">
+                            <ToggleMenuFlyoutItem x:Uid="SkipCachedMenuFlyout" IsChecked="{x:Bind ViewModel.SkipCached, Mode=OneWay}" Command="{x:Bind ViewModel.SetSkipCached}" IsEnabled="True"/>
+                            <MenuFlyoutSeparator></MenuFlyoutSeparator>
+                            <ToggleMenuFlyoutItem x:Uid="LogsListFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.ShowLogsList, Mode=OneWay}" Command="{x:Bind ViewModel.SetShowLogsList}" IsEnabled="True"/>
                             <ToggleMenuFlyoutItem x:Uid="SensorsInfoFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.ShowSensorsInfo, Mode=OneWay}" Command="{x:Bind ViewModel.SetShowSensorsInfo}"  IsEnabled="True"/>
                             <ToggleMenuFlyoutItem x:Uid="BufferFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.ShowBufferCounter, Mode=OneWay}" Command="{x:Bind ViewModel.ShowBufferCounterCommand}" IsEnabled="True"/>
-                            <ToggleMenuFlyoutItem x:Uid="LogsListFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.ShowLogsList, Mode=OneWay}" Command="{x:Bind ViewModel.SetShowLogsList}" IsEnabled="True"/>
-
+                            <MenuFlyoutSeparator></MenuFlyoutSeparator>
+                            <ToggleMenuFlyoutItem x:Uid="VideoOnlyFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.VideoOnly, Mode=OneWay}" Command="{x:Bind ViewModel.SetVideoOnly}" IsEnabled="True"/>
+                            <ToggleMenuFlyoutItem x:Uid="AudioOnlyFilteringMenuFlyout" IsChecked="{x:Bind ViewModel.AudioOnly, Mode=OneWay}" Command="{x:Bind ViewModel.SetAudioOnly}" IsEnabled="True"/>
                         </MenuFlyoutSubItem>
                     </MenuFlyout>
                 </AppBarButton.Flyout>
             </AppBarButton>
 
-            <AppBarToggleButton x:Name="FullScreenButton" Icon="FullScreen" Label="FullScreen" IsChecked="{x:Bind ViewModel.IsFullScreenMode, Mode=OneWay}" Command="{x:Bind ViewModel.ToggleFullScreenCommand}" Visibility="{x:Bind ViewModel.FullScreenChangingPossible, Converter={StaticResource BoolToVisibilityConverter}}" IsEnabled="{x:Bind ViewModel.ShowMainActions,Mode=OneWay}">
-
-            </AppBarToggleButton>
+           
 
             <CommandBar.SecondaryCommands>
                 <AppBarToggleButton Icon="TouchPointer" Label="Touch Pad" IsChecked="{x:Bind ViewModel.ForceDisplayTouchGamepad, Mode=TwoWay}" Visibility="{x:Bind ViewModel.TouchScreenAvailable, Converter={StaticResource BoolToVisibilityConverter}}"  IsEnabled="True"></AppBarToggleButton>
@@ -318,6 +268,9 @@
                 <AppBarToggleButton Icon="Orientation" Label="Sensors" IsChecked="{x:Bind ViewModel.SensorsMovement, Mode=OneWay}" Command="{x:Bind ViewModel.SetSensorsMovement}" Visibility="{x:Bind ViewModel.SensorsMovementActive, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" IsEnabled="True"></AppBarToggleButton>
                 <AppBarToggleButton Icon="Map" Label="Analog" IsChecked="{x:Bind ViewModel.UseAnalogDirections, Mode=OneWay}" Command="{x:Bind ViewModel.SetUseAnalogDirections}" IsEnabled="True"></AppBarToggleButton>
                 <AppBarToggleButton Icon="Audio" Label="Audio Echo" Command="{x:Bind ViewModel.SetAudioEcho}" IsChecked="{x:Bind ViewModel.AudioEcho, Mode=OneWay}" IsEnabled="True"></AppBarToggleButton>
+                <AppBarSeparator></AppBarSeparator>
+                <AppBarToggleButton x:Name="FullScreenButton" Icon="FullScreen" Label="FullScreen" IsChecked="{x:Bind ViewModel.IsFullScreenMode, Mode=OneWay}" Command="{x:Bind ViewModel.ToggleFullScreenCommand}" Visibility="{x:Bind ViewModel.FullScreenChangingPossible, Converter={StaticResource BoolToVisibilityConverter}}" IsEnabled="{x:Bind ViewModel.ShowMainActions,Mode=OneWay}">
+                </AppBarToggleButton>
             </CommandBar.SecondaryCommands>
         </CommandBar>
 

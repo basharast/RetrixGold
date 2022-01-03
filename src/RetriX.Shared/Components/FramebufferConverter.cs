@@ -1,4 +1,8 @@
-﻿using MvvmCross.Platform;
+﻿#if TARGET_AMD64 || TARGET_ARM64 || (TARGET_32BIT && !TARGET_ARM)
+#define HAS_CUSTOM_BLOCKS
+#endif
+
+using MvvmCross.Platform;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Bson;
 using Pipelines.Sockets.Unofficial;
@@ -19,6 +23,31 @@ namespace RetriX.Shared.Components
 {
     public static class FramebufferConverter
     {
+        //import necessary API as shown in other examples
+        [DllImport("kernel32", SetLastError = true, CharSet = CharSet.Ansi)]
+        public static extern IntPtr LoadLibrary([MarshalAs(UnmanagedType.LPStr)] string lpFileName);
+
+        [DllImport("kernel32", SetLastError = true)]
+        public static extern void FreeLibrary(IntPtr module);
+
+        [DllImport("kernel32", CharSet = CharSet.Ansi, ExactSpelling = true, SetLastError = true)]
+        public static extern IntPtr GetProcAddress(IntPtr module, string proc);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        public unsafe delegate void* CopyMemory_S(void* dest, int destSize, void* src, int count);
+        public static CopyMemory_S CopyMemory;
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        public unsafe delegate void* __Memmove_S(void* dest, int destSize, void* src, int count);
+        public static __Memmove_S __Memmove;
+
+        public static bool CopyMemoryAvailable = false;
+        public static bool MoveMemoryAvailable = false;
+        public static bool CrazyBufferActive = true;
+        public static double crazyBufferPercentageHandle = 0;
+
+        public static string MemoryHelper = "Buffer.CopyMemory";
+
         public static int CoresCount = 1;
         private const uint LookupTableSize = ushort.MaxValue + 1;
 
@@ -29,17 +58,161 @@ namespace RetriX.Shared.Components
         public static int CurrentColorFilter = 0;
         public static bool isGameStarted = false;
         public static bool AudioOnly = false;
+        public static string renderFailedMessage = "";
+
+        public static bool DontWaitThreads = false;
+        public static bool NativeDoublePixel = false;
+        public static bool NativeSpeedup = false;
+        public static bool NativeScanlines = false;
+        public static int NativePixelStep = 0;
+        private static int StartIndex = -1;
+        public static EventHandler RaiseSkippedCachedHandler = null;
+        public static bool isRGB888 = false;
+        public static bool SkipCached = true;
+        public static bool requestToStopSkipCached = false;
+        private static bool lookupTablesReady = false;
+
+        private static IntPtr DLLModule = IntPtr.Zero;
+        public static string memcpyErrorMessage = "";
+        public static string memmovErrorMessage = "";
+        public static ulong currentWidth = 0;
+        public static ulong currentHeight = 0;
+
+        #region Loading Archive Progress (Should be moved to separate file in future)
+        public static string CurrentFileEntry = "";
+        public static string currentFileEntry
+        {
+            get
+            {
+                return CurrentFileEntry;
+            }
+            set
+            {
+                CurrentFileEntry = value;
+                if (UpdateProgressState != null)
+                {
+                    UpdateProgressState.Invoke(null, EventArgs.Empty);
+                }
+            }
+        }
+        public static double CurrentFileProgress = 0;
+        public static double currentFileProgress
+        {
+            get
+            {
+                return CurrentFileProgress;
+            }
+            set
+            {
+                CurrentFileProgress = value;
+                if (UpdateProgressState != null)
+                {
+                    UpdateProgressState.Invoke(null, EventArgs.Empty);
+                }
+            }
+        }
+
+        public static EventHandler UpdateProgressState;
+        #endregion
+
         static FramebufferConverter()
         {
-            SetRGB0555LookupTable();
+            SetRGBLookupTable();
+            LoadMemcpyFunction();
+        }
+
+        //Below is very safe way to get external function
+        public static void LoadMemcpyFunction()
+        {
+            try
+            {
+                if (DLLModule != IntPtr.Zero)
+                {
+                    FreeLibrary(DLLModule);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            try
+            {
+                DLLModule = LoadLibrary("msvcrt.dll");
+                if (DLLModule != IntPtr.Zero)
+                {
+                    IntPtr CopyMemoryPointer = GetProcAddress(DLLModule, "memcpy_s");
+                    if (CopyMemoryPointer != IntPtr.Zero) // error handling
+                    {
+                        CopyMemory = Marshal.GetDelegateForFunctionPointer<CopyMemory_S>(CopyMemoryPointer);
+                        CopyMemoryAvailable = true;
+                    }
+                    else
+                    {
+                        throw new Exception($"Could not load method: {Marshal.GetLastWin32Error()}");
+                    }
+                }
+                else
+                {
+                    throw new Exception($"Could not load msvcrt.dll: {Marshal.GetLastWin32Error()}");
+                }
+            }
+            catch (Exception ex)
+            {
+                renderFailedMessage = ex.Message;
+                memcpyErrorMessage = ex.Message;
+                CopyMemoryAvailable = false;
+            }
+            try
+            {
+                if (DLLModule != IntPtr.Zero)
+                {
+                    IntPtr MovMemoryPointer = GetProcAddress(DLLModule, "memmove_s");
+                    if (MovMemoryPointer != IntPtr.Zero) // error handling
+                    {
+                        __Memmove = Marshal.GetDelegateForFunctionPointer<__Memmove_S>(MovMemoryPointer);
+                        MoveMemoryAvailable = true;
+                    }
+                    else
+                    {
+                        throw new Exception($"Could not load method: {Marshal.GetLastWin32Error()}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                renderFailedMessage = ex.Message;
+                memmovErrorMessage = ex.Message;
+                MoveMemoryAvailable = false;
+            }
+            if (!CopyMemoryAvailable && !MoveMemoryAvailable)
+            {
+                try
+                {
+                    if (DLLModule != IntPtr.Zero)
+                    {
+                        FreeLibrary(DLLModule);
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
         }
         public static void ClearBuffer()
         {
+            //Disabled for now, I don't think we need to regenrate the tables each time
+            /*
             RGB0555LookupTable = new uint[LookupTableSize];
             RGB565LookupTable = new uint[LookupTableSize];
+            */
         }
-        public static void SetRGB0555LookupTable()
+        public static void SetRGBLookupTable(bool forceRegenrate = false)
         {
+            if (lookupTablesReady && !forceRegenrate)
+            {
+                return;
+            }
             try
             {
                 uint r565, g565, b565;
@@ -69,21 +242,23 @@ namespace RetriX.Shared.Components
                     g0555 = (uint)Math.Round(g0555 * green / 31.0);
                     b0555 = (uint)Math.Round(b0555 * blue / 31.0);
 
-                    RGB565LookupTable[i] = GetPixel(0xFF000000 | r565 << 16 | g565 << 8 | b565);
-                    RGB0555LookupTable[i] = GetPixel(0xFF000000 | r0555 << 16 | g0555 << 8 | b0555);
+                    RGB565LookupTable[i] = (0xFF000000 | r565 << 16 | g565 << 8 | b565);
+                    RGB0555LookupTable[i] = (0xFF000000 | r0555 << 16 | g0555 << 8 | b0555);
                 }
-                LookupTableUint.Clear();
+                lookupTablesReady = true;
             }
             catch (Exception e)
             {
 
             }
         }
+
         public static void ConvertFrameBufferRGB0555ToXRGB8888(uint width, uint height, ReadOnlySpan<byte> input, int inputPitch, Span<byte> output, int outputPitch)
         {
             try
             {
-                ConvertFrameBufferUshortToXRGB8888WithLUT(width, height, input, inputPitch, output, outputPitch, false);
+                renderFailedMessage = "";
+                ConvertExtremelyUnsafe(height, width, ref input, (ulong)input.Length, (ulong)inputPitch, ref output, (ulong)output.Length, (ulong)outputPitch, false);
             }
             catch (Exception e)
             {
@@ -95,7 +270,8 @@ namespace RetriX.Shared.Components
         {
             try
             {
-                ConvertFrameBufferUshortToXRGB8888WithLUT(width, height, input, inputPitch, output, outputPitch, true);
+                renderFailedMessage = "";
+                ConvertExtremelyUnsafe(height, width, ref input, (ulong)input.Length, (ulong)inputPitch, ref output, (ulong)output.Length, (ulong)outputPitch, true);
             }
             catch (Exception e)
             {
@@ -107,7 +283,8 @@ namespace RetriX.Shared.Components
         {
             try
             {
-                ConvertFrameBufferXRGB8888(width, height, input, inputPitch, output, outputPitch);
+                renderFailedMessage = "";
+                ConvertExtremelyUnsafe888(height, width, ref input, (ulong)input.Length, (ulong)inputPitch, ref output, (ulong)output.Length, (ulong)outputPitch);
             }
             catch (Exception e)
             {
@@ -115,53 +292,6 @@ namespace RetriX.Shared.Components
             }
         }
 
-        private static bool UseMarshalCopy = false;
-
-        public unsafe static void ConvertFrameBufferXRGB8888(uint width, uint height, ReadOnlySpan<byte> input, int inputPitch, Span<byte> output, int outputPitch)
-        {
-            try
-            {
-                if (!isGameStarted || AudioOnly)
-                {
-                    return;
-                }
-                //Stopwatch ss = new Stopwatch();
-                //ss.Start();
-
-                var castInput = MemoryMarshal.Cast<byte, uint>(input);
-                var castInputPitch = inputPitch / sizeof(uint);
-                var castOutput = MemoryMarshal.Cast<byte, uint>(output);
-                var castOutputPitch = outputPitch / sizeof(uint);
-
-                if (UseMarshalCopy)
-                {
-                    int DataLength = castInput.Length * sizeof(uint);
-                    byte[] FinalResult = new byte[DataLength];
-                    fixed (uint* currentByte = &castInput[0])
-                    {
-                        Marshal.Copy((IntPtr)currentByte, FinalResult, 0, DataLength);
-                    }
-                    AsSpanArray<byte>(FinalResult).CopyTo(output);
-                }
-                else
-                {
-                    RenderHelperCallInstant(height, width, castInput, castOutput, castInputPitch, castOutputPitch);
-                }
-                //ss.Stop();
-                //tt.Add(ss.Elapsed);
-            }
-            catch (Exception e)
-            {
-
-            }
-        }
-
-        public static bool DontWaitThreads = false;
-        public static bool NativeDoublePixel = false;
-        public static bool NativeSpeedup = false;
-        public static bool NativeScanlines = false;
-        public static int NativePixelStep = 0;
-        private static int StartIndex = -1;
         private static int GetStartIndexValue()
         {
             StartIndex = 0;
@@ -173,14 +303,909 @@ namespace RetriX.Shared.Components
             */
             return StartIndex;
         }
+
+
+        //Below new memory solution thanks to DekuDesu
+        //https://stackoverflow.com/q/70491483/1590588
+        //This function only for 555, 565
+        #region FROM 555,565 TO 888
+        public static bool inputFillWithBlack = false;
+        public static unsafe void ConvertExtremelyUnsafe(ulong height, ulong width, ref ReadOnlySpan<byte> inputArray, ulong inputLength, ulong inputPitch, ref Span<byte> outputArray, ulong outputLength, ulong outputPitch, bool isRG565State)
+        {
+            if ((NativePixelStep > 1 && inputFillWithBlack) || fillSpanRequired)
+            {
+                outputArray.Fill(0);
+                fillSpanRequired = false;
+                inputFillWithBlack = false;
+            }
+            if ((!isGameStarted || AudioOnly))
+            {
+                return;
+            }
+            currentWidth = width;
+            currentHeight = height;
+            totalSkipped = 0;
+            isRG565 = isRG565State;
+            isRGB888 = false;
+            StartIndex = GetStartIndexValue();
+
+            bool renderFailed = false;
+
+            if (CoresCount > 1)
+            {
+                try
+                {
+                    cancellationTokenSource.Cancel();
+                }
+                catch (Exception x)
+                {
+
+                }
+                cancellationTokenSource = new CancellationTokenSource();
+                try
+                {
+                    List<Task> coresTasks = new List<Task>();
+                    var hightPerCore = (int)height / CoresCount;
+                    fixed (byte* inputPointer = &inputArray[0], outputPointer = &outputArray[0])
+                    {
+                        using (var inputManager = new UnmanagedMemoryManager<byte>(inputPointer, (int)inputLength))
+                        using (var outputManager = new UnmanagedMemoryManager<byte>(outputPointer, (int)outputLength))
+                        {
+                            Parallel.For(0, CoresCount, (t) =>
+                            {
+                                var TStartIndex = (t * hightPerCore);
+                                var hightSub = hightPerCore + TStartIndex;
+                                if (hightSub > (int)height)
+                                {
+                                    hightSub = (int)height;
+                                }
+                                ParallelOptions parallelOptions = new ParallelOptions();
+                                parallelOptions.CancellationToken = cancellationTokenSource.Token;
+                                var coreTask = Task.Factory.StartNew(() =>
+                                {
+                                    Parallel.For(TStartIndex, hightSub, (iT) =>
+                                    {
+                                        var i = (ulong)iT;
+                                        if (cancellationTokenSource.IsCancellationRequested)
+                                        {
+                                            return;
+                                        }
+
+                                        if (!SkipCached)
+                                        {
+                                            // get a pointer for the first byte of the line of the input
+                                            byte* inputLinePointer = (byte*)inputManager.Pin().Pointer + (i * inputPitch);
+                                            inputManager.Unpin();
+
+                                            // get a pointer for the first byte of the line of the output
+                                            byte* outputLinePointer = (byte*)outputManager.Pin().Pointer + (i * outputPitch);
+                                            outputManager.Unpin();
+
+                                            pixelCachesStates[i] = true;
+                                            ulong restPixels = 0;
+                                            if (CrazyBufferActive)
+                                            {
+                                                restPixels = CrazyBufferMove.CrazyMove(outputLinePointer, inputLinePointer, sizeof(ushort), sizeof(uint), (inputPitch / sizeof(ushort)));
+                                                if (iT == 0)
+                                                {
+                                                    try
+                                                    {
+                                                        crazyBufferPercentageHandle = Math.Round(((restPixels * 1d) / (width * 1d) * 100.0));
+                                                    }
+                                                    catch (Exception ex)
+                                                    {
+
+                                                    }
+                                                }
+                                            }
+
+                                            // traverse the input line by ushorts
+                                            for (ulong j = restPixels; j < (inputPitch / sizeof(ushort)); j++)
+                                            {
+                                                if (cancellationTokenSource.IsCancellationRequested)
+                                                {
+                                                    break;
+                                                }
+
+                                                // calculate the offset for i'th uint
+                                                ulong outputOffset = j * sizeof(uint);
+
+                                                // at least attempt to avoid overflowing a buffer, not that the runtime would let you do that, i would hope..
+                                                if (outputOffset >= outputLength)
+                                                {
+                                                    renderFailedMessage = new ArgumentOutOfRangeException().Message;
+                                                    renderFailed = true;
+                                                    break;
+                                                }
+
+                                                // get a pointer to the i'th uint
+                                                uint* rgb888Pointer = (uint*)(outputLinePointer + outputOffset);
+
+                                                // calculate the offset for the i'th ushort,
+                                                // becuase we loop based on the input and ushort we dont need an index check here
+                                                ulong inputOffset = j * sizeof(ushort);
+
+                                                // get a pointer to the i'th ushort
+                                                ushort* rgb565Pointer = (ushort*)(inputLinePointer + inputOffset);
+
+                                                ushort rgb565Value = *rgb565Pointer;
+
+                                                // convert the rgb to the other format
+                                                var rgb888Value = getPattern(rgb565Value);
+
+                                                // write the bytes of the rgb888 to the output array
+                                                *rgb888Pointer = rgb888Value;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            //IMPORTANT Anything below related to Pixels Update debug feature
+                                            #region PIXELS UPDATES
+                                            if (IsPixelsRowCached(iT))
+                                            {
+                                                iT += NativePixelStep;
+                                            }
+                                            else
+                                            {
+                                                // get a pointer for the first byte of the line of the input
+                                                byte* inputLinePointer = (byte*)inputManager.Pin().Pointer + (i * inputPitch);
+                                                inputManager.Unpin();
+
+                                                // get a pointer for the first byte of the line of the output
+                                                byte* outputLinePointer = (byte*)outputManager.Pin().Pointer + (i * outputPitch);
+                                                outputManager.Unpin();
+
+                                                pixelCachesStates[i] = true;
+                                                // traverse the input line by ushorts
+                                                for (ulong j = 0; j < (inputPitch / sizeof(ushort)); j++)
+                                                {
+                                                    if (cancellationTokenSource.IsCancellationRequested)
+                                                    {
+                                                        break;
+                                                    }
+
+                                                    // calculate the offset for i'th uint
+                                                    ulong outputOffset = j * sizeof(uint);
+
+                                                    // at least attempt to avoid overflowing a buffer, not that the runtime would let you do that, i would hope..
+                                                    if (outputOffset >= outputLength)
+                                                    {
+                                                        renderFailedMessage = new ArgumentOutOfRangeException().Message;
+                                                        renderFailed = true;
+                                                        break;
+                                                    }
+
+                                                    // get a pointer to the i'th uint
+                                                    uint* rgb888Pointer = (uint*)(outputLinePointer + outputOffset);
+
+                                                    // calculate the offset for the i'th ushort,
+                                                    // becuase we loop based on the input and ushort we dont need an index check here
+                                                    ulong inputOffset = j * sizeof(ushort);
+
+                                                    // get a pointer to the i'th ushort
+                                                    ushort* rgb565Pointer = (ushort*)(inputLinePointer + inputOffset);
+
+                                                    ushort rgb565Value = *rgb565Pointer;
+
+                                                    if (SkipCached)
+                                                    {
+                                                        if (pixelCaches[i, j] != null && pixelCaches[i, j].input == rgb565Value)
+                                                        {
+                                                            *rgb888Pointer = 0;
+                                                            pixelCachesStates[i] = pixelCachesStates[i] && true;
+                                                            Interlocked.Add(ref totalSkipped, 1);
+                                                            continue;
+                                                        }
+                                                    }
+
+                                                    // convert the rgb to the other format
+                                                    var rgb888Value = getPattern(rgb565Value);
+
+                                                    // write the bytes of the rgb888 to the output array
+                                                    *rgb888Pointer = rgb888Value;
+                                                    if (SkipCached)
+                                                    {
+                                                        CachePixel(rgb565Value, rgb888Value, (int)i, (int)j);
+                                                        pixelCachesStates[i] = false;
+                                                    }
+                                                }
+                                            }
+                                            if (renderFailed)
+                                            {
+                                                cancellationTokenSource.Cancel();
+                                            }
+
+                                            iT += NativePixelStep;
+                                            #endregion
+                                        }
+
+                                    });
+                                }, cancellationTokenSource.Token);
+                                coresTasks.Add(coreTask);
+                            });
+                        }
+                    }
+                    if (!DontWaitThreads) Task.WaitAll(coresTasks.ToArray());
+                }
+                catch (Exception ex)
+                {
+                    renderFailed = true;
+                    renderFailedMessage = ex.Message;
+                }
+            }
+            else
+            {
+                try
+                {
+                    // pin down pointers so they dont move on the heap
+                    fixed (byte* inputPointer = &inputArray[0], outputPointer = &outputArray[0])
+                    {
+                        // since we have to account for padding we should go line by line
+                        for (ulong i = (ulong)StartIndex; i < height;)
+                        {
+                            // get a pointer for the first byte of the line of the input
+                            byte* inputLinePointer = inputPointer + (i * inputPitch);
+
+                            // get a pointer for the first byte of the line of the output
+                            byte* outputLinePointer = outputPointer + (i * outputPitch);
+
+                            if (!SkipCached)
+                            {
+                                bool memoryHelperUsed = false;
+                                //No memory helpers due to pixels conversion 
+
+                                if (!memoryHelperUsed)
+                                {
+                                    ulong restPixels = 0;
+                                    if (CrazyBufferActive)
+                                    {
+                                        restPixels = CrazyBufferMove.CrazyMove(outputLinePointer, inputLinePointer, sizeof(ushort), sizeof(uint), (inputPitch / sizeof(ushort)));
+                                        if (i == 0)
+                                        {
+                                            try
+                                            {
+                                                crazyBufferPercentageHandle = Math.Round(((restPixels * 1d) / (width * 1d) * 100.0));
+                                            }
+                                            catch (Exception ex)
+                                            {
+
+                                            }
+                                        }
+                                    }
+                                    // traverse the input line by ushorts
+                                    for (ulong j = restPixels; j < (inputPitch / sizeof(ushort)); j++)
+                                    {
+                                        // calculate the offset for i'th uint
+                                        ulong outputOffset = j * sizeof(uint);
+                                        // at least attempt to avoid overflowing a buffer, not that the runtime would let you do that, i would hope..
+                                        if (outputOffset >= outputLength)
+                                        {
+                                            renderFailedMessage = new ArgumentOutOfRangeException().Message;
+                                            renderFailed = true;
+                                            break;
+                                        }
+                                        // get a pointer to the i'th uint
+                                        uint* rgb888Pointer = (uint*)(outputLinePointer + outputOffset);
+
+                                        // calculate the offset for the i'th ushort,
+                                        // becuase we loop based on the input and ushort we dont need an index check here
+                                        ulong inputOffset = j * sizeof(ushort);
+
+                                        // get a pointer to the i'th ushort
+                                        ushort* rgb565Pointer = (ushort*)(inputLinePointer + inputOffset);
+
+                                        ushort rgb565Value = *rgb565Pointer;
+
+                                        // convert the rgb to the other format
+                                        var rgb888Value = getPattern(rgb565Value);
+
+                                        // write the bytes of the rgb888 to the output array
+                                        *rgb888Pointer = rgb888Value;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                //IMPORTANT Anything below related to Pixels Update debug feature
+                                #region PIXELS UPDATES
+                                if (SkipCached && IsPixelsRowCached((int)i))
+                                {
+                                    i += (ulong)NativePixelStep;
+                                    continue;
+                                }
+
+                                pixelCachesStates[i] = true;
+                                // traverse the input line by ushorts
+                                for (ulong j = 0; j < (inputPitch / sizeof(ushort)); j++)
+                                {
+                                    // calculate the offset for i'th uint
+                                    ulong outputOffset = j * sizeof(uint);
+
+                                    // at least attempt to avoid overflowing a buffer, not that the runtime would let you do that, i would hope..
+                                    if (outputOffset >= outputLength)
+                                    {
+                                        renderFailedMessage = new ArgumentOutOfRangeException().Message;
+                                        renderFailed = true;
+                                        break;
+                                    }
+
+                                    // get a pointer to the i'th uint
+                                    uint* rgb888Pointer = (uint*)(outputLinePointer + outputOffset);
+
+                                    // calculate the offset for the i'th ushort,
+                                    // becuase we loop based on the input and ushort we dont need an index check here
+                                    ulong inputOffset = j * sizeof(ushort);
+
+                                    // get a pointer to the i'th ushort
+                                    ushort* rgb565Pointer = (ushort*)(inputLinePointer + inputOffset);
+
+                                    ushort rgb565Value = *rgb565Pointer;
+
+                                    if (SkipCached)
+                                    {
+                                        if (pixelCaches[i, j] != null && pixelCaches[i, j].input == rgb565Value)
+                                        {
+                                            *rgb888Pointer = 0;
+                                            pixelCachesStates[i] = pixelCachesStates[i] && true;
+                                            totalSkipped++;
+                                            continue;
+                                        }
+                                    }
+
+                                    // convert the rgb to the other format
+                                    var rgb888Value = getPattern(rgb565Value);
+
+                                    // write the bytes of the rgb888 to the output array
+                                    *rgb888Pointer = rgb888Value;
+                                    if (SkipCached)
+                                    {
+                                        CachePixel(rgb565Value, rgb888Value, (int)i, (int)j);
+                                        pixelCachesStates[i] = false;
+                                    }
+                                }
+                                #endregion
+                            }
+
+                            if (renderFailed)
+                            {
+                                break;
+                            }
+
+                            i += (ulong)NativePixelStep;
+                        }
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    renderFailedMessage = ex.Message;
+                    renderFailed = true;
+                }
+            }
+
+            if (SkipCached)
+            {
+                try
+                {
+                    var totalPixels = (height * width);
+                    if (totalSkipped > (int)totalPixels)
+                    {
+                        totalPercentageSkipped = 100;
+                    }
+                    else
+                    {
+                        totalPercentageSkipped = Math.Round((double)(totalSkipped / (double)(height * width)) * 100.0);
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            if (renderFailed)
+            {
+                ConvertFrameBufferUshortToXRGB8888WithLUT((uint)width, (uint)height, inputArray, (int)inputPitch, outputArray, (int)outputPitch, isRG565State);
+            }
+        }
+        #endregion
+
+
+        #region FROM X8888 TO 888
+        public static unsafe void ConvertExtremelyUnsafe888(ulong height, ulong width, ref ReadOnlySpan<byte> inputArray, ulong inputLength, ulong inputPitch, ref Span<byte> outputArray, ulong outputLength, ulong outputPitch)
+        {
+            if ((NativePixelStep > 1 && inputFillWithBlack) || fillSpanRequired)
+            {
+                outputArray.Fill(0);
+                fillSpanRequired = false;
+                inputFillWithBlack = false;
+            }
+            if ((!isGameStarted || AudioOnly))
+            {
+                return;
+            }
+            currentWidth = width;
+            currentHeight = height;
+
+            if (!requestToStopSkipCached)
+            {
+                SkipCached = false;
+                requestToStopSkipCached = true;
+                if (RaiseSkippedCachedHandler != null)
+                {
+                    RaiseSkippedCachedHandler.Invoke(null, EventArgs.Empty);
+                }
+            }
+
+            totalSkipped = 0;
+            isRG565 = false;
+            isRGB888 = true;
+            StartIndex = GetStartIndexValue();
+
+            bool renderFailed = false;
+
+            if (CoresCount > 1)
+            {
+                try
+                {
+                    cancellationTokenSource.Cancel();
+                }
+                catch (Exception x)
+                {
+
+                }
+                cancellationTokenSource = new CancellationTokenSource();
+                try
+                {
+                    List<Task> coresTasks = new List<Task>();
+                    var hightPerCore = (int)height / CoresCount;
+                    fixed (byte* inputPointer = &inputArray[0], outputPointer = &outputArray[0])
+                    {
+                        using (var inputManager = new UnmanagedMemoryManager<byte>(inputPointer, (int)inputLength))
+                        using (var outputManager = new UnmanagedMemoryManager<byte>(outputPointer, (int)outputLength))
+                        {
+                            Parallel.For(0, CoresCount, (t) =>
+                            {
+                                var TStartIndex = (t * hightPerCore);
+                                var hightSub = hightPerCore + TStartIndex;
+                                if (hightSub > (int)height)
+                                {
+                                    hightSub = (int)height;
+                                }
+                                ParallelOptions parallelOptions = new ParallelOptions();
+                                parallelOptions.CancellationToken = cancellationTokenSource.Token;
+                                var coreTask = Task.Factory.StartNew(() =>
+                                {
+                                    Parallel.For(TStartIndex, hightSub, (iT) =>
+                                    {
+                                        var i = (ulong)iT;
+                                        if (cancellationTokenSource.IsCancellationRequested)
+                                        {
+                                            return;
+                                        }
+
+                                        // get a pointer for the first byte of the line of the input
+                                        byte* inputLinePointer = (byte*)inputManager.Pin().Pointer + (i * inputPitch);
+                                        inputManager.Unpin();
+
+                                        // get a pointer for the first byte of the line of the output
+                                        byte* outputLinePointer = (byte*)outputManager.Pin().Pointer + (i * outputPitch);
+                                        outputManager.Unpin();
+
+                                        if (!SkipCached)
+                                        {
+                                            bool skipDueOffsetOutOfRange = false;
+                                            ulong restPixels = 0;
+                                            if (CrazyBufferActive)
+                                            {
+                                                restPixels = CrazyBufferMove8888.CrazyMove(outputLinePointer, inputLinePointer, sizeof(uint), sizeof(uint), width);
+                                                var pointersOffset = restPixels * sizeof(uint);
+                                                if (pointersOffset >= outputLength)
+                                                {
+                                                    iT += NativePixelStep;
+                                                    skipDueOffsetOutOfRange = true;
+                                                }
+                                                else
+                                                {
+                                                    inputLinePointer = (byte*)(((byte*)inputManager.Pin().Pointer + (i * inputPitch)) + pointersOffset);
+                                                    inputManager.Unpin();
+                                                    outputLinePointer = (byte*)(((byte*)outputManager.Pin().Pointer + (i * outputPitch)) + pointersOffset);
+                                                    outputManager.Unpin();
+                                                }
+                                                if (iT == 0)
+                                                {
+                                                    try
+                                                    {
+                                                        crazyBufferPercentageHandle = Math.Round(((restPixels * 1d) / (width * 1d) * 100.0));
+                                                    }
+                                                    catch (Exception ex)
+                                                    {
+
+                                                    }
+                                                }
+                                            }
+                                            if (!skipDueOffsetOutOfRange && restPixels > 0)
+                                            {
+                                                switch (MemoryHelper)
+                                                {
+                                                    case "Buffer.CopyMemory":
+                                                        if (MoveMemoryAvailable)
+                                                        {
+                                                            Buffer.MemoryCopy(inputLinePointer, outputLinePointer, outputPitch - restPixels, inputPitch - restPixels);
+                                                        }
+                                                        else
+                                                        {
+                                                            var SpanInputTemp = new Span<byte>(inputLinePointer, (int)(inputPitch - restPixels));
+                                                            var SpanOutputTemp = new Span<byte>(outputLinePointer, (int)(outputPitch - restPixels));
+                                                            SpanInputTemp.CopyTo(SpanOutputTemp);
+                                                            renderFailedMessage = "Span.CopyTo in use due Buffer.CopyMemory failed!";
+                                                        }
+                                                        break;
+
+                                                    case "memcpy (msvcrt.dll)":
+                                                        if (CopyMemoryAvailable)
+                                                        {
+                                                            CopyMemory(outputLinePointer, (int)(outputPitch - restPixels), inputLinePointer, (int)(inputPitch - restPixels));
+                                                        }
+                                                        else
+                                                        {
+                                                            //When no memcpy use default option 
+                                                            if (MoveMemoryAvailable)
+                                                            {
+                                                                Buffer.MemoryCopy(inputLinePointer, outputLinePointer, outputPitch - restPixels, inputPitch - restPixels);
+                                                                renderFailedMessage = "Buffer.CopyMemory in use due memcpy failed!";
+                                                            }
+                                                            else
+                                                            {
+                                                                var SpanInputTemp = new Span<byte>(inputLinePointer, (int)(inputPitch - restPixels));
+                                                                var SpanOutputTemp = new Span<byte>(outputLinePointer, (int)(outputPitch - restPixels));
+                                                                SpanInputTemp.CopyTo(SpanOutputTemp);
+                                                                renderFailedMessage = "Span.CopyTo in use due memcpy, memmov failed!";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Marshal.CopyTo":
+                                                        CopyFromPtrToPtr((IntPtr)inputLinePointer, (uint)(inputPitch - restPixels), (IntPtr)outputLinePointer, (uint)(outputPitch - restPixels));
+                                                        break;
+
+                                                    case "Span.CopyTo":
+                                                        var SpanInput = new Span<byte>(inputLinePointer, (int)(inputPitch - restPixels));
+                                                        var SpanOutput = new Span<byte>(outputLinePointer, (int)(outputPitch - restPixels));
+                                                        SpanInput.CopyTo(SpanOutput);
+                                                        break;
+                                                }
+                                                iT += NativePixelStep;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            //IMPORTANT Anything below related to Pixels Update debug feature
+                                            #region PIXELS UPDATES
+                                            if (SkipCached && IsPixelsRowCached(iT))
+                                            {
+                                                iT += NativePixelStep;
+                                            }
+                                            else
+                                            {
+                                                pixelCachesStates[i] = true;
+                                                // traverse the input line by uints
+                                                for (ulong j = 0; j < width; j++)
+                                                {
+                                                    if (cancellationTokenSource.IsCancellationRequested)
+                                                    {
+                                                        break;
+                                                    }
+                                                    // calculate the offset for i'th uint
+                                                    ulong outputOffset = j * sizeof(uint);
+
+                                                    // at least attempt to avoid overflowing a buffer, not that the runtime would let you do that, i would hope..
+                                                    if (outputOffset >= outputLength)
+                                                    {
+                                                        renderFailedMessage = new ArgumentOutOfRangeException().Message;
+                                                        renderFailed = true;
+                                                        break;
+                                                    }
+
+                                                    // get a pointer to the i'th uint
+                                                    uint* rgb888Pointer = (uint*)(outputLinePointer + outputOffset);
+
+                                                    // calculate the offset for the i'th uint,
+                                                    // becuase we loop based on the input and uint we dont need an index check here
+                                                    ulong inputOffset = j * sizeof(uint);
+
+                                                    // get a pointer to the i'th uint
+                                                    uint* xrgb888Pointer = (uint*)(inputLinePointer + inputOffset);
+
+                                                    uint xrgb888Value = *xrgb888Pointer;
+
+                                                    if (SkipCached)
+                                                    {
+                                                        if (pixelCaches[i, j] != null && pixelCaches[i, j].input64 == xrgb888Value)
+                                                        {
+                                                            *rgb888Pointer = 0;
+                                                            pixelCachesStates[i] = pixelCachesStates[i] && true;
+                                                            Interlocked.Add(ref totalSkipped, 1);
+                                                            continue;
+                                                        }
+                                                    }
+
+                                                    // convert the rgb to the other format
+                                                    var rgb888Value = xrgb888Value;
+
+                                                    // write the bytes of the rgb888 to the output array
+                                                    *rgb888Pointer = rgb888Value;
+                                                    if (SkipCached)
+                                                    {
+                                                        CachePixel(xrgb888Value, rgb888Value, (int)i, (int)j);
+                                                        pixelCachesStates[i] = false;
+                                                    }
+                                                }
+                                                if (renderFailed)
+                                                {
+                                                    cancellationTokenSource.Cancel();
+                                                }
+
+                                                iT += NativePixelStep;
+                                            }
+                                            #endregion
+                                        }
+                                    });
+                                }, cancellationTokenSource.Token);
+                                coresTasks.Add(coreTask);
+                            });
+                        }
+                    }
+                    if (!DontWaitThreads) Task.WaitAll(coresTasks.ToArray());
+                }
+                catch (Exception ex)
+                {
+                    renderFailed = true;
+                    renderFailedMessage = ex.Message;
+                }
+            }
+            else
+            {
+                try
+                {
+                    // pin down pointers so they dont move on the heap
+                    fixed (byte* inputPointer = &inputArray[0], outputPointer = &outputArray[0])
+                    {
+                        // since we have to account for padding we should go line by line
+                        for (ulong i = (ulong)StartIndex; i < height;)
+                        {
+                            // get a pointer for the first byte of the line of the input
+                            byte* inputLinePointer = inputPointer + (i * inputPitch);
+
+                            // get a pointer for the first byte of the line of the output
+                            byte* outputLinePointer = outputPointer + (i * outputPitch);
+
+                            if (!SkipCached)
+                            {
+                                ulong restPixels = 0;
+                                if (CrazyBufferActive)
+                                {
+                                    restPixels = CrazyBufferMove8888.CrazyMove(outputLinePointer, inputLinePointer, sizeof(uint), sizeof(uint), width);
+                                    var pointersOffset = restPixels * sizeof(uint);
+                                    if (pointersOffset >= outputLength || restPixels == 0)
+                                    {
+                                        i += (ulong)NativePixelStep;
+                                        continue;
+                                    }
+                                    else
+                                    {
+                                        inputLinePointer = (byte*)((inputPointer + (i * inputPitch)) + pointersOffset);
+                                        outputLinePointer = (byte*)((outputPointer + (i * outputPitch)) + pointersOffset);
+                                    }
+                                    if (i == 0)
+                                    {
+                                        try
+                                        {
+                                            crazyBufferPercentageHandle = Math.Round(((restPixels * 1d) / (width * 1d) * 100.0));
+                                        }
+                                        catch (Exception ex)
+                                        {
+
+                                        }
+                                    }
+                                }
+                                switch (MemoryHelper)
+                                {
+                                    case "Buffer.CopyMemory":
+                                        //When no memmove use default option 
+                                        if (MoveMemoryAvailable)
+                                        {
+                                            Buffer.MemoryCopy(inputLinePointer, outputLinePointer, outputPitch - restPixels, inputPitch - restPixels);
+                                        }
+                                        else
+                                        {
+                                            var SpanInputTemp = new Span<byte>(inputLinePointer, (int)(inputPitch - restPixels));
+                                            var SpanOutputTemp = new Span<byte>(outputLinePointer, (int)(outputPitch - restPixels));
+                                            SpanInputTemp.CopyTo(SpanOutputTemp);
+                                            renderFailedMessage = "Span.CopyTo in use due Buffer.CopyMemory failed!";
+                                        }
+                                        break;
+
+                                    case "memcpy (msvcrt.dll)":
+                                        if (CopyMemoryAvailable)
+                                        {
+                                            CopyMemory(outputLinePointer, (int)(outputPitch - restPixels), inputLinePointer, (int)(inputPitch - restPixels));
+                                        }
+                                        else
+                                        {
+                                            //When no memcpy use default option 
+                                            if (MoveMemoryAvailable)
+                                            {
+                                                Buffer.MemoryCopy(inputLinePointer, outputLinePointer, outputPitch - restPixels, inputPitch - restPixels);
+                                                renderFailedMessage = "Buffer.CopyMemory in use due memcpy failed!";
+                                            }
+                                            else
+                                            {
+                                                var SpanInputTemp = new Span<byte>(inputLinePointer, (int)(inputPitch - restPixels));
+                                                var SpanOutputTemp = new Span<byte>(outputLinePointer, (int)(outputPitch - restPixels));
+                                                SpanInputTemp.CopyTo(SpanOutputTemp);
+                                                renderFailedMessage = "Span.CopyTo in use due memcpy, memmov failed!";
+                                            }
+                                        }
+                                        break;
+
+                                    case "Marshal.CopyTo":
+                                        CopyFromPtrToPtr((IntPtr)inputLinePointer, (uint)(inputPitch - restPixels), (IntPtr)outputLinePointer, (uint)(outputPitch - restPixels));
+                                        break;
+
+                                    case "Span.CopyTo":
+                                        var SpanInput = new Span<byte>(inputLinePointer, (int)(inputPitch - restPixels));
+                                        var SpanOutput = new Span<byte>(outputLinePointer, (int)(outputPitch - restPixels));
+                                        SpanInput.CopyTo(SpanOutput);
+                                        break;
+                                }
+
+
+                                i += (ulong)NativePixelStep;
+                                continue;
+                            }
+
+                            if (SkipCached && IsPixelsRowCached((int)i))
+                            {
+                                i += (ulong)NativePixelStep;
+                                continue;
+                            }
+
+                            //IMPORTANT Anything below related to Pixels Update debug feature
+                            //TO-DO something is wrong wth the total skipped pixels
+                            #region PIXELS UPDATES
+                            pixelCachesStates[i] = true;
+
+                            // traverse the input line by uints
+                            for (ulong j = 0; j < width; j++)
+                            {
+                                // calculate the offset for i'th uint
+                                ulong pointersOffset = j * sizeof(uint);
+
+                                // at least attempt to avoid overflowing a buffer, not that the runtime would let you do that, i would hope..
+                                if (pointersOffset >= outputLength)
+                                {
+                                    renderFailedMessage = new ArgumentOutOfRangeException().Message;
+                                    renderFailed = true;
+                                    break;
+                                }
+
+                                // get a pointer to the i'th uint
+                                uint* rgb888Pointer = (uint*)(outputLinePointer + pointersOffset);
+
+                                // get a pointer to the i'th uint
+                                uint* xrgb888Pointer = (uint*)(inputLinePointer + pointersOffset);
+
+                                uint xrgb888Value = *xrgb888Pointer;
+
+                                if (SkipCached)
+                                {
+                                    if (pixelCaches[i, j] != null && pixelCaches[i, j].input64 == xrgb888Value)
+                                    {
+                                        *rgb888Pointer = 0;
+                                        pixelCachesStates[i] = pixelCachesStates[i] && true;
+                                        totalSkipped++;
+                                        continue;
+                                    }
+                                }
+
+                                // convert the rgb to the other format
+                                uint rgb888Value = xrgb888Value;
+
+                                // write the bytes of the rgb888 to the output array
+                                *rgb888Pointer = rgb888Value;
+                                if (SkipCached)
+                                {
+                                    CachePixel(xrgb888Value, rgb888Value, (int)i, (int)j);
+                                    pixelCachesStates[i] = false;
+                                }
+                            }
+                            #endregion
+
+                            if (renderFailed)
+                            {
+                                break;
+                            }
+
+                            i += (ulong)NativePixelStep;
+                        }
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    renderFailedMessage = ex.Message;
+                    renderFailed = true;
+                }
+            }
+
+            if (SkipCached)
+            {
+                try
+                {
+                    var totalPixels = (height * width);
+                    if (totalSkipped > (int)totalPixels)
+                    {
+                        totalPercentageSkipped = 100;
+                    }
+                    else
+                    {
+                        totalPercentageSkipped = Math.Round((double)(totalSkipped / (double)(height * width)) * 100.0);
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            if (renderFailed)
+            {
+                ConvertFrameBufferXRGB8888((uint)width, (uint)height, inputArray, (int)inputPitch, outputArray, (int)outputPitch);
+            }
+        }
+        #endregion
+
+        //Below will be used only if the new solution failed
+        #region OLD X8888 TO 888
+        public unsafe static void ConvertFrameBufferXRGB8888(uint width, uint height, ReadOnlySpan<byte> input, int inputPitch, Span<byte> output, int outputPitch)
+        {
+            try
+            {
+                if (!isGameStarted || AudioOnly)
+                {
+                    return;
+                }
+                var castInput = MemoryMarshal.Cast<byte, uint>(input);
+                var castInputPitch = inputPitch / sizeof(uint);
+                var castOutput = MemoryMarshal.Cast<byte, uint>(output);
+                var castOutputPitch = outputPitch / sizeof(uint);
+
+                if (!requestToStopSkipCached)
+                {
+                    SkipCached = false;
+                    requestToStopSkipCached = true;
+                    if (RaiseSkippedCachedHandler != null)
+                    {
+                        RaiseSkippedCachedHandler.Invoke(null, EventArgs.Empty);
+                    }
+                }
+                RenderHelperCallInstant(height, width, castInput, castOutput, castInputPitch, castOutputPitch);
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
         private unsafe static void RenderHelperCallInstant(uint height, uint width, ReadOnlySpan<uint> castInput, Span<uint> castOutput, int castInputPitch, int castOutputPitch)
         {
             //Stopwatch ss = new Stopwatch();
             //ss.Start();
-            if (!isGameStarted || AudioOnly)
+            if ((!isGameStarted || AudioOnly) && !fillSpanRequired)
             {
                 return;
             }
+            isRGB888 = true;
+
             try
             {
                 cancellationTokenSource.Cancel();
@@ -190,9 +1215,15 @@ namespace RetriX.Shared.Components
 
             }
             cancellationTokenSource = new CancellationTokenSource();
-            castOutput.Fill(0);
+
             StartIndex = GetStartIndexValue();
             List<Task> coresTasks = new List<Task>();
+            if ((NativePixelStep > 1 && inputFillWithBlack) || fillSpanRequired)
+            {
+                castOutput.Fill(0);
+                fillSpanRequired = false;
+                inputFillWithBlack = false;
+            }
             if (CoresCount > 1)
             {
                 unsafe
@@ -209,8 +1240,8 @@ namespace RetriX.Shared.Components
                                 {
                                     var umemory = umemoryManager.Memory;
                                     {
+                                        totalSkipped = 0;
                                         var hightPerCore = height / CoresCount;
-                                        //for (var t = 0; t < CoresCount; t++)
                                         Parallel.For(0, CoresCount, (t) =>
                                         {
                                             if (cancellationTokenSource.IsCancellationRequested)
@@ -225,19 +1256,25 @@ namespace RetriX.Shared.Components
                                             }
                                             var coreTask = Task.Factory.StartNew(() =>
                                             {
-                                                //for (var i = TStartIndex; i < hightSub;)
                                                 Parallel.For(TStartIndex, (int)hightSub, (i) =>
                                                 {
                                                     if (cancellationTokenSource.IsCancellationRequested)
                                                     {
                                                         return;
                                                     }
-                                                    var inputLine = umemory.Slice(i * castInputPitch, castInputPitch);
-                                                    var outputLine = memory.Slice(i * castOutputPitch, castOutputPitch);
-                                                    inputLine.CopyTo(outputLine);
-                                                    i += NativePixelStep;
+                                                    if (SkipCached && IsPixelsRowCached(i))
+                                                    {
+                                                        i += NativePixelStep;
+                                                        Interlocked.Add(ref totalSkipped, (int)width);
+                                                    }
+                                                    else
+                                                    {
+                                                        var inputLine = umemory.Slice(i * castInputPitch, castInputPitch);
+                                                        var outputLine = memory.Slice(i * castOutputPitch, castOutputPitch);
 
-                                                    GetPixel(outputLine.Span, width);
+                                                        GetPixel(inputLine, outputLine, width, i);
+                                                        i += NativePixelStep;
+                                                    }
                                                 });
                                             }, cancellationTokenSource.Token);
                                             coresTasks.Add(coreTask);
@@ -250,23 +1287,49 @@ namespace RetriX.Shared.Components
                         }
                         // you must use the memory object inside this fixed block!
                     }
+                    if (SkipCached)
+                    {
+                        try
+                        {
+                            totalPercentageSkipped = Math.Round((double)(totalSkipped / (double)(height * width)) * 100.0);
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                    }
                 }
             }
             else
             {
+                totalSkipped = 0;
                 for (var i = StartIndex; i < height;)
                 {
+                    if (SkipCached && IsPixelsRowCached(i))
+                    {
+                        i += NativePixelStep;
+                        totalSkipped += (int)width;
+                        continue;
+                    }
                     try
                     {
                         var inputLine = castInput.Slice(i * castInputPitch, castInputPitch);
                         var outputLine = castOutput.Slice(i * castOutputPitch, castOutputPitch);
-
-                        inputLine.CopyTo(outputLine);
+                        GetPixel(inputLine, outputLine, width, i);
                         i += NativePixelStep;
-
-                        GetPixel(outputLine, width);
                     }
                     catch (Exception e)
+                    {
+
+                    }
+                }
+                if (SkipCached)
+                {
+                    try
+                    {
+                        totalPercentageSkipped = Math.Round((double)(totalSkipped / (double)(height * width)) * 100.0);
+                    }
+                    catch (Exception ex)
                     {
 
                     }
@@ -276,35 +1339,102 @@ namespace RetriX.Shared.Components
             //ss.Stop();
             //tt.Add(ss.Elapsed);
         }
+        unsafe private static void GetPixel(ReadOnlySpan<uint> inputLine, Span<uint> outputLine, uint width, int i)
+        {
+            if (CurrentColorFilter > 0 || SkipCached)
+            {
+                pixelCachesStates[i] = true;
+                for (var j = 0; j < width;)
+                {
+                    try
+                    {
+                        if (SkipCached)
+                        {
+                            if (pixelCaches[i, j] != null && inputLine[j] == pixelCaches[i, j].input64)
+                            {
+                                outputLine[j] = 0;
+                                pixelCachesStates[i] = pixelCachesStates[i] && true;
+                                j++;
+                                continue;
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
 
+                    }
+                    outputLine[j] = inputLine[j];
+                    CachePixel(inputLine[j], outputLine[j], i, j);
+                    pixelCachesStates[i] = false;
+                    j++;
+                }
+            }
+            else
+            {
+                inputLine.CopyTo(outputLine);
+            }
+        }
 
-        static uint getPixelPointer(ushort x) => getPattern(x);
-        private static bool isRG565 = false;
-        static CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-        static byte[] tempHash = new byte[] { };
-        //static ushort[][] tempLine = new ushort[4096][];
-        //static uint[][] cacheLine = new uint[4096][];
+        private static void GetPixel(Memory<uint> inputLine, Memory<uint> outputLine, uint width, int i)
+        {
+            if (CurrentColorFilter > 0 || SkipCached)
+            {
+                pixelCachesStates[i] = true;
+                for (var j = 0; j < width;)
+                {
+                    try
+                    {
+                        if (SkipCached)
+                        {
+                            if (pixelCaches[i, j] != null && inputLine.Span[j] == pixelCaches[i, j].input64)
+                            {
+                                outputLine.Span[j] = 0;
+                                pixelCachesStates[i] = pixelCachesStates[i] && true;
+                                j++;
+                                continue;
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                    outputLine.Span[j] = inputLine.Span[j];
+                    CachePixel(inputLine.Span[j], outputLine.Span[j], i, j);
+                    pixelCachesStates[i] = false;
+                    j++;
+                }
+
+            }
+            else
+            {
+                if (pixelCachesConfirms[i] > 0)
+                {
+                    pixelCachesRelay[i] = 0;
+                    pixelCachesConfirms[i] = 0;
+                    pixelCachesStability[i] = 0;
+                }
+                inputLine.CopyTo(outputLine);
+            }
+        }
+        #endregion
+
+        #region OLD 565,555 to 888
+        //This old conversion function, the above new one is more faster
         private static void ConvertFrameBufferUshortToXRGB8888WithLUT(uint width, uint height, ReadOnlySpan<byte> input, int inputPitch, Span<byte> output, int outputPitch, bool is565)
         {
-            if (!isGameStarted || AudioOnly)
+            if ((!isGameStarted || AudioOnly) && !fillSpanRequired)
             {
                 return;
             }
-            try
-            {
-                //GC.TryStartNoGCRegion(1000000, true);
-            }
-            catch (Exception ex)
-            {
-
-            }
-            
+            isRGB888 = false;
             try
             {
                 var castInput = MemoryMarshal.Cast<byte, ushort>(input);
                 var castInputPitch = inputPitch / sizeof(ushort);
                 var castOutput = MemoryMarshal.Cast<byte, uint>(output);
                 var castOutputPitch = outputPitch / sizeof(uint);
+
                 try
                 {
                     cancellationTokenSource.Cancel();
@@ -314,10 +1444,13 @@ namespace RetriX.Shared.Components
 
                 }
                 cancellationTokenSource = new CancellationTokenSource();
-                castOutput.Fill(0);
                 StartIndex = GetStartIndexValue();
                 isRG565 = is565;
                 List<Task> coresTasks = new List<Task>();
+                if ((NativePixelStep > 1 && inputFillWithBlack) || fillSpanRequired)
+                {
+                    castOutput.Fill(0);
+                }
                 if (CoresCount > 1)
                 {
                     unsafe
@@ -334,8 +1467,8 @@ namespace RetriX.Shared.Components
                                     {
                                         var umemory = umemoryManager.Memory;
                                         {
+                                            totalSkipped = 0;
                                             var hightPerCore = height / CoresCount;
-                                            //for (var t = 0; t < CoresCount; t++)
                                             Parallel.For(0, CoresCount, (t) =>
                                              {
                                                  var TStartIndex = (int)(t * hightPerCore);
@@ -345,46 +1478,60 @@ namespace RetriX.Shared.Components
                                                      hightSub = height;
                                                  }
                                                  ParallelOptions parallelOptions = new ParallelOptions();
-                                                //parallelOptions.MaxDegreeOfParallelism = 1;
-                                                parallelOptions.CancellationToken = cancellationTokenSource.Token;
+                                                 //parallelOptions.MaxDegreeOfParallelism = 1;
+                                                 parallelOptions.CancellationToken = cancellationTokenSource.Token;
                                                  var coreTask = Task.Factory.StartNew(() =>
                                                  {
-                                                    //for (var i = TStartIndex; i < hightSub;)
-                                                    Parallel.For(TStartIndex, (int)hightSub, (i) =>
+                                                     Parallel.For(TStartIndex, (int)hightSub, (i) =>
                                                      {
                                                          if (cancellationTokenSource.IsCancellationRequested)
                                                          {
                                                              return;
                                                          }
-                                                         var inputLine = umemory.Slice(i * castInputPitch, castInputPitch);
-                                                         var outputLine = memory.Slice(i * castOutputPitch, castOutputPitch);
-
-                                                         try
+                                                         if (SkipCached && IsPixelsRowCached(i))
                                                          {
-                                                             /*if (tempLine[i].SequenceEqual(inputLine.Span.ToArray()))
-                                                             {
-                                                                 cacheLine[i].CopyTo(outputLine);
-                                                                 return;
-                                                             }
-                                                             tempLine[i] = inputLine.ToArray();*/
+                                                             i += NativePixelStep;
+                                                             Interlocked.Add(ref totalSkipped, (int)width);
                                                          }
-                                                         catch (Exception ex)
+                                                         else
                                                          {
+                                                             var inputLine = umemory.Slice(i * castInputPitch, castInputPitch);
+                                                             var outputLine = memory.Slice(i * castOutputPitch, castOutputPitch);
 
-                                                         }
-
-                                                         for (var j = 0; j < width;)
-                                                        //Parallel.For(0, (int)width, parallelOptions, (j) =>
-                                                        {
-                                                             if (cancellationTokenSource.IsCancellationRequested)
+                                                             pixelCachesStates[i] = true;
+                                                             for (var j = 0; j < width;)
                                                              {
-                                                                 break;
+                                                                 if (cancellationTokenSource.IsCancellationRequested)
+                                                                 {
+                                                                     break;
+                                                                 }
+
+                                                                 try
+                                                                 {
+                                                                     if (SkipCached)
+                                                                     {
+                                                                         if (pixelCaches[i, j] != null && inputLine.Span[j] == pixelCaches[i, j].input)
+                                                                         {
+                                                                             outputLine.Span[j] = 0;
+                                                                             pixelCachesStates[i] = pixelCachesStates[i] && true;
+                                                                             j++;
+                                                                             continue;
+                                                                         }
+                                                                     }
+                                                                 }
+                                                                 catch (Exception ex)
+                                                                 {
+
+                                                                 }
+                                                                 outputLine.Span[j] = getPattern(inputLine.Span[j]);
+                                                                 CachePixel(inputLine.Span[j], outputLine.Span[j], i, j);
+                                                                 pixelCachesStates[i] = false;
+
+                                                                 j++;
+
                                                              }
-                                                             outputLine.Span[j] = getPattern(inputLine.Span[j]);
-                                                             j++;
-                                                         }//);
-                                                         //cacheLine[i] = outputLine.ToArray();
-                                                        i += NativePixelStep;
+                                                             i += NativePixelStep;
+                                                         }
                                                      });
                                                  }, cancellationTokenSource.Token);
                                                  coresTasks.Add(coreTask);
@@ -397,67 +1544,226 @@ namespace RetriX.Shared.Components
                             }
                             // you must use the memory object inside this fixed block!
                         }
+                        if (SkipCached)
+                        {
+                            try
+                            {
+                                var totalPixels = (height * width);
+                                if (totalSkipped > (int)totalPixels)
+                                {
+                                    totalPercentageSkipped = 100;
+                                }
+                                else
+                                    totalPercentageSkipped = Math.Round((double)(totalSkipped / (double)(height * width)) * 100.0);
+                            }
+                            catch (Exception ex)
+                            {
+
+                            }
+                        }
                     }
                 }
                 else
                 {
+                    totalSkipped = 0;
                     for (var i = StartIndex; i < height;)
                     {
                         if (cancellationTokenSource.IsCancellationRequested)
                         {
                             break;
                         }
+                        if (SkipCached && IsPixelsRowCached(i))
+                        {
+                            i += NativePixelStep;
+                            totalSkipped += (int)width;
+                            continue;
+                        }
                         var inputLine = castInput.Slice(i * castInputPitch, castInputPitch);
                         var outputLine = castOutput.Slice(i * castOutputPitch, castOutputPitch);
+                        pixelCachesStates[i] = true;
                         for (var j = 0; j < width;)
                         {
-                            if (cancellationTokenSource.IsCancellationRequested)
+                            try
                             {
-                                break;
+                                if (cancellationTokenSource.IsCancellationRequested)
+                                {
+                                    break;
+                                }
+                                if (SkipCached)
+                                {
+                                    if (pixelCaches[i, j] != null && inputLine[j] == pixelCaches[i, j].input)
+                                    {
+                                        outputLine[j] = 0;
+                                        pixelCachesStates[i] = pixelCachesStates[i] && true;
+                                        j++;
+                                        continue;
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+
                             }
                             outputLine[j] = getPattern(inputLine[j]);
+                            CachePixel(inputLine[j], outputLine[j], i, j);
+                            pixelCachesStates[i] = false;
+
                             j++;
                         }
+
                         i += NativePixelStep;
                     }
-                }
-
-                /*unsafe
-                {
-                    fixed (byte* currentByte = &input[0])
+                    if (SkipCached)
                     {
-                        var tempArray = new Span<byte>((void*)getPixelPointer((ushort)currentByte), input.Length);
-                        tempArray.CopyTo(output);
+                        try
+                        {
+                            var totalPixels = (height * width);
+                            if (totalSkipped > (int)totalPixels)
+                            {
+                                totalPercentageSkipped = 100;
+                            }
+                            else
+                                totalPercentageSkipped = Math.Round((double)(totalSkipped / (double)(height * width)) * 100.0);
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
                     }
-                }*/
+                }
             }
             catch (Exception e)
             {
 
             }
-            try
-            {
-                //GC.EndNoGCRegion();
-            }
-            catch (Exception ex)
-            {
+        }
+        #endregion
 
-            }
+        #region Pixels Updates
+        static uint getPixelPointer(ushort x) => getPattern(x);
+        public static bool isRG565 = false;
+        static CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+        static PixelCache[,] pixelCaches = new PixelCache[2080, 2080];
+        static bool[] pixelCachesStates = new bool[2080];
+        static int[] pixelCachesRelay = new int[2080];
+        static int[] pixelCachesConfirms = new int[2080];
+        static int[] pixelCachesStability = new int[2080];
+        public static bool showUpdatesOnly = false;
+        public static bool fillSpanRequired = false;
+        public static int totalSkipped = 0;
+        public static double totalPercentageSkipped = 0;
+        public static void ResetPixelCache()
+        {
+            pixelCaches = new PixelCache[2080, 2080];
+            pixelCachesStates = new bool[2080];
+            pixelCachesRelay = new int[2080];
+            pixelCachesConfirms = new int[2080];
+            pixelCachesStability = new int[2080];
+            fillSpanRequired = true;
+            totalPercentageSkipped = 0;
         }
 
-        public static void DataToBitmap(ReadOnlySpan<byte> data, long bitmapPointer, int mapPitch, int size, int width, int height)
+
+        private static bool IsPixelsRowCached(int i)
         {
-           unsafe
+            if (pixelCachesRelay[i] >= pixelCachesStability[i])
             {
-                fixed (byte* currentByte = &data[0])
+                if (pixelCachesRelay[i] >= (pixelCachesStability[i] + 1) && !pixelCachesStates[i])
                 {
-                    var tempArray = new Span<byte>((void*)getPixelPointer((ushort)currentByte), data.Length);
-                    var mapData = new Span<byte>(new IntPtr(bitmapPointer).ToPointer(), size);
-                    tempArray.CopyTo(mapData);
+                    pixelCachesRelay[i] = 0;
+                    pixelCachesConfirms[i] = 0;
+                    pixelCachesStability[i] = 0;
+                }
+                else if (pixelCachesRelay[i] >= (pixelCachesStability[i] + 1))
+                {
+                    pixelCachesRelay[i] = 0;
+                }
+                else
+                {
+                    pixelCachesRelay[i]++;
+                    return false;
+                }
+            }
+
+            if (pixelCachesStates[i] && pixelCachesConfirms[i] < 120)
+            {
+                pixelCachesConfirms[i]++;
+            }
+            else if (pixelCachesStates[i])
+            {
+                pixelCachesRelay[i]++;
+            }
+            else
+            {
+                pixelCachesConfirms[i] = 0;
+                pixelCachesStability[i] = 0;
+            }
+
+            if (pixelCachesConfirms[i] >= 120 && pixelCachesStability[i] == 0)
+            {
+                pixelCachesStability[i]++;
+            }
+            else if (pixelCachesConfirms[i] >= 1000 && pixelCachesStability[i] == 1)
+            {
+                pixelCachesStability[i]++;
+            }
+            else if (pixelCachesConfirms[i] >= 2000 && pixelCachesStability[i] == 2)
+            {
+                pixelCachesStability[i]++;
+            }
+            else if (pixelCachesConfirms[i] >= 3000 && pixelCachesStability[i] == 3)
+            {
+                pixelCachesStability[i]++;
+            }
+            else if (pixelCachesStates[i] && pixelCachesConfirms[i] <= 3000)
+            {
+                pixelCachesConfirms[i]++;
+            }
+
+            return pixelCachesConfirms[i] >= 120;
+        }
+        private static void CachePixel(ushort input, uint output, int i, int j)
+        {
+            if (!SkipCached)
+            {
+                return;
+            }
+            unsafe
+            {
+                if (pixelCaches[i, j] != null)
+                {
+                    pixelCaches[i, j].input = input;
+                    pixelCaches[i, j].output = output;
+                }
+                else
+                {
+                    pixelCaches[i, j] = new PixelCache(input, output);
                 }
             }
         }
-        private static uint getPattern(ushort x)
+        private static void CachePixel(uint input, uint output, int i, int j)
+        {
+            if (!SkipCached)
+            {
+                return;
+            }
+            unsafe
+            {
+                if (pixelCaches[i, j] != null)
+                {
+                    pixelCaches[i, j].input64 = input;
+                    pixelCaches[i, j].output = output;
+                }
+                else
+                {
+                    pixelCaches[i, j] = new PixelCache(input, output);
+                }
+            }
+        }
+        #endregion
+
+        #region Pixels Conversion
+        public static uint getPattern(ushort x)
         {
             if (isRG565)
             {
@@ -468,182 +1774,26 @@ namespace RetriX.Shared.Components
                 return RGB0555LookupTable[x];
             }
         }
-        private static int RedSpace = 16;
-        private static int GreenSpace = 8;
-        private static uint RedRange = 0xFF;
-        private static uint GreenRange = 0xFF;
-        private static uint BlueRange = 0xFF;
-        private static uint GetPixel(uint buffer)
+        public static uint getPattern2(ref ushort x)
         {
-            uint BufferPixel = 0;
-            switch (CurrentColorFilter)
+            if (isRG565)
             {
-                case 0:
-                    //"None"
-                    BufferPixel = buffer;
-                    break;
-                case 1:
-                    //"Grayscale"
-                    BufferPixel = GrayscaleFilter(buffer);
-                    break;
-                case 2:
-                    //"Cool"
-                    BufferPixel = CoolFilter(buffer);
-                    break;
-                case 3:
-                    //"Warm"
-                    BufferPixel = WarmFilter(buffer);
-                    break;
-                case 4:
-                    //"Sepia"
-                    BufferPixel = SepiaFilter(buffer);
-                    break;
-                case 5:
-                    //"Retro"
-                    BufferPixel = RetroFilter(buffer);
-                    break;
-                case 6:
-                    //"Blue"
-                    BufferPixel = BlueFilter(buffer);
-                    break;
-                case 7:
-                    //"Green"
-                    BufferPixel = GreenFilter(buffer);
-                    break;
-                case 8:
-                    //"Red"
-                    BufferPixel = RedFilter(buffer);
-                    break;
+                return RGB565LookupTable[x];
             }
-            return BufferPixel;
-        }
-        static List<TimeSpan> tt = new List<TimeSpan>();
-        static Dictionary<uint, uint> LookupTableUint = new Dictionary<uint, uint>();
-        private static void GetPixel(Span<uint> outputLine, uint width)
-        {
-            if (CurrentColorFilter > 0)
+            else
             {
-                //Stopwatch ss = new Stopwatch();
-                //ss.Start();
-
-                for (var j = 0; j < width;)
-                {
-                    outputLine[j] = GetPixel(outputLine[j]);
-                    j += 1;
-                }
-
-                //ss.Stop();
-                //tt.Add(ss.Elapsed);
+                return RGB0555LookupTable[x];
             }
         }
+        #endregion
 
-        private static uint GrayscaleFilter(uint pixel)
+        #region Span, Other memory helpers
+        public static void CopyFromPtrToPtr(IntPtr src, uint srcLen, IntPtr dst, uint dstLen)
         {
-            uint red = (pixel >> RedSpace) & RedRange;
-            uint green = (pixel >> GreenSpace) & GreenRange;
-            uint blue = (pixel & BlueRange);
-            uint grayscale = (uint)Math.Round((red + blue + green) / 3.0);
-            var buffer = (grayscale << 16) + (grayscale << 8) + grayscale;
-            return buffer;
+            var buffer = new byte[srcLen];
+            Marshal.Copy(src, buffer, 0, buffer.Length);
+            Marshal.Copy(buffer, 0, dst, (int)Math.Min(buffer.Length, dstLen));
         }
-        private static uint CoolFilter(uint pixel)
-        {
-            uint red = (pixel >> RedSpace) & RedRange;
-            uint green = (pixel >> GreenSpace) & GreenRange;
-            uint blue = (pixel & BlueRange);
-
-            red = (uint)Math.Round((red * 0.60));
-            green = (uint)Math.Round((green * 0.80));
-            blue = (uint)Math.Round((blue * 1.0));
-
-            var buffer = (red << 16) + (green << 8) + blue;
-            return buffer;
-        }
-        private static uint WarmFilter(uint pixel)
-        {
-            uint red = (pixel >> RedSpace) & RedRange;
-            uint green = (pixel >> GreenSpace) & GreenRange;
-            uint blue = (pixel & BlueRange);
-
-            red = (uint)Math.Round((red * 1.0));
-            green = (uint)Math.Round((green * 0.80));
-            blue = (uint)Math.Round((blue * 0.60));
-
-            var buffer = (red << 16) + (green << 8) + blue;
-            return buffer;
-        }
-
-        private static uint SepiaFilter(uint pixel)
-        {
-            uint red = (pixel >> RedSpace) & RedRange;
-            uint green = (pixel >> GreenSpace) & GreenRange;
-            uint blue = (pixel & BlueRange);
-
-            double grayscale = (red * 0.11 + green * 0.30 + blue * 0.59);
-            red = (uint)Math.Round(grayscale * 1);
-            green = (uint)Math.Round(grayscale * 0.85);
-            blue = (uint)Math.Round(grayscale * 0.72);
-
-            var buffer = (red << 16) + (green << 8) + blue;
-            return buffer;
-        }
-        private static uint RetroFilter(uint pixel)
-        {
-            uint red = (pixel >> RedSpace) & RedRange;
-            uint green = (pixel >> GreenSpace) & GreenRange;
-            uint blue = (pixel & BlueRange);
-
-            uint grayscale = (uint)Math.Round((red + blue + green) / 3.0);
-
-            red = (uint)Math.Round((red * 0.11 + red * 0.30 + red * 0.59) * 1);
-            green = (uint)Math.Round((green * 0.11 + green * 0.30 + green * 0.59) * 0.85);
-            blue = (uint)Math.Round((blue * 0.11 + blue * 0.30 + blue * 0.59) * 0.72);
-
-            var buffer = (red << 16) + (grayscale << 8) + grayscale;
-            return buffer;
-        }
-        private static uint BlueFilter(uint pixel)
-        {
-            uint red = (pixel >> RedSpace) & RedRange;
-            uint green = (pixel >> GreenSpace) & GreenRange;
-            uint blue = (pixel & BlueRange);
-
-            red = (uint)Math.Round((red + (255 - red) * 0.01));
-            green = (uint)Math.Round((green + (255 - green) * 0.01));
-            blue = (uint)Math.Round((blue + (255 - blue) * 0.1));
-
-            var buffer = (red << 16) + (green << 8) + blue;
-            return buffer;
-        }
-
-        private static uint GreenFilter(uint pixel)
-        {
-            uint red = (pixel >> RedSpace) & RedRange;
-            uint green = (pixel >> GreenSpace) & GreenRange;
-            uint blue = (pixel & BlueRange);
-
-            red = (uint)Math.Round((red + (255 - red) * 0.01));
-            green = (uint)Math.Round((green + (255 - green) * 0.1));
-            blue = (uint)Math.Round((blue + (255 - blue) * 0.01));
-
-            var buffer = (red << 16) + (green << 8) + blue;
-            return buffer;
-        }
-
-        private static uint RedFilter(uint pixel)
-        {
-            uint red = (pixel >> RedSpace) & RedRange;
-            uint green = (pixel >> GreenSpace) & GreenRange;
-            uint blue = (pixel & BlueRange);
-
-            red = (uint)Math.Round((red + (255 - red) * 0.1));
-            green = (uint)Math.Round((green + (255 - green) * 0.01));
-            blue = (uint)Math.Round((blue + (255 - blue) * 0.01));
-
-            var buffer = (red << 16) + (green << 8) + blue;
-            return buffer;
-        }
-
         public unsafe static Span<byte> AsSpan<T>(in T val) where T : unmanaged
         {
             void* valPtr = Unsafe.AsPointer(ref Unsafe.AsRef(val));
@@ -686,10 +1836,10 @@ namespace RetriX.Shared.Components
             [FieldOffset(0)]
             public uint[] Uint;      //16bit
         }
-
-
-
+        #endregion
     }
+
+    #region I don't know why this is here
     public class PinnedBuffer : IDisposable
     {
         public GCHandle Handle { get; }
@@ -724,6 +1874,28 @@ namespace RetriX.Shared.Components
             }
         }
     }
+    #endregion
+
+    #region Pixels Updates Classes
+    class PixelCache
+    {
+        //64 added by me as quick rename, it's NOT related to 64bit
+        public uint input64;
+        public ushort input;
+        public uint output;
+
+        public PixelCache(ushort input, uint output)
+        {
+            this.input = input;
+            this.output = output;
+        }
+        public PixelCache(uint input, uint output)
+        {
+            this.input64 = input;
+            this.output = output;
+        }
+    }
+    #endregion
 
     class TypedefUint
     {
@@ -737,6 +1909,5 @@ namespace RetriX.Shared.Components
             return new TypedefUint { Value = val };
         }
     }
-
 
 }

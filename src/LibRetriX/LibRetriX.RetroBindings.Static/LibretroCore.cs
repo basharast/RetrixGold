@@ -5,6 +5,8 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 
 namespace LibRetriX.RetroBindings
@@ -17,8 +19,8 @@ namespace LibRetriX.RetroBindings
         public string SystemName { get; set; }
         public string OriginalSystemName { get; set; }
         public string Version { get; set; }
-        public IList<string> SupportedExtensions { get; set;}
-        public bool FailedToLoad { get; set;}
+        public IList<string> SupportedExtensions { get; set; }
+        public bool FailedToLoad { get; set; }
         public bool NativeArchiveSupport { get; set; }
         public bool SubSystemSupport { get; set; }
         public uint RetroGameType { get; set; }
@@ -30,7 +32,7 @@ namespace LibRetriX.RetroBindings
 
         private IList<Tuple<string, uint>> OptionSetters { get; set; }
 
-        public IList<FileDependency> FileDependencies { get; set;}
+        public IList<FileDependency> FileDependencies { get; set; }
 
         private IntPtr systemRootPathUnmanaged;
         private string systemRootPath;
@@ -141,7 +143,7 @@ namespace LibRetriX.RetroBindings
             }
         }
         bool loadCustomInput = true;
-        public void ReInitialCore(bool LoadCustomInput=true)
+        public void ReInitialCore(bool LoadCustomInput = true)
         {
             try
             {
@@ -168,7 +170,7 @@ namespace LibRetriX.RetroBindings
                 if (DLLModule != IntPtr.Zero) // error handling
                 {
                     LibretroAPI.LoadLibraryFunctions(DLLModule);
-                    if (LibretroAPI.UpdateOptionsInGame == null && LibretroAPI.UpdateVariables==null)
+                    if (LibretroAPI.UpdateOptionsInGame == null && LibretroAPI.UpdateVariables == null)
                     {
                         IsInGameOptionsActive = false;
                     }
@@ -191,7 +193,7 @@ namespace LibRetriX.RetroBindings
         IList<FileDependency> dependenciesGlobal = null;
         IList<Tuple<string, uint>> optionSettersGlobal = null;
         uint? inputTypeIdGlobal = null;
-        public LibretroCore(IReadOnlyList<FileDependency> dependencies = null, IReadOnlyList<Tuple<string, uint>> optionSetters = null, uint? inputTypeId = null, string AnyCoreName="")
+        public LibretroCore(IReadOnlyList<FileDependency> dependencies = null, IReadOnlyList<Tuple<string, uint>> optionSetters = null, uint? inputTypeId = null, string AnyCoreName = "")
         {
             dependenciesGlobal = (IList<FileDependency>)dependencies;
             optionSettersGlobal = (IList<Tuple<string, uint>>)optionSetters;
@@ -201,11 +203,13 @@ namespace LibRetriX.RetroBindings
             {
                 DLLName = AnyCoreName;
             }
-            try {
+            try
+            {
                 FreeLibretroCore();
                 LoadCoreLibrary();
                 PrepareCore();
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
 
             }
@@ -252,21 +256,22 @@ namespace LibRetriX.RetroBindings
                 RequiresFullPath = false;
                 FailedToLoad = true;
             }
+            
         }
 
         public void Dispose()
         {
-            try { 
-            SystemRootPath = null;
-            SaveRootPath = null;
-
-            if (CurrentlyResolvedCoreOptionValue != IntPtr.Zero)
+            try
             {
-                Marshal.FreeHGlobal(CurrentlyResolvedCoreOptionValue);
-                CurrentlyResolvedCoreOptionValue = IntPtr.Zero;
-            }
+                SystemRootPath = null;
+                SaveRootPath = null;
 
-                GC.SuppressFinalize(this);
+                if (CurrentlyResolvedCoreOptionValue != IntPtr.Zero)
+                {
+                    Marshal.FreeHGlobal(CurrentlyResolvedCoreOptionValue);
+                    CurrentlyResolvedCoreOptionValue = IntPtr.Zero;
+                }
+                GC.Collect();
             }
             catch (Exception e)
             {
@@ -274,17 +279,19 @@ namespace LibRetriX.RetroBindings
             }
         }
 
-        public void Initialize(bool isSubSystem=false)
+        public void Initialize(bool isSubSystem = false)
         {
-            try {
-            SubSystemSupport = isSubSystem;
-            LibretroAPI.EnvironmentCallback = EnvironmentHandler;
-            LibretroAPI.RenderVideoFrameCallback = RenderVideoFrameHandler;
-            LibretroAPI.RenderAudioFrameCallback = RenderAudioFrameHandler;
-            LibretroAPI.RenderAudioFramesCallback = RenderAudioFramesHandler;
-            LibretroAPI.PollInputCallback = PollInputHandler;
-            LibretroAPI.GetInputStateCallback = GetInputStateHandler;
-            }catch(Exception e)
+            try
+            {
+                SubSystemSupport = isSubSystem;
+                LibretroAPI.EnvironmentCallback = EnvironmentHandler;
+                LibretroAPI.RenderVideoFrameCallback = RenderVideoFrameHandler;
+                LibretroAPI.RenderAudioFrameCallback = RenderAudioFrameHandler;
+                LibretroAPI.RenderAudioFramesCallback = RenderAudioFramesHandler;
+                LibretroAPI.PollInputCallback = PollInputHandler;
+                LibretroAPI.GetInputStateCallback = GetInputStateHandler;
+            }
+            catch (Exception e)
             {
 
             }
@@ -312,62 +319,152 @@ namespace LibRetriX.RetroBindings
         {
             return LogsList;
         }
-        private static void LogHandler(LogLevels level, IntPtr format, IntPtr argAddresses)
+
+
+        
+        /*
+         * Built with help of the solution below
+         * https://github.com/KimNynxx/prueba2/blob/a2ca9257d349f56295bda48010ff33ee171e808b/src/packages/SK.Libretro/Wrapper/LibretroLog.cs
+         * 
+         */
+        private static readonly Regex _argumentsRegex = new Regex(@"%(?:\d+\$)?[+-]?(?:[ 0]|'.{1})?-?\d*(?:\.\d+)?([bcdeEufFgGosxX])", RegexOptions.Compiled);
+        private static void LogHandler(LogLevels level, string format, IntPtr arg1, IntPtr arg2, IntPtr arg3, IntPtr arg4, IntPtr arg5, IntPtr arg6, IntPtr arg7, IntPtr arg8, IntPtr arg9, IntPtr arg10, IntPtr arg11, IntPtr arg12)
         {
-        //#if DEBUG
-            var message = Marshal.PtrToStringAnsi(format);
-            /*var messageArgs = Marshal.PtrToStringAnsi(argAddresses);
-            if (messageArgs != null) { 
-            LogsList.Insert(1,String.Format(message,messageArgs));
-            }
-            else
+            try
             {
-                LogsList.Insert(1, message);
-            }*/
-            LogsList.Insert(1, message);
-            //System.Diagnostics.Debug.WriteLine($"{NativeDllInfo.DllName}: {level} - {message}");
-            //#endif
+                var data = GetFormatArgumentCount(format);
+                var argumentsToPush = (int)data[0];
+                if (argumentsToPush > 12)
+                {
+                    LogsList.Insert(1, $"Too many arguments ({argumentsToPush}) supplied to retroLogCallback");
+                    return;
+                }
+                var formates = (List<string>)data[1];
+                Sprintf(out string formattedString, format, formates, argumentsToPush >= 1 ? arg1 : IntPtr.Zero, argumentsToPush >= 2 ? arg2 : IntPtr.Zero, argumentsToPush >= 3 ? arg3 : IntPtr.Zero, argumentsToPush >= 4 ? arg4 : IntPtr.Zero, argumentsToPush >= 5 ? arg5 : IntPtr.Zero, argumentsToPush >= 6 ? arg6 : IntPtr.Zero, argumentsToPush >= 7 ? arg7 : IntPtr.Zero, argumentsToPush >= 8 ? arg8 : IntPtr.Zero, argumentsToPush >= 9 ? arg9 : IntPtr.Zero, argumentsToPush >= 10 ? arg10 : IntPtr.Zero, argumentsToPush >= 11 ? arg11 : IntPtr.Zero, argumentsToPush >= 12 ? arg12 : IntPtr.Zero);
+                switch (level)
+                {
+                    case LogLevels.Debug:
+                        LogsList.Insert(1, $"DEBUG: {formattedString}");
+                        break;
+                    case LogLevels.Info:
+                        LogsList.Insert(1, $"INFO: {formattedString}");
+                        break;
+                    case LogLevels.Warning:
+                        LogsList.Insert(1, $"WARN: {formattedString}");
+                        break;
+                    case LogLevels.Error:
+                        LogsList.Insert(1, $"ERROR: {formattedString}");
+                        break;
+                    default:
+                        LogsList.Insert(1, $"NORMAL: {formattedString}");
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogsList.Insert(1, ex.Message);
+            }
+        }
+        private static object[] GetFormatArgumentCount(string format)
+        {
+            int argumentsToPush = 0;
+            List<string> formates = new List<string>();
+            MatchCollection matches = _argumentsRegex.Matches(format);
+
+            foreach (Match match in matches)
+            {
+                formates.Add($"{match.Value}");
+                switch (match.Groups[1].Value)
+                {
+                    case "b":
+                    case "d":
+                    case "x":
+                    case "s":
+                    case "u":
+                        argumentsToPush += 1;
+                        break;
+                    case "f":
+                    case "m":
+                        argumentsToPush += 2;
+                        break;
+                    default:
+                        LogsList.Insert(1, $"Placeholder '{match.Value}' not implemented");
+                        break;
+                }
+            }
+
+            return new object[] { argumentsToPush, formates};
+        }
+        private static void Sprintf(out string buffer, string format, List<string> formates, params IntPtr[] args)
+        {
+            var finalMessage = format;
+            try
+            {
+                var indexer = 0;
+                foreach (var formatItem in formates)
+                {
+                    var regex = new Regex(Regex.Escape(formatItem));
+                    var replaceValue = args[indexer].ToString();
+                    if(formatItem.StartsWith("%") && formatItem.EndsWith("s"))
+                    {
+                        replaceValue = Marshal.PtrToStringAnsi(args[indexer]);
+                        if(replaceValue == null)
+                        {
+                            replaceValue = args[indexer].ToString();
+                        }
+                    }
+                    finalMessage = regex.Replace(finalMessage, replaceValue, 1);
+                    indexer++;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogsList.Insert(1, ex.Message);
+            }
+            buffer = finalMessage;
         }
 
         public bool LoadGame(string mainGameFilePath)
         {
             LogsList.Clear();
-            LogsList.Insert(0,"*****************************");
-            try { 
-            if (!IsInitialized)
+            LogsList.Insert(0, "*****************************");
+            try
             {
-                LibretroAPI.Initialize();
-                IsInitialized = true;
-            }
-
-            if (CurrentGameInfo.HasValue)
-            {
-                UnloadGameNoDeinit();
-            }
-
-            var gameInfo = new GameInfo()
-            {
-                Path = mainGameFilePath
-            };
-
-            if (!RequiresFullPath)
-            {
-                var stream = OpenFileStream?.Invoke(mainGameFilePath, FileAccess.Read);
-                if (stream == null)
+                if (!IsInitialized)
                 {
-                    return false;
+                    LibretroAPI.Initialize();
+                    IsInitialized = true;
                 }
 
-                var data = new byte[stream.Length];
-                stream.Read(data, 0, data.Length);
-                GameDataHandle = gameInfo.SetGameData(data);
-                CloseFileStream(stream);
-            }
+                if (CurrentGameInfo.HasValue)
+                {
+                    UnloadGameNoDeinit();
+                }
 
-            Rotation = Rotations.CCW0;
-            var loadSuccessful = false;
+                var gameInfo = new GameInfo()
+                {
+                    Path = mainGameFilePath
+                };
 
-                if (SubSystemSupport && RetroGameType > 0) {
+                if (!RequiresFullPath)
+                {
+                    var stream = OpenFileStream?.Invoke(mainGameFilePath, FileAccess.Read);
+                    if (stream == null)
+                    {
+                        return false;
+                    }
+
+                    var data = new byte[stream.Length];
+                    stream.Read(data, 0, data.Length);
+                    GameDataHandle = gameInfo.SetGameData(data);
+                    CloseFileStream(stream);
+                }
+
+                Rotation = Rotations.CCW0;
+                var loadSuccessful = false;
+
+                if (SubSystemSupport && RetroGameType > 0)
+                {
                     loadSuccessful = LibretroAPI.LoadGameSpecial((uint)RetroGameType, ref gameInfo);
                 }
                 else
@@ -377,19 +474,19 @@ namespace LibRetriX.RetroBindings
 
                 if (loadSuccessful)
                 {
-                var avInfo = new SystemAVInfo();
-                LibretroAPI.GetSystemAvInfo(ref avInfo);
+                    var avInfo = new SystemAVInfo();
+                    LibretroAPI.GetSystemAvInfo(ref avInfo);
 
-                Geometry = avInfo.Geometry;
-                Timings = avInfo.Timings;
+                    Geometry = avInfo.Geometry;
+                    Timings = avInfo.Timings;
 
-                var inputTypesToUse = InputTypesToUse.Value;
-                for (var i = 0; i < inputTypesToUse.Length; i++)
-                {
-                    LibretroAPI.SetControllerPortDevice((uint)i, inputTypesToUse[i]);
-                }
+                    var inputTypesToUse = InputTypesToUse.Value;
+                    for (var i = 0; i < inputTypesToUse.Length; i++)
+                    {
+                        LibretroAPI.SetControllerPortDevice((uint)i, inputTypesToUse[i]);
+                    }
 
-                CurrentGameInfo = gameInfo;
+                    CurrentGameInfo = gameInfo;
                 }
                 else
                 {
@@ -400,7 +497,7 @@ namespace LibRetriX.RetroBindings
                     return true;
                 }
 
-            return CurrentGameInfo.HasValue;
+                return CurrentGameInfo.HasValue;
             }
             catch (Exception e)
             {
@@ -410,16 +507,17 @@ namespace LibRetriX.RetroBindings
 
         public void UnloadGame()
         {
-            try {
-            RetroGameType = 0U;
-            FailedToLoadGame = false;
-            UnloadGameNoDeinit();
-
-            if (IsInitialized)
+            try
             {
-                LibretroAPI.Cleanup();
-                IsInitialized = false;
-            }
+                RetroGameType = 0U;
+                FailedToLoadGame = false;
+                UnloadGameNoDeinit();
+
+                if (IsInitialized)
+                {
+                    LibretroAPI.Cleanup();
+                    IsInitialized = false;
+                }
             }
             catch (Exception e)
             {
@@ -427,19 +525,22 @@ namespace LibRetriX.RetroBindings
             }
             try
             {
-                LibretroAPI.FreeLibrary(DLLModule);
+               var releaseState = LibretroAPI.FreeLibrary(DLLModule);
             }
             catch (Exception e)
             {
 
             }
+            Dispose();
         }
 
         public void Reset()
         {
-            try {
-                if (!FailedToLoadGame) { 
-            LibretroAPI.Reset();
+            try
+            {
+                if (!FailedToLoadGame)
+                {
+                    LibretroAPI.Reset();
                 }
                 else
                 {
@@ -454,16 +555,19 @@ namespace LibRetriX.RetroBindings
 
         public void RunFrame()
         {
-            unsafe { 
-            try {
-            if (!FailedToLoadGame) { 
-            LibretroAPI.RunFrame();
-            }
-            }
-           catch(Exception e)
+            unsafe
             {
+                try
+                {
+                    if (!FailedToLoadGame)
+                    {
+                        LibretroAPI.RunFrame();
+                    }
+                }
+                catch (Exception e)
+                {
 
-            }
+                }
             }
         }
 
@@ -473,14 +577,16 @@ namespace LibRetriX.RetroBindings
             {
                 try
                 {
-                    if (!FailedToLoadGame) { 
-                    if (LibretroAPI.UpdateOptionsInGame != null) { 
-                    LibretroAPI.UpdateOptionsInGame();
-                    }
-                    else
+                    if (!FailedToLoadGame)
                     {
-                    LibretroAPI.UpdateVariables(false);
-                    }
+                        if (LibretroAPI.UpdateOptionsInGame != null)
+                        {
+                            LibretroAPI.UpdateOptionsInGame();
+                        }
+                        else
+                        {
+                            LibretroAPI.UpdateVariables(false);
+                        }
                     }
                 }
                 catch (Exception e)
@@ -492,23 +598,25 @@ namespace LibRetriX.RetroBindings
 
         public bool SaveState(Stream outputStream)
         {
-            try {
-                if (!FailedToLoadGame) { 
-            var size = LibretroAPI.GetSerializationSize();
-            var stateData = new byte[(int)size];
-
-            var handle = GCHandle.Alloc(stateData, GCHandleType.Pinned);
-            var result = LibretroAPI.SaveState(handle.AddrOfPinnedObject(), (IntPtr)stateData.Length);
-            handle.Free();
-
-            if (result == true)
+            try
             {
-                outputStream.Position = 0;
-                outputStream.Write(stateData, 0, stateData.Length);
-                outputStream.SetLength(stateData.Length);
-            }
+                if (!FailedToLoadGame)
+                {
+                    var size = LibretroAPI.GetSerializationSize();
+                    var stateData = new byte[(int)size];
 
-            return result;
+                    var handle = GCHandle.Alloc(stateData, GCHandleType.Pinned);
+                    var result = LibretroAPI.SaveState(handle.AddrOfPinnedObject(), (IntPtr)stateData.Length);
+                    handle.Free();
+
+                    if (result == true)
+                    {
+                        outputStream.Position = 0;
+                        outputStream.Write(stateData, 0, stateData.Length);
+                        outputStream.SetLength(stateData.Length);
+                    }
+
+                    return result;
                 }
                 else
                 {
@@ -550,181 +658,183 @@ namespace LibRetriX.RetroBindings
 
         private void UnloadGameNoDeinit()
         {
-            try { 
-            if (!CurrentGameInfo.HasValue)
+            try
             {
-                return;
-            }
+                if (!CurrentGameInfo.HasValue)
+                {
+                    return;
+                }
 
-            LibretroAPI.UnloadGame();
-            if (GameDataHandle.IsAllocated)
-            {
-                GameDataHandle.Free();
-            }
+                LibretroAPI.UnloadGame();
+                if (GameDataHandle.IsAllocated)
+                {
+                    GameDataHandle.Free();
+                }
 
-            CurrentGameInfo = null;
+                CurrentGameInfo = null;
             }
             catch (Exception e)
             {
 
             }
 
-           
+
         }
 
         IntPtr dataPtrShared = new IntPtr();
         private bool EnvironmentHandler(uint command, IntPtr dataPtr)
         {
-            try {
-            dataPtrShared = dataPtr;
-            switch (command)
+            try
             {
-                case Constants.RETRO_ENVIRONMENT_GET_LOG_INTERFACE:
-                    {
-                        Marshal.StructureToPtr(LogCBDescriptor, dataPtr, false);
-                        return true;
-                    }
-                case Constants.RETRO_ENVIRONMENT_SET_VARIABLES:
-                    {
-                        var newOptions = new Dictionary<string, CoreOption>();
-                        Options = newOptions;
-
-                        var data = Marshal.PtrToStructure<LibretroVariable>(dataPtr);
-                        while (data.KeyPtr != IntPtr.Zero)
+                dataPtrShared = dataPtr;
+                switch (command)
+                {
+                    case Constants.RETRO_ENVIRONMENT_GET_LOG_INTERFACE:
                         {
-                            var key = Marshal.PtrToStringAnsi(data.KeyPtr);
-                            var rawValue = Marshal.PtrToStringAnsi(data.ValuePtr);
-
-                            var split = rawValue.Split(';');
-                            var description = split[0];
-
-                            rawValue = rawValue.Substring(description.Length + 2);
-                            split = rawValue.Split('|');
-
-                            newOptions.Add(key, new CoreOption(description, split));
-
-                            dataPtr += Marshal.SizeOf<LibretroVariable>();
-                            data = Marshal.PtrToStructure<LibretroVariable>(dataPtr);
+                            Marshal.StructureToPtr(LogCBDescriptor, dataPtr, false);
+                            return true;
                         }
-
-                        foreach(var i in OptionSetters)
+                    case Constants.RETRO_ENVIRONMENT_SET_VARIABLES:
                         {
-                            Options[i.Item1].SelectedValueIx = i.Item2;
-                        }
+                            var newOptions = new Dictionary<string, CoreOption>();
+                            Options = newOptions;
 
-                        return true;
-                    }
-                case Constants.RETRO_ENVIRONMENT_GET_VARIABLE:
-                    {
-                        var data = Marshal.PtrToStructure<LibretroVariable>(dataPtr);
-                        var key = Marshal.PtrToStringAnsi(data.KeyPtr);
-                        var valueFound = false;
-                        data.ValuePtr = IntPtr.Zero;
-
-                        if (Options.ContainsKey(key))
-                        {
-                            valueFound = true;
-                            var coreOption = Options[key];
-                            var value = coreOption.Values[(int)coreOption.SelectedValueIx];
-                            if (CurrentlyResolvedCoreOptionValue != IntPtr.Zero)
+                            var data = Marshal.PtrToStructure<LibretroVariable>(dataPtr);
+                            while (data.KeyPtr != IntPtr.Zero)
                             {
-                                Marshal.FreeHGlobal(CurrentlyResolvedCoreOptionValue);
+                                var key = Marshal.PtrToStringAnsi(data.KeyPtr);
+                                var rawValue = Marshal.PtrToStringAnsi(data.ValuePtr);
+
+                                var split = rawValue.Split(';');
+                                var description = split[0];
+
+                                rawValue = rawValue.Substring(description.Length + 2);
+                                split = rawValue.Split('|');
+
+                                newOptions.Add(key, new CoreOption(description, split));
+
+                                dataPtr += Marshal.SizeOf<LibretroVariable>();
+                                data = Marshal.PtrToStructure<LibretroVariable>(dataPtr);
                             }
 
-                            CurrentlyResolvedCoreOptionValue = Marshal.StringToHGlobalAnsi(value);
-                            data.ValuePtr = CurrentlyResolvedCoreOptionValue;
-                        }
-
-                        Marshal.StructureToPtr(data, dataPtr, false);
-                        return valueFound;
-                    }
-                case Constants.RETRO_ENVIRONMENT_GET_OVERSCAN:
-                    {
-                        Marshal.WriteByte(dataPtr, 0);
-                        return true;
-                    }
-                case Constants.RETRO_ENVIRONMENT_GET_CAN_DUPE:
-                    {
-                        Marshal.WriteByte(dataPtr, 1);
-                        return true;
-                    }
-                case Constants.RETRO_ENVIRONMENT_GET_SYSTEM_DIRECTORY:
-                    {
-                        Marshal.WriteIntPtr(dataPtr, systemRootPathUnmanaged);
-                        return true;
-                    }
-                case Constants.RETRO_ENVIRONMENT_GET_SAVE_DIRECTORY:
-                    {
-                        Marshal.WriteIntPtr(dataPtr, saveRootPathUnmanaged);
-                        return true;
-                    }
-                case Constants.RETRO_ENVIRONMENT_SET_PIXEL_FORMAT:
-                    {
-                        var data = (PixelFormats)Marshal.ReadInt32(dataPtr);
-                        PixelFormat = data;
-                        return true;
-                    }
-                case Constants.RETRO_ENVIRONMENT_SET_GEOMETRY:
-                    {
-                        var data = Marshal.PtrToStructure<GameGeometry>(dataPtr);
-                        Geometry = data;
-                        return true;
-                    }
-                case Constants.RETRO_ENVIRONMENT_SET_ROTATION:
-                    {
-                        var data = (Rotations)Marshal.ReadInt32(dataPtr);
-                        Rotation = data;
-                        return true;
-                    }
-                case Constants.RETRO_ENVIRONMENT_SET_SYSTEM_AV_INFO:
-                    {
-                        var data = Marshal.PtrToStructure<SystemAVInfo>(dataPtr);
-                        Geometry = data.Geometry;
-                        Timings = data.Timings;
-                        return true;
-                    }
-                case Constants.RETRO_ENVIRONMENT_SET_CONTROLLER_INFO:
-                    {
-                        IntPtr portDescriptionsPtr;
-                        do
-                        {
-                            var portControllerData = Marshal.PtrToStructure<ControllerInfo>(dataPtr);
-                            portDescriptionsPtr = portControllerData.DescriptionsPtr;
-                            if (portDescriptionsPtr != IntPtr.Zero)
+                            foreach (var i in OptionSetters)
                             {
-                                var currentPortDescriptions = new List<ControllerDescription>();
-                                SupportedInputsPerPort.Add(currentPortDescriptions);
-                                for (var i = 0U; i < portControllerData.NumDescriptions; i++)
+                                Options[i.Item1].SelectedValueIx = i.Item2;
+                            }
+
+                            return true;
+                        }
+                    case Constants.RETRO_ENVIRONMENT_GET_VARIABLE:
+                        {
+                            var data = Marshal.PtrToStructure<LibretroVariable>(dataPtr);
+                            var key = Marshal.PtrToStringAnsi(data.KeyPtr);
+                            var valueFound = false;
+                            data.ValuePtr = IntPtr.Zero;
+
+                            if (Options.ContainsKey(key))
+                            {
+                                valueFound = true;
+                                var coreOption = Options[key];
+                                var value = coreOption.Values[(int)coreOption.SelectedValueIx];
+                                if (CurrentlyResolvedCoreOptionValue != IntPtr.Zero)
                                 {
-                                    var nativeDescription = Marshal.PtrToStructure<ControllerDescription.NativeForm>(portDescriptionsPtr);
-                                    currentPortDescriptions.Add(new ControllerDescription(nativeDescription));
-                                    portDescriptionsPtr += Marshal.SizeOf<ControllerDescription.NativeForm>();
+                                    Marshal.FreeHGlobal(CurrentlyResolvedCoreOptionValue);
                                 }
 
-                                dataPtr += Marshal.SizeOf<ControllerInfo>();
-                            }                 
-                        }
-                        while (portDescriptionsPtr != IntPtr.Zero);
+                                CurrentlyResolvedCoreOptionValue = Marshal.StringToHGlobalAnsi(value);
+                                data.ValuePtr = CurrentlyResolvedCoreOptionValue;
+                            }
 
-                        return true;
-                    }
-                case Constants.RETRO_ENVIRONMENT_GET_VFS_INTERFACE:
-                    {
-                        var data = Marshal.PtrToStructure<VFSInterfaceInfo>(dataPtr);
-                        if (data.RequiredInterfaceVersion <= VFSHandler.SupportedVFSVersion)
-                        {
-                            data.RequiredInterfaceVersion = VFSHandler.SupportedVFSVersion;
-                            data.Interface = VFSHandler.VFSInterfacePtr;
                             Marshal.StructureToPtr(data, dataPtr, false);
+                            return valueFound;
                         }
+                    case Constants.RETRO_ENVIRONMENT_GET_OVERSCAN:
+                        {
+                            Marshal.WriteByte(dataPtr, 0);
+                            return true;
+                        }
+                    case Constants.RETRO_ENVIRONMENT_GET_CAN_DUPE:
+                        {
+                            Marshal.WriteByte(dataPtr, 1);
+                            return true;
+                        }
+                    case Constants.RETRO_ENVIRONMENT_GET_SYSTEM_DIRECTORY:
+                        {
+                            Marshal.WriteIntPtr(dataPtr, systemRootPathUnmanaged);
+                            return true;
+                        }
+                    case Constants.RETRO_ENVIRONMENT_GET_SAVE_DIRECTORY:
+                        {
+                            Marshal.WriteIntPtr(dataPtr, saveRootPathUnmanaged);
+                            return true;
+                        }
+                    case Constants.RETRO_ENVIRONMENT_SET_PIXEL_FORMAT:
+                        {
+                            var data = (PixelFormats)Marshal.ReadInt32(dataPtr);
+                            PixelFormat = data;
+                            return true;
+                        }
+                    case Constants.RETRO_ENVIRONMENT_SET_GEOMETRY:
+                        {
+                            var data = Marshal.PtrToStructure<GameGeometry>(dataPtr);
+                            Geometry = data;
+                            return true;
+                        }
+                    case Constants.RETRO_ENVIRONMENT_SET_ROTATION:
+                        {
+                            var data = (Rotations)Marshal.ReadInt32(dataPtr);
+                            Rotation = data;
+                            return true;
+                        }
+                    case Constants.RETRO_ENVIRONMENT_SET_SYSTEM_AV_INFO:
+                        {
+                            var data = Marshal.PtrToStructure<SystemAVInfo>(dataPtr);
+                            Geometry = data.Geometry;
+                            Timings = data.Timings;
+                            return true;
+                        }
+                    case Constants.RETRO_ENVIRONMENT_SET_CONTROLLER_INFO:
+                        {
+                            IntPtr portDescriptionsPtr;
+                            do
+                            {
+                                var portControllerData = Marshal.PtrToStructure<ControllerInfo>(dataPtr);
+                                portDescriptionsPtr = portControllerData.DescriptionsPtr;
+                                if (portDescriptionsPtr != IntPtr.Zero)
+                                {
+                                    var currentPortDescriptions = new List<ControllerDescription>();
+                                    SupportedInputsPerPort.Add(currentPortDescriptions);
+                                    for (var i = 0U; i < portControllerData.NumDescriptions; i++)
+                                    {
+                                        var nativeDescription = Marshal.PtrToStructure<ControllerDescription.NativeForm>(portDescriptionsPtr);
+                                        currentPortDescriptions.Add(new ControllerDescription(nativeDescription));
+                                        portDescriptionsPtr += Marshal.SizeOf<ControllerDescription.NativeForm>();
+                                    }
 
-                        return true;
-                    }
-                default:
-                    {
-                        return false;
-                    }
-            }
+                                    dataPtr += Marshal.SizeOf<ControllerInfo>();
+                                }
+                            }
+                            while (portDescriptionsPtr != IntPtr.Zero);
+
+                            return true;
+                        }
+                    case Constants.RETRO_ENVIRONMENT_GET_VFS_INTERFACE:
+                        {
+                            var data = Marshal.PtrToStructure<VFSInterfaceInfo>(dataPtr);
+                            if (data.RequiredInterfaceVersion <= VFSHandler.SupportedVFSVersion)
+                            {
+                                data.RequiredInterfaceVersion = VFSHandler.SupportedVFSVersion;
+                                data.Interface = VFSHandler.VFSInterfacePtr;
+                                Marshal.StructureToPtr(data, dataPtr, false);
+                            }
+
+                            return true;
+                        }
+                    default:
+                        {
+                            return false;
+                        }
+                }
             }
             catch (Exception e)
             {
@@ -750,7 +860,7 @@ namespace LibRetriX.RetroBindings
 
             Marshal.StructureToPtr(data, dataPtrShared, true);
         }
-        
+
 
         unsafe private void RenderVideoFrameHandler(IntPtr data, uint width, uint height, UIntPtr pitch)
         {
@@ -764,7 +874,7 @@ namespace LibRetriX.RetroBindings
                 if (SkipFrameRelay)
                 {
                     SkippedFramesCount++;
-                    if (SkippedFramesCount > GetSkipFrameValue())
+                    if (SkippedFramesCount == GetSkipFrameValue())
                     {
                         SkipFrameRelay = false;
                     }
@@ -781,25 +891,27 @@ namespace LibRetriX.RetroBindings
                 try
                 {
                     var SkipState = new Random().Next(0, 10);
-                    if(SkipState == 5)
+                    if (SkipState == 5)
                     {
                         return;
                     }
-                }catch(Exception ex)
+                }
+                catch (Exception ex)
                 {
 
                 }
             }
-            try { 
-            var size = (int)height * (int)pitch;
-
-            var payload = default(ReadOnlySpan<byte>);
-            if (data != IntPtr.Zero)
+            try
             {
-                payload = new ReadOnlySpan<byte>(data.ToPointer(), size);
-            }
-            UpdateFrameRate();
-            RenderVideoFrame?.Invoke(payload, width, height, (uint)pitch);
+                var size = (int)height * (int)pitch;
+
+                var payload = default(ReadOnlySpan<byte>);
+                if (data != IntPtr.Zero)
+                {
+                    payload = new ReadOnlySpan<byte>(data.ToPointer(), size);
+                }
+                UpdateFrameRate();
+                RenderVideoFrame?.Invoke(payload, width, height, (uint)pitch);
             }
             catch (Exception e)
             {
@@ -820,9 +932,9 @@ namespace LibRetriX.RetroBindings
             }
         }
 
-        private  bool SkipFrameRelay = false;
-        private  int SkippedFramesCount = 0;
-        private   Random RandomSkipFrames = new Random();
+        private bool SkipFrameRelay = false;
+        private int SkippedFramesCount = 0;
+        private Random RandomSkipFrames = new Random();
         private static int GetSkipFrameValue()
         {
             //int SkipFrameValue = RandomSkipFrames.Next(1);
@@ -832,10 +944,11 @@ namespace LibRetriX.RetroBindings
 
         private unsafe void RenderAudioFrameHandler(short left, short right)
         {
-            try { 
-            RenderAudioFrameBuffer[0] = left;
-            RenderAudioFrameBuffer[1] = right;
-            RenderAudioFrames?.Invoke(RenderAudioFrameBuffer.AsSpan(), 1);
+            try
+            {
+                RenderAudioFrameBuffer[0] = left;
+                RenderAudioFrameBuffer[1] = right;
+                RenderAudioFrames?.Invoke(RenderAudioFrameBuffer.AsSpan(), 1);
             }
             catch (Exception e)
             {
@@ -849,10 +962,11 @@ namespace LibRetriX.RetroBindings
             {
                 return UIntPtr.Zero;
             }
-            try { 
-            var payload = new ReadOnlySpan<short>(data.ToPointer(), (int)numFrames * AudioSamplesPerFrame);
-            var output = RenderAudioFrames?.Invoke(payload, ((uint)numFrames));
-            return (UIntPtr)output;
+            try
+            {
+                var payload = new ReadOnlySpan<short>(data.ToPointer(), (int)numFrames * AudioSamplesPerFrame);
+                var output = RenderAudioFrames?.Invoke(payload, ((uint)numFrames));
+                return (UIntPtr)output;
             }
             catch (Exception e)
             {
@@ -862,8 +976,9 @@ namespace LibRetriX.RetroBindings
 
         private void PollInputHandler()
         {
-            try { 
-            PollInput?.Invoke();
+            try
+            {
+                PollInput?.Invoke();
             }
             catch (Exception e)
             {
@@ -873,10 +988,11 @@ namespace LibRetriX.RetroBindings
 
         private short GetInputStateHandler(uint port, uint device, uint index, uint id)
         {
-            try { 
-            var inputType = Converter.ConvertToInputType(device, index, id);
-            var result = GetInputState?.Invoke(port, inputType);
-            return result ?? 0;
+            try
+            {
+                var inputType = Converter.ConvertToInputType(device, index, id);
+                var result = GetInputState?.Invoke(port, inputType);
+                return result ?? 0;
             }
             catch (Exception e)
             {
@@ -908,30 +1024,31 @@ namespace LibRetriX.RetroBindings
 
         private uint[] DetermineInputTypesToUse()
         {
-            try { 
-            var result = SupportedInputsPerPort.Select(supportedInputs =>
+            try
             {
-                var output = (uint)Constants.RETRO_DEVICE_NONE;
-                if (!supportedInputs.Any())
+                var result = SupportedInputsPerPort.Select(supportedInputs =>
                 {
-                    return output;
-                }
-
-                output = supportedInputs.First().Id;
-                var currentPortSupportedInputsIds = new HashSet<uint>(supportedInputs.Select(e => e.Id));
-                foreach (var j in PreferredInputTypes)
-                {
-                    if (currentPortSupportedInputsIds.Contains(j))
+                    var output = (uint)Constants.RETRO_DEVICE_NONE;
+                    if (!supportedInputs.Any())
                     {
-                        output = j;
-                        break;
+                        return output;
                     }
-                }
 
-                return output;
-            }).ToArray();
+                    output = supportedInputs.First().Id;
+                    var currentPortSupportedInputsIds = new HashSet<uint>(supportedInputs.Select(e => e.Id));
+                    foreach (var j in PreferredInputTypes)
+                    {
+                        if (currentPortSupportedInputsIds.Contains(j))
+                        {
+                            output = j;
+                            break;
+                        }
+                    }
 
-            return result;
+                    return output;
+                }).ToArray();
+
+                return result;
             }
             catch (Exception e)
             {
@@ -963,6 +1080,18 @@ namespace LibRetriX.RetroBindings
         private bool EnvironmentHandlerEmpty(uint command, IntPtr dataPtr)
         {
             return false;
+        }
+    }
+    public static class StringExtensionMethods
+    {
+        public static string ReplaceFirst(this string text, string search, string replace)
+        {
+            int pos = text.IndexOf(search);
+            if (pos < 0)
+            {
+                return text;
+            }
+            return text.Substring(0, pos) + replace + text.Substring(pos + search.Length);
         }
     }
 }

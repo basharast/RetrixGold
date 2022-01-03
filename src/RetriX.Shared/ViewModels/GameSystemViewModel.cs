@@ -336,7 +336,7 @@ namespace RetriX.Shared.ViewModels
         public bool AnyCore { get; }
         public bool OldCore { get; }
         public bool Pinned { get; }
-        public IEnumerable<string> SupportedExtensions { get; }
+        public List<string> SupportedExtensions { get; }
         public IEnumerable<string> MultiFileExtensions { get; }
         public static IPlatformService PlatformService { get; set; }
         private IUserDialogs DialogsService { get; }
@@ -372,7 +372,23 @@ namespace RetriX.Shared.ViewModels
                 DLLName = Path.GetFileName(Core.DLLName);
                 GetSystemDirectoryAsync();
                 
-                SupportedExtensions = supportedExtensionsOverride != null ? supportedExtensionsOverride : Core.SupportedExtensions;
+                SupportedExtensions = supportedExtensionsOverride != null ? supportedExtensionsOverride.ToList() : Core.SupportedExtensions.ToList();
+                if (!SupportedExtensions.Contains(".7z"))
+                {
+                    SupportedExtensions.Add(".7z");
+                }
+                if (!SupportedExtensions.Contains(".rar"))
+                {
+                    SupportedExtensions.Add(".rar");
+                }
+                if (!SupportedExtensions.Contains(".gz"))
+                {
+                    SupportedExtensions.Add(".gz");
+                }
+                if (!SupportedExtensions.Contains(".tar"))
+                {
+                    SupportedExtensions.Add(".tar");
+                }
                 MultiFileExtensions = multiFileExtensions == null ? new string[0] : multiFileExtensions;
                 Dependencies = dependenciesOverride != null ? dependenciesOverride : Core.FileDependencies;
                 

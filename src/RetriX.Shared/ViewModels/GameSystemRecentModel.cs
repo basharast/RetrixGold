@@ -87,6 +87,15 @@ namespace RetriX.Shared.ViewModels
                     SystemIcon = "ms-appx:///Assets/RomsIcons/7Zip.png";
                     break;
 
+                case ".rar":
+                    SystemIcon = "ms-appx:///Assets/RomsIcons/RAR.png";
+                    break;
+
+                case ".gz":
+                case ".tar":
+                    SystemIcon = "ms-appx:///Assets/RomsIcons/GZ.png";
+                    break;
+
                 case ".iso":
                 case ".ccd":
                 case ".bin":

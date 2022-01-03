@@ -16,6 +16,7 @@ namespace RetriX.UWP.Pages
         private PlatformService platformService = new PlatformService();
         public DonateView()
         {
+            PlatformService.SaveGamesListStateDirect();
             this.InitializeComponent();
 
             Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => StartDonatePage());

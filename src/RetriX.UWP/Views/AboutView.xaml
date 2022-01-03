@@ -31,11 +31,14 @@
                 <Run  Text="Original Developer" FontWeight="Bold"/> <Hyperlink Foreground="RoyalBlue" NavigateUri="https://www.aftnet.net">Alberto Fustinoni</Hyperlink>
             </TextBlock>
             <TextBlock Style="{StaticResource SectionTBStyle}" Margin="0,20,0,0">
-                <Run Text="Gold Development" FontWeight="Bold"/> <Hyperlink Foreground="RoyalBlue" NavigateUri="https://astifan.online">Bashar Astifan</Hyperlink>
+                <Run Text="RetriXGold Development" FontWeight="Bold"/> <Hyperlink Foreground="RoyalBlue" NavigateUri="https://astifan.online">Bashar Astifan</Hyperlink>
             </TextBlock>
             <TextBlock Style="{StaticResource SectionTBStyle}" Margin="0,20,0,0">
                 <Run x:Uid="EmulationCodeThanksToLabel" Text="EmuCoreThanks" FontWeight="Bold"/> <Hyperlink Foreground="RoyalBlue" NavigateUri="https://www.libretro.com/">Libretro</Hyperlink>
             </TextBlock>
+                <TextBlock Style="{StaticResource SectionTBStyle}" Margin="0,20,0,0">
+                <Run Text="Memory Solution" FontWeight="Bold"/> <Hyperlink Foreground="RoyalBlue" NavigateUri="https://stackoverflow.com/users/15204525/dekudesu">DekuDesu</Hyperlink>
+                </TextBlock>
                 <TextBlock Style="{StaticResource SectionTBStyle}" Margin="0,20,0,0">
                 <Bold>Icons pack</Bold>
                 </TextBlock>

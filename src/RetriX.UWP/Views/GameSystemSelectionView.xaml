@@ -8,6 +8,7 @@
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:views="using:MvvmCross.Uwp.Views"
     xmlns:vm="using:RetriX.Shared.ViewModels"
+    xmlns:behaviors="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors" 
     mc:Ignorable="d">
 
     <views:MvxWindowsPage.Resources>
@@ -19,7 +20,7 @@
             <Setter Property="FontSize" Value="25"/>
         </Style>
 
-       
+
         <Style x:Key="GameSystemListItemIconFrameStyle" TargetType="Border">
             <Setter Property="Background" Value="{StaticResource SystemControlForegroundAccentBrush}"/>
             <Setter Property="Padding" Value="12"/>
@@ -32,7 +33,7 @@
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
-        
+
         <DataTemplate x:Key="GameSystemListItemDT" x:DataType="vm:GameSystemViewModel">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -53,7 +54,7 @@
                         <Grid  Visibility="{x:Bind OldCore, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Background="LightSlateGray" VerticalAlignment="Top" HorizontalAlignment="Left" Padding="0,5,0,5" Margin="-10,-10,0,0" Width="30" Height="25">
                             <TextBlock Foreground="White" Text="OLD" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="12" />
                         </Grid>
-                        
+
                     </Grid>
                 </Border>
                 <StackPanel Orientation="Vertical" Grid.Column="1" VerticalAlignment="Center">
@@ -148,7 +149,8 @@
                 </Border>
 
                 <TextBlock Text="{x:Bind GameNameWithoutExtension, FallbackValue='Game Name'}"  TextWrapping="WrapWholeWords"/>
-                <TextBlock Text="" /> <!-- This just for new line -->
+                <TextBlock Text="" />
+                <!-- This just for new line -->
             </StackPanel>
         </DataTemplate>
 
@@ -185,8 +187,8 @@
         </Style>
     </views:MvxWindowsPage.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-       
+    <Grid x:Name="mainGrid">
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -197,26 +199,24 @@
         <Image x:Name="BackgroundVertical" Source="ms-appx:///Assets/Backgrounds/ParallexVertical.png" Stretch="UniformToFill" Visibility="Visible" Grid.RowSpan="2"/>
 
         <ProgressRing x:Name="SettingLoader" />
-
+        <TextBlock x:Name="MemoryUsageInfo" Canvas.ZIndex="500" Margin="18,15,0,0" Opacity="0.8" HorizontalAlignment="Left"></TextBlock>
         <CommandBar Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
             <AppBarButton x:Uid="ErrorsBtn" Icon="Message" Click="AppBarButton_Click_1" Visibility="{x:Bind ShowErrorsIcon, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"/>
             <AppBarButton x:Uid="ExpertBtn" Icon="SolidStar" Click="AppBarButton_Click"/>
             <AppBarButton x:Uid="SettingsBtn" Icon="Setting" Command="{x:Bind VM.ShowSettings}"/>
-            <AppBarToggleButton x:Name="MusteSFX" Icon="Mute" Label="Mute" Click="MusteSFX_Click"/>
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Uid="HelpBtn" Icon="Help" Command="{x:Bind VM.ShowHelp}"/>
                 <AppBarButton x:Uid="AboutBtn" Icon="ContactInfo" Command="{x:Bind VM.ShowAbout}"/>
-                <AppBarButton x:Uid="SupportBtn" Icon="Like" Command="{x:Bind VM.ShowDonate}"/>
+                <AppBarSeparator></AppBarSeparator>
+                <AppBarToggleButton x:Name="MusteSFX" Icon="Mute" Label="Mute" Click="MusteSFX_Click"/>
                 <AppBarToggleButton x:Name="UseListView" Icon="List" Label="List" Click="AppBarToggleButton_Click"/>
+                <AppBarSeparator></AppBarSeparator>
+                <AppBarButton x:Uid="HelpBtn" Icon="Help" Command="{x:Bind VM.ShowHelp}"/>
+                <AppBarButton x:Uid="SupportBtn" Icon="Like" Command="{x:Bind VM.ShowDonate}"/>
             </CommandBar.SecondaryCommands>
-            <!--<CommandBar.SecondaryCommands>
-                <AppBarButton x:Uid="AboutBtn" Command="{x:Bind VM.ShowAbout}"/>
-                <AppBarButton x:Uid="HelpBtn" Command="{x:Bind VM.ShowHelp}"/>
-            </CommandBar.SecondaryCommands>-->
         </CommandBar>
 
         <TextBlock Text="Press or hold console to start" HorizontalAlignment="Center" FontSize="13" FontWeight="ExtraLight" VerticalAlignment="Top" Grid.Row="1" Margin="0,0,0,5" Visibility="Collapsed"></TextBlock>
-        
+
         <ListView x:Name="GameSystemsList" ItemsSource="{x:Bind VM.GameSystems, Mode=OneWay}" ItemTemplate="{StaticResource GameSystemListItemDT}" Style="{StaticResource RootListStyle}" Margin="0,20,0,0">
             <interactivity:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="ItemClick">
@@ -266,21 +266,31 @@
             </Grid>
         </Grid>
 
-        <Grid  x:Name="ProgressContainerX" Grid.RowSpan="2" Grid.Row="1" Grid.ColumnSpan="1" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Canvas.ZIndex="500" Visibility="{x:Bind VM.SystemCoresIsLoading, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+        <Grid  x:Name="ProgressContainerX" Grid.RowSpan="2" Grid.Row="1" Grid.ColumnSpan="1" Canvas.ZIndex="500" Visibility="{x:Bind VM.SystemCoresIsLoading, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
             <ProgressRing x:Name="SystemCoresLoadingProgress" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Width="50" Height="50" IsActive="True"/>
             <TextBlock Text="{x:Bind VM.LoadingStatus, Mode=OneWay}" HorizontalAlignment="Center" FontWeight="Bold" VerticalAlignment="Center" Margin="0,100,0,0" TextAlignment="Center"></TextBlock>
+            <Grid Canvas.ZIndex="-1"  Grid.RowSpan="5" Grid.ColumnSpan="5" Background="{StaticResource BlurBackground1}">
+                <interactivity:Interaction.Behaviors>
+                    <behaviors:Blur Value="7" Duration="0" Delay="0" AutomaticallyStart="true"/>
+                </interactivity:Interaction.Behaviors>
+            </Grid>
         </Grid>
 
-        <Grid x:Name="ProgressContainer" Grid.RowSpan="2" Grid.Row="1" Grid.ColumnSpan="1" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Canvas.ZIndex="500">
+        <Grid x:Name="ProgressContainer" Grid.RowSpan="2" Grid.Row="1" Grid.ColumnSpan="1" Canvas.ZIndex="500">
             <ProgressRing HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Width="50" Height="50" IsActive="True"/>
             <TextBlock Text="Loading.." HorizontalAlignment="Center" FontWeight="Bold" VerticalAlignment="Center" Margin="0,100,0,0" TextAlignment="Center"></TextBlock>
+            <Grid Canvas.ZIndex="-1"  Grid.RowSpan="5" Grid.ColumnSpan="5" Background="{StaticResource BlurBackground1}">
+                <interactivity:Interaction.Behaviors>
+                    <behaviors:Blur Value="7" Duration="0" Delay="0" AutomaticallyStart="true"/>
+                </interactivity:Interaction.Behaviors>
+            </Grid>
         </Grid>
         <Grid Grid.RowSpan="2" Grid.Row="1" Grid.ColumnSpan="1" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Canvas.ZIndex="200" Visibility="{x:Bind VM.SystemsLoadFailed, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
             <TextBlock Text="Something went wrong!" HorizontalAlignment="Center" FontWeight="Bold" VerticalAlignment="Center" TextAlignment="Center"/>
             <TextBlock Text="Please restart Retrix" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Margin="0,50,0,0"/>
         </Grid>
-        
-        <Grid x:Name="CoresOptionsPanel"  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Visibility="Collapsed" Canvas.ZIndex="50" Grid.Row="1">
+
+        <Grid x:Name="CoresOptionsPanel" Visibility="Collapsed" Canvas.ZIndex="50" Grid.Row="1">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -296,7 +306,7 @@
             <TextBlock Grid.ColumnSpan="2" x:Name="OptionsMainTitle" HorizontalAlignment="Center" Text="Select System" Margin="10,10,10,0" FontSize="15" FontWeight="Bold" VerticalAlignment="Stretch" Visibility="Collapsed"/>
             <ComboBox x:Name="SystemCoresList" SelectionChanged="SystemCoresList_SelectionChanged" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Margin="10,10,10,0" Grid.Row="1"  MaxWidth="600" Width="{x:Bind InitWidthSizeCustom, Mode=OneWay}" PlaceholderText="Select System"></ComboBox>
             <Grid Grid.Row="2" Grid.ColumnSpan="2" Background="LightGray"  MaxWidth="600" Width="{x:Bind InitWidthSizeCustom,Mode=OneWay}" HorizontalAlignment="Center" Height="1" VerticalAlignment="Top" Margin="0,5,0,0">
-                
+
             </Grid>
             <ScrollViewer x:Name="CoreOptionsPage" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,10,0,5" HorizontalAlignment="Center" MaxWidth="600">
                 <StackPanel x:Name="CoreOptionsSubPage" Padding="0,0,0,20" Width="{x:Bind InitWidthSizeCustom, Mode=OneWay}" MaxWidth="600"/>
@@ -316,105 +326,121 @@
             <Button x:Name="OptionsCancel" Click="OptionsCancel_Click" VerticalAlignment="Bottom" Content="Close" Grid.Row="4" HorizontalAlignment="Stretch" Height="40" Margin="10,0,10,10" Grid.ColumnSpan="2"/>-->
             <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Grid.ColumnSpan="2" Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <CommandBar Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" VerticalAlignment="Bottom" HorizontalAlignment="{x:Bind horizontalAlignment,Mode=OneWay}">
-                <AppBarButton x:Name="OptionsReset" Label="Reset" Icon="Refresh" Click="OptionsReset_Click"/>
-                <AppBarButton x:Name="OptionsSave" Label="Save" Icon="Save" Click="OptionsSave_Click_1"/>
-                <AppBarButton x:Name="OptionsCancel" Label="Close" Icon="Cancel" Click="OptionsCancel_Click"/>
-            </CommandBar>
+                    <AppBarButton x:Name="OptionsReset" Label="Reset" Icon="Refresh" Click="OptionsReset_Click"/>
+                    <AppBarButton x:Name="OptionsSave" Label="Save" Icon="Save" Click="OptionsSave_Click_1"/>
+                    <AppBarButton x:Name="OptionsCancel" Label="Close" Icon="Cancel" Click="OptionsCancel_Click"/>
+                </CommandBar>
+            </Grid>
+            <Grid Canvas.ZIndex="-1"  Grid.RowSpan="5" Grid.ColumnSpan="5" Background="{StaticResource BlurBackground2}">
+                <interactivity:Interaction.Behaviors>
+                    <behaviors:Blur Value="7" Duration="0" Delay="0" AutomaticallyStart="true"/>
+                </interactivity:Interaction.Behaviors>
             </Grid>
         </Grid>
 
-        <Grid x:Name="RecentsPanel"  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Visibility="{x:Bind VM.GamesListVisible, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Canvas.ZIndex="50" Grid.Row="1">
+        <Grid x:Name="RecentsPanel"  Visibility="{x:Bind VM.GamesListVisible, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Canvas.ZIndex="50" Grid.Row="1">
 
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
- 
-            <ScrollViewer x:Name="RecentsListPage"  Margin="0,10,0,5" HorizontalAlignment="Stretch">
-
-                    <Grid>
+            <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Grid Width="{x:Bind InitWidthSize}" Margin="0,0,0,10" MaxWidth="600">
-                <ProgressRing x:Name="FilterLoader" IsActive="{x:Bind VM.filterInProgress,Mode=OneWay}" Visibility="Visible" HorizontalAlignment="Right" Margin="0,0,25,0" Canvas.ZIndex="50"/>
-                <TextBox x:Name="GamesListFilter" Text="{x:Bind VM.SearchText, Mode=OneWay}" TextWrapping="Wrap" TextChanged="GamesListFilter_TextChanged" Width="{x:Bind InitWidthSizeCustom, Mode=OneWay}" MaxWidth="600" PlaceholderText="Search in recent.."/>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Width="{x:Bind InitWidthSize}" Margin="5,0,5,5" MaxWidth="600">
+                    <ProgressRing x:Name="FilterLoader" IsActive="{x:Bind VM.filterInProgress,Mode=OneWay}" Visibility="Visible" HorizontalAlignment="Right" Margin="0,0,25,0" Canvas.ZIndex="50"/>
+                    <TextBox x:Name="GamesListFilter" Text="{x:Bind VM.SearchText, Mode=OneWay}" TextWrapping="Wrap" TextChanged="GamesListFilter_TextChanged" Width="{x:Bind InitWidthSizeCustom, Mode=OneWay}" MaxWidth="600" PlaceholderText="Search in recent.."/>
                 </Grid>
-                <ListView x:Name="SystemRecentsList" ItemsSource="{x:Bind VM.GamesRecentsList, Mode=OneWay}" ItemTemplate="{StaticResource SystemRecentsListItemDT}" Style="{StaticResource RootListStyle}">
-            <interactivity:Interaction.Behaviors>
-                <core:EventTriggerBehavior EventName="ItemClick">
-                    <core:InvokeCommandAction Command="{x:Bind VM.GameSystemRecentSelected}" InputConverter="{StaticResource ItemClickEventArgsConverter}"/>
-                </core:EventTriggerBehavior>
-                        <core:EventTriggerBehavior EventName="Holding">
-                            <core:InvokeCommandAction Command="{x:Bind VM.GameSystemRecentsHolding}"  InputConverter="{StaticResource HoldingEventArgsConverter}"/>
-                        </core:EventTriggerBehavior>
-                    </interactivity:Interaction.Behaviors>
-            </ListView>
+                <ScrollViewer  Grid.Row="1" x:Name="RecentsListPage"  Margin="0,5,0,5" HorizontalAlignment="Stretch">
+                </ScrollViewer>
+
+                <!-- I made hundreds of tests, don't wonder why there is two grids inside each other.. I don't know -->
+                <Grid  Grid.Row="1"  Margin="0,5,0,5" HorizontalAlignment="Stretch">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        
+                        <ListView x:Name="SystemRecentsList" ItemsSource="{x:Bind VM.GamesRecentsList, Mode=OneWay}" ItemTemplate="{StaticResource SystemRecentsListItemDT}" Style="{StaticResource RootListStyle}">
+                            <interactivity:Interaction.Behaviors>
+                                <core:EventTriggerBehavior EventName="ItemClick">
+                                    <core:InvokeCommandAction Command="{x:Bind VM.GameSystemRecentSelected}" InputConverter="{StaticResource ItemClickEventArgsConverter}"/>
+                                </core:EventTriggerBehavior>
+                                <core:EventTriggerBehavior EventName="Holding">
+                                    <core:InvokeCommandAction Command="{x:Bind VM.GameSystemRecentsHolding}"  InputConverter="{StaticResource HoldingEventArgsConverter}"/>
+                                </core:EventTriggerBehavior>
+                            </interactivity:Interaction.Behaviors>
+                        </ListView>
 
                         <GridView x:Name="SystemRecentsGrid" ItemsSource="{x:Bind VM.GamesRecentsList, Mode=OneWay}" ItemTemplate="{StaticResource SystemRecentsGridItemDT}" Style="{StaticResource RootListStyle}" Visibility="Collapsed" Margin="15,20,0,0">
                             <interactivity:Interaction.Behaviors>
-                        <core:EventTriggerBehavior EventName="ItemClick">
-                            <core:InvokeCommandAction Command="{x:Bind VM.GameSystemRecentSelected}" InputConverter="{StaticResource ItemClickEventArgsConverter}"/>
-                        </core:EventTriggerBehavior>
-                        <core:EventTriggerBehavior EventName="Holding">
-                            <core:InvokeCommandAction Command="{x:Bind VM.GameSystemRecentsHolding}"  InputConverter="{StaticResource HoldingEventArgsConverter}"/>
-                        </core:EventTriggerBehavior>
-                    </interactivity:Interaction.Behaviors>
-                </GridView>
+                                <core:EventTriggerBehavior EventName="ItemClick">
+                                    <core:InvokeCommandAction Command="{x:Bind VM.GameSystemRecentSelected}" InputConverter="{StaticResource ItemClickEventArgsConverter}"/>
+                                </core:EventTriggerBehavior>
+                                <core:EventTriggerBehavior EventName="Holding">
+                                    <core:InvokeCommandAction Command="{x:Bind VM.GameSystemRecentsHolding}"  InputConverter="{StaticResource HoldingEventArgsConverter}"/>
+                                </core:EventTriggerBehavior>
+                            </interactivity:Interaction.Behaviors>
+                        </GridView>
                     </Grid>
-                </ScrollViewer>
- 
-            
-            <Grid x:Name="NoRecentsTextGrid" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind VM.NoRecentsListVisible, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <TextBlock x:Name="NoRecentsText1" Text="No Recent Games!" HorizontalAlignment="Center" FontSize="17" FontWeight="Bold"></TextBlock>
-                <TextBlock x:Name="NoRecentsText2" Text="Select &#9636; 'All' or 'Single' &#9759;" Grid.Row="1" HorizontalAlignment="Center" FontSize="17"></TextBlock>
-            </Grid>
+                </Grid>
 
-            <Grid x:Name="NoGamesTextGrid" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind VM.NoGamesListVisible, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <TextBlock x:Name="NoGamesText1" Text="No Games!" HorizontalAlignment="Center" FontSize="17" FontWeight="Bold"></TextBlock>
-                <TextBlock x:Name="NoGamesText2" Text="Change folder or 'Single' &#9759;" Grid.Row="1" HorizontalAlignment="Center" FontSize="17"></TextBlock>
-            </Grid>
 
-            <Grid  Grid.Row="1" Margin="0,5,0,5" Width="{x:Bind InitWidthSizeCustom, Mode=OneWay}" MaxWidth="600">
-                <TextBlock Text="{x:Bind VM.StatusBar, Mode=OneWay}" Margin="20,0,0,0" HorizontalAlignment="{x:Bind horizontalAlignment,Mode=OneWay}"></TextBlock>
-            </Grid>
-            
-            <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"  Grid.Row="2">
-                <CommandBar Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"  VerticalAlignment="Bottom"  HorizontalAlignment="{x:Bind horizontalAlignment,Mode=OneWay}">
+                <Grid x:Name="NoRecentsTextGrid" Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind VM.NoRecentsListVisible, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock x:Name="NoRecentsText1" Text="No Recent Games!" HorizontalAlignment="Center" FontSize="17" FontWeight="Bold"></TextBlock>
+                    <TextBlock x:Name="NoRecentsText2" Text="Select &#9636; 'All' or 'Single' &#9759;" Grid.Row="1" HorizontalAlignment="Center" FontSize="17"></TextBlock>
+                </Grid>
 
-                    <AppBarButton x:Name="ConsoleName" Label="Settings" Icon="Setting" Click="ConsoleSettings_Click"  Visibility="{x:Bind VM.ShowAnyCoreOptions, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
-                    </AppBarButton>
-                    <AppBarButton x:Name="ConsoleInfo" Label="Info" Icon="Help" Click="ConsoleInfo_Click"  Visibility="{x:Bind VM.ShowCoreInfo, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"/>
-                    <AppBarButton x:Name="AllGetter" Label="All" Icon="List" Click="AllGetter_Click"></AppBarButton>
-                    <AppBarButton x:Name="RecentsGetter" Label="Recent" Icon="Bookmarks" Click="RecentsGetter_Click"/>
-                    <AppBarButton x:Name="RecentsSave" Label="Single" Icon="OpenFile" Click="GamesPick_Click"/>
-                    <AppBarButton x:Name="RecentsCancel" Label="Close" Icon="Cancel" Click="GamesCancel_Click"/>
-                    <CommandBar.SecondaryCommands>
-                        <AppBarButton x:Name="AnyCoreBiosSample" Label="BIOS Sample" Icon="Download" Click="AnyCoreBiosSample_Click"  Visibility="{x:Bind VM.ShowAnyCoreOptions, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"/>
-                        <AppBarButton x:Name="AnyCoreAdvanced" Label="Advanced" Icon="Library" Click="SystemBiosImport"  Visibility="{x:Bind VM.ShowAnyCoreOptions, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"/>
-                        <AppBarButton x:Name="AnyCoreDelete" Label="Delete" Icon="Delete" Click="AnyCoreDelete_Click"  Visibility="{x:Bind VM.ShowAnyCoreOptions, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"/>
-                        <AppBarButton x:Name="PureCoreUpdate" Label="Update Core" Icon="Upload" Click="PureCoreUpdate_Click"  Visibility="{x:Bind VM.ShowUpdateOption, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"/>
-                        <AppBarButton x:Name="RemoveCoreUpdate" Label="Remove Updates" Icon="Delete" Click="RemoveCoreUpdate_Click"  Visibility="{x:Bind VM.ShowUpdateOption, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"/>
-                        <AppBarButton x:Name="ReloadGamesList" Label="Reload Games" Icon="Refresh" Click="AllGetterReload_Click" Visibility="{x:Bind VM.ReloadGamesVisible, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"/>
-                        <AppBarButton x:Name="SetGamesFolder" Label="Games Folder" Icon="Folder" Click="SetGamesFolder_Click"/>
-                    </CommandBar.SecondaryCommands>
-                    
-                </CommandBar>
+                <Grid x:Name="NoGamesTextGrid" Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind VM.NoGamesListVisible, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock x:Name="NoGamesText1" Text="No Games!" HorizontalAlignment="Center" FontSize="17" FontWeight="Bold"></TextBlock>
+                    <TextBlock x:Name="NoGamesText2" Text="Change folder or 'Single' &#9759;" Grid.Row="1" HorizontalAlignment="Center" FontSize="17"></TextBlock>
+                </Grid>
+
+                <Grid  Grid.Row="2" Margin="0,5,0,5" Width="{x:Bind InitWidthSizeCustom, Mode=OneWay}" MaxWidth="600">
+                    <TextBlock Text="{x:Bind VM.StatusBar, Mode=OneWay}" Margin="20,0,0,0" HorizontalAlignment="{x:Bind horizontalAlignment,Mode=OneWay}"></TextBlock>
+                </Grid>
+
+                <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"  Grid.Row="3">
+                    <CommandBar Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"  VerticalAlignment="Bottom"  HorizontalAlignment="{x:Bind horizontalAlignment,Mode=OneWay}">
+
+                        <AppBarButton x:Name="ConsoleName" Label="Settings" Icon="Setting" Click="ConsoleSettings_Click"  Visibility="{x:Bind VM.ShowAnyCoreOptions, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                        </AppBarButton>
+                        <AppBarButton x:Name="ConsoleInfo" Label="Info" Icon="Help" Click="ConsoleInfo_Click"  Visibility="{x:Bind VM.ShowCoreInfo, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                        <AppBarButton x:Name="AllGetter" Label="All" Icon="List" Click="AllGetter_Click"></AppBarButton>
+                        <AppBarButton x:Name="RecentsGetter" Label="Recent" Icon="Bookmarks" Click="RecentsGetter_Click"/>
+                        <AppBarButton x:Name="RecentsCancel" Label="Close" Icon="Cancel" Click="GamesCancel_Click"/>
+                        <CommandBar.SecondaryCommands>
+                            <AppBarButton x:Name="RecentsSave" Label="Single Game" Icon="OpenFile" Click="GamesPick_Click"/>
+                            <AppBarSeparator></AppBarSeparator>
+                            <AppBarButton x:Name="AnyCoreBiosSample" Label="BIOS Sample" Icon="Download" Click="AnyCoreBiosSample_Click"  Visibility="{x:Bind VM.ShowAnyCoreOptions, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                            <AppBarButton x:Name="AnyCoreAdvanced" Label="Advanced" Icon="Library" Click="SystemBiosImport"  Visibility="{x:Bind VM.ShowAnyCoreOptions, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                            <AppBarButton x:Name="AnyCoreDelete" Label="Delete" Icon="Delete" Click="AnyCoreDelete_Click"  Visibility="{x:Bind VM.ShowAnyCoreOptions, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                            <AppBarButton x:Name="PureCoreUpdate" Label="Update Core" Icon="Upload" Click="PureCoreUpdate_Click"  Visibility="{x:Bind VM.ShowUpdateOption, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                            <AppBarButton x:Name="RemoveCoreUpdate" Label="Remove Updates" Icon="Delete" Click="RemoveCoreUpdate_Click"  Visibility="{x:Bind VM.ShowUpdateOption, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                            <AppBarSeparator></AppBarSeparator>
+                            <AppBarButton x:Name="ReloadGamesList" Label="Reload Games" Icon="Refresh" Click="AllGetterReload_Click" Visibility="{x:Bind VM.ReloadGamesVisible, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                            <AppBarButton x:Name="SetGamesFolder" Label="Games Folder" Icon="Folder" Click="SetGamesFolder_Click"/>
+                        </CommandBar.SecondaryCommands>
+
+                    </CommandBar>
+                </Grid>
             </Grid>
+            <Grid Canvas.ZIndex="-1"  Grid.RowSpan="5" Grid.ColumnSpan="5" Background="{StaticResource BlurBackground2}">
+                <interactivity:Interaction.Behaviors>
+                    <behaviors:Blur Value="7" Duration="0" Delay="0" AutomaticallyStart="true"/>
+                </interactivity:Interaction.Behaviors>
             </Grid>
         </Grid>
 

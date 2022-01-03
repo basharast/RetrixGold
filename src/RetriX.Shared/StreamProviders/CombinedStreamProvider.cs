@@ -85,6 +85,8 @@ namespace RetriX.Shared.StreamProviders
                 {
                     i.CloseStream(stream);
                 }
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
             }
             catch (Exception e)
             {

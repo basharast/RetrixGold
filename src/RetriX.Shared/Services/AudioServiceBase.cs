@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -24,19 +25,21 @@ namespace RetriX.Shared.Services
         public bool SmartFrameDelay { get; set; }
         public bool EnableGCPrevent { get; set; }
         public bool FrameFailed = false;
-        public string FrameFailedError="";
+        public string FrameFailedError = "";
 
         protected const uint NumChannels = 2;
         protected const uint SampleSizeBytes = sizeof(short);
 
         private const uint NullSampleRate = 0;
-        public const uint MaxSamplesQueueSize = 44100 * 4;
+        public const int MaxSamplesQueueSize = 44100 * 4;
         public const uint GCReserveSize = MaxSamplesQueueSize;
         public const uint GCReserveSizeMax = 300000000;
-        private const float PlaybackDelaySeconds = 0.2f; //Have some buffer to avoid crackling
-        private const float MaxAllowedDelaySeconds = 0.4f; //Limit maximum delay
+        private const float PlaybackDelaySeconds = 0.01f; //Have some buffer to avoid crackling
+        private const float MaxAllowedDelaySeconds = 0.1f; //Limit maximum delay
 
         protected Queue<short> SamplesBuffer = new Queue<short>(MaxSamplesQueueSize);
+        public bool isGameStarted { get; set; }
+        public bool gameIsPaused { get; set; }
 
         private int MinNumSamplesForPlayback { get; set; } = 0;
         private int MaxNumSamplesForTargetDelay { get; set; } = 0;
@@ -62,23 +65,35 @@ namespace RetriX.Shared.Services
         {
             get
             {
+                try
+                {
+                    if (SampleRate == NullSampleRate || (AudioMuteGlobal || VideoOnlyGlobal) || FrameFailed)
+                    {
+                        return false; //Allow core a chance to init timings by runnning
+                    }
 
-                try { 
-                if (SampleRate == NullSampleRate || (AudioMuteGlobal || VideoOnlyGlobal) || FrameFailed)
-                {
-                    return false; //Allow core a chance to init timings by runnning
+                    /*if (SmartFrameDelay)
+                    {
+                        return random.Next(0, 30) == 2;
+                    }*/
+                    lock (SamplesBuffer)
+                    {
+                        if (SmartFrameDelay)
+                        {
+                            var delayState = SamplesBuffer.Count >= MaxNumSamplesForTargetDelay;
+                            if (delayState)
+                            {
+                                SamplesBuffer.Clear();
+                            }
+                            return false;
+                        }
+                        else
+                        {
+                            return SamplesBuffer.Count >= MaxNumSamplesForTargetDelay;
+                        }
+                    }
                 }
-
-                if (SmartFrameDelay)
-                {
-                   
-                    return random.Next(0, 30) == 2;
-                }
-                lock (SamplesBuffer)
-                {
-                    return SamplesBuffer.Count >= MaxNumSamplesForTargetDelay;
-                }
-                }catch(Exception e)
+                catch (Exception e)
                 {
                     return false;
                 }
@@ -87,6 +102,7 @@ namespace RetriX.Shared.Services
 
         public Task InitAsync()
         {
+            SamplesBuffer = new Queue<short>(MaxSamplesQueueSize);
             return Task.CompletedTask;
         }
 
@@ -97,7 +113,7 @@ namespace RetriX.Shared.Services
             {
                 DestroyResources();
             }
-            
+
             SampleRate = NullSampleRate;
             return Task.CompletedTask;
         }
@@ -130,14 +146,19 @@ namespace RetriX.Shared.Services
             }
             catch (Exception e)
             {
-                if (PlatformService != null) { 
-                PlatformService.ShowErrorMessage(e);
+                if (PlatformService != null)
+                {
+                    PlatformService.ShowErrorMessage(e);
                 }
             }
         }
-
+        
         public uint RenderAudioFrames(ReadOnlySpan<short> data, uint numFrames)
         {
+            if(SamplesBuffer == null || !isGameStarted)
+            {
+                return 0;
+            }
             try
             {
                 var numSrcSamples = (uint)numFrames * NumChannels;
@@ -145,11 +166,12 @@ namespace RetriX.Shared.Services
                 var numSamplesToCopy = Math.Min(numSrcSamples, bufferRemainingCapacity);
                 lock (SamplesBuffer)
                 {
-                    if( (!AudioMuteGlobal && !VideoOnlyGlobal)) { 
-                    for (var i = 0; i < numSamplesToCopy; i++)
+                    if ((!AudioMuteGlobal && !VideoOnlyGlobal))
                     {
-                        SamplesBuffer.Enqueue(data[i]);
-                    }
+                        for (var i = 0; i < numSamplesToCopy; i++)
+                        {
+                            SamplesBuffer.Enqueue(data[i]);
+                        }
                     }
                     //SamplesBuffer = new Queue<short>(data.ToArray());
                     if (ResourcesCreationTask == null && !IsPlaying && SamplesBuffer.Count >= MinNumSamplesForPlayback)
@@ -162,8 +184,9 @@ namespace RetriX.Shared.Services
             }
             catch (Exception e)
             {
-                if (PlatformService != null) { 
-                PlatformService.ShowErrorMessage(e);
+                if (PlatformService != null)
+                {
+                    PlatformService.ShowErrorMessage(e);
                 }
                 return 0;
             }
@@ -186,21 +209,33 @@ namespace RetriX.Shared.Services
                     StopPlayback();
                     IsPlaying = false;
                 }
-
                 lock (SamplesBuffer)
                 {
                     SamplesBuffer.Clear();
+                    try
+                    {
+                        SamplesBuffer = null;
+                        SamplesBuffer = new Queue<short>(MaxSamplesQueueSize);
+                    }catch (Exception e)
+                    {
+
+                    }
                 }
             }
             catch (Exception e)
             {
-                if (PlatformService != null) { 
-                PlatformService.ShowErrorMessage(e);
+                if (PlatformService != null)
+                {
+                    PlatformService.ShowErrorMessage(e);
                 }
             }
         }
         public int GetSamplesBufferCount()
         {
+            if(SamplesBuffer == null)
+            {
+                return 0;
+            }
             return SamplesBuffer.Count;
         }
         public int GetMaxSamplesBufferCount()
@@ -228,50 +263,39 @@ namespace RetriX.Shared.Services
         {
             EnableGCPrevent = GCPreventState;
         }
-
     }
-
-    public class Queue<T>
+    public class PinnedBuffer : IDisposable
     {
-        T[] nodes;
-        int current;
-        int emptySpot;
-        public int Count = 0;
+        public GCHandle Handle { get; }
+        public short[] Data { get; private set; }
 
-        public Queue(uint size)
+        public IntPtr Ptr
         {
-            nodes = new T[size];
-            this.current = 0;
-            this.emptySpot = 0;
+            get
+            {
+                return Handle.AddrOfPinnedObject();
+            }
         }
 
-        public void Enqueue(T value)
+        public PinnedBuffer(short[] bytes)
         {
-            nodes[emptySpot] = value;
-            emptySpot++;
-            if (emptySpot >= nodes.Length)
-            {
-                emptySpot = 0;
-            }
-            Interlocked.Increment(ref Count);
+            Data = bytes;
+            Handle = GCHandle.Alloc(bytes, GCHandleType.Pinned);
         }
-        public T Dequeue()
+
+        public void Dispose()
         {
-            int ret = current;
-            current++;
-            if (current >= nodes.Length)
-            {
-                current = 0;
-            }
-            Interlocked.Decrement(ref Count);
-            return nodes[ret];
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
-        public void Clear()
+
+        protected virtual void Dispose(bool disposing)
         {
-            Interlocked.Exchange(ref Count, 0);
-            Interlocked.Exchange(ref emptySpot, 0);
-            Interlocked.Exchange(ref current, 0);
-            nodes.Initialize();
+            if (disposing)
+            {
+                Handle.Free();
+                Data = null;
+            }
         }
     }
 }

@@ -26,8 +26,1661 @@ using System.Xml.Linq;
 
 namespace RetriX.Shared.ViewModels
 {
-    public class GamePlayerViewModel : MvxViewModel<GameLaunchEnvironment>
+    public class GamePlayerViewModel : MvxViewModel<GameLaunchEnvironment>, IDisposable
     {
+
+        public bool compatibiltyTag
+        {
+            get
+            {
+               return FramebufferConverter.isRGB888;
+            }
+        }
+        //Here Progress Helper for archived roms
+        public string currentFileEntry
+        {
+            get
+            {
+                return FramebufferConverter.currentFileEntry;
+            }
+        }
+        public double currentFileProgress
+        {
+            get
+            {
+                return FramebufferConverter.currentFileProgress;
+            }
+        }
+        public bool isProgressVisible
+        {
+            get
+            {
+                return FramebufferConverter.currentFileProgress > 0 && !isGameStarted && !FailedToLoadGame;
+            }
+        }
+
+
+        //All the junk below for dialog just to avoid crash on Windows Phone in case two dialogs appears at once
+        #region DIALOG
+        bool isDialogInProgressTemp = false;
+        bool isDialogInProgress
+        {
+            get
+            {
+                if (PlatformService != null)
+                {
+                    return PlatformService.DialogInProgress;
+                }
+                else
+                {
+                    return isDialogInProgressTemp;
+                }
+            }
+            set
+            {
+                if (PlatformService != null)
+                {
+                    PlatformService.DialogInProgress = value;
+                }
+                else
+                {
+                    isDialogInProgressTemp = value;
+                }
+            }
+        }
+        private async Task GeneralDialog(string Message, string title = null, string okButton = null)
+        {
+            if (isDialogInProgress)
+            {
+                UpdateInfoState(Message);
+                return;
+            }
+            isDialogInProgress = true;
+            try
+            {
+                await UserDialogs.Instance.AlertAsync(Message, title, okButton);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            isDialogInProgress = false;
+        }
+
+        #endregion
+
+        //Memory Helpers
+        #region MEMORY
+        public bool CrazyBufferActive = true;
+        public bool isMemoryHelpersVisible
+        {
+            get
+            {
+                return true;
+            }
+        }
+        private bool bufferCopyMemory = true;
+        public bool BufferCopyMemory
+        {
+            get
+            {
+                return bufferCopyMemory;
+            }
+            set
+            {
+                bufferCopyMemory = value;
+                if (value && FramebufferConverter.MoveMemoryAvailable)
+                {
+                    memCPYMemory = false;
+                    MarshalMemory = false;
+                    SpanlMemory = false;
+                    FramebufferConverter.MemoryHelper = "Buffer.CopyMemory";
+                    if (isGameStarted && !memoryOptionsInitial)
+                    {
+                        PlatformService.PlayNotificationSound("success.wav");
+                        UpdateInfoState("Memory Helper: Buffer.CopyMemory");
+                    }
+                }
+                else
+                {
+                    if (!memoryOptionsInitial && !memCPYMemory && !MarshalMemory && !SpanlMemory)
+                    {
+                        if (!FramebufferConverter.MoveMemoryAvailable)
+                        {
+                            SpanlMemory = true;
+                        }
+                        else
+                        {
+                            BufferCopyMemory = true;
+                        }
+                    }
+                    if (value && !FramebufferConverter.MoveMemoryAvailable)
+                    {
+                        bufferCopyMemory = false;
+                        PlatformService.PlayNotificationSound("root-needed.wav");
+                        GeneralDialog($"Sorry!, memmov not available due:\n{FramebufferConverter.memmovErrorMessage}");
+
+                    }
+                }
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("BufferCopyMemory", bufferCopyMemory);
+                RaisePropertyChanged("BufferCopyMemory");
+                forceReloadLogsList = true;
+            }
+        }
+
+        private bool memcpyMemory = false;
+        public bool memCPYMemory
+        {
+            get
+            {
+                return memcpyMemory;
+            }
+            set
+            {
+
+                memcpyMemory = value;
+                if (value && FramebufferConverter.CopyMemoryAvailable)
+                {
+                    BufferCopyMemory = false;
+                    MarshalMemory = false;
+                    SpanlMemory = false;
+                    FramebufferConverter.MemoryHelper = "memcpy (msvcrt.dll)";
+                    if (isGameStarted && !memoryOptionsInitial)
+                    {
+                        PlatformService.PlayNotificationSound("success.wav");
+                        UpdateInfoState("Memory Helper: memcpy (msvcrt.dll)");
+                    }
+                }
+                else
+                {
+                    if (!memoryOptionsInitial && !BufferCopyMemory && !MarshalMemory && !SpanlMemory)
+                    {
+                        if (!FramebufferConverter.CopyMemoryAvailable)
+                        {
+                            BufferCopyMemory = true;
+                        }
+                        else
+                        {
+                            memCPYMemory = true;
+                        }
+                    }
+                    if (value && !FramebufferConverter.CopyMemoryAvailable)
+                    {
+                        memcpyMemory = false;
+                        PlatformService.PlayNotificationSound("root-needed.wav");
+                        GeneralDialog($"Sorry!, memcpy not available due:\n{FramebufferConverter.memcpyErrorMessage}");
+                    }
+                }
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("memCPYMemory", memcpyMemory);
+                RaisePropertyChanged("memCPYMemory");
+                forceReloadLogsList = true;
+            }
+        }
+
+        private bool marshaMemory = false;
+        public bool MarshalMemory
+        {
+            get
+            {
+                return marshaMemory;
+            }
+            set
+            {
+                marshaMemory = value;
+                if (value)
+                {
+                    BufferCopyMemory = false;
+                    memCPYMemory = false;
+                    SpanlMemory = false;
+                    FramebufferConverter.MemoryHelper = "Marshal.CopyTo";
+                    if (isGameStarted && !memoryOptionsInitial)
+                    {
+                        PlatformService.PlayNotificationSound("success.wav");
+                        UpdateInfoState("Memory Helper: Marshal.CopyTo");
+                    }
+                }
+                else
+                {
+                    if (!memoryOptionsInitial && !BufferCopyMemory && !memCPYMemory && !spanMemory)
+                    {
+                        MarshalMemory = true;
+                    }
+                }
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("MarshalMemory", marshaMemory);
+                RaisePropertyChanged("MarshalMemory");
+                forceReloadLogsList = true;
+            }
+        }
+
+        private bool spanMemory = false;
+        public bool SpanlMemory
+        {
+            get
+            {
+                return spanMemory;
+            }
+            set
+            {
+                spanMemory = value;
+                if (value)
+                {
+                    MarshalMemory = false;
+                    memCPYMemory = false;
+                    BufferCopyMemory = false;
+                    FramebufferConverter.MemoryHelper = "Span.CopyTo";
+                    UpdateInfoState("Memory Helper: Span.CopyTo");
+                    if (isGameStarted && !memoryOptionsInitial)
+                    {
+                        PlatformService.PlayNotificationSound("success.wav");
+                        UpdateInfoState("Memory Helper: Span.CopyTo");
+                    }
+                }
+                else
+                {
+                    if (!memoryOptionsInitial && !BufferCopyMemory && !memCPYMemory && !MarshalMemory)
+                    {
+                        SpanlMemory = true;
+                    }
+                }
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("SpanlMemory", spanMemory);
+                RaisePropertyChanged("SpanlMemory");
+                forceReloadLogsList = true;
+            }
+        }
+
+        bool memoryOptionsInitial = false;
+        public void SyncMemoryOptions()
+        {
+            memoryOptionsInitial = true;
+            BufferCopyMemory = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("BufferCopyMemory", true);
+            memCPYMemory = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("memCPYMemory", false);
+            MarshalMemory = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("MarshalMemory", false);
+            SpanlMemory = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("SpanlMemory", false);
+        }
+        #endregion
+        //Memory Helpers
+
+        //Effects System
+        public bool EffectsVisible = false;
+        public bool addShaders = false;
+        public bool addShadersInitial = false;
+        public bool AddShaders
+        {
+            get
+            {
+                return addShaders;
+            }
+            set
+            {
+                addShaders = value;
+                if (!addShadersInitial)
+                {
+                    if (value)
+                    {
+                        GetShader();
+                    }
+                    else
+                    {
+                        UpdateEffect("PixelShaderEffect", false, null);
+                        PlatformService.PlayNotificationSound("success.wav");
+                        UpdateInfoState($"Disabled: PixelShaderEffect");
+                    }
+                    RaisePropertyChanged(nameof(AddShaders));
+                }
+            }
+        }
+        bool shaderInProgress = false;
+        private async void GetShader()
+        {
+            if (shaderInProgress)
+            {
+                return;
+            }
+            shaderInProgress = true;
+            try
+            {
+                PlatformService.PlayNotificationSound("root-needed.wav");
+                await GeneralDialog("Note: Shaders still in development and not fully supported\nRequired shaders compiled as .bin");
+
+                GameIsLoadingState(true);
+                var shader = await PlatformService.getShader();
+                if (shader != null)
+                {
+                    UpdateEffect("PixelShaderEffect", true, shader);
+                    PlatformService.PlayNotificationSound("success.wav");
+                    UpdateInfoState($"Activated: PixelShaderEffect");
+                }
+                else
+                {
+                    AddShaders = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                AddShaders = false;
+            }
+            GameIsLoadingState(false);
+            shaderInProgress = false;
+        }
+
+        public bool addOverlays = false;
+        public bool addOverlaysInitial = false;
+        public bool AddOverlays
+        {
+            get
+            {
+                return addOverlays;
+            }
+            set
+            {
+                addOverlays = value;
+                if (!addOverlaysInitial)
+                {
+                    if (value)
+                    {
+                        GetOverlay();
+                    }
+                    else
+                    {
+                        UpdateEffect("OverlayEffect", false, null);
+                        PlatformService.PlayNotificationSound("success.wav");
+                        UpdateInfoState($"Disabled: OverlayEffect");
+                    }
+                    RaisePropertyChanged(nameof(AddOverlays));
+                }
+            }
+        }
+        bool overlayInProgress = false;
+        private async void GetOverlay()
+        {
+            if (overlayInProgress)
+            {
+                return;
+            }
+            overlayInProgress = true;
+            try
+            {
+                PlatformService.PlayNotificationSound("root-needed.wav");
+                await GeneralDialog("Note: You can select multiple overlays\nOverlays will be saved only for this session");
+
+                GameIsLoadingState(true);
+                var overlay = await PlatformService.getOverlay();
+                if (overlay != null)
+                {
+                    UpdateEffect("OverlayEffect", true, overlay);
+                    PlatformService.PlayNotificationSound("success.wav");
+                    UpdateInfoState($"Activated: OverlayEffect");
+                }
+                else
+                {
+                    AddOverlays = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                AddOverlays = false;
+            }
+            GameIsLoadingState(false);
+            overlayInProgress = false;
+        }
+        //BrightnessEffect
+        #region Brightness Effect
+        public double brightnessLevel = 0.0;
+        public double BrightnessLevel
+        {
+            get
+            {
+                return brightnessLevel;
+            }
+            set
+            {
+                brightnessLevel = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("BrightnessLevel", brightnessLevel);
+                RaisePropertyChanged("BrightnessLevel");
+                UpdateEffect("BrightnessEffect", BrightnessEffect, brightnessLevel);
+            }
+        }
+        public bool brightnessEffect = false;
+        public bool BrightnessEffect
+        {
+            set
+            {
+                brightnessEffect = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("BrightnessEffect", brightnessEffect);
+                RaisePropertyChanged("BrightnessEffect");
+                UpdateEffect("BrightnessEffect", BrightnessEffect, brightnessLevel);
+            }
+            get
+            {
+                return brightnessEffect;
+            }
+        }
+        #endregion
+
+        //Transform3DEffect
+        #region Transform 3D Effect
+        public double rotate = 0;
+        public double Rotate
+        {
+            get
+            {
+                return rotate;
+            }
+            set
+            {
+                rotate = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("Rotate", rotate);
+                RaisePropertyChanged("Rotate");
+                UpdateEffect("Transform3DEffect", Transform3DEffect, rotate, RotateX, RotateY);
+            }
+        }
+        public double rotateX = 0;
+        public double RotateX
+        {
+            get
+            {
+                return rotateX;
+            }
+            set
+            {
+                rotateX = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("RotateX", rotateX);
+                RaisePropertyChanged("RotateX");
+                UpdateEffect("Transform3DEffect", Transform3DEffect, Rotate, rotateX, RotateY);
+            }
+        }
+        public double rotateY = 0;
+        public double RotateY
+        {
+            get
+            {
+                return rotateY;
+            }
+            set
+            {
+                rotateY = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("RotateY", rotateY);
+                RaisePropertyChanged("RotateY");
+                UpdateEffect("Transform3DEffect", Transform3DEffect, Rotate, RotateX, rotateY);
+            }
+        }
+        public bool transform3DEffect = false;
+        public bool Transform3DEffect
+        {
+            set
+            {
+                transform3DEffect = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("Transform3DEffect", transform3DEffect);
+                RaisePropertyChanged("Transform3DEffect");
+                UpdateEffect("Transform3DEffect", Transform3DEffect, Rotate, RotateX, RotateY);
+            }
+            get
+            {
+                return transform3DEffect;
+            }
+        }
+        #endregion
+
+        //ContrastEffect
+        #region Contrast Effect
+        public double contrastLevel = 0.0;
+        public double ContrastLevel
+        {
+            get
+            {
+                return contrastLevel;
+            }
+            set
+            {
+                contrastLevel = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("ContrastLevel", contrastLevel);
+                RaisePropertyChanged("ContrastLevel");
+                UpdateEffect("ContrastEffect", ContrastEffect, contrastLevel);
+            }
+        }
+        public bool contrastEffect = false;
+        public bool ContrastEffect
+        {
+            set
+            {
+                contrastEffect = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("ContrastEffect", contrastEffect);
+                RaisePropertyChanged("ContrastEffect");
+                UpdateEffect("ContrastEffect", contrastEffect, ContrastLevel);
+            }
+            get
+            {
+                return contrastEffect;
+            }
+        }
+        #endregion
+
+        //ExposureEffect
+        #region Exposure Effect
+        public double exposure = 0.0;
+        public double Exposure
+        {
+            get
+            {
+                return exposure;
+            }
+            set
+            {
+                exposure = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("Exposure", exposure);
+                RaisePropertyChanged("Exposure");
+                UpdateEffect("ExposureEffect", ExposureEffect, exposure);
+            }
+        }
+        public bool exposureEffect = false;
+        public bool ExposureEffect
+        {
+            set
+            {
+                exposureEffect = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("ExposureEffect", exposureEffect);
+                RaisePropertyChanged("ExposureEffect");
+                UpdateEffect("ExposureEffect", ExposureEffect, Exposure);
+            }
+            get
+            {
+                return exposureEffect;
+            }
+        }
+        #endregion
+
+        //SepiaEffect
+        #region SepiaEffect
+        public double intensity = 0.5;
+        public double Intensity
+        {
+            get
+            {
+                return intensity;
+            }
+            set
+            {
+                intensity = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("Intensity", intensity);
+                RaisePropertyChanged("Intensity");
+                UpdateEffect("SepiaEffect", SepiaEffect, intensity);
+            }
+        }
+        public bool sepiaEffect = false;
+        public bool SepiaEffect
+        {
+            set
+            {
+                sepiaEffect = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("SepiaEffect", sepiaEffect);
+                RaisePropertyChanged("SepiaEffect");
+                UpdateEffect("SepiaEffect", SepiaEffect, Intensity);
+            }
+            get
+            {
+                return sepiaEffect;
+            }
+        }
+        #endregion
+
+        //SharpenEffect
+        #region SharpenEffect
+        public double amountSharpen = 0.0;
+        public double AmountSharpen
+        {
+            get
+            {
+                return amountSharpen;
+            }
+            set
+            {
+                amountSharpen = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("AmountSharpen", amountSharpen);
+                RaisePropertyChanged("AmountSharpen");
+                UpdateEffect("SharpenEffect", SharpenEffect, amountSharpen);
+            }
+        }
+        public bool sharpenEffect = false;
+        public bool SharpenEffect
+        {
+            set
+            {
+                sharpenEffect = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("SharpenEffect", sharpenEffect);
+                RaisePropertyChanged("SharpenEffect");
+                UpdateEffect("SharpenEffect", SharpenEffect, AmountSharpen);
+            }
+            get
+            {
+                return sharpenEffect;
+            }
+        }
+        #endregion
+
+        //StraightenEffect
+        #region Straighten Effect
+        public double angleStraighten = 0.0;
+        public double AngleStraighten
+        {
+            get
+            {
+                return angleStraighten;
+            }
+            set
+            {
+                angleStraighten = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("AngleStraighten", angleStraighten);
+                RaisePropertyChanged("AngleStraighten");
+                UpdateEffect("StraightenEffect", StraightenEffect, angleStraighten);
+            }
+        }
+        public bool straightenEffect = false;
+        public bool StraightenEffect
+        {
+            set
+            {
+                straightenEffect = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("StraightenEffect", straightenEffect);
+                RaisePropertyChanged("StraightenEffect");
+                UpdateEffect("StraightenEffect", StraightenEffect, AngleStraighten);
+            }
+            get
+            {
+                return straightenEffect;
+            }
+        }
+        #endregion
+
+        //VignetteEffect
+        #region Vignette Effect
+        public double amountVignette = 0.50;
+        public double AmountVignette
+        {
+            get
+            {
+                return amountVignette;
+            }
+            set
+            {
+                amountVignette = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("AmountVignette", amountVignette);
+                RaisePropertyChanged("AmountVignette");
+                UpdateEffect("VignetteEffect", VignetteEffect, amountVignette, Curve);
+            }
+        }
+        public double curve = 0.0;
+        public double Curve
+        {
+            get
+            {
+                return curve;
+            }
+            set
+            {
+                curve = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("Curve", curve);
+                RaisePropertyChanged("Curve");
+                UpdateEffect("VignetteEffect", VignetteEffect, AmountVignette, curve);
+            }
+        }
+        public bool vignetteEffect = false;
+        public bool VignetteEffect
+        {
+            set
+            {
+                vignetteEffect = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("VignetteEffect", vignetteEffect);
+                RaisePropertyChanged("VignetteEffect");
+                UpdateEffect("VignetteEffect", VignetteEffect, AmountVignette, Curve);
+            }
+            get
+            {
+                return vignetteEffect;
+            }
+        }
+        #endregion
+
+        //TileEffect
+        #region Tile Effect
+        public double left = 0.0;
+        public double Left
+        {
+            get
+            {
+                return left;
+            }
+            set
+            {
+                left = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("Left", left);
+                RaisePropertyChanged("Left");
+                UpdateEffect("TileEffect", TileEffect, left, Top, Right, Bottom);
+            }
+        }
+        public double top = 0.0;
+        public double Top
+        {
+            get
+            {
+                return top;
+            }
+            set
+            {
+                top = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("Top", top);
+                RaisePropertyChanged("Top");
+                UpdateEffect("TileEffect", TileEffect, Left, top, Right, Bottom);
+            }
+        }
+        public double right = 256;
+        public double Right
+        {
+            get
+            {
+                return right;
+            }
+            set
+            {
+                right = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("Right", right);
+                RaisePropertyChanged("Right");
+                UpdateEffect("TileEffect", TileEffect, Left, Top, right, Bottom);
+            }
+        }
+        public double bottom = 256;
+        public double Bottom
+        {
+            get
+            {
+                return bottom;
+            }
+            set
+            {
+                bottom = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("Bottom", bottom);
+                RaisePropertyChanged("Bottom");
+                UpdateEffect("TileEffect", TileEffect, Left, Top, Right, bottom);
+            }
+        }
+        public bool tileEffect = false;
+        public bool TileEffect
+        {
+            set
+            {
+                tileEffect = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("TileEffect", tileEffect);
+                RaisePropertyChanged("TileEffect");
+                UpdateEffect("TileEffect", TileEffect, Left, Top, Right, Bottom);
+            }
+            get
+            {
+                return tileEffect;
+            }
+        }
+        #endregion
+
+        //CropEffect
+        #region Crop Effect
+        public double leftCrop = 0.0;
+        public double LeftCrop
+        {
+            get
+            {
+                return leftCrop;
+            }
+            set
+            {
+                leftCrop = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("LeftCrop", leftCrop);
+                RaisePropertyChanged("LeftCrop");
+                UpdateEffect("CropEffect", CropEffect, leftCrop, TopCrop, RightCrop, BottomCrop);
+            }
+        }
+        public double topCrop = 0.0;
+        public double TopCrop
+        {
+            get
+            {
+                return topCrop;
+            }
+            set
+            {
+                topCrop = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("TopCrop", topCrop);
+                RaisePropertyChanged("TopCrop");
+                UpdateEffect("CropEffect", CropEffect, LeftCrop, topCrop, RightCrop, BottomCrop);
+            }
+        }
+        public double rightCrop = 256;
+        public double RightCrop
+        {
+            get
+            {
+                return rightCrop;
+            }
+            set
+            {
+                rightCrop = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("RightCrop", rightCrop);
+                RaisePropertyChanged("RightCrop");
+                UpdateEffect("CropEffect", CropEffect, LeftCrop, TopCrop, rightCrop, BottomCrop);
+            }
+        }
+        public double bottomCrop = 256;
+        public double BottomCrop
+        {
+            get
+            {
+                return bottomCrop;
+            }
+            set
+            {
+                bottomCrop = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("BottomCrop", bottomCrop);
+                RaisePropertyChanged("BottomCrop");
+                UpdateEffect("CropEffect", CropEffect, LeftCrop, TopCrop, RightCrop, bottomCrop);
+            }
+        }
+        public bool cropEffect = false;
+        public bool CropEffect
+        {
+            set
+            {
+                cropEffect = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("CropEffect", cropEffect);
+                RaisePropertyChanged("CropEffect");
+                UpdateEffect("CropEffect", CropEffect, LeftCrop, TopCrop, RightCrop, BottomCrop);
+            }
+            get
+            {
+                return cropEffect;
+            }
+        }
+        #endregion
+
+        //TemperatureAndTintEffect
+        #region Temperature And Tint Effect
+        public double temperature = 0.0;
+        public double Temperature
+        {
+            get
+            {
+                return temperature;
+            }
+            set
+            {
+                temperature = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("Temperature", temperature);
+                RaisePropertyChanged("Temperature");
+                UpdateEffect("TemperatureAndTintEffect", TemperatureAndTintEffect, temperature, Tint);
+            }
+        }
+        public double tint = 0.0;
+        public double Tint
+        {
+            get
+            {
+                return tint;
+            }
+            set
+            {
+                tint = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("Tint", tint);
+                RaisePropertyChanged("Tint");
+                UpdateEffect("TemperatureAndTintEffect", TemperatureAndTintEffect, Temperature, tint);
+            }
+        }
+        public bool temperatureAndTintEffect = false;
+        public bool TemperatureAndTintEffect
+        {
+            set
+            {
+                temperatureAndTintEffect = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("TemperatureAndTintEffect", temperatureAndTintEffect);
+                RaisePropertyChanged("TemperatureAndTintEffect");
+                UpdateEffect("TemperatureAndTintEffect", TemperatureAndTintEffect, Temperature, Tint);
+            }
+            get
+            {
+                return temperatureAndTintEffect;
+            }
+        }
+        #endregion
+
+        //MorphologyEffect
+        #region Morphology Effect
+        public double heightMorphology = 1.0;
+        public double HeightMorphology
+        {
+            get
+            {
+                return heightMorphology;
+            }
+            set
+            {
+                heightMorphology = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("HeightMorphology", heightMorphology);
+                RaisePropertyChanged("HeightMorphology");
+                UpdateEffect("MorphologyEffect", MorphologyEffect, heightMorphology);
+            }
+        }
+        public bool morphologyEffect = false;
+        public bool MorphologyEffect
+        {
+            set
+            {
+                morphologyEffect = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("MorphologyEffect", morphologyEffect);
+                RaisePropertyChanged("MorphologyEffect");
+                UpdateEffect("MorphologyEffect", MorphologyEffect, HeightMorphology);
+            }
+            get
+            {
+                return morphologyEffect;
+            }
+        }
+        #endregion
+
+        //SaturationEffect
+        #region Saturation Effect
+        public double saturation = 1.0;
+        public double Saturation
+        {
+            get
+            {
+                return saturation;
+            }
+            set
+            {
+                saturation = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("Saturation", saturation);
+                RaisePropertyChanged("Saturation");
+                UpdateEffect("SaturationEffect", SaturationEffect, saturation);
+            }
+        }
+        public bool saturationEffect = false;
+        public bool SaturationEffect
+        {
+            set
+            {
+                saturationEffect = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("SaturationEffect", saturationEffect);
+                RaisePropertyChanged("SaturationEffect");
+                UpdateEffect("SaturationEffect", SaturationEffect, Saturation);
+            }
+            get
+            {
+                return saturationEffect;
+            }
+        }
+        #endregion
+
+        //ScaleEffect
+        #region Scale Effect
+        public double widthScale = 1.0;
+        public double WidthScale
+        {
+            get
+            {
+                return widthScale;
+            }
+            set
+            {
+                widthScale = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("WidthScale", widthScale);
+                RaisePropertyChanged("WidthScale");
+                UpdateEffect("ScaleEffect", ScaleEffect, widthScale, HeightScale, SharpnessScale);
+            }
+        }
+        public double heightScale = 1.0;
+        public double HeightScale
+        {
+            get
+            {
+                return heightScale;
+            }
+            set
+            {
+                heightScale = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("HeightScale", heightScale);
+                RaisePropertyChanged("HeightScale");
+                UpdateEffect("ScaleEffect", ScaleEffect, WidthScale, heightScale, SharpnessScale);
+            }
+        }
+        public double sharpnessScale = 0.0;
+        public double SharpnessScale
+        {
+            get
+            {
+                return sharpnessScale;
+            }
+            set
+            {
+                sharpnessScale = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("SharpnessScale", sharpnessScale);
+                RaisePropertyChanged("SharpnessScale");
+                UpdateEffect("ScaleEffect", ScaleEffect, WidthScale, HeightScale, sharpnessScale);
+            }
+        }
+        public bool scaleEffect = false;
+        public bool ScaleEffect
+        {
+            set
+            {
+                scaleEffect = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("ScaleEffect", scaleEffect);
+                RaisePropertyChanged("ScaleEffect");
+                UpdateEffect("ScaleEffect", ScaleEffect, WidthScale, HeightScale, SharpnessScale);
+            }
+            get
+            {
+                return scaleEffect;
+            }
+        }
+        #endregion
+
+        //PosterizeEffect
+        #region Posterize Effect
+        public double red = 4.0;
+        public double Red
+        {
+            get
+            {
+                return red;
+            }
+            set
+            {
+                red = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("Red", red);
+                RaisePropertyChanged("Red");
+                UpdateEffect("PosterizeEffect", PosterizeEffect, red, Green, Blue);
+            }
+        }
+        public double green = 4.0;
+        public double Green
+        {
+            get
+            {
+                return green;
+            }
+            set
+            {
+                green = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("Green", green);
+                RaisePropertyChanged("Green");
+                UpdateEffect("PosterizeEffect", PosterizeEffect, Red, green, Blue);
+            }
+        }
+        public double blue = 4.0;
+        public double Blue
+        {
+            get
+            {
+                return blue;
+            }
+            set
+            {
+                blue = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("Blue", blue);
+                RaisePropertyChanged("Blue");
+                UpdateEffect("PosterizeEffect", PosterizeEffect, Red, Green, blue);
+            }
+        }
+        public bool posterizeEffect = false;
+        public bool PosterizeEffect
+        {
+            set
+            {
+                posterizeEffect = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("PosterizeEffect", posterizeEffect);
+                RaisePropertyChanged("PosterizeEffect");
+                UpdateEffect("PosterizeEffect", PosterizeEffect, Red, Green, Blue);
+            }
+            get
+            {
+                return posterizeEffect;
+            }
+        }
+        #endregion
+
+        //HighlightsAndShadowsEffect
+        #region Highlights AndShadows Effect
+        public double clarity = 0.0;
+        public double Clarity
+        {
+            get
+            {
+                return clarity;
+            }
+            set
+            {
+                clarity = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("Clarity", clarity);
+                RaisePropertyChanged("Clarity");
+                UpdateEffect("HighlightsAndShadowsEffect", HighlightsAndShadowsEffect, clarity, Highlights, Shadows);
+            }
+        }
+        public double highlights = 0.0;
+        public double Highlights
+        {
+            get
+            {
+                return highlights;
+            }
+            set
+            {
+                highlights = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("Highlights", highlights);
+                RaisePropertyChanged("Highlights");
+                UpdateEffect("HighlightsAndShadowsEffect", HighlightsAndShadowsEffect, Clarity, highlights, Shadows);
+            }
+        }
+        public double shadows = 0.0;
+        public double Shadows
+        {
+            get
+            {
+                return shadows;
+            }
+            set
+            {
+                shadows = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("Shadows", shadows);
+                RaisePropertyChanged("Shadows");
+                UpdateEffect("HighlightsAndShadowsEffect", HighlightsAndShadowsEffect, Clarity, Highlights, shadows);
+            }
+        }
+        public bool highlightsAndShadowsEffect = false;
+        public bool HighlightsAndShadowsEffect
+        {
+            set
+            {
+                highlightsAndShadowsEffect = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("HighlightsAndShadowsEffect", highlightsAndShadowsEffect);
+                RaisePropertyChanged("HighlightsAndShadowsEffect");
+                UpdateEffect("HighlightsAndShadowsEffect", HighlightsAndShadowsEffect, Clarity, Highlights, Shadows);
+            }
+            get
+            {
+                return highlightsAndShadowsEffect;
+            }
+        }
+        #endregion
+
+        //GaussianBlurEffect
+        #region Gaussian Blur Effect
+        public double blurAmountGaussianBlur = 1.0;
+        public double BlurAmountGaussianBlur
+        {
+            get
+            {
+                return blurAmountGaussianBlur;
+            }
+            set
+            {
+                blurAmountGaussianBlur = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("BlurAmountGaussianBlur", blurAmountGaussianBlur);
+                RaisePropertyChanged("BlurAmountGaussianBlur");
+                UpdateEffect("GaussianBlurEffect", GaussianBlurEffect, blurAmountGaussianBlur);
+            }
+        }
+        public bool gaussianBlurEffect = false;
+        public bool GaussianBlurEffect
+        {
+            set
+            {
+                gaussianBlurEffect = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("GaussianBlurEffect", gaussianBlurEffect);
+                RaisePropertyChanged("GaussianBlurEffect");
+                UpdateEffect("GaussianBlurEffect", GaussianBlurEffect, BlurAmountGaussianBlur);
+            }
+            get
+            {
+                return gaussianBlurEffect;
+            }
+        }
+        #endregion
+
+        //GrayscaleEffect
+        #region Grayscale Effect
+        public bool grayscaleEffect = false;
+        public bool GrayscaleEffect
+        {
+            set
+            {
+                grayscaleEffect = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("GrayscaleEffect", grayscaleEffect);
+                RaisePropertyChanged("GaussianBlurEffect");
+                UpdateEffect("GrayscaleEffect", GrayscaleEffect);
+            }
+            get
+            {
+                return grayscaleEffect;
+            }
+        }
+        #endregion
+
+        //RgbToHueEffect
+        #region Rgb To Hue Effect
+        public bool rgbToHueEffect = false;
+        public bool RgbToHueEffect
+        {
+            set
+            {
+                rgbToHueEffect = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("RgbToHueEffect", rgbToHueEffect);
+                RaisePropertyChanged("RgbToHueEffect");
+                UpdateEffect("RgbToHueEffect", RgbToHueEffect);
+            }
+            get
+            {
+                return rgbToHueEffect;
+            }
+        }
+        #endregion
+
+        //InvertEffect
+        #region Invert Effect
+        public bool invertEffect = false;
+        public bool InvertEffect
+        {
+            set
+            {
+                invertEffect = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("InvertEffect", invertEffect);
+                RaisePropertyChanged("InvertEffect");
+                UpdateEffect("InvertEffect", InvertEffect);
+            }
+            get
+            {
+                return invertEffect;
+            }
+        }
+        #endregion
+
+        //HueToRgbEffect
+        #region Hue To Rgb Effect
+        public bool hueToRgbEffect = false;
+        public bool HueToRgbEffect
+        {
+            set
+            {
+                hueToRgbEffect = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("HueToRgbEffect", hueToRgbEffect);
+                RaisePropertyChanged("HueToRgbEffect");
+                UpdateEffect("HueToRgbEffect", HueToRgbEffect);
+            }
+            get
+            {
+                return hueToRgbEffect;
+            }
+        }
+        #endregion
+
+        //DirectionalBlurEffect
+        #region Directional Blur Effect
+        public double blurAmount = 3;
+        public double BlurAmount
+        {
+            get
+            {
+                return blurAmount;
+            }
+            set
+            {
+                blurAmount = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("BlurAmount", BlurAmount);
+                RaisePropertyChanged("BlurAmount");
+                UpdateEffect("DirectionalBlurEffect", DirectionalBlurEffect, blurAmount, Angle);
+            }
+        }
+        public double angle = 0;
+        public double Angle
+        {
+            get
+            {
+                return angle;
+            }
+            set
+            {
+                angle = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("Angle", angle);
+                RaisePropertyChanged("Angle");
+                UpdateEffect("DirectionalBlurEffect", DirectionalBlurEffect, BlurAmount, angle);
+            }
+        }
+        public bool directionalBlurEffect = false;
+        public bool DirectionalBlurEffect
+        {
+            set
+            {
+                directionalBlurEffect = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("DirectionalBlurEffect", directionalBlurEffect);
+                RaisePropertyChanged("DirectionalBlurEffect");
+                UpdateEffect("DirectionalBlurEffect", DirectionalBlurEffect, BlurAmount, Angle);
+            }
+            get
+            {
+                return directionalBlurEffect;
+            }
+        }
+        #endregion
+
+        //EmbossEffect
+        #region Emboss Effect
+        public double amountEmboss = 1;
+        public double AmountEmboss
+        {
+            get
+            {
+                return amountEmboss;
+            }
+            set
+            {
+                amountEmboss = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("AmountEmboss", AmountEmboss);
+                RaisePropertyChanged("EmbossEffect");
+                UpdateEffect("EmbossEffect", EmbossEffect, amountEmboss, AngleEmboss);
+            }
+        }
+        public double angleEmboss = 0;
+        public double AngleEmboss
+        {
+            get
+            {
+                return angleEmboss;
+            }
+            set
+            {
+                angleEmboss = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("AngleEmboss", angleEmboss);
+                RaisePropertyChanged("AngleEmboss");
+                UpdateEffect("EmbossEffect", EmbossEffect, AmountEmboss, angleEmboss);
+            }
+        }
+        public bool embossEffect = false;
+        public bool EmbossEffect
+        {
+            set
+            {
+                embossEffect = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("EmbossEffect", embossEffect);
+                RaisePropertyChanged("EmbossEffect");
+                UpdateEffect("EmbossEffect", EmbossEffect, AmountEmboss, AngleEmboss);
+            }
+            get
+            {
+                return embossEffect;
+            }
+        }
+        #endregion
+
+        //EdgeDetectionEffect
+        #region Edge Detection Effect 
+        public double blurAmountEdge = 0;
+        public double BlurAmountEdge
+        {
+            get
+            {
+                return blurAmountEdge;
+            }
+            set
+            {
+                blurAmountEdge = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("BlurAmountEdge", BlurAmountEdge);
+                RaisePropertyChanged("BlurAmountEdge");
+                UpdateEffect("EdgeDetectionEffect", EdgeDetectionEffect, AmountEdge, blurAmountEdge);
+            }
+        }
+        public double amountEdge = 0.5;
+        public double AmountEdge
+        {
+            get
+            {
+                return amountEdge;
+            }
+            set
+            {
+                amountEdge = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("AmountEdge", amountEdge);
+                RaisePropertyChanged("AmountEdge");
+                UpdateEffect("EdgeDetectionEffect", EdgeDetectionEffect, AmountEdge, blurAmountEdge);
+            }
+        }
+        public bool edgeDetectionEffect = false;
+        public bool EdgeDetectionEffect
+        {
+            set
+            {
+                edgeDetectionEffect = value;
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("EdgeDetectionEffect", edgeDetectionEffect);
+                RaisePropertyChanged("EdgeDetectionEffect");
+                UpdateEffect("EdgeDetectionEffect", edgeDetectionEffect, AmountEdge, blurAmountEdge);
+            }
+            get
+            {
+                return edgeDetectionEffect;
+            }
+        }
+        #endregion
+
+        private void SyncEffectsSettings()
+        {
+            try
+            {
+
+                var effectsOrderString = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("effectsOrderHistory", "");
+                if (effectsOrderString.Length > 0)
+                {
+                    effectsOrderHistory = JsonConvert.DeserializeObject<Dictionary<string, int>>(effectsOrderString);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            isEffectsInitial = true;
+            try
+            {
+                //BrightnessEffect
+                BrightnessEffect = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("BrightnessEffect", false);
+                BrightnessLevel = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("BrightnessLevel", brightnessLevel);
+
+                //ContrastEffect
+                ContrastEffect = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("ContrastEffect", false);
+                ContrastLevel = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("ContrastLevel", contrastLevel);
+
+                //DirectionalBlurEffect
+                DirectionalBlurEffect = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("DirectionalBlurEffect", false);
+                BlurAmount = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("BlurAmount", blurAmount);
+                Angle = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("Angle", angle);
+
+                //EdgeDetectionEffect
+                EdgeDetectionEffect = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("EdgeDetectionEffect", false);
+                AmountEdge = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("AmountEdge", amountEdge);
+                EdgeDetectionEffect = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("EdgeDetectionEffect", edgeDetectionEffect);
+
+                //EmbossEffect
+                EmbossEffect = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("EmbossEffect", false);
+                AmountEmboss = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("AmountEmboss", amountEmboss);
+                AngleEmboss = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("AngleEmboss", angleEmboss);
+
+                //ExposureEffect
+                ExposureEffect = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("ExposureEffect", false);
+                Exposure = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("Exposure", exposure);
+
+                //GaussianBlurEffect
+                GaussianBlurEffect = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("GaussianBlurEffect", false);
+                BlurAmountGaussianBlur = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("BlurAmountGaussianBlur", blurAmountGaussianBlur);
+
+                //SaturationEffect
+                SaturationEffect = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("SaturationEffect", false);
+                Saturation = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("Saturation", saturation);
+
+                //SepiaEffect
+                SepiaEffect = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("SepiaEffect", false);
+                Intensity = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("Intensity", intensity);
+
+                //Transform3DEffect
+                Transform3DEffect = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("Transform3DEffect", false);
+                Rotate = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("Rotate", rotate);
+                RotateX = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("RotateX", rotateX);
+                RotateY = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("RotateY", rotateY);
+
+                //SharpenEffect
+                SharpenEffect = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("SharpenEffect", false);
+                AmountSharpen = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("AmountSharpen", amountSharpen);
+
+                //StraightenEffect
+                StraightenEffect = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("StraightenEffect", false);
+                AngleStraighten = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("AngleStraighten", angleStraighten);
+
+                //VignetteEffect
+                VignetteEffect = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("VignetteEffect", false);
+                AmountVignette = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("AmountVignette", amountVignette);
+                Curve = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("Curve", curve);
+
+                //GrayscaleEffect
+                GrayscaleEffect = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("GrayscaleEffect", false);
+
+                //HueToRgbEffect 
+                HueToRgbEffect = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("HueToRgbEffect", false);
+
+                //InvertEffect 
+                InvertEffect = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("InvertEffect", false);
+
+                //RgbToHueEffect 
+                RgbToHueEffect = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("RgbToHueEffect", false);
+
+                //HighlightsAndShadowsEffect 
+                HighlightsAndShadowsEffect = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("HighlightsAndShadowsEffect", false);
+                Clarity = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("Clarity", clarity);
+                Highlights = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("Highlights", highlights);
+                Shadows = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("Shadows", shadows);
+
+                //PosterizeEffect 
+                PosterizeEffect = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("PosterizeEffect", false);
+                Red = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("Red", red);
+                Green = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("Green", green);
+                Blue = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("Blue", blue);
+
+                //ScaleEffect 
+                ScaleEffect = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("ScaleEffect", false);
+                WidthScale = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("WidthScale", widthScale);
+                HeightScale = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("HeightScale", heightScale);
+                SharpnessScale = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("SharpnessScale", sharpnessScale);
+
+                //TemperatureAndTintEffect 
+                TemperatureAndTintEffect = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("TemperatureAndTintEffect", false);
+                Temperature = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("Temperature", temperature);
+                Tint = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("Tint", tint);
+
+                //TileEffect 
+                TileEffect = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("TileEffect", false);
+                Left = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("Left", left);
+                Top = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("Top", top);
+                Right = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("Right", right);
+                Bottom = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("Bottom", bottom);
+
+                //CropEffect 
+                CropEffect = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("CropEffect", false);
+                LeftCrop = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("LeftCrop", leftCrop);
+                TopCrop = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("TopCrop", topCrop);
+                RightCrop = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("RightCrop", rightCrop);
+                BottomCrop = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("BottomCrop", bottomCrop);
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            isEffectsInitial = false;
+        }
+        private void ClearAllEffectsCall()
+        {
+            BrightnessEffect = false;
+            ContrastEffect = false;
+            DirectionalBlurEffect = false;
+            AddShaders = false;
+            AddOverlays = false;
+            EmbossEffect = false;
+            ExposureEffect = false;
+            GaussianBlurEffect = false;
+            GrayscaleEffect = false;
+            HueToRgbEffect = false;
+            InvertEffect = false;
+            HighlightsAndShadowsEffect = false;
+            PosterizeEffect = false;
+            RgbToHueEffect = false;
+            SaturationEffect = false;
+            ScaleEffect = false;
+            SepiaEffect = false;
+            SharpenEffect = false;
+            StraightenEffect = false;
+            TemperatureAndTintEffect = false;
+            TileEffect = false;
+            CropEffect = false;
+            VignetteEffect = false;
+            Transform3DEffect = false;
+
+            PlatformService.PlayNotificationSound("success.wav");
+            UpdateInfoState("All effects cleared");
+        }
+
+        bool isEffectsInitial = false;
+        Dictionary<string, int> effectsOrderHistory = new Dictionary<string, int>();
+        private void UpdateEffect(string EffectName, bool EffectState, double EffectValue1 = 0, double EffectValue2 = 0, double EffectValue3 = 0, double EffectValue4 = 0)
+        {
+            var ForceOrder = -1;
+            if (!EffectState)
+            {
+                var testOrder = -1;
+                if (effectsOrderHistory.TryGetValue(EffectName, out testOrder))
+                {
+                    effectsOrderHistory.Remove(EffectName);
+                    Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("effectsOrderHistory", JsonConvert.SerializeObject(effectsOrderHistory));
+                }
+            }
+            else if (isEffectsInitial)
+            {
+                var testOrder = -1;
+                if (effectsOrderHistory.TryGetValue(EffectName, out testOrder))
+                {
+                    ForceOrder = testOrder;
+                }
+            }
+            var effectOrder = VideoService.SetEffect(EffectName, EffectState, EffectValue1, EffectValue2, EffectValue3, EffectValue4, ForceOrder);
+            if (effectOrder != -1)
+            {
+                var testOrder = -1;
+                if (!effectsOrderHistory.TryGetValue(EffectName, out testOrder))
+                {
+                    effectsOrderHistory.Add(EffectName, effectOrder);
+                    Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("effectsOrderHistory", JsonConvert.SerializeObject(effectsOrderHistory));
+                }
+            }
+            if (EffectState)
+            {
+                forceReloadLogsList = true;
+            }
+        }
+
+        private void UpdateEffect(string EffectName, bool EffectState, List<byte[]> EffectValue1)
+        {
+            VideoService.SetEffect(EffectName, EffectState, EffectValue1);
+            if (EffectState)
+            {
+                forceReloadLogsList = true;
+            }
+        }
+
+        public IMvxCommand ShowAllEffects { get; }
+        public IMvxCommand ClearAllEffects { get; }
+
+        //Effects System
+
+
+
         private const string ForceDisplayTouchGamepadKey = "ForceDisplayTouchGamepad";
         private const string CurrentFilterKey = "CurrentFilter";
         public int FitScreen = 1;
@@ -181,7 +1834,7 @@ namespace RetriX.Shared.ViewModels
                     RCore8 = false;
                     RCore1 = false;
                     RCore20 = false;
-                    RCore32= false;
+                    RCore32 = false;
                 }
             }
         }
@@ -492,7 +2145,7 @@ namespace RetriX.Shared.ViewModels
             }
         }
         bool NoGCRegionState = false;
-        private void updateGCCaller()
+        private async void updateGCCaller()
         {
             ReduceFreezesInProgress = true;
 
@@ -503,6 +2156,7 @@ namespace RetriX.Shared.ViewModels
                     GC.WaitForPendingFinalizers();
                     AudioService.TryStartNoGCRegionCall();
                     NoGCRegionState = true;
+                    await Task.Delay(1000);
                 }
                 else
                 {
@@ -559,7 +2213,7 @@ namespace RetriX.Shared.ViewModels
             {
                 if (!GameStopInProgress)
                 {
-                    if (ShowLogsList && !LogInProgress && !LogErrorCatched)
+                    if ((ShowLogsList || forceReloadLogsList) && !LogInProgress && !LogErrorCatched)
                     {
                         Dispatcher.RequestMainThreadAction(() => updateLogListCaller());
                     }
@@ -590,26 +2244,57 @@ namespace RetriX.Shared.ViewModels
         private int LogListSizeTemp = 0;
         public bool FPSErrorCatched = false;
         public bool LogErrorCatched = false;
+        public bool forceReloadLogsList = false;
         void updateLogListCaller()
         {
             LogInProgress = true;
             try
             {
-                if (ShowLogsList && !GameStopInProgress && !LogErrorCatched)
+                if (EmulationService != null && LogsList != null && (ShowLogsList || forceReloadLogsList) && !GameStopInProgress && !LogErrorCatched)
                 {
                     lock (LogsList)
                     {
                         var LogsListContent = EmulationService.GetCoreLogsList()?.ToList();
-                        if (LogsListContent != null && LogsListContent.Count > LogListSizeTemp)
+                        if ((LogsListContent != null && (LogsListContent.Count > LogListSizeTemp || forceReloadLogsList)))
                         {
                             LogsList.Clear();
                             foreach (var LogsListContentItem in LogsListContent)
                             {
                                 LogsList.Add(LogsListContentItem);
                             }
+                            try
+                            {
+                                var PixelsType = "Pixels Type: " + (FramebufferConverter.isRGB888 ? "XRGB8888" : (FramebufferConverter.isRG565 ? "RGB565" : "RGB555"));
+                                var UsingMemoryCopy = "Memory Helper: " + (FramebufferConverter.isRGB888 ? (FramebufferConverter.MemoryHelper + (FramebufferConverter.SkipCached ? " (Ignored due Pixels updates feature)" : "")) : "Memory Pointers");
+                                var RenderCores = "Render Cores: " + $"{FramebufferConverter.CoresCount}";
+                                var CurrentSize = "Resolution: " + $"{FramebufferConverter.currentWidth} x {FramebufferConverter.currentHeight}";
+                                var CrazyBufferState = "Crazy Buffer: " + (CrazyBufferActive ? $"{FramebufferConverter.crazyBufferPercentageHandle}% Handled":"OFF") + (CrazyBufferActive && FramebufferConverter.SkipCached ? " (Ignored due Pixels updates feature)" : "");
+
+                                LogsList.Insert(1, PixelsType);
+                                LogsList.Insert(2, UsingMemoryCopy);
+                                LogsList.Insert(3, RenderCores);
+                                LogsList.Insert(4, CurrentSize);
+                                LogsList.Insert(5, CrazyBufferState);
+                                if (VideoService != null && VideoService.TotalEffects() > 0)
+                                {
+                                    var EffectsApplied = $"Active Effects: {VideoService.TotalEffects()} Effect{(VideoService.TotalEffects() > 1 ? "s" : "")}";
+                                    LogsList.Insert(6, EffectsApplied);
+                                    LogsList.Insert(7, "--------------");
+                                }
+                                else
+                                {
+                                    LogsList.Insert(6, "--------------");
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+
+                            }
                             RaisePropertyChanged(nameof(LogsList));
+                            
                             Interlocked.Exchange(ref LogListSizeTemp, LogsList.Count);
                         }
+                        forceReloadLogsList = false;
                     }
                 }
             }
@@ -633,6 +2318,14 @@ namespace RetriX.Shared.ViewModels
                     if (FPSCounterValue > 0 && !EmulationService.CorePaused && FPSCounterValue < 100)
                     {
                         FPSCounter = (FPSCounterValue).ToString();
+                        if (FramebufferConverter.SkipCached)
+                        {
+                            FPSCounter += $" [{FramebufferConverter.totalPercentageSkipped}% Cache]";
+                        }
+                        if (FramebufferConverter.renderFailedMessage.Length > 0)
+                        {
+                            FPSCounter += $" - {FramebufferConverter.renderFailedMessage}";
+                        }
                     }
                     else
                     {
@@ -673,7 +2366,17 @@ namespace RetriX.Shared.ViewModels
                     {
                         UpdateInfoState(AudioService.GetFrameFailedMessage(), true);
                     }
-
+                    if (VideoService != null && VideoService.TotalEffects() > 0)
+                    {
+                        if (BufferCounter.Equals("-"))
+                        {
+                            BufferCounter = $"[{VideoService.TotalEffects()} Effect{(VideoService.TotalEffects() > 1 ? "s" : "")}]";
+                        }
+                        else
+                        {
+                            BufferCounter += $"[{VideoService.TotalEffects()} Effect{(VideoService.TotalEffects() > 1 ? "s" : "")}]";
+                        }
+                    }
                     RaisePropertyChanged(nameof(BufferCounter));
                 }
             }
@@ -1197,11 +2900,14 @@ namespace RetriX.Shared.ViewModels
         public IMvxCommand SetScanlines3 { get; }
         public IMvxCommand SetDoublePixel { get; }
         public IMvxCommand SetSpeedup { get; }
+        public IMvxCommand SetUpdatesOnly { get; }
+        public IMvxCommand SetSkipCached { get; }
         public IMvxCommand SetSkipFrames { get; }
         public IMvxCommand SetSkipFramesRandom { get; }
         public IMvxCommand DontWaitThreads { get; }
         public IMvxCommand SetDelayFrames { get; }
         public IMvxCommand SetReduceFreezes { get; }
+        public IMvxCommand SetCrazyBufferActive { get; }
         public IMvxCommand SetAudioOnly { get; }
         public IMvxCommand SetVideoOnly { get; }
         public IMvxCommand SetTabSoundEffect { get; }
@@ -1274,6 +2980,37 @@ namespace RetriX.Shared.ViewModels
         public bool ScanLines3 = false;
         public bool DoublePixel = false;
         public bool Speedup = false;
+        public bool UpdatesOnly = false;
+        public bool skipCached = false;
+        private EventHandler RaiseSkippedCachedHandler = null;
+        public bool SkipCached
+        {
+            get
+            {
+                return skipCached && FramebufferConverter.SkipCached;
+            }
+            set
+            {
+                if (FramebufferConverter.RaiseSkippedCachedHandler == null)
+                {
+                    RaiseSkippedCachedHandler = RaiseSkippedCached;
+                    FramebufferConverter.RaiseSkippedCachedHandler = RaiseSkippedCachedHandler;
+                }
+                skipCached = value;
+                FramebufferConverter.SkipCached = skipCached;
+            }
+        }
+        private void RaiseSkippedCached(object sender, EventArgs args)
+        {
+            try
+            {
+                RaisePropertyChanged(nameof(SkipCached));
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
         public bool SkipFrames = false;
         public bool SkipFramesRandom = false;
         public bool DelayFrames = false;
@@ -1368,6 +3105,21 @@ namespace RetriX.Shared.ViewModels
         {
             try
             {
+                FramebufferConverter.currentFileEntry = "";
+                FramebufferConverter.currentFileProgress = 0;
+                FramebufferConverter.UpdateProgressState = (sender, args) =>
+                  {
+                      try
+                      {
+                          RaisePropertyChanged(nameof(currentFileEntry));
+                          RaisePropertyChanged(nameof(currentFileProgress));
+                          RaisePropertyChanged(nameof(isProgressVisible));
+                      }
+                      catch (Exception ex)
+                      {
+
+                      }
+                  };
                 FramebufferConverter.isGameStarted = false;
                 NavigationService = navigationService;
                 PlatformService = platformService;
@@ -1395,10 +3147,13 @@ namespace RetriX.Shared.ViewModels
                 AudioOnly = Settings.GetValueOrDefault(nameof(AudioOnly), false);
                 VideoOnly = Settings.GetValueOrDefault(nameof(VideoOnly), false);
                 Speedup = Settings.GetValueOrDefault(nameof(Speedup), false);
+                UpdatesOnly = Settings.GetValueOrDefault(nameof(UpdatesOnly), false);
+                SkipCached = Settings.GetValueOrDefault(nameof(SkipCached), false);
                 SkipFrames = Settings.GetValueOrDefault(nameof(SkipFrames), false);
                 SkipFramesRandom = Settings.GetValueOrDefault(nameof(SkipFramesRandom), false);
                 DelayFrames = Settings.GetValueOrDefault(nameof(DelayFrames), false);
                 ReduceFreezes = Settings.GetValueOrDefault(nameof(ReduceFreezes), true);
+                CrazyBufferActive = Settings.GetValueOrDefault(nameof(CrazyBufferActive), true);
                 TabSoundEffect = Settings.GetValueOrDefault(nameof(TabSoundEffect), false);
                 ShowSpecialButtons = Settings.GetValueOrDefault(nameof(ShowSpecialButtons), true);
                 ShowActionsButtons = Settings.GetValueOrDefault(nameof(ShowActionsButtons), true);
@@ -1426,7 +3181,7 @@ namespace RetriX.Shared.ViewModels
                 AudioEcho = Settings.GetValueOrDefault(nameof(AudioEcho), false);
                 AudioReverb = Settings.GetValueOrDefault(nameof(AudioReverb), false);
                 RotateDegree = Settings.GetValueOrDefault(nameof(RotateDegree), 0);
-                UseAnalogDirections = Settings.GetValueOrDefault(nameof(UseAnalogDirections), true);
+                UseAnalogDirections = Settings.GetValueOrDefault(nameof(UseAnalogDirections), false);
                 var RCoreState = Settings.GetValueOrDefault("RCoreState", nameof(RCore1));
                 switch (RCoreState)
                 {
@@ -1495,11 +3250,14 @@ namespace RetriX.Shared.ViewModels
                 ToggleAutoSaveNotify(true);
                 ToggleAudioEcho(true);
                 ToggleAudioReverb(true);
+                ToggleUpdatesOnly(true);
+                ToggleSkipCached(true);
                 //ToggleScaleFactorVisible(true);
                 ToggleShowSpecialButtons(true);
                 ToggleShowActionsButtons(true);
                 ToggleUseAnalogDirections(true);
                 SetRCoreCall();
+
                 try
                 {
                     CustomTouchPadRetrieveAsync();
@@ -1573,11 +3331,14 @@ namespace RetriX.Shared.ViewModels
                 SetAudioOnly = new MvxCommand(() => ToggleAudioOnly(false));
                 SetVideoOnly = new MvxCommand(() => ToggleVideoOnly(false));
                 SetSpeedup = new MvxCommand(() => ToggleSpeedup(false));
+                SetUpdatesOnly = new MvxCommand(() => ToggleUpdatesOnly(false));
+                SetSkipCached = new MvxCommand(() => ToggleSkipCached(false));
                 SetSkipFrames = new MvxCommand(() => ToggleSkipFrames(false));
                 SetSkipFramesRandom = new MvxCommand(() => ToggleSkipFramesRandom(false));
                 DontWaitThreads = new MvxCommand(() => DontWaitThreadsCall());
                 SetDelayFrames = new MvxCommand(() => ToggleDelayFrames(false));
                 SetReduceFreezes = new MvxCommand(() => ToggleReduceFreezes(false));
+                SetCrazyBufferActive = new MvxCommand(() => ToggleCrazyBufferActive(false));
                 SetTabSoundEffect = new MvxCommand(() => ToggleTabSoundEffect());
                 SetSensorsMovement = new MvxCommand(() => ToggleSensorsMovement());
                 SetUseAnalogDirections = new MvxCommand(() => ToggleUseAnalogDirections());
@@ -1662,6 +3423,18 @@ namespace RetriX.Shared.ViewModels
                 GameSystemSavetSelected = new MvxCommand<SaveSlotsModel>(SaveSelectHandler);
                 GameSystemSaveHolding = new MvxCommand<SaveSlotsModel>(SaveHoldHandler);
 
+                ClearAllEffects = new MvxCommand(() =>
+                {
+                    ClearAllEffectsCall();
+                });
+
+                ShowAllEffects = new MvxCommand(() =>
+                {
+                    EffectsVisible = !EffectsVisible;
+                    RaisePropertyChanged(nameof(EffectsVisible));
+                    RaisePropertyChanged(nameof(compatibiltyTag));
+                });
+
                 PrepareXBoxMenu();
                 //callXBoxModeTimer(true);
             }
@@ -1732,7 +3505,10 @@ namespace RetriX.Shared.ViewModels
                 RaisePropertyChanged(nameof(RCore12));
                 RaisePropertyChanged(nameof(RCore20));
                 RaisePropertyChanged(nameof(RCore32));
-            }catch(Exception ex)
+                FramebufferConverter.inputFillWithBlack = true;
+                forceReloadLogsList = true;
+            }
+            catch (Exception ex)
             {
 
             }
@@ -1846,7 +3622,7 @@ namespace RetriX.Shared.ViewModels
                 GCTimer?.Dispose();
                 if (startState)
                 {
-                    GCTimer = new Timer(delegate { UpdateGC(null, EventArgs.Empty); }, null, 0, 500);
+                    GCTimer = new Timer(delegate { UpdateGC(null, EventArgs.Empty); }, null, 0, 100);
                 }
                 else
                 {
@@ -2258,18 +4034,18 @@ namespace RetriX.Shared.ViewModels
                             GameIsLoadingState(true);
                             await gameFolderTest.DeleteAsync();
                             PlatformService.PlayNotificationSound("success.wav");
-                            await UserDialogs.Instance.AlertAsync("All Saves cleaned (deleted)", "Clean done");
+                            await GeneralDialog("All Saves cleaned (deleted)", "Clean done");
                         }
                         else
                         {
                             PlatformService.PlayNotificationSound("faild.wav");
-                            await UserDialogs.Instance.AlertAsync("No saved slots found!", "Clean all saves");
+                            await GeneralDialog("No saved slots found!", "Clean all saves");
                         }
                     }
                     else
                     {
                         PlatformService.PlayNotificationSound("faild.wav");
-                        await UserDialogs.Instance.AlertAsync("No saved slots found!", "Clean all saves");
+                        await GeneralDialog("No saved slots found!", "Clean all saves");
                     }
                 }
             }
@@ -2333,7 +4109,7 @@ namespace RetriX.Shared.ViewModels
                     RaisePropertyChanged(nameof(ActionsTransformYCurrent));
 
                     PlatformService.PlayNotificationSound("success.wav");
-                    await UserDialogs.Instance.AlertAsync("Touch controls reseted to default", "Reset done");
+                    await GeneralDialog("Touch controls reseted to default", "Reset done");
                 }
             }
             catch (Exception e)
@@ -2383,7 +4159,7 @@ namespace RetriX.Shared.ViewModels
                 else
                 {
                     PlatformService.PlayNotificationSound("faild.wav");
-                    await UserDialogs.Instance.AlertAsync(Resources.Strings.ExportSlotsMessageError, Resources.Strings.ExportSlotsTitle);
+                    await GeneralDialog(Resources.Strings.ExportSlotsMessageError, Resources.Strings.ExportSlotsTitle);
                     GameIsLoadingState(false);
                 }
             }
@@ -2413,7 +4189,7 @@ namespace RetriX.Shared.ViewModels
                         }
                     }
                     PlatformService.PlayNotificationSound("success.wav");
-                    await UserDialogs.Instance.AlertAsync(Resources.Strings.ExportSlotsMessage, Resources.Strings.ExportSlotsTitle);
+                    await GeneralDialog(Resources.Strings.ExportSlotsMessage, Resources.Strings.ExportSlotsTitle);
                     UpdateInfoState("Export Done");
                 }
             }
@@ -2488,14 +4264,14 @@ namespace RetriX.Shared.ViewModels
                         await localFolder.CreateDirectoryAsync(GameID);
                         ZipFile.ExtractToDirectory(zipFileName, targetFolder);
                         PlatformService.PlayNotificationSound("success.wav");
-                        await UserDialogs.Instance.AlertAsync(Resources.Strings.ImportSlotsMessage, Resources.Strings.ImportSlotsTitle);
+                        await GeneralDialog(Resources.Strings.ImportSlotsMessage, Resources.Strings.ImportSlotsTitle);
                         await ActionsRetrieveAsync();
                         UpdateInfoState("Import Done");
                     }
                     else
                     {
                         PlatformService.PlayNotificationSound("faild.wav");
-                        await UserDialogs.Instance.AlertAsync(Resources.Strings.ImportSlotsMessageCancel, Resources.Strings.ImportSlotsTitle);
+                        await GeneralDialog(Resources.Strings.ImportSlotsMessageCancel, Resources.Strings.ImportSlotsTitle);
                     }
                 }
             }
@@ -2618,6 +4394,44 @@ namespace RetriX.Shared.ViewModels
             Settings.AddOrUpdateValue(nameof(Speedup), Speedup);
             FramebufferConverter.NativeSpeedup = Speedup;
             FramebufferConverter.NativePixelStep = Speedup ? 2 : 1;
+            if (Speedup)
+            {
+                FramebufferConverter.inputFillWithBlack = true;
+                FramebufferConverter.ResetPixelCache();
+            }
+            else
+            {
+                FramebufferConverter.inputFillWithBlack = false;
+            }
+        }
+        private void ToggleUpdatesOnly(bool updateValue)
+        {
+            if (!updateValue) UpdatesOnly = !UpdatesOnly;
+            RaisePropertyChanged(nameof(UpdatesOnly));
+            Settings.AddOrUpdateValue(nameof(UpdatesOnly), UpdatesOnly);
+            FramebufferConverter.showUpdatesOnly = UpdatesOnly;
+        }
+        private void ToggleSkipCached(bool updateValue)
+        {
+            if (!updateValue) SkipCached = !SkipCached;
+            if (!updateValue)
+            {
+                if (SkipCached)
+                {
+                    if (FramebufferConverter.isRGB888)
+                    {
+                        PlatformService.PlayNotificationSound("root-needed.wav");
+                        GeneralDialog($"This system might not compatible with 'Pixel Updates'\nPerformance will back to normal when you.. turn it off\n\nTo get better results try to enable skip frames or increase render threads", "Pixel Updates");
+                    }
+                }
+            }
+            RaisePropertyChanged(nameof(SkipCached));
+            if (!FramebufferConverter.isRGB888)
+            {
+                Settings.AddOrUpdateValue(nameof(SkipCached), SkipCached);
+            }
+            FramebufferConverter.SkipCached = SkipCached;
+            forceReloadLogsList = true;
         }
         private void ToggleAudioEcho(bool updateValue)
         {
@@ -2726,7 +4540,7 @@ namespace RetriX.Shared.ViewModels
             if (!updateValue && SkipFrames)
             {
                 PlatformService.PlayNotificationSound("notice.mp3");
-                UserDialogs.Instance.AlertAsync($"This option has small effect on the performance\nyou can check {"Core Options"} for native frame skipping", "Skip Frames (Frontend)");
+                GeneralDialog($"This option has small effect on the performance\nyou can check {"Core Options"} for native frame skipping", "Skip Frames (Frontend)");
             }
             RaisePropertyChanged(nameof(SkipFrames));
             Settings.AddOrUpdateValue(nameof(SkipFrames), SkipFrames);
@@ -2757,7 +4571,7 @@ namespace RetriX.Shared.ViewModels
             if (!updateValue && SkipFramesRandom)
             {
                 PlatformService.PlayNotificationSound("notice.mp3");
-                UserDialogs.Instance.AlertAsync($"This option has small effect on the performance\nyou can check {"Core Options"} for native frame skipping", "Skip Frames (Frontend)");
+                GeneralDialog($"This option has small effect on the performance\nyou can check {"Core Options"} for native frame skipping", "Skip Frames (Frontend)");
             }
             RaisePropertyChanged(nameof(SkipFramesRandom));
             Settings.AddOrUpdateValue(nameof(SkipFramesRandom), SkipFramesRandom);
@@ -2778,10 +4592,18 @@ namespace RetriX.Shared.ViewModels
             if (!updateValue && !ReduceFreezes)
             {
                 PlatformService.PlayNotificationSound("notice.mp3");
-                await UserDialogs.Instance.AlertAsync($"This option is very important for the performance\nWe prefere to keep it on", "Reduce Freezes");
+                await GeneralDialog($"This option is very important for the performance\nWe prefere to keep it on", "Reduce Freezes");
             }
             AudioService.SetGCPrevent(ReduceFreezes);
             callGCTimer(ReduceFreezes);
+        }
+        private void ToggleCrazyBufferActive(bool updateValue)
+        {
+            if (!updateValue) CrazyBufferActive = !CrazyBufferActive;
+            RaisePropertyChanged(nameof(CrazyBufferActive));
+            Settings.AddOrUpdateValue(nameof(CrazyBufferActive), CrazyBufferActive);
+            FramebufferConverter.CrazyBufferActive = CrazyBufferActive;
+            forceReloadLogsList = true;
         }
         private void UpdateAudioLevel()
         {
@@ -3073,7 +4895,8 @@ namespace RetriX.Shared.ViewModels
                 PlatformService.PlayNotificationSound("button-01.mp3");
                 SetActiveColorFilter(ColorFilter);
                 FramebufferConverter.CurrentColorFilter = ColorFilter;
-                FramebufferConverter.SetRGB0555LookupTable();
+                FramebufferConverter.SetRGBLookupTable(true);
+                FramebufferConverter.ResetPixelCache();
             }
             catch (Exception e)
             {
@@ -3082,6 +4905,7 @@ namespace RetriX.Shared.ViewModels
                     PlatformService.ShowErrorMessage(e);
                 }
             }
+            forceReloadLogsList = true;
         }
         private void SetActiveColorFilter(int ColorIndex)
         {
@@ -3330,7 +5154,7 @@ namespace RetriX.Shared.ViewModels
                     if (ColorFilters[i])
                     {
                         FramebufferConverter.CurrentColorFilter = i;
-                        FramebufferConverter.SetRGB0555LookupTable();
+                        FramebufferConverter.SetRGBLookupTable();
                     }
                 }
                 RaisePropertyChanged(nameof(ColorFilters));
@@ -3386,6 +5210,7 @@ namespace RetriX.Shared.ViewModels
         public string SystemIcon = "";
         public bool RootNeeded = false;
         public string MainFilePath = "";
+        public EventHandler FreeCore;
         public override async void Prepare(GameLaunchEnvironment parameter)
         {
             try
@@ -3403,6 +5228,17 @@ namespace RetriX.Shared.ViewModels
                 //FPSMonitor.Start();
                 await EmulationService.StartGameAsync(parameter.Core, parameter.StreamProvider, parameter.MainFilePath);
                 await ActionsRetrieveAsync();
+                FreeCore = (sender, args) =>
+                {
+                    try
+                    {
+                        parameter.Core.FreeLibretroCore();
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                };
             }
             catch (Exception e)
             {
@@ -3411,7 +5247,7 @@ namespace RetriX.Shared.ViewModels
                     PlatformService.ShowErrorMessage(e);
                 }
             }
-            
+
         }
 
         public void updateCoreOptions(string KeyName = "")
@@ -3498,6 +5334,7 @@ namespace RetriX.Shared.ViewModels
         bool isGameStarted = false;
         bool errorDialogAppeard = false;
         bool FailedToLoadGame = false;
+
         private async void EmulationService_GameStarted(object sender, EventArgs e)
         {
             try
@@ -3511,9 +5348,27 @@ namespace RetriX.Shared.ViewModels
                 await EmulationService.ResumeGameAsync();
 
                 isGameStarted = true;
+                RaisePropertyChanged(nameof(isProgressVisible));
                 if (!PlatformService.GameNoticeShowed)
                 {
                     Dispatcher.RequestMainThreadAction(() => ShowGameTipInfo());
+                }
+                if (VideoService != null)
+                {
+                    if (VideoService.isShaderActive())
+                    {
+                        addShadersInitial = true;
+                        addShaders = true;
+                        RaisePropertyChanged(nameof(AddShaders));
+                        addShadersInitial = false;
+                    }
+                    if (VideoService.isOverlayActive())
+                    {
+                        addOverlaysInitial = true;
+                        addOverlays = true;
+                        RaisePropertyChanged(nameof(AddOverlays));
+                        addOverlaysInitial = false;
+                    }
                 }
                 if (EmulationService.isGameLoaded())
                 {
@@ -3522,12 +5377,26 @@ namespace RetriX.Shared.ViewModels
                         addOpenCountInProgress = true;
                         await PlatformService.AddGameToRecents(SystemName, MainFilePath, RootNeeded, EmulationService.GetGameID(), 0, false);
                         UpdateInfoState("Game Started");
+
+                        if (!FramebufferConverter.CopyMemoryAvailable)
+                        {
+                            FramebufferConverter.LoadMemcpyFunction();
+                        }
+
+                        SyncEffectsSettings();
+                        SyncMemoryOptions();
+
                         FramebufferConverter.isGameStarted = true;
+                        FramebufferConverter.fillSpanRequired = true;
+                        if (AudioService != null)
+                        {
+                            AudioService.isGameStarted = true;
+                        }
                         ShowSystemInfo();
                         RaisePropertyChanged("Manufacturer");
                         if (StartTimeStamp == 0)
                         {
-                            StartTimeStamp = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond; ;
+                            StartTimeStamp = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
                         }
                         RaisePropertyChanged(nameof(IsSegaSystem));
                     }
@@ -3536,9 +5405,10 @@ namespace RetriX.Shared.ViewModels
                 {
                     errorDialogAppeard = true;
                     FailedToLoadGame = true;
+                    RaisePropertyChanged(nameof(isProgressVisible));
                     UpdateInfoState("Game Failed");
                     PlatformService?.PlayNotificationSound("faild.wav");
-                    UserDialogs.Instance.AlertAsync("Failed to load the game, for more details check\n\u26EF -> Debug -> Log List", "Load Failed");
+                    GeneralDialog("Failed to load the game, for more details check\n\u26EF -> Debug -> Log List", "Load Failed");
                 }
                 SetExtrasOptions();
             }
@@ -3567,6 +5437,7 @@ namespace RetriX.Shared.ViewModels
             ToggleSkipFrames(true);
             ToggleDelayFrames(true);
             ToggleReduceFreezes(true);
+            ToggleCrazyBufferActive(true);
             ShowFPSCounterToggle(true);
             ShowBufferCounterToggle(true);
         }
@@ -3579,14 +5450,14 @@ namespace RetriX.Shared.ViewModels
         {
             try
             {
-                bool ShowNoticeState = Settings.GetValueOrDefault("NeverShowSlow", true);
+                bool ShowNoticeState = Settings.GetValueOrDefault("NeverShowSlow2", true);
                 if (ShowNoticeState)
                 {
                     await Task.Delay(2200);
                     PlatformService.PlayNotificationSound("notice.mp3");
                     ConfirmConfig confirmLoadNotice = new ConfirmConfig();
-                    confirmLoadNotice.SetTitle("Slow Game?");
-                    confirmLoadNotice.SetMessage("If the game went slow try:\n\n1- Pause \u25EB then Resume \u25B7.\n2- Enable \u26EF -> Extras -> Delay Frames\n\nEnjoy " + char.ConvertFromUtf32(0x1F609));
+                    confirmLoadNotice.SetTitle("Game Tips");
+                    confirmLoadNotice.SetMessage("If the game went slow try:\n1- Pause \u25EB then Resume \u25B7.\n2- Enable \u26EF -> Performance -> Skip Frames\n\nXBOX Shortcuts:\nShow Menu-> Down + Select/View\nSave State-> Left + Select/View\nLoad State-> Right + Select/View\n\nEnjoy " + char.ConvertFromUtf32(0x1F609));
                     confirmLoadNotice.UseYesNo();
                     confirmLoadNotice.SetOkText("Never Show");
                     confirmLoadNotice.SetCancelText("Dismiss");
@@ -3595,7 +5466,7 @@ namespace RetriX.Shared.ViewModels
                     if (NeverShow)
                     {
                         PlatformService.PlayNotificationSound("button-01.mp3");
-                        Settings.AddOrUpdateValue("NeverShowSlow", false);
+                        Settings.AddOrUpdateValue("NeverShowSlow2", false);
                         confirmLoadNotice.DisposeIfDisposable();
                     }
                     else
@@ -3621,6 +5492,7 @@ namespace RetriX.Shared.ViewModels
                     StopPlaying(true);
                 }
                 PlatformService.PlayNotificationSound("stop.wav");
+
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
                 PlatformService.RestoreGamesListState(PlatformService.veScroll);
@@ -3663,6 +5535,10 @@ namespace RetriX.Shared.ViewModels
                 }
 
                 GameIsPaused = !GameIsPaused;
+                if (AudioService != null)
+                {
+                    AudioService.gameIsPaused = GameIsPaused;
+                }
 
             }
             catch (Exception e)
@@ -3973,6 +5849,12 @@ namespace RetriX.Shared.ViewModels
 
                 }
                 FramebufferConverter.ClearBuffer();
+                FramebufferConverter.ResetPixelCache();
+                FramebufferConverter.RaiseSkippedCachedHandler = null;
+                FramebufferConverter.requestToStopSkipCached = false;
+                FramebufferConverter.UpdateProgressState = null;
+                FramebufferConverter.currentFileProgress = 0;
+                FramebufferConverter.currentFileEntry = "";
                 currentPorgress = rnd.Next(currentPorgress, 99);
                 UpdateInfoState($"Stopping the game {currentPorgress}%...", true);
             }
@@ -3986,10 +5868,40 @@ namespace RetriX.Shared.ViewModels
             GameStopped = true;
 
             await Task.Delay(700);
+            try
+            {
+                if (InputService != null)
+                {
+                    await InputService.DeinitAsync();
+                }
+                if (AudioService != null)
+                {
+                    await AudioService.DeinitAsync();
+                }
+                if (VideoService != null)
+                {
+                    await VideoService.DeinitAsync();
+                }
+            }
+            catch (Exception ex)
+            {
 
+            }
+            if (FreeCore != null)
+            {
+                try
+                {
+                    FreeCore.Invoke(null, EventArgs.Empty);
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
             UpdateInfoState($"Stopping the game 100%...", true);
             await Task.Delay(300);
             PlatformService.SetGameStopInProgress(false);
+
             try
             {
                 Dispose();
@@ -4229,6 +6141,16 @@ namespace RetriX.Shared.ViewModels
                     RaisePropertyChanged(nameof(NoSavesActive));
                     PlatformService.PlayNotificationSound("notice.mp3");
                 }
+                try
+                {
+                    GameSavesListTemp.Clear();
+                    int identificador = GC.GetGeneration(GameSavesListTemp);
+                    GC.Collect(identificador, GCCollectionMode.Forced);
+                }
+                catch (Exception ex)
+                {
+
+                }
             }
             catch (Exception e)
             {
@@ -4238,8 +6160,18 @@ namespace RetriX.Shared.ViewModels
             RaisePropertyChanged(nameof(LoadSaveListInProgress));
             try
             {
+                try
+                {
+                    int identificador = GC.GetGeneration(GameSavesList);
+                    GC.Collect(identificador, GCCollectionMode.Forced);
+                }
+                catch (Exception ex)
+                {
+
+                }
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
+
             }
             catch (Exception e)
             {
@@ -4669,7 +6601,7 @@ namespace RetriX.Shared.ViewModels
                     await outStream.FlushAsync();
                 }
                 PlatformService.PlayNotificationSound("success.wav");
-                await UserDialogs.Instance.AlertAsync($"Touch pad settings saved for {SystemNamePreview}");
+                await GeneralDialog($"Touch pad settings saved for {SystemNamePreview}");
             }
             catch (Exception e)
             {
@@ -4736,7 +6668,7 @@ namespace RetriX.Shared.ViewModels
                 if (localFolder == null)
                 {
                     PlatformService.PlayNotificationSound("faild.wav");
-                    await UserDialogs.Instance.AlertAsync($"Customization for {SystemNamePreview} not found!");
+                    await GeneralDialog($"Customization for {SystemNamePreview} not found!");
                     return;
                 }
 
@@ -4746,7 +6678,7 @@ namespace RetriX.Shared.ViewModels
                     GameIsLoadingState(true);
                     await targetFileTest.DeleteAsync();
                     PlatformService.PlayNotificationSound("success.wav");
-                    await UserDialogs.Instance.AlertAsync($"Customization for {SystemNamePreview} deleted\nGlobal customization will be used");
+                    await GeneralDialog($"Customization for {SystemNamePreview} deleted\nGlobal customization will be used");
                     try
                     {
                         leftScaleFactorValueP = (float)Settings.GetValueOrDefault(nameof(leftScaleFactorValueP), 1f);
@@ -4778,7 +6710,7 @@ namespace RetriX.Shared.ViewModels
                 else
                 {
                     PlatformService.PlayNotificationSound("faild.wav");
-                    await UserDialogs.Instance.AlertAsync($"Customization for {SystemNamePreview} not found!");
+                    await GeneralDialog($"Customization for {SystemNamePreview} not found!");
                 }
 
             }
@@ -4899,7 +6831,7 @@ namespace RetriX.Shared.ViewModels
             return $"ms-appx:///Assets/{FolderName}/{IconPath}";
         }
 
-        GroupMenuGrid ControlsMenu, SavesMenu, AdvancedMenu, ScreenMenu, AudioMenu, OverlaysMenu, RenderMenu, ColorModeMenu, DebugMenu;
+        GroupMenuGrid ControlsMenu, SavesMenu, RenderThreads, AdvancedMenu, MemoryMenu, ScreenMenu, AudioMenu, OverlaysMenu, RenderMenu, ColorModeMenu, DebugMenu;
         public ObservableCollection<GroupMenuGrid> MenusGrid = new ObservableCollection<GroupMenuGrid>();
         public void PrepareXBoxMenu()
         {
@@ -4907,83 +6839,110 @@ namespace RetriX.Shared.ViewModels
             //Control
             ControlsMenu = new GroupMenuGrid();
             ControlsMenu.Key = "Controls";
-            ControlsMenu.Add(AddNewMenu(EmulationService.CorePaused ? "Resume" : "Pause", EmulationService.CorePaused ? "1414 - Play.png" : "1420 - Pause.png", "pause"));
-            ControlsMenu.Add(AddNewMenu("Stop", "1422 - Stop.png", "stop"));
-            ControlsMenu.Add(AddNewMenu("Gamepad", "3642 - Direction Keys.png", "controls"));
-            ControlsMenu.Add(AddNewMenu("Quick Save", "3656 - Target.png", "quicksave"));
+            ControlsMenu.Add(AddNewMenu(EmulationService.CorePaused ? "Resume" : "Pause", EmulationService.CorePaused ? "play.png" : "pause.png", "pause"));
+            ControlsMenu.Add(AddNewMenu("Stop", "stop.png", "stop"));
+            ControlsMenu.Add(AddNewMenu("Gamepad", "controls.png", "controls"));
+            ControlsMenu.Add(AddNewMenu("Quick Save", "quicksave.png", "quicksave"));
             if (SensorsMovementActive)
             {
-                ControlsMenu.Add(AddNewMenu("Sensors", "6594 - Smartphone Shake.png", "sensors", true, SensorsMovement));
+                ControlsMenu.Add(AddNewMenu("Sensors", "sensors.png", "sensors", true, SensorsMovement));
             }
-            ControlsMenu.Add(AddNewMenu("Close Menu", "3672 - Diamond.png", "close"));
+            ControlsMenu.Add(AddNewMenu("Close Menu", "close.png", "close"));
             MenusGrid.Add(ControlsMenu);
 
             //Saves
             SavesMenu = new GroupMenuGrid();
             SavesMenu.Key = "Save";
-            SavesMenu.Add(AddNewMenu("Saves List", "7437 - Mobile Applications.png", "saves"));
-            SavesMenu.Add(AddNewMenu("Auto (30 Sec)", "3671 - Deck of Cards.png", "asave30", true, AutoSave30Sec));
-            SavesMenu.Add(AddNewMenu("Auto (1 Min)", "3668 - Bowling Pin.png", "asave1", true, AutoSave60Sec));
-            SavesMenu.Add(AddNewMenu("Auto(1.5 Min)", "3667 - Bowling.png", "asave15", true, AutoSave90Sec));
-            SavesMenu.Add(AddNewMenu("Auto Notify", "6585 - Notification.png", "asaven", true, AutoSaveNotify));
+            SavesMenu.Add(AddNewMenu("Saves List", "saves.png", "saves"));
+            SavesMenu.Add(AddNewMenu("Auto (30 Sec)", "timer30.png", "asave30", true, AutoSave30Sec));
+            SavesMenu.Add(AddNewMenu("Auto (1 Min)", "timer60.png", "asave1", true, AutoSave60Sec));
+            SavesMenu.Add(AddNewMenu("Auto(1.5 Min)", "timer95.png", "asave15", true, AutoSave90Sec));
+            SavesMenu.Add(AddNewMenu("Auto Notify", "timernotify.png", "asaven", true, AutoSaveNotify));
             MenusGrid.Add(SavesMenu);
+
+            //Render
+            RenderThreads = new GroupMenuGrid();
+            RenderThreads.Key = "Performance";
+            RenderThreads.Add(AddNewMenu("Skip Frames", "skipframes.png", "skipframes", true, SkipFrames));
+            RenderThreads.Add(AddNewMenu("Wait Threads", "threadswait.png", "threadswait", true, !FramebufferConverter.DontWaitThreads));
+            RenderThreads.Add(AddNewMenu("1 Thread", "threadsnone.png", "threadsnone", true, RCore1));
+            RenderThreads.Add(AddNewMenu("2 Threads", "threads2.png", "threads2", true, RCore2));
+            RenderThreads.Add(AddNewMenu("4 Threads", "threads4.png", "threads4", true, RCore4));
+            RenderThreads.Add(AddNewMenu("8 Threads", "threads8.png", "threads8", true, RCore8));
+            MenusGrid.Add(RenderThreads);
 
             //On Screen
             AdvancedMenu = new GroupMenuGrid();
             AdvancedMenu.Key = "Advanced";
-            AdvancedMenu.Add(AddNewMenu("FPS Counter", "6599 - Stopwatch.png", "fps", true, ShowFPSCounter));
+            AdvancedMenu.Add(AddNewMenu("FPS Counter", "fps.png", "fps", true, ShowFPSCounter));
+            AdvancedMenu.Add(AddNewMenu("Crazy Buffer", "cbuf.png", "cbuf", true, CrazyBufferActive));
             if (InGameOptionsActive)
             {
-                AdvancedMenu.Add(AddNewMenu("Core Options", "6591 - Settings I.png", "coreoptions"));
+                AdvancedMenu.Add(AddNewMenu("Core Options", "core.png", "coreoptions"));
             }
             MenusGrid.Add(AdvancedMenu);
 
+
+            //Effects
+            ColorModeMenu = new GroupMenuGrid();
+            ColorModeMenu.Key = "Video Effects";
+            ColorModeMenu.Add(AddNewMenu("None", "bw.png", "creset", true, VideoService.TotalEffects() == 0));
+            ColorModeMenu.Add(AddNewMenu("Show Effects", "sepia.png", "csepia", true, VideoService.TotalEffects() > 0));
+            ColorModeMenu.Add(AddNewMenu("Set Overlays", "none.png", "overlays", true, AddOverlays));
+            ColorModeMenu.Add(AddNewMenu("Set Shaders", "retro.png", "shaders", true, AddShaders));
+            MenusGrid.Add(ColorModeMenu);
+
+
+            //Memory Helpers
+            if (isMemoryHelpersVisible)
+            {
+                MemoryMenu = new GroupMenuGrid();
+                MemoryMenu.Key = "Memory Helpers";
+                MemoryMenu.Add(AddNewMenu("Buffer.CopyMemory", "memory.png", "membcpy", true, BufferCopyMemory));
+                MemoryMenu.Add(AddNewMenu("memcpy (msvcrt)", "memory.png", "memcpy", true, memCPYMemory));
+                MemoryMenu.Add(AddNewMenu("Marshal.CopyTo", "memory.png", "memmarsh", true, MarshalMemory));
+                MemoryMenu.Add(AddNewMenu("Span.CopyTo", "memory.png", "memspan", true, SpanlMemory));
+                MemoryMenu.Add(AddNewMenu("Help", "help.png", "memhelp"));
+                MenusGrid.Add(MemoryMenu);
+            }
             //Rotate
             ScreenMenu = new GroupMenuGrid();
             ScreenMenu.Key = "Screen";
-            ScreenMenu.Add(AddNewMenu("Rotate Right", "6600 - Switch On.png", "rright", true, RotateDegreePlusActive));
-            ScreenMenu.Add(AddNewMenu("Rotate Left", "6601 - Switch Off.png", "rleft", true, RotateDegreeMinusActive));
+            ScreenMenu.Add(AddNewMenu("Rotate Right", "right.png", "rright", true, RotateDegreePlusActive));
+            ScreenMenu.Add(AddNewMenu("Rotate Left", "left.png", "rleft", true, RotateDegreeMinusActive));
             MenusGrid.Add(ScreenMenu);
 
             //Audio
             AudioMenu = new GroupMenuGrid();
             AudioMenu.Key = "Audio";
-            AudioMenu.Add(AddNewMenu("Volume Mute", "1424 - Mute.png", "vmute", true, AudioMuteLevel));
-            AudioMenu.Add(AddNewMenu("Volume High", "1403 - Speaker.png", "vhigh", true, AudioHighLevel));
-            AudioMenu.Add(AddNewMenu("Volume Default", "1425 - Volume.png", "vdefault", true, AudioNormalLevel));
-            AudioMenu.Add(AddNewMenu("Volume Low", "6611 - Volume Control.png", "vlow", true, AudioLowLevel));
-            AudioMenu.Add(AddNewMenu("Echo Effect", "1405 - Music.png", "aecho", true, AudioEcho));
+            AudioMenu.Add(AddNewMenu("Volume Mute", "mute.png", "vmute", true, AudioMuteLevel));
+            AudioMenu.Add(AddNewMenu("Volume High", "high.png", "vhigh", true, AudioHighLevel));
+            AudioMenu.Add(AddNewMenu("Volume Default", "default.png", "vdefault", true, AudioNormalLevel));
+            AudioMenu.Add(AddNewMenu("Volume Low", "low.png", "vlow", true, AudioLowLevel));
+            AudioMenu.Add(AddNewMenu("Echo Effect", "echo.png", "aecho", true, AudioEcho));
             MenusGrid.Add(AudioMenu);
 
             //Overlays
             OverlaysMenu = new GroupMenuGrid();
             OverlaysMenu.Key = "Overlays";
-            OverlaysMenu.Add(AddNewMenu("Overlay Lines", "3654 - Bricks.png", "ovlines", true, ScanLines3));
-            OverlaysMenu.Add(AddNewMenu("Overlay Grid", "3663 - Dice II.png", "ovgrid", true, ScanLines2));
+            OverlaysMenu.Add(AddNewMenu("Overlay Lines", "lines.png", "ovlines", true, ScanLines3));
+            OverlaysMenu.Add(AddNewMenu("Overlay Grid", "grid.png", "ovgrid", true, ScanLines2));
             MenusGrid.Add(OverlaysMenu);
 
             //Render
             RenderMenu = new GroupMenuGrid();
             RenderMenu.Key = "Render";
-            RenderMenu.Add(AddNewMenu("Nearest", "6567 - Low Battery.png", "rnearest", true, NearestNeighbor));
-            RenderMenu.Add(AddNewMenu("Linear", "6566 - Half Battery.png", "rlinear", true, Linear));
-            RenderMenu.Add(AddNewMenu("MultiSample", "6565 - Full Battery.png", "rmultisample", true, MultiSampleLinear));
+            RenderMenu.Add(AddNewMenu("Nearest", "near.png", "rnearest", true, NearestNeighbor));
+            RenderMenu.Add(AddNewMenu("Linear", "line.png", "rlinear", true, Linear));
+            RenderMenu.Add(AddNewMenu("MultiSample", "multi.png", "rmultisample", true, MultiSampleLinear));
             MenusGrid.Add(RenderMenu);
-
-            //Color
-            ColorModeMenu = new GroupMenuGrid();
-            ColorModeMenu.Key = "Color Mode";
-            ColorModeMenu.Add(AddNewMenu("None", "6570 - Controls.png", "creset", true, ColorFilters[0]));
-            ColorModeMenu.Add(AddNewMenu("B/W", "3640 - Brick Game.png", "cbw", true, ColorFilters[1]));
-            ColorModeMenu.Add(AddNewMenu("Sepia", "3646 - Game Character II.png", "csepia", true, ColorFilters[4]));
-            ColorModeMenu.Add(AddNewMenu("Retro", "3638 - Gaming Control I.png", "cretro", true, ColorFilters[5]));
-            MenusGrid.Add(ColorModeMenu);
 
             //Debug
             DebugMenu = new GroupMenuGrid();
             DebugMenu.Key = "Debug";
-            DebugMenu.Add(AddNewMenu("Log List", "7443 - Quality Assurance.png", "loglist"));
-            DebugMenu.Add(AddNewMenu("Close Menu", "3672 - Diamond.png", "close"));
+            DebugMenu.Add(AddNewMenu("Log List", "logs.png", "loglist"));
+            RenderThreads.Add(AddNewMenu("Pixels Update", "dim.png", "skipcache", true, SkipCached));
+            DebugMenu.Add(AddNewMenu("Close Menu", "close.png", "close"));
             MenusGrid.Add(DebugMenu);
         }
         public SystemMenuModel AddNewMenu(string Name, string Icon, string Command, bool SwitchState = false, bool SwitchValue = false)
@@ -5027,6 +6986,39 @@ namespace RetriX.Shared.ViewModels
                         await QuickSaveState();
                         break;
 
+                    case "dimcache":
+                        SetUpdatesOnly.Execute();
+                        break;
+
+                    case "skipcache":
+                        SetSkipCached.Execute();
+                        break;
+
+                    case "skipframes":
+                        SetSkipFrames.Execute();
+                        break;
+
+                    case "threadswait":
+                        DontWaitThreads.Execute();
+                        break;
+                    case "threadsnone":
+                        RCore1 = true;
+                        SetRCore.Execute();
+                        break;
+
+                    case "threads2":
+                        RCore2 = true;
+                        SetRCore.Execute();
+                        break;
+                    case "threads4":
+                        RCore4 = true;
+                        SetRCore.Execute();
+                        break;
+                    case "threads8":
+                        RCore8 = true;
+                        SetRCore.Execute();
+                        break;
+
                     case "saves":
                         ShowSavesList.Execute();
                         break;
@@ -5052,6 +7044,10 @@ namespace RetriX.Shared.ViewModels
 
                     case "fps":
                         ShowFPSCounterCommand.Execute();
+                        break;
+
+                    case "cbuf":
+                        SetCrazyBufferActive.Execute();
                         break;
 
                     case "vmute":
@@ -5089,20 +7085,41 @@ namespace RetriX.Shared.ViewModels
                         break;
 
                     case "creset":
-                        SetColorFilterNone.Execute();
+                        ClearAllEffects.Execute();
                         break;
                     case "cbw":
                         SetColorFilterGrayscale.Execute();
                         break;
                     case "csepia":
-                        SetColorFilterBurn.Execute();
+                        ShowAllEffects.Execute();
                         break;
-                    case "cretro":
-                        SetColorFilterRetro.Execute();
+                    case "shaders":
+                        AddShaders = !AddShaders;
+                        break;
+                    case "overlays":
+                        AddOverlays = !AddOverlays;
                         break;
 
                     case "loglist":
                         SetShowLogsList.Execute();
+                        break;
+
+                    case "membcpy":
+                        BufferCopyMemory = true;
+                        break;
+                    case "memcpy":
+                        memCPYMemory = true;
+                        break;
+                    case "memmarsh":
+                        MarshalMemory = true;
+                        break;
+                    case "memspan":
+                        SpanlMemory = true;
+                        break;
+
+                    case "memhelp":
+                        PlatformService.PlayNotificationSound("notice.mp3");
+                        GeneralDialog("Huh, You never heard about these stuff?\nWell, these are methods used to deal with the memory.\nI added multiple options so you can try whatever you want and choose what is the best for your device.");
                         break;
 
                     case "close":

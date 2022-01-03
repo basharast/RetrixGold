@@ -30,6 +30,7 @@ namespace RetriX.UWP.Pages
 
         public SettingsView()
         {
+            PlatformService.SaveGamesListStateDirect();
             this.InitializeComponent();
 
             try
@@ -45,6 +46,7 @@ namespace RetriX.UWP.Pages
             {
 
             }
+            
 
             try
             {

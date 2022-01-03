@@ -64,7 +64,7 @@ namespace LibRetriX.RetroBindings
         [DllImport("kernel32.dll", SetLastError = true)]
         public static extern IntPtr LoadLibrary(string lib);
         [DllImport("kernel32.dll", SetLastError = true)]
-        public static extern void FreeLibrary(IntPtr module);
+        public static extern bool FreeLibrary(IntPtr module);
         [DllImport("kernel32.dll", SetLastError = true)]
         public static extern IntPtr GetProcAddress(IntPtr module, string proc);
 

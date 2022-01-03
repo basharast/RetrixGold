@@ -1,5 +1,6 @@
 ﻿using MvvmCross.Uwp.Views;
 using RetriX.Shared.ViewModels;
+using RetriX.UWP.Services;
 
 namespace RetriX.UWP.Pages
 {
@@ -9,6 +10,7 @@ namespace RetriX.UWP.Pages
 
         public AboutView()
         {
+            PlatformService.SaveGamesListStateDirect();
             this.InitializeComponent();
         }
     }

@@ -5,7 +5,7 @@ namespace LibRetriX.RetroBindings
 {
     #region Main delegates
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    public delegate void LibretroLogDelegate(LogLevels level, IntPtr format, IntPtr argAddresses);
+    public delegate void LibretroLogDelegate(LogLevels level, string format, IntPtr arg1, IntPtr arg2, IntPtr arg3, IntPtr arg4, IntPtr arg5, IntPtr arg6, IntPtr arg7, IntPtr arg8, IntPtr arg9, IntPtr arg10, IntPtr arg11, IntPtr arg12);
 
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     [return: MarshalAs(UnmanagedType.I1)]

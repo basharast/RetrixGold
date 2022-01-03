@@ -31,6 +31,8 @@
                 <TextBlock FontWeight="Bold">
                 How to start?
                 <LineBreak></LineBreak>
+                    Note: help below is updated, please read it online
+                <LineBreak></LineBreak>
                 <Run x:Uid="EnhancedByByLabel" Text="Read more at " FontWeight="Bold"/>
                 <Hyperlink Foreground="RoyalBlue" NavigateUri="https://retrix.astifan.online/help.html">Online Help</Hyperlink>
                 </TextBlock>
@@ -66,8 +68,13 @@
                 <LineBreak></LineBreak>
                  -Setup <Bold Foreground="DarkGreen">"Games Folder"</Bold>
                 <LineBreak></LineBreak>
+                
                 <LineBreak></LineBreak>
-                    
+                <LineBreak></LineBreak>
+                <Bold Foreground="DarkRed">Note:</Bold> Loading game without compression always better and less memory usage.
+               
+                <LineBreak></LineBreak>
+                 <LineBreak></LineBreak>
                 <Bold FontSize="20" Foreground="DarkGreen">
                  Games Folder
                 </Bold>

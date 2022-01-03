@@ -4,7 +4,7 @@
          xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
          xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
          IgnorableNamespaces="uap mp rescap">
-  <Identity Name="Aftnet.RetriX.Gold" Publisher="CN=Bashar Astifan" Version="2.9.5.0" />
+  <Identity Name="Aftnet.RetriX.Gold" Publisher="CN=Bashar Astifan" Version="2.9.6.0" />
   <mp:PhoneIdentity PhoneProductId="efc54b08-6566-4c74-810c-e9437145cdf4" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Retrix Gold</DisplayName>
@@ -182,8 +182,9 @@
             <uap:SupportedFileTypes>
               <uap:FileType>.zip</uap:FileType>
               <uap:FileType>.sip</uap:FileType>
-              <uap:FileType>.7z</uap:FileType>
               <uap:FileType>.rbp</uap:FileType>
+              <uap:FileType>.7z</uap:FileType>
+              <uap:FileType>.rar</uap:FileType>
             </uap:SupportedFileTypes>
           </uap:FileTypeAssociation>
         </uap:Extension>

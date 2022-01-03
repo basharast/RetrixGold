@@ -1,6 +1,7 @@
 ﻿using RetriX.Shared.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
 
 namespace RetriX.UWP.Controls
 {
@@ -18,6 +19,22 @@ namespace RetriX.UWP.Controls
         public PlayerOverlay()
         {
             InitializeComponent();
+        }
+
+        private void OnEffectClick(object sender, RoutedEventArgs e)
+        {
+            FrameworkElement element = sender as FrameworkElement;
+            FlyoutBase.ShowAttachedFlyout(element);
+        }
+
+        private void MenuFlyout_Closed(object sender, object e)
+        {
+
+        }
+
+        private void MenuFlyout_Closing(FlyoutBase sender, FlyoutBaseClosingEventArgs args)
+        {
+           //args.Cancel = true;
         }
     }
 }

@@ -64,7 +64,53 @@ namespace RetriX.Shared.ViewModels
         public bool ShowAnyCoreOptions = false;
         public bool ShowUpdateOption = false;
         public bool ShowCoreInfo = true;
+        //All the junk below for dialog just to avoid crash on Windows Phone in case two dialogs appears at once
+        #region DIALOG
+        bool isDialogInProgressTemp = false;
+        bool isDialogInProgress
+        {
+            get
+            {
+                if (PlatformService != null)
+                {
+                    return PlatformService.DialogInProgress;
+                }
+                else
+                {
+                    return isDialogInProgressTemp;
+                }
+            }
+            set
+            {
+                if (PlatformService != null)
+                {
+                    PlatformService.DialogInProgress = value;
+                }
+                else
+                {
+                    isDialogInProgressTemp = value;
+                }
+            }
+        }
+        private async Task GeneralDialog(string Message, string title = null, string okButton = null)
+        {
+            if (isDialogInProgress)
+            {
+                return;
+            }
+            isDialogInProgress = true;
+            try
+            {
+                await DialogsService.AlertAsync(Message, title, okButton);
+            }
+            catch (Exception ex)
+            {
 
+            }
+            isDialogInProgress = false;
+        }
+
+        #endregion
         public void setShowAnyCoreOptions(bool state)
         {
             ShowAnyCoreOptions = state;
@@ -179,6 +225,11 @@ namespace RetriX.Shared.ViewModels
                 {
                     await Task.Delay(2000);
                     PlatformService.PlayNotificationSound("notice.mp3");
+                    while (PlatformService.DialogInProgress)
+                    {
+                        await Task.Delay(1000);
+                    }
+                    PlatformService.DialogInProgress = true;
                     ConfirmConfig confirmLoadNotice = new ConfirmConfig();
                     confirmLoadNotice.SetTitle("New User?");
                     confirmLoadNotice.SetMessage("Visit help page \u2754 to read about the important features and guidelines.");
@@ -187,6 +238,7 @@ namespace RetriX.Shared.ViewModels
                     confirmLoadNotice.SetCancelText("Dismiss");
 
                     var NeverShow = await UserDialogs.Instance.ConfirmAsync(confirmLoadNotice);
+                    PlatformService.DialogInProgress = false;
                     if (NeverShow)
                     {
                         PlatformService.PlayNotificationSound("button-01.mp3");
@@ -198,6 +250,7 @@ namespace RetriX.Shared.ViewModels
                         PlatformService.PlayNotificationSound("button-01.mp3");
                     }
                 }
+                PlatformService.DialogInProgress = false;
             }));
 
             Task AppLaunched = new Task(new Action(async () =>
@@ -342,7 +395,7 @@ namespace RetriX.Shared.ViewModels
                 SystemsLoadFailed = true;
                 RaisePropertyChanged(nameof(SystemsLoadFailed));
             }
-            if (GameSystems.Count <= 1 && !StartedByFile)
+            if (GameSystems.Count < 1 && !StartedByFile)
             {
                 SystemsLoadFailed = true;
                 RaisePropertyChanged(nameof(SystemsLoadFailed));
@@ -389,7 +442,7 @@ namespace RetriX.Shared.ViewModels
                             PlatformService.PlayNotificationSound("success.wav");
                             if (!PlatformService.ShowNotificationMain("Games folder set for " + system.Name, 2))
                             {
-                                await UserDialogs.Instance.AlertAsync("Games folder set for " + system.Name, "Games Folder");
+                                await GeneralDialog("Games folder set for " + system.Name, "Games Folder");
                             }
                         }
                         CheckByTokenActive = false;
@@ -421,6 +474,15 @@ namespace RetriX.Shared.ViewModels
                         if (FilesListCache.Count > 0 && FilesListCache.TryGetValue(SelectedSystem.TempName, out FilesListTest))
                         {
                             FilesListCache[SelectedSystem.TempName].Clear();
+                            try
+                            {
+                                int identificador = GC.GetGeneration(FilesListCache);
+                                GC.Collect(identificador, GCCollectionMode.Forced);
+                            }
+                            catch (Exception ex)
+                            {
+
+                            }
                         }
                         else
                         {
@@ -491,6 +553,11 @@ namespace RetriX.Shared.ViewModels
                 {
                     DeleteRecentInProgress = true;
                     PlatformService.PlayNotificationSound("alert.wav");
+                    while (PlatformService.DialogInProgress)
+                    {
+                        await Task.Delay(1000);
+                    }
+                    PlatformService.DialogInProgress = true;
                     ConfirmConfig confirmRecentDelete = new ConfirmConfig();
                     confirmRecentDelete.SetTitle("Recent Action");
                     confirmRecentDelete.SetMessage($"Choose action for:\n{recent.GameName}\n\nDelete:\nDelete game from recent only");
@@ -498,6 +565,7 @@ namespace RetriX.Shared.ViewModels
                     confirmRecentDelete.OkText = "Delete";
                     confirmRecentDelete.CancelText = "Cancel";
                     bool RootFolderState = await UserDialogs.Instance.ConfirmAsync(confirmRecentDelete);
+                    PlatformService.DialogInProgress = false;
                     if (RootFolderState)
                     {
                         await PlatformService.AddGameToRecents(recent.GameSystem, recent.GameLocation, false, recent.GameID, 0, true);
@@ -513,6 +581,11 @@ namespace RetriX.Shared.ViewModels
                 {
                     DeleteRecentInProgress = true;
                     PlatformService.PlayNotificationSound("alert.wav");
+                    while (PlatformService.DialogInProgress)
+                    {
+                        await Task.Delay(1000);
+                    }
+                    PlatformService.DialogInProgress = true;
                     ConfirmConfig confirmRecentDelete = new ConfirmConfig();
                     confirmRecentDelete.SetTitle("Game Action");
                     confirmRecentDelete.SetMessage($"Choose action for:\n{recent.GameName}\n\nGet Size:\nGet game total size");
@@ -520,6 +593,7 @@ namespace RetriX.Shared.ViewModels
                     confirmRecentDelete.OkText = "Get Size";
                     confirmRecentDelete.CancelText = "Cancel";
                     bool RootFolderState = await UserDialogs.Instance.ConfirmAsync(confirmRecentDelete);
+                    PlatformService.DialogInProgress = false;
                     if (RootFolderState)
                     {
                         SystemCoreIsLoadingState(true);
@@ -528,12 +602,12 @@ namespace RetriX.Shared.ViewModels
                         {
                             var GameSize = await GameFile.GetLengthAsync();
                             PlatformService.PlayNotificationSound("success.wav");
-                            await UserDialogs.Instance.AlertAsync($"{recent.GameName}'s size is:\n{GameSize.ToFileSize()}");
+                            await GeneralDialog($"{recent.GameName}'s size is:\n{GameSize.ToFileSize()}");
                         }
                         else
                         {
                             PlatformService.PlayNotificationSound("faild.wav");
-                            await UserDialogs.Instance.AlertAsync($"{recent.GameName} not found!\nOriginal Location: {recent.GameLocation}");
+                            await GeneralDialog($"{recent.GameName} not found!\nOriginal Location: {recent.GameLocation}");
                         }
 
                         DeleteRecentInProgress = false;
@@ -547,6 +621,7 @@ namespace RetriX.Shared.ViewModels
             }
             catch (Exception e)
             {
+                PlatformService.DialogInProgress = false;
                 PlatformService?.ShowErrorMessage(e);
                 DeleteRecentInProgress = false;
                 SystemCoreIsLoadingState(false);
@@ -574,6 +649,18 @@ namespace RetriX.Shared.ViewModels
         string[] SelectedSystemExtensions = null;
         public void ClearSelectedSystem()
         {
+            try
+            {
+                if (SelectedSystem != null)
+                {
+                    //FilesListCache[SelectedSystem.TempName].Clear();
+                    GCCollectForList(FilesListCache);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
             SystemSelected = false;
             SelectedSystem = null;
             SelectedSystemExtensions = null;
@@ -588,13 +675,19 @@ namespace RetriX.Shared.ViewModels
                 if (system.AnyCore)
                 {
                     PlatformService.PlayNotificationSound("faild.wav");
-                    await UserDialogs.Instance.AlertAsync("Core failed to load, you can't use the core at the moment", "Core Failed");
+                    await GeneralDialog("Core failed to load, you can't use the core at the moment", "Core Failed");
                     PlatformService.PlayNotificationSound("alert.wav");
+                    while (PlatformService.DialogInProgress)
+                    {
+                        await Task.Delay(1000);
+                    }
+                    PlatformService.DialogInProgress = true;
                     ConfirmConfig confirmDeleteCore = new ConfirmConfig();
                     confirmDeleteCore.SetTitle("Delete Core");
                     confirmDeleteCore.SetMessage($"Do you want to delete this core?");
                     confirmDeleteCore.UseYesNo();
                     bool confirmDeleteCoreState = await UserDialogs.Instance.ConfirmAsync(confirmDeleteCore);
+                    PlatformService.DialogInProgress = false;
                     if (confirmDeleteCoreState)
                     {
                         SystemCoreIsLoadingState(true);
@@ -616,28 +709,35 @@ namespace RetriX.Shared.ViewModels
                                 await targetBIOSTest.DeleteAsync();
                             }
                             PlatformService.PlayNotificationSound("success.wav");
-                            if(!PlatformService.ShowNotificationMain($"{system.Name} Deleted, Restart Retrix is recommended", 3)) {
-                               await UserDialogs.Instance.AlertAsync($"{system.Name} Deleted, Restart Retrix is recommended");
+                            if (!PlatformService.ShowNotificationMain($"{system.Name} Deleted, Restart Retrix is recommended", 3))
+                            {
+                                await GeneralDialog($"{system.Name} Deleted, Restart Retrix is recommended");
                             }
                             system.Core.FailedToLoad = true;
                         }
                         else
                         {
                             PlatformService.PlayNotificationSound("faild.wav");
-                            await UserDialogs.Instance.AlertAsync($"{system.Name} not found!, unable to delete {system.Name}");
+                            await GeneralDialog($"{system.Name} not found!, unable to delete {system.Name}");
                         }
                     }
                 }
                 else
                 {
                     PlatformService.PlayNotificationSound("faild.wav");
-                    await UserDialogs.Instance.AlertAsync("Core failed to load, you can't use the core at the moment", "Core Failed");
+                    await GeneralDialog("Core failed to load, you can't use the core at the moment", "Core Failed");
                     PlatformService.PlayNotificationSound("alert.wav");
+                    while (PlatformService.DialogInProgress)
+                    {
+                        await Task.Delay(1000);
+                    }
+                    PlatformService.DialogInProgress = true;
                     ConfirmConfig confirmDeleteCore = new ConfirmConfig();
                     confirmDeleteCore.SetTitle("Delete Update");
                     confirmDeleteCore.SetMessage($"This could happen becuase of an update\n\nDo you want to delete the last update?");
                     confirmDeleteCore.UseYesNo();
                     bool confirmDeleteCoreState = await UserDialogs.Instance.ConfirmAsync(confirmDeleteCore);
+                    PlatformService.DialogInProgress = false;
                     if (confirmDeleteCoreState)
                     {
                         SystemCoreIsLoadingState(true);
@@ -652,15 +752,16 @@ namespace RetriX.Shared.ViewModels
                             await targetFielTest.DeleteAsync();
 
                             PlatformService.PlayNotificationSound("success.wav");
-                            if(!PlatformService.ShowNotificationMain($"{system.Name}'s update Deleted, Restart Retrix is recommended", 3)) { 
-                            await UserDialogs.Instance.AlertAsync($"{system.Name}'s update Deleted, Restart Retrix is recommended");
+                            if (!PlatformService.ShowNotificationMain($"{system.Name}'s update Deleted, Restart Retrix is recommended", 3))
+                            {
+                                await GeneralDialog($"{system.Name}'s update Deleted, Restart Retrix is recommended");
                             }
                             system.Core.FailedToLoad = true;
                         }
                         else
                         {
                             PlatformService.PlayNotificationSound("faild.wav");
-                            await UserDialogs.Instance.AlertAsync($"{system.Name}'s update not found!, unable to delete");
+                            await GeneralDialog($"{system.Name}'s update not found!, unable to delete");
                         }
                     }
                 }
@@ -685,16 +786,26 @@ namespace RetriX.Shared.ViewModels
                         else
                         {
                             PlatformService.PlayNotificationSound("alert.wav");
+                            while (PlatformService.DialogInProgress)
+                            {
+                                await Task.Delay(1000);
+                            }
+                            PlatformService.DialogInProgress = true;
                             ConfirmConfig confirmRootFolder = new ConfirmConfig();
                             confirmRootFolder.SetTitle("Open Action");
-                            confirmRootFolder.SetMessage($"Choose action for:\n{system.Name}\n\nGames Folder (Recommended):\nSelect games folder\n\nSingle Game:\nSelect one game");
+                            confirmRootFolder.SetMessage($"Please set games folder for {system.Name}\n\nGames Folder (Recommended):\nSelect games folder specifically for this system");
                             confirmRootFolder.UseYesNo();
                             confirmRootFolder.OkText = "Games Folder";
-                            confirmRootFolder.CancelText = "Single Game";
+                            confirmRootFolder.CancelText = "Close";
                             bool RootFolderState = await UserDialogs.Instance.ConfirmAsync(confirmRootFolder);
+                            PlatformService.DialogInProgress = false;
                             if (RootFolderState)
                             {
                                 GameSystemHoldingHandler(system);
+                                return;
+                            }
+                            else
+                            {
                                 return;
                             }
                         }
@@ -729,6 +840,7 @@ namespace RetriX.Shared.ViewModels
             {
                 if (PlatformService != null)
                 {
+                    PlatformService.DialogInProgress = false;
                     PlatformService.ShowErrorMessage(e);
                 }
                 SystemSelected = false;
@@ -777,6 +889,8 @@ namespace RetriX.Shared.ViewModels
                     {
                         GamesRecentsList.Clear();
                         GamesRecentsListTemp.Clear();
+                        GCCollectForList(GamesRecentsList);
+                        GCCollectForList(GamesRecentsListTemp);
                         SearchText = "";
                         searchCleardByGetter = true;
                         RaisePropertyChanged(nameof(SearchText));
@@ -886,6 +1000,7 @@ namespace RetriX.Shared.ViewModels
             else
             {
                 FilesListCache[SelectedSystem.TempName].Clear();
+                GCCollectForList(FilesListCache);
                 await GetFilesByExtensions(GetRootFolerBySystemName(SelectedSystem.TempName));
             }
             return FilesListCache[SelectedSystem.TempName].Keys.ToArray();
@@ -904,7 +1019,7 @@ namespace RetriX.Shared.ViewModels
                         //var fileSize = await FileItem.GetLengthAsync();
                         //fileSize = ((fileSize / 1024) / 1024);
                         //if(fileSize < 50)
-                        var archiveProvider = new ArchiveStreamProvider(vfsRomPath, FileItem);
+                        var archiveProvider = new ArchiveStreamProvider(vfsRomPath, FileItem, PlatformService);
                         var entries = await archiveProvider.ListEntriesAsync();
                         var virtualMainFilePath = entries.FirstOrDefault(d => SelectedSystem.SupportedExtensions.Contains(Path.GetExtension(d.Replace("#", "")).ToLower()));
                         if (!string.IsNullOrEmpty(virtualMainFilePath))
@@ -977,6 +1092,7 @@ namespace RetriX.Shared.ViewModels
                 {
                     var FilteredList = GamesRecentsListTemp.Where(item => item.GameName.ToLower().Contains(filterText.ToLower()));
                     GamesRecentsList.Clear();
+                    GCCollectForList(GamesRecentsList);
 
                     foreach (var MatchedITem in FilteredList)
                     {
@@ -988,6 +1104,8 @@ namespace RetriX.Shared.ViewModels
                 else
                 {
                     GamesRecentsList.Clear();
+                    GCCollectForList(GamesRecentsList);
+
                     foreach (var MatchedITem in GamesRecentsListTemp)
                     {
                         GamesRecentsList.Add(MatchedITem);
@@ -1018,6 +1136,9 @@ namespace RetriX.Shared.ViewModels
                     SystemCoreIsLoadingState(true);
                     GamesRecentsList.Clear();
                     GamesRecentsListTemp.Clear();
+                    GCCollectForList(GamesRecentsList);
+                    GCCollectForList(GamesRecentsListTemp);
+
                     SearchText = "";
                     RaisePropertyChanged(nameof(SearchText));
                 }
@@ -1115,8 +1236,8 @@ namespace RetriX.Shared.ViewModels
                                 PlatformService.PlayNotificationSound("notice.mp3");
                             }
                             SystemCoreIsLoadingState(false);
-                            GC.Collect();
-                            GC.WaitForPendingFinalizers();
+                            //GC.Collect();
+                            //GC.WaitForPendingFinalizers();
                         }
                     }
                     catch (Exception e)
@@ -1146,14 +1267,42 @@ namespace RetriX.Shared.ViewModels
             {
                 if (SelectedSystem != null)
                 {
+                    bool isCompressed = false;
+                    try
+                    {
+                        if (!SelectedSystem.Core.NativeArchiveSupport)
+                        {
+                            var ext = Path.GetExtension(GameName);
+                            switch (ext)
+                            {
+                                case ".zip":
+                                case ".7z":
+                                case ".rar":
+                                case ".gz":
+                                case ".tar":
+                                    isCompressed = true;
+                                    break;
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
                     var pattern = @"\s\(\d+\)$";
                     GameName = Regex.Replace(GameName, pattern, "");
-                    PlatformService.PlayNotificationSound("root-needed.wav");
+                    PlatformService.PlayNotificationSound("notice.mp3");
+                    while (PlatformService.DialogInProgress)
+                    {
+                        await Task.Delay(1000);
+                    }
+                    PlatformService.DialogInProgress = true;
                     ConfirmConfig confirmPlayGame = new ConfirmConfig();
                     confirmPlayGame.SetTitle("Start Play?");
-                    confirmPlayGame.SetMessage("Do you want to start\n" + Path.GetFileName(GameName));
+                    confirmPlayGame.SetMessage("Do you want to start\n" + Path.GetFileName(GameName) + $"{(isCompressed ? "\n\nAdvice: Loading uncompressed games always better and less memory usage" : "")}");
                     confirmPlayGame.UseYesNo();
                     bool PlayGame = await UserDialogs.Instance.ConfirmAsync(confirmPlayGame);
+                    PlatformService.DialogInProgress = false;
                     if (PlayGame)
                     {
                         string GameLocation = GetFileLocationByName(GameName);
@@ -1174,13 +1323,13 @@ namespace RetriX.Shared.ViewModels
                             else
                             {
                                 PlatformService.PlayNotificationSound("faild.wav");
-                                await UserDialogs.Instance.AlertAsync("Game not found, or games folder is not correct, Original Path:\n" + GameLocation, "Start Failed");
+                                await GeneralDialog("Game not found, or games folder is not correct, Original Path:\n" + GameLocation, "Start Failed");
                             }
                         }
                         else
                         {
                             PlatformService.PlayNotificationSound("faild.wav");
-                            await UserDialogs.Instance.AlertAsync("Game not found, or games folder is not correct", "Start Failed");
+                            await GeneralDialog("Game not found, or games folder is not correct", "Start Failed");
                         }
                     }
                 }
@@ -1189,6 +1338,7 @@ namespace RetriX.Shared.ViewModels
             {
                 if (PlatformService != null)
                 {
+                    PlatformService.DialogInProgress = false;
                     PlatformService.ShowErrorMessage(e);
                 }
             }
@@ -1232,11 +1382,18 @@ namespace RetriX.Shared.ViewModels
                     case "PlayStation":
                     case "PlayStation*":
                         PlatformService.PlayNotificationSound("alert.wav");
+                        PlatformService.PlayNotificationSound("notice.mp3");
+                        while (PlatformService.DialogInProgress)
+                        {
+                            await Task.Delay(1000);
+                        }
+                        PlatformService.DialogInProgress = true;
                         ConfirmConfig confirmPlayGame = new ConfirmConfig();
                         confirmPlayGame.SetTitle("Start Play?");
                         confirmPlayGame.SetMessage("Do you want to include Analog control?\nSome games will not detect the gamepad if you attach the Analog control.");
                         confirmPlayGame.UseYesNo();
                         bool CustomInput = await UserDialogs.Instance.ConfirmAsync(confirmPlayGame);
+                        PlatformService.DialogInProgress = false;
                         system.Core.ReInitialCore(CustomInput);
                         break;
 
@@ -1249,6 +1406,7 @@ namespace RetriX.Shared.ViewModels
             {
                 if (PlatformService != null)
                 {
+                    PlatformService.DialogInProgress = false;
                     PlatformService.ShowErrorMessage(e);
                 }
             }
@@ -1272,15 +1430,31 @@ namespace RetriX.Shared.ViewModels
 
             }
         }
+
+        public GameSystemViewModel systemTemp;
         private async Task StartGameAsync(GameSystemViewModel system, IFileInfo file)
         {
+            try
+            {
+                //For some reason allocated memory space didn't get free when use zip rom
+                //So I will free the last selected core, just to be sure that it's not the problem
+                if (systemTemp != null)
+                {
+                    systemTemp.Core.FreeLibretroCore();
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+            systemTemp = system;
             //Verify the file before open
             var fileLength = await file.GetLengthAsync();
             if (fileLength == 0)
             {
                 ResetSystemsSelection();
                 PlatformService.PlayNotificationSound("faild.wav");
-                await DialogsService.AlertAsync("The file is not valid or not accessible, try another one.", "Invalid File");
+                await GeneralDialog("The file is not valid or not accessible, try another one.", "Invalid File");
                 return;
             }
 
@@ -1301,6 +1475,11 @@ namespace RetriX.Shared.ViewModels
             {
                 var notificationBody = string.Format(Resources.Strings.SystemUnmetDependenciesAlertMessage, "\u26EF") + "\n\nClick [Ignore] to try without BIOS \n(If the app crashed then BIOS files needed)";
                 PlatformService.PlayNotificationSound("alert.wav");
+                while (PlatformService.DialogInProgress)
+                {
+                    await Task.Delay(1000);
+                }
+                PlatformService.DialogInProgress = true;
                 ConfirmConfig confirmIgnoreBIOS = new ConfirmConfig();
                 confirmIgnoreBIOS.SetTitle(Resources.Strings.SystemUnmetDependenciesAlertTitle);
                 confirmIgnoreBIOS.SetMessage(notificationBody);
@@ -1308,8 +1487,17 @@ namespace RetriX.Shared.ViewModels
                 confirmIgnoreBIOS.OkText = "Ok";
                 confirmIgnoreBIOS.CancelText = "Ignore";
                 bool IgnoreBIOS = await UserDialogs.Instance.ConfirmAsync(confirmIgnoreBIOS);
+                PlatformService.DialogInProgress = false;
                 if (IgnoreBIOS)
                 {
+                    try
+                    {
+                        system.Core.FreeLibretroCore();
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
                     ResetSystemsSelection();
                     return;
                 }
@@ -1348,11 +1536,17 @@ namespace RetriX.Shared.ViewModels
                     if (!AutoLoad && PlatformService.GetGameRootNeeded(system.TempName, file.FullName))
                     {
                         PlatformService.PlayNotificationSound("root-needed.wav");
+                        while (PlatformService.DialogInProgress)
+                        {
+                            await Task.Delay(1000);
+                        }
+                        PlatformService.DialogInProgress = true;
                         ConfirmConfig confirmLoadAuto = new ConfirmConfig();
                         confirmLoadAuto.SetTitle(Resources.Strings.SelectFolderRequestAlertTitle);
                         confirmLoadAuto.SetMessage(Resources.Strings.SelectFolderRequestAlertMessage);
                         confirmLoadAuto.UseYesNo();
                         AutoLoad = await UserDialogs.Instance.ConfirmAsync(confirmLoadAuto);
+                        PlatformService.DialogInProgress = false;
                     }
                     else
                     {
@@ -1378,7 +1572,7 @@ namespace RetriX.Shared.ViewModels
                         {
                             ResetSystemsSelection();
                             PlatformService.PlayNotificationSound("faild.wav");
-                            await DialogsService.AlertAsync(Resources.Strings.SelectFolderInvalidAlertMessage, Resources.Strings.SelectFolderInvalidAlertTitle);
+                            await GeneralDialog(Resources.Strings.SelectFolderInvalidAlertMessage, Resources.Strings.SelectFolderInvalidAlertTitle);
                             return;
                         }
                         SetStatus("Loading game..");
@@ -1412,7 +1606,7 @@ namespace RetriX.Shared.ViewModels
                         {
                             ResetSystemsSelection();
                             PlatformService.PlayNotificationSound("faild.wav");
-                            await DialogsService.AlertAsync(Resources.Strings.NoCompatibleFileInArchiveAlertMessage, Resources.Strings.NoCompatibleFileInArchiveAlertTitle);
+                            await GeneralDialog(Resources.Strings.NoCompatibleFileInArchiveAlertMessage, Resources.Strings.NoCompatibleFileInArchiveAlertTitle);
                             return;
                         }
                     case GameLaunchEnvironment.GenerateResult.Success:
@@ -1440,6 +1634,7 @@ namespace RetriX.Shared.ViewModels
             {
                 if (PlatformService != null)
                 {
+                    PlatformService.DialogInProgress = false;
                     PlatformService.ShowErrorMessage(e);
                 }
                 ResetSystemsSelection();
@@ -1623,7 +1818,7 @@ namespace RetriX.Shared.ViewModels
                         string SystemYear = dictionaryList["year"];
                         string SystemMessage = $"Console: {SystemName}\nCompany: {SystemCompany}\nYear: {SystemYear}\n\n{SystemDescriptions}";
                         PlatformService.PlayNotificationSound("success.wav");
-                        await UserDialogs.Instance.AlertAsync(SystemMessage);
+                        await GeneralDialog(SystemMessage);
                     }
                 }
             }
@@ -1846,7 +2041,7 @@ namespace RetriX.Shared.ViewModels
                         }
 
                         PlatformService.PlayNotificationSound("success.wav");
-                        await UserDialogs.Instance.AlertAsync("BIOS map sample file saved\nUse text editor to change it", "Save Done");
+                        await GeneralDialog("BIOS map sample file saved\nUse text editor to change it", "Save Done");
                     }
                 }
             }
@@ -1968,6 +2163,31 @@ namespace RetriX.Shared.ViewModels
 
             }
             return null;
+        }
+
+        public static void GCCollect()
+        {
+            try
+            {
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+        public static void GCCollectForList<T>(T ListToCollect)
+        {
+            try
+            {
+                int identificador = GC.GetGeneration(ListToCollect);
+                GC.Collect(identificador, GCCollectionMode.Forced);
+            }
+            catch (Exception e)
+            {
+
+            }
         }
     }
     public static class ExtensionMethods

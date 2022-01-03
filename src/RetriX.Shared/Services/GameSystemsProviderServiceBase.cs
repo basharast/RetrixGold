@@ -64,7 +64,7 @@ namespace RetriX.Shared.Services
                 if (ArchiveStreamProvider.SupportedExtensions.Contains(Path.GetExtension(file.Name.Replace("#", "")).ToLower()))
                 {
                     IEnumerable<string> entries;
-                    using (var provider = new ArchiveStreamProvider($"test{Path.DirectorySeparatorChar}", file))
+                    using (var provider = new ArchiveStreamProvider($"test{Path.DirectorySeparatorChar}", file, PlatformService))
                     {
                         entries = await provider.ListEntriesAsync();
                     }
@@ -135,7 +135,6 @@ namespace RetriX.Shared.Services
 
                 if (rootNeeded)
                 {
-
                     return Tuple.Create(default(GameLaunchEnvironment), GameLaunchEnvironment.GenerateResult.RootFolderRequired);
                 }
 
@@ -149,7 +148,7 @@ namespace RetriX.Shared.Services
                 var provider = default(StreamProviders.IStreamProvider);
                 if (ArchiveStreamProvider.SupportedExtensions.Contains(Path.GetExtension(file.Name).ToLower()) && core.NativeArchiveSupport == false)
                 {
-                    var archiveProvider = new ArchiveStreamProvider(vfsRomPath, file);
+                    var archiveProvider = new ArchiveStreamProvider(vfsRomPath, file, platformService);
                     provider = archiveProvider;
                     var entries = await provider.ListEntriesAsync();
                     virtualMainFilePath = entries.FirstOrDefault(d => system.SupportedExtensions.Contains(Path.GetExtension(d.Replace("#","")).ToLower()));
@@ -175,8 +174,8 @@ namespace RetriX.Shared.Services
                               var GameDataObject = await ArcadeSmartNameResolver(file, StatusHandler);
                           FileName = GameDataObject.GameName;
                           core.RetroGameType = GameDataObject.GameType;
-                            GC.Collect();
-                            GC.WaitForPendingFinalizers();
+                            //GC.Collect();
+                            //GC.WaitForPendingFinalizers();
                         }
                         else
                         {

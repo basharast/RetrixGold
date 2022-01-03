@@ -1,8 +1,10 @@
 ﻿using LibRetriX;
 using Plugin.FileSystem.Abstractions;
+using RetriX.Shared.StreamProviders;
 using RetriX.Shared.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
@@ -21,6 +23,7 @@ namespace RetriX.Shared.Services
         bool HandleGameplayKeyShortcuts { get; set; }
         bool  GameNoticeShowed { get; set; }
         bool IsCoresLoaded { get; set; }
+        bool DialogInProgress { get; set; }
 
         Task<bool> ChangeFullScreenStateAsync(FullScreenChangeType changeType);
         void ChangeMousePointerVisibility(MousePointerVisibility visibility);
@@ -39,6 +42,9 @@ namespace RetriX.Shared.Services
         bool ShowNotificationMain(string text, int time);
         void RestoreGamesListState(double currentIndex);
         void SaveGamesListState();
+        Task<List<byte[]>> getShader();
+        Task<List<byte[]>> getOverlay();
+
         double veScroll { get; }
         event EventHandler<GameStateOperationEventArgs> GameStateOperationRequested;
         string GetMemoryUsage();
@@ -88,5 +94,6 @@ namespace RetriX.Shared.Services
 
         Task<IDirectoryInfo> PickDirectory(string systemName, bool reSelect = false);
         bool CheckDirectoryToken(string token);
+        Task<IDictionary<string, ArchiveData>> GetFilesStreams(Stream stream, string HandledScheme);
     }
 }

@@ -19,7 +19,6 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-
 namespace RetriX.UWP
 {
     /// <summary>
@@ -43,7 +42,7 @@ namespace RetriX.UWP
             }
             try
             {
-                var y = MemoryManager.AppMemoryUsageLimit;
+                /*var y = MemoryManager.AppMemoryUsageLimit;
                 try
                 {
                     var u = MemoryManager.AppMemoryUsage;
@@ -54,7 +53,7 @@ namespace RetriX.UWP
                 }
                 catch (Exception e)
                 {
-                }
+                }*/
             }
             catch
             {

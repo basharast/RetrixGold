@@ -307,7 +307,7 @@
     <value>Skip Frames</value>
   </data>
   <data name="DelayFramesFilteringMenuFlyout.Text" xml:space="preserve">
-    <value>Delay Frames</value>
+    <value>Skip Audio</value>
   </data>
   <data name="ReduceFreezesFilteringMenuFlyout.Text" xml:space="preserve">
     <value>Reduce Freezes</value>
@@ -599,5 +599,14 @@
   </data>
   <data name="VirtualBoyRomDescription.Text" xml:space="preserve">
     <value>Virtual Boy Rom</value>
+  </data>
+  <data name="UpdatesOnlyMenuFlyout.Text" xml:space="preserve">
+    <value>Hide Cached (Debug)</value>
+  </data>
+  <data name="SkipCachedMenuFlyout.Text" xml:space="preserve">
+    <value>Pixels Updates</value>
+  </data>
+  <data name="TouckPadMenuFlyoutItem33.Text" xml:space="preserve">
+    <value>Effects</value>
   </data>
 </root>

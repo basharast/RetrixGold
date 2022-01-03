@@ -422,7 +422,6 @@ namespace RetriX.UWP
             {
 
             }
-
             return 0;
         }
 

@@ -36,7 +36,7 @@
                  Special Thanks
                 </TextBlock>
                 <TextBlock LineStackingStrategy="BlockLineHeight" Margin="0,5,0,0" Style="{StaticResource ButtonLabelStyle}" HorizontalAlignment="Stretch" TextWrapping="WrapWholeWords" TextAlignment="Left" LineHeight="25">
-                For the original developer of Retrix Alberto Fustinoni, Libretro team and for all the people who worked hard on the emulation cores and the other services that help us to make this app.
+                For the original developer of Retrix Alberto Fustinoni, Libretro team (for emulation cores), DekuDesu (for the memory solution) and for all the people who worked hard on the emulation cores and the other services that help us to make this app.
                 </TextBlock>
                 
                 <TextBlock Style="{StaticResource SectionTBStyle}" Margin="0,20,0,0">

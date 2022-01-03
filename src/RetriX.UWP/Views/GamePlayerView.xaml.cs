@@ -14,6 +14,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading;
@@ -45,6 +47,7 @@ namespace RetriX.UWP.Pages
         int InitWidthSizeCustom { get => PlatformService.InitWidthSize - 20; }
         HorizontalAlignment horizontalAlignment { get => PlatformService.horizontalAlignment; }
         public LocalNotificationManager LocalNotificationManager { get; private set; }
+        public Thickness boxMargin = new Thickness(0, 500, 0, 0);
         public GamePlayerView()
         {
             InitializeComponent();
@@ -68,12 +71,14 @@ namespace RetriX.UWP.Pages
             try
             {
                 SetCoreOptionsHandler();
+                PrepareEffectsBox();
                 RightVirtualPad.GetButtonMap();
                 PreviousPoint.X = 0;
                 PreviousPoint.Y = 0;
 
                 Window.Current.SizeChanged += (sender, args) =>
                 {
+                    CheckEffectsBoxMargin();
                     try
                     {
                         Bindings.Update();
@@ -85,6 +90,7 @@ namespace RetriX.UWP.Pages
                 };
                 PlatformService.checkInitWidth(false);
                 CustomGamePadRetrieveAsync();
+                CheckEffectsBoxMargin();
             }
             catch (Exception e)
             {
@@ -92,6 +98,41 @@ namespace RetriX.UWP.Pages
             }
         }
 
+        private void CheckEffectsBoxMargin()
+        {
+            try
+            {
+                var currentHeight = Window.Current.CoreWindow.Bounds.Height;
+                if (currentHeight > 1000)
+                {
+                    boxMargin = new Thickness(0, 500, 0, 0);
+                }
+                else if (currentHeight > 800)
+                {
+                    boxMargin = new Thickness(0, 400, 0, 0);
+                }
+                else if (currentHeight > 650)
+                {
+                    boxMargin = new Thickness(0, 350, 0, 0);
+                }
+                else if (currentHeight > 550)
+                {
+                    boxMargin = new Thickness(0, 250, 0, 0);
+                }
+                else if (currentHeight > 450)
+                {
+                    boxMargin = new Thickness(0, 150, 0, 0);
+                }
+                else
+                {
+                    boxMargin = new Thickness(0, 80, 0, 0);
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
         private async void pushLocalNotification(string text, Color background, Color forground, char icon = '\0', int time = 3, Position position = Position.Bottom, EventHandler eventHandler = null)
         {
             try
@@ -135,7 +176,7 @@ namespace RetriX.UWP.Pages
         {
             try
             {
-               
+
                 var NotificationData = (LocalNotificationData)args;
                 if (NotificationData != null)
                 {
@@ -155,7 +196,7 @@ namespace RetriX.UWP.Pages
             }
             catch (Exception ex)
             {
-               
+
             }
         }
 
@@ -1318,147 +1359,187 @@ namespace RetriX.UWP.Pages
 
         }
 
-        /*private ExtendedExecutionSession session = null;
-        private int taskCount = 0;
-
-        public bool IsRunning
+        private async void EffectsReset_Click(object sender, RoutedEventArgs e)
         {
-            get
+            PlatformService.PlayNotificationSoundDirect("button-01.mp3");
+            if (VM != null)
             {
-                if (session != null)
+                PlatformService.PlayNotificationSoundDirect("alert.wav");
+                ConfirmConfig confirmResetAll = new ConfirmConfig();
+                confirmResetAll.SetTitle("Reset Effects");
+                confirmResetAll.SetMessage($"Do you want to reset all effects?");
+                confirmResetAll.UseYesNo();
+
+                var ResetAll = await UserDialogs.Instance.ConfirmAsync(confirmResetAll);
+
+                if (ResetAll)
                 {
-                    return true;
-                }
-                else
-                {
-                    return false;
+                    VM.ClearAllEffects.Execute();
                 }
             }
         }
 
-        public async Task<ExtendedExecutionResult> RequestSessionAsync(ExtendedExecutionReason reason, TypedEventHandler<object, ExtendedExecutionRevokedEventArgs> revoked, String description)
+        private void EffectsCancel_Click(object sender, RoutedEventArgs e)
         {
-            try
+            PlatformService.PlayNotificationSoundDirect("button-01.mp3");
+            if (VM != null)
             {
-                ClearSession();
-                var newSession = new ExtendedExecutionSession();
-                newSession.Reason = reason;
-                newSession.Description = description;
-                newSession.Revoked += SessionRevoked;
-
-                if (revoked != null)
-                {
-                    newSession.Revoked += revoked;
-                }
-
-                ExtendedExecutionResult result = await newSession.RequestExtensionAsync();
-
-                switch (result)
-                {
-                    case ExtendedExecutionResult.Allowed:
-                        session = newSession;
-                        break;
-                    default:
-                    case ExtendedExecutionResult.Denied:
-                        newSession.Dispose();
-                        break;
-                }
-                return result;
-            }
-            catch (Exception e)
-            {
-                return new ExtendedExecutionResult();
+                VM.ShowAllEffects.Execute();
             }
         }
 
-        public void ClearSession()
+        private void RefreshLogList_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (VM != null)
             {
-                if (session != null)
-                {
-                    session.Dispose();
-                    session = null;
-                }
-
-                taskCount = 0;
-
-            }
-            catch (Exception e)
-            {
-
+                VM.forceReloadLogsList = true;
             }
         }
-        public Deferral GetExecutionDeferral()
+
+        private void EffectsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
-                if (session == null)
+                if (isComboInitial)
                 {
+                    return;
                 }
-
-                taskCount++;
-            }
-            catch (Exception e)
-            {
-
-            }
-            return new Deferral(OnTaskCompleted);
-        }
-        private void OnTaskCompleted()
-        {
-            try
-            {
-                if (taskCount > 0)
+                var selectItem = (ComboBoxItem)e.AddedItems[0];
+                if (selectItem != null)
                 {
-                    taskCount--;
-                }
-
-                if (taskCount == 0 && session != null)
-                {
-                    ClearSession();
-                }
-            }
-            catch (Exception e)
-            {
-
-            }
-        }
-        private async void SessionRevoked(object sender, ExtendedExecutionRevokedEventArgs args)
-        {
-            try
-            {
-                await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                {
-                    switch (args.Reason)
+                    var SelectedValue = selectItem.Tag.ToString();
+                    if (SelectedValue.Equals("All"))
                     {
-                        case ExtendedExecutionRevokedReason.Resumed:
-                            break;
-
-                        case ExtendedExecutionRevokedReason.SystemPolicy:
-                            break;
+                        PrepareEffectsBox(true);
                     }
-                });
+                    else
+                    {
+                        PrepareEffectsBox(true, SelectedValue);
+                    }
+                }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
 
             }
+        }
+
+        bool isComboInitial = false;
+        private async void PrepareEffectsBox(bool showOnly = false, string customTarget = "")
+        {
+            EffectsLoadingProgress.Visibility = Visibility.Visible;
+            EffectsList.IsEnabled = false;
+            await Task.Run(async () =>
+            {
+                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
+                {
+                    try
+                    {
+                        isComboInitial = !showOnly;
+                        if (isComboInitial)
+                        {
+                            //Why? I don't know there is some delay prevent the function from getting the elements on page load
+                            while (MainPage.FindControl<Border>("HueToRgbEffect") == null)
+                            {
+                                await Task.Delay(1500);
+                            }
+                        }
+                        var effectsElements = new List<Border>();
+                        FindChildren(effectsElements, MainPage);
+                        if (effectsElements.Count > 0)
+                        {
+                            foreach (var effectsElement in effectsElements.OrderBy(item => item.Name))
+                            {
+                                try
+                                {
+                                    if (effectsElement.Tag == null)
+                                    {
+                                        continue;
+                                    }
+                                    var effectsElementTag = effectsElement.Tag.ToString();
+                                    if (effectsElementTag.Equals("EffectsElement"))
+                                    {
+                                        if (showOnly)
+                                        {
+                                            if (customTarget.Length > 0)
+                                            {
+                                                if (effectsElement.Name.Equals(customTarget))
+                                                {
+                                                    effectsElement.Visibility = Visibility.Visible;
+                                                }
+                                                else
+                                                {
+                                                    effectsElement.Visibility = Visibility.Collapsed;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                effectsElement.Visibility = Visibility.Visible;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            ComboBoxItem newEffect = new ComboBoxItem();
+
+                                            var borderChilds = new List<TextBlock>();
+                                            FindChildren(borderChilds, effectsElement);
+                                            if (borderChilds.Count > 0)
+                                            {
+                                                var effectName = borderChilds.FirstOrDefault().Text;
+                                                newEffect.Content = effectName;
+                                            }
+                                            else
+                                            {
+                                                newEffect.Content = effectsElement.Name;
+                                            }
+                                            newEffect.Tag = effectsElement.Name;
+                                            EffectsList.Items.Add(newEffect);
+                                            effectsElement.Visibility = Visibility.Collapsed;
+                                        }
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                    if (isComboInitial)
+                    {
+                        isComboInitial = false;
+                        EffectsList.SelectedIndex = 0;
+                    }
+                    EffectsList.IsEnabled = true;
+                    EffectsLoadingProgress.Visibility = Visibility.Collapsed;
+                });
+            });
+        }
+        private void FindChildren<T>(List<T> results, DependencyObject startNode) where T : DependencyObject
+        {
             try
             {
-                if (session != null)
+                int count = VisualTreeHelper.GetChildrenCount(startNode);
+                for (int i = 0; i < count; i++)
                 {
-                    session.Dispose();
-                    session = null;
+                    DependencyObject current = VisualTreeHelper.GetChild(startNode, i);
+                    if ((current.GetType()).Equals(typeof(T)) || (current.GetType().GetTypeInfo().IsSubclassOf(typeof(T))))
+                    {
+                        T asType = (T)current;
+                        results.Add(asType);
+                    }
+                    FindChildren<T>(results, current);
                 }
-
-                taskCount = 0;
-
             }
             catch (Exception e)
             {
 
             }
-        }*/
+        }
+
     }
 }

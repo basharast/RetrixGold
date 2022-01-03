@@ -11,6 +11,7 @@
     xmlns:controls="using:RetriX.UWP.Controls"
     xmlns:triggers="using:WindowsStateTriggers"
     xmlns:vm="using:RetriX.Shared.ViewModels"
+    xmlns:behaviors="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors" 
     RequestedTheme="Dark"
     mc:Ignorable="d">
     
@@ -90,11 +91,11 @@
                         </Image>
                         <Grid  Visibility="{x:Bind MenuSwitch, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Background="LightSlateGray" VerticalAlignment="Top" HorizontalAlignment="Left" Padding="0,5,0,5" Margin="5,5,0,0" Width="40" Height="25">
                             <TextBlock Visibility="{x:Bind MenuSwitchState, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Foreground="GreenYellow" Text="ON" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="14" />
-                            <TextBlock Visibility="{x:Bind MenuSwitchStateNegative, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Foreground="Red" Text="OFF" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="14" />
+                            <TextBlock Visibility="{x:Bind MenuSwitchStateNegative, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Foreground="White" Text="OFF" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="14" />
                         </Grid>
                     </Grid>
                 </Border>
-                <Grid Background="{StaticResource SystemControlForegroundAccentBrush}" VerticalAlignment="Bottom" HorizontalAlignment="Center"  Width="110" Margin="0,0,0,10">
+                <Grid VerticalAlignment="Bottom" HorizontalAlignment="Center"  Margin="0,0,0,10">
                     <TextBlock Text="{x:Bind MenuName, Mode=OneWay,  FallbackValue='Menu Name'}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="14" />
                 </Grid>
             </Grid>
@@ -107,7 +108,7 @@
         </Style>
     </views:MvxWindowsPage.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid x:Name="MainPage" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <!--<interactivity:Interaction.Behaviors>
             <core:EventTriggerBehavior EventName="PointerMoved">
                 <core:InvokeCommandAction Command="{x:Bind VM.PointerMovedCommand}"/>
@@ -141,10 +142,10 @@
             </canvas:CanvasAnimatedControl.RenderTransform>
         </canvas:CanvasAnimatedControl>
 
-        <Grid x:Name="FPSCounterGrid" Grid.Row="{x:Bind VM.ScreenRow, Mode=OneWay}" MinHeight="30" Background="#E50F0E13" VerticalAlignment="Top" HorizontalAlignment="Left" Visibility="{x:Bind VM.ShowFPSCounter, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Margin="15,15,0,0" Width="30" Height="30" Canvas.ZIndex="2">
+        <Grid x:Name="FPSCounterGrid" Grid.Row="{x:Bind VM.ScreenRow, Mode=OneWay}" MinHeight="30" Background="#E50F0E13" VerticalAlignment="Top" HorizontalAlignment="Left" Visibility="{x:Bind VM.ShowFPSCounter, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Margin="15,15,0,0" MinWidth="30" MaxWidth="450" Height="30" Canvas.ZIndex="2">
             <TextBlock x:Name="FPSCounterText" Text="{x:Bind VM.FPSCounter, Mode=OneWay}" TextWrapping="Wrap" TextAlignment="Center" Margin="5,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
         </Grid>
-        <Grid x:Name="BufferCounterGrid" Grid.Row="{x:Bind VM.ScreenRow, Mode=OneWay}" MinHeight="30" Background="#E50F0E13" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="{x:Bind VM.ShowBufferCounter, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Margin="15,15,15,0" Width="50" Height="30" Canvas.ZIndex="2" Grid.Column="1">
+        <Grid x:Name="BufferCounterGrid" Grid.Row="{x:Bind VM.ScreenRow, Mode=OneWay}" MinHeight="30" Background="#E50F0E13" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="{x:Bind VM.ShowBufferCounter, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Margin="15,15,15,0" MinWidth="50" MaxWidth="450" Height="30" Canvas.ZIndex="2" Grid.Column="1">
             <TextBlock x:Name="BufferCounterText" Text="{x:Bind VM.BufferCounter, Mode=OneWay}" TextWrapping="Wrap" TextAlignment="Center" Margin="5,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
         </Grid>
 
@@ -155,7 +156,7 @@
 
         <controls:PlayerOverlay  AllowFocusOnInteraction="False" ViewModel="{x:Bind VM}" VerticalAlignment="Bottom" Grid.Row="0"
                                 Visibility="{x:Bind VM.DisplayPlayerUI, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" Canvas.ZIndex="3"/>
-        <Grid  x:Name="ActionsGrid" Grid.Row="1" Grid.ColumnSpan="3" Background="#E50F0E13" Visibility="{x:Bind VM.ActionsGridVisiblity, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+        <Grid  x:Name="ActionsGrid" Grid.Row="1" Grid.ColumnSpan="3" Visibility="{x:Bind VM.ActionsGridVisiblity, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
             <Grid HorizontalAlignment="Stretch" MaxWidth="600" Width="{x:Bind InitWidthSize, Mode=OneWay}">
             <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
@@ -178,9 +179,14 @@
                 </Grid>
                 
             </Grid>
+            <Grid Canvas.ZIndex="-1"  Grid.RowSpan="5" Grid.ColumnSpan="5" Background="{StaticResource BlurBackground2}">
+                <interactivity:Interaction.Behaviors>
+                    <behaviors:Blur Value="7" Duration="0" Delay="0" AutomaticallyStart="true"/>
+                </interactivity:Interaction.Behaviors>
+            </Grid>
         </Grid>
 
-        <Grid  x:Name="EditModeGrid" Grid.Row="1" Grid.ColumnSpan="3" Background="#E50F0E13" Visibility="{x:Bind VM.ScaleFactorVisible, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+        <Grid  x:Name="EditModeGrid" Grid.Row="1" Grid.ColumnSpan="3" Visibility="{x:Bind VM.ScaleFactorVisible, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
             <Grid HorizontalAlignment="Stretch" MaxWidth="600" Width="{x:Bind InitWidthSize, Mode=OneWay}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
@@ -210,9 +216,14 @@
                 </Grid>
 
             </Grid>
+            <Grid Canvas.ZIndex="-1"  Grid.RowSpan="5" Grid.ColumnSpan="5" Background="{StaticResource BlurBackground2}">
+                <interactivity:Interaction.Behaviors>
+                    <behaviors:Blur Value="7" Duration="0" Delay="0" AutomaticallyStart="true"/>
+                </interactivity:Interaction.Behaviors>
+            </Grid>
         </Grid>
 
-        <Grid  x:Name="ButtonsEditModeGrid" Grid.Row="1" Grid.ColumnSpan="3" Background="#E50F0E13" Visibility="{x:Bind VM.ButtonsCustomization, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+        <Grid  x:Name="ButtonsEditModeGrid" Grid.Row="1" Grid.ColumnSpan="3" Visibility="{x:Bind VM.ButtonsCustomization, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
             <Grid HorizontalAlignment="Stretch" MaxWidth="600" Width="{x:Bind InitWidthSize, Mode=OneWay}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
@@ -234,8 +245,13 @@
                 </Grid>
 
             </Grid>
+            <Grid Canvas.ZIndex="-1"  Grid.RowSpan="5" Grid.ColumnSpan="5" Background="{StaticResource BlurBackground2}">
+                <interactivity:Interaction.Behaviors>
+                    <behaviors:Blur Value="7" Duration="0" Delay="0" AutomaticallyStart="true"/>
+                </interactivity:Interaction.Behaviors>
+            </Grid>
         </Grid>
-        <Grid x:Name="LogsGrid" Grid.Row="1" Grid.ColumnSpan="3" Background="#E50F0E13" Visibility="{x:Bind VM.ShowLogsList, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+        <Grid x:Name="LogsGrid" Grid.Row="1" Grid.ColumnSpan="3" Visibility="{x:Bind VM.ShowLogsList, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
@@ -257,12 +273,18 @@
             </ListView>
             <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Stretch">
                 <CommandBar Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"  VerticalAlignment="Top" HorizontalAlignment="{x:Bind horizontalAlignment,Mode=OneWay}"  AllowFocusOnInteraction="False">
+                    <AppBarButton Label="Refresh" Icon="Refresh" x:Name="RefreshLogList" Click="RefreshLogList_Click"/>
                     <AppBarButton Label="Close" Icon="Cancel" x:Name="CloseLogList" Click="CloseLogList_Click"/>
                 </CommandBar>
             </Grid>
+            <Grid Canvas.ZIndex="-1"  Grid.RowSpan="5" Grid.ColumnSpan="5" Background="{StaticResource BlurBackground2}">
+                <interactivity:Interaction.Behaviors>
+                    <behaviors:Blur Value="7" Duration="0" Delay="0" AutomaticallyStart="true"/>
+                </interactivity:Interaction.Behaviors>
+            </Grid>
         </Grid>
         
-        <Grid x:Name="SystemInfoGrid" Grid.Row="1" Background="#E50F0E13" Visibility="{x:Bind VM.SystemInfoVisiblity, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" VerticalAlignment="Center" Padding="0,15,0,15" Margin="0,0,0,30" HorizontalAlignment="Center" Grid.ColumnSpan="2">
+        <Grid x:Name="SystemInfoGrid" Grid.Row="1" Visibility="{x:Bind VM.SystemInfoVisiblity, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" VerticalAlignment="Center" Padding="0,15,0,15" Margin="0,0,0,30" HorizontalAlignment="Center" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
@@ -274,6 +296,11 @@
             <TextBlock Text="Now Playing" TextWrapping="Wrap" TextAlignment="Center" Margin="15,0,15,0" Grid.RowSpan="1" FontSize="11"/>
             <TextBlock Text="{x:Bind VM.SystemNamePreview,Mode=OneWay}" TextWrapping="Wrap" TextAlignment="Center" Margin="15,0,15,0" Grid.Row="2" FontSize="16" FontWeight="Bold" Foreground="DarkMagenta"/>
             <Image Source="{x:Bind VM.SystemIcon,Mode=OneWay, FallbackValue=ms-appx:///Assets/Icons/GN.png}" MaxWidth="80" MaxHeight="80" Grid.Row="1" Margin="0,2,0,2" />
+            <Grid Canvas.ZIndex="-1"  Grid.RowSpan="5" Grid.ColumnSpan="5" Background="{StaticResource BlurBackground2}">
+                <interactivity:Interaction.Behaviors>
+                    <behaviors:Blur Value="7" Duration="0" Delay="0" AutomaticallyStart="true"/>
+                </interactivity:Interaction.Behaviors>
+            </Grid>
         </Grid>
 
         <Grid Grid.Row="2" Height="{x:Bind VM.ControlsAreaHeight, Mode=OneWay}" Grid.ColumnSpan="3" Visibility="{x:Bind VM.DisplayTouchGamepad, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Margin="0,0,0,15">
@@ -315,12 +342,26 @@
             </Grid>
             
         </Grid>
-        <Grid x:Name="InfosGrid" Canvas.ZIndex="300" MinHeight="38" Grid.ColumnSpan="2" Background="#E50F0E13" VerticalAlignment="Top" HorizontalAlignment="Center" Visibility="{x:Bind VM.PreviewCurrentInfoState, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Margin="0,15,0,0" Grid.Row="1">
+        <Grid x:Name="InfosGrid" Canvas.ZIndex="300" MinHeight="38" Grid.ColumnSpan="2"  VerticalAlignment="Top" HorizontalAlignment="Center" Visibility="{x:Bind VM.PreviewCurrentInfoState, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Margin="0,15,0,0" Grid.Row="1">
             <TextBlock Text="{x:Bind VM.PreviewCurrentInfo,Mode=OneWay}" TextWrapping="Wrap" TextAlignment="Center" Margin="15,0,15,0" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+            <Grid Canvas.ZIndex="-1"  Grid.RowSpan="5" Grid.ColumnSpan="5" Background="{StaticResource BlurBackground2}">
+                <interactivity:Interaction.Behaviors>
+                    <behaviors:Blur Value="7" Duration="0" Delay="0" AutomaticallyStart="true"/>
+                </interactivity:Interaction.Behaviors>
+            </Grid>
         </Grid>
-        <ProgressRing x:Name="GameLoadingProgress" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Width="50" Height="50" IsActive="{x:Bind VM.GameIsLoading, Mode=OneWay}" Grid.ColumnSpan="3"/>
+        <Grid x:Name="GameLoadingProgress" HorizontalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Center" Visibility="{x:Bind VM.GameIsLoading, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <ProgressRing Grid.Row="0"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="50" IsActive="{x:Bind VM.GameIsLoading, Mode=OneWay}" />
+            <TextBlock Text="{x:Bind VM.currentFileEntry, Mode=OneWay}" HorizontalAlignment="Center"  Grid.Row="1" Margin="0,10,0,0" Visibility="{x:Bind VM.isProgressVisible, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"></TextBlock>
+            <ProgressBar IsIndeterminate="True" Value="{x:Bind VM.currentFileProgress, Mode=OneWay}" HorizontalAlignment="Stretch" Width="300" Height="8" Margin="0,5,0,0" Grid.Row="2" Visibility="{x:Bind VM.isProgressVisible, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"></ProgressBar>
+        </Grid>
 
-        <Grid x:Name="ControlsPanel" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"  Canvas.ZIndex="50" Grid.Row="1" Grid.ColumnSpan="3" Visibility="{x:Bind VM.ControlsMapVisible, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Grid.RowSpan="2">
+        <Grid x:Name="ControlsPanel" Canvas.ZIndex="50" Grid.Row="1" Grid.ColumnSpan="3" Visibility="{x:Bind VM.ControlsMapVisible, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Grid.RowSpan="2">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -347,9 +388,14 @@
                     <AppBarButton x:Name="ControlsCancel" Label="Close" Icon="Cancel" Click="ControlsCancel_Click"/>
                 </CommandBar>
             </Grid>
+            <Grid Canvas.ZIndex="-1"  Grid.RowSpan="5" Grid.ColumnSpan="5" Background="{StaticResource BlurBackground2}">
+                <interactivity:Interaction.Behaviors>
+                    <behaviors:Blur Value="7" Duration="0" Delay="0" AutomaticallyStart="true"/>
+                </interactivity:Interaction.Behaviors>
+            </Grid>
         </Grid>
 
-        <Grid x:Name="CoresOptionsPanel" MaxHeight="275"  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"  Canvas.ZIndex="50" Grid.Row="2" Grid.ColumnSpan="3" Visibility="{x:Bind VM.CoreOptionsVisible, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+        <Grid x:Name="CoresOptionsPanel" Margin="{x:Bind boxMargin, Mode=OneWay}" Canvas.ZIndex="50"  Grid.RowSpan="3" Grid.Row="1" Grid.ColumnSpan="3" Visibility="{x:Bind VM.CoreOptionsVisible, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -386,10 +432,551 @@
                 <AppBarButton x:Name="OptionsCancel" Label="Close" Icon="Cancel" Click="OptionsCancel_Click"/>
             </CommandBar>
             </Grid>
+            <Grid Canvas.ZIndex="-1"  Grid.RowSpan="5" Grid.ColumnSpan="5" Background="{StaticResource BlurBackground2}">
+                <interactivity:Interaction.Behaviors>
+                    <behaviors:Blur Value="7" Duration="0" Delay="0" AutomaticallyStart="true"/>
+                </interactivity:Interaction.Behaviors>
+            </Grid>
         </Grid>
 
 
-        <Grid x:Name="MenuPanel"  Background="#E50F0E13" Visibility="{x:Bind VM.MenuGridActive, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Canvas.ZIndex="50" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+
+        <Grid x:Name="EffectsPanel" Margin="{x:Bind boxMargin, Mode=OneWay}" Canvas.ZIndex="50" Grid.RowSpan="3" Grid.Row="1" Grid.ColumnSpan="3" Visibility="{x:Bind VM.EffectsVisible, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ComboBox x:Name="EffectsList" SelectionChanged="EffectsList_SelectionChanged" Margin="8,10,8,0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MaxWidth="600">
+                <ComboBoxItem Content="All Effects" Tag="All"></ComboBoxItem>
+            </ComboBox>
+            <ScrollViewer x:Name="EffectsPage" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="1" Margin="0,5,0,5" HorizontalAlignment="Center" VerticalAlignment="Stretch" MaxWidth="600">
+                <StackPanel Padding="0,0,0,20" MaxWidth="600" Width="{x:Bind InitWidthSizeCustom, Mode=OneWay}">
+
+                    <Border BorderThickness="1" Margin="0,10,0,0" x:Name="BrightnessEffect" Tag="EffectsElement" Visibility="Collapsed"  BorderBrush="Gray" CornerRadius="0,0,3,3">
+                        <Grid Margin="0,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Margin="0,0,0,0" Padding="2,2,2,2" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5,5,5,5" FontWeight="Bold" Text="Brightness" FontSize="17"/>
+                                    <ToggleSwitch x:Name="BrightnessEffectState" Foreground="DodgerBlue" IsOn="{x:Bind VM.BrightnessEffect, Mode=TwoWay}"/>
+                                </StackPanel>
+                            </Grid>
+                            <TextBlock Text="Compatibility Issue" Foreground="Orange" HorizontalAlignment="Right" Margin="0,10,10,0" Visibility="{x:Bind VM.compatibiltyTag, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"></TextBlock>
+
+                            <ScrollViewer Grid.Row="1" Padding="15">
+                                <StackPanel>
+                                    <Slider Header="Brightness Level" Value="{x:Bind VM.BrightnessLevel,Mode=TwoWay}" IsEnabled="{Binding ElementName=BrightnessEffectState,Path=IsOn}" Maximum="1" Minimum="0" StepFrequency="0.01"></Slider>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+
+                    <Border BorderThickness="1" Margin="0,15,0,0" x:Name="ContrastEffect" Tag="EffectsElement" Visibility="Collapsed"  BorderBrush="Gray" >
+                        <Grid Margin="0,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Margin="0,0,0,0" Padding="2,2,2,2" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5,5,5,5" FontWeight="Bold" Text="Contrast" FontSize="17"/>
+                                    <ToggleSwitch x:Name="ContrastEffectState" Foreground="DodgerBlue" IsOn="{x:Bind VM.ContrastEffect, Mode=TwoWay}"/>
+                                </StackPanel>
+                            </Grid>
+                            <TextBlock Text="Compatibility Issue" Foreground="Orange" HorizontalAlignment="Right" Margin="0,10,10,0" Visibility="{x:Bind VM.compatibiltyTag, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"></TextBlock>
+                            <ScrollViewer Grid.Row="1" Padding="15">
+                                <StackPanel>
+                                    <Slider Header="Contrast Level" Value="{x:Bind VM.ContrastLevel,Mode=TwoWay}" IsEnabled="{Binding ElementName=ContrastEffectState,Path=IsOn}" Maximum="1" Minimum="-1" StepFrequency="0.01"></Slider>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+
+                    <Border BorderThickness="1" Margin="0,15,0,0" x:Name="DirectionalBlurEffect"  Tag="EffectsElement" Visibility="Collapsed" BorderBrush="Gray" >
+                        <Grid Margin="0,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Margin="0,0,0,0" Padding="2,2,2,2" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5,5,5,5" FontWeight="Bold" Text="Directional Blur" FontSize="17"/>
+                                    <ToggleSwitch x:Name="DirectionalBlurEffectState" Foreground="DodgerBlue" IsOn="{x:Bind VM.DirectionalBlurEffect, Mode=TwoWay}"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <ScrollViewer Grid.Row="1" Padding="15">
+                                <StackPanel>
+                                    <Slider Header="Blur Amount"  Value="{x:Bind VM.BlurAmount,Mode=TwoWay}" IsEnabled="{Binding ElementName=DirectionalBlurEffectState,Path=IsOn}" Maximum="50" Minimum="0" StepFrequency="0.1"></Slider>
+                                    <Slider Header="Angle" Value="{x:Bind VM.Angle,Mode=TwoWay}" IsEnabled="{Binding ElementName=DirectionalBlurEffectState,Path=IsOn}" Maximum="3.6" Minimum="0" StepFrequency="0.1"></Slider>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+
+                    <Border BorderThickness="1" Margin="0,15,0,0" x:Name="EdgeDetectionEffect"  Tag="EffectsElement" Visibility="Collapsed" BorderBrush="Gray" >
+                        <Grid Margin="0,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Margin="0,0,0,0" Padding="2,2,2,2" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5,5,5,5" FontWeight="Bold" Text="Edge Detection" FontSize="17"/>
+                                    <ToggleSwitch x:Name="EdgeDetectionEffectState" Foreground="DodgerBlue" IsOn="{x:Bind VM.EdgeDetectionEffect, Mode=TwoWay}"/>
+                                </StackPanel>
+                            </Grid>
+                            <TextBlock Text="Compatibility Issue" Foreground="Orange" HorizontalAlignment="Right" Margin="0,10,10,0" Visibility="{x:Bind VM.compatibiltyTag, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"></TextBlock>
+                            <ScrollViewer Grid.Row="1" Padding="15">
+                                <StackPanel>
+                                    <Slider Header="Amount"  Value="{x:Bind VM.AmountEdge,Mode=TwoWay}" IsEnabled="{Binding ElementName=EdgeDetectionEffectState,Path=IsOn}" Maximum="1" Minimum="0" StepFrequency="0.01"></Slider>
+                                    <Slider Header="Blur Amount" Value="{x:Bind VM.BlurAmountEdge,Mode=TwoWay}" IsEnabled="{Binding ElementName=EdgeDetectionEffectState,Path=IsOn}" Maximum="10" Minimum="0" StepFrequency="0.1"></Slider>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+
+                    <Border BorderThickness="1" Margin="0,15,0,0" x:Name="EmbossEffect"  Tag="EffectsElement" Visibility="Collapsed" BorderBrush="Gray" >
+                        <Grid Margin="0,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Margin="0,0,0,0" Padding="2,2,2,2" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5,5,5,5" FontWeight="Bold" Text="Emboss" FontSize="17"/>
+                                    <ToggleSwitch x:Name="EmbossEffectState" Foreground="DodgerBlue" IsOn="{x:Bind VM.EmbossEffect, Mode=TwoWay}"/>
+                                </StackPanel>
+                            </Grid>
+                            <TextBlock Text="Compatibility Issue" Foreground="Orange" HorizontalAlignment="Right" Margin="0,10,10,0" Visibility="{x:Bind VM.compatibiltyTag, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"></TextBlock>
+                            <ScrollViewer Grid.Row="1" Padding="15">
+                                <StackPanel>
+                                    <Slider Header="Amount"  Value="{x:Bind VM.AmountEmboss,Mode=TwoWay}" IsEnabled="{Binding ElementName=EmbossEffectState,Path=IsOn}" Maximum="10" Minimum="0" StepFrequency="0.1"></Slider>
+                                    <Slider Header="Angle" Value="{x:Bind VM.AngleEmboss,Mode=TwoWay}" IsEnabled="{Binding ElementName=EmbossEffectState,Path=IsOn}" Maximum="3.6" Minimum="0" StepFrequency="0.1"></Slider>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+
+                    <Border BorderThickness="1" Margin="0,15,0,0" x:Name="ExposureEffect" Tag="EffectsElement" Visibility="Collapsed" BorderBrush="Gray" >
+                        <Grid Margin="0,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Margin="0,0,0,0" Padding="2,2,2,2" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5,5,5,5" FontWeight="Bold" Text="Exposure" FontSize="17"/>
+                                    <ToggleSwitch x:Name="ExposureEffectState" Foreground="DodgerBlue" IsOn="{x:Bind VM.ExposureEffect, Mode=TwoWay}"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <ScrollViewer Grid.Row="1" Padding="15">
+                                <StackPanel>
+                                    <Slider Header="Amount"  Value="{x:Bind VM.Exposure,Mode=TwoWay}" IsEnabled="{Binding ElementName=ExposureEffectState,Path=IsOn}" Maximum="2" Minimum="-2" StepFrequency="0.1"></Slider>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+
+                    <Border BorderThickness="1" Margin="0,15,0,0" x:Name="GaussianBlurEffect" Tag="EffectsElement" Visibility="Collapsed" BorderBrush="Gray" >
+                        <Grid Margin="0,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Margin="0,0,0,0" Padding="2,2,2,2" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5,5,5,5" FontWeight="Bold" Text="Gaussian Blur" FontSize="17"/>
+                                    <ToggleSwitch x:Name="GaussianBlurEffectState" Foreground="DodgerBlue" IsOn="{x:Bind VM.GaussianBlurEffect, Mode=TwoWay}"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <ScrollViewer Grid.Row="1" Padding="15">
+                                <StackPanel>
+                                    <Slider Header="Blur Amount"  Value="{x:Bind VM.BlurAmountGaussianBlur,Mode=TwoWay}" IsEnabled="{Binding ElementName=GaussianBlurEffectState,Path=IsOn}" Maximum="50" Minimum="0" StepFrequency="0.1"></Slider>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+
+                    <Border BorderThickness="1" Margin="0,15,0,0" x:Name="MorphologyEffect" Tag="EffectsElement" Visibility="Collapsed" BorderBrush="Gray" >
+                        <Grid Margin="0,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Margin="0,0,0,0" Padding="2,2,2,2" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5,5,5,5" FontWeight="Bold" Text="Morphology" FontSize="17"/>
+                                    <ToggleSwitch x:Name="MorphologyEffectState" Foreground="DodgerBlue" IsOn="{x:Bind VM.MorphologyEffect, Mode=TwoWay}"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <ScrollViewer Grid.Row="1" Padding="15">
+                                <StackPanel>
+                                    <Slider Header="Height"  Value="{x:Bind VM.HeightMorphology,Mode=TwoWay}" IsEnabled="{Binding ElementName=MorphologyEffectState,Path=IsOn}" Maximum="50" Minimum="1" StepFrequency="0.1"></Slider>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+
+                    <Border BorderThickness="1" Margin="0,15,0,0" x:Name="SaturationEffect" Tag="EffectsElement" Visibility="Collapsed" BorderBrush="Gray" >
+                        <Grid Margin="0,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Margin="0,0,0,0" Padding="2,2,2,2" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5,5,5,5" FontWeight="Bold" Text="Saturation" FontSize="17"/>
+                                    <ToggleSwitch x:Name="SaturationEffectState" Foreground="DodgerBlue" IsOn="{x:Bind VM.SaturationEffect, Mode=TwoWay}"/>
+                                </StackPanel>
+                            </Grid>
+                            <TextBlock Text="Compatibility Issue" Foreground="Orange" HorizontalAlignment="Right" Margin="0,10,10,0" Visibility="{x:Bind VM.compatibiltyTag, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"></TextBlock>
+                            <ScrollViewer Grid.Row="1" Padding="15">
+                                <StackPanel>
+                                    <Slider Header="Height"  Value="{x:Bind VM.Saturation,Mode=TwoWay}" IsEnabled="{Binding ElementName=SaturationEffectState,Path=IsOn}" Maximum="1" Minimum="0" StepFrequency="0.01"></Slider>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+
+                    <Border BorderThickness="1" Margin="0,15,0,0" x:Name="SepiaEffect" Tag="EffectsElement" Visibility="Collapsed" BorderBrush="Gray" >
+                        <Grid Margin="0,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Margin="0,0,0,0" Padding="2,2,2,2" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5,5,5,5" FontWeight="Bold" Text="Sepia" FontSize="17"/>
+                                    <ToggleSwitch x:Name="SepiaEffectState" Foreground="DodgerBlue" IsOn="{x:Bind VM.SepiaEffect, Mode=TwoWay}"/>
+                                </StackPanel>
+                            </Grid>
+                            <TextBlock Text="Compatibility Issue" Foreground="Orange" HorizontalAlignment="Right" Margin="0,10,10,0" Visibility="{x:Bind VM.compatibiltyTag, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"></TextBlock>
+                            <ScrollViewer Grid.Row="1" Padding="15">
+                                <StackPanel>
+                                    <Slider Header="Intensity"  Value="{x:Bind VM.Intensity,Mode=TwoWay}" IsEnabled="{Binding ElementName=SepiaEffectState,Path=IsOn}" Maximum="1" Minimum="0" StepFrequency="0.01"></Slider>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+
+                    <Border BorderThickness="1" Margin="0,15,0,0" x:Name="SharpenEffect" Tag="EffectsElement" Visibility="Collapsed" BorderBrush="Gray" >
+                        <Grid Margin="0,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Margin="0,0,0,0" Padding="2,2,2,2" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5,5,5,5" FontWeight="Bold" Text="Sharpen" FontSize="17"/>
+                                    <ToggleSwitch x:Name="SharpenEffectState" Foreground="DodgerBlue" IsOn="{x:Bind VM.SharpenEffect, Mode=TwoWay}"/>
+                                </StackPanel>
+                            </Grid>
+                            <TextBlock Text="Compatibility Issue" Foreground="Orange" HorizontalAlignment="Right" Margin="0,10,10,0" Visibility="{x:Bind VM.compatibiltyTag, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"></TextBlock>
+                            <ScrollViewer Grid.Row="1" Padding="15">
+                                <StackPanel>
+                                    <Slider Header="Amount"  Value="{x:Bind VM.AmountSharpen,Mode=TwoWay}" IsEnabled="{Binding ElementName=SharpenEffectState,Path=IsOn}" Maximum="10" Minimum="0" StepFrequency="0.1"></Slider>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+
+                    <Border BorderThickness="1" Margin="0,15,0,0" x:Name="StraightenEffect" Tag="EffectsElement" Visibility="Collapsed" BorderBrush="Gray" >
+                        <Grid Margin="0,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Margin="0,0,0,0" Padding="2,2,2,2" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5,5,5,5" FontWeight="Bold" Text="Straighten" FontSize="17"/>
+                                    <ToggleSwitch x:Name="StraightenEffectState" Foreground="DodgerBlue" IsOn="{x:Bind VM.StraightenEffect, Mode=TwoWay}"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <ScrollViewer Grid.Row="1" Padding="15">
+                                <StackPanel>
+                                    <Slider Header="Angle"  Value="{x:Bind VM.AngleStraighten, Mode=TwoWay}" IsEnabled="{Binding ElementName=StraightenEffectState,Path=IsOn}" Maximum="3.6" Minimum="-3.6" StepFrequency="0.01"></Slider>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+
+                    <Border BorderThickness="1" Margin="0,15,0,0" x:Name="VignetteEffect" Tag="EffectsElement" Visibility="Collapsed" BorderBrush="Gray" >
+                        <Grid Margin="0,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Margin="0,0,0,0" Padding="2,2,2,2" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5,5,5,5" FontWeight="Bold" Text="Vignette" FontSize="17"/>
+                                    <ToggleSwitch x:Name="VignetteEffectState" Foreground="DodgerBlue" IsOn="{x:Bind VM.VignetteEffect, Mode=TwoWay}"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <ScrollViewer Grid.Row="1" Padding="15">
+                                <StackPanel>
+                                    <Slider Header="Amount"  Value="{x:Bind VM.AmountVignette, Mode=TwoWay}" IsEnabled="{Binding ElementName=VignetteEffectState,Path=IsOn}" Maximum="1" Minimum="0" StepFrequency="0.01"></Slider>
+                                    <Slider Header="Curve"  Value="{x:Bind VM.Curve, Mode=TwoWay}" IsEnabled="{Binding ElementName=VignetteEffectState,Path=IsOn}" Maximum="1" Minimum="0" StepFrequency="0.01"></Slider>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+
+                    <Border BorderThickness="1" Margin="0,15,0,0" x:Name="Transform3DEffect"  Tag="EffectsElement" Visibility="Collapsed" BorderBrush="Gray" >
+                        <Grid Margin="0,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Margin="0,0,0,0" Padding="2,2,2,2" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5,5,5,5" FontWeight="Bold" Text="Transform 3D" FontSize="17"/>
+                                    <ToggleSwitch x:Name="Transform3DEffectState" Foreground="DodgerBlue" IsOn="{x:Bind VM.Transform3DEffect, Mode=TwoWay}"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <ScrollViewer Grid.Row="1" Padding="15">
+                                <StackPanel>
+                                    <Slider Header="Rotate" Value="{x:Bind VM.Rotate, Mode=TwoWay}" IsEnabled="{Binding ElementName=Transform3DEffectState,Path=IsOn}" Maximum="3.6" Minimum="0" StepFrequency="0.01"></Slider>
+                                    <Slider Header="Rotate Vertical" Value="{x:Bind VM.RotateX, Mode=TwoWay}" IsEnabled="{Binding ElementName=Transform3DEffectState,Path=IsOn}" Maximum="3.6" Minimum="0" StepFrequency="0.01"></Slider>
+                                    <Slider Header="Rotate Horizontal" Value="{x:Bind VM.RotateY, Mode=TwoWay}" IsEnabled="{Binding ElementName=Transform3DEffectState,Path=IsOn}" Maximum="3.6" Minimum="0" StepFrequency="0.01"></Slider>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+
+                    <Border BorderThickness="1" Margin="0,15,0,0" x:Name="TemperatureAndTintEffect"  Tag="EffectsElement" Visibility="Collapsed" BorderBrush="Gray" >
+                        <Grid Margin="0,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Margin="0,0,0,0" Padding="2,2,2,2" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5,5,5,5" FontWeight="Bold" Text="Temperature And Tint" FontSize="17"/>
+                                    <ToggleSwitch x:Name="TemperatureAndTintEffectState" Foreground="DodgerBlue" IsOn="{x:Bind VM.TemperatureAndTintEffect, Mode=TwoWay}"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <ScrollViewer Grid.Row="1" Padding="15">
+                                <StackPanel>
+                                    <Slider Header="Temperature"  Value="{x:Bind VM.Temperature,Mode=TwoWay}" IsEnabled="{Binding ElementName=TemperatureAndTintEffectState,Path=IsOn}" Maximum="1" Minimum="-1" StepFrequency="0.01"></Slider>
+                                    <Slider Header="Tint"  Value="{x:Bind VM.Tint,Mode=TwoWay}" IsEnabled="{Binding ElementName=TemperatureAndTintEffectState,Path=IsOn}" Maximum="1" Minimum="-1" StepFrequency="0.01"></Slider>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+
+                    <Border BorderThickness="1" Margin="0,15,0,0" x:Name="TileEffect" Tag="EffectsElement" Visibility="Collapsed" BorderBrush="Gray" >
+                        <Grid Margin="0,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Margin="0,0,0,0" Padding="2,2,2,2" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5,5,5,5" FontWeight="Bold" Text="Tile" FontSize="17"/>
+                                    <ToggleSwitch x:Name="TileEffectState" Foreground="DodgerBlue" IsOn="{x:Bind VM.TileEffect, Mode=TwoWay}"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <ScrollViewer Grid.Row="1" Padding="15">
+                                <StackPanel>
+                                    <Slider Header="Left"  Value="{x:Bind VM.Left,Mode=TwoWay}" IsEnabled="{Binding ElementName=TileEffectState,Path=IsOn}" Maximum="600" Minimum="0" StepFrequency="0.01"></Slider>
+                                    <Slider Header="Top"  Value="{x:Bind VM.Top,Mode=TwoWay}" IsEnabled="{Binding ElementName=TileEffectState,Path=IsOn}" Maximum="600" Minimum="0" StepFrequency="0.01"></Slider>
+                                    <Slider Header="Right"  Value="{x:Bind VM.Right,Mode=TwoWay}" IsEnabled="{Binding ElementName=TileEffectState,Path=IsOn}" Maximum="600" Minimum="0" StepFrequency="0.01"></Slider>
+                                    <Slider Header="Bottom"  Value="{x:Bind VM.Bottom, Mode=TwoWay}" IsEnabled="{Binding ElementName=TileEffectState,Path=IsOn}" Maximum="600" Minimum="0" StepFrequency="0.01"></Slider>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+
+                    <Border BorderThickness="1" Margin="0,15,0,0" x:Name="CropEffect" Tag="EffectsElement" Visibility="Collapsed" BorderBrush="Gray" >
+                        <Grid Margin="0,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Margin="0,0,0,0" Padding="2,2,2,2" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5,5,5,5" FontWeight="Bold" Text="Crop" FontSize="17"/>
+                                    <ToggleSwitch x:Name="CropEffectState" Foreground="DodgerBlue" IsOn="{x:Bind VM.CropEffect, Mode=TwoWay}"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <ScrollViewer Grid.Row="1" Padding="15">
+                                <StackPanel>
+                                    <Slider Header="Left"  Value="{x:Bind VM.LeftCrop,Mode=TwoWay}" IsEnabled="{Binding ElementName=CropEffectState,Path=IsOn}" Maximum="600" Minimum="0" StepFrequency="0.01"></Slider>
+                                    <Slider Header="Top"  Value="{x:Bind VM.TopCrop,Mode=TwoWay}" IsEnabled="{Binding ElementName=CropEffectState,Path=IsOn}" Maximum="600" Minimum="0" StepFrequency="0.01"></Slider>
+                                    <Slider Header="Right"  Value="{x:Bind VM.RightCrop,Mode=TwoWay}" IsEnabled="{Binding ElementName=CropEffectState,Path=IsOn}" Maximum="600" Minimum="0" StepFrequency="0.01"></Slider>
+                                    <Slider Header="Bottom"  Value="{x:Bind VM.BottomCrop, Mode=TwoWay}" IsEnabled="{Binding ElementName=CropEffectState,Path=IsOn}" Maximum="600" Minimum="0" StepFrequency="0.01"></Slider>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+
+                    <Border BorderThickness="1" Margin="0,15,0,0" x:Name="HighlightsAndShadowsEffect" Tag="EffectsElement" Visibility="Collapsed" BorderBrush="Gray" >
+                        <Grid Margin="0,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Margin="0,0,0,0" Padding="2,2,2,2" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5,5,5,5" FontWeight="Bold" Text="Highlights And Shadows" FontSize="17"/>
+                                    <ToggleSwitch x:Name="HighlightsAndShadowsEffectState" Foreground="DodgerBlue" IsOn="{x:Bind VM.HighlightsAndShadowsEffect, Mode=TwoWay}"/>
+                                </StackPanel>
+                            </Grid>
+                            <TextBlock Text="Compatibility Issue" Foreground="Orange" HorizontalAlignment="Right" Margin="0,10,10,0" Visibility="{x:Bind VM.compatibiltyTag, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"></TextBlock>
+                            <ScrollViewer Grid.Row="1" Padding="15">
+                                <StackPanel>
+                                    <Slider Header="Clarity"  Value="{x:Bind VM.Clarity,Mode=TwoWay}" IsEnabled="{Binding ElementName=HighlightsAndShadowsEffectState,Path=IsOn}" Maximum="1" Minimum="-1" StepFrequency="0.01"></Slider>
+                                    <Slider Header="Highlights"  Value="{x:Bind VM.Highlights,Mode=TwoWay}" IsEnabled="{Binding ElementName=HighlightsAndShadowsEffectState,Path=IsOn}" Maximum="1" Minimum="-1" StepFrequency="0.01"></Slider>
+                                    <Slider Header="Shadows"  Value="{x:Bind VM.Shadows,Mode=TwoWay}" IsEnabled="{Binding ElementName=HighlightsAndShadowsEffectState,Path=IsOn}" Maximum="1" Minimum="-1" StepFrequency="0.01"></Slider>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+
+                    <Border BorderThickness="1" Margin="0,15,0,0" x:Name="ScaleEffect" Tag="EffectsElement" Visibility="Collapsed" BorderBrush="Gray" >
+                        <Grid Margin="0,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Margin="0,0,0,0" Padding="2,2,2,2" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5,5,5,5" FontWeight="Bold" Text="Scale" FontSize="17"/>
+                                    <ToggleSwitch x:Name="ScaleEffectState" Foreground="DodgerBlue" IsOn="{x:Bind VM.ScaleEffect, Mode=TwoWay}"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <ScrollViewer Grid.Row="1" Padding="15">
+                                <StackPanel>
+                                    <Slider Header="Width"  Value="{x:Bind VM.WidthScale,Mode=TwoWay}" IsEnabled="{Binding ElementName=ScaleEffectState,Path=IsOn}" Maximum="2" Minimum="0" StepFrequency="0.01"></Slider>
+                                    <Slider Header="Height"  Value="{x:Bind VM.HeightScale,Mode=TwoWay}" IsEnabled="{Binding ElementName=ScaleEffectState,Path=IsOn}" Maximum="2" Minimum="0" StepFrequency="0.01"></Slider>
+                                    <Slider Header="Sharpness"  Value="{x:Bind VM.SharpnessScale,Mode=TwoWay}" IsEnabled="{Binding ElementName=ScaleEffectState,Path=IsOn}" Maximum="1" Minimum="0" StepFrequency="0.01"></Slider>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+
+                    <Border BorderThickness="1" Margin="0,15,0,0" x:Name="PosterizeEffect" Tag="EffectsElement" Visibility="Collapsed" BorderBrush="Gray" >
+                        <Grid Margin="0,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Margin="0,0,0,0" Padding="2,2,2,2" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5,5,5,5" FontWeight="Bold" Text="Posterize" FontSize="17"/>
+                                    <ToggleSwitch x:Name="PosterizeEffectState" Foreground="DodgerBlue" IsOn="{x:Bind VM.PosterizeEffect, Mode=TwoWay}"/>
+                                </StackPanel>
+                            </Grid>
+                            <TextBlock Text="Compatibility Issue" Foreground="Orange" HorizontalAlignment="Right" Margin="0,10,10,0" Visibility="{x:Bind VM.compatibiltyTag, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"></TextBlock>
+                            <ScrollViewer Grid.Row="1" Padding="15">
+                                <StackPanel>
+                                    <Slider Header="Red"  Value="{x:Bind VM.Red,Mode=TwoWay}" IsEnabled="{Binding ElementName=PosterizeEffectState,Path=IsOn}" Maximum="16" Minimum="2" StepFrequency="1"></Slider>
+                                    <Slider Header="Green"  Value="{x:Bind VM.Green,Mode=TwoWay}" IsEnabled="{Binding ElementName=PosterizeEffectState,Path=IsOn}" Maximum="16" Minimum="2" StepFrequency="1"></Slider>
+                                    <Slider Header="Blue"  Value="{x:Bind VM.Blue,Mode=TwoWay}" IsEnabled="{Binding ElementName=PosterizeEffectState,Path=IsOn}" Maximum="16" Minimum="2" StepFrequency="1"></Slider>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+
+                    <Border BorderThickness="1" Margin="0,15,0,0" x:Name="GrayscaleEffect" Tag="EffectsElement" Visibility="Collapsed" BorderBrush="Gray" >
+                        <Grid Margin="0,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Margin="0,0,0,0" Padding="2,2,2,2" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5,5,5,5" FontWeight="Bold" Text="Grayscale" FontSize="17"/>
+                                    <ToggleSwitch x:Name="GrayscaleEffectState" Foreground="DodgerBlue" IsOn="{x:Bind VM.GrayscaleEffect, Mode=TwoWay}"/>
+                                </StackPanel>
+                            </Grid>
+                            <TextBlock Text="Compatibility Issue" Foreground="Orange" HorizontalAlignment="Right" Margin="0,10,10,0" Visibility="{x:Bind VM.compatibiltyTag, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"></TextBlock>
+                        </Grid>
+                    </Border>
+
+                    <Border BorderThickness="1" Margin="0,15,0,0" x:Name="RgbToHueEffect" Tag="EffectsElement" Visibility="Collapsed" BorderBrush="Gray" >
+                        <Grid Margin="0,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Margin="0,0,0,0" Padding="2,2,2,2" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5,5,5,5" FontWeight="Bold" Text="Rgb To Hue" FontSize="17"/>
+                                    <ToggleSwitch x:Name="RgbToHueEffectState" Foreground="DodgerBlue" IsOn="{x:Bind VM.RgbToHueEffect, Mode=TwoWay}"/>
+                                </StackPanel>
+                            </Grid>
+                            <TextBlock Text="Compatibility Issue" Foreground="Orange" HorizontalAlignment="Right" Margin="0,10,10,0" Visibility="{x:Bind VM.compatibiltyTag, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"></TextBlock>
+                        </Grid>
+                    </Border>
+
+                    <Border BorderThickness="1" Margin="0,15,0,0" x:Name="InvertEffect" Tag="EffectsElement" Visibility="Collapsed" BorderBrush="Gray" >
+                        <Grid Margin="0,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Margin="0,0,0,0" Padding="2,2,2,2" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5,5,5,5" FontWeight="Bold" Text="Invert" FontSize="17"/>
+                                    <ToggleSwitch x:Name="InvertEffectState" Foreground="DodgerBlue" IsOn="{x:Bind VM.InvertEffect, Mode=TwoWay}"/>
+                                </StackPanel>
+                            </Grid>
+                            <TextBlock Text="Compatibility Issue" Foreground="Orange" HorizontalAlignment="Right" Margin="0,10,10,0" Visibility="{x:Bind VM.compatibiltyTag, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"></TextBlock>
+                        </Grid>
+                    </Border>
+
+                    <Border BorderThickness="1" Margin="0,15,0,0" x:Name="HueToRgbEffect" Tag="EffectsElement" Visibility="Collapsed" BorderBrush="Gray" >
+                        <Grid Margin="0,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Margin="0,0,0,0" Padding="2,2,2,2" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5,5,5,5" FontWeight="Bold" Text="Hue To Rgb" FontSize="17"/>
+                                    <ToggleSwitch x:Name="HueToRgbEffectState" Foreground="DodgerBlue" IsOn="{x:Bind VM.HueToRgbEffect, Mode=TwoWay}"/>
+                                </StackPanel>
+                            </Grid>
+                            <TextBlock Text="Compatibility Issue" Foreground="Orange" HorizontalAlignment="Right" Margin="0,10,10,0" Visibility="{x:Bind VM.compatibiltyTag, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"></TextBlock>
+                        </Grid>
+                    </Border>
+                    
+                </StackPanel>
+            </ScrollViewer>
+            <ProgressRing x:Name="EffectsLoadingProgress" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Width="50" Height="50" IsActive="True" Grid.ColumnSpan="3"/>
+
+            <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Grid.Row="2">
+                <CommandBar Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Grid.Row="4" HorizontalAlignment="{x:Bind horizontalAlignment,Mode=OneWay}"  AllowFocusOnInteraction="False">
+                    <AppBarButton x:Name="EffectsReset" Label="Reset" Icon="Refresh" Click="EffectsReset_Click"/>
+                    <AppBarButton x:Name="EffectsCancel" Label="Close" Icon="Cancel" Click="EffectsCancel_Click"/>
+                </CommandBar>
+            </Grid>
+            <Grid Canvas.ZIndex="-1"  Grid.RowSpan="5" Grid.ColumnSpan="5" Background="{StaticResource BlurBackground2}">
+                <interactivity:Interaction.Behaviors>
+                    <behaviors:Blur Value="7" Duration="0" Delay="0" AutomaticallyStart="true"/>
+                </interactivity:Interaction.Behaviors>
+            </Grid>
+        </Grid>
+        
+
+        <Grid x:Name="MenuPanel" Visibility="{x:Bind VM.MenuGridActive, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Canvas.ZIndex="50" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -433,9 +1020,14 @@
                 </CommandBar>
             </Grid>
 
+            <Grid Canvas.ZIndex="-1"  Grid.RowSpan="5" Grid.ColumnSpan="5" Background="{StaticResource BlurBackground2}">
+                <interactivity:Interaction.Behaviors>
+                    <behaviors:Blur Value="7" Duration="0" Delay="0" AutomaticallyStart="true"/>
+                </interactivity:Interaction.Behaviors>
+            </Grid>
         </Grid>
         
-        <Grid x:Name="SavesPanel"  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Visibility="{x:Bind VM.SavesListActive, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Canvas.ZIndex="50" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+        <Grid x:Name="SavesPanel" Visibility="{x:Bind VM.SavesListActive, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Canvas.ZIndex="50" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -482,14 +1074,82 @@
             <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"  Grid.Row="2">
                 <CommandBar Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"  VerticalAlignment="Bottom"  HorizontalAlignment="{x:Bind horizontalAlignment,Mode=OneWay}">
                     <!--<AppBarButton x:Name="SavesInfo" Label="Info" Icon="Help" Click="SavesInfo_Click"/>-->
-                    <AppBarButton x:Name="SavesAll" Label="All" Icon="List" Click="SavesAll_Click"/>
-                    <AppBarButton x:Name="SavesSlots" Label="Slots" Icon="ViewAll" Click="SavesSlots_Click"/>
-                    <AppBarButton x:Name="SavesAuto" Label="Auto" Icon="Clock" Click="SavesAuto_Click"/>
-                    <AppBarButton x:Name="SavesQuick" Label="Quick" Icon="Target" Click="SavesQuick_Click"/>
+                    <AppBarButton x:Name="SavesSlots" Label="View" Icon="ViewAll">
+                        <AppBarButton.Flyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem x:Uid="SavesAll" Text="All" Click="SavesAll_Click" IsEnabled="True"/>
+                                <MenuFlyoutItem x:Uid="SavesQuick" Text="Quick" Click="SavesQuick_Click" IsEnabled="True"/>
+                                <MenuFlyoutItem x:Uid="SavesAuto" Text="Auto" Click="SavesAuto_Click" IsEnabled="True"/>
+                                <MenuFlyoutItem x:Uid="SavesSlots" Text="Slots" Click="SavesSlots_Click" IsEnabled="True"/>
+                            </MenuFlyout>
+                        </AppBarButton.Flyout>
+                    </AppBarButton>
+                    <AppBarButton x:Name="SavesMenu" Icon="Setting" Label="Actions" IsEnabled="{x:Bind VM.ShowMainActions,Mode=OneWay}">
+                        <AppBarButton.Flyout>
+                            <MenuFlyout>
+                                <MenuFlyoutSubItem x:Uid="Slot1MenuFlyoutItem" Text="Design 1">
+                                    <MenuFlyoutItem x:Uid="LoadMenuFlyoutItem" Command="{x:Bind VM.LoadStateSlot1}" IsEnabled="True"/>
+                                    <MenuFlyoutItem x:Uid="SaveMenuFlyoutItem" Command="{x:Bind VM.SaveStateSlot1}" IsEnabled="True"/>
+                                </MenuFlyoutSubItem>
+                                <MenuFlyoutSubItem x:Uid="Slot2MenuFlyoutItem" Text="Design 2">
+                                    <MenuFlyoutItem x:Uid="LoadMenuFlyoutItem" Command="{x:Bind VM.LoadStateSlot2}" IsEnabled="True"/>
+                                    <MenuFlyoutItem x:Uid="SaveMenuFlyoutItem" Command="{x:Bind VM.SaveStateSlot2}" IsEnabled="True"/>
+                                </MenuFlyoutSubItem>
+                                <MenuFlyoutSubItem x:Uid="Slot3MenuFlyoutItem" Text="Design 3">
+                                    <MenuFlyoutItem x:Uid="LoadMenuFlyoutItem" Command="{x:Bind VM.LoadStateSlot3}" IsEnabled="True"/>
+                                    <MenuFlyoutItem x:Uid="SaveMenuFlyoutItem" Command="{x:Bind VM.SaveStateSlot3}" IsEnabled="True"/>
+                                </MenuFlyoutSubItem>
+                                <MenuFlyoutSubItem x:Uid="Slot4MenuFlyoutItem" Text="Design 4">
+                                    <MenuFlyoutItem x:Uid="LoadMenuFlyoutItem" Command="{x:Bind VM.LoadStateSlot4}" IsEnabled="True"/>
+                                    <MenuFlyoutItem x:Uid="SaveMenuFlyoutItem" Command="{x:Bind VM.SaveStateSlot4}" IsEnabled="True"/>
+                                </MenuFlyoutSubItem>
+                                <MenuFlyoutSubItem x:Uid="Slot5MenuFlyoutItem" Text="Design 5">
+                                    <MenuFlyoutItem x:Uid="LoadMenuFlyoutItem" Command="{x:Bind VM.LoadStateSlot5}" IsEnabled="True"/>
+                                    <MenuFlyoutItem x:Uid="SaveMenuFlyoutItem" Command="{x:Bind VM.SaveStateSlot5}" IsEnabled="True"/>
+                                </MenuFlyoutSubItem>
+                                <MenuFlyoutSubItem x:Uid="MoreMenuFlyoutItem" Text="Design 11">
+                                    <MenuFlyoutSubItem x:Uid="Slot6MenuFlyoutItem" Text="Design 6">
+                                        <MenuFlyoutItem x:Uid="LoadMenuFlyoutItem" Command="{x:Bind VM.LoadStateSlot6}" IsEnabled="True"/>
+                                        <MenuFlyoutItem x:Uid="SaveMenuFlyoutItem" Command="{x:Bind VM.SaveStateSlot6}" IsEnabled="True"/>
+                                    </MenuFlyoutSubItem>
+                                    <MenuFlyoutSubItem x:Uid="Slot7MenuFlyoutItem" Text="Design 7">
+                                        <MenuFlyoutItem x:Uid="LoadMenuFlyoutItem" Command="{x:Bind VM.LoadStateSlot7}" IsEnabled="True"/>
+                                        <MenuFlyoutItem x:Uid="SaveMenuFlyoutItem" Command="{x:Bind VM.SaveStateSlot7}" IsEnabled="True"/>
+                                    </MenuFlyoutSubItem>
+                                    <MenuFlyoutSubItem x:Uid="Slot8MenuFlyoutItem" Text="Design 8">
+                                        <MenuFlyoutItem x:Uid="LoadMenuFlyoutItem" Command="{x:Bind VM.LoadStateSlot8}" IsEnabled="True"/>
+                                        <MenuFlyoutItem x:Uid="SaveMenuFlyoutItem" Command="{x:Bind VM.SaveStateSlot8}" IsEnabled="True"/>
+                                    </MenuFlyoutSubItem>
+                                    <MenuFlyoutSubItem x:Uid="Slot9MenuFlyoutItem" Text="Design 9">
+                                        <MenuFlyoutItem x:Uid="LoadMenuFlyoutItem" Command="{x:Bind VM.LoadStateSlot9}" IsEnabled="True"/>
+                                        <MenuFlyoutItem x:Uid="SaveMenuFlyoutItem" Command="{x:Bind VM.SaveStateSlot9}" IsEnabled="True"/>
+                                    </MenuFlyoutSubItem>
+                                    <MenuFlyoutSubItem x:Uid="Slot10MenuFlyoutItem" Text="Design 10">
+                                        <MenuFlyoutItem x:Uid="LoadMenuFlyoutItem" Command="{x:Bind VM.LoadStateSlot10}" IsEnabled="True"/>
+                                        <MenuFlyoutItem x:Uid="SaveMenuFlyoutItem" Command="{x:Bind VM.SaveStateSlot10}" IsEnabled="True"/>
+                                    </MenuFlyoutSubItem>
+                                </MenuFlyoutSubItem>
+                                <MenuFlyoutSeparator></MenuFlyoutSeparator>
+                                <MenuFlyoutItem x:Uid="ClearAllMenuFlyoutItem" Command="{x:Bind VM.ClearAllSaves}" IsEnabled="True"/>
+                                <MenuFlyoutSubItem x:Uid="AutoSaveFilteringMenuFlyout" Text="FilteringDesign">
+                                    <ToggleMenuFlyoutItem x:Uid="OnStopFilteringMenuFlyout" IsChecked="{x:Bind VM.AutoSave, Mode=OneWay}" Command="{x:Bind VM.SetAutoSave}" IsEnabled="True"/>
+                                    <ToggleMenuFlyoutItem x:Uid="Seconds15FilteringMenuFlyout" IsChecked="{x:Bind VM.AutoSave15Sec, Mode=OneWay}" Command="{x:Bind VM.SetAutoSave15Sec}" IsEnabled="True"/>
+                                    <ToggleMenuFlyoutItem x:Uid="Seconds30FilteringMenuFlyout" IsChecked="{x:Bind VM.AutoSave30Sec, Mode=OneWay}" Command="{x:Bind VM.SetAutoSave30Sec}" IsEnabled="True"/>
+                                    <ToggleMenuFlyoutItem x:Uid="Seconds60FilteringMenuFlyout" IsChecked="{x:Bind VM.AutoSave60Sec, Mode=OneWay}" Command="{x:Bind VM.SetAutoSave60Sec}" IsEnabled="True"/>
+                                    <ToggleMenuFlyoutItem x:Uid="Seconds90FilteringMenuFlyout" IsChecked="{x:Bind VM.AutoSave90Sec, Mode=OneWay}" Command="{x:Bind VM.SetAutoSave90Sec}" IsEnabled="True"/>
+                                    <ToggleMenuFlyoutItem x:Uid="AutoSaveNotifyFilteringMenuFlyout" IsChecked="{x:Bind VM.AutoSaveNotify, Mode=OneWay}" Command="{x:Bind VM.SetAutoSaveNotify}" IsEnabled="True"/>
+                                </MenuFlyoutSubItem>
+                            </MenuFlyout>
+                        </AppBarButton.Flyout>
+                    </AppBarButton>
                     <AppBarButton x:Name="SavesCancel" Label="Close" Icon="Cancel" Click="SavesCancel_Click"/>
                 </CommandBar>
             </Grid>
-
+            <Grid Canvas.ZIndex="-1"  Grid.RowSpan="5" Grid.ColumnSpan="5" Background="{StaticResource BlurBackground2}">
+                <interactivity:Interaction.Behaviors>
+                    <behaviors:Blur Value="7" Duration="0" Delay="0" AutomaticallyStart="true"/>
+                </interactivity:Interaction.Behaviors>
+            </Grid>
         </Grid>
         
         <VisualStateManager.VisualStateGroups>

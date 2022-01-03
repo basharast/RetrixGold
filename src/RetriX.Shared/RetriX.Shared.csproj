@@ -1,11 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   
   <PropertyGroup>
-    <TargetFramework>netstandard1.6</TargetFramework>
     <PackageTargetFallback>portable-net45+win8+wp8+wpa81</PackageTargetFallback>
     <NeutralLanguage>en-US</NeutralLanguage>
     <Configurations>Debug;Release</Configurations>
     <Platforms>AnyCPU;x64;x86</Platforms>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <TargetFrameworks>netstandard1.6</TargetFrameworks>
+    <!--<TargetFramework>netstandard1.6</TargetFramework>-->
     <!--<LangVersion>7.1</LangVersion>-->
   </PropertyGroup>
   
@@ -19,14 +21,17 @@
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>True</Optimize>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>True</Optimize>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>True</Optimize>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -45,7 +50,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Plugin.VersionTracking" Version="2.1.0" />
     <PackageReference Include="System.IO.Compression.ZipFile" Version="4.3.0" />
-    <PackageReference Include="System.Memory" Version="4.5.1" />
+    <PackageReference Include="System.Memory" Version="4.5.4" />
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="5.0.0" />
     <PackageReference Include="System.Security.Cryptography.Algorithms" Version="4.3.1" />
     <PackageReference Include="System.Threading.Tasks.Parallel" Version="4.3.0" />
@@ -109,10 +114,10 @@
 		<Content Include="Infos\*" Link="Infos\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
 	</ItemGroup>
 	
-  <ItemGroup Condition=" $(PlatformTarget) == 'x86' ">
+  <ItemGroup Condition=" $(Platform) == 'x86' ">
     <Content Include="Cores\uap-x86\*" Link="%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
-  <ItemGroup Condition=" $(PlatformTarget) == 'x64' ">
+  <ItemGroup Condition=" $(Platform) == 'x64' ">
     <Content Include="Cores\uap-x64\*" Link="%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
   <ItemGroup Condition=" $(Platform) == 'Any CPU' or $(Platform) == 'AnyCPU' or $(Platform) == 'ARM'">

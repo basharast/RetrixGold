@@ -1,7 +1,9 @@
-﻿using RetriX.Shared.Services;
+﻿using Pipelines.Sockets.Unofficial;
+using RetriX.Shared.Services;
 using RetriX.UWP.Components;
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
 using System.Runtime;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -16,11 +18,6 @@ namespace RetriX.UWP.Services
 {
     public sealed class AudioService : AudioServiceBase
     {
-
-        public AudioService()
-        {
-
-        }
         private AudioGraph graph;
         private AudioGraph Graph
         {
@@ -34,7 +31,6 @@ namespace RetriX.UWP.Services
             get => outputNode;
             set { if (outputNode != value) { outputNode?.Dispose(); outputNode = value; } }
         }
-
         private AudioFrameInputNode inputNode;
         private AudioFrameInputNode InputNode
         {
@@ -86,7 +82,6 @@ namespace RetriX.UWP.Services
                 {
                     SetAudioReverb(AudioReverbRequestedValue);
                 }
-
             }
             catch (Exception e)
             {
@@ -210,6 +205,13 @@ namespace RetriX.UWP.Services
         {
             try
             {
+                InputNode.QuantumStarted -= InputNodeQuantumStartedHandler;
+            }catch(Exception ex)
+            {
+
+            }
+            try
+            {
                 InputNode = null;
                 OutputNode = null;
                 Graph = null;
@@ -250,47 +252,13 @@ namespace RetriX.UWP.Services
             }
         }
 
-        GCLatencyMode oldMode = GCSettings.LatencyMode;
-
         public override void TryStartNoGCRegionCall()
         {
             try
             {
-                /*try
+                if (EnableGCPrevent)
                 {
-                    RuntimeHelpers.PrepareConstrainedRegions();
-                }
-                catch (Exception ex)
-                {
-
-                }
-                try
-                {
-                    GCSettings.LatencyMode = GCLatencyMode.Batch;
-                }
-                catch (Exception ex)*/
-                {
-                    if (EnableGCPrevent)
-                    {
-                        /* try
-                         {
-                             var appMemory = (long)MemoryManager.AppMemoryUsage;
-                             appMemory += 10000;
-                             GC.TryStartNoGCRegion(appMemory, true);
-                         }
-                         catch (Exception exx)
-                         {
-                             try
-                             {
-                                 GC.TryStartNoGCRegion(GCReserveSizeMax, true);
-                             }
-                             catch (Exception exxx)
-                             {
-                                 GC.TryStartNoGCRegion(GCReserveSize, true);
-                             }
-                         }*/
-                        GC.TryStartNoGCRegion(GCReserveSize, true);
-                    }
+                    GC.TryStartNoGCRegion(GCReserveSize, true);
                 }
             }
             catch (Exception ea)
@@ -304,12 +272,10 @@ namespace RetriX.UWP.Services
         {
             try
             {
-                if (!EnableGCPrevent)
+                if (EnableGCPrevent)
                 {
                     GC.EndNoGCRegion();
                 }
-                // ALWAYS set the latency mode back
-                //GCSettings.LatencyMode = oldMode;
             }
             catch (Exception es)
             {
@@ -317,6 +283,7 @@ namespace RetriX.UWP.Services
                 //FrameFailedError = es.Message;
             }
         }
+
         [ComImport]
         [Guid("5B0D3235-4DBA-4D44-865E-8F1D0E4FD04D")]
         [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -325,27 +292,30 @@ namespace RetriX.UWP.Services
             void GetBuffer(out byte* buffer, out uint capacity);
         }
 
-        private AudioBuffer buffer;
-        private IMemoryBufferReference reference;
+        private int RequiredSamplesGlobal = 0;
         private unsafe void InputNodeQuantumStartedHandler(AudioFrameInputNode sender, FrameInputNodeQuantumStartedEventArgs args)
         {
+            if (!isGameStarted || SamplesBuffer == null)
+            {
+                return;
+            }
+            RequiredSamplesGlobal = args.RequiredSamples;
             try
             {
                 if ((!AudioMuteGlobal && !VideoOnlyGlobal))
                 {
-                    var requiredSamples = args.RequiredSamples;
-                    if (requiredSamples < 1)
+                    if (RequiredSamplesGlobal < 1)
                         return;
 
                     // Buffer size is (number of samples) * (size of each sample)
                     // We choose to generate single channel (mono) audio. For multi-channel, multiply by number of channels
-                    uint bufferSizeElements = (uint)requiredSamples * NumChannels;
+                    uint bufferSizeElements = (uint)RequiredSamplesGlobal * NumChannels;
+
                     uint bufferSizeBytes = bufferSizeElements * sizeof(float);
                     AudioFrame frame = new AudioFrame(bufferSizeBytes);
-
-                    using (buffer = frame.LockBuffer(AudioBufferAccessMode.Write))
+                    using (AudioBuffer buffer = frame.LockBuffer(AudioBufferAccessMode.Write))
                     {
-                        using (reference = buffer.CreateReference())
+                        using (IMemoryBufferReference reference = buffer.CreateReference())
                         {
                             byte* dataInBytes;
                             uint capacityInBytes;
@@ -370,13 +340,12 @@ namespace RetriX.UWP.Services
                                 {
                                     dataInFloat[i] = 0f;
                                 }
-
                             }
                         }
                     }
 
                     sender.AddFrame(frame);
-
+                    frame.Dispose();
                     FrameFailed = false;
                     FrameFailedError = "";
                 }
@@ -387,8 +356,6 @@ namespace RetriX.UWP.Services
                 FrameFailedError = e.Message;
             }
         }
-
-
     }
 
 }

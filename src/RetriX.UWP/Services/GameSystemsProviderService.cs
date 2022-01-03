@@ -9,6 +9,8 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.ApplicationModel;
+using Windows.Security.ExchangeActiveSyncProvisioning;
 
 namespace RetriX.UWP.Services
 {
@@ -116,36 +118,52 @@ namespace RetriX.UWP.Services
             {
                 foreach (IFileInfo currentFile in PlatformService.AnyCores)
                 {
-                    var fileExtension = Path.GetExtension(currentFile.FullName);
-                    if (fileExtension.ToLower().Equals(".dll"))
+                    try
                     {
-                        if (GameSystemSelectionViewModel.isPinnedCore(currentFile.FullName))
+                        var fileExtension = Path.GetExtension(currentFile.FullName);
+                        if (fileExtension.ToLower().Equals(".dll"))
                         {
-                            var chechCore = MonitorLoadingStart(currentFile.Name);
-                            if (chechCore)
+                            if (GameSystemSelectionViewModel.isPinnedCore(currentFile.FullName))
                             {
-                                SkippedList.Add($"{currentFile.Name} Skipped due compatibility issues");
-                                continue;
+                                var chechCore = MonitorLoadingStart(currentFile.Name);
+                                if (chechCore)
+                                {
+                                    SkippedList.Add($"{currentFile.Name} Skipped due compatibility issues");
+                                    continue;
+                                }
+                                MonitorLoadingEnd(currentFile.Name, true);
+                                gameSystemViewModels.Add(GameConsoleAnyCore(currentFile.FullName.Replace(".dll", ""), fileSystem));
+                                MonitorLoadingEnd(currentFile.Name, false);
                             }
-                            MonitorLoadingEnd(currentFile.Name, true);
-                            gameSystemViewModels.Add(GameConsoleAnyCore(currentFile.FullName.Replace(".dll", ""), fileSystem));
-                            MonitorLoadingEnd(currentFile.Name, false);
                         }
+                    }catch(Exception ex)
+                    {
+
                     }
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
                 }
             }
 
             foreach (KeyValuePair<string, int> item in ConsolesSequence.OrderByDescending(key => key.Value))
             {
-                var chechCore = MonitorLoadingStart(item.Key);
-                if (chechCore)
+                try
                 {
-                    SkippedList.Add($"{item.Key} Skipped due compatibility issues");
-                    continue;
+                    var chechCore = MonitorLoadingStart(item.Key);
+                    if (chechCore)
+                    {
+                        SkippedList.Add($"{item.Key} Skipped due compatibility issues");
+                        continue;
+                    }
+                    MonitorLoadingEnd(item.Key, true);
+                    gameSystemViewModels.Add(GameConsole(item.Key, fileSystem));
+                    MonitorLoadingEnd(item.Key, false);
+                }catch(Exception ex)
+                {
+
                 }
-                MonitorLoadingEnd(item.Key, true);
-                gameSystemViewModels.Add(GameConsole(item.Key, fileSystem));
-                MonitorLoadingEnd(item.Key, false);
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
             }
 
             //Generate AnyCore Console
@@ -153,22 +171,30 @@ namespace RetriX.UWP.Services
             {
                 foreach (IFileInfo currentFile in PlatformService.AnyCores)
                 {
-                    var fileExtension = Path.GetExtension(currentFile.FullName);
-                    if (fileExtension.ToLower().Equals(".dll"))
+                    try
                     {
-                        if (!GameSystemSelectionViewModel.isPinnedCore(currentFile.FullName))
+                        var fileExtension = Path.GetExtension(currentFile.FullName);
+                        if (fileExtension.ToLower().Equals(".dll"))
                         {
-                            var chechCore = MonitorLoadingStart(currentFile.Name);
-                            if (chechCore)
+                            if (!GameSystemSelectionViewModel.isPinnedCore(currentFile.FullName))
                             {
-                                SkippedList.Add($"{currentFile.Name} Skipped due compatibility issues");
-                                continue;
+                                var chechCore = MonitorLoadingStart(currentFile.Name);
+                                if (chechCore)
+                                {
+                                    SkippedList.Add($"{currentFile.Name} Skipped due compatibility issues");
+                                    continue;
+                                }
+                                MonitorLoadingEnd(currentFile.Name, true);
+                                gameSystemViewModels.Add(GameConsoleAnyCore(currentFile.FullName.Replace(".dll", ""), fileSystem));
+                                MonitorLoadingEnd(currentFile.Name, false);
                             }
-                            MonitorLoadingEnd(currentFile.Name, true);
-                            gameSystemViewModels.Add(GameConsoleAnyCore(currentFile.FullName.Replace(".dll", ""), fileSystem));
-                            MonitorLoadingEnd(currentFile.Name, false);
                         }
+                    }catch(Exception ex)
+                    {
+
                     }
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
                 }
             }
             PlatformService.isCoresLoaded = true;
@@ -450,13 +476,46 @@ namespace RetriX.UWP.Services
         }
         public static bool isARM()
         {
-            string CPUType = System.Environment.GetEnvironmentVariable("PROCESSOR_ARCHITECTURE");
-            return CPUType.ToLower().Contains("arm");
+            try
+            {
+                Package package = Package.Current;
+                string systemArchitecture = package.Id.Architecture.ToString();
+                return systemArchitecture.ToLower().Contains("arm") || systemArchitecture.ToLower().Contains("ARM");
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
         public static bool isX64()
         {
-            string CPUType = System.Environment.GetEnvironmentVariable("PROCESSOR_ARCHITECTURE");
-            return CPUType.ToLower().Contains("x64") || CPUType.ToLower().Contains("amd64");
+            try
+            {
+                Package package = Package.Current;
+                string systemArchitecture = package.Id.Architecture.ToString();
+                return systemArchitecture.ToLower().Contains("x64") || systemArchitecture.ToLower().Contains("amd64");
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+        public static bool DeviceIsPhone()
+        {
+            try
+            {
+                EasClientDeviceInformation info = new EasClientDeviceInformation();
+                string system = info.OperatingSystem;
+                if (system.Equals("WindowsPhone"))
+                {
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+            return false;
         }
     }
 }

@@ -20,6 +20,9 @@ namespace RetriX.Shared.Services
         bool VideoOnlyGlobal { get; set; }
         bool SmartFrameDelay { get; set; }
         bool EnableGCPrevent { get; set; }
+        bool isGameStarted { get; set; }
+        bool gameIsPaused { get; set; }
+
         string GetFrameFailedMessage ();
         void TryStartNoGCRegionCall();
         void EndNoGCRegionCall();

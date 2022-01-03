@@ -11,6 +11,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 using System.IO;
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.Storage;
@@ -43,7 +45,29 @@ namespace RetriX.UWP.Pages
         public GameSystemSelectionView()
         {
             this.InitializeComponent();
+           
+            try
+            {
+                /*if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.Xaml.Media.AcrylicBrush"))
+                {
+                    var uiSettings = new Windows.UI.ViewManagement.UISettings();
+                    var color = uiSettings.GetColorValue(Windows.UI.ViewManagement.UIColorType.Background);
+                    Color themeColor = color;
+                    Windows.UI.Xaml.Media.AcrylicBrush myBrush = new Windows.UI.Xaml.Media.AcrylicBrush();
+                    myBrush.BackgroundSource = Windows.UI.Xaml.Media.AcrylicBackgroundSource.HostBackdrop;
+                    myBrush.TintColor = themeColor;
+                    myBrush.FallbackColor = themeColor;
+                    myBrush.TintOpacity = 0.99;
+                    App.Current.Resources["ApplicationPageBackgroundThemeBrush"] = myBrush;
+                    App.Current.Resources["SystemControlHighlightAccentBrush"] = myBrush;
+                    App.Current.Resources["AccentButtonBackgroundPointerOver"] = myBrush;
+                    mainGrid.Background = myBrush;
+                }*/
+            }
+            catch (Exception ex)
+            {
 
+            }
             try
             {
                 var notificationGrid = new Grid();
@@ -135,8 +159,9 @@ namespace RetriX.UWP.Pages
             }
             catch (Exception e)
             {
-            }
 
+            }
+            callMemoryTimerTimer(true);
             PlatformService.pageReady = true;
         }
         private async void pushLocalNotification(string text, Color background, Color forground, char icon = '\0', int time = 3, Position position = Position.Bottom, EventHandler eventHandler = null)
@@ -229,10 +254,8 @@ namespace RetriX.UWP.Pages
                 }
                 try
                 {
-                    RecentsListPage.UpdateLayout();
                     SystemRecentsGrid.UpdateLayout();
                     SystemRecentsList.UpdateLayout();
-                    RecentsListPage.UpdateLayout();
                 }
                 catch (Exception ex)
                 {
@@ -241,8 +264,41 @@ namespace RetriX.UWP.Pages
 
                 try
                 {
-                    RecentsListPage.ChangeView(0, PlatformService.vScroll, 1);
-                    //RecentsListPage.ScrollToVerticalOffset(currentIndex);
+                    if (SystemRecentsList.Visibility == Visibility.Visible)
+                    {
+                        ScrollViewer svl = FindVisualChildren<ScrollViewer>(SystemRecentsList).FirstOrDefault();
+                        if (svl != null)
+                        {
+                            svl.ChangeView(0, PlatformService.vScroll, 1);
+                        }
+                    }
+                    else
+                    {
+                        ScrollViewer svg = FindVisualChildren<ScrollViewer>(SystemRecentsGrid).FirstOrDefault();
+                        if (svg != null)
+                        {
+                            svg.ChangeView(0, PlatformService.vScroll, 1);
+                        }
+                    }
+
+                    if (GameSystemsList.Visibility == Visibility.Visible)
+                    {
+                        ScrollViewer svl = FindVisualChildren<ScrollViewer>(GameSystemsList).FirstOrDefault();
+                        if (svl != null)
+                        {
+                            svl.ChangeView(0, PlatformService.vScrollS, 1);
+                        }
+                    }
+                    else
+                    {
+                        ScrollViewer svg = FindVisualChildren<ScrollViewer>(GameSystemsGrid).FirstOrDefault();
+                        if (svg != null)
+                        {
+                            svg.ChangeView(0, PlatformService.vScrollS, 1);
+                        }
+                    }
+
+
                 }
                 catch (Exception ex)
                 {
@@ -255,14 +311,31 @@ namespace RetriX.UWP.Pages
 
             }
         }
+        private static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
+        {
+            if (depObj != null)
+            {
+                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
+                {
+                    DependencyObject child = VisualTreeHelper.GetChild(depObj, i);
+                    if (child != null && child is T)
+                    {
+                        yield return (T)child;
+                    }
+
+                    foreach (T childOfChild in FindVisualChildren<T>(child))
+                    {
+                        yield return childOfChild;
+                    }
+                }
+            }
+        }
         private void GameSystemSelectionView_eventHandler(object sender, EventArgs e)
         {
             try
             {
-                RecentsListPage.UpdateLayout();
                 SystemRecentsGrid.UpdateLayout();
                 SystemRecentsList.UpdateLayout();
-                RecentsListPage.UpdateLayout();
             }
             catch (Exception ex)
             {
@@ -270,7 +343,38 @@ namespace RetriX.UWP.Pages
             }
             try
             {
-                PlatformService.vScroll = RecentsListPage.VerticalOffset;
+                if (SystemRecentsList.Visibility == Visibility.Visible)
+                {
+                    ScrollViewer svl = FindVisualChildren<ScrollViewer>(SystemRecentsList).FirstOrDefault();
+                    if (svl != null)
+                    {
+                        PlatformService.vScroll = svl.VerticalOffset;
+                    }
+                }
+                else
+                {
+                    ScrollViewer svg = FindVisualChildren<ScrollViewer>(SystemRecentsGrid).FirstOrDefault();
+                    if (svg != null)
+                    {
+                        PlatformService.vScroll = svg.VerticalOffset;
+                    }
+                }
+                if (GameSystemsList.Visibility == Visibility.Visible)
+                {
+                    ScrollViewer svl = FindVisualChildren<ScrollViewer>(GameSystemsList).FirstOrDefault();
+                    if (svl != null)
+                    {
+                        PlatformService.vScrollS = svl.VerticalOffset;
+                    }
+                }
+                else
+                {
+                    ScrollViewer svg = FindVisualChildren<ScrollViewer>(GameSystemsGrid).FirstOrDefault();
+                    if (svg != null)
+                    {
+                        PlatformService.vScrollS = svg.VerticalOffset;
+                    }
+                }
                 PlatformService.gameSystemViewModel = (GameSystemRecentModel)sender;
             }
             catch (Exception ex)
@@ -298,10 +402,8 @@ namespace RetriX.UWP.Pages
                 }
                 try
                 {
-                    RecentsListPage.UpdateLayout();
                     SystemRecentsGrid.UpdateLayout();
                     SystemRecentsList.UpdateLayout();
-                    RecentsListPage.UpdateLayout();
                 }
                 catch (Exception ex)
                 {
@@ -310,8 +412,22 @@ namespace RetriX.UWP.Pages
 
                 try
                 {
-                    RecentsListPage.ChangeView(0, currentIndex, 1);
-                    //RecentsListPage.ScrollToVerticalOffset(currentIndex);
+                    if (SystemRecentsList.Visibility == Visibility.Visible)
+                    {
+                        ScrollViewer svl = FindVisualChildren<ScrollViewer>(SystemRecentsList).FirstOrDefault();
+                        if (svl != null)
+                        {
+                            svl.ChangeView(0, currentIndex, 1);
+                        }
+                    }
+                    else
+                    {
+                        ScrollViewer svg = FindVisualChildren<ScrollViewer>(SystemRecentsGrid).FirstOrDefault();
+                        if (svg != null)
+                        {
+                            svg.ChangeView(0, currentIndex, 1);
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -1475,6 +1591,97 @@ namespace RetriX.UWP.Pages
             {
 
             }
+        }
+
+        SolidColorBrush memoryUsageColor = new SolidColorBrush(Colors.Green);
+        SolidColorBrush MemoryUsageColor
+        {
+            get
+            {
+                return memoryUsageColor;
+            }
+            set
+            {
+                MemoryUsageInfo.Foreground = value;
+                memoryUsageColor = value;
+            }
+        }
+
+        string totalMUsage = "...";
+        string TotalMUsage
+        {
+            get
+            {
+                return totalMUsage;
+            }
+            set
+            {
+                MemoryUsageInfo.Text = value;
+                totalMUsage = value;
+            }
+        }
+
+        private void callMemoryTimerTimer(bool startState = false)
+        {
+            try
+            {
+                PlatformService.MemoryTimer?.Dispose();
+                if (startState)
+                {
+                    PlatformService.MemoryTimer = new Timer(delegate { UpdateTotalMemoryUsage(); }, null, 0, 1000);
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
+        bool totalMemoryUsageInProgress;
+        private async void UpdateTotalMemoryUsage()
+        {
+            try
+            {
+                if (totalMemoryUsageInProgress)
+                {
+                    return;
+                }
+                totalMemoryUsageInProgress = true;
+                var TotalMUsageValue = "...";
+                var MemoryLoadColor = Colors.Green;
+                var MemoryLoadColor2 = Colors.Green;
+                TaskCompletionSource<bool> taskCompletionSource = new TaskCompletionSource<bool>();
+                await Task.Run(async () =>
+                {
+                    try
+                    {
+                        TotalMUsageValue = PlatformService.GetMemoryUsageDirect();
+                        taskCompletionSource.SetResult(true);
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                });
+                await taskCompletionSource.Task;
+                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Low, async () =>
+                {
+                    try
+                    {
+                        TotalMUsage = TotalMUsageValue;
+                        MemoryUsageColor = new SolidColorBrush(MemoryLoadColor);
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+
+            }
+            totalMemoryUsageInProgress = false;
         }
     }
 }

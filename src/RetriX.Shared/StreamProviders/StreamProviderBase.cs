@@ -8,8 +8,6 @@ namespace RetriX.Shared.StreamProviders
 {
     public abstract class StreamProviderBase : IStreamProvider
     {
-        private readonly HashSet<Stream> OpenStreams = new HashSet<Stream>();
-
         public abstract Task<IEnumerable<string>> ListEntriesAsync();
         protected abstract Task<Stream> OpenFileStreamAsyncInternal(string path, FileAccess accessType);
         private IPlatformService PlatformService { get; }
@@ -18,10 +16,8 @@ namespace RetriX.Shared.StreamProviders
         {
             try
             {
-                foreach (var i in OpenStreams)
-                {
-                    i.Dispose();
-                }
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
             }
             catch (Exception e)
             {
@@ -31,17 +27,24 @@ namespace RetriX.Shared.StreamProviders
                 }
             }
         }
+        public void GCCollectForList<T>(T ListToCollect)
+        {
+            try
+            {
+                int identificador = GC.GetGeneration(ListToCollect);
+                GC.Collect(identificador, GCCollectionMode.Forced);
+            }
+            catch (Exception e)
+            {
 
+            }
+        }
         public async Task<Stream> OpenFileStreamAsync(string path, FileAccess accessType)
         {
             try
             {
                 var stream = await OpenFileStreamAsyncInternal(path, accessType);
-                if (stream != null)
-                {
-                    OpenStreams.Add(stream);
-                }
-
+               
                 return stream;
             }
             catch (Exception e)
@@ -58,11 +61,8 @@ namespace RetriX.Shared.StreamProviders
         {
             try
             {
-                if (OpenStreams.Contains(stream))
-                {
-                    OpenStreams.Remove(stream);
-                    stream.Dispose();
-                }
+                stream.Dispose();
+                stream = null;
             }
             catch (Exception e)
             {
