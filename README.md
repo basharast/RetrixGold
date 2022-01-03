@@ -48,7 +48,7 @@ You are <b>not allowed</b> to:
 
 - Improved CPU render
 
-- Colors effects
+- Video Effects
 
 - Audio effects
 
@@ -62,6 +62,18 @@ You are <b>not allowed</b> to:
 
 - Bugs fixes
 
+
+### Effects System
+<img src="assets/Effects.gif"><br><br>
+
+
+### Pixels Update
+<img src="assets/Pixels Update.gif"><br><br>
+	
+
+### Overlay
+<img src="assets/Overlay.gif"><br><br>
+	
 
 # Limitations
 
@@ -93,4 +105,6 @@ it might work fine without any problems.
 Developed by Alberto Fustinoni
 
 RetrixGold Developement by Bashar Astifan
+
+Render solution DekuDesu
 
