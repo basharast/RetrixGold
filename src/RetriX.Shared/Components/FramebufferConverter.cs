@@ -799,6 +799,19 @@ namespace RetriX.Shared.Components
                                             {
                                                 restPixels = CrazyBufferMove8888.CrazyMove(outputLinePointer, inputLinePointer, sizeof(uint), sizeof(uint), width);
                                                 var pointersOffset = restPixels * sizeof(uint);
+
+                                                if (iT == 0)
+                                                {
+                                                    try
+                                                    {
+                                                        crazyBufferPercentageHandle = Math.Round(((restPixels * 1d) / (width * 1d) * 100.0));
+                                                    }
+                                                    catch (Exception ex)
+                                                    {
+
+                                                    }
+                                                }
+
                                                 if (pointersOffset >= outputLength)
                                                 {
                                                     iT += NativePixelStep;
@@ -811,19 +824,8 @@ namespace RetriX.Shared.Components
                                                     outputLinePointer = (byte*)(((byte*)outputManager.Pin().Pointer + (i * outputPitch)) + pointersOffset);
                                                     outputManager.Unpin();
                                                 }
-                                                if (iT == 0)
-                                                {
-                                                    try
-                                                    {
-                                                        crazyBufferPercentageHandle = Math.Round(((restPixels * 1d) / (width * 1d) * 100.0));
-                                                    }
-                                                    catch (Exception ex)
-                                                    {
-
-                                                    }
-                                                }
                                             }
-                                            if (!skipDueOffsetOutOfRange && restPixels > 0)
+                                            if (!skipDueOffsetOutOfRange && restPixels < width)
                                             {
                                                 switch (MemoryHelper)
                                                 {
@@ -986,16 +988,7 @@ namespace RetriX.Shared.Components
                                 {
                                     restPixels = CrazyBufferMove8888.CrazyMove(outputLinePointer, inputLinePointer, sizeof(uint), sizeof(uint), width);
                                     var pointersOffset = restPixels * sizeof(uint);
-                                    if (pointersOffset >= outputLength || restPixels == 0)
-                                    {
-                                        i += (ulong)NativePixelStep;
-                                        continue;
-                                    }
-                                    else
-                                    {
-                                        inputLinePointer = (byte*)((inputPointer + (i * inputPitch)) + pointersOffset);
-                                        outputLinePointer = (byte*)((outputPointer + (i * outputPitch)) + pointersOffset);
-                                    }
+
                                     if (i == 0)
                                     {
                                         try
@@ -1007,6 +1000,18 @@ namespace RetriX.Shared.Components
 
                                         }
                                     }
+
+                                    if (pointersOffset >= outputLength || restPixels == width)
+                                    {
+                                        i += (ulong)NativePixelStep;
+                                        continue;
+                                    }
+                                    else
+                                    {
+                                        inputLinePointer = (byte*)((inputPointer + (i * inputPitch)) + pointersOffset);
+                                        outputLinePointer = (byte*)((outputPointer + (i * outputPitch)) + pointersOffset);
+                                    }
+                                    
                                 }
                                 switch (MemoryHelper)
                                 {

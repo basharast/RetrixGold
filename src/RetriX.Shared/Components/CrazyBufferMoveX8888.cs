@@ -9,57 +9,57 @@ namespace RetriX.Shared.Components
     {
         public unsafe static ulong CrazyMove(byte* destination, byte* source, int inputOffset, int outputOffest, ulong rowLength)
         {
-            if (rowLength > 600)
+            if (rowLength >= 600)
             {
                 CrazyMove600(destination, source, inputOffset, outputOffest);
                 return 600;
             }
-            else if (rowLength > 500)
+            else if (rowLength >= 500)
             {
                 CrazyMove500(destination, source, inputOffset, outputOffest);
                 return 500;
             }
-            else if (rowLength > 400)
+            else if (rowLength >= 400)
             {
                 CrazyMove400(destination, source, inputOffset, outputOffest);
                 return 400;
             }
-            else if (rowLength > 350)
+            else if (rowLength >= 350)
             {
                 CrazyMove350(destination, source, inputOffset, outputOffest);
                 return 350;
             }
-            else if (rowLength > 300)
+            else if (rowLength >= 300)
             {
                 CrazyMove300(destination, source, inputOffset, outputOffest);
                 return 300;
             }
-            else if (rowLength > 250)
+            else if (rowLength >= 250)
             {
                 CrazyMove250(destination, source, inputOffset, outputOffest);
                 return 250;
             }
-            else if (rowLength > 230)
+            else if (rowLength >= 230)
             {
                 CrazyMove230(destination, source, inputOffset, outputOffest);
                 return 230;
             }
-            else if (rowLength > 200)
+            else if (rowLength >= 200)
             {
                 CrazyMove200(destination, source, inputOffset, outputOffest);
                 return 200;
             }
-            else if (rowLength > 150)
+            else if (rowLength >= 150)
             {
                 CrazyMove150(destination, source, inputOffset, outputOffest);
                 return 150;
             }
-            else if (rowLength > 100)
+            else if (rowLength >= 100)
             {
                 CrazyMove100(destination, source, inputOffset, outputOffest);
                 return 100;
             }
-            else if (rowLength > 50)
+            else if (rowLength >= 50)
             {
                 CrazyMove50(destination, source, inputOffset, outputOffest);
                 return 50;
