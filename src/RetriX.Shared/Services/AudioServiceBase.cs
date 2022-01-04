@@ -34,8 +34,8 @@ namespace RetriX.Shared.Services
         public const int MaxSamplesQueueSize = 44100 * 4;
         public const uint GCReserveSize = MaxSamplesQueueSize;
         public const uint GCReserveSizeMax = 300000000;
-        private const float PlaybackDelaySeconds = 0.01f; //Have some buffer to avoid crackling
-        private const float MaxAllowedDelaySeconds = 0.1f; //Limit maximum delay
+        private const float PlaybackDelaySeconds = 0.2f; //Have some buffer to avoid crackling
+        private const float MaxAllowedDelaySeconds = 0.4f; //Limit maximum delay
 
         protected Queue<short> SamplesBuffer = new Queue<short>(MaxSamplesQueueSize);
         public bool isGameStarted { get; set; }

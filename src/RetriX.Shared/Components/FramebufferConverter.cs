@@ -385,7 +385,7 @@ namespace RetriX.Shared.Components
                                             ulong restPixels = 0;
                                             if (CrazyBufferActive)
                                             {
-                                                restPixels = CrazyBufferMove.CrazyMove(outputLinePointer, inputLinePointer, sizeof(ushort), sizeof(uint), (inputPitch / sizeof(ushort)));
+                                                restPixels = CrazyBufferMove.CrazyMove(outputLinePointer, inputLinePointer, sizeof(ushort), sizeof(uint), width);
                                                 if (iT == 0)
                                                 {
                                                     try
@@ -400,7 +400,7 @@ namespace RetriX.Shared.Components
                                             }
 
                                             // traverse the input line by ushorts
-                                            for (ulong j = restPixels; j < (inputPitch / sizeof(ushort)); j++)
+                                            for (ulong j = restPixels; j < width; j++)
                                             {
                                                 if (cancellationTokenSource.IsCancellationRequested)
                                                 {
@@ -457,7 +457,7 @@ namespace RetriX.Shared.Components
 
                                                 pixelCachesStates[i] = true;
                                                 // traverse the input line by ushorts
-                                                for (ulong j = 0; j < (inputPitch / sizeof(ushort)); j++)
+                                                for (ulong j = 0; j < width; j++)
                                                 {
                                                     if (cancellationTokenSource.IsCancellationRequested)
                                                     {
@@ -559,7 +559,7 @@ namespace RetriX.Shared.Components
                                     ulong restPixels = 0;
                                     if (CrazyBufferActive)
                                     {
-                                        restPixels = CrazyBufferMove.CrazyMove(outputLinePointer, inputLinePointer, sizeof(ushort), sizeof(uint), (inputPitch / sizeof(ushort)));
+                                        restPixels = CrazyBufferMove.CrazyMove(outputLinePointer, inputLinePointer, sizeof(ushort), sizeof(uint), width);
                                         if (i == 0)
                                         {
                                             try
@@ -573,7 +573,7 @@ namespace RetriX.Shared.Components
                                         }
                                     }
                                     // traverse the input line by ushorts
-                                    for (ulong j = restPixels; j < (inputPitch / sizeof(ushort)); j++)
+                                    for (ulong j = restPixels; j < width; j++)
                                     {
                                         // calculate the offset for i'th uint
                                         ulong outputOffset = j * sizeof(uint);
@@ -616,7 +616,7 @@ namespace RetriX.Shared.Components
 
                                 pixelCachesStates[i] = true;
                                 // traverse the input line by ushorts
-                                for (ulong j = 0; j < (inputPitch / sizeof(ushort)); j++)
+                                for (ulong j = 0; j < width; j++)
                                 {
                                     // calculate the offset for i'th uint
                                     ulong outputOffset = j * sizeof(uint);
