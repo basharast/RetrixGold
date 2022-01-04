@@ -405,12 +405,20 @@ namespace LibRetriX.RetroBindings
                 {
                     var regex = new Regex(Regex.Escape(formatItem));
                     var replaceValue = args[indexer].ToString();
-                    if(formatItem.StartsWith("%") && formatItem.EndsWith("s"))
+                    try
                     {
-                        replaceValue = Marshal.PtrToStringAnsi(args[indexer]);
-                        if(replaceValue == null)
+                        //Still there is crash happens when pointer is number, hope this will prevent that totally
+                        var testNumber = int.Parse(replaceValue);
+                    }
+                    catch (Exception ex)
+                    {
+                        if (formatItem.StartsWith("%") && formatItem.EndsWith("s"))
                         {
-                            replaceValue = args[indexer].ToString();
+                            replaceValue = Marshal.PtrToStringAnsi(args[indexer]);
+                            if (replaceValue == null)
+                            {
+                                replaceValue = args[indexer].ToString();
+                            }
                         }
                     }
                     finalMessage = regex.Replace(finalMessage, replaceValue, 1);
