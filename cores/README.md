@@ -21,7 +21,6 @@ To update the core online do the following:
 
 - Select <b>Online Update</b>
 
-<br/>
 
 ## Offline Update
 
