@@ -17,7 +17,7 @@ To update the core online do the following:
 
 - Select the system
 
-- From 'Management' sections
+- From 'Management' section
 
 - Select <b>Online Update</b>
 
