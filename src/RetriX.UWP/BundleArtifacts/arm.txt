@@ -1,5 +1,0 @@
-MainPackage=D:\programming\retrix.2.1.1\RetriX.UWP\bin\ARM\Release\RetriX.UWP_2.7.95.0_ARM.appx
-ResourcePack=D:\programming\retrix.2.1.1\RetriX.UWP\bin\ARM\Release\RetriX.UWP_2.7.95.0_scale-100.appx
-ResourcePack=D:\programming\retrix.2.1.1\RetriX.UWP\bin\ARM\Release\RetriX.UWP_2.7.95.0_scale-125.appx
-ResourcePack=D:\programming\retrix.2.1.1\RetriX.UWP\bin\ARM\Release\RetriX.UWP_2.7.95.0_scale-150.appx
-ResourcePack=D:\programming\retrix.2.1.1\RetriX.UWP\bin\ARM\Release\RetriX.UWP_2.7.95.0_scale-400.appx

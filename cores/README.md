@@ -2,6 +2,25 @@
 
 Here you will find RetriXGold cores updates
 
+
+## Online Update
+
+To update the core online do the following:
+
+- Open RetrixGold
+
+- Select the system
+
+- From the bottom menu (...)
+
+- Select <b>Online Update</b>
+
+- Restart RetrixGold
+
+
+
+## Offline Update
+
 To import the cores do the following:
 
 - Open RetrixGold
@@ -10,7 +29,7 @@ To import the cores do the following:
 
 - From the bottom menu (...)
 
-- Select <b>Update Core</b>
+- Select <b>Offline Update</b>
 
 - Select the Update
 
@@ -27,4 +46,6 @@ RetrixGold has dynamic cores loader, so you can always update your cores without
 
 ## Note
 
-Core must be compiled with the old libretro VFS layer
+From **RetriXGold 3.0** you will be able to use core with the new VFS layer **3.0** from RetroArch directly
+
+Older releases below **3.0** support only VFS version **1.0**

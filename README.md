@@ -1,6 +1,6 @@
 <p align="center">
   <img src="assets/logo.png" width="176"><br>
-  <b>UWP Games Emulator, Libretro Frontend originally by Alberto Fustinoni</b><br>
+  <b>Universal Libretro Frontend</b><br>
   <a href="./src">Source</a> |
   <a href="https://github.com/Aftnet/RetriX">Original Project</a> 
   <br><br>
@@ -10,101 +10,119 @@
 
 # Important
 
-You are <b>not allowed</b> to:
+App & Source code notice:
 
-- Sell this app or any of it's components, it should be free
+- This app provided for free without any warranty
+
+- You cannot sell this app or any of it's components, it should be free
 
 - Not to be part of any commercial action
 
-- No tracking or analytics should be added, The project built with privacy respect
+- No tracking or analytics should be added at all
+
+- Permission granted only for educational purposes and personal usage
+
+- Share the store link should be from <a href="https://gamr13.github.io/index.html">Gamr13</a> website
+
+- Don't share it with direct store link
 
 
+# Download
 
-# Features (Gold Edition)
+- <a href="https://github.com/basharast/RetrixGold/releases/latest">RetriXGold Latest (GitHub) +Cores</a>
 
-- Dynamic cores (dll) loader
+- <a href="https://gamr13.github.io/index.html">XBOX Store (Gamr13) (Retail) [Frontend Only]</a>
 
-- Upgradable cores
+- <a href="http://retrix.astifan.online/cores.html">Cores Installation (For store release only)</a>
 
-- Cores options (available in-game also) 
 
-- Extended emulation systems
+# What's new in RetriXGold 3.0
 
-- Advanced games list
+- New Layouts
 
-- Games history with total play time
+- New Libretro VFS layer
 
-- Customizable controls
+- New Cores
 
-- Customizable Touch pad
+- Online cores updater
 
-- Touch pad auto profile (Based on system)
+- Easy BIOS management
 
-- Able to accept new cores (AnyCore feature)
+- Games lists cache
 
-- Backup/Restore feature
+- Smart roms resolver (with 7z, rar, zip support)
 
-- Improved touch pad
+- Support start core without content
 
-- Improved CPU render
+- Play statisitics (Internal usage only)
 
-- Video Effects
+- Major base code changes
 
-- Audio effects
+- Advanced customization for Gamepad and options
 
-- Threads render (New Feature)
+- Onscreen Keyboard
 
-- Save states manager
+- Custom Saves/System folder (if supported)
 
-- Improved BIOS manager
+- Pre-Configuration for cores with (free to use content)
 
-- Many new options added
+- Improved & accurate touch functions
+
+- Controllers ports mapping
+
+- URI integration (RetroPass)
 
 - Bugs fixes
+
+- Much more
+
+
+## Libretro VFS layer (new)?
+
+This means you can use any Libretro core with Retrix directly
+
+the new VFS layer is much smarter and provides compatiblity with archived roms (even if the core doesn't support that)
+
+it can also solve many issues that prevent UWP app from accessing to the content
+
+
+# Limitations
+
+- [x] HW Render Configuration
+- [ ] OpenGL
+- [ ] OpenGLES
+- [ ] DirectX
+
+
+### Easy BIOS Import
+<img src="assets/EasyBIOS.gif"><br><br>
 
 
 ### Effects System
 <img src="assets/Effects.gif"><br><br>
 
 
-### Pixels Update
-<img src="assets/Pixels Update.gif"><br><br>
-	
-
-### Overlay
-<img src="assets/Overlay.gif"><br><br>
-	
-
-# Limitations
-
-The app uses libretro VFS first version
-
-so you have to switch back the core VFS functions if you want to compile it for Retrix
-
-otherwise we need to upgrade the current VFS layer in Retrix
-
-
-No GPU render available, but the current CPU render provides good performance for many cores
-
-
-
 # Target
+
+## Desktop
 
 It will work with build 16299 and above, ARM - x64 - x86
 
+## Windows Phone (W10M)
+
 The attached releases already retargeted to support Windows 10 Mobile 1709
-
-If you want to run it on device with lower build, you need to customize the package <b>MSIX Packaging tool</b>
-
-it might work fine without any problems.
-
 
 
 # Credits
 
-Developed by Alberto Fustinoni
+RetrixGold Developement by Bashar Astifan (Since 2019)
+Based on RetriX by Alberto Fustinoni
 
-RetrixGold Developement by Bashar Astifan
 
-Render solution DekuDesu
+# Support
 
+Yo can help me to keep this kind of projects a live by supporting my projects like:
+
+- <a href="https://github.com/basharast/wut">W.U.T</a>
+
+- <a href="https://github.com/basharast/AstifanSystem">Astifan System</a>
