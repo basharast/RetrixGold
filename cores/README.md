@@ -17,11 +17,11 @@ To update the core online do the following:
 
 - Select the system
 
-- From 'Management sections
+- From 'Management' sections
 
 - Select <b>Online Update</b>
 
-
+<br/>
 
 ## Offline Update
 
