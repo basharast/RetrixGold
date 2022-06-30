@@ -104,14 +104,17 @@ it can also solve many issues that prevent UWP app from accessing to the content
 
 # Target
 
-## Desktop
+## Desktop & XBOX
 
 It will work with build 16299 and above, ARM - x64 - x86
 
+## WindowsRT (ARM)
+
+It will support only 15035 build
+
 ## Windows Phone (W10M)
 
-The attached releases already retargeted to support Windows 10 Mobile 1709
-
+The attached releases already retargeted to support Windows 10 Mobile 15063+
 
 # Credits
 
