@@ -116,6 +116,7 @@ The attached releases already retargeted to support Windows 10 Mobile 1709
 # Credits
 
 RetrixGold Developement by Bashar Astifan (Since 2019)
+
 Based on RetriX by Alberto Fustinoni
 
 
