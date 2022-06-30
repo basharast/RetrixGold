@@ -24,7 +24,7 @@ App & Source code notice:
 
 - Share the store link should be from <a href="https://gamr13.github.io/index.html">Gamr13</a> website
 
-- Don't share it with direct store link
+- Don't share direct store link
 
 
 # Download
