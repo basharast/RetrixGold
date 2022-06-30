@@ -106,7 +106,7 @@ it can also solve many issues that prevent UWP app from accessing to the content
 
 ## Desktop & XBOX
 
-It will work with build 16299 and above, ARM - x64 - x86
+It will work with build 16299 and above
 
 ## WindowsRT (ARM)
 
