@@ -7,6 +7,10 @@
   <img src="assets/screen.jpg"><br><br>
 </p>
 
+<p style="padding: 0px;margin-left: 6px;">Get it from itch.io</p>
+<a href="https://basharast.itch.io/retrixgold">
+<img src="assets/img/itchio.png" style="width: 150px;margin-left: 5px;border-radius: 10px;border: 1px white solid;">
+</a>
 
 # Important
 
