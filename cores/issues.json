@@ -1,7 +1,7 @@
 [
   {
-    "coreName": "Atari 7800",
-    "coreIssues": [
+    "consoleName": "Atari 7800",
+    "consoleIssues": [
       {
         "issueText": "Atari 7800: Works but no sound, options don't resolve",
         "reportedBy": "MWCool",
@@ -10,13 +10,14 @@
         "issueLink": "https://github.com/basharast/RetrixGold/issues/7",
         "isEnhancement": false,
         "enhancementTag": "",
-        "enhancementTagColor": ""
+        "enhancementTagColor": "",
+        "customCore": ""
       }
     ]
   },
   {
-    "coreName": "Atari 5200",
-    "coreIssues": [
+    "consoleName": "Atari 5200",
+    "consoleIssues": [
       {
         "issueText": "Crashes if you use the 5200 OS with BIN files",
         "reportedBy": "MWCool",
@@ -25,13 +26,14 @@
         "issueLink": "https://github.com/basharast/RetrixGold/issues/6",
         "isEnhancement": false,
         "enhancementTag": "",
-        "enhancementTagColor": ""
+        "enhancementTagColor": "",
+        "customCore": ""
       }
     ]
   },
   {
-    "coreName": "Nintendo 64",
-    "coreIssues": [
+    "consoleName": "Nintendo 64",
+    "consoleIssues": [
       {
         "issueText": "This core added for testing, it has very slow performance",
         "reportedBy": "B.Astifan",
@@ -40,13 +42,14 @@
         "issueLink": "",
         "isEnhancement": false,
         "enhancementTag": "",
-        "enhancementTagColor": ""
+        "enhancementTagColor": "",
+        "customCore": ""
       }
     ]
   },
   {
-    "coreName": "PlayStation",
-    "coreIssues": [
+    "consoleName": "PlayStation",
+    "consoleIssues": [
       {
         "issueText": "In some cases the core will not start again, it will be marked as failed",
         "reportedBy": "B.Astifan",
@@ -55,13 +58,30 @@
         "issueLink": "",
         "isEnhancement": false,
         "enhancementTag": "",
-        "enhancementTagColor": ""
+        "enhancementTagColor": "",
+        "customCore": ""
       }
     ]
   },
   {
-    "coreName": "DOSBox Pure",
-    "coreIssues": [
+    "consoleName": "Saturn",
+    "consoleIssues": [
+      {
+        "issueText": "This console is not stable yet and mostly will crash",
+        "reportedBy": "B.Astifan",
+        "issueSolution": "No solution yet",
+        "targetArch": "all",
+        "issueLink": "",
+        "isEnhancement": false,
+        "enhancementTag": "",
+        "enhancementTagColor": "",
+        "customCore": ""
+      }
+    ]
+  },
+  {
+    "consoleName": "DOSBox Pure",
+    "consoleIssues": [
       {
         "issueText": "Dynamic recompiler will be added as sub option",
         "reportedBy": "B.Astifan",
@@ -70,7 +90,8 @@
         "issueLink": "",
         "isEnhancement": true,
         "enhancementTag": "soon",
-        "enhancementTagColor": ""
+        "enhancementTagColor": "",
+        "customCore": ""
       },
       {
         "issueText": "Dynamic recompiler disabled due unknown crash",
@@ -80,7 +101,8 @@
         "issueLink": "",
         "isEnhancement": false,
         "enhancementTag": "",
-        "enhancementTagColor": ""
+        "enhancementTagColor": "",
+        "customCore": ""
       }
     ]
   }
