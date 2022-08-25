@@ -6,7 +6,11 @@
         "issueText": "Atari 7800: Works but no sound, options don't resolve",
         "reportedBy": "MWCool",
         "issueSolution": "No solution yet",
-        "targetArch": "all"
+        "targetArch": "all",
+        "issueLink": "https://github.com/basharast/RetrixGold/issues/7",
+        "isEnhancement": false,
+        "enhancementTag": "",
+        "enhancementTagColor": ""
       }
     ]
   },
@@ -17,7 +21,11 @@
         "issueText": "Crashes if you use the 5200 OS with BIN files",
         "reportedBy": "MWCool",
         "issueSolution": "No solution yet",
-        "targetArch": "all"
+        "targetArch": "all",
+        "issueLink": "https://github.com/basharast/RetrixGold/issues/6",
+        "isEnhancement": false,
+        "enhancementTag": "",
+        "enhancementTagColor": ""
       }
     ]
   },
@@ -28,7 +36,11 @@
         "issueText": "This core added for testing, it has very slow performance",
         "reportedBy": "B.Astifan",
         "issueSolution": "No solution yet",
-        "targetArch": "all"
+        "targetArch": "all",
+        "issueLink": "",
+        "isEnhancement": false,
+        "enhancementTag": "",
+        "enhancementTagColor": ""
       }
     ]
   },
@@ -39,7 +51,36 @@
         "issueText": "In some cases the core will not start again, it will be marked as failed",
         "reportedBy": "B.Astifan",
         "issueSolution": "Restart RetriXGold",
-        "targetArch": "arm"
+        "targetArch": "arm",
+        "issueLink": "",
+        "isEnhancement": false,
+        "enhancementTag": "",
+        "enhancementTagColor": ""
+      }
+    ]
+  },
+  {
+    "coreName": "DOSBox",
+    "coreIssues": [
+      {
+        "issueText": "Dynamic recompiler will be added as sub option",
+        "reportedBy": "B.Astifan",
+        "issueSolution": "",
+        "targetArch": "all",
+        "issueLink": "",
+        "isEnhancement": true,
+        "enhancementTag": "soon",
+        "enhancementTagColor": ""
+      },
+      {
+        "issueText": "Dynamic recompiler disabled due unknown crash",
+        "reportedBy": "B.Astifan",
+        "issueSolution": "No solution yet",
+        "targetArch": "all",
+        "issueLink": "",
+        "isEnhancement": false,
+        "enhancementTag": "",
+        "enhancementTagColor": ""
       }
     ]
   }
