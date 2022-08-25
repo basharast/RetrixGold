@@ -60,7 +60,7 @@
     ]
   },
   {
-    "coreName": "DOSBox",
+    "coreName": "DOSBox Pure",
     "coreIssues": [
       {
         "issueText": "Dynamic recompiler will be added as sub option",
