@@ -103,6 +103,17 @@
         "enhancementTag": "",
         "enhancementTagColor": "",
         "customCore": ""
+      },
+      {
+        "issueText": "VFS on x64 version forced to be OFF",
+        "reportedBy": "B.Astifan",
+        "issueSolution": "The VFS layer will be fixed in upcoming updates",
+        "targetArch": "all",
+        "issueLink": "",
+        "isEnhancement": false,
+        "enhancementTag": "",
+        "enhancementTagColor": "",
+        "customCore": ""
       }
     ]
   }
