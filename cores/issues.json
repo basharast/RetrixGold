@@ -1,0 +1,48 @@
+{
+  [
+    {
+      "coreName": "Atari 7800",
+      "coreIssues": [
+        {
+          "issueText": "Atari 7800: Works but no sound, options don't resolve",
+          "reportedBy": "MWCool",
+          "issueSolution": "No solution yet",
+          "targetArch": "all"
+        }
+      ]
+    },
+    {
+      "coreName": "Atari 5200",
+      "coreIssues": [
+        {
+          "issueText": "Crashes if you use the 5200 OS with BIN files",
+          "reportedBy": "MWCool",
+          "issueSolution": "No solution yet",
+          "targetArch": "all"
+        }
+      ]
+    },
+    {
+      "coreName": "Nintendo 64",
+      "coreIssues": [
+        {
+          "issueText": "This core added for testing, it has very slow performance",
+          "reportedBy": "B.Astifan",
+          "issueSolution": "No solution yet",
+          "targetArch": "all"
+        }
+      ]
+    },
+    {
+      "coreName": "PlayStation",
+      "coreIssues": [
+        {
+          "issueText": "In some cases the core will not start again, it will be marked as failed",
+          "reportedBy": "B.Astifan",
+          "issueSolution": "Restart RetriXGold",
+          "targetArch": "arm"
+        }
+      ]
+    }
+  ]
+}
