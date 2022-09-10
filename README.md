@@ -12,9 +12,10 @@
 <img src="assets/itchio.png" style="width: 150px;margin-left: 5px;border-radius: 10px;border: 1px white solid;">
 </a>
 
+
 # Important
 
-App & Source code notice:
+App notice:
 
 - This app provided for free without any warranty
 
@@ -24,18 +25,11 @@ App & Source code notice:
 
 - No tracking or analytics should be added at all
 
-- Permission granted only for educational purposes and personal usage
-
-- Share the store link should be from <a href="https://gamr13.github.io/index.html">Gamr13</a> website
-
-- Don't share direct store link
 
 
 # Download
 
 - <a href="https://github.com/basharast/RetrixGold/releases/latest">RetriXGold Latest (GitHub) +Cores</a>
-
-- <a href="https://gamr13.github.io/index.html">XBOX Store (Gamr13) (Retail) [Frontend Only]</a>
 
 - <a href="http://retrix.astifan.online/cores.html">Cores Installation (For store release only)</a>
 
@@ -134,3 +128,14 @@ Yo can help me to keep this kind of projects a live by supporting my projects li
 - <a href="https://github.com/basharast/wut">W.U.T</a>
 
 - <a href="https://github.com/basharast/AstifanSystem">Astifan System</a>
+
+
+#Thanks
+
+The for the following for their support and ideas:
+
+- Khanlend Theinoend
+- Dom's & Gamr13
+- Danprice142 
+- Ranomez
+- DekuDesu
