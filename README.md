@@ -31,7 +31,7 @@ App notice:
 
 - <a href="https://github.com/basharast/RetrixGold/releases/latest">RetriXGold Latest (GitHub) +Cores</a>
 
-- <a href="http://retrix.astifan.online/cores.html">Cores Installation (For store release only)</a>
+- <a href="http://retrix.astifan.online/cores.html">Supported cores</a>
 
 
 # What's new in RetriXGold 3.0
