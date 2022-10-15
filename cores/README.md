@@ -1,9 +1,3 @@
-# Cores Installation
-
-If you are using store release use the following link to install cores:
-
-<a href="https://retrix.astifan.online/cores.html">Cores installation page</a>
-
 # Cores Update
 
 Here you will find RetriXGold cores updates
