@@ -15,6 +15,15 @@
 
 # Important
 
+XBOX & Store:
+
+- It's not allowed to upload RetriXGold to (Microsoft Garage which called `Store`) until they allow emulators and fix their policy
+
+- If you really need it in `Store` help us to make campaign against the `Store` policy
+
+- No one should charge you for RetriXGold installation on your machine, contact me for help
+
+
 App notice:
 
 - This app provided for free without any warranty
