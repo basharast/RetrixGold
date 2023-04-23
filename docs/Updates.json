@@ -16,6 +16,7 @@
             "URLDirectARM": "https://github.com/basharast/RetrixGold/releases/download/3.0.30/RetriX.UWP_3.0.30.0_ARM.7z",
             "URLDirectARMLow": "https://github.com/basharast/RetrixGold/releases/download/3.0.30/RetriX.UWP_3.0.30.0_ARM.7z",
             "URLDirectARM64": "https://github.com/basharast/RetrixGold/releases/download/3.0.30/RetriX.UWP_3.0.30.0_ARM64.7z",
+            "URLDirectXBOX": "https://github.com/basharast/RetrixGold/releases/download/3.0.30/RetriX.UWP_3.0.30.0_x64.7z",
             "Build": "3.0.30"
         }
     ]
