@@ -23,7 +23,6 @@ XBOX & Store:
 
 - No one should charge you for RetriXGold installation on your machine, contact me for help
 
-
 App notice:
 
 - This app provided for free without any warranty
@@ -34,6 +33,10 @@ App notice:
 
 - No tracking or analytics should be added at all
 
+
+# Surface (ARM64)
+- Please note Qualcomm and Windows are no longer support ARM32 (which what I do)
+- My work is focus on legacy support for older devices and ARM devices that still support ARM32
 
 
 # Download
