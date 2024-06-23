@@ -1,0 +1,355 @@
+<h1 id="nintendo-pokemon-mini-pokemini">Nintendo - Pokémon Mini (PokeMini)</h1>
+<h2 id="background">Background</h2>
+<p>PokeMini is an emulator for the <a href="https://en.wikipedia.org/wiki/Pok%C3%A9mon_Mini">Pokémon Mini</a> handheld console.</p>
+<p>The PokeMini core has been authored by</p>
+<ul>
+<li>JustBurn</li>
+</ul>
+<p>The PokeMini core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/PokeMini/blob/master/LICENSE">GPLv3</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="bios">BIOS</h2>
+<p>Required or optional firmware files go in the frontend's system directory.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">bios.min</td>
+<td style="text-align: center;">Pokémon Mini BIOS - Optional</td>
+<td style="text-align: center;">1e4fb124a3a886865acb574f388c803d</td>
+</tr>
+</tbody>
+</table>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the PokeMini core have the following file extensions:</p>
+<ul>
+<li>.min</li>
+</ul>
+<p>RetroArch database(s) that are associated with the PokeMini core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Pokemon%20Mini.rdb">Nintendo - Pokemon Mini</a></li>
+</ul>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the PokeMini core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h2 id="directories">Directories</h2>
+<p>The PokeMini core's library name is 'PokeMini'</p>
+<p>The PokeMini core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Save directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.eep</td>
+<td style="text-align: center;">EEPROM save</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Frontend's State directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.state#</td>
+<td style="text-align: center;">State</td>
+</tr>
+</tbody>
+</table>
+<h2 id="geometry-and-timing">Geometry and timing</h2>
+<ul>
+<li>The PokeMini core's core provided FPS is 72</li>
+<li>The PokeMini core's core provided sample rate is 44100 Hz</li>
+<li>The PokeMini core's base width is 96</li>
+<li>The PokeMini core's base height is 64</li>
+<li>The PokeMini core's max width is 576</li>
+<li>The PokeMini core's max height is 384</li>
+<li>The PokeMini core's core provided aspect ratio is 3/2</li>
+</ul>
+<h2 id="core-options">Core options</h2>
+<p>The PokeMini core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Video Scale (Restart)</strong> [pokemini_video_scale] (<strong>4x</strong>|5x|6x|1x|2x|3x)</p>
+<p>Sets internal video scale factor. Increasing the scale factor improves the appearance of the internal 'dotmatrix' LCD filter. Scale should normally be set to '1x' for correct operation when using an external GPU shader.</p>
+</li>
+</ul>
+<p>??? note &quot;<em>'dotmatrix' LCD filter - Video Scale - 2x</em>&quot;
+<img src="../image/core/pokemini/dotmatrix_2x.png" alt="" /></p>
+<p>??? note &quot;<em>'dotmatrix' LCD filter - Video Scale - 4x</em>&quot;
+<img src="../image/core/pokemini/dotmatrix_4x.png" alt="" /></p>
+<p>??? note &quot;<em>'dotmatrix' LCD filter - Video Scale - 6x</em>&quot;
+<img src="../image/core/pokemini/dotmatrix_6x.png" alt="" /></p>
+<ul>
+<li><p><strong>LCD Filter</strong> [pokemini_lcdfilter] (<strong>dotmatrix</strong>|scanline|none)</p>
+<p>Specifies which internal screen filter should be applied to the display. 'dotmatrix' produces a clean LCD effect, and is the recommended option. LCD filters are disabled when 'Video Scale' is set to '1x'.</p>
+</li>
+</ul>
+<p>??? note &quot;<em>LCD Filter - dotmatrix</em>&quot;
+<img src="../image/core/pokemini/dotmatrix.png" alt="" /></p>
+<p>??? note &quot;<em>LCD Filter - scanline</em>&quot;
+<img src="../image/core/pokemini/scanline.png" alt="" /></p>
+<p>??? note &quot;<em>LCD Filter - none</em>&quot;
+<img src="../image/core/pokemini/none.png" alt="" /></p>
+<ul>
+<li><p><strong>LCD Mode</strong> [pokemini_lcdmode] (<strong>analog</strong>|3shades|2shades)</p>
+<p>Specifies the greyscale 'colour' reproduction characteristics of the emulated liquid crystal display.</p>
+<p>'analog' attempts to simulate the Pokémon Mini hardware by allowing smooth time-dependent transitions between 'colour' values. This option is recommended since most games exploited the analog nature of the Pokémon Mini screen to show different shades of 'colour' on a nominally monochrome display.</p>
+<p>'3shades' reduces the analog greyscale levels to three specific shades and removes all ghosting effects. It is adequate for most games.</p>
+<p>'2shades' causes the screen to behave as a purely digital monochrome display, either full light or full dark. WARNING: This will cause severe flickering in most games.</p>
+</li>
+<li><p><strong>LCD Contrast</strong> [pokemini_lcdcontrast] (<strong>64</strong>|0|16|32|48|80|96)</p>
+<p>Sets contrast level of emulated liquid crystal display.</p>
+</li>
+<li><p><strong>LCD Brightness</strong> [pokemini_lcdbright] (<strong>0</strong>|-80|-60|-40|-20|20|40|60|80)</p>
+<p>Sets brightness offset of emulated liquid crystal display.</p>
+</li>
+<li><p><strong>Palette</strong> [pokemini_palette] (<strong>Default</strong>|Old|Monochrome|Green|Green Vector|Red|Red Vector|Blue LCD|LEDBacklight|Girl Power|Blue|Blue Vector|Sepia|Monochrome Vector)</p>
+<p>Specifies palette used to 'colourise' the emulated liquid crystal display. 'Default' provides a close approximation of the natural screen tint of the original Pokémon Mini hardware. Palettes with a 'Vector' suffix correspond to inverted colours.</p>
+</li>
+</ul>
+<p>??? note &quot;<em>Palette - Default</em>&quot;
+<img src="../image/core/pokemini/Default.png" alt="" /></p>
+<p>??? note &quot;<em>Palette - Old</em>&quot;
+<img src="../image/core/pokemini/Old.png" alt="" /></p>
+<p>??? note &quot;<em>Palette - Monochrome</em>&quot;
+<img src="../image/core/pokemini/Monochrome.png" alt="" /></p>
+<p>??? note &quot;<em>Palette - Green</em>&quot;
+<img src="../image/core/pokemini/Green.png" alt="" /></p>
+<p>??? note &quot;<em>Palette - Green Vector</em>&quot;
+<img src="../image/core/pokemini/Green_Vector.png" alt="" /></p>
+<p>??? note &quot;<em>Palette - Red</em>&quot;
+<img src="../image/core/pokemini/Red.png" alt="" /></p>
+<p>??? note &quot;<em>Palette - Red Vector</em>&quot;
+<img src="../image/core/pokemini/Red_Vector.png" alt="" /></p>
+<p>??? note &quot;<em>Palette - Blue LCD</em>&quot;
+<img src="../image/core/pokemini/Blue_LCD.png" alt="" /></p>
+<p>??? note &quot;<em>Palette - LEDBacklight</em>&quot;
+<img src="../image/core/pokemini/LEDBacklight.png" alt="" /></p>
+<p>??? note &quot;<em>Palette - Girl Power</em>&quot;
+<img src="../image/core/pokemini/Girl_Power.png" alt="" /></p>
+<p>??? note &quot;<em>Palette - Blue</em>&quot;
+<img src="../image/core/pokemini/Blue.png" alt="" /></p>
+<p>??? note &quot;<em>Palette - Blue Vector</em>&quot;
+<img src="../image/core/pokemini/Blue_Vector.png" alt="" /></p>
+<p>??? note &quot;<em>Palette - Sepia</em>&quot;
+<img src="../image/core/pokemini/Sepia.png" alt="" /></p>
+<p>??? note &quot;<em>Palette - Monochrome Vector</em>&quot;
+<img src="../image/core/pokemini/Monochrome_Vector.png" alt="" /></p>
+<ul>
+<li><p><strong>Piezo Filter</strong> [pokemini_piezofilter] (<strong>ON</strong>|OFF)</p>
+<p>Enables an audio filter to more accurately simulate the characteristics of the Pokémon Mini's piezoelectric speaker.</p>
+</li>
+<li><p><strong>Rumble Level (Screen + Controller)</strong> [pokemini_rumblelvl] (<strong>3</strong>|2|1|0)</p>
+<p>Specifies the magnitude of the force feedback effect, both virtual ('screen shake') and physical ('controller rumble').</p>
+</li>
+<li><p><strong>Controller Rumble</strong> [pokemini_controller_rumble] (<strong>ON</strong>|OFF)</p>
+<p>Enables physical force feedback effect via controller rumble.</p>
+</li>
+<li><p><strong>Screen Shake</strong> [pokemini_screen_shake] (<strong>ON</strong>|OFF)</p>
+<p>Enables virtual force feedback effect by 'shaking' the screen. This is helpful when using a controller without physical rumble support, since a number of games rely on force feedback to prompt user action.</p>
+</li>
+</ul>
+<h2 id="rumble">Rumble</h2>
+<p>Rumble only works in the PokeMini core when</p>
+<ul>
+<li>The content being ran has rumble support.</li>
+<li>The frontend being used has rumble support.</li>
+<li>The joypad device being used has rumble support.</li>
+<li>The core option 'Rumble Level' is set to any value other than '0'.</li>
+<li>The core option 'Controller Rumble' is set to 'ON'.</li>
+</ul>
+<p>!!! attention
+If physical rumble is not supported, it is recommended to set the core option 'Screen Shake' to 'ON'.</p>
+<h2 id="joypad">Joypad</h2>
+<table>
+<thead>
+<tr>
+<th>RetroPad Inputs</th>
+<th>User 1 input descriptors</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>B</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+<td>Power</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>D-Pad Up</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>D-Pad Down</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>D-Pad Left</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>D-Pad Right</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>A</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+<td>Shake</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+<td>C</td>
+</tr>
+</tbody>
+</table>
+<h2 id="compatibility">Compatibility</h2>
+<table>
+<thead>
+<tr>
+<th>Game</th>
+<th>Issue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pokemon Pinball Mini</td>
+<td>EEPROM saves do not function correctly - use save states instead</td>
+</tr>
+<tr>
+<td>Pokemon Race Mini</td>
+<td>EEPROM saves do not function correctly - use save states instead</td>
+</tr>
+</tbody>
+</table>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://sourceforge.net/projects/pokemini/">Official PokeMini SourceForge Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/pokemini_libretro.info">Libretro PokeMini Core info file</a></li>
+<li><a href="https://github.com/libretro/PokeMini">Libretro PokeMini Github Repository</a></li>
+<li><a href="https://github.com/libretro/PokeMini/issues">Report Libretro PokeMini Core Issues Here</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLRbgg4gk_0IcaGNn2eEveCloqDgw0G31P">Gameplay Videos</a></li>
+</ul>

@@ -1,0 +1,356 @@
+<h1 id="thomson-moto-theodore">Thomson - MO/TO (Theodore)</h1>
+<h2 id="background">Background</h2>
+<p>Theodore is a Thomson MO/TO system emulator based on Daniel Coulom's DCTO8D/DCTO9P/DCMO5 emulators. <a href="https://en.wikipedia.org/wiki/Thomson_computers">Thomson MO/TO</a> is a family of 8-bit home computers produced by French company Thomson SA between 1982 and 1989.
+Theodore emulates all the main models of the MO/TO family: TO7, TO7/70, TO8, TO8D, TO9, TO9+, MO5 and MO6.
+It also emulates the <a href="https://it.wikipedia.org/wiki/Olivetti_Prodest_PC_128">Olivetti Prodest PC128</a>, a rebranded MO6 for the Italian market.</p>
+<p>The Theodore core has been authored by</p>
+<ul>
+<li>Thomas Lorblanchès</li>
+</ul>
+<p>The Theodore core is licensed under</p>
+<ul>
+<li><a href="https://github.com/Zlika/theodore/blob/master/LICENSE">GPLv3</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="bios">BIOS</h2>
+<p>The Theodore core does not feature BIOS use.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the Theodore core have the following file extensions:</p>
+<ul>
+<li>.fd (floppy disk)</li>
+<li>.sap (floppy disk)</li>
+<li>.k7 (tape)</li>
+<li>.rom (cartridge)</li>
+<li>.m7 (cartridge)</li>
+<li>.m5 (cartridge)</li>
+</ul>
+<p>RetroArch database(s) that are associated with the Theodore core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Thomson%20-%20MOTO.rdb">Thomson - MOTO</a></li>
+</ul>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the Theodore core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The Theodore core's internal core name is 'theodore'.</p>
+<p><strong>Frontend's System directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">theodore.cfg</td>
+<td style="text-align: center;">Config file</td>
+</tr>
+</tbody>
+</table>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The Theodore core's base width is 672 pixels.</li>
+<li>The Theodore core's base height is 432 pixels.</li>
+</ul>
+<h2 id="usage">Usage</h2>
+<p>Once the content and core are loaded the start screen is displayed as
+shown below.</p>
+<p><img src="../image/core/theodore/to8d_os.jpg" alt="" /></p>
+<p>When the &quot;Thomson model&quot; core option is set to &quot;Auto&quot; (default value), the core tries to autodetect the Thomson model to emulate based on the name of the content file, and fallback to TO8 mode if it cannot.
+The &quot;Start&quot; button of the controller can be used to start the game. The core will then make an &quot;educated guess&quot; to start the game (cf. <a href="https://github.com/Zlika/theodore/blob/master/README.md#video_game-gamepad-mapping-of-the-buttons">Theodore's README file</a> for more info about it).</p>
+<h2 id="core-options">Core options</h2>
+<p>The Theodore core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<ul>
+<li><p><strong>Thomson model</strong> [theodore_rom]  (<strong>Auto</strong>|TO8|TO8D|TO9|TO9+|MO5|MO6|PC128|TO7|TO7/70)</p>
+</li>
+<li><p><strong>Auto run game</strong> [theodore_autorun] (<strong>disabled</strong>|enabled)</p>
+</li>
+<li><p><strong>Virtual keyboard transparency</strong> [theodore_vkb_transparency] (<strong>0%</strong>|10%|20%|30%|40%|50%|60%|70%|80%|90%)</p>
+</li>
+<li><p><strong>Floppy write protection</strong> [theodore_floppy_write_protect]  (disabled|<strong>enabled</strong>)</p>
+</li>
+<li><p><strong>Tape write protection</strong> [theodore_tape_write_protect]  (disabled|<strong>enabled</strong>)</p>
+</li>
+<li><p><strong>Dump printer data to file</strong> [theodore_printer_emulation] (<strong>disabled</strong>|enabled)</p>
+</li>
+</ul>
+<h2 id="user-1-device-types">User 1 device types</h2>
+<p>The Theodore core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<ul>
+<li>None - Input disabled</li>
+<li><strong>RetroPad</strong> - Joypad</li>
+<li>RetroPad w/ Analog - Joypad</li>
+</ul>
+<h2 id="other-devices">Other devices</h2>
+<ul>
+<li>Light pen - The computer's light pen inputs are mapped to the mouse.</li>
+</ul>
+<h2 id="joypad">Joypad</h2>
+<table>
+<thead>
+<tr>
+<th>RetroPad Inputs</th>
+<th>User 1 input descriptors</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>&quot;Fire&quot; button / Press key when the virtual keyboard is displayed</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+<td>Virtual keyboard: move up/down</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+<td>Virtual keyboard: show/hide</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+<td>Start program<br>(See: <a href="#usage">Usage</a>)</td>
+</tr>
+</tbody>
+</table>
+<p>When the virtual keyboard is displayed, the D-pad is used to move the selected key and the B button is used to press the selected key.
+Long press the B button for a sticky key.
+The virtual keyboard can also be used with a touch screen.
+The transparency of the virtual keyboard can be set using the core's &quot;Virtual keyboard transparency&quot; option.</p>
+<h2 id="keyboard">Keyboard</h2>
+<p><img src="../image/core/theodore/to8d_keyboard.jpg" alt="" /></p>
+<table>
+<thead>
+<tr>
+<th>RetroKeyboard Inputs</th>
+<th>Theodore Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keyboard Tab</td>
+<td>STOP</td>
+</tr>
+<tr>
+<td>Keyboard Left Control</td>
+<td>CNT</td>
+</tr>
+<tr>
+<td>Keyboard Caps Lock</td>
+<td>CAPSLOCK</td>
+</tr>
+<tr>
+<td>Keyboard Backspace</td>
+<td>ACC</td>
+</tr>
+<tr>
+<td>Keyboard Home</td>
+<td>HOME</td>
+</tr>
+<tr>
+<td>Keyboard Up</td>
+<td>UP</td>
+</tr>
+<tr>
+<td>Keyboard Down</td>
+<td>DOWN</td>
+</tr>
+<tr>
+<td>Keyboard Right</td>
+<td>RIGHT</td>
+</tr>
+<tr>
+<td>Keyboard Left</td>
+<td>LEFT</td>
+</tr>
+<tr>
+<td>Keyboard Insert</td>
+<td>INS</td>
+</tr>
+<tr>
+<td>Keyboard Delete</td>
+<td>DEL</td>
+</tr>
+<tr>
+<td>Keyboard Alt</td>
+<td>RAZ</td>
+</tr>
+<tr>
+<td>Keyboard F1</td>
+<td>F1</td>
+</tr>
+<tr>
+<td>Keyboard F2</td>
+<td>F2</td>
+</tr>
+<tr>
+<td>Keyboard F3</td>
+<td>F3</td>
+</tr>
+<tr>
+<td>Keyboard F4</td>
+<td>F4</td>
+</tr>
+<tr>
+<td>Keyboard F5</td>
+<td>F5</td>
+</tr>
+<tr>
+<td>Keyboard Shift + F1</td>
+<td>F6</td>
+</tr>
+<tr>
+<td>Keyboard Shift + F2</td>
+<td>F7</td>
+</tr>
+<tr>
+<td>Keyboard Shift + F3</td>
+<td>F8</td>
+</tr>
+<tr>
+<td>Keyboard Shift + F4</td>
+<td>F9</td>
+</tr>
+<tr>
+<td>Keyboard Shift + F5</td>
+<td>F10</td>
+</tr>
+<tr>
+<td>Keyboard Left Shift</td>
+<td>Shift or Yellow key (MO5)</td>
+</tr>
+<tr>
+<td>Keyboard Right Shift</td>
+<td>Shift or BASIC key (MO5)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="mouse">Mouse</h2>
+<table>
+<thead>
+<tr>
+<th>RetroMouse Inputs</th>
+<th>Theodore Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retromouse/retro_mouse.png" alt="" /> Mouse Cursor</td>
+<td>Light pen cursor</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_left.png" alt="" /> Mouse 1</td>
+<td>Selection</td>
+</tr>
+</tbody>
+</table>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://github.com/Zlika/theodore">Libretro Theodore Github Repository</a></li>
+<li><a href="https://github.com/Zlika/theodore/issues">Report Libretro Theodore Core Issues Here</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/theodore_libretro.info">Libretro Theodore Core info file</a></li>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Thomson%20-%20MOTO.rdb">Libretro Thomson Database</a></li>
+<li><a href="https://github.com/libretro-thumbnails/Thomson_-_MOTO">Libretro Thomson Thumbnails</a></li>
+<li><a href="http://dcmoto.free.fr/">Official DCTO8D/DCTO9P/DCMO5 Website</a></li>
+</ul>

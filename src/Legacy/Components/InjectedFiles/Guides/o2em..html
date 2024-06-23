@@ -1,0 +1,501 @@
+<h1 id="magnavox-odyssey2-phillips-videopac-o2em">Magnavox - Odyssey2 / Phillips Videopac+ (O2EM)</h1>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/JvxqCJS0hyg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2 id="background">Background</h2>
+<p>O2EM is an open source multi-platform Odyssey2 / Videopac+ emulator. The Odyssey2 (Videopac/Jopac in Europe) was a video game console created in the late 70s.</p>
+<p>The O2EM core has been authored by</p>
+<ul>
+<li>Daniel Boris</li>
+<li>Andre de la Rocha</li>
+<li>Arlindo M. de Oliveira</li>
+</ul>
+<p>The O2EM core is licensed under</p>
+<ul>
+<li><a href="https://sourceforge.net/projects/o2em/">Artistic License</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="bios">BIOS</h2>
+<p>Required or optional firmware files go in the frontend's system directory.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">o2rom.bin</td>
+<td style="text-align: center;">Odyssey2 BIOS - G7000 model - Required</td>
+<td style="text-align: center;">562d5ebf9e030a40d6fabfc2f33139fd</td>
+</tr>
+<tr>
+<td style="text-align: center;">c52.bin</td>
+<td style="text-align: center;">Videopac+ French BIOS - G7000 model - Required</td>
+<td style="text-align: center;">f1071cdb0b6b10dde94d3bc8a6146387</td>
+</tr>
+<tr>
+<td style="text-align: center;">g7400.bin</td>
+<td style="text-align: center;">Videopac+ European BIOS - G7400 model - Required</td>
+<td style="text-align: center;">c500ff71236068e0dc0d0603d265ae76</td>
+</tr>
+<tr>
+<td style="text-align: center;">jopac.bin</td>
+<td style="text-align: center;">Videopac+ French BIOS - G7400 model - Required</td>
+<td style="text-align: center;">279008e4a0db2dc5f1c048853b033828</td>
+</tr>
+</tbody>
+</table>
+<p>Currently the libretro core only works with the o2rom.bin. As a workaround for playing Videopac+ games, you can rename the g7400.bin firmware file into o2rom.bin, and the core plays it correctly as a Videopac+ game.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the O2EM core have the following file extensions:</p>
+<ul>
+<li>.bin</li>
+</ul>
+<p>RetroArch database(s) that are associated with the O2EM core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Magnavox%20-%20Odyssey2.rdb">Magnavox - Odyssey2</a></li>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Philips%20-%20Videopac%2B.rdb">Phillips - Videopac+</a></li>
+</ul>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the O2EM core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h2 id="directories">Directories</h2>
+<p>The O2EM core's library name is 'O2EM'</p>
+<p>The O2EM core saves/loads to/from these directories.</p>
+<p><strong>Frontend's State directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.state#</td>
+<td style="text-align: center;">State</td>
+</tr>
+</tbody>
+</table>
+<h2 id="geometry-and-timing">Geometry and timing</h2>
+<ul>
+<li>The O2EM core's core provided FPS is 60 for NTSC games and 50 for PAL games</li>
+<li>The O2EM core's core provided sample rate is 44100 Hz</li>
+<li>The O2EM core's base width is 340</li>
+<li>The O2EM core's base height is 250</li>
+<li>The O2EM core's max width is 340</li>
+<li>The O2EM core's max height is 250</li>
+<li>The O2EM core's core provided aspect ratio is 4/3</li>
+</ul>
+<h2 id="core-options">Core options</h2>
+<p>The O2EM core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<ul>
+<li><p><strong>Emulated Hardware (Restart)</strong> [o2em_bios]  (<strong>o2rom.bin</strong>|Videopac G7000 (European)|Videopac+ G7400 (European)|Videopac+ G7400 (French))</p>
+<p>Specify which console hardware to emulate. Requires the corresponding bios file to be present in the frontend 'system' directory (o2rom.bin, c52.bin, g7400.bin, jopac.bin)</p>
+</li>
+<li><p><strong>Console Region (Restart)</strong> [o2em_region]  (<strong>Auto</strong>|NTSC|PAL)</p>
+<p>Specify which region the system is from. 'Auto' chooses the correct region based on emulated hardware. 'NTSC' is 60hz, 'PAL' is 50hz. Games may run abnormally if the wrong region is selected, and the setting my be overridden if the current content is incompatible.</p>
+</li>
+<li><p><strong>Swap Gamepads</strong> [o2em_swap_gamepads]  (<strong>disabled</strong>|enabled)</p>
+<p>Swap inputs from the two connected controllers of the emulated console. Required for games such as UFO and P.T. Barnum's Acrobats, which accept player 1 input from the second controller.</p>
+</li>
+<li><p><strong>Virtual keyboard transparency</strong> [o2em_vkb_transparency]  (<strong>0%</strong>|25%|50%|75%)</p>
+<p>Set transparency level of the virtual on-screen keyboard.</p>
+</li>
+</ul>
+<p>??? note &quot;Virtual keyboard transparency - 0%&quot;
+<img src="../image/core/o2em/0.png" alt="" /></p>
+<p>??? note &quot;Virtual keyboard transparency - 25%&quot;
+<img src="../image/core/o2em/25.png" alt="" /></p>
+<p>??? note &quot;Virtual keyboard transparency - 50%&quot;
+<img src="../image/core/o2em/50.png" alt="" /></p>
+<p>??? note &quot;Virtual keyboard transparency - 75%&quot;
+<img src="../image/core/o2em/0.png" alt="" /></p>
+<ul>
+<li><p><strong>Crop Overscan</strong> [o2em_crop_overscan]  (<strong>disabled</strong>|enabled)</p>
+<p>Remove the border around the edges of the screen, typically unused by games and hidden by the bezel of a standard-definition television.</p>
+</li>
+<li><p><strong>Interframe Blending</strong> [o2em_mix_frames]  (<strong>Simple</strong>|Ghosting (65%)|Ghosting (75%)|Ghosting (85%)|Ghosting (95%))</p>
+<p>Simulate CRT phosphor ghosting effects. 'Simple' performs a 50:50 mix of the current and previous frames. 'Ghosting' accumulates pixels from multiple successive frames. May be used to alleviate screen flicker.</p>
+</li>
+<li><p><strong>Audio Volume</strong> [o2em_audio_volume]  (<strong>50%</strong>|0%)|5%)|10%)|15%|20%|25%|30%|35%|40%|45%|50%|55%|60%|65%|70%|75%|80%|85%|90%|95%|100%)</p>
+<p>Set output audio volume level.</p>
+</li>
+<li><p><strong>Voice Volume</strong> [o2em_voice_volume]  (<strong>70%</strong>|0%)|5%)|10%)|15%|20%|25%|30%|35%|40%|45%|50%|55%|60%|65%|70%|75%|80%|85%|90%|95%|100%)</p>
+<p>Set output volume level of 'The Voice' speech samples. The voice sampleset WAV files must be placed in the frontend 'system/voice' directory.</p>
+</li>
+<li><p><strong>Audio Filter</strong> [o2em_low_pass_filter]  (<strong>disabled</strong>|enabled)</p>
+<p>Apply a low pass audio filter to soften the 'harsh' sound effects produced by most Odyssey2/Videopac+ games.</p>
+</li>
+<li><p><strong>Audio Filter Level</strong> [o2em_low_pass_range]  (<strong>60%</strong>|0%)|5%)|10%)|15%|20%|25%|30%|35%|40%|45%|50%|55%|60%|65%|70%|75%|80%|85%|90%|95%|100%)</p>
+<p>Specify the cut-off frequency of the low pass audio filter. A higher value increases the perceived 'strength' of the filter, since a wider range of the high frequency spectrum is attenuated.</p>
+</li>
+</ul>
+<h2 id="joypad">Joypad</h2>
+<table>
+<thead>
+<tr>
+<th>RetroPad Inputs</th>
+<th>User 1 input descriptors</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>Up</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>Down</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>Left</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>Right</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>Action / Press Key (Virtual Keyboard)</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+<td>Move Virtual Keyboard Up/Down</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+<td>Show/Hide Virtual Keyboard</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>RetroPad Inputs</th>
+<th>User 2 input descriptors</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>Up</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>Down</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>Left</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>Right</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>Action</td>
+</tr>
+</tbody>
+</table>
+<p>In some games, for example UFO/Satellite Attack, the original had the joypads swapped so that Player 1 was on Joypad 2. If you only use one Joypad, a workaround is to provide identical assignments of both Retropads to one joystick and save it as Game Remap or Core Remap.</p>
+<h2 id="keyboard">Keyboard</h2>
+<table>
+<thead>
+<tr>
+<th>RetroKeyboard Inputs</th>
+<th>O2EM Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keyboard Return</td>
+<td>Enter</td>
+</tr>
+<tr>
+<td>Keyboard Space</td>
+<td>Space</td>
+</tr>
+<tr>
+<td>Keyboard Minus -</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Period .</td>
+<td>.</td>
+</tr>
+<tr>
+<td>Keyboard Slash /</td>
+<td>/</td>
+</tr>
+<tr>
+<td>Keyboard 0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Keyboard 1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Keyboard 2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Keyboard 3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Keyboard 4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Keyboard 5</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Keyboard 6</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Keyboard 7</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Keyboard 8</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Keyboard 9</td>
+<td>9</td>
+</tr>
+<tr>
+<td>Keyboard Equals =</td>
+<td>=</td>
+</tr>
+<tr>
+<td>Keyboard Question ?</td>
+<td>?</td>
+</tr>
+<tr>
+<td>Keyboard a</td>
+<td>a</td>
+</tr>
+<tr>
+<td>Keyboard b</td>
+<td>b</td>
+</tr>
+<tr>
+<td>Keyboard c</td>
+<td>c</td>
+</tr>
+<tr>
+<td>Keyboard d</td>
+<td>d</td>
+</tr>
+<tr>
+<td>Keyboard e</td>
+<td>e</td>
+</tr>
+<tr>
+<td>Keyboard f</td>
+<td>f</td>
+</tr>
+<tr>
+<td>Keyboard g</td>
+<td>g</td>
+</tr>
+<tr>
+<td>Keyboard h</td>
+<td>h</td>
+</tr>
+<tr>
+<td>Keyboard i</td>
+<td>i</td>
+</tr>
+<tr>
+<td>Keyboard j</td>
+<td>j</td>
+</tr>
+<tr>
+<td>Keyboard k</td>
+<td>k</td>
+</tr>
+<tr>
+<td>Keyboard l</td>
+<td>l</td>
+</tr>
+<tr>
+<td>Keyboard m</td>
+<td>m</td>
+</tr>
+<tr>
+<td>Keyboard n</td>
+<td>n</td>
+</tr>
+<tr>
+<td>Keyboard o</td>
+<td>o</td>
+</tr>
+<tr>
+<td>Keyboard p</td>
+<td>p</td>
+</tr>
+<tr>
+<td>Keyboard q</td>
+<td>q</td>
+</tr>
+<tr>
+<td>Keyboard r</td>
+<td>r</td>
+</tr>
+<tr>
+<td>Keyboard s</td>
+<td>s</td>
+</tr>
+<tr>
+<td>Keyboard t</td>
+<td>t</td>
+</tr>
+<tr>
+<td>Keyboard u</td>
+<td>u</td>
+</tr>
+<tr>
+<td>Keyboard v</td>
+<td>v</td>
+</tr>
+<tr>
+<td>Keyboard w</td>
+<td>w</td>
+</tr>
+<tr>
+<td>Keyboard x</td>
+<td>x</td>
+</tr>
+<tr>
+<td>Keyboard y</td>
+<td>y</td>
+</tr>
+<tr>
+<td>Keyboard z</td>
+<td>z</td>
+</tr>
+<tr>
+<td>Keyboard End</td>
+<td>Clear</td>
+</tr>
+</tbody>
+</table>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="http://o2em.sourceforge.net/">Official O2EM Website</a></li>
+<li><a href="https://sourceforge.net/projects/o2em/">Official O2EM SourceForge Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/o2em_libretro.info">Libretro O2EM Core info file</a></li>
+<li><a href="https://github.com/libretro/libretro-o2em">Libretro O2EM Github Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-o2em/issues">Report Libretro O2EM Core Issues Here</a></li>
+<li><a href="https://youtube.com/playlist?list=PLRbgg4gk_0IdZx5HP3o3h8iNkzOx8l4Dn">Gameplay Videos</a></li>
+</ul>

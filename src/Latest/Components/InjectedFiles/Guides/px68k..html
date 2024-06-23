@@ -1,0 +1,1096 @@
+<h1 id="sharp-x68000-px68k">Sharp - X68000 (PX68k)</h1>
+<h2 id="background">Background</h2>
+<p>The X68000 (エックスろくまんはっせん Ekkusu Rokuman Hassen) is a home computer created by Sharp, first released in March, 1987, sold only in Japan. The X68000 to SUPER models had a Hitachi HD68HC000 CPU at 10 MHz. The XVI to Compact models had a Motorola 68000 at 16 MHz. The X68030 has a Motorola MC68EC030 CPU at 25 MHz. They had 1-4MB of RAM and 1MB of VRAM. It had a Sharp-Hudson Custom Chipset as its GPU. This libretro branch was forked, starting on May 3, 2017, from hissorii's old build (Last updated on August 2014), backported 'c68k' core from kenyahiro's 'px68k' branch (fork of hissorii's 'px68k' branch using recent c68k yabause core to support X64 build). The Pandora version (An open-source handheld PC) by ptitSeb was forked from hissorii's 'px68k' branch and encapsulates the latest code from px68k-libretro (A spin-off of hissorii's branch).</p>
+<h3 id="authorlicense">Author/License</h3>
+<p>The PX68k core has been authored by</p>
+<ul>
+<li>hissorii</li>
+<li>kenyahiro</li>
+</ul>
+<p>The PX68k core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/px68k-libretro/blob/master/doc/kero_src.txt">kero_src</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the PX68k core have the following file extensions:</p>
+<ul>
+<li>.dim</li>
+<li>.zip</li>
+<li>.img</li>
+<li>.d88</li>
+<li>.88d</li>
+<li>.hdm</li>
+<li>.dup</li>
+<li>.2hd</li>
+<li>.xdf</li>
+<li>.hdf</li>
+<li>.cmd</li>
+<li>.m3u</li>
+</ul>
+<h2 id="databases">Databases</h2>
+<p>RetroArch database(s) that are associated with the PX68k core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Sharp%20-%20X68000.rdb">Sharp - X68000</a></li>
+</ul>
+<h2 id="bios">BIOS</h2>
+<p>Required or optional firmware files go in the frontend's system directory.</p>
+<p>!!! attention
+The firmware files need to be in a directory named 'keropi' in RetroArch's system directory.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">keropi/iplrom.dat</td>
+<td style="text-align: center;">X68000 BIOS - Required</td>
+<td style="text-align: center;">7fd4caabac1d9169e289f0f7bbf71d8e</td>
+</tr>
+<tr>
+<td style="text-align: center;">keropi/cgrom.dat</td>
+<td style="text-align: center;">Font file - Required</td>
+<td style="text-align: center;">cb0a5cfcf7247a7eab74bb2716260269</td>
+</tr>
+<tr>
+<td style="text-align: center;">keropi/iplrom30.dat</td>
+<td style="text-align: center;">X68000 BIOS 2 - Optional</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">keropi/iplromco.dat</td>
+<td style="text-align: center;">X68000 BIOS 3 - Optional</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">keropi/iplromxv.dat</td>
+<td style="text-align: center;">X68000 BIOS 4 - Optional</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the PX68k core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<p><strong>IMPORTANT NOTICE BEFORE YOU START PLAYING:</strong></p>
+<p><strong>Saves are directly written to the disks used</strong>. Make sure to have a backup of roms before using them. This will make it easier to restore the files incase the roms get corrupted.</p>
+<h3 id="directories">Directories</h3>
+<p>The PX68k core's library name is 'PX68K'</p>
+<p>The PX68k core saves/loads to/from these directories.</p>
+<p><strong>Frontend's System directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">keropi/config</td>
+<td style="text-align: center;">Config</td>
+</tr>
+<tr>
+<td style="text-align: center;">keropi/sram.dat</td>
+<td style="text-align: center;">SRAM</td>
+</tr>
+</tbody>
+</table>
+<p><strong>NOTE:</strong></p>
+<p>If your game suddenly does not boot up, try deleting <system>keropi/sram.dat.
+In some cases, you may also need to delete <system>keropi/config.
+When prompted, use internal audio option if possible. All other audio/midi are not available (MT-xx, CM-xx, SC-xx etc).</p>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The PX68k core's core provided FPS is <code>55.45</code> or <code>59.94</code>.</li>
+<li>The PX68k core's core provided sample rate is <code>44100Hz</code>.</li>
+<li>The PX68k core's base width is <code>800</code>.</li>
+<li>The PX68k core's base height is <code>600</code>.</li>
+<li>The PX68k core's max width is <code>800</code>.</li>
+<li>The PX68k core's max height is <code>600</code>.</li>
+<li>The PX68k core's core provided aspect ratio is <code>4/3</code></li>
+</ul>
+<h2 id="usage">Usage</h2>
+<p>You can launch px68k to run a supported game. You can also use px68k without any content by using Load Core and then Run Core. This will directly bring you to the px68k menu.</p>
+<p>L2 button or F12 key brings up the original px68k menu where you can change the inserted disks. Disks or games have to be unzipped to be accessible from this menu but can be zipped/archived when launching directly from RetroArch.</p>
+<p>After the first boot a “config” file will be generated in the “keropi” folder. You can enter your rom folder into the “StartDir” line to make it accessible from the PX68k-libretro core’s in-game menu.</p>
+<p>Define your disks path in system/keropi/config StartDir line. e.g.</p>
+<pre><code>`retroarch/system/keropi/config`
+```
+[WinX68k]
+StartDir=/emulator/x68000/
+```	
+</code></pre>
+<p>You can launch content with:</p>
+<ul>
+<li><p>retroarch -L px68k_libretro.so ./content.hdf</p>
+</li>
+<li><p>retroarch -L px68k_libretro.so ./content.xdf</p>
+</li>
+<li><p>retroarch -L px68k_libretro.so ./content.cmd (cmdfile is a text file contening cmd like &quot;px68k /somewhere/software/x68000/content1.dim /somewhere/software/x68000/content2.dim&quot;)</p>
+</li>
+<li><p>retroarch -L sdlpx68k_libretro.so &quot;px68k /somewhere/software/x68000/content1.dim /somewhere/software/x68000/content2.dim&quot;</p>
+</li>
+<li><p>retroarch -L px68k_libretro.so ./content.m3u (m3u files are useful for launching multi-disk games, see section below for more details on the format)</p>
+</li>
+<li><p>load retroarch , then load core and content from RA menu.</p>
+</li>
+</ul>
+<h2 id="multiple-disk-games">Multiple-disk games</h2>
+<p>If foo is a multiple-disk game, you should have .dim files for each one, e.g. foo (Disk 1).dim, foo (Disk 2).dim, foo (Disk 3).dim.</p>
+<p>PX68k has a few methods to support loading and swapping multi-disk games.</p>
+<h3 id="loading-multiple-disks-at-startup">Loading multiple disks at startup</h3>
+<ul>
+<li><p>Use an M3U playlist file</p>
+<p>Create a text file and save it as foo.m3u. Then enter your game's .dim files on it, one per line. The m3u file contents should look something like this:</p>
+<p><code>foo.m3u</code></p>
+<pre><code>  foo (Disk 1).dim
+  foo (Disk 2).dim
+  foo (Disk 3).dim
+</code></pre>
+<p>After that, you can load the foo.m3u file in RetroArch with the PX68k core either using the frontend or from the command line.</p>
+<p>The first 2 disks listed in this file are loaded into disk drives FDD0 and FDD1 on the core, respectively. To swap disks for games that use more than 2 disks, use the disk swapping option either from within RetroArch's menu or using the native PX68k menu explained below.</p>
+</li>
+<li><p>Use a CMD file</p>
+<p>This method is similar to the m3u playlist and allows loading up to 2 disks at launch. Create a text file and save it as foo.cmd. The format of this file should have all the games on one line and begins with px68k as in the example below.</p>
+<p>&quot;px68k /somewhere/software/x68000/content1.dim /somewhere/software/x68000/content2.dim&quot;</p>
+<p>To swap disks for games that use more than 2 disks, use the native PX68k menu explained below.</p>
+</li>
+<li><p>From the command line</p>
+<p>As shown in the usage section, you can use the following format to launch multi-disk games directly from the command line:</p>
+<p>retroarch -L sdlpx68k_libretro.so &quot;px68k /somewhere/software/x68000/content1.dim /somewhere/software/x68000/content2.dim&quot;</p>
+<p>To swap disks for games that use more than 2 disks, use the native PX68k menu explained below.</p>
+</li>
+</ul>
+<h3 id="swapping-disks">Swapping Disks</h3>
+<p>Games that have more than 2 disks will often require swapping disks at some point during gameplay. There are 2 supported methods to swap disks in this core.</p>
+<ul>
+<li><p>Use the disk swapping option from RetroArch GUI.</p>
+<p>Open the RetroArch gui, select Quick Menu -&gt;Disk Control to access the disk controls. Eject the disk using the Disk Cycle Tray Status command, then set the new disk index and load the new disk by selecting Disk Cycle Tray Status again.</p>
+<p>The default disk drive that is swapped is FDD1. If you need to swap the disk loaded in FDD0, change the Core Option &quot;Swap Disks on Drive&quot; first before loading the new disk in this menu.</p>
+</li>
+<li><p>Use the native PX68k menu</p>
+<p>Press L2 on the controller or F12 on the keyboard to access the PX68k menu, then select the disk slot and choose the file from here.</p>
+<p>The starting directory for loading disks is determined by the setting StartDir in the system/keropi/config file.</p>
+</li>
+</ul>
+<h2 id="core-options">Core options</h2>
+<p>The PX68k core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>CPU Speed</strong> [px68k_cpuspeed] (<strong>10Mhz</strong>|16Mhz|25Mhz|33Mhz (OC)|66Mhz (OC)|100Mhz (OC)|150Mhz (OC)|200Mhz (OC))</p>
+<p>Configure the CPU speed. Can be used to slow down games that run too fast or to speed up floppy loading times.</p>
+</li>
+<li><p><strong>RAM Size (Restart)</strong> [px68k_ramsize] (<strong>2MB</strong>|3MB|4MB|5MB|6MB|7MB|8MB|9MB|10MB|11MB|12MB|1MB)</p>
+<p>Amount of RAM used.</p>
+</li>
+<li><p><strong>Use Analog</strong> [px68k_analog] (<strong>OFF</strong>|ON)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>P1 Joypad Type</strong> [px68k_joytype1] (<strong>Default (2 Buttons)</strong>|CPSF-MD (8 Buttons)|CPSF-SFC (8 Buttons))</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>P2 Joypad Type</strong> [px68k_joytype2] (<strong>Default (2 Buttons)</strong>|CPSF-MD (8 Buttons)|CPSF-SFC (8 Buttons))</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>ADPCM Volume</strong> [px68k_adpcm_vol] (<strong>15</strong>|0|1|2|3|4|5|6|7|8|9|10|11|12|13|14)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>OPM Volume</strong> [px68k_opm_vol] (<strong>12</strong>|13|14|15|0|1|2|3|4|5|6|7|8|9|10|11)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Swap Disks on Drive</strong> [px68k_disk_drive] (<strong>FDD1</strong>|FDD0)</p>
+<p>By default using the native Disk Swap interface within RetroArch's menu will swap the disk in drive FDD1. Change this option to swap disks in drive FDD0.</p>
+</li>
+<li><p><strong>Save Disk Paths</strong> [px68k_disk_path] (disabled|<strong>enabled</strong>)</p>
+<p>When enabled, saves the paths of the last loaded disks in drives and auto-loads them on startup. When disabled, FDD and HDD starts empty.</p>
+</li>
+<li><p><strong>Joy/Mouse</strong> [px68k_joy_mouse] (<strong>Mouse</strong>|Joystick)</p>
+<p>Select Mouse or Joypad to controls in-game virtual pointer.</p>
+</li>
+<li><p><strong>VBtn Swap</strong> [px68k_vbtn_swap] (<strong>TRIG1 TRIG2</strong>|TRIG2 TRIG1)</p>
+<p>When set to enabled, swaps TRIG1 and TRIG2 buttons when a 2-button gamepad is used.</p>
+</li>
+<li><p><strong>No Wait Mode</strong> [px68k_no_wait_mode] (<strong>disabled</strong>|enabled)</p>
+<p>When set to enabled, core runs as fast as possible. Can cause audio dysnc but useful if using fast-forward.</p>
+<p>Leaving it disabled is <strong>recommended</strong>.</p>
+</li>
+<li><p><strong>Frame Skip</strong> [px68k_frameskip] (<strong>Full Frame</strong>|1/2 Frame|1/3 Frame|1/4 Frame|1/5 Frame|1/6 Frame|1/8 Frame1/16 Frame|1/32 Frame|1/60 Frame|Auto Frame Skip)</p>
+<p>Choose how much frames should be skipped to improve performance at the expense of visual smoothness.</p>
+</li>
+</ul>
+<h2 id="controllers">Controllers</h2>
+<p>The PX68k core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<h3 id="user-1-device-types">User 1 device types</h3>
+<ul>
+<li>None - Input disabled.</li>
+<li><strong>RetroPad</strong> - Joypad</li>
+<li>RetroKeyboard - Keyboard - Keyboard inputs are always active. Has keymapper support.</li>
+</ul>
+<h3 id="user-2-device-types">User 2 device types</h3>
+<ul>
+<li>None - Input disabled.</li>
+<li><strong>RetroPad</strong> - Joypad</li>
+<li>RetroKeyboard - Keyboard - Keyboard inputs are always active.</li>
+</ul>
+<h3 id="other-controllers">Other controllers</h3>
+<ul>
+<li>Mouse - The PX68k core can emulate mouse inputs but this is done automatically and cannot be manually selected as a device type.</li>
+</ul>
+<h3 id="controller-tables">Controller tables</h3>
+<h4 id="joypad">Joypad</h4>
+<table>
+<thead>
+<tr>
+<th>User 1 - 2 Remap descriptors</th>
+<th>RetroPad Inputs</th>
+<th>2 Button</th>
+<th>CPSF-MD (8 Buttons)</th>
+<th>CPSF-SFC (8 Buttons)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>JOY_TRG2</td>
+<td>JOY_TRG2</td>
+<td>JOY_TRG1</td>
+</tr>
+<tr>
+<td>Y</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+<td>JOY_TRG1</td>
+<td>JOY_TRG3</td>
+<td>JOY_TRG4</td>
+</tr>
+<tr>
+<td>Select</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+<td>JOY_LEFT</td>
+<td>JOY_TRG7</td>
+<td>JOY_TRG7</td>
+</tr>
+<tr>
+<td>Start</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+<td>JOY_RIGHT</td>
+<td>JOY_TRG6</td>
+<td>JOY_TRG6</td>
+</tr>
+<tr>
+<td>Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>JOY_UP</td>
+<td>JOY_UP</td>
+<td>JOY_UP</td>
+</tr>
+<tr>
+<td>Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>JOY_DOWN</td>
+<td>JOY_DOWN</td>
+<td>JOY_DOWN</td>
+</tr>
+<tr>
+<td>Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>JOY_LEFT</td>
+<td>JOY_LEFT</td>
+<td>JOY_LEFT</td>
+</tr>
+<tr>
+<td>Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>JOY_RIGHT</td>
+<td>JOY_RIGHT</td>
+<td>JOY_RIGHT</td>
+</tr>
+<tr>
+<td>A</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>JOY_TRG1</td>
+<td>JOY_TRG1</td>
+<td>JOY_TRG2</td>
+</tr>
+<tr>
+<td>X</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+<td>JOY_TRG2</td>
+<td>JOY_TRG4</td>
+<td>JOY_TRG3</td>
+</tr>
+<tr>
+<td>L</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+<td>JOY_TRG1</td>
+<td>JOY_TRG5</td>
+<td>JOY_TRG8</td>
+</tr>
+<tr>
+<td>R</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+<td>JOY_TRG2</td>
+<td>JOY_TRG8</td>
+<td>JOY_TRG5</td>
+</tr>
+<tr>
+<td>L2 - Menu</td>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+<td>Menu</td>
+<td>Menu</td>
+<td>Menu</td>
+</tr>
+<tr>
+<td>R2</td>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>L3</td>
+<td><img src="../image/retropad/retro_l3.png" alt="" /></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>R3</td>
+<td><img src="../image/retropad/retro_r3.png" alt="" /></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> X</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> Y</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /> X</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /> Y</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="keyboard">Keyboard</h4>
+<p><img src="../image/core/px68k/keyboard.jpg" alt="" /></p>
+<table>
+<thead>
+<tr>
+<th>RetroKeyboard Inputs</th>
+<th>PX68k inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keyboard Backspace</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Tab</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Clear</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Return</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Pause</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Escape</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Space</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Exclaim !</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Double Quote &quot;</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Hash #</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Dollar $</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Ampersand &amp;</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Quote '</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Left Parenthesis (</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Right Parenthesis )</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Asterisk *</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Plus +</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Comma ,</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Minus -</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Period .</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Slash /</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard 0</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard 1</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard 2</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard 3</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard 4</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard 5</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard 6</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard 7</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard 8</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard 9</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Colon :</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Semicolon ;</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Less than &lt;</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Equals =</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Greater than &gt;</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Question ?</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard At @</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Left Bracket [</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Backslash \</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Right Bracket ]</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Caret ^</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Underscore _</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Backquote `</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard a</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard b</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard c</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard d</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard e</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard f</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard g</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard h</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard i</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard j</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard k</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard l</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard m</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard n</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard o</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard p</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard q</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard r</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard s</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard t</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard u</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard v</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard w</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard x</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard y</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard z</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Delete</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 0</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 1</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 2</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 3</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 4</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 5</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 6</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 7</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 8</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 9</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Period .</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Divide /</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Multiply *</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Minus -</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Plus +</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Enter</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Equals =</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Up</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Down</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Right</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Left</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Insert</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Home</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard End</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Page Up</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Page Down</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard F1</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard F2</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard F3</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard F4</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard F5</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard F6</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard F7</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard F8</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard F9</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard F10</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard F11</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard F12</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard F13</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard F14</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard F15</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Num Lock</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Caps Lock</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Scroll Lock</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Right Shift</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Left Shift</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Right Control</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Left Control</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Right Alt</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Left Alt</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Right Meta</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Left Meta</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Right Super</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Left Super</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Mode</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Compose</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Help</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Print</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Sys Req</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Break</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Menu</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Power</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard €</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Undo</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Unmapped</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Unknown</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h4 id="mouse">Mouse</h4>
+<table>
+<thead>
+<tr>
+<th>RetroMouse Inputs</th>
+<th>PX68k inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retromouse/retro_mouse.png" alt="" /> Mouse Cursor</td>
+<td>Mouse Cursor</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_left.png" alt="" /> Mouse 1</td>
+<td>Mouse Left Button</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_right.png" alt="" /> Mouse 2</td>
+<td>mouse Right Button</td>
+</tr>
+</tbody>
+</table>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://github.com/libretro/px68k-libretro/wiki/Game-Notes---Video-Audio-modes-and-extra-functionality/">Game-Notes---Video-Audio-modes-and-extra-functionality</a></li>
+<li><a href="http://hissorii.blog45.fc2.com/">Official PX68k Website</a></li>
+<li><a href="https://github.com/hissorii/px68k">Official PX68k Github Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/px68k_libretro.info">Libretro PX68k Core info file</a></li>
+<li><a href="https://github.com/libretro/px68k-libretro">Libretro PX68k Github Repository</a></li>
+<li><a href="https://github.com/libretro/px68k-libretro/issues">Report Libretro PX68k Core Issues Here</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLRbgg4gk_0IfwIYfwg82vaMlMDNU1tdlZ">Gameplay Videos</a></li>
+</ul>

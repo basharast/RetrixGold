@@ -1,0 +1,509 @@
+<h1 id="atari-8-bit-computer-systems-and-5200-atari800">Atari 8-bit computer systems and 5200 (Atari800)</h1>
+<h2 id="background">Background</h2>
+<p>Atari 8-bit computer systems (400, 800, 600 XL, 800XL, 130XE) and 5200 game console emulator.</p>
+<p>The Atari800 core has been authored by</p>
+<ul>
+<li>Petr Stehlik</li>
+</ul>
+<p>The Atari800 core is licensed under</p>
+<ul>
+<li><a href="https://github.com/atari800/atari800/blob/master/COPYING">GPLv2</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the Atari800 core have the following file extensions:</p>
+<ul>
+<li>.xfd</li>
+<li>.atr</li>
+<li>.atx</li>
+<li>.cdm</li>
+<li>.cas</li>
+<li>.bin</li>
+<li>.a52</li>
+<li>.xex</li>
+<li>.zip</li>
+</ul>
+<h2 id="databases">Databases</h2>
+<p>RetroArch database(s) that are associated with the Atari800 core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Atari%20-%205200.rdb">Atari - 5200</a></li>
+</ul>
+<h2 id="bios">BIOS</h2>
+<p>Required or optional firmware files go in RetroArch's system directory.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">5200.rom</td>
+<td style="text-align: center;">5200 BIOS - Required</td>
+<td style="text-align: center;">281f20ea4320404ec820fb7ec0693b38</td>
+</tr>
+<tr>
+<td style="text-align: center;">ATARIXL.ROM</td>
+<td style="text-align: center;">Atari XL/XE OS BIOS - Required</td>
+<td style="text-align: center;">06daac977823773a3eea3422fd26a703</td>
+</tr>
+<tr>
+<td style="text-align: center;">ATARIBAS.ROM</td>
+<td style="text-align: center;">BASIC interpreter BIOS - Required</td>
+<td style="text-align: center;">0bac0c6a50104045d902df4503a4c30b</td>
+</tr>
+<tr>
+<td style="text-align: center;">ATARIOSA.ROM</td>
+<td style="text-align: center;">Atari 400/800 PAL BIOS - Required</td>
+<td style="text-align: center;">eb1f32f5d9f382db1bbfb8d7f9cb343a</td>
+</tr>
+<tr>
+<td style="text-align: center;">ATARIOSB.ROM</td>
+<td style="text-align: center;">BIOS for Atari 400/800 NTSC - Required</td>
+<td style="text-align: center;">a3e8d617c95d08031fe1b20d541434b2</td>
+</tr>
+</tbody>
+</table>
+<h2 id="features">Features</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Softpatching</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan (in RetroArch's Video settings)</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The Atari800 core's directory name is 'Atari800'</p>
+<p>Atari800 config settings are saved/loaded to and from .atari800.cfg in RetroArch's home directory (where RetroArch.exe is in Windows).</p>
+<ul>
+<li>.atari800.cfg (Config)</li>
+</ul>
+<p>RetroArch.exe directory</p>
+<ul>
+<li>.atari800.cfg (config)</li>
+<li>.atari000.wav in exe directory (startup noise?)</li>
+<li>.atari000.pcx in exe directory (screenshot)</li>
+</ul>
+<h3 id="core-provided-aspect-ratio">Core provided aspect ratio</h3>
+<p>Atari800's core provided aspect ratio is 4/3.</p>
+<h3 id="usage">Usage</h3>
+<p>Make sure you have the appropriate system files in RetroArch's system directory. Then, load a content file.</p>
+<p>The Atari800 core should boot to the 'Atari Computer - Memo Pad' screen.</p>
+<p>The Atari800 core will generate a '.atari800.cfg' config file in RetroArch's home directory and will add the required BIOS files it detects in the system directory to the config file.</p>
+<p>Now you can manually select what Atari system you want to emulate through the 'Atari System' core option.</p>
+<p>Finally, you can load any content files compatible with the system chosen through RetroArch's Load Content menu.</p>
+<p>!!! attention
+You can set per-game core option settings by creating a game-options file through RetroArch's Core Options menu.</p>
+<p>Alternatively, you can manually configure how the Atari800 will look for and handle BIOS files.</p>
+<p>While the Atari800 core is running, you can press F1 to get into the internal emulator menu. There - emulator configuration, system rom settings.</p>
+<p>From there, You can go to the 'Emulator Configuration' section and then the System ROM settings section to configure BIOS options. (Press Enter to confirm menu selections and press Escape to go back a menu)</p>
+<p>Then press Escape a few times to go back to the 'Emulator Configuration' section and select Save Configuration File or alternatively change Save configuration file on exit from no to yes</p>
+<p>Then you can exit the emulator by pressing F9 and then try the game again or press Shift+F5 to reboot the game.</p>
+<h2 id="core-options">Core options</h2>
+<p>The Atari800 core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded. Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><strong>Atari System</strong> (<strong>400/800 (OS B)</strong>/800XL (64K)/130XE (128K)/5200)</li>
+</ul>
+<center> Choose what Atari System to emulate. </center>
+<ul>
+<li><strong>Video Standard</strong> (<strong>NTSC</strong>/PAL)</li>
+</ul>
+<center> Awaiting description. </center>
+<ul>
+<li><strong>Internal BASIC (hold OPTION on boot)</strong> (<strong>Off</strong>/On)</li>
+</ul>
+<center> Awaiting description. </center>
+<ul>
+<li><strong>SIO Acceleration</strong> (<strong>Off</strong>/On)</li>
+</ul>
+<center> Awaiting description. </center>
+<ul>
+<li><strong>Boot from Cassette</strong> (<strong>Off</strong>/On)</li>
+</ul>
+<center> Awaiting description. </center>
+<ul>
+<li><strong>Hi-Res Artifacting</strong> (<strong>Off</strong>/On)</li>
+</ul>
+<center> Awaiting description. </center>
+<ul>
+<li><strong>Autodetect A5200 CartType</strong> (<strong>Off</strong>/On)</li>
+</ul>
+<center> Awaiting description. </center>
+<ul>
+<li><strong>Joy hack A5200 for robotron</strong> (<strong>Off</strong>/On)</li>
+</ul>
+<center> Awaiting description. </center>
+<ul>
+<li><strong>Internal resolution</strong> (<strong>336x240</strong>/320x240/384x240/384x272/384x288/400x300)</li>
+</ul>
+<center> Awaiting description. </center>
+<ul>
+<li><strong>Retroarch Keyboard type</strong> (<strong>poll</strong>/callback)</li>
+</ul>
+<center> Awaiting description. </center>
+<h2 id="controllers">Controllers</h2>
+<h3 id="device-types">Device types</h3>
+<p>The Atari800 core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<h4 id="user-1-2-device-types">User 1 - 2 device types</h4>
+<ul>
+<li>None - Input disabled.</li>
+<li><strong>RetroPad</strong> - Joypad - Don't use this, switch to ATARI Joystick for joypad usage.</li>
+<li>ATARI Joystick - Joypad</li>
+<li>ATARI Keyboard - Keyboard - For keyboard usage</li>
+</ul>
+<h3 id="controller-tables">Controller tables</h3>
+<h4 id="joypad-and-analog-device-type-table">Joypad and analog device type table</h4>
+<table>
+<thead>
+<tr>
+<th>User 1 Remap descriptors</th>
+<th>RetroPad Inputs</th>
+<th>ATARI Joystick</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>KEY RETURN</td>
+</tr>
+<tr>
+<td>Y</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+<td>VKBD ON/OFF</td>
+</tr>
+<tr>
+<td>Select</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+<td>CONSOL_SELECT</td>
+</tr>
+<tr>
+<td>Start</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+<td>CONSOL_START</td>
+</tr>
+<tr>
+<td>Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>Up</td>
+</tr>
+<tr>
+<td>Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>Down</td>
+</tr>
+<tr>
+<td>Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>Left</td>
+</tr>
+<tr>
+<td>Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>Right</td>
+</tr>
+<tr>
+<td>A</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>FIRE1/KEY RETURN IN GUI</td>
+</tr>
+<tr>
+<td>X</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+<td>FIRE2/KEY ESCAPE IN GUI</td>
+</tr>
+<tr>
+<td>L</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+<td>CONSOLE_OPTION</td>
+</tr>
+<tr>
+<td>R</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+<td>TOGGLE_UI</td>
+</tr>
+<tr>
+<td>L2</td>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+<td>KEY SPACE</td>
+</tr>
+<tr>
+<td>R2</td>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+<td>KEY ESCAPE</td>
+</tr>
+<tr>
+<td>L3</td>
+<td><img src="../image/retropad/retro_l3.png" alt="" /></td>
+<td></td>
+</tr>
+<tr>
+<td>R3</td>
+<td><img src="../image/retropad/retro_r3.png" alt="" /></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="keyboard-device-type-table">Keyboard device type table</h4>
+<table>
+<thead>
+<tr>
+<th>User # input descriptors</th>
+<th></th>
+<th>ATARI Keyboard</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N/A</td>
+<td>Keyboard Numpad 2</td>
+<td>Down</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>Keyboard Numpad 4</td>
+<td>Left</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>Keyboard Numpad 6</td>
+<td>Right</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>Keyboard Numpad 8</td>
+<td>Up</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>Keyboard Up</td>
+<td>Up</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>Keyboard Down</td>
+<td>Down</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>Keyboard Right</td>
+<td>Right</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>Keyboard Left</td>
+<td>Left</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>Keyboard F1</td>
+<td>Built in UI</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>Keyboard F2</td>
+<td>Option key</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>Keyboard F3</td>
+<td>Select key</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>Keyboard F4</td>
+<td>Start key</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>Keyboard F5</td>
+<td>Reset key</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>Keyboard F6</td>
+<td>Help key (XL/XE only)</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>Keyboard F7</td>
+<td>Break key</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>Keyboard F8</td>
+<td>Enter monitor</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>Keyboard F9</td>
+<td>Exit emulator</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>Keyboard F10</td>
+<td>Save screenshot</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>Keyboard Right Control</td>
+<td>Fire</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>Keyboard Shift + F5</td>
+<td>Reboot</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>Keyboard Shift + F10</td>
+<td>Save interlaced screenshot</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>Keyboard Alt + R</td>
+<td>Run Atari program</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>Keyboard Alt + D</td>
+<td>Disk management</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>Keyboard Alt + C</td>
+<td>Cartridge management</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>Keyboard Alt + Y</td>
+<td>Select system</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>Keyboard Alt + O</td>
+<td>Sound settings</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>Keyboard Alt + W</td>
+<td>Sound recording start/stop</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>Keyboard Alt + S</td>
+<td>Save state file</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>Keyboard Alt + L</td>
+<td>Load state file</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>Keyboard Alt + A</td>
+<td>About the emulator</td>
+</tr>
+</tbody>
+</table>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/atari800_libretro.info">Libretro Atari800 Core info file</a></li>
+<li><a href="https://github.com/libretro/libretro-atari800">Libretro Atari800 Github Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-atari800/issues">Report Libretro Atari800 Core Issues Here</a></li>
+<li><a href="https://atari800.github.io/">Official Atari800 Website</a></li>
+<li><a href="https://github.com/atari800/atari800">Official Atari800 Github Repository</a></li>
+</ul>

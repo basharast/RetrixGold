@@ -1,0 +1,758 @@
+<h1 id="scummvm">ScummVM</h1>
+<h2 id="background">Background</h2>
+<p>ScummVM is an interpreter program which allows you to run certain classic graphical point-and-click adventure games, provided you already have their data files. The clever part about this: ScummVM just replaces the executables shipped with the games, allowing you to play them on systems for which they were never designed.</p>
+<p>The ScummVM core has been authored by</p>
+<ul>
+<li><a href="http://www.scummvm.org/credits/">ScummVM Team</a></li>
+</ul>
+<p>The ScummVM core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/scummvm/blob/master/COPYING">GPLv2</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the ScummVM core have the following file extensions:</p>
+<ul>
+<li>.scummvm</li>
+</ul>
+<p>RetroArch database(s) that are associated with the ScummVM core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/ScummVM.rdb">ScummVM</a></li>
+</ul>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the ScummVM core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h2 id="directories">Directories</h2>
+<p>The ScummVM core's library name is 'scummvm'</p>
+<p>The ScummVM core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Save directory</strong></p>
+<ul>
+<li>Game saves</li>
+</ul>
+<p><strong>Frontend's System directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">scummvm.ini</td>
+<td style="text-align: center;">ScummVM Config File</td>
+</tr>
+</tbody>
+</table>
+<h2 id="geometry-and-timing">Geometry and timing</h2>
+<ul>
+<li>The ScummVM core's core provided FPS is 60</li>
+<li>The ScummVM core's core provided sample rate is 44100 Hz</li>
+<li>The ScummVM core's base width is 640</li>
+<li>The ScummVM core's base height is 480</li>
+<li>The ScummVM core's max width is 640</li>
+<li>The ScummVM core's max height is 480.</li>
+<li>The ScummVM core's core provided aspect ratio is 4/3</li>
+</ul>
+<h2 id="usage">Usage</h2>
+<h3 id="initial-configuration">Initial Configuration</h3>
+<p>Before attempting to run a game with the ScummVM core, certain preparations are required to ensure correct operation:</p>
+<ul>
+<li><p>Download and extract the file <a href="https://github.com/libretro/scummvm/raw/master/backends/platform/libretro/aux-data/scummvm.zip">scummvm.zip</a>.</p>
+</li>
+<li><p>Place the resultant <code>scummvm</code> folder inside the RetroArch <code>system</code> directory.</p>
+</li>
+<li><p>Run the ScummVM core without content:</p>
+<ul>
+<li><p>Go to RetroArch's main menu screen.</p>
+</li>
+<li><p>Select 'Load Core', then 'ScummVM'.</p>
+</li>
+<li><p>Select 'Start Core'.</p>
+</li>
+<li><p>The main ScummVM user interface will open:</p>
+</li>
+</ul>
+</li>
+</ul>
+<center> ![](../image/core/scummvm/scummvm_menu_1st_run.png) </center>
+<ul>
+<li><p>Press the 'Options...' button, then select the 'Paths' tab.</p>
+</li>
+<li><p>Press the 'Theme Path:' button and navigate to the RetroArch <code>system</code> directory. Enter the <code>scummvm/theme/</code> folder and press the 'Choose' button.</p>
+</li>
+<li><p>Press the 'Extra Path:' button and navigate to the RetroArch <code>system</code> directory. Enter the <code>scummvm/extra/</code> folder and press the 'Choose' button.</p>
+</li>
+<li><p>Press the 'Apply' button.</p>
+</li>
+</ul>
+<center> ![](../image/core/scummvm/scummvm_menu_paths.png) </center>
+<ul>
+<li><p>Select the 'Misc' tab, then press the 'Theme:' button.</p>
+</li>
+<li><p>Select 'ScummVM Modern Theme' and press the 'Choose' button.</p>
+</li>
+<li><p>Press the 'Apply' button, then continue to the 'Enable Enhanced MIDI Emulation' section below.</p>
+</li>
+</ul>
+<center> ![](../image/core/scummvm/scummvm_menu_misc.png) </center>
+<h4 id="enable-enhanced-midi-emulation">Enable Enhanced MIDI Emulation</h4>
+<p>Some games only contain music in the form of MIDI data. By default, ScummVM will emulate MIDI mode using AdLib. Higher quality audio may be achieved for MIDI-enabled games by using FluidSynth MIDI emulation with an appropriate soundfont. This is the recommended mode of operation under RetroArch.</p>
+<ul>
+<li><p>Select the 'MIDI' tab, then under 'GM Device:' select 'FluidSynth'.</p>
+</li>
+<li><p>Press the 'SoundFont:' button and navigate to the RetroArch <code>system</code> directory. Enter the <code>scummvm/extra/</code> folder. (NB: If the steps of this guide have been followed in order, the <code>scummvm/extra/</code> folder will be selected automatically upon pressing the 'SoundFont:' button)</p>
+</li>
+<li><p>Select the file <code>Roland_SC-55.sf2</code> and press the 'Choose' button. Another good soundfont is the <a href="https://fatboy.site/">FatBoy SoundFont</a>, you can download that and place it in the same folder (<code>scummvm/extra/</code>) to be able to select it.</p>
+</li>
+<li><p>Tick the 'Mixed AdLib/MIDI mode' checkbox.</p>
+</li>
+<li><p>Press the 'Apply' button, then continue to the 'Enable MT-32 Emulation' section below.</p>
+</li>
+</ul>
+<center> ![](../image/core/scummvm/scummvm_menu_midi.png) </center>
+<p>Many games benefit greatly from FluidSynth MIDI emulation. Some particularly notable examples are:</p>
+<ul>
+<li><p>Sam &amp; Max Hit the Road</p>
+</li>
+<li><p>Day of the Tentacle</p>
+</li>
+<li><p>Discworld</p>
+</li>
+</ul>
+<p>!!! attention
+FluidSynth MIDI emulation slightly increases the CPU requirements of the ScummVM core. On the vast majority of platforms this should not be an issue. If crackling sound is observed on very low power devices, FluidSynth MIDI emulation should be disabled by setting 'GM Device:' to the default &quot;Don't use General MIDI music&quot; option.</p>
+<h4 id="enable-mt-32-emulation-optional">Enable MT-32 Emulation (Optional)</h4>
+<p>Some games which contain MIDI music data also have improved tracks designed for the MT-32 sound module. ScummVM can emulate this device, vastly increasing the audio quality of these games. Enabling MT-32 emulation is therefore highly recommended, but should be considered optional since it requires original MT-32 ROMs which must be provided by the user.</p>
+<p>The names and checksums of the two required ROM files are:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">MT32_PCM.ROM</td>
+<td style="text-align: center;">89e42e386e82e0cacb4a2704a03706ca</td>
+</tr>
+<tr>
+<td style="text-align: center;">MT32_CONTROL.ROM</td>
+<td style="text-align: center;">5626206284b22c2734f3e9efefcd2675</td>
+</tr>
+</tbody>
+</table>
+<p>These files must be placed inside the <code>scummvm/extra/</code> folder within the RetroArch <code>system</code> directory. MT-32 emulation may then be enabled via the main ScummVM user interface as follows:</p>
+<ul>
+<li><p>Select the 'MT-32' tab.</p>
+</li>
+<li><p>Under 'MT-32 Device:' select 'MT-32 Emulator'.</p>
+</li>
+<li><p>Press the 'Apply' button, then the 'OK' button to close the options menu.</p>
+</li>
+</ul>
+<center> ![](../image/core/scummvm/scummvm_menu_mt32.png) </center>
+<p>Some notable examples of games that sound exquisite with MT-32 emulation are:</p>
+<ul>
+<li><p>Monkey Island 2: LeChuck's Revenge</p>
+</li>
+<li><p>Indiana Jones and the Fate of Atlantis</p>
+</li>
+<li><p>Simon the Sorcerer</p>
+</li>
+</ul>
+<p>Experiencing Monkey Island 2 without MT-32 emulation is like listening to Beethoven played on a kazoo.</p>
+<p>!!! attention
+MT-32 emulation substantially increases the CPU requirements of the ScummVM core, and this can vary on a per-game basis. On most desktop systems this should not be an issue, but some devices may struggle to maintain full speed with all games. For example, 'Monkey Island 2' and 'Indiana Jones and the Fate of Atlantis' will run on very low power Android chipsets, but 'Simon the Sorcerer' will overwhelm mid-to-high-end mobile CPUs. If crackling sound is observed, the user should either (a) disable MT-32 emulation by setting 'MT-32 Device:' to the default &quot;Don't use Roland MT-32 music&quot; or (b) force the use of the 'FluidSynth' audio device via an internal ScummVM game settings override (this is described in a following section).</p>
+<p>This concludes 'Initial Configuration'. The core may be shut down either by pressing the 'Quit' button, or via 'Close Content' from the Quick Menu.</p>
+<h3 id="game-management">Game Management</h3>
+<p>Before a game can be run via the ScummVM core, it should first be added to the internal launcher. Failure to do so will prevent game-specific configuration options from being saved (e.g. volume levels, subtitle speed, internal game settings overrides).</p>
+<h4 id="adding-a-game-to-the-scummvm-launcher">Adding a Game to the ScummVM Launcher</h4>
+<p>The data files for each game must be copied to a uniquely-named directory on local storage (i.e. one directory per game). A list of the specific files required for any particular game may be found on the ScummVM <a href="http://wiki.scummvm.org/index.php/Datafiles">Datafiles</a> page.</p>
+<p>A suggested directory layout for 'Flight of the Amazon Queen' is presented as the simplest possible example:</p>
+<pre><code>└── ROMs/
+    └── ScummVM/
+        └── Flight of the Amazon Queen (CD DOS)/
+            └── queen.1
+</code></pre>
+<p>Once all files are in place, each game may be added as follows:</p>
+<ul>
+<li><p>Run the ScummVM core without content:</p>
+<ul>
+<li><p>Go to RetroArch's main menu screen.</p>
+</li>
+<li><p>Select 'Load Core', then 'ScummVM'.</p>
+</li>
+<li><p>Select 'Start Core'.</p>
+</li>
+</ul>
+</li>
+<li><p>In the main ScummVM user interface, press the 'Add Game...' button.</p>
+</li>
+<li><p>Navigate to the game directory. Double click the game directory itself to enter it, then press the 'Choose' button.</p>
+</li>
+</ul>
+<center> ![](../image/core/scummvm/scummvm_menu_add_game.png) </center>
+<ul>
+<li>If the game is detected correctly (i.e. if the data files are correct), a settings dialog box will open.</li>
+</ul>
+<center> ![](../image/core/scummvm/scummvm_menu_game_options.png) </center>
+<ul>
+<li><p>In general, the automatically generated configuration settings can be accepted...</p>
+</li>
+<li><p><strong>However:</strong> For simplicity, and compatibility with existing <code>.scummvm</code> files (discussed in the following section), the 'ID:' entry should be set to the so-called 'short name' of the game. All 'short names' are listed on the <a href="http://scummvm.org/compatibility">ScummVM Compatibility Page</a>.</p>
+<ul>
+<li><p>In most cases, the automatically generated 'ID:' is equal to the 'short name'.</p>
+</li>
+<li><p>In some cases, the automatically generated 'ID:' will be the 'short name' with an additional identifying suffix. This suffix should be deleted. If using a gamepad, this may be achieved by clicking at the end of the 'ID:' entry line and using the 'L2' button/trigger to delete unwanted characters.</p>
+</li>
+</ul>
+</li>
+<li><p>Once the 'ID:' has been adjusted (if required), press the 'OK' button to 'register' the game.</p>
+</li>
+</ul>
+<center> ![](../image/core/scummvm/scummvm_menu_1st_game_added.png) </center>
+<p>!!! attention
+Once a game has been registered, it may be run by selecting it in the ScummVM Launcher game list and pressing the 'Start' button. <strong>However:</strong> Employing the ScummVM Launcher in this manner is not recommended, since it prevents the use of RetroArch per-game configuration overrides, input remaps and shader overrides. The ScummVM Launcher should only be used to add games and change settings.</p>
+<h4 id="running-a-game">Running a Game</h4>
+<p>Running a ScummVM game via the RetroArch frontend requires the addition of an appropriately configured <code>.scummvm</code> file to the game directory. For each game listed in the ScummVM Launcher, the following procedure should be followed:</p>
+<ul>
+<li><p>Note the specific game 'ID:' that was submitted when adding the game to the ScummVM Launcher. If this guide has been followed, the game ID will be equal to the 'short name' found on the <a href="http://scummvm.org/compatibility">ScummVM Compatibility Page</a>.</p>
+</li>
+<li><p>Enter the directory containing the game data.</p>
+</li>
+<li><p>Create a new text file named after the game, with a <code>.scummvm</code> extension.</p>
+<p>(The name of the <code>.scummvm</code> file will be used to select which RetroArch configuration/remap override should be loaded when a game is launched. The chosen name does not have to be the same as the game directory name or the ScummVM 'short name', although either would be appropriate. The only requirement is that each <code>.scummvm</code> file should have a <em>unique</em> name.)</p>
+</li>
+<li><p>Open the <code>.scummvm</code> file in a text editor and enter the game ID on a single line. Save and close the file.</p>
+</li>
+</ul>
+<p>Again, 'Flight of the Amazon Queen' is presented as a simple example:</p>
+<pre><code>└── ROMs/
+    └── ScummVM/
+        └── Flight of the Amazon Queen (CD DOS)/
+            ├── Flight of the Amazon Queen.scummvm
+            └── queen.1
+</code></pre>
+<p>...where <code>Flight of the Amazon Queen.scummvm</code> has the following content:</p>
+<pre><code>queen
+</code></pre>
+<p>Games can then be launched as follows:</p>
+<ul>
+<li><p>Go to RetroArch's main menu screen.</p>
+</li>
+<li><p>Select 'Load Content'.</p>
+</li>
+<li><p>Navigate to the game directory.</p>
+</li>
+<li><p>Select the <code>.scummvm</code> file.</p>
+</li>
+<li><p>The game will load.</p>
+</li>
+</ul>
+<center> ![](../image/core/scummvm/scummvm_load_content.png) </center>
+<p>For users who do not wish to create their own <code>.scummvm</code> files, a pre-prepared collection is available in the <a href="https://github.com/RobLoach/libretro-database-scummvm/tree/master/games">libretro-database-scummvm</a> repository. Simply download the appropriate file for a particular game and copy it to the game directory.</p>
+<p>!!! attention
+When using third-party <code>.scummvm</code> files, it is important to verify that the file contents matches the specific game ID that was submitted when adding the game to the ScummVM Launcher. Do not assume that third-party <code>.scummvm</code> files are automagically 'correct'.</p>
+<h4 id="playlistscanning-support">Playlist/Scanning Support</h4>
+<p>To launch games efficiently via the RetroArch frontend, it is recommended to add them to a playlist. Provided that a <code>.scummvm</code> file is present inside each game directory, RetroArch supports automated scanning/playlist generation for ScummVM content:</p>
+<ul>
+<li><p>From RetroArch's main menu screen, navigate to the 'Import content' tab.</p>
+</li>
+<li><p>Select 'Scan Directory'.</p>
+</li>
+<li><p>Navigate to the folder containing the ScummVM game directories.</p>
+</li>
+<li><p>Select <code>&lt;Scan This Directory&gt;</code>.</p>
+</li>
+</ul>
+<p>All recognised games will be added to a <code>ScummVM.lpl</code> file in the RetroArch <code>playlist</code> directory, and be made available via a new 'ScummVM' tab in the frontend menu.</p>
+<p>(Alternatively, each game directory may be scanned in turn - useful if game directories are present in multiple locations)</p>
+<p>An example playlist entry for 'Flight of the Amazon Queen' is as follows:</p>
+<pre><code>/storage/ROMs/ScummVM/Flight of the Amazon Queen (CD DOS)/Flight of the Amazon Queen.scummvm
+Flight of the Amazon Queen
+DETECT
+DETECT
+19C1B1B5|crc
+ScummVM.lpl
+</code></pre>
+<p>!!! attention
+Not all games/configurations are present in the current database. If a particular game is not detected, an entry in the <code>ScummVM.lpl</code> playlist file can be added by hand. It should have the format:</p>
+<pre><code>```
+/path/to/game_directory/game_name.scummvm
+game_name
+DETECT
+DETECT
+0|crc
+ScummVM.lpl
+```
+</code></pre>
+<h3 id="additional-configuration-notes">Additional Configuration Notes</h3>
+<p>Both ScummVM and RetroArch itself allow a vast number of options to be configured on a per-game basis. Here we present three additional configuration topics that will likely be of relevance for typical users:</p>
+<h4 id="volume-levels">Volume Levels</h4>
+<p>ScummVM games exhibit a spectacular variance in audio volume levels. For comfort, it is almost mandatory to adjust specific volumes on a per-game basis. Fortunately this is trivial:</p>
+<ul>
+<li><p>While a game is running, press the RetroPad 'start' button to open the ScummVM GUI.</p>
+</li>
+<li><p>Using the cursor, press the 'Options' button.</p>
+</li>
+<li><p>Adjust the 'Music volume:', 'SFX volume:' and 'Speech volume:' sliders to the desired levels.</p>
+</li>
+</ul>
+<center> ![](../image/core/scummvm/scummvm_volume_levels.png) </center>
+<ul>
+<li>Press the 'OK' button, then the 'Resume' button.</li>
+</ul>
+<p>Provided that the game has been correctly added to the ScummVM Launcher, the adjusted levels will be preserved between play sessions.</p>
+<p>!!! attention
+If the game has <em>not</em> been added to the ScummVM Launcher, or if the game ID in the <code>.scummvm</code> file <em>does not</em> match the ScummVM Launcher ID, all settings will be lost when the game is closed.</p>
+<h4 id="manual-music-device-selection">Manual Music Device Selection</h4>
+<p>By default, ScummVM will automatically select the most appropriate music playback option for each game (i.e. MT-32 emulation, FluidSynth MIDI emulation or AdLib emulation). In the majority of cases this will yield the best possible sound quality, and no user intervention is required. There are, however, circumstances and games where a manual override is beneficial. This is something that should be determined by the user on a per-game basis, but here are some practical examples:</p>
+<ul>
+<li><p>Simon the Sorcerer sounds best with the default selection of MT-32 emulation, but this is too CPU-intensive for most Android devices. An acceptable compromise between performance and sound quality can be achieved by forcing the game to use FluidSynth MIDI emulation.</p>
+</li>
+<li><p>Simon the Sorcerer 2 will use FluidSynth MIDI emulation by default. Far better quality music can be achieved by forcing the game to use MT-32 emulation. (And since this game has even higher CPU requirements than the first in the series, smooth playback on Android devices generally requires the use of AdLib emulation)</p>
+</li>
+<li><p>Beneath a Steel Sky defaults to MT-32 emulation, which should be best... but forcing the use of FluidSynth MIDI emulation tends to produce 'richer' sounding music, which some users may prefer.</p>
+</li>
+<li><p>Flight of the Amazon Queen is another game that defaults to MT-32 emulation but which (arguably) sounds far better with FluidSynth MIDI emulation.</p>
+</li>
+</ul>
+<p>A per-game music device override may be set as follows:</p>
+<ul>
+<li><p>Run the ScummVM core without content:</p>
+<ul>
+<li><p>Go to RetroArch's main menu screen.</p>
+</li>
+<li><p>Select 'Load Core', then 'ScummVM'.</p>
+</li>
+<li><p>Select 'Start Core'.</p>
+</li>
+</ul>
+</li>
+<li><p>In the main ScummVM user interface, select the appropriate entry in the Launcher game list and press the 'Edit Game...' button.</p>
+</li>
+</ul>
+<center> ![](../image/core/scummvm/scummvm_menu_edit_game.png) </center>
+<ul>
+<li><p>In the dialog that opens, select the 'Audio' tab.</p>
+</li>
+<li><p>Tick the 'Override global audio settings' checkbox.</p>
+</li>
+<li><p>Under 'Music Device:', select the desired option (i.e. 'FluidSynth', 'MT-32 Emulator' or 'AdLib Emulator').</p>
+</li>
+<li><p>Press the 'OK' button.</p>
+</li>
+</ul>
+<center> ![](../image/core/scummvm/scummvm_menu_audio_override.png) </center>
+<h4 id="aspect-ratio-correction">Aspect Ratio Correction</h4>
+<p>ScummVM's core provided aspect ratio is 4:3. For most games this is correct, particularly for newer games, and those that targeted the PC as their primary platform. It is widely known that DOS games typically ran at 320x200, with non-square pixels stretched to fill a 4:3 display.</p>
+<p>It is not so widely known that a number of popular games targeted the European Amiga market, where (due to various PAL/NTSC considerations) 320x200 content was often shown in a letterboxed rectangle at a display resolution of 320x256. It is sometimes difficult to determine the original intent of the artists, but many of these games were actually made in a quasi-widescreen format. Some notable examples are:</p>
+<ul>
+<li><p>Beneath a Steel Sky</p>
+</li>
+<li><p>Flight of the Amazon Queen</p>
+</li>
+<li><p>Simon the Sorcerer 1 + 2</p>
+</li>
+</ul>
+<p>(The full list of affected games should be determined at the user's discretion)</p>
+<p>The actual 'correct' aspect ratio in these cases is somewhat fuzzy, but good results are achieved by using the pixel aspect ratio of 16:10.</p>
+<p>To demonstrate the issue, here is an example screenshot from Beneath a Steel Sky at the default 4:3 ratio:</p>
+<center> ![](../image/core/scummvm/beneath_a_steel_sky_4-3.png) </center>
+<p>Note the distorted fan vents. Here is the same image at a 16:10 ratio:</p>
+<center> ![](../image/core/scummvm/beneath_a_steel_sky_16-10.png) </center>
+<p>The fan vents are the correct shape, and the character proportions are more natural.</p>
+<p>To automate correct aspect ratio selection for games such as these, a RetroArch configuration override should be used. This can be set up as follows:</p>
+<ul>
+<li><p>Enter the RetroArch <code>config</code> directory.</p>
+</li>
+<li><p>Create a new directory called <code>scummvm</code> (if it does not already exist).</p>
+</li>
+<li><p>Create a new text file with the exact same name as the <code>.scummvm</code> file for the game to be overridden, but with a <code>.cfg</code> extension.</p>
+<p>An example layout for 'Flight of the Amazon Queen' is shown:</p>
+</li>
+</ul>
+<pre><code>└── config/
+    └── scummvm/
+        └── Flight of the Amazon Queen.cfg
+</code></pre>
+<ul>
+<li>Open the <code>.cfg</code> file in a text editor and paste the following on a single line:</li>
+</ul>
+<pre><code>aspect_ratio_index = &quot;2&quot;
+</code></pre>
+<ul>
+<li>Save and close the file.</li>
+</ul>
+<p>Now whenever the game is launched, it will be displayed at the 'correct' 16:10 ratio. This will not affect any other game.</p>
+<h2 id="core-options">Core options</h2>
+<p>The ScummVM core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Gamepad Cursor Speed</strong> [scummvm_gamepad_cursor_speed] (<strong>1.0</strong>|1.5|2.0|2.5|3.0|0.25|0.5|0.75)</p>
+<p>Sets the mouse cursor speed multiplier when moving the cursor with the RetroPad left analog stick or D-Pad.</p>
+</li>
+</ul>
+<p>!!! attention
+The default value of '1.0' is optimised for games that have a native resolution of '320x200' or '320x240'. When running 'high definition' games with a native resolution of '640x400' or '640x480', it is recommended to set the Gamepad Cursor Speed to '2.0'.</p>
+<ul>
+<li><p><strong>Analog Cursor Response</strong> [scummvm_analog_response] (<strong>linear</strong>|cubic)</p>
+<p>Determines how the speed of the cursor varies when tilting the RetroPad left analog stick.</p>
+<p>'linear': Cursor speed increases linearly with analog stick movement. This is standard behaviour with which most users will be familiar.</p>
+<p>'cubic': Cursor speed increases quadratically with analog stick movement. This allows for greater precision when making small movements with the analog stick, without sacrificing maximum speed at full analog stick range. This mode may require practice for effective use.</p>
+</li>
+<li><p><strong>Analog Deadzone (percent)</strong> [scummvm_analog_deadzone] (<strong>15</strong>|20|25|30|0|5|10)</p>
+<p>Sets the deadzone of the RetroPad analog sticks. Used to eliminate cursor drift/unwanted input.</p>
+</li>
+</ul>
+<p>!!! attention
+The deadzone setting can have a significant effect on the 'feel' of analog cursor movement. The value should be set as low as possible for best results - i.e. reduce the value until cursor drift is evident, then increment to the next highest setting. Xbox gamepads typically require a deadzone of 15-20%. Many Android-compatible bluetooth gamepads have an internal 'hardware' deadzone, allowing the deadzone value here to be set to 0%.</p>
+<ul>
+<li><p><strong>Mouse Speed</strong> [scummvm_mouse_speed] (<strong>1.0</strong>|1.25|1.5|1.75|2.0|2.5|3.0|0.05|0.1|0.15|0.2|0.25|0.3|0.35|0.4|0.45|0.5|0.6|0.7|0.8|0.9)</p>
+<p>Sets the mouse cursor speed multiplier when moving the cursor with the RetroMouse.</p>
+</li>
+<li><p><strong>Speed Hack (Restart)</strong> [scummvm_speed_hack] (<strong>disabled</strong>|enabled)</p>
+<p>Enables an optional speed hack that significantly reduces the CPU requirements of the core by allowing subtle timing inaccuracies.</p>
+</li>
+</ul>
+<p>!!! attention
+This hack is considered 'safe' - games should run correctly when it is enabled, and most inaccuracies are imperceptible other than in a few edge cases. It remains a hack, though, and it is strongly recommended that users of desktop class machines keep it disabled.</p>
+<pre><code>**However:** For users of low power hardware (Android devices, single board computers), this hack is essentially **mandatory** for full speed operation of the core. For Android users in particular, the guides in the 'Usage' section of this document assume that the speed hack is enabled.
+</code></pre>
+<h2 id="joypad">Joypad</h2>
+<table>
+<thead>
+<tr>
+<th>RetroPad Inputs</th>
+<th>User 1 input descriptors</th>
+<th>ScummVM Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>Right Mouse Button</td>
+<td>Right Mouse Button</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+<td>.</td>
+<td>. (period)</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+<td>F1</td>
+<td>F1</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+<td>ScummVM GUI</td>
+<td>ScummVM GUI</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>Mouse Cursor Up</td>
+<td>Mouse Cursor Up</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>Mouse Cursor Down</td>
+<td>Mouse Cursor Down</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>Mouse Cursor Left</td>
+<td>Mouse Cursor Left</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>Mouse Cursor Right</td>
+<td>Mouse Cursor Right</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>Left Mouse Button</td>
+<td>Left Mouse Button</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+<td>Esc</td>
+<td>Esc</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+<td>Enter</td>
+<td>Enter</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+<td>Numpad 5</td>
+<td>Numpad 5</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+<td>Backspace</td>
+<td>Backspace</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+<td>Cursor Fine Control</td>
+<td>Cursor Fine Control</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_l3.png" alt="" /></td>
+<td>F10</td>
+<td>F10</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_r3.png" alt="" /></td>
+<td>Numpad 0</td>
+<td>Numpad 0</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> X</td>
+<td></td>
+<td>Mouse Cursor Left/Right</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> Y</td>
+<td></td>
+<td>Mouse Cursor Up/Down</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /></td>
+<td></td>
+<td>Virtual Numpad</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Additional Notes:</strong></p>
+<ul>
+<li><p>Depressing the 'Cursor Fine Control' button reduces cursor speed to 1/3 of the value set by the 'Gamepad Cursor Speed' core option.</p>
+</li>
+<li><p>The RetroPad right analog stick is mapped to an 8-way 'Virtual Numpad' with the following layout:</p>
+</li>
+</ul>
+<pre><code>[7][8][9]
+[4]   [6]
+[1][2][3]
+</code></pre>
+<p><strong>Additional 'ScummVM Input' Descriptions:</strong></p>
+<ul>
+<li><p>Esc:</p>
+<ul>
+<li><p>Skips cutscenes.</p>
+</li>
+<li><p>Opens/closes menus in some games.</p>
+</li>
+</ul>
+</li>
+<li><p>Virtual Numpad + Numpad 5 + Numpad 0:</p>
+<ul>
+<li><p>Enables control during fight sequences in the 'Indiana Jones' series of games.</p>
+</li>
+<li><p>Enables bypass of Monkey Island 2 copy protection.</p>
+</li>
+<li><p>Enables saving in games that require text entry when naming a save slot.</p>
+</li>
+<li><p>Enables menu navigation in some games (Numpad 8 == up, Numpad 2 == down).</p>
+</li>
+</ul>
+</li>
+<li><p>Enter + Backspace:</p>
+<ul>
+<li><p>Enables saving in games that require text entry when naming a save slot.</p>
+</li>
+<li><p>'Enter' may be used to attack in 'Full Throttle' fight sequences.</p>
+</li>
+<li><p>'Enter' enables menu item selection in some games.</p>
+</li>
+</ul>
+</li>
+<li><p>. (period): Skips lines of dialogue in SCUMM engine games.</p>
+</li>
+<li><p>F1:</p>
+<ul>
+<li><p>Shows in-game menu in some games.</p>
+</li>
+<li><p>Enables saving in some games.</p>
+</li>
+</ul>
+</li>
+<li><p>F10: Shows hotspots in Simon the Sorcerer 1 + 2.</p>
+</li>
+</ul>
+<h2 id="mouse">Mouse</h2>
+<table>
+<thead>
+<tr>
+<th>RetroMouse Inputs</th>
+<th>ScummVM Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retromouse/retro_mouse.png" alt="" /> Mouse Cursor</td>
+<td>Mouse Cursor</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_left.png" alt="" /> Mouse 1</td>
+<td>Left Mouse Button</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_right.png" alt="" /> Mouse 2</td>
+<td>Right Mouse Button</td>
+</tr>
+</tbody>
+</table>
+<p>!!! attention
+To ensure correct operation when using a RetroMouse, it is recommended that the RetroArch 'Grab Mouse' option be enabled while running content with the ScummVM core. By default, 'Grab Mouse' may be toggled on/off by pressing F11 on the keyboard.</p>
+<pre><code>The 'Grab Mouse' option is not required when using a RetroPad to move the cursor.
+</code></pre>
+<h2 id="pointer">Pointer</h2>
+<ul>
+<li>The Wii U build of the ScummVM core uses the libretro pointer API for mouse emulation.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>RetroPointer Inputs</th>
+<th>ScummVM Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retromouse/retro_mouse.png" alt="" /> or <img src="../image/Button_Pack/Gestures/Gesture_Finger_Front.png" alt="" /> Pointer Position</td>
+<td>Mouse Cursor</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_left.png" alt="" /> or <img src="../image/Button_Pack/Gestures/Gesture_Tap.png" alt="" /> Pointer Pressed</td>
+<td>Left Mouse Button</td>
+</tr>
+</tbody>
+</table>
+<h2 id="compatibility">Compatibility</h2>
+<p>Compatibility listings for the standalone version of ScummVM may be found on the official <a href="http://scummvm.org/compatibility">ScummVM Compatibility Page</a>.</p>
+<p>The Libretro ScummVM core currently has issues with a handful of games that function correctly when using the standalone version. An evolving RetroArch-specific compatibility list is being maintained in this <a href="https://docs.google.com/spreadsheets/d/1a87BnQJc7_fTD5zF55JXcm79d5_l_d1ghDxtiubTnDE">Google Spreadsheet</a>.</p>
+<h3 id="legend-of-kyrandia-lands-of-lore-eye-of-the-beholder">Legend of Kyrandia, Lands of Lore, Eye of the Beholder</h3>
+<p>To run these Westwood games, you need a special file called, <code>kyra.dat</code>. To obtain this file, note the ScummVM version you are using, which is displayed in the bottom left corner of RetroArch while you have the core running. Then:</p>
+<ul>
+<li>Navigate to ScummVM's <a href="https://github.com/scummvm/scummvm/blob/master/dists/engine-data/kyra.dat">GitHub page for kyra.dat</a></li>
+<li>On the button that says &quot;master&quot; at the top left, select the branch that matches your version number:</li>
+</ul>
+<p><img src="../image/core/scummvm/scummvm_kyradat_branch_selection.png" alt="" /></p>
+<ul>
+<li>Download that kyra.dat file and place it in the <code>scummvm/extra/</code> folder.</li>
+</ul>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="http://scummvm.org/">Official ScummVM Website</a></li>
+<li><a href="https://github.com/scummvm/scummvm">Official ScummVM Github Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/scummvm_libretro.info">Libretro ScummVM Core info file</a></li>
+<li><a href="https://github.com/libretro/scummvm">Libretro ScummVM Github Repository</a></li>
+<li><a href="https://wiki.scummvm.org/index.php/Kyra">ScummVM wiki entry about kyra.dat</a></li>
+<li><a href="https://github.com/libretro/scummvm/issues">Report Libretro ScummVM Core Issues Here</a></li>
+</ul>

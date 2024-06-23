@@ -1,0 +1,264 @@
+<h1 id="nintendo-game-boy-color-tgb-dual">Nintendo - Game Boy / Color (TGB Dual)</h1>
+<h2 id="background">Background</h2>
+<p>TGB Dual is an open source (GPLv2) GB/GBC emulator with game link cable support.</p>
+<h3 id="authorlicense">Author/License</h3>
+<p>The TGB Dual core has been authored by</p>
+<ul>
+<li>GIGO</li>
+<li>Hii</li>
+</ul>
+<p>The TGB Dual core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/tgbdual-libretro/blob/master/docs/COPYING-2.0.txt">GPLv2</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the TGB Dual core have the following file extensions:</p>
+<ul>
+<li>.gb</li>
+<li>.gbc</li>
+<li>.sgb</li>
+</ul>
+<h2 id="databases">Databases</h2>
+<p>RetroArch database(s) that are associated with the TGB Dual core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Game%20Boy.rdb">Nintendo - Game Boy</a></li>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Game%20Boy%20Color.rdb">Nintendo - Game Boy Color</a></li>
+</ul>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the TGB Dual core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The TGB Dual core's internal core name is 'TGB Dual'</p>
+<p>The TGB Dual core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Save directory</strong></p>
+<ul>
+<li>'content-name'.srm (Cartridge battery save)</li>
+<li>'content-name'.rtc (Real time clock save)</li>
+</ul>
+<p><strong>Frontend's State directory</strong></p>
+<ul>
+<li>'content-name'.state# (State)</li>
+</ul>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The TGB Dual core's core provided FPS is 59.7275005696</li>
+<li>The TGB Dual core's core provided sample rate is 44100 Hz</li>
+<li>The TGB dual core's core provided aspect ratio is (Ratio)</li>
+</ul>
+<h2 id="core-options">Core options</h2>
+<p>The TGB Dual core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>GB Link Enable (restart)</strong> [tgbdual_gblink_enable] (<strong>disabled</strong>|enabled)</p>
+<p>Emulates two Game Boy units side by side for multiplayer support.</p>
+</li>
+</ul>
+<p>??? note &quot;<em>GB Link Enable - Enabled</em>&quot;
+<img src="../image/core/tgb_dual/link.png" alt="" /></p>
+<ul>
+<li><p><strong>Screen placement</strong> [tgbdual_screen_placement] (<strong>horizontal</strong>|vertical)</p>
+<p>Switches the screen layout for multiplayer support.</p>
+</li>
+</ul>
+<p>??? note &quot;<em>Horizontal</em>&quot;
+<img src="../image/core/tgb_dual/horiz.png" alt="" /></p>
+<p>??? note &quot;<em>Vertical</em>&quot;
+<img src="../image/core/tgb_dual/vert.png" alt="" /></p>
+<ul>
+<li><p><strong>Switch player screens</strong> [tgbdual_switch_screens] (<strong>normal</strong>|switched)</p>
+<p>Switches the player screens for multiplayer support.</p>
+</li>
+<li><p><strong>Show player screens</strong> [tgbdual_single_screen_mp] (<strong>both players</strong>|player 1 only|player 2 only)</p>
+<p>Displays the selected player screens for multiplayer support.</p>
+</li>
+</ul>
+<h2 id="controllers">Controllers</h2>
+<p>The TGB Dual core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<h3 id="user-1-2-device-types">User 1 - 2 device types</h3>
+<ul>
+<li>None - Doesn't disable input. There's no reason to switch to this.</li>
+<li><strong>RetroPad</strong> - Joypad - Stay on this.</li>
+<li>RetroPad - Joypad - Same as RetroPad. There's no reason to switch to this.</li>
+</ul>
+<h3 id="controller-tables">Controller tables</h3>
+<h4 id="joypad">Joypad</h4>
+<p><img src="../image/controller/gb.png" alt="" /></p>
+<table>
+<thead>
+<tr>
+<th>User 1 - 2 Remap descriptors</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>Select</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+</tr>
+<tr>
+<td>Start</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>A</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+<tr>
+<td>Next Audio Mode</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+</tr>
+<tr>
+<td>Prev Audio Mode</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<h2 id="compatibility">Compatibility</h2>
+<p>Awaiting description.</p>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="http://gigo.retrogames.com/download.html#tgb-dual">Official TGB Dual Website</a></li>
+<li><a href="http://shinh.skr.jp/tgbdualsdl/">Official TGB Dual SDL port Website</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/tgbdual_libretro.info">Libretro TGB Dual Core info file</a></li>
+<li><a href="https://github.com/libretro/tgbdual-libretro">Libretro TGB Dual Github Repository</a></li>
+<li><a href="https://github.com/libretro/tgbdual-libretro/issues">Report Libretro TGB Dual Core Issues Here</a></li>
+</ul>
+<h3 id="see-also">See also</h3>
+<h4 id="nintendo-game-boy-color">Nintendo - Game Boy (+ Color)</h4>
+<ul>
+<li><a href="emux_gb.md">Nintendo - Game Boy / Color (Emux GB)</a></li>
+<li><a href="gambatte.md">Nintendo - Game Boy / Color (Gambatte)</a></li>
+<li><a href="gearboy.md">Nintendo - Game Boy / Color (Gearboy)</a></li>
+<li><a href="sameboy.md">Nintendo - Game Boy / Color (SameBoy)</a></li>
+<li><a href="mgba.md">Nintendo - Game Boy Advance (mGBA)</a></li>
+<li><a href="vba_m.md">Nintendo - Game Boy Advance (VBA-M)</a></li>
+<li><a href="higan_accuracy.md">Nintendo - SNES / Famicom (higan Accuracy)</a></li>
+<li><a href="nside_balanced.md">Nintendo - SNES / Famicom (nSide Balanced)</a></li>
+<li><a href="mesen-s.md">Nintendo - SNES / Famicom (Mesen-S)</a></li>
+</ul>

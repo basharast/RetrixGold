@@ -1,0 +1,198 @@
+<h1 id="flashback-reminiscence">Flashback (REminiscence)</h1>
+<p><mark>First, make sure these steps are permissible in your locale. RetroArch and LibRetro do not share any copyrighted content.</mark></p>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/46S-FDjSjfo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2 id="background">Background</h2>
+<p>Stuart Carnie has ported REminiscence ,Gregory Montoir’s Flashback emulator, over to libretro! REminiscence is a game engine recreation of the 1992/1993 action adventure game Flashback. It is the spiritual successor of Another World/Out Of This World and it distinguishes itself with rotoscoped graphics, polygonal cutscenes, and a Prince of Persia-style gameplay system.</p>
+<p>This port is still a work in progress, however it is in a working state. Currently, it jumps directly into the game, skipping the main menu.</p>
+<p>We have also added modplug support to the core for improved music playback.</p>
+<p>The REminiscence core has been authored by</p>
+<ul>
+<li>Gregory Montoir</li>
+<li>Stuart Carnie</li>
+</ul>
+<p>The REminiscence core is licensed under</p>
+<ul>
+<li>GPLv3</li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="setup">Setup</h2>
+<p>REminiscence is a rewrite of the engine used in the game Flashback from Delphine Software. This program is designed as a cross-platform replacement for the original executable. The game data files (DOS, PC-CD, Amiga, Macintosh) are required. Apart from that, you can buy it <a href="https://www.gog.com/game/flashback">here on GOG</a> or <a href="https://store.steampowered.com/app/961620/Flashback/">here on Steam</a>. Create a folder with proper naming. Then follow the <code>Flashback_Data\StreamingAssets\data</code> folder to access the data of the Flashback you have. Copy all of the files in the data folder to the folder you just created.</p>
+<p>A visual demonstration of setup REminiscence core can be found <a href="https://www.youtube.com/watch?v=46S-FDjSjfo">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the REminiscence core have the following file extensions:</p>
+<ul>
+<li>.map (DOS Map Data)</li>
+<li>.aba (DOS (Demo) Map Data)</li>
+<li>.seq (DOS CD Map Data)</li>
+<li>.lev (Amiga Map Data)</li>
+</ul>
+<p>RetroArch database(s) that are associated with the REminiscence core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Flashback.rdb">Flashback</a></li>
+</ul>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the REminiscence core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h2 id="geometry-and-timing">Geometry and timing</h2>
+<ul>
+<li>The REminiscence core's core provided FPS is 50.0</li>
+<li>The REminiscence core's core provided sample rate is 44100 Hz</li>
+<li>The REminiscence core's base width is 256</li>
+<li>The REminiscence core's base height is 224</li>
+<li>The REminiscence core's max width is 1024</li>
+<li>The REminiscence core's max height is 768</li>
+<li>The REminiscence core's core provided aspect ratio is 8/7</li>
+</ul>
+<h2 id="joypad">Joypad</h2>
+<table>
+<thead>
+<tr>
+<th>RetroPad Inputs</th>
+<th>User 1 input descriptors</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>Draw / Holster</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+<td>Inventory / Skip</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>Up</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>Down</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>Left</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>Right</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>Use</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+<td>Action</td>
+</tr>
+</tbody>
+</table>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="http://cyxdown.free.fr/reminiscence/">Official REminiscence Website</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/reminiscence_libretro.info">Libretro REminiscence Core info file</a></li>
+<li><a href="https://github.com/libretro/REminiscence">Libretro REminiscence Github Repository</a></li>
+<li><a href="https://github.com/libretro/REminiscence/issues">Report Libretro REminiscence Core Issues Here</a></li>
+<li><a href="https://www.gog.com/game/flashback">You can buy a copy of Flashback from GOG</a></li>
+<li><a href="https://store.steampowered.com/app/961620/Flashback/">You can buy a copy of Flashback from Steam</a></li>
+</ul>

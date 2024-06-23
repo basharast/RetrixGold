@@ -1,0 +1,192 @@
+<h1 id="finalburn-neo">FinalBurn Neo</h1>
+<h2 id="background">Background</h2>
+<p>FinalBurn Neo (also referred to as FBNeo or FBN) is a multi-system emulator (Arcade, consoles and computers) under active development, unlike MAME it's more focused on playability and advanced features than accuracy.
+It is the follow-up of FinalBurn and FinalBurn Alpha emulators.
+The libretro core provides wide compatibility with platforms and features supported by libretro.</p>
+<p>!!! Question &quot;Focused on playability ? So FBNeo isn't accurate ?&quot;
+For the most part, it is just as accurate as current MAME, occasionally we even find out a few games are more faithful to the pcb videos. The main difference with MAME is that FBNeo doesn't mind including &quot;quality of life&quot; hacks, while MAME is about absolute preservation. &quot;Quality of life&quot; hacks include things like improving original game's sound, having control alternatives that didn't exist on original cabinet, or dramatically reducing hardware requirements by cutting what we deem as unnecessary corners in the emulation code.</p>
+<h2 id="license-and-changelog">License and changelog</h2>
+<p>It's distributed under non-commercial license, see <a href="https://github.com/finalburnneo/FBNeo/blob/master/LICENSE.md">LICENSE.md</a> and <a href="https://github.com/finalburnneo/FBNeo/blob/master/whatsnew.html">whatsnew.html</a></p>
+<h2 id="extensions">Extensions</h2>
+<p>zip, 7z</p>
+<h2 id="building-romsets-for-fbneo">Building romsets for FBNeo</h2>
+<p>Arcade emulation won't work properly without the romsets matching the emulator. FBNeo being an emulator under active development, a given romset might change from time to time to stay in sync with the best dump available for that game. <strong>All of this is to offer you the best gaming experience possible, because older bad dumps can prevent the game from working as it should</strong>.</p>
+<h3 id="step-1-obtaining-an-xml-dat">Step 1: Obtaining an XML DAT</h3>
+<p>You can download the dat files for the latest version of the core from the <a href="https://github.com/libretro/FBNeo/tree/master/dats/">dats</a> directory. Note that some devices (Nintendo 3DS) are running a &quot;light&quot; build with fewer supported games due to memory limitation, the dat files for that build are available from the <a href="https://github.com/libretro/FBNeo/tree/master/dats/light/">light</a> subdirectory.</p>
+<h3 id="step-2-gathering-the-ingredients">Step 2: Gathering the ingredients</h3>
+<p>It mostly consists of latest dumps available for MAME.
+The other romsets are usually a mix of hacks and homebrews, most of them can be found in HBMAME dumps.
+Having an older FBAlpha/FBNeo set among your ingredients will also help a lot.</p>
+<h3 id="step-3-building-the-romsets">Step 3: Building the romsets</h3>
+<p>Refer to a <a href="https://docs.libretro.com/guides/arcade-getting-started/#optional-clrmamepro-tutorial">clrmamepro tutorial</a> for details on how to configure ClrMamePro to use your sources as &quot;rebuild&quot; folders.</p>
+<h2 id="features">Features</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Saves</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>Controllers</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td>✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td>✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td>✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td>✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td>✔</td>
+</tr>
+</tbody>
+</table>
+<h2 id="mapping">Mapping</h2>
+<p>We don't have a convenient tool like the MAME OSD, instead we use the retroarch api to customize mappings, you can do that by going into <code>Quick Menu &gt; Controls</code>.
+For those who don't want to fully customize their mapping, there are 2 convenient presets you can apply by changing the &quot;device type&quot; for a player in this menu :</p>
+<ul>
+<li><strong>Classic</strong> : it will apply the original neogeo layout from neogeo cd gamepads for neogeo games, and use L/R as 5th and 6th button for 6 buttons games like Street Fighter II.</li>
+<li><strong>Modern</strong> : it will apply the modern neogeo layout from neogeo arcade stick pro and mini pad for neogeo games, and use R1/R2 as 5th and 6th button for 6 buttons games like Street Fighter II (because it's also their modern layout), this is really convenient with most arcade sticks.</li>
+</ul>
+<p>The following &quot;device type&quot; also exist, but they won't be compatible with every games :</p>
+<ul>
+<li><strong>Mouse (ball only)</strong> : it will use mouse/trackball for analog movements, buttons will stay on retropad</li>
+<li><strong>Mouse (full)</strong> : same as above, but the buttons will be on the mouse</li>
+<li><strong>Pointer</strong> : it will use &quot;pointer&quot; device (can be a mouse/trackball) to determine coordinates on screen, buttons will stay on retropad</li>
+<li><strong>Lightgun</strong> : it will use lightgun to determine coordinates on screen, buttons will be on the lightgun too.</li>
+</ul>
+<h2 id="emulating-consoles-and-computers">Emulating consoles and computers</h2>
+<p>It also requires usage of specific romsets, meaning the rom must have the expected crc/size, and be packaged in an archive with a specific name (the instructions to build those romsets don't differ from arcade's).</p>
+<p>You can use specific folder's name for detection, it's the easiest and recommended method, especially if you are using RetroArch playlists or if your device is not compatible with subsystems (android and consoles) :</p>
+<ul>
+<li>CBS ColecoVision : <code>coleco</code> | <code>colecovision</code></li>
+<li>Fairchild ChannelF : <code>chf</code> | <code>channelf</code></li>
+<li>MSX 1 : <code>msx</code> | <code>msx1</code></li>
+<li>Nec PC-Engine : <code>pce</code> | <code>pcengine</code></li>
+<li>Nec SuperGrafX : <code>sgx</code> | <code>supergrafx</code></li>
+<li>Nec TurboGrafx-16 : <code>tg16</code></li>
+<li>Nintendo Entertainment System : <code>nes</code></li>
+<li>Nintendo Family Disk System : <code>fds</code></li>
+<li>Sega GameGear : <code>gamegear</code></li>
+<li>Sega Master System : <code>sms</code> | <code>mastersystem</code></li>
+<li>Sega Megadrive : <code>megadriv</code> | <code>megadrive</code> | <code>genesis</code></li>
+<li>Sega SG-1000 : <code>sg1000</code></li>
+<li>SNK Neo-Geo Pocket : <code>ngp</code></li>
+<li>ZX Spectrum : <code>spectrum</code> | <code>zxspectrum</code></li>
+</ul>
+<p>You can also emulate consoles by prefixing the name of the roms with <code>XXX_</code> and removing the <code>zip|7z</code> extension in the command line, or adding the <code>--subsystem XXX</code> argument, here is the list of available prefixes :</p>
+<ul>
+<li>CBS ColecoVision : <code>cv</code></li>
+<li>Fairchild ChannelF : <code>chf</code></li>
+<li>MSX 1 : <code>msx</code></li>
+<li>Nec PC-Engine : <code>pce</code></li>
+<li>Nec SuperGrafX : <code>sgx</code></li>
+<li>Nec TurboGrafx-16 : <code>tg</code></li>
+<li>Nintendo Entertainment System : <code>nes</code></li>
+<li>Nintendo Family Disk System : <code>fds</code></li>
+<li>Sega GameGear : <code>gg</code></li>
+<li>Sega Master System : <code>sms</code></li>
+<li>Sega Megadrive : <code>md</code></li>
+<li>Sega SG-1000 : <code>sg1k</code></li>
+<li>SNK Neo-Geo Pocket : <code>ngp</code></li>
+<li>ZX Spectrum : <code>spec</code></li>
+</ul>
+<h2 id="bios">BIOS</h2>
+<p>Bioses will be searched through 3 folders :</p>
+<ul>
+<li>the folder of the current romset</li>
+<li>the <code>SYSTEM_DIRECTORY/fbneo/</code> folder</li>
+<li>the <code>SYSTEM_DIRECTORY/</code> folder</li>
+</ul>
+<p>The following bioses are required for some of the emulated systems :</p>
+<ul>
+<li>neogeo.zip (Neo Geo BIOS)</li>
+<li>neocdz.zip (Neo Geo CDZ System BIOS)</li>
+<li>decocass.zip (DECO Cassette System BIOS)</li>
+<li>isgsm.zip (ISG Selection Master Type 2006 System BIOS)</li>
+<li>midssio.zip (Midway SSIO Sound Board Internal ROM)</li>
+<li>nmk004.zip (NMK004 Internal ROM)</li>
+<li>pgm.zip (PGM System BIOS)</li>
+<li>skns.zip (Super Kaneko Nova System BIOS)</li>
+<li>ym2608.zip (YM2608 Internal ROM)</li>
+<li>cchip.zip (C-Chip Internal ROM)</li>
+<li>bubsys.zip (Bubble System BIOS)</li>
+<li>namcoc69.zip (Namco C69 BIOS)</li>
+<li>namcoc70.zip (Namco C70 BIOS)</li>
+<li>namcoc75.zip (Namco C75 BIOS)</li>
+<li>coleco.zip (ColecoVision System BIOS)</li>
+<li>fdsbios.zip (FDS System BIOS)</li>
+<li>msx.zip (MSX1 System BIOS)</li>
+<li>ngp.zip (NeoGeo Pocket BIOS)</li>
+<li>spectrum.zip (ZX Spectrum BIOS)</li>
+<li>spec128.zip (ZX Spectrum 128 BIOS)</li>
+<li>spec1282a.zip (ZX Spectrum 128 +2a BIOS)</li>
+<li>channelf.zip (Fairchild Channel F BIOS)</li>
+</ul>
+<h2 id="samples">Samples</h2>
+<p>Samples should be put under <code>SYSTEM_DIRECTORY/fbneo/samples</code></p>
+<h2 id="hiscores">Hiscores</h2>
+<p>Copy <a href="https://github.com/libretro/FBNeo/tree/master/metadata/hiscore.dat">hiscore.dat</a> to <code>SYSTEM_DIRECTORY/fbneo/</code> and have the hiscore core option enabled. It doesn't guarantee hiscores will work for a specific game though, sometimes a driver could just be missing the necessary support code for hiscores (or hiscore.dat might not be listing that romset). You can request support in the issue tracker as long as the request is reasonable (avoid making a list of several dozens/hundreds of games if you don't want to be ignored). Runahead now works with hiscores, it'll require fairly recent version of the core AND RetroArch though (support was added after 1.10.3 and is still only available through nightlies as of 2022-09-05).</p>
+<h2 id="run-ahead-input-lag-reduction">Run Ahead input lag reduction</h2>
+<p>This core widely supports the RetroArch &quot;Run Ahead&quot; input latency reduction feature, with <strong>single instance</strong> being the recommended method. Support for <code>Second Instance</code> won't be guaranteed anymore as of <a href="https://github.com/libretro/FBNeo/commit/7ea5708565955658eeaf49da2be4a9905409bb35">2022-06-25</a>.</p>
+<h2 id="retroachievements">RetroAchievements</h2>
+<p>This core provides support for RetroAchievements, and some were added for popular games.</p>
+<h2 id="dipswitches">Dipswitches</h2>
+<p>They are either directly available from <code>Quick Menu &gt; Core Options</code>, or from the service menu after setting its shortcut in the <code>Diagnostic Input</code> core option.</p>
+<h2 id="cheats">Cheats</h2>
+<p>You can either use the RetroArch cheat feature, or download a pack of FBNeo native cheats from <a href="https://github.com/finalburnneo/FBNeo-cheats/archive/master.zip">here</a> and uncompress them into the <code>SYSTEM_DIRECTORY/fbneo/cheats/</code> folder, then they'll become available through core options (<code>Quick Menu &gt; Options</code>, <strong>NOT</strong> <code>Quick Menu &gt; Cheats</code>), using a MAME <code>cheat.dat</code> file should also work.</p>
+<h2 id="f.a.q">F.A.Q</h2>
+<p>There is a F.A.Q available from <a href="https://github.com/libretro/FBNeo/blob/master/src/burner/libretro/README.md">the FBNeo libretro readme</a></p>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://neo-source.com/">Official FBNeo forum</a></li>
+<li><a href="https://github.com/finalburnneo/FBNeo">Official FBNeo github repository</a></li>
+<li><a href="https://github.com/libretro/FBNeo">Libretro FBNeo github repository</a></li>
+<li><a href="https://neo-source.com/index.php?topic=3725.0">[GUIDE] Setting up RetroArch playlists with FBNeo</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLRbgg4gk_0IfsAHeGqGD-DkRzI87q7V_Q">Gameplay Videos</a></li>
+</ul>

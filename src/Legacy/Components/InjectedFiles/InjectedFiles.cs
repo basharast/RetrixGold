@@ -1,0 +1,1 @@
+﻿using System;namespace InjectedFiles{    public class InjectedFilesLibrary    {    }}

@@ -1,0 +1,274 @@
+<h1 id="chailove">ChaiLove</h1>
+<h2 id="background">Background</h2>
+<p><a href="https://github.com/libretro/libretro-chailove">ChaiLove</a> is a framework for making 2D games with <a href="http://chaiscript.com/">ChaiScript</a>. ChaiLove games can be played with LibRetro/RetroArch through the ChaiLove core.</p>
+<h4 id="how-to-start-the-chailove-core">How to start the ChaiLove core:</h4>
+<ul>
+<li>As an example showcasing loading content with Chailove core, we will load the <a href="https://github.com/robloach/chailove-floppybird">Floppy Bird</a> game hosted on RetroArch's Content Downloader.</li>
+</ul>
+<p>You can do this by going to RetroArch's main menu screen and selecting 'Online Updater'. From there, select 'Content Downloader'.</p>
+<center> ![](../image/core/all/download.png) </center>
+<ul>
+<li>Select 'ChaiLove', then select 'Floppy Bird.chailove'. This should download and extract this file to RetroArch's Downloads directory.</li>
+</ul>
+<center> ![](../image/core/chailove/chailove.png) </center>
+<ul>
+<li>Go back to RetroArch's main menu screen. Select 'Load Content', then 'Downloads'.</li>
+</ul>
+<center> ![](../image/core/all/load.png) </center>
+<center> ![](../image/core/all/downloads.png) </center>
+<ul>
+<li><p>Select 'Floppy Bird.chailove'.</p>
+</li>
+<li><p>If you are asked which core to select, choose 'ChaiLove'.</p>
+</li>
+</ul>
+<p>The content should now start running!</p>
+<h3 id="authorlicense">Author/License</h3>
+<p>The ChaiLove core has been authored by</p>
+<ul>
+<li>Rob Loach</li>
+</ul>
+<p>The ChaiLove core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-chailove/blob/master/LICENSE.md">MIT</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the ChaiLove core have the following file extensions:</p>
+<ul>
+<li><code>.chai</code></li>
+<li><code>.chailove</code></li>
+</ul>
+<h2 id="databases">Databases</h2>
+<p>RetroArch database(s) that are associated with the ChaiLove core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/ChaiLove.rdb">ChaiLove</a></li>
+</ul>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the ChaiLove core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The ChaiLove core's internal core name is 'ChaiLove'</p>
+<p>The ChaiLove core saves/loads to/from these directories.</p>
+<p><strong>Frontend's State directory</strong></p>
+<ul>
+<li>'content-name'.state# (State)</li>
+</ul>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The ChaiLove core's core provided FPS is 60</li>
+<li>The ChaiLove core's core provided sample rate is 44100 Hz</li>
+<li>The ChaiLove core's core provided aspect ratio is game provided</li>
+</ul>
+<h2 id="core-options">Core options</h2>
+<p>The ChaiLove core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Alpha Blending</strong> [chailove_alphablending] (<strong>enabled</strong>|disabled)</p>
+<p>Enable or disable alpha blending (transparency).</p>
+</li>
+</ul>
+<p>??? note &quot;Alpha Blending - On&quot;
+<img src="../image/core/chailove/alpha_on.png" alt="" /></p>
+<p>??? note &quot;Alpha Blending - Off&quot;
+<img src="../image/core/chailove/alpha_off.png" alt="" /></p>
+<ul>
+<li><p><strong>High Quality</strong> [chailove_highquality] (<strong>enabled</strong>|disabled)</p>
+<p>Enable or disable extra visual features.</p>
+</li>
+</ul>
+<p>??? note &quot;High Quality - On&quot;
+<img src="../image/core/chailove/quality_on.png" alt="" /></p>
+<p>??? note &quot;High Quality - Off&quot;
+<img src="../image/core/chailove/quality_off.png" alt="" /></p>
+<h2 id="controllers">Controllers</h2>
+<p>The ChaiLove core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<h3 id="user-1-5-device-types">User 1 - 5 device types</h3>
+<ul>
+<li>None - Doesn't disable input.</li>
+<li><strong>RetroPad</strong> - Joypad - Stay on this.</li>
+<li>RetroPad w/Analog - Joypad - There's no reason to switch to this.</li>
+</ul>
+<h3 id="controller-tables">Controller tables</h3>
+<h4 id="joypad">Joypad</h4>
+<p>!!! attention
+What the buttons do are game specific.</p>
+<table>
+<thead>
+<tr>
+<th>User 1 - 5 Remap descriptors</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>Y</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+</tr>
+<tr>
+<td>Select</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+</tr>
+<tr>
+<td>Start</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>A</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+<tr>
+<td>X</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+</tr>
+<tr>
+<td>L</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+</tr>
+<tr>
+<td>R</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="http://chaiscript.com/">ChaiScript Website</a></li>
+<li><a href="https://rawgit.com/libretro/libretro-chailove/docs/">ChaiLove API Documentation Website</a></li>
+<li><a href="https://github.com/libretro/libretro-chailove/wiki">ChaiLove Github Wiki</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/chailove_libretro.info">Libretro ChaiLove Core info file</a></li>
+<li><a href="https://github.com/libretro/libretro-chailove">Libretro ChaiLove Github Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-chailove/issues">Report Libretro ChaiLove Core Issues Here</a></li>
+<li><a href="https://github.com/robloach/chailove-floppybird">Floppy Bird</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLRbgg4gk_0IfOE39vx0sftVugNnMgC67o">Gameplay Videos</a></li>
+</ul>
+<h3 id="see-also">See also</h3>
+<h4 id="custom-engine">Custom Engine</h4>
+<ul>
+<li><a href="lutro.md">Lua Engine (Lutro)</a></li>
+</ul>

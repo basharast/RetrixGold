@@ -1,0 +1,77 @@
+/*----------------------------------------*/
+/*  10. Testimonial CSS
+/*----------------------------------------*/
+
+/*-- Testimonial Slider Image --*/
+.testimonial-slider-image {
+    max-width: 300px;
+    margin: auto;
+    float: none;
+    overflow: hidden;
+}
+/*-- Testimonial --*/
+.testimonial {
+    & .testimonial-inner {
+        text-align: center;
+        &::before {
+            display: block;
+            content: url(../images/icons/quote-left.png);
+            opacity: 1;
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+        & p {
+            font-size: 18px;
+            font-style: italic;
+            line-height: 28px;
+            max-width: 670px;
+            margin: 0 auto;
+            margin-bottom: 25px;
+            // Responsive
+            @media #{$large-mobile}{
+                font-size: 16px;
+                line-height: 26px;
+                margin-bottom: 15px;
+            }
+        }
+        & h4 {
+            font-size: 20px;
+            color: $hover-color;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-family: $body-font;
+            font-style: italic;
+            font-weight: 400;
+        }
+        & span {
+            font-size: 18px;
+            line-height: 30px;
+            display: block;
+            color: $body-color;
+            font-style: italic;
+        }
+    }
+    & .image {
+        width: 100px;
+        margin: 40px auto 0;
+        display: block;
+        overflow: hidden;
+        border-radius: 50%;
+        transition: all 0.3s ease 0s;
+        transform: scale(0.7);
+        & img {
+            width: 100%;
+            border-radius: 50%;
+        }
+        // Responsive
+        @media #{$extra-small-mobile}{
+            width: 90px;
+        }
+    }
+    &.slick-center {
+        & .image {
+            box-shadow: 0 10px 20px rgba($black, 0.15);
+            transform: scale(1);
+        }
+    }
+}

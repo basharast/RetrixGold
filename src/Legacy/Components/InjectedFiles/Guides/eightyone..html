@@ -1,0 +1,594 @@
+<h1 id="zx81-eightyone-wip">ZX81 (EightyOne) <em>WIP</em></h1>
+<h2 id="background">Background</h2>
+<p>81-libretro is an work in progress port of the EightyOne (a.k.a. THE Sinclair Emulator) to libretro. The classic ZX81 games are all over the Internet, but check the colorized folder for games with Chroma 81 support. There are also many original games for the Zeddy, check Bob's Stuff for some high quality games.</p>
+<p>The EightyOne core has been authored by</p>
+<ul>
+<li>Michael D Wynne</li>
+</ul>
+<p>The EightyOne core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/81-libretro/blob/master/LICENSE">GPLv3</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<p>EightyOne emulates a number of ZX80, ZX81, clones, and other computers based on the same hardware:</p>
+<ul>
+<li>Sinclair ZX80</li>
+<li>Sinclair ZX81</li>
+<li>Timex TS1000</li>
+<li>Timex TS1500</li>
+<li>Lambda 8300</li>
+<li>Ringo R470</li>
+<li>MicroDigital TK85</li>
+<li>Jupiter ACE</li>
+</ul>
+<p>However, 81-libretro only emulates the Sinclair ZX81 with 16Kb RAM for now. Other machines will be added as time permits. Push requests are welcome.</p>
+<p>The port correctly loads and runs some many games I have around in the p format. tzx format is also supported.</p>
+<p>EightyOne also emulates some ZX Spectrum machines, but those were left out of this core on purpose.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the EightyOne core have the following file extensions:</p>
+<ul>
+<li>.p</li>
+<li>.tzx</li>
+<li>.t81</li>
+</ul>
+<h2 id="databases">Databases</h2>
+<p>RetroArch database(s) that are associated with the EightyOne core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Sinclair%20-%20ZX%2081.rdb">Sinclair - ZX 81</a></li>
+</ul>
+<h2 id="features">Features</h2>
+<p>RetroArch-level settings or features that the EightyOne core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The EightyOne core's directory name is 'EightyOne'</p>
+<p>The EightyOne core saves/loads to/from these directories.</p>
+<p><strong>RetroArch's State directory</strong></p>
+<ul>
+<li>'content-name'.state# (State)</li>
+</ul>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The EightyOne core's core provided FPS is 50</li>
+<li>The EightyOne core's core provided sample rate is 44100 Hz</li>
+<li>The EightyOne core's core provided aspect ratio is (Ratio)</li>
+</ul>
+<h3 id="auto-configuration">Auto-configuration</h3>
+<p>Since configuring the core for each game can be a tedious task, the EightyOne core features auto-configuration. Games that support auto-configuration are listed in the <a href="https://github.com/libretro/81-libretro/blob/master/src/gamedb/gamedb.json">src/gamedb/gamedb.json file</a>, along with some information and the configuration required to play them.</p>
+<p>Currently, there's no way to change the auto-configuration settings short of recompiling the core after making the changes. If you feel the provided auto-configuration could be better or has bugs, please open an <a href="https://github.com/libretro/81-libretro/issues">issue</a>.</p>
+<h3 id="colorization">Colorization</h3>
+<p>Colorization works by loading a program prior to loading the game. This program will check if the Chroma 81 expansion is installed, and, if it is, configures the colors of the ZX81 characters, and then loads the original game, which runs unaware that it's playing with colors.</p>
+<p>Since the EightyOne core can't load arbitrary programs from the file system, the colorization program and the game must exist in the same file.</p>
+<h2 id="core-options">Core options</h2>
+<p>The EightyOne core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Tape Fast Load</strong> (Off/<strong>On</strong>)</p>
+<p>Instantly loads files if enabled, or disable it to see the moving horizontal lines while the game loads.</p>
+</li>
+<li><p><strong>8K-16K Contents</strong> (<strong>auto</strong>/ROM shadow/RAM/dK'tronics 4K Graphics ROM + 4K RAM)</p>
+<p>Selects the contents of memory addresses between 8192 and 16383, a shadow copy of the ROM, 8K of RAM, or <a href="http://www.fruitcake.plus.com/Sinclair/ZX81/Chroma/ChromaInterface_Software_CharacterSetROM.htm">dK'tronics 4K ROM plus 4K of RAM</a>.</p>
+</li>
+<li><p><strong>High Resolution</strong> (<strong>auto</strong>/none/WRX)</p>
+<p>Enables WRX high resolution.</p>
+</li>
+<li><p><strong>Emulate Chroma 81</strong> (<strong>auto</strong>/Off/On)</p>
+<p>Enable the <a href="http://www.fruitcake.plus.com/Sinclair/ZX81/Chroma/ChromaInterface.htm">Chroma 81</a> interface (colorization).</p>
+</li>
+</ul>
+<p>??? note &quot;Emulate Chroma 81 - auto/On&quot;
+<img src="../image/core/eightyone/chroma_on.png" alt="" /></p>
+<p>??? note &quot;Emulate Chroma 81 - Off&quot;
+<img src="../image/core/eightyone/chroma_off.png" alt="" /></p>
+<ul>
+<li><p><strong>Video Presets</strong> (<strong>clean</strong>/tv/noisy)</p>
+<p>Change how the video is emulated (if Chroma 81 is enabled, the video is set to &quot;clean&quot; regardless of this option).</p>
+</li>
+</ul>
+<p>??? note &quot;Video Presets - clean&quot;
+<img src="../image/core/eightyone/clean.png" alt="" /></p>
+<p>??? note &quot;Video Presets - tv&quot;
+<img src="../image/core/eightyone/tv.png" alt="" /></p>
+<p>??? note &quot;Video Presets - noisy&quot;
+<img src="../image/core/eightyone/clean.png" alt="" /></p>
+<ul>
+<li><p><strong>Sound emulation</strong> (<strong>auto</strong>/none/Zon X-81)</p>
+<p>Enables sound emulation.</p>
+</li>
+<li><p><strong>Joypad Left mapping</strong> (<strong>auto</strong>/default/new line/shift/space/./0/1/2/3/4/5/6/7/8/9/a/b/c/d/e/f/g/h/i/j/k/l/m/n/o/p/q/r/s/t/u/v/w/x/y/z)</p>
+<p>Maps this joypad button to a keyboard key, defaults are the cursor keys for the directional pad and '0' to all the other buttons.</p>
+</li>
+<li><p><strong>Joypad Right mapping</strong> (<strong>auto</strong>/default/new line/shift/space/./0/1/2/3/4/5/6/7/8/9/a/b/c/d/e/f/g/h/i/j/k/l/m/n/o/p/q/r/s/t/u/v/w/x/y/z)</p>
+<p>Maps this joypad button to a keyboard key, defaults are the cursor keys for the directional pad and '0' to all the other buttons.</p>
+</li>
+<li><p><strong>Joypad Up mapping</strong> (<strong>auto</strong>/default/new line/shift/space/./0/1/2/3/4/5/6/7/8/9/a/b/c/d/e/f/g/h/i/j/k/l/m/n/o/p/q/r/s/t/u/v/w/x/y/z)</p>
+<p>Maps this joypad button to a keyboard key, defaults are the cursor keys for the directional pad and '0' to all the other buttons.</p>
+</li>
+<li><p><strong>Joypad Down mapping</strong> (<strong>auto</strong>/default/new line/shift/space/./0/1/2/3/4/5/6/7/8/9/a/b/c/d/e/f/g/h/i/j/k/l/m/n/o/p/q/r/s/t/u/v/w/x/y/z)</p>
+<p>Maps this joypad button to a keyboard key, defaults are the cursor keys for the directional pad and '0' to all the other buttons.</p>
+</li>
+<li><p><strong>Joypad A button mapping</strong> (<strong>auto</strong>/default/new line/shift/space/./0/1/2/3/4/5/6/7/8/9/a/b/c/d/e/f/g/h/i/j/k/l/m/n/o/p/q/r/s/t/u/v/w/x/y/z)</p>
+<p>Maps this joypad button to a keyboard key, defaults are the cursor keys for the directional pad and '0' to all the other buttons.</p>
+</li>
+<li><p><strong>Joypad B button mapping</strong> (<strong>auto</strong>/default/new line/shift/space/./0/1/2/3/4/5/6/7/8/9/a/b/c/d/e/f/g/h/i/j/k/l/m/n/o/p/q/r/s/t/u/v/w/x/y/z)</p>
+<p>Maps this joypad button to a keyboard key, defaults are the cursor keys for the directional pad and '0' to all the other buttons.</p>
+</li>
+<li><p><strong>Joypad X button mapping</strong> (<strong>auto</strong>/default/new line/shift/space/./0/1/2/3/4/5/6/7/8/9/a/b/c/d/e/f/g/h/i/j/k/l/m/n/o/p/q/r/s/t/u/v/w/x/y/z)</p>
+<p>Maps this joypad button to a keyboard key, defaults are the cursor keys for the directional pad and '0' to all the other buttons.</p>
+</li>
+<li><p><strong>Joypad Y button mapping</strong> (<strong>auto</strong>/default/new line/shift/space/./0/1/2/3/4/5/6/7/8/9/a/b/c/d/e/f/g/h/i/j/k/l/m/n/o/p/q/r/s/t/u/v/w/x/y/z)</p>
+<p>Maps this joypad button to a keyboard key, defaults are the cursor keys for the directional pad and '0' to all the other buttons.</p>
+</li>
+<li><p><strong>Joypad L button mapping</strong> (<strong>auto</strong>/default/new line/shift/space/./0/1/2/3/4/5/6/7/8/9/a/b/c/d/e/f/g/h/i/j/k/l/m/n/o/p/q/r/s/t/u/v/w/x/y/z)</p>
+<p>Maps this joypad button to a keyboard key, defaults are the cursor keys for the directional pad and '0' to all the other buttons.</p>
+</li>
+<li><p><strong>Joypad R button mapping</strong> (<strong>auto</strong>/default/new line/shift/space/./0/1/2/3/4/5/6/7/8/9/a/b/c/d/e/f/g/h/i/j/k/l/m/n/o/p/q/r/s/t/u/v/w/x/y/z)</p>
+<p>Maps this joypad button to a keyboard key, defaults are the cursor keys for the directional pad and '0' to all the other buttons.</p>
+</li>
+<li><p><strong>Joypad L2 button mapping</strong> (<strong>auto</strong>/default/new line/shift/space/./0/1/2/3/4/5/6/7/8/9/a/b/c/d/e/f/g/h/i/j/k/l/m/n/o/p/q/r/s/t/u/v/w/x/y/z)</p>
+<p>Maps this joypad button to a keyboard key, defaults are the cursor keys for the directional pad and '0' to all the other buttons.</p>
+</li>
+<li><p><strong>Joypad R2 button mapping</strong> (<strong>auto</strong>/default/new line/shift/space/./0/1/2/3/4/5/6/7/8/9/a/b/c/d/e/f/g/h/i/j/k/l/m/n/o/p/q/r/s/t/u/v/w/x/y/z)</p>
+<p>Maps this joypad button to a keyboard key, defaults are the cursor keys for the directional pad and '0' to all the other buttons.</p>
+</li>
+<li><p><strong>Transparent Keyboard Overlay</strong> (Off/<strong>On</strong>)</p>
+<p>If the keyboard overlay is transparent or opaque.</p>
+</li>
+</ul>
+<p>??? note &quot;Transparent Keyboard Overlay - On&quot;
+<img src="../image/core/eightyone/trans_on.png" alt="" /></p>
+<p>??? note &quot;Transparent Keyboard Overlay - Off&quot;
+<img src="../image/core/eightyone/trans_off.png" alt="" /></p>
+<ul>
+<li><p><strong>Time to Release key in ms</strong> (<strong>100</strong>/300/500/1000)</p>
+<p>How many milliseconds to wait before releasing the key pressed using the keyboard overlay.</p>
+</li>
+</ul>
+<h2 id="controllers">Controllers</h2>
+<p>The EightyOne core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<h3 id="user-1-device-types">User 1 device types</h3>
+<ul>
+<li>None - Input disabled.</li>
+<li><strong>RetroPad</strong> - Joypad</li>
+<li>Cursor Joystick - Joypad -  Switch to this for joypad inputs.</li>
+</ul>
+<h3 id="user-2-device-types">User 2 device types</h3>
+<ul>
+<li>None - Input disabled.</li>
+<li><strong>RetroPad</strong> - Joypad</li>
+<li>Sinclair Keyboard - Keyboard - Switch to this for keyboard inputs. Switch the User 1 device type to none if the correct keyboard inputs aren't being read.</li>
+</ul>
+<h3 id="controller-tables">Controller tables</h3>
+<h4 id="joypad">Joypad</h4>
+<p>!!! attention
+Use the Joypad mapping core options to configure the Cursor Joystick inputs.</p>
+<table>
+<thead>
+<tr>
+<th>User 1 Remap descriptors</th>
+<th>RetroPad Inputs</th>
+<th>Cursor Joystick</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>Joypad B button mapping</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+<td>Joypad Y button mapping</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+<td>Keyboard overlay</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>Joypad Up mapping</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>Joypad Down mapping</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>Joypad Left mapping</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>Joypad Right mapping</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>Joypad A button mapping</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+<td>Joypad X button mapping</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+<td>Joypad L button mapping</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+<td>Joypad R button mapping</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+<td>Joypad L2 button mapping</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+<td>Joypad R2 button mapping</td>
+</tr>
+</tbody>
+</table>
+<h4 id="keyboard">Keyboard</h4>
+<table>
+<thead>
+<tr>
+<th>RetroKeyboard Inputs</th>
+<th>Sinclair Keyboard</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keyboard Backspace</td>
+<td>VK_BACK</td>
+</tr>
+<tr>
+<td>Keyboard Tab</td>
+<td>VK_TAB</td>
+</tr>
+<tr>
+<td>Keyboard Clear</td>
+<td>VK_CLEAR</td>
+</tr>
+<tr>
+<td>Keyboard Return</td>
+<td>VK_RETURN</td>
+</tr>
+<tr>
+<td>Keyboard Pause</td>
+<td>VK_PAUSE</td>
+</tr>
+<tr>
+<td>Keyboard Escape</td>
+<td>VK_ESCAPE</td>
+</tr>
+<tr>
+<td>Keyboard Space</td>
+<td>VK_SPACE</td>
+</tr>
+<tr>
+<td>Keyboard Comma ,</td>
+<td>VK_COMMA</td>
+</tr>
+<tr>
+<td>Keyboard Delete</td>
+<td>VK_DELETE</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 0</td>
+<td>VK_NUMPAD0</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 1</td>
+<td>VK_NUMPAD1</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 2</td>
+<td>VK_NUMPAD2</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 3</td>
+<td>VK_NUMPAD3</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 4</td>
+<td>VK_NUMPAD4</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 5</td>
+<td>VK_NUMPAD5</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 6</td>
+<td>VK_NUMPAD6</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 7</td>
+<td>VK_NUMPAD7</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 8</td>
+<td>VK_NUMPAD8</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 9</td>
+<td>VK_NUMPAD9</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Period .</td>
+<td>VK_DECIMAL</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Divide /</td>
+<td>VK_DIVIDE</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Multiply *</td>
+<td>VK_MULTIPLY</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Minus -</td>
+<td>VK_SUBTRACT</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Plus +</td>
+<td>VK_ADD</td>
+</tr>
+<tr>
+<td>Keyboard Up</td>
+<td>VK_UP</td>
+</tr>
+<tr>
+<td>Keyboard Down</td>
+<td>VK_DOWN</td>
+</tr>
+<tr>
+<td>Keyboard Right</td>
+<td>VK_RIGHT</td>
+</tr>
+<tr>
+<td>Keyboard Left</td>
+<td>VK_LEFT</td>
+</tr>
+<tr>
+<td>Keyboard Insert</td>
+<td>VK_INSERT</td>
+</tr>
+<tr>
+<td>Keyboard Home</td>
+<td>VK_HOME</td>
+</tr>
+<tr>
+<td>Keyboard End</td>
+<td>VK_END</td>
+</tr>
+<tr>
+<td>Keyboard Page Up</td>
+<td>VK_PRIOR</td>
+</tr>
+<tr>
+<td>Keyboard Page Down</td>
+<td>VK_NEXT</td>
+</tr>
+<tr>
+<td>Keyboard F1</td>
+<td>VK_F1</td>
+</tr>
+<tr>
+<td>Keyboard F2</td>
+<td>VK_F2</td>
+</tr>
+<tr>
+<td>Keyboard F3</td>
+<td>VK_F3</td>
+</tr>
+<tr>
+<td>Keyboard F4</td>
+<td>VK_F4</td>
+</tr>
+<tr>
+<td>Keyboard F5</td>
+<td>VK_F5</td>
+</tr>
+<tr>
+<td>Keyboard F6</td>
+<td>VK_F6</td>
+</tr>
+<tr>
+<td>Keyboard F7</td>
+<td>VK_F7</td>
+</tr>
+<tr>
+<td>Keyboard F8</td>
+<td>VK_F8</td>
+</tr>
+<tr>
+<td>Keyboard F9</td>
+<td>VK_F9</td>
+</tr>
+<tr>
+<td>Keyboard F10</td>
+<td>VK_F10</td>
+</tr>
+<tr>
+<td>Keyboard F11</td>
+<td>VK_F11</td>
+</tr>
+<tr>
+<td>Keyboard F12</td>
+<td>VK_F12</td>
+</tr>
+<tr>
+<td>Keyboard F13</td>
+<td>VK_F13</td>
+</tr>
+<tr>
+<td>Keyboard F14</td>
+<td>VK_F14</td>
+</tr>
+<tr>
+<td>Keyboard F15</td>
+<td>VK_F15</td>
+</tr>
+<tr>
+<td>Keyboard Num Lock</td>
+<td>VK_NUMLOCK</td>
+</tr>
+<tr>
+<td>Keyboard Caps Lock</td>
+<td>VK_CAPITAL</td>
+</tr>
+<tr>
+<td>Keyboard Scroll Lock</td>
+<td>VK_SCROLL</td>
+</tr>
+<tr>
+<td>Keyboard Right Shift</td>
+<td>VK_SHIFT</td>
+</tr>
+<tr>
+<td>Keyboard Left Shift</td>
+<td>VK_SHIFT</td>
+</tr>
+<tr>
+<td>Keyboard Right Control</td>
+<td>VK_CONTROL</td>
+</tr>
+<tr>
+<td>Keyboard Left Control</td>
+<td>VK_CONTROL</td>
+</tr>
+<tr>
+<td>Keyboard Right Alt</td>
+<td>VK_MENU</td>
+</tr>
+<tr>
+<td>Keyboard Left Alt</td>
+<td>VK_MENU</td>
+</tr>
+<tr>
+<td>Keyboard Print</td>
+<td>VK_SNAPSHOT</td>
+</tr>
+</tbody>
+</table>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/81_libretro.info">Libretro EightyOne Core info file</a></li>
+<li><a href="https://github.com/libretro/81-libretro">Libretro EightyOne Github Repository</a></li>
+<li><a href="https://github.com/libretro/81-libretro/issues">Report Libretro EightyOne Core Issues Here</a></li>
+<li><a href="(https://sourceforge.net/projects/eightyone-sinclair-emulator/)">Official EightyOne Sourceforge Repository</a></li>
+</ul>

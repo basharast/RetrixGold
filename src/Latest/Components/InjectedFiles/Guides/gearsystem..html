@@ -1,0 +1,353 @@
+<h1 id="sega-msgg-gearsystem">Sega - MS/GG (Gearsystem)</h1>
+<h2 id="background">Background</h2>
+<p>Gearsystem is an open source, cross-platform, Sega Master System / Game Gear / SG-1000 / Othello Multivision emulator written in C++.</p>
+<ul>
+<li>Accurate Z80 core, including undocumented opcodes and behavior like R and MEMPTR registers.</li>
+<li>Supported cartridges: ROM, ROM + RAM, SEGA, Codemasters, Korean, MSX, SG-1000.</li>
+<li>Automatic region detection: NTSC-JAP, NTSC-USA, PAL-EUR.</li>
+<li>Accurate VDP emulation including timing and Master System 2 only 224 video mode support.</li>
+<li>Internal database for rom detection.</li>
+<li>Sound emulation using SDL Audio and Sms_Snd_Emu library.</li>
+<li>Battery powered RAM save support.</li>
+<li>Save states.</li>
+<li>Game Genie and Pro Action Replay cheat support.</li>
+<li>Supported platforms (libretro): Windows, Linux, macOS, Raspberry Pi, Android, iOS, tvOS, PlayStation Vita, PlayStation 3, Nintendo 3DS, Nintendo GameCube, Nintendo Wii, Nintendo WiiU, Nintendo Switch, Emscripten, Classic Mini systems (NES, SNES, C64, ...), OpenDingux and QNX.</li>
+</ul>
+<p>The Gearsystem core has been authored by</p>
+<ul>
+<li><a href="https://github.com/drhelius">Ignacio Sanchez (drhelius)</a></li>
+</ul>
+<p>The Gearsystem core is licensed under</p>
+<ul>
+<li><a href="https://github.com/drhelius/Gearsystem/blob/master/LICENSE">GPLv3</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="bios">BIOS</h2>
+<p>Gearsystem does not require BIOS (bootrom) files to work but they can be used optionally.</p>
+<p>When the BIOS is enabled it will execute as in original hardware, causing invalid roms to lock or preventing them to boot, depending on the BIOS file and rom region and system. If you experience issues disable the BIOS.</p>
+<p>Required or optional firmware files go in the frontend's system directory.</p>
+<p>!!! attention
+If you’d like to use any BIOS, you can place the following files in RetroArch's system directory. Then, you need to enable <a href="#core-options">Master System BIOS</a> and/or <a href="#core-options">Game Gear BIOS</a> core options for these BIOS files to be used.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">bios.sms</td>
+<td style="text-align: center;">Master System BIOS - Optional</td>
+<td style="text-align: center;">840481177270d5642a14ca71ee72844c</td>
+</tr>
+<tr>
+<td style="text-align: center;">bios.gg</td>
+<td style="text-align: center;">Game Gear BIOS - Optional</td>
+<td style="text-align: center;">672e104c3be3a238301aceffc3b23fd6</td>
+</tr>
+</tbody>
+</table>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the Gearsystem core have the following file extensions:</p>
+<ul>
+<li>.sms</li>
+<li>.gg</li>
+<li>.sg</li>
+<li>.mv</li>
+<li>.bin</li>
+<li>.rom</li>
+</ul>
+<p>RetroArch database(s) that are associated with the Gearsystem core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Sega%20-%20Game%20Gear.rdb">Sega - Game Gear</a></li>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Sega%20-%20Master%20System%20-%20Mark%20III.rdb">Sega - Master System - Mark III</a></li>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Sega%20-%20SG-1000.rdb">Sega - SG-1000</a></li>
+</ul>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the Gearsystem core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroArch Cheats - Game Genie</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroArch Cheats - Pro Acion Replay</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The Gearsystem core's library name is 'Gearsystem'</p>
+<p>The Gearsystem core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Save directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.srm</td>
+<td style="text-align: center;">Cartridge battery save</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Frontend's State directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.state#</td>
+<td style="text-align: center;">State</td>
+</tr>
+</tbody>
+</table>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The Gearsystem core's core provided FPS is 60 for NTSC games and 50 for PAL games</li>
+<li>The Gearsystem core's core provided sample rate is 44100 Hz</li>
+<li>The Gearsystem core's base width is 256 for Master System / SG-1000 games and 160 for Game Gear games</li>
+<li>The Gearsystem core's base height is 192 for Master System / SG-1000 games and 144 for Game Gear games</li>
+<li>The Gearsystem core's max width is 256 for Master System games and 160 for Game Gear games</li>
+<li>The Gearsystem core's max height is 224 for Master System games and 144 for Game Gear games</li>
+<li>The Gearsystem core's core provided aspect ratio is 4:3 for Master System / SG-1000 games and 10:9 for Game Gear games</li>
+</ul>
+<h2 id="core-options">Core options</h2>
+<p>The Gearsystem core has the following options that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>System (restart)</strong> [gearsystem_system] (<strong>Auto</strong>|Master System / Mark III|Game Gear|SG-1000 / Multivision)</p>
+<p>Select which hardware/model is emulated.</p>
+<ul>
+<li><em>Auto</em> selects the best hardware based in the rom.</li>
+<li><em>Master System / Mark III</em> forces original Master System / Mark III hardware.</li>
+<li><em>Game Gear</em> forces Game Gear hardware.</li>
+<li><em>SG-1000 / Multivision</em> forces SG-1000 / Multivision hardware.</li>
+</ul>
+</li>
+<li><p><strong>Region (restart)</strong> [gearsystem_region] (<strong>Auto</strong>|Master System Japan|Master System Export|Game Gear Japan|Game Gear Export|Game Gear International)</p>
+<p>Select which region is emulated.</p>
+<ul>
+<li><em>Auto</em> selects the best region based in the rom.</li>
+<li><em>Master System Japan</em> forces Master System Japan region.</li>
+<li><em>Master System Export</em> forces Master System Export region.</li>
+<li><em>Game Gear Japan</em> forces Game Gear Japan region.</li>
+<li><em>Game Gear Export</em> forces Game Gear Export region.</li>
+<li><em>Game Gear International</em> forces Game Gear International region.</li>
+</ul>
+</li>
+<li><p><strong>Mapper (restart)</strong> [gearsystem_mapper] (<strong>Auto</strong>|ROM|SEGA|Codemasters|Korean|SG-1000)</p>
+<p>Select which mapper (memory bank controller) is emulated.</p>
+<ul>
+<li><em>Auto</em> selects the best mapper based in the rom.</li>
+<li><em>ROM</em> forces no mapper.</li>
+<li><em>SEGA</em> forces SEGA mapper.</li>
+<li><em>Codemasters</em> forces Codemasters mapper.</li>
+<li><em>Korean</em> forces Korean mapper.</li>
+<li><em>SG-1000</em> forces SG-1000 mapper.</li>
+</ul>
+</li>
+<li><p><strong>Refresh Rate (restart)</strong> [gearsystem_timing] (<strong>Auto</strong>|NTSC (60 Hz)|PAL (50 Hz))</p>
+<p>Select which refresh rate will be used in emulation.</p>
+<ul>
+<li><em>Auto</em> selects the best refresh rate based in the rom.</li>
+<li><em>NTSC (60 Hz)</em> forces 60 Hz.</li>
+<li><em>PAL (50 Hz)</em> forces 50 Hz.</li>
+</ul>
+</li>
+<li><p><strong>Master System BIOS (restart)</strong> [gearsystem_bios_sms] (<strong>Disabled</strong>|Enabled)</p>
+<p>This option will enable/disable BIOS for Master System / Mark III models. For this to work, the <code>bios.sms</code> file must exist in the Retro Arch's system directory.</p>
+</li>
+<li><p><strong>Game Gear BIOS (restart)</strong> [gearsystem_bios_gg] (<strong>Disabled</strong>|Enabled)</p>
+<p>This option will enable/disable BIOS for Game Gear model. For this to work, the <code>bios.gg</code> file must exist in the Retro Arch's system directory.</p>
+</li>
+<li><p><strong>3D Glasses</strong> [gearsystem_glasses] (<strong>Both Eyes / OFF</strong>|Left Eye|Right Eye)</p>
+<p>For games with 3D glasses support this option will let you choose to display only left or right eye.</p>
+<ul>
+<li><em>Both Eyes / OFF</em> is required for games with NO 3D support or if you want to display both eyes in 3D games.</li>
+<li><em>Left Eye</em> displays the left eye only.</li>
+<li><em>Right Eye</em> displays the right eye only.</li>
+</ul>
+</li>
+<li><p><strong>Allow Up+Down / Left+Right</strong> [gearsystem_up_down_allowed] (<strong>Disabled</strong>|Enabled)</p>
+<p>Enabling this will allow pressing / quickly alternating / holding both left and right (or up and down in some games) directions at the same time.</p>
+<p>This may cause movement based glitches to occur in certain games.</p>
+<p>It's best to keep this core option disabled.</p>
+</li>
+</ul>
+<h3 id="joypad">Joypad</h3>
+<p><img src="../image/controller/gg.png" alt="" /></p>
+<p><img src="../image/controller/sms.png" alt="" /></p>
+<p><img src="../image/controller/sg1000.png" alt="" /></p>
+<table>
+<thead>
+<tr>
+<th>User 1 input descriptors</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>Start</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+</tr>
+<tr>
+<td>Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>2</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<h2 id="compatibility">Compatibility</h2>
+<ul>
+<li><a href="https://github.com/drhelius/Gearsystem#accuracy-tests">Gearsystem Accuracy Tests</a></li>
+</ul>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://github.com/drhelius/Gearsystem">Official Gearsystem Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/gearsystem_libretro.info">Libretro Gearsystem Core info file</a></li>
+<li><a href="https://github.com/drhelius/Gearsystem/issues">Report Libretro Gearsystem Core Issues Here</a></li>
+</ul>
+<h3 id="see-also">See also</h3>
+<h4 id="sega-game-gear">Sega - Game Gear</h4>
+<ul>
+<li><a href="genesis_plus_gx.md">Sega - MS/GG/MD/CD (Genesis Plus GX)</a></li>
+</ul>
+<h4 id="sega-master-system-mark-iii">Sega - Master System - Mark III</h4>
+<ul>
+<li><a href="emux_sms.md">Sega - Master System (Emux SMS)</a></li>
+<li><a href="genesis_plus_gx.md">Sega - MS/GG/MD/CD (Genesis Plus GX)</a></li>
+<li><a href="picodrive.md">Sega - MS/MD/CD/32X (PicoDrive)</a></li>
+</ul>
+<h4 id="sega-sg-1000">Sega - SG-1000</h4>
+<ul>
+<li><a href="bluemsx.md">MSX/SVI/ColecoVision/SG-1000 (blueMSX)</a></li>
+<li><a href="genesis_plus_gx.md">Sega - MS/GG/MD/CD (Genesis Plus GX)</a></li>
+</ul>

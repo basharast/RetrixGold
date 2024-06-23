@@ -1,0 +1,559 @@
+<h1 id="nintendo-ds-desmume">Nintendo - DS (DeSmuME)</h1>
+<h2 id="background">Background</h2>
+<p>DeSmuME is a Nintendo DS emulator <a href="http://desmume.org">http://desmume.org</a></p>
+<h3 id="authorlicense">Author/License</h3>
+<p>The DeSmuME core has been authored by</p>
+<ul>
+<li>YopYop156</li>
+<li>Zeromus</li>
+</ul>
+<p>The DeSmuME core is licensed under</p>
+<ul>
+<li><a href="https://github.com/TASVideos/desmume/blob/master/license.txt">GPLv2</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the DeSmuME core have the following file extensions:</p>
+<ul>
+<li>.nds</li>
+<li>.bin</li>
+</ul>
+<h2 id="databases">Databases</h2>
+<p>RetroArch database(s) that are associated with the DeSmuME core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Nintendo%20DS.rdb">Nintendo - Nintendo DS</a></li>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Nintendo%20DS%20Decrypted.rdb">Nintendo - Nintendo DS Decrypted</a></li>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Nintendo%20DS%20(Download%20Play).rdb">Nintendo - Nintendo DS (Download Play)</a></li>
+</ul>
+<h2 id="bios">BIOS</h2>
+<p>Required or optional firmware files go in the frontend's system directory.</p>
+<p>!!! warning
+In order for the firmware files to be loaded by the DeSmuME core, the 'Use External BIOS/Firmware (restart)' core option must be set to enabled.
+The md5sum of firmware.bin will vary from dump to dump. bios7 and bios9 should be the exact same as here. firmware.bin may not be the same.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">firmware.bin</td>
+<td style="text-align: center;">NDS Firmware - Optional</td>
+<td style="text-align: center;">145eaef5bd3037cbc247c213bb3da1b3</td>
+</tr>
+<tr>
+<td style="text-align: center;">bios7.bin</td>
+<td style="text-align: center;">ARM7 BIOS - Optional</td>
+<td style="text-align: center;">df692a80a5b1bc90728bc3dfc76cd948</td>
+</tr>
+<tr>
+<td style="text-align: center;">bios9.bin</td>
+<td style="text-align: center;">ARM9 BIOS - Optional</td>
+<td style="text-align: center;">a392174eb3e572fed6447e956bde4b25</td>
+</tr>
+</tbody>
+</table>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the DeSmuME core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✔ (Not Download Play, Link-Cable or Wi-Fi emulation)</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The DeSmuME core's library name is 'DeSmuME'</p>
+<p>The DeSmuME core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Save directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.dsv</td>
+<td style="text-align: center;">Cartridge battery save</td>
+</tr>
+<tr>
+<td style="text-align: center;">firmware.dfc</td>
+<td style="text-align: center;">Firmware settings save</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Frontend's State directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.state</td>
+<td style="text-align: center;">State</td>
+</tr>
+</tbody>
+</table>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The DeSmuME core's core provided FPS is 60</li>
+<li>The DeSmuME core's core provided sample rate is 44100 Hz</li>
+<li>The DeSmuME core's base width is dependent on the <a href="#core-options">'Screen layout' core option</a>.</li>
+<li>The DeSmuME core's base height is dependent on the <a href="#core-options">'Screen layout' core option</a>.</li>
+<li>The DeSmuME core's max width is dependent on the <a href="#core-options">'Screen layout' core option</a>.</li>
+<li>The DeSmuME core's max height is dependent on the <a href="#core-options">'Screen layout' core option</a>.</li>
+<li>The DeSmuME core's core provided aspect ratio is dependent on the <a href="#core-options">'Screen layout' core option</a>.</li>
+</ul>
+<h2 id="nickname">Nickname</h2>
+<p>The Nintendo DS' system nickname can be configured via RetroArch's Username setting in the User Menu.</p>
+<h2 id="core-options">Core options</h2>
+<p>The DeSmuME core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Firmware Language</strong> [desmume_firmware_language] (<strong>Auto</strong>|English|Japanese|French|German|Italian|Spanish)</p>
+<p>Choose the language of the firmware.</p>
+</li>
+<li><p><strong>Use External BIOS/Firmware (restart)</strong> [desmume_use_external_bios] (<strong>disabled</strong>|enabled)</p>
+<p>When set to enabled, the DeSmuME core will use the external firmware files found in RetroArch's System Directory. Look at the <a href="#bios">BIOS section</a> for more information.</p>
+</li>
+<li><p><strong>Boot Into BIOS (interpreter and external bios only)</strong> [desmume_boot_into_bios] (<strong>disabled</strong>|enabled)</p>
+<p><strong>For proper functionality of this core option. The 'CPU Mode' core option must be set to interpreter and the 'Use External BIOS/Firmware' core option must be set to enabled.</strong></p>
+<p><strong>Also, you must have external firmware files in RetroArch's System Directory.</strong></p>
+<p>When set to enabled, the DeSmuME core will boot into the Nintendo DS firmware screen upon content load.</p>
+<p>Any settings changed in the firmware screen will be saved to firmware.dfc in RetroArch's Save directory.</p>
+</li>
+<li><p><strong>Load Game Into Memory (restart)</strong> [desmume_load_to_memory] (<strong>disabled</strong>|enabled)</p>
+<p>Loads the entire game into memory before startup. Will decrease in-game loading times at the cost of increased game startup times.</p>
+</li>
+<li><p><strong>CPU Cores</strong> [desmume_num_cores] (<strong>1</strong>|2|3|4)</p>
+<p>Configure how many CPU cores the DeSmuME core will use. Please note that, in general, DeSmuME benefits more from few fast CPUs than from many slow CPUs. For example, a dual-core 3.9GHz CPU will run DeSmuME much faster than a 12-core 1.6GHz CPU.</p>
+</li>
+<li><p><strong>CPU Mode</strong> [desmume_cpu_mode] (<strong>jit</strong>|interpreter)</p>
+<p>Choose to run CPU emulation through the Interpreter engine or the JIT Dynamic Recomplier engine.</p>
+<p>Interpreter has better compatibility than JIT Dynamic Recompiler. Some games that fail when using JIT Dynamic Recompiler will work fine with Interpreter. The tradeoff here is that Interpreter has much lower performance than JIT Dynamic Recompiler.</p>
+<p>Please note that the default setting for this core option is dependent on your hardware. The JIT Dynamic Recompiler is not available on all hardware (e.g. Android devices).</p>
+</li>
+<li><p><strong>JIT Block Size</strong> [desmume_jit_block_size] (<strong>12</strong>|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|83|84|85|86|87|88|89|90|91|92|93|94|95|96|97|98|99|100|0|1|2|3|4|5|6|7|8|9|10|11)</p>
+<p>This core option is only available when the 'CPU mode' core option to set to jit. You may need to tune the block size to prevent some games from breaking. 1 = most accurate, 100 = fastest.</p>
+</li>
+<li><p><strong>Enable Advanced Bus-Level Timing</strong> [desmume_advanced_timing] (<strong>enabled</strong>|disabled)</p>
+<p>This will improve or fix some games but it is very performance demanding. Disable this if you want more speed.</p>
+</li>
+<li><p><strong>Frameskip</strong> [desmume_frameskip] (<strong>0</strong>|1|2|3|4|5|6|7|8|9)</p>
+<p>Choose how much frames should be skipped to improve performance at the expense of visual smoothness.</p>
+<p>It is generally safe to choose 1 or 2 if you don't mind a slightly choppier game, in order to get a speedup.</p>
+<p>If screens seem stuck or screen flickering becomes unacceptable, pick a different frame skip value.</p>
+</li>
+<li><p><strong>Internal Resolution (restart)</strong> [desmume_internal_resolution] (<strong>256x192</strong>|512x384|768x576|1024x768|1280x960|1536x1152|1792x1344|2048x1536|2304x1728|2560x1920)</p>
+<p>Configure the resolution. Requires a restart.</p>
+</li>
+</ul>
+<p>??? note &quot;Internal resolution - 256x192&quot;
+<img src="../image/core/desmume/256x192.png" alt="" /></p>
+<p>??? note &quot;Internal resolution - 2560x1920&quot;
+<img src="../image/core/desmume/2560x1920.png" alt="" /></p>
+<ul>
+<li><p><strong>OpenGL Rasterizer (restart)</strong> [desmume_opengl_mode] (<strong>disabled</strong>|enabled)</p>
+<p>Enable OpenGL renderer.</p>
+<p><strong>The Frontend's video driver must be set to gl.</strong></p>
+</li>
+<li><p><strong>OpenGL: Color Depth (restart)</strong> [desmume_color_depth] (<strong>16-bit</strong>|32-bit)</p>
+<p>32-bit allows full color support from the DS (natively 6-bit).</p>
+<p><strong>OpenGL Rasterizer core option must be set to enabled.</strong></p>
+</li>
+<li><p><strong>OpenGL: Multisampling (restart)</strong> [desmume_gfx_multisampling] (<strong>disabled</strong>|2|4|8|16|32)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>OpenGL: Texture Smoothing</strong> [desmume_gfx_texture_smoothing] (<strong>disabled</strong>|enabled)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Soft3D: High-res Color Interpolation</strong> [desmume_gfx_highres_interpolate_color] (<strong>disabled</strong>|enabled)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Soft3D: Line Hack</strong> [desmume_gfx_linehack] (<strong>enabled</strong>|disabled)</p>
+<p>Fixes some graphical bugs involving lines, but causes some other bugs. Not many games use lines.</p>
+</li>
+<li><p><strong>Soft3D: Texture Hack</strong> [desmume_gfx_txthack] (<strong>disabled</strong>|enabled)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Edge Marking</strong> [desmume_gfx_edgemark] (<strong>enabled</strong>|disabled)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>&quot;Texture Scaling (xBrz)</strong> [desmume_gfx_texture_scaling] (<strong>1</strong>|2|4)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Texture Deposterization</strong> [desmume_gfx_texture_deposterize] (<strong>disabled</strong>|enabled)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Screen Layout</strong> [desmume_screens_layout] (<strong>top/bottom</strong>|bottom/top|left/right|right/left|top only|bottom only|quick switch|hybrid/top|hybrid/bottom)</p>
+<p>Self-explanatory.</p>
+</li>
+</ul>
+<p>??? note &quot;Screen layout - top/bottom&quot;
+<img src="../image/core/desmume/top_bottom.png" alt="" /></p>
+<p>??? note &quot;Screen layout - bottom/top&quot;
+<img src="../image/core/desmume/bottom_top.png" alt="" /></p>
+<p>??? note &quot;Screen layout - left/right&quot;
+<img src="../image/core/desmume/left_right.png" alt="" /></p>
+<p>??? note &quot;Screen layout - right/left&quot;
+<img src="../image/core/desmume/right_left.png" alt="" /></p>
+<p>??? note &quot;Screen layout - top only&quot;
+<img src="../image/core/desmume/top.png" alt="" /></p>
+<p>??? note &quot;Screen layout - bottom only&quot;
+<img src="../image/core/desmume/bottom.png" alt="" /></p>
+<p>??? note &quot;Screen layout - hybrid/top&quot;
+<img src="../image/core/desmume/hybrid_top.png" alt="" /></p>
+<ul>
+<li><p><strong>Screen Gap</strong> [desmume_screens_gap] (0 to 100 in increments of 1. <strong>0 is default.</strong>)</p>
+<p>Self explanatory.</p>
+</li>
+</ul>
+<p>??? note &quot;Screen Gap - 0&quot;
+<img src="../image/core/desmume/screengap_0.png" alt="" /></p>
+<p>??? note &quot;Screen Gap - 100&quot;
+<img src="../image/core/desmume/screengap_100.png" alt="" /></p>
+<ul>
+<li><p><strong>Hybrid Layout: Scale (restart)</strong> [desmume_hybrid_layout_scale] (<strong>1</strong>|3)</p>
+<p>Self explanatory. The 'Screen layout' core option must be set to a hybrid setting for this to function properly.</p>
+</li>
+</ul>
+<p>??? note &quot;Hybrid layout scale - 1&quot;
+<img src="../image/core/desmume/scale_1.png" alt="" /></p>
+<p>??? note &quot;Hybrid layout scale - 3&quot;
+<img src="../image/core/desmume/scale_3.png" alt="" /></p>
+<ul>
+<li><p><strong>Hybrid Layout: Show Both Screens</strong> [desmume_hybrid_showboth_screens] (<strong>enabled</strong>|disabled)</p>
+<p>Removes the small top screen when the 'Screen layout' core option is set to hybrid/top</p>
+<p>Removes the small bottom screen when the 'Screen layout' core option is set to hybrid/bottom</p>
+</li>
+<li><p><strong>Hybrid Layout: Cursor Always on Small Screen</strong> [desmume_hybrid_cursor_always_smallscreen] (<strong>enabled</strong>|disabled)</p>
+<p>Self explanatory.</p>
+<p>Disablng this allows you to use the stylus on the big bottom screen when the 'Screen layout' core option is set to hybrid/bottom.</p>
+</li>
+<li><p><strong>Mouse/Pointer</strong> [desmume_pointer_mouse] (<strong>enabled</strong>|disabled)</p>
+<p>Enabling this allows inputs for the stylus.</p>
+</li>
+<li><p><strong>Pointer Type</strong> [desmume_pointer_type] (<strong>mouse</strong>|touch)</p>
+<p>Setting this to mouse allows you to use mouse inputs for the stylus</p>
+<p>Setting this to touch allows you to use mouse/touch inputs for the stylus (e.g. Touch controls on Android devices).</p>
+</li>
+<li><p><strong>Mouse Speed</strong> [desmume_mouse_speed] (<strong>1.0</strong>|1.5|2.0|0.01|0.02|0.03|0.04|0.05|0.125|0.25|0.5)</p>
+<p><strong>The Pointer type core option must be set to mouse</strong></p>
+<p>Adjust mouse speed for the stylus.</p>
+</li>
+<li><p><strong>Pointer Rotation</strong> [desmume_input_rotation] (<strong>0</strong>|90|180|270)</p>
+<p>Rotate pointer controls</p>
+<p>This is can be used in conjuction with RetroArch's Rotation setting.</p>
+</li>
+<li><p><strong>Pointer Mode for Left Analog</strong> [desmume_pointer_device_l] (<strong>none</strong>|emulated|absolute|pressed)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Pointer Mode for Right Analog</strong> [desmume_pointer_device_r] (<strong>none</strong>|emulated|absolute|pressed)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Emulated Pointer Deadzone Percent</strong> [desmume_pointer_device_deadzone] (<strong>15</strong>|20|25|30|35|0|5|10&quot;)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Emulated Pointer Acceleration Modifier Percent</strong> [desmume_pointer_device_acceleration_mod] (<strong>0</strong>|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|83|84|85|86|87|88|89|90|91|92|93|94|95|96|97|98|99|100)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Emulated Stylus Pressure Modifier Percent</strong> [desmume_pointer_stylus_pressure] (<strong>50</strong>|51|52|53|54|55|56|57|58|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|83|84|85|86|87|88|89|90|91|92|93|94|95|96|97|98|99|100|0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Pointer Colour</strong> [desmume_pointer_colour] (<strong>white</strong>|black|red|blue|yellow)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Microphone Button Noise Type</strong> [desmume_mic_mode] (<strong>pattern</strong>|random)</p>
+<p>Configure microphone input settings.</p>
+<p>With the pattern setting, DeSmuME will use its internal noise sample for microphone input which works for many games that want you to blow on the mic.</p>
+<p>With the random setting, DeSmuME will use random whitenoise for microphone input which will work for games that require blowing but which don't work with the internal noise sample.</p>
+</li>
+</ul>
+<h2 id="controllers">Controllers</h2>
+<p>The DeSmuME core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<h3 id="user-1-device-types">User 1 device types</h3>
+<ul>
+<li>None - Doesn't disable input. There's no reason to switch to this.</li>
+<li><strong>RetroPad</strong> - Joypad - Stay on this.</li>
+<li>RetroPad w/Analog - Joypad - Same as RetroPad. There's no reason to switch to this.</li>
+</ul>
+<h3 id="other-controllers">Other controllers</h3>
+<ul>
+<li>Stylus - Pointer or Mouse - The DesmuME 2015 core will emulate stylus inputs using the mouse API or the pointer API depending on what the <a href="#core-options">'Pointer type' core option</a> is set to.</li>
+</ul>
+<h3 id="device-tables">Device tables</h3>
+<h4 id="joypad">Joypad</h4>
+<p><img src="../image/controller/nds.png" alt="" /></p>
+<table>
+<thead>
+<tr>
+<th>User 1 input descriptors</th>
+<th>RetroPad Inputs</th>
+<th>DeSmuME inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>B</td>
+</tr>
+<tr>
+<td>Y</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+<td>Y</td>
+</tr>
+<tr>
+<td>Select</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+<td>Select</td>
+</tr>
+<tr>
+<td>Start</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+<td>Start</td>
+</tr>
+<tr>
+<td>Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>Up</td>
+</tr>
+<tr>
+<td>Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>Down</td>
+</tr>
+<tr>
+<td>Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>Left</td>
+</tr>
+<tr>
+<td>Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>Right</td>
+</tr>
+<tr>
+<td>A</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>A</td>
+</tr>
+<tr>
+<td>X</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+<td>X</td>
+</tr>
+<tr>
+<td>L</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+<td>L</td>
+</tr>
+<tr>
+<td>R</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+<td>R</td>
+</tr>
+<tr>
+<td>Lid Close/Open</td>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+<td>Lid Close/Open</td>
+</tr>
+<tr>
+<td>Tap Stylus</td>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+<td>Tap Stylus</td>
+</tr>
+<tr>
+<td>Make Microphone Noise</td>
+<td><img src="../image/retropad/retro_l3.png" alt="" /></td>
+<td>Toggle Microphone</td>
+</tr>
+<tr>
+<td>Quick Screen Switch</td>
+<td><img src="../image/retropad/retro_r3.png" alt="" /></td>
+<td>Quick Screen Switch</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> X</td>
+<td><a href="#core-options">Pointer mode l-analog</a> X</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> Y</td>
+<td><a href="#core-options">Pointer mode l-analog</a> Y</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /> X</td>
+<td><a href="#core-options">Pointer mode r-analog</a> X</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /> Y</td>
+<td><a href="#core-options">Pointer mode r-analog</a> Y</td>
+</tr>
+</tbody>
+</table>
+<h4 id="mouse">Mouse</h4>
+<table>
+<thead>
+<tr>
+<th>RetroMouse Inputs</th>
+<th>DeSmuME inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retromouse/retro_mouse.png" alt="" /> Mouse Cursor</td>
+<td>Stylus</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_left.png" alt="" /> Mouse 1</td>
+<td>Stylus Press</td>
+</tr>
+</tbody>
+</table>
+<h4 id="pointer">Pointer</h4>
+<table>
+<thead>
+<tr>
+<th>RetroPointer Inputs</th>
+<th>DeSmuME inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retromouse/retro_mouse.png" alt="" /> or <img src="../image/Button_Pack/Gestures/Gesture_Finger_Front.png" alt="" /> Pointer Position</td>
+<td>Stylus</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_left.png" alt="" /> or <img src="../image/Button_Pack/Gestures/Gesture_Tap.png" alt="" /> Pointer Pressed</td>
+<td>Stylus Press</td>
+</tr>
+</tbody>
+</table>
+<h2 id="compatibility">Compatibility</h2>
+<p>Same as upstream standalone.</p>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://desmume.org/">Official DeSmuME Website</a></li>
+<li><a href="https://github.com/TASVideos/desmume">Official DeSmuME Github Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/desmume_libretro.info">Libretro DeSmuME Core info file</a></li>
+<li><a href="https://github.com/libretro/desmume">Libretro DeSmuME Github Repository</a></li>
+<li><a href="https://github.com/libretro/desmume/issues">Report Libretro DeSmuME Core Issues Here</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLRbgg4gk_0Icim_vEjB_0GeF18zkMBiqU">Gameplay Videos</a></li>
+</ul>
+<h3 id="see-also">See also</h3>
+<h4 id="nintendo-nintendo-ds-decrypted-download-play">Nintendo - Nintendo DS + Decrypted + (Download Play)</h4>
+<ul>
+<li><a href="desmume_2015.md">Nintendo - DS (DeSmuME 2015)</a></li>
+<li><a href="melonds.md">Nintendo - DS (melonDS)</a></li>
+</ul>

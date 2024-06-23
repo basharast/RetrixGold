@@ -1,0 +1,26 @@
+{
+	"biosfile1.bin": [
+		"bios 1 description",
+		"md5",
+		"0",
+		"0"
+	],
+	"biosfile2.bin": [
+		"bios 2 description",
+		"md5",
+		"0",
+		"0"
+	],
+	"biosfile3.bin": [
+		"bios 3 description (Optional)",
+		"md5",
+		"1",
+		"0"
+	],
+	"biosfolder": [
+		"bios folder description",
+		"md5",
+		"0",
+		"1"
+	]
+}

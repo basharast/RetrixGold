@@ -1,0 +1,304 @@
+<h1 id="coleco-colecovision-gearcoleco">Coleco - ColecoVision (GearColeco)</h1>
+<h2 id="background">Background</h2>
+<p>Gearcoleco is an open source, cross-platform, ColecoVision emulator written in C++.</p>
+<ul>
+<li>Accurate Z80 core, including undocumented opcodes and behavior like R and MEMPTR registers.</li>
+<li>Accurate TMS9918 emulation.</li>
+<li>Sound emulation using a fine tuned Sms_Snd_Emu library.</li>
+<li>Battery powered RAM save support.</li>
+<li>Supported platforms (libretro): Windows, Linux, macOS, Raspberry Pi, Android, iOS, tvOS, PlayStation Vita, PlayStation 3, Nintendo 3DS, Nintendo GameCube, Nintendo Wii, Nintendo WiiU, Nintendo Switch, Emscripten, Classic Mini systems (NES, SNES, C64, ...), OpenDingux and QNX.</li>
+</ul>
+<p>The Gearcoleco core has been authored by</p>
+<ul>
+<li><a href="https://github.com/drhelius">Ignacio Sanchez (drhelius)</a></li>
+</ul>
+<p>The Gearcoleco core is licensed under</p>
+<ul>
+<li><a href="https://github.com/drhelius/Gearcoleco/blob/master/LICENSE">GPLv3</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="bios">BIOS</h2>
+<p>Gearcoleco require a BIOS file to work.</p>
+<p>Required or optional firmware files go in the frontend's system directory.</p>
+<p>!!! attention
+Gearcoleco emulator requires a ColecoVision BIOS. In order to get it to work you must place the following file in RetroArch's system directory.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">colecovision.rom</td>
+<td style="text-align: center;">ColecoVision BIOS - Mandatory</td>
+<td style="text-align: center;">2c66f5911e5b42b8ebe113403548eee7</td>
+</tr>
+</tbody>
+</table>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the Gearcoleco core have the following file extensions:</p>
+<ul>
+<li>.col</li>
+<li>.cv</li>
+<li>.bin</li>
+<li>.rom</li>
+</ul>
+<p>RetroArch database(s) that are associated with the Gearcoleco core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Coleco%20-%20ColecoVision.rdb">Coleco - ColecoVision</a></li>
+</ul>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the Gearcoleco core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The Gearcoleco core's library name is 'Gearcoleco'</p>
+<p>The Gearcoleco core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Save directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.srm</td>
+<td style="text-align: center;">Cartridge battery save</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Frontend's State directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.state#</td>
+<td style="text-align: center;">State</td>
+</tr>
+</tbody>
+</table>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The Gearcoleco core's core provided FPS is 60 for NTSC games and 50 for PAL games</li>
+<li>The Gearcoleco core's core provided sample rate is 44100 Hz</li>
+<li>The Gearcoleco core's width is 256</li>
+<li>The Gearcoleco core's height is 192</li>
+<li>The Gearcoleco core's core provided aspect ratio is 4:3</li>
+</ul>
+<h2 id="core-options">Core options</h2>
+<p>The Gearcoleco core has the following options that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Refresh Rate (restart)</strong> [gearcoleco_timing] (<strong>Auto</strong>|NTSC (60 Hz)|PAL (50 Hz))</p>
+<p>Select which refresh rate will be used in emulation.</p>
+<ul>
+<li><em>Auto</em> selects the best refresh rate based in the rom.</li>
+<li><em>NTSC (60 Hz)</em> forces 60 Hz.</li>
+<li><em>PAL (50 Hz)</em> forces 50 Hz.</li>
+</ul>
+</li>
+<li><p><strong>Allow Up+Down / Left+Right</strong> [gearcoleco_up_down_allowed] (<strong>Disabled</strong>|Enabled)</p>
+<p>Enabling this will allow pressing / quickly alternating / holding both left and right (or up and down in some games) directions at the same time.</p>
+<p>This may cause movement based glitches to occur in certain games.</p>
+<p>It's best to keep this core option disabled.</p>
+</li>
+</ul>
+<h3 id="joypad">Joypad</h3>
+<table>
+<thead>
+<tr>
+<th>User 1 and User 2 input descriptors</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>Left Button</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+<tr>
+<td>Right Button</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>1</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+</tr>
+<tr>
+<td>2</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+</tr>
+<tr>
+<td>3</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+</tr>
+<tr>
+<td>4</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+</tr>
+<tr>
+<td>5</td>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+</tr>
+<tr>
+<td>6</td>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+</tr>
+<tr>
+<td>7</td>
+<td><img src="../image/retropad/retro_r3.png" alt="" /></td>
+</tr>
+<tr>
+<td>8</td>
+<td><img src="../image/retropad/retro_l3.png" alt="" /></td>
+</tr>
+<tr>
+<td>*</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+</tr>
+<tr>
+<td>#</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://github.com/drhelius/Gearcoleco">Official Gearcoleco Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/gearcoleco_libretro.info">Libretro Gearcoleco Core info file</a></li>
+<li><a href="https://github.com/drhelius/Gearcoleco/issues">Report Gearcoleco Core Issues Here</a></li>
+</ul>
+<h3 id="see-also">See also</h3>
+<ul>
+<li><a href="bluemsx.md">MSX/SVI/ColecoVision/SG-1000 (blueMSX)</a></li>
+</ul>

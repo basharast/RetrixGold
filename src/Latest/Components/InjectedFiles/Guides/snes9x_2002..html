@@ -1,0 +1,288 @@
+<h1 id="nintendo-snes-famicom-snes9x-2002">Nintendo - SNES / Famicom (Snes9x 2002)</h1>
+<h2 id="background">Background</h2>
+<p>Port of SNES9x 1.39 for libretro (was previously called PocketSNES). Heavily optimized for ARM.</p>
+<p>Provides more favorable performance thresholds at the cost of accuracy. <strong>DO NOT use this core unless you have underpowered hardware and the mainline Snes9x core and the bsnes/higan/bsnes-mercury cores aren't fast enough</strong></p>
+<p>This core is part of a group of Snes9x cores that are snapshots from the year their code is based on. (Snes9x 2002, Snes9x 2005, Snes9x 2005 Plus, Snes9x 2010)</p>
+<h3 id="authorlicense">Author/License</h3>
+<p>The Snes9x 2002 core has been authored by</p>
+<ul>
+<li>Snes9x Team</li>
+<li>PocketSNES Team</li>
+<li>Toadking</li>
+</ul>
+<p>The Snes9x 2002 core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/snes9x/blob/master/docs/snes9x-license.txt">Non-commercial</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the Snes9x 2002 core have the following file extensions:</p>
+<ul>
+<li>.smc</li>
+<li>.fig</li>
+<li>.sfc</li>
+<li>.gd3</li>
+<li>.gd7</li>
+<li>.dx2</li>
+<li>.bsx</li>
+<li>.swc</li>
+</ul>
+<h2 id="databases">Databases</h2>
+<p>RetroArch database(s) that are associated with the Snes9x 2002 core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Super%20Nintendo%20Entertainment%20System.rdb">Nintendo - Super Nintendo Entertainment System</a></li>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Super%20Nintendo%20Entertainment%20System%20Hacks.rdb">Nintendo - Super Nintendo Entertainment System Hacks</a></li>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Sufami%20Turbo.rdb">Nintendo - Sufami Turbo</a></li>
+</ul>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the Snes9x 2002 core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The Snes9x 2002 core's internal core name is 'Snes9x 2002'</p>
+<p>The Snes9x 2002 core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Save directory</strong></p>
+<ul>
+<li>'content-name'.srm (Cartridge battery save)</li>
+</ul>
+<p><strong>Frontend's State directory</strong></p>
+<ul>
+<li>'content-name'.state# (State)</li>
+</ul>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The Snes9x 2002 core's core provided FPS is 59.9227434043 for NTSC games and 50.3197396536 for PAL games.</li>
+<li>The Snes9x 2002 core's core provided sample rate is 32040 Hz</li>
+<li>The Snes9x 2002 core's core provided base width is 256</li>
+<li>The Snes9x 2002 core's core provided base height is 224</li>
+<li>The Snes9x 2002 core's core provided max width is 512</li>
+<li>The Snes9x 2002 core's core provided max height is 512</li>
+<li>The Snes9x 2002 core's core provided aspect ratio is 4/3</li>
+</ul>
+<h2 id="core-options">Core options</h2>
+<p>The Snes9x 2002 core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Reduce Slowdown (Hack, Unsafe, Restart)</strong> [snes9x2002_overclock_cycles] (<strong>disabled</strong>|compatible|max)</p>
+<p>Many games for the SNES suffered from slowdown due to the weak main CPU. This option helps allievate that at the cost of possible bugs.</p>
+<p><a href="https://www.youtube.com/watch?v=8xA9fosum4Q">Example video here</a></p>
+<p>compatible: Reduce slowdown but keep as much game compatibility as much as possible.</p>
+<p>max: Reduce slowdown as much as possible but will break more games.</p>
+</li>
+</ul>
+<h2 id="controllers">Controllers</h2>
+<p>The Snes9x 2002 core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<h3 id="user-1-2-device-types">User 1 - 2 device types</h3>
+<ul>
+<li>None - Doesn't disable input. There's no reason to switch to this.</li>
+<li>**RetroPad - Joypad - Stay on this.</li>
+<li>RetroPad w/Analog - Joypad - Same as RetroPad. There's no reason to switch to this.</li>
+</ul>
+<h3 id="controller-tables">Controller tables</h3>
+<h4 id="joypad">Joypad</h4>
+<p><img src="../image/controller/snes.png" alt="" /></p>
+<table>
+<thead>
+<tr>
+<th>RetroPad Inputs</th>
+<th>Snes9x 2002 core Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>B</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+<td>Y</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+<td>Select</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+<td>Start</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>D-Pad Up</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>D-Pad Down</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>D-Pad Left</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>D-Pad Right</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>A</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+<td>X</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+<td>L</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+<td>R</td>
+</tr>
+</tbody>
+</table>
+<h2 id="compatibility">Compatibility</h2>
+<p>Awaiting description.</p>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="http://www.pocketsnes.net/">Official Snes9x 2002 Website</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/snes9x2002_libretro.info">Libretro Snes9x 2002 Core info file</a></li>
+<li><a href="https://github.com/libretro/snes9x2002">Libretro Snes9x 2002 Github Repository</a></li>
+<li><a href="https://github.com/libretro/snes9x2002/issues">Report Libretro Snes9x 2002 Core Issues Here</a></li>
+</ul>
+<h3 id="see-also">See also</h3>
+<h4 id="nintendo-sufami-turbo">Nintendo - Sufami Turbo</h4>
+<ul>
+<li><a href="beetle_bsnes.md">Nintendo - SNES / Famicom (Beetle bsnes)</a></li>
+<li><a href="bsnes_mercury_accuracy.md">Nintendo - SNES / Famicom (bsnes-mercury Accuracy)</a></li>
+<li><a href="bsnes_mercury_balanced.md">Nintendo - SNES / Famicom (bsnes-mercury Balanced)</a></li>
+<li><a href="bsnes_mercury_performance.md">Nintendo - SNES / Famicom (bsnes-mercury Performance)</a></li>
+<li><a href="bsnes_accuracy.md">Nintendo - SNES / Famicom (bsnes Accuracy)</a></li>
+<li><a href="bsnes_balanced.md">Nintendo - SNES / Famicom (bsnes Balanced)</a></li>
+<li><a href="bsnes_cplusplus98.md">Nintendo - SNES / Famicom (bsnes C++98 (v085))</a></li>
+<li><a href="bsnes_performance.md">Nintendo - SNES / Famicom (bsnes Performance)</a></li>
+<li><a href="snes9x.md">Nintendo - SNES / Famicom (Snes9x)</a></li>
+<li><a href="snes9x_2005_plus.md">Nintendo - SNES / Famicom (Snes9x 2005 Plus)</a></li>
+<li><a href="snes9x_2005.md">Nintendo - SNES / Famicom (Snes9x 2005)</a></li>
+<li><a href="snes9x_2010.md">Nintendo - SNES / Famicom (Snes9x 2010)</a></li>
+</ul>
+<h4 id="nintendo-super-nintendo-entertainment-system-hacks">Nintendo - Super Nintendo Entertainment System (+ Hacks)</h4>
+<ul>
+<li><a href="beetle_bsnes.md">Nintendo - SNES / Famicom (Beetle bsnes)</a></li>
+<li><a href="bsnes_mercury_accuracy.md">Nintendo - SNES / Famicom (bsnes-mercury Accuracy)</a></li>
+<li><a href="bsnes_mercury_balanced.md">Nintendo - SNES / Famicom (bsnes-mercury Balanced)</a></li>
+<li><a href="bsnes_mercury_performance.md">Nintendo - SNES / Famicom (bsnes-mercury Performance)</a></li>
+<li><a href="bsnes_accuracy.md">Nintendo - SNES / Famicom (bsnes Accuracy)</a></li>
+<li><a href="bsnes_balanced.md">Nintendo - SNES / Famicom (bsnes Balanced)</a></li>
+<li><a href="bsnes_cplusplus98.md">Nintendo - SNES / Famicom (bsnes C++98 (v085))</a></li>
+<li><a href="bsnes_performance.md">Nintendo - SNES / Famicom (bsnes Performance)</a></li>
+<li><a href="higan_accuracy.md">Nintendo - SNES / Famicom (higan Accuracy)</a></li>
+<li><a href="nside_balanced.md">Nintendo - SNES / Famicom (nSide Balanced)</a></li>
+<li><a href="mesen-s.md">Nintendo - SNES / Famicom (Mesen-S)</a></li>
+<li><a href="snes9x.md">Nintendo - SNES / Famicom (Snes9x)</a></li>
+<li><a href="snes9x_2005_plus.md">Nintendo - SNES / Famicom (Snes9x 2005 Plus)</a></li>
+<li><a href="snes9x_2005.md">Nintendo - SNES / Famicom (Snes9x 2005)</a></li>
+<li><a href="snes9x_2010.md">Nintendo - SNES / Famicom (Snes9x 2010)</a></li>
+</ul>

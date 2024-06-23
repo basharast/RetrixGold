@@ -1,0 +1,239 @@
+<h1 id="mame-2003">MAME 2003</h1>
+<h2 id="background">Background</h2>
+<p>MAME 2003 is a libretro arcade system emulator core originally derived from xmame 0.78. This core is a popular choice for the Raspberry Pi family and other low-powered hardware because it supports most 2D-era arcade games and a broad set of features without requiring as much processor and memory resources as later MAME cores.</p>
+<p>Author(s): MAMEdev</p>
+<h2 id="contribute-to-this-documentation">Contribute to this documentation</h2>
+<p>In order to propose improvements to this document, <a href="https://github.com/libretro/docs/blob/master/docs/library/mame2003.md">visit it's corresponding source page on github</a>. Changes are proposed using &quot;Pull Requests.&quot;</p>
+<h2 id="see-also">See also</h2>
+<p>MAME 2000, <a href="mame2003_plus.md">MAME 2003-Plus</a>, MAME 2010, MAME 2014, MAME 2016, and MAME.</p>
+<h2 id="license">License</h2>
+<p><a href="https://raw.githubusercontent.com/libretro/mame2003-libretro/master/LICENSE.md">MAME Non-Commercial</a></p>
+<h2 id="extensions">Extensions</h2>
+<p>zip</p>
+<h2 id="bios">BIOS</h2>
+<p>BIOS romsets are not needed when using &quot;Full Non-Merged&quot; arcade romsets. For &quot;Split&quot; and &quot;Non-Merged&quot; romsets, place the BIOS in the same directory as the game romset.</p>
+<h2 id="features">Features</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">game-dependent</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Controllers</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="core-options">Core options</h3>
+<ul>
+<li><strong>Frameskip</strong> (<strong>0</strong>-5): Skips frame to make slow emulation look faster than it is while compromising playability. (Not advised)</li>
+<li><strong>DCS Speedhack</strong> (<strong>On</strong>/Off): Speedhack for the Midway sound hardware used in Mortal Kombat 2, 3 and others. Improves performance in these games.</li>
+<li><strong>Skip Disclaimer</strong> (<strong>On</strong>/Off): Skips the 'nag-screen'.</li>
+<li><strong>Skip Warnings</strong> (On/<strong>Off</strong>): Skips the warning screen shown before games with incomplete emulation.</li>
+<li><strong>Samples</strong> (<strong>On</strong>/Off): Requires valid sample zip files.              |       -          |</li>
+<li><strong>Sample Rate</strong> (11025-<strong>48000</strong>): Lowering may improve performance on weaker devices.</li>
+<li><strong>Cheats</strong> (On/<strong>Off</strong>): Requires a valid cheat.dat file.</li>
+<li><strong>Share 2 player dial controls across one X/Y device</strong> (On/<strong>Off</strong>): Some dial/spinner hardware are actually one device with one axis for each player. This supports that setup, by breaking down the normal mouse x/y into two seperate inputs.</li>
+<li><strong>Mouse Device</strong> (<strong>mouse</strong>/pointer/disabled): Switch between mouse (e.g. hardware mouse, trackball, etc), pointer (touchpad, touchscreen, lightgun, etc), or disabled.</li>
+<li><strong>TATE Mode</strong> (On/<strong>Off</strong>): Enable if rotating display for vertically oriented games (Pac-Man, Galaga, etc). Requires <code>video_allow_rotate = &quot;false&quot;</code> setting in RetroArch.cfg or core override file.</li>
+</ul>
+<hr />
+<h2 id="directories">Directories</h2>
+<ul>
+<li>Some MAME games require data from an internal hard drive, CD-ROM, laserdisk, or other media in order to be emulated -- those forms of media are packaged as CHD files. CHD files should be copied to subfolders within the folder where the MAME ROM zips have been installed. e.g.:</li>
+</ul>
+<pre><code>/libretro content dir/blitz/blitz.chd
+</code></pre>
+<ul>
+<li>Some games require an additional zip file with recorded sounds or music in order for audio to work correctly. Audio 'sample' files should be placed in subdirectories within <code>/libretro system dir/mame2003/</code> e.g.:</li>
+</ul>
+<pre><code>/libretro system dir/mame2003/samples/
+</code></pre>
+<ul>
+<li>Cheat and history metadata files should be moved from github's <a href="https://github.com/libretro/mame2003-libretro/tree/master/metadata"><code>/libretro/mame2003-libretro/tree/master/metadata</code></a> and placed within <code>/libretro system dir/mame2003/</code> e.g.:</li>
+</ul>
+<pre><code>/libretro system dir/mame2003/cheat.dat
+/libretro system dir/mame2003/history.dat
+</code></pre>
+<ul>
+<li>User-generated content is placed in sub-directories within <code>/libretro savefile dir/mame2003/</code> e.g.:</li>
+</ul>
+<pre><code>/libretro savefile dir/mame2003/diff/
+/libretro savefile dir/mame2003/nvram/
+/libretro savefile dir/mame2003/hi/
+/libretro savefile dir/mame2003/cfg/
+/libretro savefile dir/mame2003/memcard/
+</code></pre>
+<h3 id="mame-menu">MAME menu</h3>
+<p>To access the MAME internal menu, press the 'TAB' key or RetroPad R2. If you rebind MAME global inputs ('Input (general)'), it will update a file in  <code>/libretro savefile dir/mame2003/cfg/</code>   <strong>default.cfg</strong>. Note: If you rebind MAME global inputs ('Input (general)'), it will update a file in  <code>/libretro savefile dir/mame2003/cfg/</code>   <strong>default.cfg</strong>.</p>
+<h2 id="controllers">Controllers</h2>
+<p>The core supports one controller setting(s):</p>
+<ul>
+<li>RetroPad</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>MAME 2003</th>
+<th><a href="RetroPad">RetroPad</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Button 1/Right Stick Down/UI Cancel</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>Button 2/Right Stick Left</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+</tr>
+<tr>
+<td>Coin in</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+</tr>
+<tr>
+<td>Start</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+</tr>
+<tr>
+<td>Left Joystick</td>
+<td><img src="../image/retropad/retro_dpad.png" alt="" /></td>
+</tr>
+<tr>
+<td>Button 4/Right Stick Right/UI Select</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+<tr>
+<td>Button 3/Right Stick Up</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+</tr>
+<tr>
+<td>Button 5</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+</tr>
+<tr>
+<td>Button 6</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+</tr>
+<tr>
+<td>Button 7</td>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+</tr>
+<tr>
+<td>Button 8/TAB Menu</td>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+</tr>
+<tr>
+<td>Button 9</td>
+<td><img src="../image/retropad/retro_l3.png" alt="" /></td>
+</tr>
+<tr>
+<td>Button 10</td>
+<td><img src="../image/retropad/retro_r3.png" alt="" /></td>
+</tr>
+<tr>
+<td>Left Joystick</td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /></td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<h2 id="mame-2003-features">MAME 2003 Features</h2>
+<h3 id="service-menu">Service menu</h3>
+<p>MAME 2003 can ability to access games' internal service menus to set permanent game options. This allows you to, for example, configure a game to be 'free play' (no need to insert coins). To access the MAME service, press the 'F2' key. After changing options in the service mode, the game's internal memory will be stored to an .nv file in: <code>/libretro savefile dir/mame2003/nvram/</code></p>
+<h3 id="dip-switches">Dip-switches</h3>
+<p>Similarly to the <a href="#service-menu">Service menu</a>, many arcade games had hardware switches for arcade owners to modify certain parameters. These can be adjust by pressing the 'TAB' key to access the MAME menu, and select the '<strong>Dip Switches</strong>' option. Here you can turn them on/off.</p>
+<h3 id="high-scores">High scores</h3>
+<p>When high scores are saved, they are either stored as NVRAM data in <code>libretro system dir/mame2003/nvram/</code> or as hiscore data in: <code>libretro system dir/mame2003/hi/</code></p>
+<h3 id="save-states">Save states</h3>
+<p>MAME 2003-Plus supports save states for many, but not all games.</p>
+<h3 id="cheats">Cheats</h3>
+<p>MAME 2003-Plus supports the MAME cheat engine, allowing you to use the MAME menu to enable various in-game cheats. To active these, there is a necessary supplementary file called <code>cheat.dat</code>. This file can be <a href="https://github.com/libretro/mame2003-libretro/tree/master/metadata">downloaded from the MAME 2003 'metadata' repository</a>. Place <code>cheat.dat</code> in: <code>libretro system dir/mame2003-plus/</code></p>
+<p>Additionally, the 'enabled cheats' core option needs to be turned on. This option is is called: <code>mame2003-cheats = &quot;enabled&quot;</code></p>
+<hr />
+<h2 id="mousetrackballanalog-controller-support">Mouse/Trackball/Analog Controller support</h2>
+<p>MAME 2003 has support for multiple mice or touch devices in games that support trackballs, etc.</p>
+<p>MAME 2003 also supports one or two spinners/dials via the &quot;Share 2 player dial controls across one X/Y device&quot; core option.
+By default, mice/trackballs and analog sticks (the left one, for controllers with 2) are supported in games that would have them, or equivalents. For example, Centipede supports the mouse/trackball, and Afterburner supports the stick. Lightgun games are supported by either. The left and right mouse buttons can be bound to fire/etc using the MAME menu.</p>
+<h3 id="pointertrackpadtouchscreen-support">Pointer/Trackpad/Touchscreen support</h3>
+<p>Absolute pointer devices are supported, but need to be turned on via a setting in the retroarch-core-options.cfg file.</p>
+<p>mame2003-mouse_device = &quot;pointer&quot;</p>
+<h3 id="player-dialspinner-devices">2 player dial/spinner devices</h3>
+<p>2 player spinner/dial devices can be represented as 1 device with 2 axes. mame2003 can be configured to share this device across both players: Player 1 = X axis, Player 2 = Y axis. This can be enabled via a setting in the retroarch-core-options.cfg file, found in:</p>
+<p>mame2003-dialsharexy = &quot;enabled&quot;
+NOTE: This will disable Mouse support.</p>
+<h2 id="dual-stick-games">Dual stick games</h2>
+<p>The right analog stick can now be used a second joystick. This is enabled by default, via a setting in the retroarch-core-options.cfg file, found in:</p>
+<p>mame2003-rstick_to_btns = &quot;enabled&quot;</p>
+<h2 id="compatibility">Compatibility</h2>
+<p><strong>The MAME 2003 core accepts MAME 0.78 ROMsets.</strong> Each version of an arcade emulator must be used with ROMs that have the same exact version number. For example, MAME 0.37b5 ROMsets are required by the MAME 2000 emulator, but MAME 0.37b5 sets will not work correctly with the MAME 2003 or MAME 2010 emulator cores. Those cores require MAME 0.78 and MAME 0.139 ROM sets, respectively.</p>
+<p>File-not-found errors are the result of a ROMset that is wrong or incomplete, including if you're trying to run a &quot;Split&quot; clone .zip without the parent .zip present. Non-Merged MAME0.78 ROMsets do not require parent .zips to be present.</p>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://github.com/libretro/mame2003-libretro">MAME 2003 Github Repository</a></li>
+<li><a href="https://github.com/RetroPie/RetroPie-Setup/wiki/lr-mame2003">RetroPie MAME 2003 documentation</a></li>
+</ul>
+<h3 id="see-also-1">See also</h3>
+<ul>
+<li><a href="mame2003_plus.md">MAME 2003 Plus</a></li>
+<li><a href="mame_2010.md">MAME 2010</a></li>
+<li><a href="same_cdi.md">SAME_CDI</a></li>
+</ul>

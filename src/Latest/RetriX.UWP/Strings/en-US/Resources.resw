@@ -1,0 +1,869 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppDescription.Text" xml:space="preserve">
+    <value>RetriX universal emulator</value>
+  </data>
+  <data name="Appname.Text" xml:space="preserve">
+    <value>RetriX Gold</value>
+  </data>
+  <data name="GameBoyAdvanceRomDescription.Text" xml:space="preserve">
+    <value>Game Boy Advance Rom</value>
+  </data>
+  <data name="GameBoyRomDescription.Text" xml:space="preserve">
+    <value>Game Boy Rom</value>
+  </data>
+  <data name="GameGearRomDescription.Text" xml:space="preserve">
+    <value>SEGA Game Gear Rom</value>
+  </data>
+  <data name="MasterSystemRomDescription.Text" xml:space="preserve">
+    <value>SEGA Master System Rom</value>
+  </data>
+  <data name="MegaDriveRomDescription.Text" xml:space="preserve">
+    <value>SEGA Mega Drive Rom</value>
+  </data>
+  <data name="NESRomDescription.Text" xml:space="preserve">
+    <value>Nintendo Entertainment System Rom</value>
+  </data>
+  <data name="SG1000RomDescription.Text" xml:space="preserve">
+    <value>SEGA SG-1000 Rom</value>
+  </data>
+  <data name="Slot1MenuFlyoutItem.Text" xml:space="preserve">
+    <value>Slot 1</value>
+  </data>
+  <data name="SNESRomDescription.Text" xml:space="preserve">
+    <value>Super Nintendo Entertainment System Rom</value>
+  </data>
+  <data name="Slot2MenuFlyoutItem.Text" xml:space="preserve">
+    <value>Slot 2</value>
+  </data>
+  <data name="Slot3MenuFlyoutItem.Text" xml:space="preserve">
+    <value>Slot 3</value>
+  </data>
+  <data name="Slot4MenuFlyoutItem.Text" xml:space="preserve">
+    <value>Slot 4</value>
+  </data>
+  <data name="Slot5MenuFlyoutItem.Text" xml:space="preserve">
+    <value>Slot 5</value>
+  </data>
+  <data name="Slot6MenuFlyoutItem.Text" xml:space="preserve">
+    <value>Slot 6</value>
+  </data>
+  <data name="Slot7MenuFlyoutItem.Text" xml:space="preserve">
+    <value>Slot 7</value>
+  </data>
+  <data name="Slot8MenuFlyoutItem.Text" xml:space="preserve">
+    <value>Slot 8</value>
+  </data>
+  <data name="Slot9MenuFlyoutItem.Text" xml:space="preserve">
+    <value>Slot 9</value>
+  </data>
+  <data name="Slot10MenuFlyoutItem.Text" xml:space="preserve">
+    <value>Slot 10</value>
+  </data>
+  <data name="MoreMenuFlyoutItem.Text" xml:space="preserve">
+    <value>More</value>
+  </data>
+  <data name="ShowListMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Show List</value>
+  </data>
+  <data name="ClearAllMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Clean All</value>
+  </data>
+  <data name="FitScreenMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Fit Screen</value>
+  </data>
+  <data name="ShowFPSMenuFlyoutItem.Text" xml:space="preserve">
+    <value>FPS Counter</value>
+  </data>
+  <data name="RotateMenuFlyout.Text" xml:space="preserve">
+    <value>Rotate</value>
+  </data>
+  <data name="Rotate90PMenuFlyout.Text" xml:space="preserve">
+    <value>Right</value>
+  </data>
+  <data name="Rotate90MMenuFlyout.Text" xml:space="preserve">
+    <value>Left</value>
+  </data>
+  <data name="SlotsMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Slots</value>
+  </data>
+  <data name="SavedSlotsMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Saved Slots</value>
+  </data>
+  <data name="ActionsSlotsMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Actions Slots</value>
+  </data>
+  <data name="BackupMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Backup</value>
+  </data>
+  <data name="RestoreMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Restore</value>
+  </data>
+  <data name="LoadMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Load</value>
+  </data>
+  <data name="SaveMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="AboutHeader.Text" xml:space="preserve">
+    <value>ABOUT</value>
+  </data>
+  <data name="AboutBtn.Label" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="SupportBtn.Label" xml:space="preserve">
+    <value>Thanks</value>
+  </data>
+  <data name="HelpBtn.Label" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="CopyrightLabel.Text" xml:space="preserve">
+    <value>©2022</value>
+  </data>
+  <data name="VersionLabel.Text" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="EmulationCodeThanksToLabel.Text" xml:space="preserve">
+    <value>Emulation Systems</value>
+  </data>
+  <data name="IconsDesignedByLabel.Text" xml:space="preserve">
+    <value>designed by</value>
+  </data>
+  <data name="ExpectedFileMD5Label.Text" xml:space="preserve">
+    <value>MD5</value>
+  </data>
+  <data name="ImportFileButtonLabel.Text" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="SettingsBtn.Label" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="ExpertBtn.Label" xml:space="preserve">
+    <value>Expert</value>
+  </data>
+  <data name="SettingsHeader.Text" xml:space="preserve">
+    <value>SETTINGS</value>
+  </data>
+  <data name="AnyCoreHeader.Text" xml:space="preserve">
+    <value>AnyCore</value>
+  </data>
+  <data name="BiosFilesHeader.Text" xml:space="preserve">
+    <value>BIOS files</value>
+  </data>
+  <data name="PlayStationRomDescription.Text" xml:space="preserve">
+    <value>Sony PlayStation Rom</value>
+  </data>
+  <data name="DSRomDescription.Text" xml:space="preserve">
+    <value>Nintendo DS Rom</value>
+  </data>
+  <data name="NeoGeoPocketRomDescription.Text" xml:space="preserve">
+    <value>SNK Neo Geo Pocket Rom</value>
+  </data>
+  <data name="PCEngineRomDescription.Text" xml:space="preserve">
+    <value>NEC PC Engine Rom</value>
+  </data>
+  <data name="CHDRomDescription.Text" xml:space="preserve">
+    <value>CHD compressed Rom</value>
+  </data>
+  <data name="CueFileDescription.Text" xml:space="preserve">
+    <value>Cue Sheet</value>
+  </data>
+  <data name="FilteringMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Overlays</value>
+  </data>
+  <data name="Scanlines1FilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Double Lines</value>
+  </data>
+  <data name="Scanlines2FilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Normal Grid</value>
+  </data>
+  <data name="Scanlines3FilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Normal Lines</value>
+  </data>
+  <data name="DoublePixelFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Double Pixel</value>
+  </data>
+  <data name="SpeedupFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Drop Pixels</value>
+  </data>
+  <data name="SkipFramesFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Skip Frames</value>
+  </data>
+  <data name="DelayFramesFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Skip Audio</value>
+  </data>
+  <data name="ReduceFreezesFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Reduce Freezes</value>
+  </data>
+  <data name="AudioOnlyFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Audio Only</value>
+  </data>
+  <data name="BufferFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Buffer Counter</value>
+  </data>
+  <data name="SensorsInfoFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Sensors Info</value>
+  </data>
+  <data name="VideoOnlyFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Video Only</value>
+  </data>
+  <data name="LogsListFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Log List</value>
+  </data>
+  <data name="DebugMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="AutoSaveFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Auto Save</value>
+  </data>
+  <data name="OnStopFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>On Stop</value>
+  </data>
+  <data name="Seconds15FilteringMenuFlyout.Text" xml:space="preserve">
+    <value>15 Sec</value>
+  </data>
+  <data name="Seconds30FilteringMenuFlyout.Text" xml:space="preserve">
+    <value>30 Sec</value>
+  </data>
+  <data name="Seconds60FilteringMenuFlyout.Text" xml:space="preserve">
+    <value>60 Sec</value>
+  </data>
+  <data name="Seconds90FilteringMenuFlyout.Text" xml:space="preserve">
+    <value>90 Sec</value>
+  </data>
+  <data name="AutoSaveNotifyFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Show Notification</value>
+  </data>
+  <data name="PerformanceMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Extras</value>
+  </data>
+  <data name="NNFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="ZipRomDescription.Text" xml:space="preserve">
+    <value>Zip compressed Rom</value>
+  </data>
+  <data name="S32XRomDescription.Text" xml:space="preserve">
+    <value>SEGA 32X Rom</value>
+  </data>
+  <data name="TouckPadMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Layout</value>
+  </data>
+  <data name="ForceDisplayTouchGamepadMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Touch Pad</value>
+  </data>
+  <data name="AdjustmentsMenuFlyout.Text" xml:space="preserve">
+    <value>Customize</value>
+  </data>
+  <data name="ScaleFactorVisibleMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Global Customize</value>
+  </data>
+  <data name="CustomScaleFactorVisibleMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Current Console</value>
+  </data>
+  <data name="ButtonsCustomizeVisibleMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Buttons Customize</value>
+  </data>
+  <data name="ResetAdjustmentsMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="HideXYZTouchGamepadMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Show XYZ</value>
+  </data>
+  <data name="ShowL2R2TouchGamepadMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Show L2-R2</value>
+  </data>
+  <data name="RecentsHeader.Text" xml:space="preserve">
+    <value>Recents</value>
+  </data>
+  <data name="RecentGames.Text" xml:space="preserve">
+    <value>Recent Games</value>
+  </data>
+  <data name="AssistantMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="Action1tMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Action 1</value>
+  </data>
+  <data name="Action2tMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Action 2</value>
+  </data>
+  <data name="Action3tMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Action 3</value>
+  </data>
+  <data name="CoreOptionsMenuFlyout.Text" xml:space="preserve">
+    <value>Core Options</value>
+  </data>
+  <data name="TabSoundFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Tap SFX</value>
+  </data>
+  <data name="ControlsFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Controls</value>
+  </data>
+  <data name="GamePadFlyoutItem.Text" xml:space="preserve">
+    <value>Gamepad</value>
+  </data>
+  <data name="ControlsKeyBoardFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Keyboard Controls</value>
+  </data>
+  <data name="XBoxMenuFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>XBox Menu</value>
+  </data>
+  <data name="SensorsFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Sensors Movement</value>
+  </data>
+  <data name="AnalogDirectionFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Analog Movement</value>
+  </data>
+  <data name="DelayMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Speed</value>
+  </data>
+  <data name="Delay1MenuFlyoutItem.Text" xml:space="preserve">
+    <value>Fastest</value>
+  </data>
+  <data name="Delay2MenuFlyoutItem.Text" xml:space="preserve">
+    <value>Fast</value>
+  </data>
+  <data name="Delay3MenuFlyoutItem.Text" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="Delay4MenuFlyoutItem.Text" xml:space="preserve">
+    <value>Slow</value>
+  </data>
+  <data name="Delay5MenuFlyoutItem.Text" xml:space="preserve">
+    <value>Slowest</value>
+  </data>
+  <data name="ShowSpeicalButtonsFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Special Keys</value>
+  </data>
+  <data name="ShowActionsButtonsFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Actions Keys</value>
+  </data>
+  <data name="ColorFilterFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Color Mode</value>
+  </data>
+  <data name="ColorFilterNoneFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="ColorFilterGrayscaleFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Grayscale</value>
+  </data>
+  <data name="ColorFilterCoolFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Cool</value>
+  </data>
+  <data name="ColorFilterWarmFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Warm</value>
+  </data>
+  <data name="ColorFilterBurnFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Sepia</value>
+  </data>
+  <data name="ColorFilterRetroFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Retro</value>
+  </data>
+  <data name="ColorFilterBlueFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Blue</value>
+  </data>
+  <data name="ColorFilterGreenFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Green</value>
+  </data>
+  <data name="ColorFilterRedFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Red</value>
+  </data>
+  <data name="N64RomDescription.Text" xml:space="preserve">
+    <value>N64 Rom</value>
+  </data>
+  <data name="ArcadeRomDescription.Text" xml:space="preserve">
+    <value>Arcade Rom</value>
+  </data>
+  <data name="MegaCDRomDescription.Text" xml:space="preserve">
+    <value>Sega Mega CD Rom</value>
+  </data>
+  <data name="WonderSwanRomDescription.Text" xml:space="preserve">
+    <value>WonderSwan Rom</value>
+  </data>
+  <data name="WornderSwan ColorRomDescription.Text" xml:space="preserve">
+    <value>WonderSwan Color Rom</value>
+  </data>
+  <data name="PSPRomDescription.Text" xml:space="preserve">
+    <value>PlayStation Portable Rom</value>
+  </data>
+  <data name="SEGASaturnRomDescription.Text" xml:space="preserve">
+    <value>SEGA Saturn Rom</value>
+  </data>
+  <data name="AudioMenuFlyout.Text" xml:space="preserve">
+    <value>Audio</value>
+  </data>
+  <data name="AudioLowMenuFlyout.Text" xml:space="preserve">
+    <value>Low</value>
+  </data>
+  <data name="AudioMediumMenuFlyout.Text" xml:space="preserve">
+    <value>Medium</value>
+  </data>
+  <data name="AudioNormalMenuFlyout.Text" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="AudioHighMenuFlyout.Text" xml:space="preserve">
+    <value>High</value>
+  </data>
+  <data name="AudioMuteMenuFlyout.Text" xml:space="preserve">
+    <value>Mute</value>
+  </data>
+  <data name="AudioEffectsMenuFlyout.Text" xml:space="preserve">
+    <value>Effects</value>
+  </data>
+  <data name="AudioEchoMenuFlyout.Text" xml:space="preserve">
+    <value>Echo</value>
+  </data>
+  <data name="AudioReverebMenuFlyout.Text" xml:space="preserve">
+    <value>Reverb</value>
+  </data>
+  <data name="QualityFilteringMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Quality</value>
+  </data>
+  <data name="NearestNeighborFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Nearest</value>
+  </data>
+  <data name="AnisotropicFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Anisotropic</value>
+  </data>
+  <data name="CubicFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Cubic</value>
+  </data>
+  <data name="HighQualityCubicFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>HighQuality</value>
+  </data>
+  <data name="LinearFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Linear</value>
+  </data>
+  <data name="MultiSampleLinearFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>MultiSample</value>
+  </data>
+  <data name="AliasedFilteringMenuFlyout.Text" xml:space="preserve">
+    <value>Aliased</value>
+  </data>
+  <data name="RenderFilteringMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Render</value>
+  </data>
+  <data name="GameBoyColorRomDescription.Text" xml:space="preserve">
+    <value>Game Boy Color Rom</value>
+  </data>
+  <data name="GameCubeRomDescription.Text" xml:space="preserve">
+    <value>Game Cube Rom</value>
+  </data>
+  <data name="Nintendo3DSRomDescription.Text" xml:space="preserve">
+    <value>Nintendo 3DS Rom</value>
+  </data>
+  <data name="SegaDreamCastRomDescription.Text" xml:space="preserve">
+    <value>SEGA Dreamcast Rom</value>
+  </data>
+  <data name="SwitchRomDescription.Text" xml:space="preserve">
+    <value>Nintendo Switch Rom</value>
+  </data>
+  <data name="AtariJaguarRomDescription.Text" xml:space="preserve">
+    <value>Atari Jaguar Rom</value>
+  </data>
+  <data name="SystemNameNESNestopia" xml:space="preserve">
+    <value>NES (Nestopia)</value>
+  </data>
+  <data name="Atari7800RomDescription.Text" xml:space="preserve">
+    <value>Atari 7800 Rom</value>
+  </data>
+  <data name="LynxRomDescription.Text" xml:space="preserve">
+    <value>Atari Lynx Rom</value>
+  </data>
+  <data name="The3DORomDescription.Text" xml:space="preserve">
+    <value>3DO Rom</value>
+  </data>
+  <data name="VectrexRomDescription.Text" xml:space="preserve">
+    <value>Vectrex Rom</value>
+  </data>
+  <data name="MSXRomDescription.Text" xml:space="preserve">
+    <value>MSX Rom</value>
+  </data>
+  <data name="VirtualBoyRomDescription.Text" xml:space="preserve">
+    <value>Virtual Boy Rom</value>
+  </data>
+  <data name="UpdatesOnlyMenuFlyout.Text" xml:space="preserve">
+    <value>Hide Cached (Debug)</value>
+  </data>
+  <data name="SkipCachedMenuFlyout.Text" xml:space="preserve">
+    <value>Pixels Updates</value>
+  </data>
+  <data name="TouckPadMenuFlyoutItem33.Text" xml:space="preserve">
+    <value>Effects</value>
+  </data>
+  <data name="FileHashMismatchMessage" xml:space="preserve">
+    <value>The file supplied is not the expected one. Try a different file.</value>
+  </data>
+  <data name="FileHashMismatchTitle" xml:space="preserve">
+    <value>Wrong file</value>
+  </data>
+  <data name="GameLoadingFailAlertMessage" xml:space="preserve">
+    <value>An error occurred while loading the game.
+The game file may be corrupt or in a wrong format: try another one.</value>
+  </data>
+  <data name="GameLoadingFailAlertTitle" xml:space="preserve">
+    <value>Unable to load game</value>
+  </data>
+  <data name="GameRunningFailAlertMessage" xml:space="preserve">
+    <value>An error occurred while running the game.
+Restart RetriX and try again.</value>
+  </data>
+  <data name="GameRunningFailAlertTitle" xml:space="preserve">
+    <value>Game runtime error</value>
+  </data>
+  <data name="ManufacturerNameBandai" xml:space="preserve">
+    <value>Bandai</value>
+  </data>
+  <data name="ManufacturerNameFBAlpha" xml:space="preserve">
+    <value>FinalBurn Neo</value>
+  </data>
+  <data name="ManufacturerNameNEC" xml:space="preserve">
+    <value>NEC</value>
+  </data>
+  <data name="ManufacturerNameNintendo" xml:space="preserve">
+    <value>Nintendo</value>
+  </data>
+  <data name="ManufacturerNameSega" xml:space="preserve">
+    <value>SEGA</value>
+  </data>
+  <data name="ManufacturerNameSNK" xml:space="preserve">
+    <value>SNK</value>
+  </data>
+  <data name="ManufacturerNameSony" xml:space="preserve">
+    <value>Sony</value>
+  </data>
+  <data name="SelectFolderInvalidAlertMessage" xml:space="preserve">
+    <value>The folder you selected does not contain the game file you are trying to open. Try again.</value>
+  </data>
+  <data name="SelectFolderInvalidAlertTitle" xml:space="preserve">
+    <value>Invalid folder</value>
+  </data>
+  <data name="SelectFolderRequestAlertMessage" xml:space="preserve">
+    <value>This game is made up of multiple files, do you want to load them? (if single file select "No")</value>
+  </data>
+  <data name="SelectFolderRequestAlertTitle" xml:space="preserve">
+    <value>Select the game folder</value>
+  </data>
+  <data name="StateSavedToSlotMessageBody" xml:space="preserve">
+    <value>Game state saved to slot {0}</value>
+  </data>
+  <data name="StateSavedToSlotMessageTitle" xml:space="preserve">
+    <value>State saved</value>
+  </data>
+  <data name="SystemNameArcade" xml:space="preserve">
+    <value>Arcade</value>
+  </data>
+  <data name="SystemNameDS" xml:space="preserve">
+    <value>Nintendo DS</value>
+  </data>
+  <data name="SystemNameGameBoyColor" xml:space="preserve">
+    <value>Game Boy Color</value>
+  </data>
+  <data name="SystemNameGameBoyAdvance" xml:space="preserve">
+    <value>Game Boy Advance</value>
+  </data>
+  <data name="SystemNameGameGear" xml:space="preserve">
+    <value>Game Gear</value>
+  </data>
+  <data name="SystemNameMasterSystem" xml:space="preserve">
+    <value>Master System</value>
+  </data>
+  <data name="SystemNameMegaCD" xml:space="preserve">
+    <value>Mega CD</value>
+  </data>
+  <data name="SystemNameMegaDrive" xml:space="preserve">
+    <value>Mega Drive</value>
+  </data>
+  <data name="SystemNameNeoGeo" xml:space="preserve">
+    <value>Neo Geo</value>
+  </data>
+  <data name="SystemNameNeoGeoPocket" xml:space="preserve">
+    <value>Neo Geo Pocket Color</value>
+  </data>
+  <data name="SystemNameNES" xml:space="preserve">
+    <value>NES</value>
+  </data>
+  <data name="SystemNameNintendo64" xml:space="preserve">
+    <value>Nintendo 64</value>
+  </data>
+  <data name="SystemNamePCEngine" xml:space="preserve">
+    <value>PC Engine</value>
+  </data>
+  <data name="SystemNamePCEngineCD" xml:space="preserve">
+    <value>PC Engine CD</value>
+  </data>
+  <data name="SystemNamePCFX" xml:space="preserve">
+    <value>PC-FX</value>
+  </data>
+  <data name="SystemNamePlayStation" xml:space="preserve">
+    <value>PlayStation</value>
+  </data>
+  <data name="SystemNameSaturn" xml:space="preserve">
+    <value>Saturn</value>
+  </data>
+  <data name="SystemNameSG1000" xml:space="preserve">
+    <value>SG-1000</value>
+  </data>
+  <data name="SystemNameSNES" xml:space="preserve">
+    <value>Super Nintendo</value>
+  </data>
+  <data name="SystemNameWonderSwan" xml:space="preserve">
+    <value>WonderSwan Color</value>
+  </data>
+  <data name="SystemUnmetDependenciesAlertMessage" xml:space="preserve">
+    <value>BIOS files are required, Goto BIOS {0} tab</value>
+  </data>
+  <data name="SystemUnmetDependenciesAlertTitle" xml:space="preserve">
+    <value>Required files missing</value>
+  </data>
+  <data name="NoCompatibleFileInArchiveAlertMessage" xml:space="preserve">
+    <value>This archive contains no game file compatible with the selected system</value>
+  </data>
+  <data name="NoCompatibleFileInArchiveAlertTitle" xml:space="preserve">
+    <value>No compatible file found</value>
+  </data>
+  <data name="SystemName32X" xml:space="preserve">
+    <value>32X</value>
+  </data>
+  <data name="ManufacturerNameIGS" xml:space="preserve">
+    <value>IGS</value>
+  </data>
+  <data name="SystemNamePolyGameMaster" xml:space="preserve">
+    <value>PolyGame Master</value>
+  </data>
+  <data name="GamePlayStopMessage" xml:space="preserve">
+    <value>Do you want to stop?</value>
+  </data>
+  <data name="GamePlayStopTitle" xml:space="preserve">
+    <value>Stop Playing</value>
+  </data>
+  <data name="GamePlayTemeSaveMessage" xml:space="preserve">
+    <value>Do you want to save current state?</value>
+  </data>
+  <data name="GamePlayTempSaveTitle" xml:space="preserve">
+    <value>Save Game</value>
+  </data>
+  <data name="StateSavedToAutoMessageBody" xml:space="preserve">
+    <value>Game saved to latest slot</value>
+  </data>
+  <data name="SelectFolderRequestAlertAutomatic" xml:space="preserve">
+    <value>Automatic</value>
+  </data>
+  <data name="ExportSlotsMessage" xml:space="preserve">
+    <value>Slots Exported Successfully</value>
+  </data>
+  <data name="ExportSlotsTitle" xml:space="preserve">
+    <value>Export Slots</value>
+  </data>
+  <data name="ImportSlotsMessage" xml:space="preserve">
+    <value>Slots Imported Successfully</value>
+  </data>
+  <data name="ImportSlotsTitle" xml:space="preserve">
+    <value>Import Slots</value>
+  </data>
+  <data name="ExportSlotsMessageError" xml:space="preserve">
+    <value>No slots found!</value>
+  </data>
+  <data name="ImportSlotsMessageCancel" xml:space="preserve">
+    <value>Import Canceled!</value>
+  </data>
+  <data name="ImportStatesMessage" xml:space="preserve">
+    <value>This action will replace the current slots, continue?</value>
+  </data>
+  <data name="ImportStatesTitle" xml:space="preserve">
+    <value>Import Slots</value>
+  </data>
+  <data name="GamePlayResetMessage" xml:space="preserve">
+    <value>Do you want to reset the game?</value>
+  </data>
+  <data name="GamePlayResetTitle" xml:space="preserve">
+    <value>Reset Game</value>
+  </data>
+  <data name="SystemNamePlayStationPortable" xml:space="preserve">
+    <value>Playstation Portable</value>
+  </data>
+  <data name="SystemAnyCoreManfacture" xml:space="preserve">
+    <value>Anyone</value>
+  </data>
+  <data name="SystemAnyCoreName" xml:space="preserve">
+    <value>Any Core</value>
+  </data>
+  <data name="SystemNameGameBoy" xml:space="preserve">
+    <value>Game Boy</value>
+  </data>
+  <data name="System3DO" xml:space="preserve">
+    <value>3DO</value>
+  </data>
+  <data name="SystemAtari" xml:space="preserve">
+    <value>Atari</value>
+  </data>
+  <data name="SystemAtari7800" xml:space="preserve">
+    <value>Atari 7800</value>
+  </data>
+  <data name="SystemAtariLynx" xml:space="preserve">
+    <value>Lynx</value>
+  </data>
+  <data name="SystemGCEVectrex" xml:space="preserve">
+    <value>GCE</value>
+  </data>
+  <data name="SystemThe3DOCompany" xml:space="preserve">
+    <value>The 3DO Company</value>
+  </data>
+  <data name="SystemVectrex" xml:space="preserve">
+    <value>Vectrex</value>
+  </data>
+  <data name="SystemJaguar" xml:space="preserve">
+    <value>Jaguar</value>
+  </data>
+  <data name="SystemMSX" xml:space="preserve">
+    <value>MSX</value>
+  </data>
+  <data name="SystemMSXMan" xml:space="preserve">
+    <value>National</value>
+  </data>
+  <data name="SystemSegaSaturnYabause" xml:space="preserve">
+    <value>Saturn (Yabause)</value>
+  </data>
+  <data name="SystemVirtualBoy" xml:space="preserve">
+    <value>Virtual Boy</value>
+  </data>
+  <data name="SystemGameBoyAdvanceSP" xml:space="preserve">
+    <value>Game Boy Advance SP</value>
+  </data>
+  <data name="SystemGameBoyMicro" xml:space="preserve">
+    <value>Game Boy Micro</value>
+  </data>
+  <data name="SystemBrain" xml:space="preserve">
+    <value>Brainchild Design</value>
+  </data>
+  <data name="SystemGBAM" xml:space="preserve">
+    <value>Game Boy Advance (Meteor)</value>
+  </data>
+  <data name="SystemNameGW" xml:space="preserve">
+    <value>Game &amp; Watch</value>
+  </data>
+  <data name="SystemNameJNB" xml:space="preserve">
+    <value>Jump n' Bump</value>
+  </data>
+  <data name="SystemVarious" xml:space="preserve">
+    <value>Various</value>
+  </data>
+</root>

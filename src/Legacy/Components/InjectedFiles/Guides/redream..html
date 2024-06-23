@@ -1,0 +1,277 @@
+<h1 id="sega-dreamcast-redream">Sega - Dreamcast (Redream)</h1>
+<h2 id="background">Background</h2>
+<p>Redream is a work-in-progress SEGA Dreamcast emulator written in C for Mac, Linux and Windows.</p>
+<p>The Redream core has been authored by</p>
+<ul>
+<li>inolen</li>
+</ul>
+<p>The Redream core <strong>(libretro fork only)</strong> is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/redream/blob/master/LICENSE.txt">GPLv3</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h3 id="requirements">Requirements</h3>
+<p>This core requires OpenGL 3.3 or higher in order to work.</p>
+<p>RetroArch's video driver must be set to OpenGL. Go to Settings -&gt; Driver. If the ‘video driver’ is set to something else or than 'gl', switch to ‘gl’, and then restart.</p>
+<p>!!! attention
+There is currently no ‘working’ macOS version available. This is because this core requires OpenGL core 3.3 context, and RetroArch on macOS currently does not support this.</p>
+<h2 id="bios">BIOS</h2>
+<p>!!! attention
+The firmware files need to be in a directory named 'dc' in RetroArch's system directory.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">dc/boot.bin</td>
+<td style="text-align: center;">boot.bin (Dreamcast BIOS) - Required</td>
+<td style="text-align: center;">e10c53c2f8b90bab96ead2d368858623</td>
+</tr>
+<tr>
+<td style="text-align: center;">dc/flash.bin</td>
+<td style="text-align: center;">flash.bin (Date/Time/Language) - Required</td>
+<td style="text-align: center;">0a93f7940c455905bea6e392dfde92a4</td>
+</tr>
+</tbody>
+</table>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the Redream core have the following file extensions:</p>
+<ul>
+<li>.gdi</li>
+<li>.chd</li>
+<li>.cdi</li>
+</ul>
+<p>RetroArch database(s) that are associated with the Redream core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Sega%20-%20Dreamcast.rdb">Sega - Dreamcast</a></li>
+</ul>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the Redream core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The Redream core's library name is 'redream'</p>
+<p>The Redream core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Save directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">vmu0.bin</td>
+<td style="text-align: center;">VMU Slot 1 Save</td>
+</tr>
+<tr>
+<td style="text-align: center;">vmu1.bin</td>
+<td style="text-align: center;">VMU Slot 2 Save</td>
+</tr>
+<tr>
+<td style="text-align: center;">vmu2.bin</td>
+<td style="text-align: center;">VMU Slot 3 Save</td>
+</tr>
+<tr>
+<td style="text-align: center;">vmu3.bin</td>
+<td style="text-align: center;">VMU Slot 4 Save</td>
+</tr>
+</tbody>
+</table>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The Redream core's core provided FPS is 60</li>
+<li>The Redream core's core provided sample rate is 44100 Hz</li>
+<li>The Redream core's base width is 640</li>
+<li>The Redream core's base height is 480</li>
+<li>The Redream core's max width is 640</li>
+<li>The Redream core's max height is 480</li>
+<li>The Redream core's core provided aspect ratio is 4/3</li>
+</ul>
+<h2 id="joypad">Joypad</h2>
+<p><img src="../image/controller/dc.png" alt="" /></p>
+<table>
+<thead>
+<tr>
+<th>User 1 - 4 input descriptors</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>X</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+</tr>
+<tr>
+<td>Start</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>B</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+<tr>
+<td>Y</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+<tr>
+<td>L</td>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+</tr>
+<tr>
+<td>R</td>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+</tr>
+<tr>
+<td>Analog X</td>
+<td><img src="../image/retropad/retro_r3.png" alt="" /></td>
+</tr>
+<tr>
+<td>Analog Y</td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> X</td>
+</tr>
+</tbody>
+</table>
+<h2 id="compatibility">Compatibility</h2>
+<p>Since Redream is a work-in-progress Dreamcast emulator, expect sound issues, general compatibility issues, and a general rough experience.</p>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://redream.io/">Official Redream Website</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/redream_libretro.info">Libretro Redream Core info file</a></li>
+<li><a href="https://github.com/libretro/redream">Libretro Redream Github Repository</a></li>
+<li><a href="https://github.com/libretro/redream/issues">Report Libretro Redream Core Issues Here</a></li>
+</ul>
+<h2 id="sega-dreamcast">Sega - Dreamcast</h2>
+<ul>
+<li><a href="flycast.md">Sega - Dreamcast (Flycast)</a></li>
+</ul>

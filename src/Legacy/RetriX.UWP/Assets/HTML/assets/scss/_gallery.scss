@@ -1,0 +1,96 @@
+/*---------------------------------------
+    12. Gallery CSS
+-----------------------------------------*/
+.gallery-area{
+    //Responsive
+    @media #{$laptop-device}{
+        margin-bottom: -5px;
+    }
+    @media #{$tablet-device}{
+        margin-bottom: -5px;
+    }
+    @media #{$large-mobile}{
+        margin-bottom: -5px;
+    }
+}
+.single-gallery{
+    overflow: hidden;
+    & .gallery-image{
+        position: relative;
+        & a{
+            display: block;
+            & img{
+                width: 100%;
+                transition: all 3s cubic-bezier(.25,.46,.45,.94);
+            }
+        }
+        & .gallery-hover{
+            position: absolute;
+            bottom: -68px;
+            width: 100%;
+            padding: 20px 20px;
+            background-color: rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease-in-out;
+            & h4{
+                font-size: 20px;
+                line-height: 28px;
+                margin-bottom: 0;
+                color: $white;
+                display: inline-block;
+                //Responsive 
+                @media #{$laptop-device}{
+                    font-size: 16px;
+                }
+                @media #{$desktop-device}{
+                    font-size: 18px;
+                }
+                @media #{$large-mobile}{
+                    font-size: 16px;
+                }
+                & a{
+                    display: block;
+                }
+            }
+            & span{
+                font-size: 16px;
+                line-height: 28px;
+                color: $white;
+                font-family: $heading-font;
+                float: right;
+                //Responsive 
+                @media #{$laptop-device}{
+                    font-size: 14px;
+                }
+                @media #{$desktop-device}{
+                    font-size: 14px;
+                }
+                @media #{$large-mobile}{
+                    font-size: 12px;
+                }
+            }
+            & p{
+                font-size: 16px;
+                line-height: 24px;
+                margin-bottom: 10px;
+                margin-top: 15px;
+            }
+        }
+    }
+    &:hover{
+        & .gallery-hover{
+            bottom: 0;
+            opacity: 1;
+            visibility: visible;
+        }
+        & .gallery-image{
+            & img{
+                transform: scale(1.15);
+            }
+        }
+    }
+}
+
+
+

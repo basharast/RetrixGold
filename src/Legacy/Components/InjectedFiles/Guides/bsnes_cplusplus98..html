@@ -1,0 +1,339 @@
+<h1 id="nintendo-snes-famicom-bsnes-c98-v085">Nintendo - SNES / Famicom (bsnes C++98 (v085))</h1>
+<h2 id="background">Background</h2>
+<p>bsnes c<ins>98 is a special fork from around v085 that's been backported to work with older compilers. Many platforms Libretro supports such as various consoles (PlayStation 3) are stuck with super-old compilers that don't support the latest c</ins> features that are in the newer bsnes v094 ports.</p>
+<p>There's no reason to use this core now expect for edge cases on less compatible platforms.</p>
+<h3 id="authorlicense">Author/License</h3>
+<p>The bsnes C++98 (v085) core has been authored by</p>
+<ul>
+<li>byuu</li>
+<li>Themaister</li>
+<li>Ver GreenEyes</li>
+</ul>
+<p>The bsnes C++98 (v085) core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/bsnes-libretro/blob/libretro/COPYING">GPLv3</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the bsnes C++98 (v085) core have the following file extensions:</p>
+<ul>
+<li>.sfc</li>
+<li>.smc</li>
+</ul>
+<h2 id="databases">Databases</h2>
+<p>RetroArch database(s) that are associated with the bsnes C++98 (v085) core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Super%20Nintendo%20Entertainment%20System.rdb">Nintendo - Super Nintendo Entertainment System</a></li>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Super%20Nintendo%20Entertainment%20System%20Hacks.rdb">Nintendo - Super Nintendo Entertainment System Hacks</a></li>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Sufami%20Turbo.rdb">Nintendo - Sufami Turbo</a></li>
+</ul>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the bsnes C++98 (v085) core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The bsnes C++98 (v085) core's internal core name is '&quot;bSNES'</p>
+<p>The bsnes C++98 (v085) core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Save directory</strong></p>
+<ul>
+<li>'content-name'.srm (Cartridge battery save)</li>
+</ul>
+<p><strong>Frontend's State directory</strong></p>
+<ul>
+<li>'content-name'.state# (State)</li>
+</ul>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The bsnes C++98 (v085) core's core provided FPS is 60.0988118623 for NTSC games and 50.0069789082 for PAL games.</li>
+<li>The bsnes C++98 (v085) core's core provided sample rate is 32040.5 Hz.</li>
+<li>The bsnes C++98 (v085) core's core provided aspect ratio is (Ratio)</li>
+</ul>
+<h2 id="controllers">Controllers</h2>
+<p>The bsnes C++98 (v085) core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<h3 id="user-1-device-types">User 1 device types</h3>
+<ul>
+<li>None - Doesn't disable input.</li>
+<li><strong><a href="http://nintendo.wikia.com/wiki/Super_Nintendo_Entertainment_System_controller">SNES Joypad</a></strong> - Joypad</li>
+<li><a href="https://en.wikipedia.org/wiki/Super_NES_Mouse">SNES Mouse</a> - Mouse</li>
+</ul>
+<h3 id="user-2-device-types">User 2 device types</h3>
+<ul>
+<li>None - Doesn't disable input.</li>
+<li><strong><a href="http://nintendo.wikia.com/wiki/Super_Nintendo_Entertainment_System_controller">SNES Joypad</a></strong> - Joypad</li>
+<li><a href="https://en.wikipedia.org/wiki/Super_NES_Mouse">SNES Mouse</a> - Mouse</li>
+<li><a href="http://nintendo.wikia.com/wiki/Super_Multitap">Multitap</a> - Joypad - Allows for up to five players to play together in mulitap games.</li>
+<li><a href="https://en.wikipedia.org/wiki/Super_Scope">SuperScope</a> - Lightgun</li>
+<li><a href="https://en.wikipedia.org/wiki/Konami_Justifier">Justifier</a> - Lightgun</li>
+<li><a href="https://en.wikipedia.org/wiki/Konami_Justifier">Justifiers</a> - Lightgun - Two Justifiers are plugged in, for two-player Justifier games.</li>
+</ul>
+<h3 id="multitap-support">Multitap support</h3>
+<p>Activating multitap support in compatible games can be configured by switching to the <a href="#controllers">Multitap device type</a> for User 2.</p>
+<h3 id="controller-tables">Controller tables</h3>
+<h4 id="joypad">Joypad</h4>
+<p><img src="../image/controller/snes.png" alt="" /></p>
+<table>
+<thead>
+<tr>
+<th>User 1 - 5 Remap descriptors</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>Y</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+</tr>
+<tr>
+<td>Select</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+</tr>
+<tr>
+<td>Start</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>A</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+<tr>
+<td>X</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+</tr>
+<tr>
+<td>L</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+</tr>
+<tr>
+<td>R</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<h4 id="mouse">Mouse</h4>
+<table>
+<thead>
+<tr>
+<th>RetroMouse Inputs</th>
+<th>SNES Mouse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retromouse/retro_mouse.png" alt="" /> Mouse Cursor</td>
+<td>SNES Mouse Cursor</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_left.png" alt="" /> Mouse 1</td>
+<td>SNES Mouse Left Button</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_right.png" alt="" /> Mouse 2</td>
+<td>SNES Mouse Right Button</td>
+</tr>
+</tbody>
+</table>
+<h4 id="lightgun">Lightgun</h4>
+<table>
+<thead>
+<tr>
+<th>RetroLightgun Inputs</th>
+<th>SuperScope</th>
+<th>Justifier(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retromouse/retro_mouse.png" alt="" /> Gun Crosshair</td>
+<td>SuperScope Crosshair</td>
+<td>Justifier Crosshair</td>
+</tr>
+<tr>
+<td>Gun Trigger</td>
+<td>SuperScope Trigger</td>
+<td>Justifier Trigger</td>
+</tr>
+<tr>
+<td>Gun Aux A</td>
+<td>SuperScope Cursor</td>
+<td></td>
+</tr>
+<tr>
+<td>Gun Aux B</td>
+<td>SuperScope Turbo</td>
+<td></td>
+</tr>
+<tr>
+<td>Gun Start</td>
+<td>SuperScope Pause</td>
+<td>Justifier Start</td>
+</tr>
+</tbody>
+</table>
+<h2 id="compatibility">Compatibility</h2>
+<p>Awaiting description.</p>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://byuu.org/">Official higan Website</a></li>
+<li><a href="https://byuu.org/emulation/higan/">Official higan Upstream Downloads</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/bsnes_cplusplus98_libretro.info">Libretro bsnes C++98 (v085) Core info file</a></li>
+<li><a href="https://github.com/libretro/bsnes-libretro-cplusplus98">Libretro bsnes C++98 (v085) Github Repository</a></li>
+<li><a href="https://github.com/libretro/bsnes-libretro-cplusplus98/issues">Report Libretro bsnes C++98 (v085) Core Issues Here</a></li>
+</ul>
+<h3 id="see-also">See also</h3>
+<h4 id="nintendo-sufami-turbo">Nintendo - Sufami Turbo</h4>
+<ul>
+<li><a href="beetle_bsnes.md">Nintendo - SNES / Famicom (Beetle bsnes)</a></li>
+<li><a href="bsnes_mercury_accuracy.md">Nintendo - SNES / Famicom (bsnes-mercury Accuracy)</a></li>
+<li><a href="bsnes_mercury_balanced.md">Nintendo - SNES / Famicom (bsnes-mercury Balanced)</a></li>
+<li><a href="bsnes_mercury_performance.md">Nintendo - SNES / Famicom (bsnes-mercury Performance)</a></li>
+<li><a href="bsnes_accuracy.md">Nintendo - SNES / Famicom (bsnes Accuracy)</a></li>
+<li><a href="bsnes_balanced.md">Nintendo - SNES / Famicom (bsnes Balanced)</a></li>
+<li><a href="bsnes_performance.md">Nintendo - SNES / Famicom (bsnes Performance)</a></li>
+<li><a href="snes9x.md">Nintendo - SNES / Famicom (Snes9x)</a></li>
+<li><a href="snes9x_2002.md">Nintendo - SNES / Famicom (Snes9x 2002)</a></li>
+<li><a href="snes9x_2005_plus.md">Nintendo - SNES / Famicom (Snes9x 2005 Plus)</a></li>
+<li><a href="snes9x_2005.md">Nintendo - SNES / Famicom (Snes9x 2005)</a></li>
+<li><a href="snes9x_2010.md">Nintendo - SNES / Famicom (Snes9x 2010)</a></li>
+</ul>
+<h4 id="nintendo-super-nintendo-entertainment-system-hacks">Nintendo - Super Nintendo Entertainment System (+ Hacks)</h4>
+<ul>
+<li><a href="beetle_bsnes.md">Nintendo - SNES / Famicom (Beetle bsnes)</a></li>
+<li><a href="bsnes_mercury_accuracy.md">Nintendo - SNES / Famicom (bsnes-mercury Accuracy)</a></li>
+<li><a href="bsnes_mercury_balanced.md">Nintendo - SNES / Famicom (bsnes-mercury Balanced)</a></li>
+<li><a href="bsnes_mercury_performance.md">Nintendo - SNES / Famicom (bsnes-mercury Performance)</a></li>
+<li><a href="bsnes_accuracy.md">Nintendo - SNES / Famicom (bsnes Accuracy)</a></li>
+<li><a href="bsnes_balanced.md">Nintendo - SNES / Famicom (bsnes Balanced)</a></li>
+<li><a href="bsnes_performance.md">Nintendo - SNES / Famicom (bsnes Performance)</a></li>
+<li><a href="higan_accuracy.md">Nintendo - SNES / Famicom (higan Accuracy)</a></li>
+<li><a href="nside_balanced.md">Nintendo - SNES / Famicom (nSide Balanced)</a></li>
+<li><a href="mesen-s.md">Nintendo - SNES / Famicom (Mesen-S)</a></li>
+<li><a href="snes9x.md">Nintendo - SNES / Famicom (Snes9x)</a></li>
+<li><a href="snes9x_2002.md">Nintendo - SNES / Famicom (Snes9x 2002)</a></li>
+<li><a href="snes9x_2005_plus.md">Nintendo - SNES / Famicom (Snes9x 2005 Plus)</a></li>
+<li><a href="snes9x_2005.md">Nintendo - SNES / Famicom (Snes9x 2005)</a></li>
+<li><a href="snes9x_2010.md">Nintendo - SNES / Famicom (Snes9x 2010)</a></li>
+</ul>

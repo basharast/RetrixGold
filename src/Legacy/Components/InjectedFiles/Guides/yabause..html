@@ -1,0 +1,314 @@
+<h1 id="sega-saturn-yabause">Sega - Saturn (Yabause)</h1>
+<h2 id="background">Background</h2>
+<p>Yabause is a Sega Saturn emulator that is both open-source and written with portability in mind. It is software rendered. Without any update for years it seems upstream is now dead.</p>
+<h3 id="authorlicense">Author/License</h3>
+<p>The Yabause core has been authored by</p>
+<ul>
+<li>Guillaume Duhammel</li>
+<li>Theo Berkau</li>
+<li>Anders Montonen</li>
+</ul>
+<p>The Yabause core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/yabause/blob/master/yabause/COPYING">GPLv2</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the Yabause core have the following file extensions:</p>
+<ul>
+<li>.cue</li>
+<li>.iso</li>
+<li>.ccd</li>
+<li>.mds</li>
+<li>.chd</li>
+<li>.zip</li>
+<li>.m3u</li>
+</ul>
+<h2 id="databases">Databases</h2>
+<p>RetroArch database(s) that are associated with the Yabause core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Sega%20-%20Saturn.rdb">Sega - Saturn</a></li>
+</ul>
+<h2 id="bios">BIOS</h2>
+<p>Required or optional firmware files go in the frontend's system directory.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">saturn_bios.bin</td>
+<td style="text-align: center;">Saturn BIOS - Optional</td>
+<td style="text-align: center;">af5828fdff51384f99b3c4926be27762</td>
+</tr>
+</tbody>
+</table>
+<p>This md5sum is just a hint, it is not required, any valid saturn bios should work.</p>
+<p>!!! Question &quot;Is the bios really optional ?&quot;
+It's highly recommended to install a real bios, the emulated bios is not perfect and has lesser compatibility. Furthermore, due to the nature of &quot;multi-disc&quot; games on Sega Saturn (they are independent game discs that will send you back to the bios screen when switching), the bios is <strong>required</strong> if you intend to load m3u files.</p>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the Yabause core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The Yabause core's library name is 'Yabause'</p>
+<p>The Yabause core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Save directory</strong></p>
+<ul>
+<li>'content-name'.srm (Save)</li>
+</ul>
+<p><strong>Frontend's State directory</strong></p>
+<ul>
+<li>'content-name'.state# (State)</li>
+</ul>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The Yabause core's core provided FPS is 60 for NTSC games and 50 for PAL games</li>
+<li>The Yabause core's core provided sample rate is 44100 Hz</li>
+<li>The Yabause core's core provided aspect ratio is 4/3</li>
+</ul>
+<h2 id="loading-sega-saturn-content">Loading Sega Saturn content</h2>
+<ul>
+<li>Yabause is not compatible with cue sheets containing references to audio files with wav/mp3/ogg/flac/ape extensions.</li>
+<li>Zip files containing cue+bin files can be loaded directly, however the dump will be loaded in RAM (meaning it will use around 700MB of RAM depending on the size of the dump).</li>
+</ul>
+<h2 id="core-options">Core options</h2>
+<p>The Yabause core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Frameskip</strong> [yabause_frameskip] (<strong>disabled</strong>|enabled)</p>
+<p>Frames are skipped when the CPU is unable to keep up a stable rate.</p>
+</li>
+<li><p><strong>Force HLE BIOS (restart)</strong> [yabause_force_hle_bios] (<strong>disabled</strong>|enabled)</p>
+<p>HLE BIOS will be used even when a real BIOS file is present.</p>
+</li>
+<li><p><strong>Addon Cartridge (restart)</strong> [yabause_addon_cart] (<strong>none</strong>|1M_ram|4M_ram)</p>
+<p>Allows switching between the various RAM cartridges released for the system.</p>
+<p>A list of games that require a cartridge can be found <a href="https://www.satakore.com/cartridge.php">here</a>.</p>
+</li>
+<li><p><strong>6Player Adaptor on Port 1</strong> [yabause_multitap_port1] (<strong>disabled</strong>|enabled)</p>
+<p>Enable multitap in port 1.</p>
+</li>
+<li><p><strong>6Player Adaptor on Port 2</strong> [yabause_multitap_port2] (<strong>disabled</strong>|enabled)</p>
+<p>Enable multitap in port 2.</p>
+</li>
+<li><p><strong>Number of Threads (restart)</strong> [yabause_numthreads] (1|2|<strong>4</strong>|8|16|32)</p>
+<p>Adjust the number of threads to an appropriate level for your CPU.</p>
+</li>
+</ul>
+<h2 id="controllers">Controllers</h2>
+<p>The Yabause core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<h3 id="user-device-types">User device types</h3>
+<ul>
+<li>None - Doesn't disable input. There's no reason to switch to this.</li>
+<li><strong>Saturn Pad</strong> - Joypad</li>
+<li>Saturn 3D Pad - Analog</li>
+</ul>
+<h3 id="multitap-support">Multitap support</h3>
+<p>Must be enabled in core options.</p>
+<h3 id="controller-tables">Controller tables</h3>
+<h4 id="joypad">Joypad</h4>
+<p><img src="../image/controller/saturn.png" alt="" /></p>
+<table>
+<thead>
+<tr>
+<th>User 1 - 12 Remap descriptors</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>X</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+</tr>
+<tr>
+<td>Start</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>B</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+<tr>
+<td>Y</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+</tr>
+<tr>
+<td>C</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+</tr>
+<tr>
+<td>Z</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+</tr>
+<tr>
+<td>L</td>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+</tr>
+<tr>
+<td>R</td>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+</tr>
+<tr>
+<td>Analog X</td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> X</td>
+</tr>
+<tr>
+<td>Analog Y</td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> Y</td>
+</tr>
+</tbody>
+</table>
+<h2 id="compatibility">Compatibility</h2>
+<ul>
+<li><a href="https://wiki.yabause.org/index.php5?title=Compatibility_list">Official Yabause Compatibility List</a></li>
+</ul>
+<h2 id="known-issues">Known issues</h2>
+<ul>
+<li>Savestates work but can freeze a game</li>
+<li>Enabling both multitaps at the same time causes some sort of &quot;autofire&quot; bug</li>
+</ul>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://yabause.org/">Official Yabause Website</a></li>
+<li><a href="https://wiki.yabause.org/index.php5?title=Documentations">Official Yabause Documentation</a></li>
+<li><a href="https://github.com/Yabause/yabause">Official Yabause Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/yabause_libretro.info">Libretro Yabause Core info file</a></li>
+<li><a href="https://github.com/libretro/yabause">Libretro Yabause Github Repository</a></li>
+<li><a href="https://github.com/libretro/yabause/issues">Report Libretro Yabause Core Issues Here</a></li>
+</ul>
+<h2 id="saturn">Saturn</h2>
+<ul>
+<li><a href="beetle_saturn.md">Sega - Saturn (Beetle Saturn)</a></li>
+<li><a href="kronos.md">Sega - Saturn/ST-V (Kronos)</a></li>
+<li><a href="yabause.md">Sega - Saturn (Yabause)</a></li>
+<li><a href="yabasanshiro.md">Sega - Saturn (YabaSanshiro)</a></li>
+</ul>

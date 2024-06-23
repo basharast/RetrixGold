@@ -1,0 +1,1001 @@
+<h1 id="playstation-beetle-psx-hw">PlayStation (Beetle PSX HW)</h1>
+<h2 id="background">Background</h2>
+<p>Beetle PSX HW is a port/fork of Mednafen's PSX module to the libretro API. It can be compiled in C<ins>98 mode, excluding the Vulkan renderer, which is written in C</ins>11 for the time being. Beetle PSX HW currently runs on Linux, OSX and Windows.</p>
+<p>Notable additions in this fork are:</p>
+<ul>
+<li>PBP and CHD file format support, developed by Zapeth;</li>
+<li>Software renderer internal resolution upscaling, implemented by simias;</li>
+<li>An OpenGL 3.3 renderer, developed by simias;</li>
+<li>A Vulkan renderer, developed by TinyTiger;</li>
+<li>PGXP perspective correct texturing and subpixel precision, developed by iCatButler;</li>
+</ul>
+<p>The Beetle PSX HW core has been authored by</p>
+<ul>
+<li><a href="https://mednafen.github.io/">Mednafen Team</a></li>
+</ul>
+<p>The Beetle PSX HW core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/beetle-psx-libretro/blob/master/COPYING">GPLv2</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h3 id="requirements">Requirements</h3>
+<ul>
+<li>OpenGL 3.3 for the opengl renderer</li>
+<li>Vulkan for the vulkan renderer</li>
+</ul>
+<h2 id="bios">BIOS</h2>
+<p>Required or optional firmware files go in the frontend's system directory.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">scph5500.bin</td>
+<td style="text-align: center;">PS1 JP BIOS - Required for JP games</td>
+<td style="text-align: center;">8dd7d5296a650fac7319bce665a6a53c</td>
+</tr>
+<tr>
+<td style="text-align: center;">scph5501.bin</td>
+<td style="text-align: center;">PS1 US BIOS - Required for US games</td>
+<td style="text-align: center;">490f666e1afb15b7362b406ed1cea246</td>
+</tr>
+<tr>
+<td style="text-align: center;">scph5502.bin</td>
+<td style="text-align: center;">PS1 EU BIOS - Required for EU games</td>
+<td style="text-align: center;">32736f17079d0b2b7024407c39bd3050</td>
+</tr>
+</tbody>
+</table>
+<p>As a replacement for any of the BIOS files mentioned above, it is also possible to use either of these BIOSes:</p>
+<ul>
+<li><code>PSXONPSP660.bin</code> (MD5: c53ca5908936d412331790f4426c6c33)</li>
+<li><code>ps1_rom.bin</code> (MD5: 81bbe60ba7a3d1cea1d48c14cbcc647b)</li>
+</ul>
+<p>The <code>PSXONPSP660.bin</code> BIOS comes from the PSP, and the <code>ps1_rom.bin</code> BIOS comes from the PS3, both are region-free.
+For Beetle PSX HW to recognize either of these BIOSes, you need to enable the &quot;Override BIOS&quot; option.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the Beetle PSX HW core have the following file extensions:</p>
+<ul>
+<li>.cue</li>
+<li>.toc</li>
+<li>.m3u</li>
+<li>.ccd</li>
+<li>.exe</li>
+<li>.pbp</li>
+<li>.chd</li>
+</ul>
+<p>RetroArch database(s) that are associated with the Beetle PSX HW core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Sony%20-%20PlayStation.rdb">Sony - PlayStation</a></li>
+</ul>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the Beetle PSX HW core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan *</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<p>* Overscan cropping available via Core Options instead of frontend settings</p>
+<h3 id="directories">Directories</h3>
+<p>The Beetle PSX HW core's library name is 'Beetle PSX HW'</p>
+<p>The Beetle PSX HW core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Save directory</strong></p>
+<ul>
+<li>Memory cards</li>
+</ul>
+<p><strong>Frontend's State directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.state#</td>
+<td style="text-align: center;">State</td>
+</tr>
+</tbody>
+</table>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The Beetle PSX HW core's core provided FPS is 59.826 for NTSC games and 49.761 for PAL games (non-interlaced rates) and is toggleable to 59.940 for NTSC games and 50.000 for PAL games (interlaced rates) through core options</li>
+<li>The Beetle PSX HW core's core provided sample rate is 44100 Hz</li>
+<li>The Beetle PSX HW core's base width is 320</li>
+<li>The Beetle PSX HW core's base height is 240</li>
+<li>The Beetle PSX HW core's max width is 700 when the 'Internal GPU resolution' is set to 1x. Raising the resolution past 1x will increase the max width</li>
+<li>The Beetle PSX HW core's max height is 576 when the 'Internal GPU resolution' is set to 1x. Raising the resolution past 1x will increase the max height</li>
+<li>The Beetle PSX HW core's core provided aspect ratio is automatically set based on core options</li>
+</ul>
+<h2 id="loading-content">Loading content</h2>
+<p>Beetle PSX HW needs a cue-sheet that points to an image file. A cue sheet, or cue file, is a metadata file which describes how the tracks of a CD or DVD are laid out.</p>
+<p>If you have e.g. <code>foo.bin</code>, you should create a text file and save it as <code>foo.cue</code>. Most PS1 games are single-track, so the cue file contents should look like this:</p>
+<p><code>foobin.cue</code></p>
+<pre><code> FILE &quot;foo.bin&quot; BINARY
+  TRACK 01 MODE1/2352
+   INDEX 01 00:00:00
+</code></pre>
+<p>After that, you can load the <code>foo.cue</code> file in RetroArch with the Beetle PSX HW core.</p>
+<p>!!! attention
+Certain PS1 games are multi-track, so their .cue files might be more complicated.</p>
+<h3 id="playing-pal-copy-protected-games">Playing PAL copy protected games</h3>
+<p>PAL copy protected games need a SBI Subchannel file next to the bin/cue files in order to get past the copy protection.</p>
+<ul>
+<li>Ape Escape (Europe).bin</li>
+<li>Ape Escape (Europe).cue</li>
+<li><strong>Ape Escape (Europe).sbi</strong></li>
+</ul>
+<p>!!! warning
+For proper PAL game compatibility, the 'Skip BIOS' core option needs to be set to off.</p>
+<h3 id="multiple-disk-games">Multiple-disk games</h3>
+<p>If foo is a multiple-disk game, you should have .cue files for each one, e.g. <code>foo (Disc 1).cue</code>, <code>foo (Disc 2).cue</code>, <code>foo (Disc 3).cue</code>.</p>
+<p>To take advantage of Beetle PSW HW's Disk Control feature for disk swapping, an index file (a m3u file) should be made.</p>
+<p>Create a text file and save it as <code>foo.m3u</code>. Then enter your game's .cue files on it. The m3u file contents should look something like this:</p>
+<p><code>foo.m3u</code></p>
+<pre><code>foo (Disc 1).cue
+foo (Disc 2).cue
+foo (Disc 3).cue
+</code></pre>
+<p>After that, you can load the <code>foo.m3u</code> file in RetroArch with the Beetle PSX HW core.</p>
+<p>Here's a m3u example done with Valkryie Profile</p>
+<p><img src="../image/core/beetle_psx_hw/m3u.png" alt="" /></p>
+<p>!!! attention
+Adding multi-track games to a RetroArch playlist is recommended. (Manually add an entry a playlist that points to <code>foo.m3u</code>)</p>
+<h4 id="swapping-disks">Swapping disks</h4>
+<p>Disks can be swapped through Quick Menu -&gt; Disk Control in RetroArch.</p>
+<p>If not using .m3u files, .cue files must be manually selected via the Load New Disk legacy feature.</p>
+<p>If using .m3u files, disks can be swapped by selecting Eject Disk, changing the Current Disk Index to your desired disk, and finally selecting Insert Disk.</p>
+<h3 id="compressed-content">Compressed content</h3>
+<p>Alternatively to using cue sheets with .bin/.iso files, you can convert your games to .pbp (Playstation Portable update file) or .chd (MAME Compressed Hunks of Data) to reduce file sizes and neaten up your game folder.</p>
+<h4 id="pbp">PBP</h4>
+<p>A recommended .pbp convert tool is PSX2PSP.</p>
+<p>If converting a multiple-disk game, all disks should be added to the same .pbp file, rather than making a .m3u file for them.</p>
+<p>Most conversion tools will want a single .bin file for each disk. If your game uses multiple .bin files (tracks) per disk, you will have to mount the cue sheet to a virtual drive and re-burn the images onto a single track before conversion.</p>
+<p>For multi-disk PAL copy-protected games, change the sbi file syntax from <code>[filename].sbi</code> to <code>[filename]_[disc_number].sbi</code></p>
+<ul>
+<li>Final Fantasy IX (Germany).pbp</li>
+<li><strong>Final Fantasy IX (Germany)_1.sbi</strong></li>
+<li><strong>Final Fantasy IX (Germany)_2.sbi</strong></li>
+<li><strong>Final Fantasy IX (Germany)_3.sbi</strong></li>
+<li><strong>Final Fantasy IX (Germany)_4.sbi</strong></li>
+</ul>
+<p>!!! attention
+RetroArch does not currently have .pbp database due to variability in users' conversion methods. All .pbp games will have to be added to playlists manually.</p>
+<h4 id="chd">CHD</h4>
+<p>To convert content to CHD format, use the chdman tool found inside the latest MAME distribution and point it to a .cue file, like so:</p>
+<pre><code>chdman createcd --input foo.cue --output foo.chd
+</code></pre>
+<p>Note that the tool currrently does not integrate .sbi files into the .chd, so these must be placed alongside the resulting .chd file in order to properly play games with LibCrypt protection.</p>
+<p>!!! attention
+For multi-disc content, make an .m3u file that lists all the .chd files instead of .cue files. Like the PBP files, content must be added to playlists manually.</p>
+<h2 id="texture-replacements-vulkan-only">Texture replacements (Vulkan only)</h2>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/rvRcawBqsH4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>To use a textures pack you'll have to extract the textures in a <code>[game_filename]-texture-replacements/</code> folder inside your game directory, where &quot;[game_filename]&quot; matches the actual filename of the file you're using to load the game.</p>
+<p>Here's an example with Suikoden II:</p>
+<pre><code>Suikoden II (USA).bin
+Suikoden II (USA).cue
+Suikoden II (USA)-texture-replacements/
+</code></pre>
+<p>Another example with Chrono Cross, a multi-discs game:</p>
+<pre><code>Chrono Cross (USA) (Disc 1).bin
+Chrono Cross (USA) (Disc 1).cue
+Chrono Cross (USA) (Disc 2).bin
+Chrono Cross (USA) (Disc 2).cue
+Chrono Cross (USA).m3u
+Chrono Cross (USA)-texture-replacements/
+</code></pre>
+<p>For multi-discs games you will be loading the game with the .m3u (if you followed the <a href="#multiple-disk-games">'Multiple-disk games'</a> section properly) so the textures folder name has to match the .m3u filename.</p>
+<p>!!! Tips
+If you still can't see any difference with your folder set up properly:</p>
+<pre><code>- The .png files need to be inside `[game_filename]-texture-replacements/` directly, not in another subfolder and not inside a .zip file!
+- Both `Track Textures` and `Replace Textures` core options have to be enabled.
+- `Internal GPU Resolution` core option should be set to anything higher than '1x (Native)' and `Supersampling (Downsample to Native Resolution)` core option should be disabled, or you probably won't notice any difference at such low resolution.
+- Custom textures may not be applied directly when loading a save state, in this case you may have to trigger a scene change ingame (leaving or entering a new room for example) to force the textures to &quot;refresh&quot;.
+</code></pre>
+<h2 id="saves">Saves</h2>
+<p>For game savedata storage, the PSX console used memory cards. The PSX console had two slots for memory cards.</p>
+<p>In this doc, the first memory card slot will be referred to as 'Memcard slot 0' and the second slot will be referred to as 'Memcard slot 1'.</p>
+<p>For memory card functionality and usage, the Beetle PSX HW core will either use the Libretro savedata format or the Mednafen savedata format.</p>
+<center>
+<table>
+<thead>
+<tr>
+<th>Libretro savedata format</th>
+<th>Mednafen savedata format</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gamename.srm</td>
+<td>gamename.slot#.mcr</td>
+</tr>
+</tbody>
+</table>
+</center>
+<p><strong>By default</strong>, the Beetle PSX HW core will use Libretro's savedata format for Memcard slot 0 and Mednafen's savedata format for Memcard slot 1.</p>
+<center>
+<table>
+<thead>
+<tr>
+<th>Memcard slot 0</th>
+<th>Memcard slot 1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gamename.srm</td>
+<td>gamename.1.mcr</td>
+</tr>
+</tbody>
+</table>
+</center>
+<p>!!! attention
+Memory card behavior can be controlled with the following <a href="#core-options">core options</a> (Memcard 0 method, Enable memory card 1, Shared memcards).</p>
+<p><strong>By default</strong>, the filenames of the Memcard savedata will match the loaded cue or m3u or pbp filename, like this:</p>
+<ul>
+<li><p>Loaded content: Breath of Fire III (USA).cue</p>
+</li>
+<li><p><strong>Memcard slot 0: Breath of Fire III (USA).srm</strong></p>
+</li>
+<li><p><strong>Memcard slot 1: Breath of Fire III (USA).1.mcr</strong></p>
+</li>
+</ul>
+<p>or</p>
+<ul>
+<li><p>Loaded content: Final Fantasy VII (USA).m3u</p>
+</li>
+<li><p><strong>Memcard slot 0: Final Fantasy VII (USA).srm</strong></p>
+</li>
+<li><p><strong>Memcard slot 1: Final Fantasy VII (USA).1.mcr</strong></p>
+</li>
+</ul>
+<p>or</p>
+<ul>
+<li><p>Loaded content: Wild Arms 2 (USA).pbp</p>
+</li>
+<li><p><strong>Memcard slot 0: `Wild Arms 2 (USA).srm</strong></p>
+</li>
+<li><p><strong>Memcard slot 1: `Wild Arms 2 (USA).1.mcr</strong></p>
+</li>
+</ul>
+<p>!!! attention
+To import your old memory cards from other emulators, you need to rename them to either the Libretro (.srm) savedata format or the Mednafen (.mcr) savedata format. The Libretro (.srm) savedata format, when used with Beetle PSX, is internally identical to the Mednafen PSX (.mcr) savedata format, and can be converted between one another via renaming.</p>
+<p>!!! warning
+Keep in mind that save states also include the state of the memory card; carelessly loading an old save state will <strong>OVEWRITE</strong> the memory card, potentially resulting in lost saved games. <strong>You can set the 'Don't overwrite SaveRAM on loading savestate' option in RetroArch's Saving settings to On to prevent this.</strong></p>
+<h2 id="core-options">Core options</h2>
+<p>The Beetle PSX HW core has the following options that can be tweaked from your frontend's core options menu or manually changed via core configuration files. Options are listed below in the following format:</p>
+<p><code>Option Name [option_key] (setting1/setting2/...)</code></p>
+<p>To manually change an option, search for that option's key in the core configuration file you want to edit and set it to your desired setting value, enclosed in quotations. For example, if you had set the Internal Color Depth to 32bpp and wanted to revert it to 16bpp, you would change <code>beetle_psx_hw_depth = &quot;32bpp&quot;</code> to <code>beetle_psx_hw_depth = &quot;16bpp(native)&quot;</code>. Manually editing core configuration files is typically unnecessary unless your frontend does not have a method for toggling options.</p>
+<p>The default setting for each option will be highlighted in bold. Settings with (Restart) means that core has to be shut down for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Renderer (Restart)</strong> [beetle_psx_hw_renderer] (<strong>hardware</strong>/hardware_gl/hardware_vk/software)</p>
+<p>Chooses which video renderer will be used.</p>
+<p>Software is the most accurate but generally has higher performance requirements when running at internal GPU resolutions higher than 1x. The software renderer also lacks certain enhancements exclusive to the hardware renderer.</p>
+<p>Hardware is less accurate but may have improved performance over the software renderer at internal GPU resolutions of 2x and above on capable hardware. The hardware renderers also allow various graphical enhancements such as higher color depth, texture filtering, and PGXP. Choosing <strong>hardware</strong> will automatically select either the Vulkan or OpenGL renderer depending on the current libretro frontend video driver. If the provided frontend video driver is not Vulkan or OpenGL (3.3 or higher) then the core will fall back to the software renderer at 1x internal resolution.</p>
+<p><strong>hardware_gl</strong> and <strong>hardware_vk</strong> allow the core to ignore the frontend preferred hardware context and attempt to force a specific hardware renderer. If the core is unable to do so, it will fall back to the software renderer at 1x internal resolution. The ability to force specific renderers may not be available on all platforms.</p>
+<p>The hardware renderers have known issues -- check the compatibility section below or the core's <a href="https://github.com/libretro/beetle-psx-libretro/issues">issue tracker</a> for more details.</p>
+  <!--Also important to keep in mind is shader support. The Vulkan renderer supports Slang shaders, while the OpenGL renderer supports GLSL shaders.-->
+</li>
+<li><p><strong>Software Framebuffer</strong> [beetle_psx_hw_renderer_software_fb] (<strong>enabled</strong>/disabled)</p>
+<p>OpenGL/Vulkan Only</p>
+<p>Allows accurate emulation of framebuffer readback effects (e.g. motion blur, FF7 battle swirl, etc.) when using the hardware renderer. If disabled, certain operations are omitted or rendered on the GPU, which can improve performance but may cause graphical errors or <a href="https://github.com/libretro/beetle-psx-libretro/pull/469#issue-238935899">cause stuttering</a>.</p>
+<p>Leave enabled if unsure.</p>
+</li>
+<li><p><strong>Internal GPU Resolution</strong> [beetle_psx_hw_internal_resolution] (<strong>1x(native)</strong>/2x/4x/8x/16x)</p>
+<p>Selects internal resolution multiplier.</p>
+<p>Resolutions higher than 1x(native) improve the fidelity of 3D models at the expense of increased performance requirements. 2D elements are generally unaffected by this setting from the core's perspective.</p>
+<p>??? note &quot;<em>Internal GPU Resolution - 1x</em>&quot;
+<img src="../image/core/beetle_psx_hw/gpu_1.png" alt="" /></p>
+<p>??? note &quot;<em>Internal GPU Resolution - 2x</em>&quot;
+<img src="../image/core/beetle_psx_hw/gpu_2.png" alt="" /></p>
+</li>
+<li><p><strong>Internal Color Depth</strong> [beetle_psx_hw_depth] (<strong>16bpp(native)</strong>/32bpp)</p>
+<p>OpenGL Only</p>
+<p>The PSX has a limited color depth of 16 bits per pixel (bpp). This leads to banding effects (uneven color gradients) which are smoothed out by original hardware through the use of a dithering pattern. The '16bpp(native)' setting emulates the original 16bpp color depth. Selecting '32 bpp' increases the color depth such that smoother gradients can be achieved without dithering, allowing for a cleaner undithered output.</p>
+<p>Note the visible horizontal bands on an undithered 16bpp image compared to the same undithered image at 32bpp:</p>
+<p>??? note &quot;<em>Undithered 16bpp</em>&quot;
+<img src="../image/core/beetle_psx_hw/16bpp_no-dither.png" alt="" /></p>
+<p>??? note &quot;<em>Undithered 32bpp</em>&quot;
+<img src="../image/core/beetle_psx_hw/32bpp_no-dither.png" alt="" /></p>
+<p>This option should be toggled in conjunction with the Dithering Pattern option.</p>
+<p>The software renderer is locked to 16bpp while the Vulkan renderer will automatically set render at 16bpp if dithering is enabled and 32bpp if dithering is disabled.</p>
+</li>
+<li><p><strong>Dithering Pattern</strong> [beetle_psx_hw_dither_mode] (<strong>1x(native)</strong>/internal resolution/disabled)</p>
+<p>Select dithering pattern.</p>
+<p>Dithering is used by the original PSX hardware to combat the color banding visible due to 16bpp color depth. This option is less necessary and can be disabled if the Internal Color Depth option is set to '32bpp'.</p>
+<p>'1x(native)' emulates original hardware but can look grainy at higher internal resolutions.</p>
+<p>'internal resolution' reduces graininess by allowing for finer dithering at higher Internal GPU Resolutions, but has limited effectiveness in combating color banding if the Internal GPU Resolution is set too high. (Note in the examples below that the 'internal resolution' option is less grainy but has more visible banding than '1x(native)' at 4x Internal GPU Resolution)</p>
+<p>'disabled' is useful to pair with '32bpp' Internal Color Depth where banding is far less visible or for users who otherwise wish to turn off dithering regardless of color banding at 16bpp.</p>
+<p>??? note &quot;<em>Dithering Pattern - 1x Native (16bpp 4x IR)</em>&quot;
+<img src="../image/core/beetle_psx_hw/dither_native.png" alt="" /></p>
+<p>??? note &quot;<em>Dithering Pattern - Internal Resolution (16bpp 4x IR)</em>&quot;
+<img src="../image/core/beetle_psx_hw/dither_internalres.png" alt="" /></p>
+<p>??? note &quot;<em>Dithering Pattern - Disabled (16bpp 4x IR)</em>&quot;
+<img src="../image/core/beetle_psx_hw/dither_off.png" alt="" /></p>
+  <!--Vulkan occasionally exhibits issues with this setting when it is turned on.-->
+</li>
+<li><p><strong>Texture Filtering</strong> [beetle_psx_hw_filter] (<strong>nearest</strong>/SABR/xBR/bilinear/3-point/JINC2)</p>
+<p>OpenGL/Vulkan Only</p>
+<p>Choose per-texture filtering method.</p>
+<p>Texture filters can modify or enhance the appearance of 3D polygon textures and 2D elements. 'Nearest' emulates original hardware. 'Bilinear' and '3-Point' are smoothing filters, which reduce pixelation via blurring. 'SABR', 'xBR' and 'JINC2' are upscaling filters, which improve texture fidelity/sharpness at the expense of increased performance requirements.</p>
+<p>??? note &quot;<em>nearest</em>&quot;
+<img src="../image/core/beetle_psx_hw/nearest.png" alt="" /></p>
+<p>??? note &quot;<em>SABR</em>&quot;
+<img src="../image/core/beetle_psx_hw/sabr.png" alt="" /></p>
+<p>??? note &quot;<em>xBR</em>&quot;
+<img src="../image/core/beetle_psx_hw/xbr.png" alt="" /></p>
+<p>??? note &quot;<em>bilinear</em>&quot;
+<img src="../image/core/beetle_psx_hw/bilinear.png" alt="" /></p>
+<p>??? note &quot;<em>3-point</em>&quot;
+<img src="../image/core/beetle_psx_hw/3point.png" alt="" /></p>
+<p>??? note &quot;<em>JINC2</em>&quot;
+<img src="../image/core/beetle_psx_hw/jinc2.png" alt="" /></p>
+</li>
+<li><p><strong>Adaptive Smoothing</strong> [beetle_psx_hw_adaptive_smoothing] (<strong>disabled</strong>/enabled)</p>
+<p>Vulkan Only</p>
+<p>Enable smoothing of 2D artwork and UI elements without blurring 3D rendered objects.</p>
+<p>??? note &quot;<em>Adaptive smoothing - Off</em>&quot;
+<img src="../image/core/beetle_psx_hw/smooth_off.png" alt="" /></p>
+<p>??? note &quot;<em>Adaptive smoothing - On</em>&quot;
+<img src="../image/core/beetle_psx_hw/smooth_on.png" alt="" /></p>
+</li>
+<li><p><strong>Supersampling (Downsample to Native Resolution)</strong> [beetle_psx_hw_super_sampling] (<strong>disabled</strong>/enabled)</p>
+<p>Vulkan Only</p>
+<p>When enabled, renders content at the specified Internal GPU Resolution then downsamples the resulting image to native 240p before shaders and resizing are applied by the frontend. Allows games to be displayed at native (low) resolution but with clean anti-aliased 3D objects. Produces best results when applied to titles that mix 2D and 3D elements such as 3D characters on pre-rendered backgrounds. This option is not to be confused with implicit supersampling provided by rendering at a higher Internal GPU Resolution multiplier then downsampling to the frontend's window scale.</p>
+<p>??? note &quot;<em>Supersampling from 1x Internal Resolution with CRT Royale Shader</em>&quot;
+<img src="../image/core/beetle_psx_hw/ssaa1x_crt-royale.png" alt="" /></p>
+<p>??? note &quot;<em>Supersampling from 8x Internal Resolution with CRT Royale Shader</em>&quot;
+<img src="../image/core/beetle_psx_hw/ssaa8x_crt-royale.png" alt="" /></p>
+</li>
+<li><p><strong>Multi-Sampled Anti Aliasing</strong> [beetle_psx_hw_msaa] (<strong>1x</strong>/2x/4x/8x/16x)</p>
+<p>Vulkan Only</p>
+<p>Apply multi-sample anti-aliasing (MSAA) to rendered content. This is a type of spatial anti-aliasing similar to supersampling, but of somewhat lower quality and with (correspondingly) lower performance requirements. Improves the appearance of 3D objects. MSAA may be <a href="https://github.com/libretro/beetle-psx-libretro/pull/469#issue-238935899">clamped internally</a> at a lower value than what it is set at when running at higher Internal GPU Resolutions.</p>
+</li>
+<li><p><strong>MDEC YUV Chroma Filter</strong> [beetle_psx_hw_mdec_yuv] (<strong>disabled</strong>/enabled)</p>
+<p>Vulkan Only</p>
+<p>Improves the quality of FMV playblack by smoothing the chroma channel when converting YcBcR to RGB. This reduces macroblocking artefacts (squares/jagged edges) as shown below:</p>
+<p>??? note &quot;<em>MDEC YUV Chroma Filter On/Off Comparison</em>&quot;
+<img src="../image/core/beetle_psx_hw/mdec-yuv-filter.png" alt="" /></p>
+</li>
+<li><p><strong>Track Textures</strong> [beetle_psx_hw_track_textures] (<strong>disabled</strong>/enabled)</p>
+<p>Vulkan Only</p>
+<p>Tracks texture to enable texture dumping/replacing.</p>
+</li>
+<li><p><strong>Dump Textures</strong> [beetle_psx_hw_dump_textures] (<strong>disabled</strong>/enabled)</p>
+<p>Vulkan Only</p>
+<p>Dumps textures when they are accessed. To dump textures properly, it is necessary to create a folder named <cd>-texture-dump/ in the same folder as the game disk.</p>
+</li>
+<li><p><strong>Replace Textures</strong> [beetle_psx_hw_replace_textures] (<strong>disabled</strong>/enabled)</p>
+<p>Vulkan Only</p>
+<p>Replaces textures with files given in the folder <cd>-texture-replacements/ with the same name as dumped textures.</p>
+<p><strong>The replacement texture has to be a PNG file with bit depth of a maximum of 8 and the resolution must be a multiple of 2 based on the original texture.</strong></p>
+</li>
+<li><p><strong>Wireframe Mode</strong> [beetle_psx_hw_wireframe] (<strong>disabled</strong>/enabled)</p>
+<p>OpenGL Only</p>
+<p>Renders 3D polygons models in outline form without textures or shading.</p>
+<p><strong>For debug use only. Leave off for normal usage.</strong></p>
+<p>??? note &quot;<em>Wireframe mode - On</em>&quot;
+<img src="../image/core/beetle_psx_hw/wire.png" alt="" /></p>
+</li>
+<li><p><strong>Display Full VRAM</strong> [beetle_psx_hw_display_vram] (<strong>disabled</strong>/enabled)</p>
+<p>OpenGL/Vulkan Only</p>
+<p>Visualizes full contents of the emulated PSX VRAM.</p>
+<p><strong>For debug use only. Leave off for normal usage.</strong></p>
+<p>??? note &quot;<em>Display full VRAM - On</em>&quot;
+<img src="../image/core/beetle_psx_hw/vram.png" alt="" /></p>
+</li>
+<li><p><strong>PGXP Operation Mode</strong> [beetle_psx_hw_pgxp_mode] (<strong>disabled</strong>/memory only/memory + CPU)</p>
+<p>Enabling the Parallel/Precision Geometry Transform Pipeline (PGXP) allows polygons to be rendered with subpixel precision, eliminating or otherwise diminishing the polygon jitter/wobble visible on original PSX hardware. This distortion results from original hardware using fixed point mathematics when rendering 3D models, thus rounding polygon vertices to the nearest integer pixel.</p>
+<p>'disabled' emulates original hardware behavior.</p>
+<p>'memory only' mode enables subpixel precision at the cost of increased performance requirements with only minor compatibility issues. 'memory + CPU' mode can further reduce jitter but is highly demanding and is known to cause geometry errors. 'memory only' is recommended for best compatibility.</p>
+<p><a href="https://www.youtube.com/watch?v=EYCpd_1lPUc">https://www.youtube.com/watch?v=EYCpd_1lPUc</a></p>
+</li>
+<li><p><strong>PGXP Vertex Cache</strong> [beetle_psx_hw_pgxp_vertex] (<strong>disabled</strong>/enabled)</p>
+<p>OpenGL/Vulkan Only</p>
+<p>Allows PGXP-enhanced polygon vertex coordinates to be cached when PGXP Operation Mode is also enabled. This option improves performance by allowing subpixel-accurate values to be used across successive polygon draws instead of rebasing from native PSX data each time. Allows for better object alignment and may reduce visible seams, but false positives when querying the cache produces graphical glitches in most games. Recommended to leave disabled.</p>
+</li>
+<li><p><strong>PGXP Perspective Correct Texturing</strong> [beetle_psx_hw_pgxp_texture] (<strong>disabled</strong>/enabled)</p>
+<p>OpenGL/Vulkan Only</p>
+<p>Allows for perspective correct texturing when PGXP Operation Mode is also enabled. Original PSX hardware renders 3D objects with affine texture mapping where texture coordinates are interpolated between polygon vertices in 2D screen space with no consideration of object depth. This causes significant position-dependent distortion and/or blending of textures such as warped lines across floors and walls. PGXP Perspective Correct Texturing accounts correctly for vertex positions in 3D space thereby eliminating this texture distortion at the expense of increased performance requirements.</p>
+<p>??? note &quot;<em>PGXP Texturing - Off</em>&quot;
+<img src="../image/core/beetle_psx_hw/pgxp_texture_off.jpg" alt="" /></p>
+<p>??? note &quot;<em>PGXP Texturing - On</em>&quot;
+<img src="../image/core/beetle_psx_hw/pgxp_texture_on.jpg" alt="" /></p>
+</li>
+<li><p><strong>Display Internal FPS</strong> [beetle_psx_hw_display_internal_fps] (<strong>disabled</strong>/enabled)</p>
+<p>Displays the frame rate that the emulated PSX is drawing at. Requires onscreen notifications to be enabled in the libretro frontend. Reported values may be inaccurate.</p>
+<p>??? note &quot;<em>Display internal FPS - On</em>&quot;
+<img src="../image/core/beetle_psx_hw/fps.png" alt="" /></p>
+</li>
+<li><p><strong>Line-to-Quad Hack</strong> [beetle_psx_hw_line_render] (<strong>default</strong>/aggressive/disabled)</p>
+<p>Certain games employ a special technique for drawing horizontal lines, which involves stretching single-pixel-high triangles across the screen in a manner that causes the PSX hardware to rasterise them as a row of pixels. Examples include Doom/Hexen, and the water effects in Soul Blade. When running such games with an Internal GPU Resolution higher than native, these triangles no longer resolve as a line, causing gaps to appear in the output image.</p>
+<p>Setting 'Line-to-Quad Hack' to 'Default' solves this issue by detecting small triangles and converting them as required.</p>
+<p>The 'Aggressive' option will likely introduce visual glitches due to false positives, but is needed for correct rendering of some 'difficult' titles (e.g. Dark Forces, Duke Nukem).</p>
+</li>
+<li><p><strong>Frame Duping (Speedup)</strong> [beetle_psx_hw_frame_duping] (<strong>disabled</strong>/enabled)
+Software Renderer and Vulkan only</p>
+<p>When enabled, provides a small performance increase by redrawing/reusing the last rendered frame (instead of presenting a new one) if the content of the current frame is unchanged based on the internal fps heuristic. May cause inaccurate behavior or lost animation frames, so it is not recommended to use this unless necessary.</p>
+</li>
+<li><p><strong>CPU Dynarec</strong> [beetle_psx_hw_cpu_dynarec] (<strong>disabled</strong>/execute/execute_once/run_interpreter)</p>
+<p>Dynamically recompile CPU instructions to native instructions. Much faster than interpreter, but CPU timing is less accurate, and may have bugs.</p>
+</li>
+<li><p><strong>Dynarec Code Invalidation</strong> [beetle_psx_hw_dynarec_invalidate] (<strong>full</strong>/dma)</p>
+<p>Some games require Full invalidation, some require DMA Only. This option has no effect when CPU Dynarec is not enabled.</p>
+</li>
+<li><p><strong>Dynarec DMA/GPU Event Cycles</strong> [beetle_psx_hw_dynarec_eventcycles] (<strong>128</strong>/256/384/512/640/768/896/1024)</p>
+<p>Max cycles run by CPU before a GPU or DMA Update is checked, higher number will be faster, has much less impact on beetle interpreter than dynarec. Leave at 128 for default Beetle interpreter behavior when CPU Dynarec is not enabled.</p>
+</li>
+<li><p><strong>CPU Frequency Scaling (Overclock)</strong> [beetle_psx_hw_cpu_freq_scale] (50% to 750% in increments of 10%. Default: <strong>100%(native)</strong>)</p>
+<p>Enable overclocking (or underclocking) of the emulated PSX's CPU. The default frequency of the MIPS R3000A-compatible 32-bit RISC CPU is 33.8688 MHz; running at higher frequencies can eliminate slowdown and improve frame rates in certain games at the expense of increased performance requirements.</p>
+<p>Note that some games have an internal frame rate limiter and may not benefit from overclocking. It is generally not recommended to adjust this setting as it causes many games or portions of them to run at unintended speeds. This can lead to audio and video desynchronization, among other issues.</p>
+<p>Leave at default for most games.</p>
+</li>
+<li><p><strong>GTE Overclock</strong> [beetle_psx_hw_gte_overclock] (<strong>disabled</strong>/enabled)</p>
+<p>When enabled, reduces the latency of operations involving the emulated PSX's Geometry Transform Engine (CPU coprocessor used for calculations related to 3D projection - i.e. all 3D graphics) to 1 cycle per instruction and additionally eliminates all memory access or cache fetch latency. For games that make heavy use of the GTE, this can greatly improve frame rate (and frame time) stability at the expense of increased performance requirements.</p>
+<p>Currently unstable -- leave off if unsure.</p>
+</li>
+<li><p><strong>GPU Rasterizer Overclock</strong> [beetle_psx_hw_gpu_overclock] (<strong>1x(native)</strong>/2x/4x/8x/16x/32x)</p>
+<p>Enables overclocking of the 2D rasterizer contained within the emulated PSX's GPU. Does not improve 3D rendering, and in general has little effect.</p>
+</li>
+<li><p><strong>Skip BIOS</strong> [beetle_psx_hw_skip_bios] (<strong>disabled</strong>/enabled)</p>
+<p>When enabled, skips the PSX BIOS animation normally displayed with starting content.</p>
+<p><strong>Enabling this option will cause compatibility issues with a small minority of games (Saga Frontier, PAL copy protected games, etc).</strong></p>
+<p>??? note &quot;<em>Skip BIOS - Off</em>&quot;
+<img src="../image/core/beetle_psx_hw/bios.png" alt="" /></p>
+</li>
+<li><p><strong>Core-Reported FPS Timing</strong> [beetle_psx_hw_core_timing_fps] (<strong>force_progressive</strong>/force_interlaced/auto_toggle)</p>
+<p>Sets FPS timing that the core will report to the frontend. Automatic toggling will allow the core to switch between reporting progressive and interlaced rates, but may cause frontend video/audio driver reinits. Progressive timings are 59.826 for NTSC content and 49.761 for PAL content, and interlaced timings are 59.940 for NTSC content and 50.000 for PAL content.</p>
+</li>
+<li><p><strong>Core Aspect Ratio</strong> [beetle_psx_hw_aspect_ratio] (<strong>corrected</strong>/uncorrected/4:3)</p>
+<p>Set core provided aspect ratio. This setting is ignored when the Widescreen Mode Hack or Display Full VRAM options are enabled. &quot;4:3&quot; forces the core aspect ratio to 4:3 without taking horizontal overscan cropping or visible scanlines into account. The &quot;4:3&quot; setting should not be used and is only provided as a legacy feature for users desiring old incorrect behavior from the core.</p>
+</li>
+<li><p><strong>Widescreen Mode Hack</strong> [beetle_psx_hw_widescreen_hack] (<strong>disabled</strong>/enabled)</p>
+<p>Forces content to be rendered with an aspect ratio of 16:9. Produces best results with fully 3D games. Can cause graphical glitches or alignment/stretching issues in games that mix 3D and 2D elements. Leave off for most games.</p>
+<p>??? note &quot;<em>Widescreen mode hack - Off</em>&quot;
+<img src="../image/core/beetle_psx_hw/wide_off.png" alt="" /></p>
+<p>??? note &quot;<em>Widescreen mode hack - On</em>&quot;
+<img src="../image/core/beetle_psx_hw/wide_on.png" alt="" /></p>
+</li>
+<li><p><strong>Crop Horizontal Overscan</strong> [beetle_psx_hw_crop_overscan] (<strong>enabled</strong>/disabled)</p>
+<p>By default, Beetle PSX includes horizontal padding (black bars or 'pillarboxes' on either side of the screen) to emulate the same black bars generated in analog video output by real PSX hardware. This horizontal padding can contain garbage pixels that are generated when the game's width mode is smaller than the display area width in the emulated GPU registers. Enabling 'Crop Horizontal Overscan' will remove this potentially glitchy horizontal overscan region.</p>
+<p>Not all games will benefit from enabling this setting as shown in the examples below.</p>
+<p>??? note &quot;<em>Crop Overscan - Off (Game with Garbage Pixels)</em>&quot;
+<img src="../image/core/beetle_psx_hw/crop_off.png" alt="" /></p>
+<p>??? note &quot;<em>Crop Overscan - On (Game with Garbage Pixels)</em>&quot;
+<img src="../image/core/beetle_psx_hw/crop_on.png" alt="" /></p>
+<p>??? note &quot;<em>Crop Overscan - Off (Game with No Issues)</em>&quot;
+<img src="../image/core/beetle_psx_hw/scan_off.png" alt="" /></p>
+<p>??? note &quot;<em>Crop Overscan - On (Game with No Issues)</em>&quot;
+<img src="../image/core/beetle_psx_hw/scan_on.png" alt="" /></p>
+<p>This option does not affect vertical overscan. Vertical overscan can be cropped using the Initial/Last Scanline core options.</p>
+</li>
+<li><p><strong>Additional Cropping</strong> [beetle_psx_hw_image_crop] (<strong>disabled</strong>/1px/2px/3px/4px/5px/6px/7px/8px)</p>
+<p>Software Renderer Only</p>
+<p>When 'Crop Horizontal Overscan' is enabled, this option further reduces the width of the cropped image by the specified number of pixels.</p>
+<p>Note: This can have unintended consequences. While the absolute width is reduced, the resultant video is still scaled to the currently set aspect ratio. Enabling 'Additional Cropping' may therefore cause horizontal stretching.</p>
+</li>
+<li><p><strong>Offset Cropped Image</strong> [beetle_psx_hw_image_offset] (<strong>disabled</strong>/-4px/-3px/-2px/-1px/+1px/+2px/+3px/+4px)</p>
+<p>Software Renderer Only</p>
+<p>When 'Crop Horizontal Overscan' is enabled, allows the resultant cropped image to be offset horizontally to the right (positive) or left (negative) by the specified number of pixels. May be used to correct alignment issues.</p>
+</li>
+<li><p><strong>Horizontal Image Offset (GPU Cycles)</strong> [beetle_psx_hw_image_offset_cycles] (-24 to +24 in increments of 1. Default: <strong>0</strong>)</p>
+<p>OpenGL/Vulkan Only</p>
+<p>Horizontally offsets the outputted image by the specified number of GPU timing cycles. Currently only for the hardware renderers and functions like 'Offset Cropped Image', but at a finer granularity and does not require 'Crop Horizontal Overscan' to be enabled for this option to have an effect.</p>
+</li>
+<li><p><strong>Initial Scanline - NTSC</strong> [beetle_psx_hw_initial_scanline] (0 to 40 in increments of 1. Default: <strong>0</strong>)</p>
+<p>Selects the first displayed scanline when running NTSC content. Setting a value greater than 0 will reduce the height of output images by cropping pixels from the topmost edge. May be used to counteract letterboxing built in to some games.</p>
+</li>
+<li><p><strong>Last Scanline - NTSC</strong> [beetle_psx_hw_last_scanline] (210 to 239 in increments of 1. Default: <strong>239</strong>)</p>
+<p>Selects the last displayed scanline when running NTSC content. Setting a value less than 239 will reduce the height of output images by cropping pixels from the bottommost edge. May be used to counteract letterboxing built in to some games.</p>
+</li>
+<li><p><strong>Initial Scanline - PAL</strong> [beetle_psx_hw_initial_scanline_pal] (0 to 40 in increments of 1. Default: <strong>0</strong>)</p>
+<p>Selects the first displayed scanline when running PAL content. Setting a value greater than 0 will reduce the height of output images by cropping pixels from the topmost edge. May be used to counteract letterboxing built in to some games.</p>
+</li>
+<li><p><strong>Last Scanline - PAL</strong> [beetle_psx_hw_last_scanline_pal] (230 to 287 in increments of 1. Default: <strong>287</strong>)</p>
+<p>Selects the last displayed scanline when running PAL content. Setting a value less than 287 will reduce the height of output images by cropping pixels from the bottommost edge. May be used to counteract letterboxing built in to some games.</p>
+</li>
+<li><p><strong>CD Access Method (Restart)</strong> [beetle_psx_hw_cd_access_method] (<strong>sync</strong>/async/precache)</p>
+<p>Selects method used to read data from content disc images.</p>
+<p>'sync' emulates original hardware.</p>
+<p>'async' can alleviate stuttering on devices with slow storage.</p>
+<p>'precache' loads the entire disc image into memory when starting content, incurring a small startup delay. This can improve in-game loading times and eliminate stutters due to emulated CD access, but may cause issues on systems with low memory.</p>
+</li>
+<li><p><strong>CD Loading Speed</strong> [beetle_psx_hw_cd_fastload] (<strong>2x(native)</strong>/4x/6x/8x/10x/12x/14x)</p>
+<p>Selects disk access speed multiplier.</p>
+<p>This speedhack can greatly reduce loading times at speeds higher than native but is known to introduce texture corruption errors, timing glitches, or loading screen softlocks in many titles. Some games will not work at all if loading speed is not set to native (e.g. Castlevania: Symphony of the Night).</p>
+<p><strong>Reduce multiplier value if experiencing loading issues, freezes, etc.</strong></p>
+</li>
+<li><p><strong>Memory Card 0 Method (Restart)</strong> [beetle_psx_hw_use_mednafen_memcard0_method] (<strong>libretro</strong>/mednafen)</p>
+<p>Choose the savedata format used for Memory Card 0. See the <a href="#saves">Saves section</a> above for an explanation regarding the libretro and mednafen formats. libretro is recommended, but mednafen may be used for compatibility with the standalone version of Mednafen. The libretro (.srm) and Mednafen (.mcr) formats are internally identical when used with Beetle PSX.</p>
+<p>Note: This option must be set to 'mednafen' if the Shared Memcards option is enabled.</p>
+</li>
+<li><p><strong>Enable Memory Card 1 (Restart)</strong> [beetle_psx_hw_enable_memcard1] (<strong>enabled</strong>/disabled)</p>
+<p>Selects whether to emulate a second memory card in Slot 1. When disabled, games can only access the memory card in Slot 0.</p>
+<p>Note: Some games require this option to be disabled for correct operation (e.g. Codename Tenka).</p>
+</li>
+<li><p><strong>Shared Memory Cards (Restart)</strong> [beetle_psx_hw_shared_memory_cards] (<strong>disabled</strong>/enabled)</p>
+<p>When enabled, games will save and load using the same memory card files. Note: The &quot;Memcard 0 Method&quot; option must be set to 'mednafen' for this option to function properly.</p>
+<p>When disabled, separate memory card files will be generated for each title.</p>
+<p>This option is useful for games in series such as Suikoden or Arc the Lad that check for save data from previous titles.</p>
+</li>
+</ul>
+<center>
+<table>
+<thead>
+<tr>
+<th>Memcard slot 0</th>
+<th>Memcard slot 1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mednafen_psx_libretro_shared.0.mcr</td>
+<td>mednafen_psx_libretro_shared.1.mcr</td>
+</tr>
+</tbody>
+</table>
+</center>
+<ul>
+<li><p><strong>Analog Self-Calibration</strong> [beetle_psx_hw_analog_calibration] (<strong>disabled</strong>/enabled)</p>
+<p>When enabled, monitors the max values reached by the input, using it as a calibration heuristic which then scales the analog coordinates sent to the emulator accordingly. For best results, rotate the sticks at max amplitude for the algorithm to get a good estimate of the scaling factor, otherwise it will adjust while playing.</p>
+<p>While modern analog sticks have circular logical ranges, older analog sticks such as those on the DualShock have logical ranges closer to squares and can report larger values at the intercardinal directions than modern analog sticks can. Games that expect these larger values will have issues controlling with modern analog sticks, which this option can solve by scaling modern analog stick values up.</p>
+</li>
+<li><p><strong>Enable DualShock Analog Mode Toggle</strong> [beetle_psx_hw_analog_toggle] (<strong>disabled</strong>/enabled)</p>
+<p>When the input device type is set to DualShock, this option determines whether or not the Analog Button on that device can be toggled.</p>
+<p>When this option is disabled, the DualShock input device will be locked in Analog Mode where the analog sticks are on.</p>
+<p>When this option is enabled, the DualShock input device can be toggled between Digital Mode (analog sticks off) and Analog Mode (analog sticks on) much like real hardware by pressing and holding START+SELECT+L1+L2+R1+R2 for one second in lieu of a dedicated Analog Button.</p>
+<p>Note: Some games may not respond to input when the DualShock is in Analog Mode. Either enable Analog Button Toggle and toggle the DualShock to Digital Mode or change your input device type to PlayStation Controller.</p>
+</li>
+<li><p><strong>Port 1: Multitap Enable</strong> [beetle_psx_hw_enable_multitap_port1] (<strong>disabled</strong>/enabled)</p>
+<p>Enables/Disables multitap functionality on port 1.</p>
+</li>
+<li><p><strong>Port 2: Multitap Enable</strong> [beetle_psx_hw_enable_multitap_port2] (<strong>disabled</strong>/enabled)</p>
+<p>Enables/Disables multitap functionality on port 2.</p>
+</li>
+<li><p><strong>Gun Input Mode</strong> [beetle_psx_hw_gun_input_mode] (<strong>lightgun</strong>/touchscreen)</p>
+<p>When device type is set to 'Guncon / G-Con 45' or 'Justifier', specify whether to use a mouse-controlled 'Light Gun' or 'Touchscreen' input.</p>
+</li>
+<li><p><strong>Gun Cursor</strong> [beetle_psx_hw_gun_cursor] (<strong>cross</strong>/dot/off)</p>
+<p>Selects the gun cursor to be displayed on screen while using the the 'Guncon / G-Con 45' and 'Justifier' input device types. When disabled, cross hairs are always hidden.</p>
+<p>??? note &quot;<em>Gun Cursor - Cross</em>&quot;
+<img src="../image/core/beetle_psx_hw/cursor_cross.png" alt="" /></p>
+<p>??? note &quot;<em>Gun Cursor - Dot</em>&quot;
+<img src="../image/core/beetle_psx_hw/cursor_dot.png" alt="" /></p>
+<p>??? note &quot;<em>Gun Cursor - Off</em>&quot;
+<img src="../image/core/beetle_psx_hw/cursor_off.png" alt="" /></p>
+</li>
+<li><p><strong>Mouse Sensitivity</strong> [beetle_psx_hw_mouse_sensitivity] (5% to 200% in increments of 5%. Default: <strong>100%</strong>)</p>
+<p>Configure the response of the 'Mouse' input device type.</p>
+</li>
+<li><p><strong>NegCon Twist Response</strong> [beetle_psx_hw_negcon_response] (<strong>linear</strong>/quadratic/cubic)</p>
+<p>Specifies the analog response when using a RetroPad left analog stick to simulate the 'twist' action of emulated <a href="https://en.wikipedia.org/wiki/NeGcon">neGcon Controllers</a>.</p>
+<p>'linear': Analog stick displacement is mapped linearly to negCon rotation angle.</p>
+<p>'quadratic': Analog stick displacement is mapped quadratically to negCon rotation angle. This allows for greater precision when making small movements with the analog stick.</p>
+<p>'cubic': Analog stick displacement is mapped cubically to negCon rotation angle. This allows for even greater precision when making small movements with the analog stick, but 'exaggerates' larger movements.</p>
+<p>!!! attention
+A linear response is not recommended when using standard gamepad devices. The negCon 'twist' mechanism is substantially different from conventional analog sticks; linear mapping over-amplifies small displacements of the stick, impairing fine control. A linear response is only appropriate when using racing wheel peripherals.</p>
+<pre><code>  In most cases, the 'quadratic' option should be selected. This provides effective compensation for the physical differences between real/emulated hardware and is the closest approximation of real hardware, enabling smooth/precise analog input.
+</code></pre>
+</li>
+<li><p><strong>NegCon Twist Deadzone</strong> [beetle_psx_hw_negcon_deadzone] (<strong>0%</strong>/5%/10%/15%/20%/25%/30%)</p>
+<p>Sets the deadzone of the RetroPad left analog stick when simulating the 'twist' action of emulated <a href="https://en.wikipedia.org/wiki/NeGcon">neGcon Controllers</a>. Used to eliminate drift/unwanted input.</p>
+<p>!!! attention
+Most (all?) negCon compatible titles provide in-game options for setting a 'twist' deadzone value. To avoid loss of precision, the in-game deadzone should <em>always</em> be set to zero. Any analog stick drift should instead be accounted for by configuring the 'NegCon Twist Deadzone' core option. This is particularly important when 'NegCon Twist Response' is set to 'quadratic' or 'cubic'.</p>
+<pre><code>  Xbox gamepads typically require a deadzone of 15-20%. Many Android-compatible bluetooth gamepads have an internal 'hardware' deadzone, allowing the deadzone value here to be set to 0%.
+
+  For convenience, it is recommended to make use of the 'Options → Analog Setting 1P' menu of [Gran Turismo](https://en.wikipedia.org/wiki/Gran_Turismo_(video_game)) when calibrating the 'NegCon Twist Deadzone'. This provides a clear and precise representation of 'real' controller input values.
+</code></pre>
+</li>
+</ul>
+<h2 id="user-1-8-device-types">User 1 - 8 device types</h2>
+<p>The Beetle PSX HW core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<ul>
+<li>None - Input disabled.</li>
+<li><a href="https://en.wikipedia.org/wiki/PlayStation_Controller"><strong>PlayStation Controller</strong></a> - Joypad - PlayStation Controller (SCPH-1080)</li>
+<li><a href="https://en.wikipedia.org/wiki/DualShock">DualShock</a> - Joypad - DualShock (SCPH-1200)</li>
+<li><a href="https://en.wikipedia.org/wiki/Dual_Analog_Controller">Analog Controller</a> - Joypad - PlayStation Dual Analog Controller(SCPH-1180)</li>
+<li><a href="https://en.wikipedia.org/wiki/PlayStation_Analog_Joystick">Analog Joystick</a> - Joypad - PlayStation Analog Joystick (SCPH-1110)</li>
+<li><a href="https://en.wikipedia.org/wiki/GunCon">Guncon / G-Con 45</a> - Lightgun - Namco Gun Controller (SLEH-00007)</li>
+<li><a href="https://en.wikipedia.org/wiki/Konami_Justifier">Justifier</a> - Lightgun -  Konami Justifier lightgun peripheral (SLEH-00005, SLUH-00017)</li>
+<li><a href="https://en.wikipedia.org/wiki/PlayStation_Mouse">Mouse</a> - Mouse - PlayStation Mouse (SCPH-1090, SCPH-1030)</li>
+<li><a href="https://en.wikipedia.org/wiki/NeGcon">neGcon</a> - Joypad - Namco third party controller</li>
+</ul>
+<h2 id="rumble-support">Rumble support</h2>
+<p>Rumble only works in the Beetle PSX HW core when</p>
+<ul>
+<li>The content being ran has rumble support.</li>
+<li>The frontend being used has rumble support.</li>
+<li>The joypad device being used has rumble support.</li>
+<li>The corresponding user's device type is set to <strong>DualShock</strong></li>
+</ul>
+<h2 id="multitap-support">Multitap support</h2>
+<p><a href="#core-options">'Port 1: Multitap enable' and 'Port 2: Multitap enable' core options</a>.</p>
+<h2 id="joypad">Joypad</h2>
+<p><img src="../image/controller/psx.png" alt="" /></p>
+<table>
+<thead>
+<tr>
+<th>User 1 - 8 input descriptors</th>
+<th>RetroPad Inputs</th>
+<th>PlayStation Controller Inputs</th>
+<th>DualShock Inputs</th>
+<th>Analog Controller Inputs</th>
+<th>Analog Joystick Inputs</th>
+<th>neGcon Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cross</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Cross.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Cross.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Cross.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Cross.png" alt="" /></td>
+<td>Analog button I</td>
+</tr>
+<tr>
+<td>Square</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Square.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Square.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Square.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Square.png" alt="" /></td>
+<td>Analog button II</td>
+</tr>
+<tr>
+<td>Select</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Select.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Select.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Select.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Select.png" alt="" /></td>
+<td></td>
+</tr>
+<tr>
+<td>Start</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Start.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Start.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Start.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Start.png" alt="" /></td>
+<td>Start</td>
+</tr>
+<tr>
+<td>D-Pad Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Dpad_Up.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Dpad_Up.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Dpad_Up.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Dpad_Up.png" alt="" /></td>
+<td>D-Pad Up</td>
+</tr>
+<tr>
+<td>D-Pad Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Dpad_Down.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Dpad_Down.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Dpad_Down.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Dpad_Down.png" alt="" /></td>
+<td>D-Pad Down</td>
+</tr>
+<tr>
+<td>D-Pad Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Dpad_Left.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Dpad_Left.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Dpad_Left.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Dpad_Left.png" alt="" /></td>
+<td>D-Pad Left</td>
+</tr>
+<tr>
+<td>D-Pad Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Dpad_Right.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Dpad_Right.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Dpad_Right.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Dpad_Right.png" alt="" /></td>
+<td>D-Pad Right</td>
+</tr>
+<tr>
+<td>Circle</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Circle.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Circle.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Circle.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Circle.png" alt="" /></td>
+<td>A</td>
+</tr>
+<tr>
+<td>Triangle</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Triangle.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Triangle.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Triangle.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Triangle.png" alt="" /></td>
+<td>B</td>
+</tr>
+<tr>
+<td>L1</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_L1.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_L1.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_L1.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_L1.png" alt="" /></td>
+<td>Left shoulder button (analog)</td>
+</tr>
+<tr>
+<td>R1</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_R1.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_R1.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_R1.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_R1.png" alt="" /></td>
+<td>Right shoulder button (digital)</td>
+</tr>
+<tr>
+<td>L2</td>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_L2.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_L2.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_L2.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_L2.png" alt="" /></td>
+<td>Analog button II</td>
+</tr>
+<tr>
+<td>R2</td>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_R2.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_R2.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_R2.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_R2.png" alt="" /></td>
+<td>Analog button I</td>
+</tr>
+<tr>
+<td>L3</td>
+<td><img src="../image/retropad/retro_l3.png" alt="" /></td>
+<td></td>
+<td><img src="../image/Button_Pack/PS3/PS3_L3.png" alt="" /></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>R3</td>
+<td><img src="../image/retropad/retro_r3.png" alt="" /></td>
+<td></td>
+<td><img src="../image/Button_Pack/PS3/PS3_R3.png" alt="" /></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Left Analog X</td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> X</td>
+<td></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Left_Stick.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Left_Stick.png" alt="" /></td>
+<td>Left Joystick X</td>
+<td>Twist</td>
+</tr>
+<tr>
+<td>Left Analog Y</td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> Y</td>
+<td></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Left_Stick.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Left_Stick.png" alt="" /></td>
+<td>Left Joystick Y</td>
+<td></td>
+</tr>
+<tr>
+<td>Right Analog X</td>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /> X</td>
+<td></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Right_Stick.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Right_Stick.png" alt="" /></td>
+<td>Right Joystick X</td>
+<td></td>
+</tr>
+<tr>
+<td>Right Analog Y</td>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /> Y</td>
+<td></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Right_Stick.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Right_Stick.png" alt="" /></td>
+<td>Right Joystick Y</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="mouse">Mouse</h2>
+<table>
+<thead>
+<tr>
+<th>RetroMouse Inputs</th>
+<th>Mouse Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retromouse/retro_mouse.png" alt="" /> Mouse Cursor</td>
+<td>Mouse Cursor</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_left.png" alt="" /> Mouse 1</td>
+<td>Mouse Left Button</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_right.png" alt="" /> Mouse 2</td>
+<td>Mouse Right Button</td>
+</tr>
+</tbody>
+</table>
+<h2 id="lightgun">Lightgun</h2>
+<table>
+<thead>
+<tr>
+<th>RetroLightgun Inputs</th>
+<th>Guncon / G-Con 45 Inputs</th>
+<th>Justifier Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retromouse/retro_mouse.png" alt="" /> Gun Crosshair</td>
+<td>Guncon / G-Con 45 Crosshair</td>
+<td>Justifier Crosshair</td>
+</tr>
+<tr>
+<td>Gun Trigger</td>
+<td>Guncon / G-Con 45 Trigger</td>
+<td>Justifier Trigger</td>
+</tr>
+<tr>
+<td>Gun Reload</td>
+<td>Guncon / G-Con 45 Reload</td>
+<td>Justifier Reload</td>
+</tr>
+<tr>
+<td>Gun Aux A</td>
+<td>Guncon / G-Con 45 A</td>
+<td>Justifier Aux</td>
+</tr>
+<tr>
+<td>Gun Aux B</td>
+<td>Guncon / G-Con 45 B</td>
+<td></td>
+</tr>
+<tr>
+<td>Gun Start</td>
+<td></td>
+<td>Justifier Start</td>
+</tr>
+</tbody>
+</table>
+<h2 id="compatibility">Compatibility</h2>
+<p><strong>Expect bugs with hardware renderer enhancements.</strong></p>
+<p>When using the run-ahead latency reduction feature, the &quot;second instance&quot; setting will break the hardware renderer.</p>
+<p>Hardware renderer currently has a number of issues with interlacing shaders and outputting on CRTs. Use the software renderer for the time being.</p>
+<p>A list of known emulation bugs when using the software renderer can be found here <a href="https://forum.fobby.net/index.php?t=msg&amp;th=1114&amp;start=0&amp;">https://forum.fobby.net/index.php?t=msg&amp;th=1114&amp;start=0&amp;</a></p>
+<p>Issue tracker for the hardware renderer can be found here <a href="https://github.com/libretro/beetle-psx-libretro/issues">https://github.com/libretro/beetle-psx-libretro/issues</a></p>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://mednafen.github.io/">Official Mednafen Website</a></li>
+<li><a href="https://mednafen.github.io/releases/">Official Mednafen Downloads</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/mednafen_psx_hw_libretro.info">Beetle PSX HW Libretro Core info file</a></li>
+<li><a href="https://github.com/libretro/beetle-psx-libretro">Beetle PSX HW Libretro Github Repository</a></li>
+<li><a href="https://github.com/libretro/beetle-psx-libretro/issues">Report Beetle PSX HW Core Issues Here</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLRbgg4gk_0Ie3vgCI_d3bslkumKT06AQa">Gameplay Videos</a></li>
+</ul>
+<h2 id="libretro-psx-cores">Libretro PSX cores</h2>
+<ul>
+<li><a href="beetle_psx.md">PlayStation (Beetle PSX)</a></li>
+<li><a href="pcsx_rearmed.md">PlayStation (PCSX ReARMed)</a></li>
+</ul>

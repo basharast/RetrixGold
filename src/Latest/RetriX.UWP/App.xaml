@@ -1,0 +1,63 @@
+﻿<Application
+    x:Class="RetriX.UWP.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="using:WinUniversalTool.Views"
+    xmlns:local="using:RetriX.UWP">
+    
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+                <ResourceDictionary Source="Themes/Generic.xaml" />
+                <ResourceDictionary Source="Themes/MaterialDesign.xaml" />
+                <ResourceDictionary Source="Themes/MaterialDesignColor.Indigo.Named.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            
+            <vm:DialogsSettings x:Key="DialogSizeControl"/>
+            
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Default">
+                    <SolidColorBrush x:Key="SystemControlHighlightAccentBrush" Color="{ThemeResource SystemAccentColor}" />
+                    <SolidColorBrush x:Key="AccentButtonBackgroundPointerOver" Color="{ThemeResource SystemAccentColor}" />
+                    <SolidColorBrush x:Key="DefaultAccentColor" Color="{ThemeResource SystemAccentColor}" />
+                    <SolidColorBrush x:Key="ReadBackgrund" Color="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
+                    <!--<SolidColorBrush x:Key="SystemControlBackgroundChromeMediumLowBrush" Color="{ThemeResource ApplicationPageBackgroundThemeBrush}" />-->
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Dark">
+                    <SolidColorBrush x:Key="SystemControlHighlightAccentBrush" Color="{ThemeResource SystemAccentColor}" />
+                    <SolidColorBrush x:Key="AccentButtonBackgroundPointerOver" Color="{ThemeResource SystemAccentColor}" />
+                    <SolidColorBrush x:Key="DefaultAccentColor" Color="{ThemeResource SystemAccentColor}" />
+                    <SolidColorBrush x:Key="ReadBackgrund" Color="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
+                    <SolidColorBrush x:Key="SystemControlBackgroundChromeMediumLowBrush" Color="#000000" Opacity="0.95" />
+                    <SolidColorBrush x:Key="BlurBackground1" Color="#000000" Opacity="0.80" />
+                    <SolidColorBrush x:Key="BlurBackground2" Color="#000000" Opacity="0.80" />
+                    <SolidColorBrush x:Key="InGameBlurBackground1" Color="#000000" Opacity="0.92" />
+                    <SolidColorBrush x:Key="InGameBlurBackground2" Color="#000000" Opacity="0.92" />
+                    <SolidColorBrush x:Key="InGameBackground" Color="#000000" />
+                    <SolidColorBrush x:Key="InGameCommandBarBackground" Color="#E5000000" />
+                    <SolidColorBrush x:Key="InGameCommandBarMainBackground" Color="#55000000" />
+                    <SolidColorBrush x:Key="InGameInfoBackground" Color="#E50F0E13" />
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="SystemControlHighlightAccentBrush" Color="{ThemeResource SystemAccentColor}" />
+                    <SolidColorBrush x:Key="AccentButtonBackgroundPointerOver" Color="{ThemeResource SystemAccentColor}" />
+                    <SolidColorBrush x:Key="DefaultAccentColor" Color="{ThemeResource SystemAccentColor}" />
+                    <SolidColorBrush x:Key="ReadBackgrund" Color="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
+                    <SolidColorBrush x:Key="SystemControlBackgroundChromeMediumLowBrush" Color="#ffffff" Opacity="0.95" />
+                    <SolidColorBrush x:Key="BlurBackground1" Color="#ffffff" Opacity="0.80" />
+                    <SolidColorBrush x:Key="BlurBackground2" Color="#ffffff" Opacity="0.80" />
+                    <SolidColorBrush x:Key="InGameBlurBackground1" Color="#ffffff" Opacity="0.92" />
+                    <SolidColorBrush x:Key="InGameBlurBackground2" Color="#ffffff" Opacity="0.92" />
+                    <SolidColorBrush x:Key="InGameBackground" Color="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
+                    <SolidColorBrush x:Key="InGameCommandBarBackground" Color="#E5eeeeff" />
+                    <SolidColorBrush x:Key="InGameCommandBarMainBackground" Color="#E5eeeeff" />
+                    <SolidColorBrush x:Key="InGameInfoBackground" Color="#E5eeeeff" />
+
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+        
+    </Application.Resources>
+    
+</Application>

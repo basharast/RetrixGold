@@ -1,0 +1,131 @@
+/*----------------------------------------*/
+/*  06. Newslatter CSS
+/*----------------------------------------*/
+.newslatter-section-tow{
+    position: relative;
+    bottom: -95px;
+    z-index: 9;
+    //Responsive
+    @media #{$laptop-device}{
+        bottom: -80px;
+    }
+    @media #{$desktop-device}{
+        bottom: -65px;
+    }
+    @media #{$tablet-device}{
+        bottom: -60px;
+    }
+    @media #{$large-mobile}{
+        bottom: 0;
+    }
+}
+/*-- News Latter Area --*/
+.news-latter-area {
+	display: flex;
+	justify-content: space-between;
+    background-image: url(../images/bg/news-bg.jpg);
+    background-position: right;
+    background-repeat: no-repeat;
+    align-items: center;
+    box-shadow: 0px 10px 30px 10px rgba(0, 0, 0, 0.05);
+    &.newslatter-black{
+        background-color: #081b1f;
+        background-image: url(../images/bg/news-bg-2.png);
+        //Responsive
+        @media #{$large-mobile}{
+            background-image: none;
+        }
+        & .news-latter-box{
+            padding: 48px 60px;
+            padding-top: 43px;
+            //Responsive
+            @media #{$large-mobile}{
+                padding: 48px 30px;
+            }
+            & h3{
+                color: $white;
+                margin-bottom: 15px;
+            }
+            & input{
+                border-color: #646464;
+            }
+        }
+    }
+    //Responsive
+    @media #{$large-mobile}{
+        flex-wrap: wrap;
+        background-position: bottom;
+    }
+    & .news-latter-box{
+        padding: 60px 65px;
+        //Responsive
+        @media #{$tablet-device}{
+            padding: 15px 30px;
+            padding-right: 80px;
+        }
+        @media #{$large-mobile}{
+            padding: 15px;
+        }
+        & h3{
+            font-size: 36px;
+            line-height: 40px;
+            margin-bottom: 40px;
+            //Responsive
+            @media #{$desktop-device}{
+                font-size: 30px;
+                line-height: 36px;
+            }
+            @media #{$tablet-device}{
+                font-size: 18px;
+                line-height: 28px;
+                margin-bottom: 20px;
+            }
+            @media #{$large-mobile}{
+                font-size: 18px;
+                line-height: 28px;
+                margin-bottom: 20px;
+            }
+            & span.color-red{
+                color: $hover-color;
+            }
+            & span.color-blue{
+                color: $theme-color;
+            }
+        }
+        & form{
+            max-width: 480px;
+            & input{
+                font-size: 18px;
+                line-height: 40px;
+                height: 40px;
+                color: #6b6b6b;
+                border: none;
+                border-bottom: 1px solid $theme-color;
+                width: 100%;
+                background-color: transparent;
+            }
+        }
+    }
+    & .news-latter-banner-image {
+        margin-top: -55px;
+        margin-bottom: -30px;
+        //Responsive
+        @media #{$desktop-device}{
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+        @media #{$large-mobile}{
+            margin-top: 20px;
+            margin-bottom: 0px;
+        }
+        & img{
+            //Responsive
+            @media #{$desktop-device}{
+                width: 100%;
+            }
+            @media #{$large-mobile}{
+                width: 100%;
+            }
+        }
+    }
+}

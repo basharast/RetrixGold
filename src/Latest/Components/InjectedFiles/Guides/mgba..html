@@ -1,0 +1,357 @@
+<h1 id="nintendo-game-boy-advance-mgba">Nintendo - Game Boy Advance (mGBA)</h1>
+<h2 id="background">Background</h2>
+<p>mGBA is an emulator for running Game Boy Advance games. It aims to be faster and more accurate than many existing Game Boy Advance emulators, as well as adding features that other emulators lack. It also supports Game Boy and Game Boy Color games.</p>
+<p>The mGBA core has been authored by</p>
+<ul>
+<li>endrift</li>
+</ul>
+<p>The mGBA core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/mgba/blob/master/LICENSE">MPLv2.0</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="bios">BIOS</h2>
+<p>Required or optional firmware files go in the frontend's system directory.</p>
+<p>!!! warning
+In order for the BIOS to be used, the 'Use BIOS file if found' core option must be set to On.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">gba_bios.bin</td>
+<td style="text-align: center;">Game Boy Advance BIOS - Optional</td>
+<td style="text-align: center;">a860e8c0b6d573d191e4ec7db1b1e4f6</td>
+</tr>
+<tr>
+<td style="text-align: center;">gb_bios.bin</td>
+<td style="text-align: center;">Game Boy BIOS - Optional</td>
+<td style="text-align: center;">32fbbd84168d3482956eb3c5051637f5</td>
+</tr>
+<tr>
+<td style="text-align: center;">gbc_bios.bin</td>
+<td style="text-align: center;">Game Boy Color BIOS - Optional</td>
+<td style="text-align: center;">dbfce9db9deaa2567f6a84fde55f9680</td>
+</tr>
+<tr>
+<td style="text-align: center;">sgb_bios.bin</td>
+<td style="text-align: center;">Super Game Boy BIOS - Optional</td>
+<td style="text-align: center;">d574d4f9c12f305074798f54c091a8b4</td>
+</tr>
+</tbody>
+</table>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the mGBA core have the following file extensions:</p>
+<ul>
+<li>.gb</li>
+<li>.gbc</li>
+<li>.gba</li>
+</ul>
+<p>RetroArch database(s) that are associated with the [Core name] core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Game%20Boy.rdb">Nintendo - Game Boy</a></li>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Game%20Boy%20Color.rdb">Nintendo - Game Boy Color</a></li>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Game%20Boy%20Advance.rdb">Nintendo - Game Boy Advance</a></li>
+</ul>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the mGBA core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h2 id="directories">Directories</h2>
+<p>The mGBA core's library name is 'mGBA'</p>
+<p>The mGBA core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Save directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.srm</td>
+<td style="text-align: center;">Cartridge battery save</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Frontend's State directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.state#</td>
+<td style="text-align: center;">State</td>
+</tr>
+</tbody>
+</table>
+<h2 id="geometry-and-timing">Geometry and timing</h2>
+<ul>
+<li>The mGBA core's core provided FPS is [FPS]</li>
+<li>The mGBA core's core provided sample rate is 32768 Hz</li>
+<li>The mGBA core's base width is [Base width]</li>
+<li>The mGBA core's base height is [Base height]</li>
+<li>The mGBA core's max width is [Max width]</li>
+<li>The mGBA core's max height is [Max height]</li>
+<li>The mGBA core's core provided aspect ratio is [Aspect ratio]</li>
+</ul>
+<h2 id="core-options">Core options</h2>
+<p>The mGBA core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Solar sensor level</strong> [mgba_solar_sensor_level] (<strong>0</strong>|1|2|3|4|5|6|7|8|9|10)</p>
+<p>Can be used by games that employed the use of a solar sensor on their cartridges. E.g.: Boktai games.</p>
+</li>
+<li><p><strong>Allow opposing directional input</strong> [mgba_allow_opposing_directions] (<strong>OFF</strong>|ON)</p>
+<p>Allows opposing directional inputs. Up with Down. Right with Left.</p>
+</li>
+<li><p><strong>Game Boy model (requires restart)</strong> [mgba_gb_model] (<strong>Autodetect</strong>|Game Boy|Super Game Boy|Game Boy Color|Game Boy Advance)</p>
+<p>Runs loaded content with a specific Game Boy model.</p>
+<p>Autodetect will select the most appropriate model for the current game.</p>
+</li>
+<li><p><strong>Use BIOS file if found</strong> [mgba_use_bios] (<strong>ON</strong>|OFF)</p>
+<p>Uses BIOS present in RetroArch's system directory. Look at the <a href="#bios">BIOS section</a> for more information.</p>
+</li>
+<li><p><strong>Skip BIOS intro</strong> [mgba_skip_bios] (<strong>OFF</strong>|ON)</p>
+<p><strong>The 'Use BIOS file if found' core option must be set to On for proper operation.</strong></p>
+<p>Skips the BIOS intro when a BIOS is present in RetroArch's system directory is used.</p>
+</li>
+</ul>
+<p>??? note &quot;Skip BIOS intro - Off&quot;
+<img src="../image/core/mgba/bios.png" alt="" /></p>
+<ul>
+<li><p><strong>Use Super Game Boy borders (requires restart)</strong> [mgba_sgb_borders] (<strong>ON</strong>|OFF)</p>
+<p>Display Super Game Boy borders for Super Game Boy enhanced games.</p>
+</li>
+<li><p><strong>Idle loop removal</strong> [mgba_idle_optimization] (<strong>Remove Known</strong>|Detect and Remove|Don't Remove)</p>
+<p>Optimizes game performance by driving the GBA's CPU less hard.</p>
+<p>Use this on low-powered hardware if its struggling with game performance.</p>
+</li>
+<li><p><strong>Frameskip</strong> [mgba_frameskip] (<strong>0</strong>|1|2|3|4|5|6|7|8|9|10)</p>
+<p>Choose how much frames should be skipped to improve performance at the expense of visual smoothness.</p>
+</li>
+</ul>
+<h2 id="rumble">Rumble</h2>
+<p>Rumble only works in the mGBA core when</p>
+<ul>
+<li>The content being ran has rumble support. (e.g. Cartridges with a Rumble Pak)</li>
+<li>The frontend being used has rumble support.</li>
+<li>The joypad device being used has rumble support.</li>
+</ul>
+<h2 id="joypad">Joypad</h2>
+<p><img src="../image/controller/gba.png" alt="" /></p>
+<table>
+<thead>
+<tr>
+<th>User 1 input descriptors</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>Turbo B</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+</tr>
+<tr>
+<td>Select</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+</tr>
+<tr>
+<td>Start</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+</tr>
+<tr>
+<td>Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>A</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+<tr>
+<td>Turbo A</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+</tr>
+<tr>
+<td>L</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+</tr>
+<tr>
+<td>R</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+</tr>
+<tr>
+<td>Turbo L</td>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+</tr>
+<tr>
+<td>Turbo R</td>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+</tr>
+<tr>
+<td>Darken Solar Sensor</td>
+<td><img src="../image/retropad/retro_l3.png" alt="" /></td>
+</tr>
+<tr>
+<td>Brighten Solar Sensor</td>
+<td><img src="../image/retropad/retro_r3.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<h2 id="compatibility">Compatibility</h2>
+<p>Please file game bugs on the issue tracker <a href="https://github.com/mgba-emu/mgba/issues">here</a></p>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://mgba.io/">Official mGBA Website</a></li>
+<li><a href="https://github.com/mgba-emu/mgba">Official mGBA Github Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/mgba_libretro.info">Libretro mGBA Core info file</a></li>
+<li><a href="https://github.com/libretro/mgba">Libretro mGBA Github Repository</a></li>
+<li><a href="https://github.com/mgba-emu/mgba/issues">Report Libretro mGBA Core Issues Here</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLRbgg4gk_0Id2gXuMPiXpnjQmDuvg7Wli">Gameplay Videos</a></li>
+</ul>
+<h3 id="see-also">See also</h3>
+<h4 id="nintendo-game-boy-advance">Nintendo - Game Boy Advance</h4>
+<ul>
+<li><a href="beetle_gba.md">Nintendo - Game Boy Advance (Beetle GBA)</a></li>
+<li><a href="gpsp.md">Nintendo - Game Boy Advance (gpSP)</a></li>
+<li><a href="meteor.md">Nintendo - Game Boy Advance (Meteor)</a></li>
+<li><a href="vba_next.md">Nintendo - Game Boy Advance (VBA Next)</a></li>
+<li><a href="vba_m.md">Nintendo - Game Boy Advance (VBA-M)</a></li>
+</ul>
+<h4 id="nintendo-game-boy-color">Nintendo - Game Boy (+ Color)</h4>
+<ul>
+<li><a href="emux_gb.md">Nintendo - Game Boy / Color (Emux GB)</a></li>
+<li><a href="gambatte.md">Nintendo - Game Boy / Color (Gambatte)</a></li>
+<li><a href="gearboy.md">Nintendo - Game Boy / Color (Gearboy)</a></li>
+<li><a href="sameboy.md">Nintendo - Game Boy / Color (SameBoy)</a></li>
+<li><a href="tgb_dual.md">Nintendo - Game Boy / Color (TGB Dual)</a></li>
+<li><a href="higan_accuracy.md">Nintendo - SNES / Famicom (higan Accuracy)</a></li>
+<li><a href="nside_balanced.md">Nintendo - SNES / Famicom (nSide Balanced)</a></li>
+<li><a href="mesen-s.md">Nintendo - SNES / Famicom (Mesen-S)</a></li>
+</ul>

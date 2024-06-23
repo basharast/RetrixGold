@@ -1,0 +1,175 @@
+<h1 id="mr.boom-bomberman">Mr.Boom (Bomberman)</h1>
+<h2 id="background">Background</h2>
+<p>Mr.Boom is an up to 8 player Bomberman clone ported to the libretro API.</p>
+<p>The goal of the game is to bomb away your enemies and other players.</p>
+<p>The Mr.Boom core has been authored by</p>
+<ul>
+<li>Remdy Software</li>
+</ul>
+<p>The Mr.Boom core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/mrboom-libretro/blob/master/LICENSE">MIT</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>The Mr.Boom core does not feature extension use. Just load and start the core.</p>
+<h2 id="features">Features</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controllers</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<p>The Mr.Boom core's directory name is 'Mr.Boom'</p>
+<p>Save states are saved/loaded to and from where state files are stored.</p>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The Mr. Boom core's core provided FPS is 60</li>
+<li>The Mr. Boom core's core provided sample rate is 48000 Hz</li>
+<li>The Mr. Boom core's core provided base width is 320</li>
+<li>The Mr. Boom core's core provided base height is 200</li>
+<li>The Mr. Boom core's core provided aspect ratio is 8/5 (native), 4/3 or 16/9</li>
+</ul>
+<h2 id="core-options">Core options</h2>
+<p><em>The Mr.Boom core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</em></p>
+<ul>
+<li><p><strong>Team mode</strong> (<strong>Selfie</strong>/Color/Sex): Team mode color.</p>
+</li>
+<li><p><strong>Monsters</strong> (Off/<strong>On</strong>): Awaiting description. Enable or disable monsters.</p>
+</li>
+</ul>
+<p>??? note &quot;Monsters - On&quot;
+<img src="../image/core/mr_boom/monsters_on.png" alt="" /></p>
+<p>??? note &quot;Monsters - Off&quot;
+<img src="../image/core/mr_boom/monsters_off.png" alt="" /></p>
+<ul>
+<li><strong>Drop bomb autofire</strong> (<strong>Off</strong>/On): Enables Drop bomb autofire mode. Holding down the Drop bomb button will repeatedly use the Drop bomb action. (Potentially useful when used in conjunction with certain powerups)</li>
+</ul>
+<h2 id="controllers">Controllers</h2>
+<p><em>The Mr.Boom core supports the following controller setting(s), bolded controller settings are the default for the specified user(s):</em></p>
+<h3 id="user-1-16-device-types">User 1 - 16 Device Type(s)</h3>
+<ul>
+<li><p><strong>RetroPad</strong> - Joypad with analog</p>
+</li>
+<li><p>RetroPad w/Analog - <strong>There is no reason to switch to this.</strong></p>
+</li>
+</ul>
+<h3 id="controllers-graph">Controllers graph</h3>
+<table>
+<thead>
+<tr>
+<th>RetroPad Inputs</th>
+<th>Mr.Boom core inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>Drop Bomb/Join game</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+<td>Add a bomberman bot (while in the join game screen)</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+<td>Start game</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>Up/Push bomb</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>Down/Push bomb</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>Left/Push bomb</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>Right/Push bomb</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>Detonate bomb (when you have the Remote control power)/Join game</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+<td>Jump (while riding a Kangaroo)/Join game)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/mrboom_libretro.info">Libretro Mr.Boom Core info file</a></li>
+<li><a href="https://github.com/libretro/mrboom-libretro">Libretro Mr.Boom Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-meta">Report Core Issues Here</a></li>
+<li><a href="http://mrboom.mumblecore.org/">Official Website</a></li>
+<li><a href="https://github.com/Javanaise/mrboom-libretro">Upstream Repository</a></li>
+</ul>

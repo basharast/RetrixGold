@@ -1,0 +1,763 @@
+<h1 id="amstrad-cpc-caprice32">Amstrad - CPC (Caprice32)</h1>
+<h2 id="background">Background</h2>
+<p>Caprice32 is a software emulator of the Amstrad CPC 8bit home computer series running on Linux and Windows. The emulator faithfully imitates the CPC464, CPC664, CPC6128, CPC6128+ and GX4000 models. By recreating the operations of all hardware components at a low level, the emulator achieves a high degree of compatibility with original CPC software. These programs or games can be run unmodified at real-time or higher speeds, depending on the emulator host environment.</p>
+<h3 id="authorlicense">Author/License</h3>
+<p>The Caprice32 core has been authored by</p>
+<ul>
+<li>Ulrich Doewich</li>
+<li>David Colmenero (D_Skywalk)</li>
+<li>Colin Pitrat</li>
+</ul>
+<p>The Caprice32 core is licensed under</p>
+<ul>
+<li><a href="https://github.com/ColinPitrat/caprice32/blob/master/COPYING.txt">GPLv2</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the Caprice32 core have the following file extensions:</p>
+<ul>
+<li>.dsk</li>
+<li>.sna</li>
+<li>.tap</li>
+<li>.cdt</li>
+<li>.voc</li>
+<li>.m3u</li>
+<li>.cpr</li>
+<li>.zip</li>
+</ul>
+<h2 id="databases">Databases</h2>
+<p>RetroArch database(s) that are associated with the Caprice32 core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Amstrad%20-%20CPC.rdb">Amstrad - CPC</a> (TOSEC)</li>
+</ul>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the Caprice32 core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The Caprice32 core's internal core name is 'cap32'.</p>
+<p>The Caprice32 core saves/loads to/from these directories.</p>
+<p><strong>Loaded content's directory</strong></p>
+<ul>
+<li>'content-name'#.SNA (SNA)</li>
+</ul>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The Caprice32 core's core provided FPS is 50</li>
+<li>The Caprice32 core's core provided sample rate is 44100 Hz</li>
+<li>The Caprice32 core's core provided aspect ratio is 4/3</li>
+</ul>
+<h2 id="usage">Usage</h2>
+<p>The Caprice32 core has a virtual keyboard GUI that can be accessed through SELECT (configured by cap32_combokey) or F9.</p>
+<p>The mouse cursor can be controlled by RetroPad D-Pad and use button A to press a Key.</p>
+<p><img src="../image/core/caprice32/vkbd_v2.png" alt="" /></p>
+<h2 id="core-options">Core options</h2>
+<p>The Caprice32 core has the following option(s) that can be tweaked from the core options menu.</p>
+<p>!!! tip
+Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<table>
+<thead>
+<tr>
+<th>Core option</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Autorun</td>
+<td>If enabled, the core will run the first bas/bin found in the DSK. <code>cap32_autorun = &quot;enabled|disabled&quot;</code></td>
+<td><code>enabled</code></td>
+</tr>
+<tr>
+<td>Combo Key</td>
+<td>See <a href="#combo-list">Combo list</a> below. <code>cap32_combokey = &quot;select|y|b|disabled&quot;</code></td>
+<td><code>select</code></td>
+</tr>
+<tr>
+<td>Internal resolution</td>
+<td>Self-explanatory. <code>cap32_resolution = &quot;384x272|400x300&quot;</code></td>
+<td><code>384x272</code></td>
+</tr>
+<tr>
+<td>Model (Restart)</td>
+<td>Choose which Amstrad CPC model to emulate. <code>cap32_model = &quot;6128|464|6128+&quot;</code></td>
+<td><code>6128</code></td>
+</tr>
+<tr>
+<td>Ram size (Restart)</td>
+<td>CPC physical RAM size in kB. <code>cap32_ram = &quot;128|64|192|576&quot;</code></td>
+<td><code>128</code></td>
+</tr>
+<tr>
+<td>Status Bar</td>
+<td>Status bar configuration <code>cap32_statusbar = &quot;onloading|enabled|disabled&quot;</code></td>
+<td><code>onloading</code></td>
+</tr>
+<tr>
+<td>Floppy Sound</td>
+<td>Disk emulated sound configuration <code>cap32_floppy_sound = &quot;enabled|disabled&quot;</code></td>
+<td><code>enabled</code></td>
+</tr>
+<tr>
+<td>Monitor Type</td>
+<td>Choose between a color display or a monochrome display. <code>cap32_scr_tube = &quot;color|green|white&quot;</code></td>
+<td><code>color</code></td>
+</tr>
+<tr>
+<td>Monitor Intensity</td>
+<td>Screen cathodic tube intensity. <code>cap32_scr_intensity = &quot;5|6|7|8|9|10|11|12|13|14|15&quot;</code></td>
+<td><code>5</code></td>
+</tr>
+<tr>
+<td>CPC Language (Restart)</td>
+<td>Choose between english, french or spanish keyboard layout. <code>cap32_lang_layout = &quot;english|french|spanish&quot;</code></td>
+<td><code>english</code></td>
+</tr>
+<tr>
+<td>User 1 Joystick Configuration</td>
+<td>Select Joy/Overlay configuration for player 1. <code>cap32_retrojoy0 = &quot;joystick|qaop|incentive&quot;</code></td>
+<td><code>joystick</code></td>
+</tr>
+<tr>
+<td>User 2 Joystick Configuration</td>
+<td>Select Joy/Overlay configuration for player 2. <code>cap32_retrojoy1 = &quot;joystick|qaop|incentive|joystick_port2&quot;</code></td>
+<td><code>joystick</code></td>
+</tr>
+</tbody>
+</table>
+<p>!!! note &quot;cap32_scr_tube = color&quot;
+<img src="../image/core/caprice32/tube_off.png" alt="" /></p>
+<p>!!! note &quot;cap32_scr_tube = green&quot;
+<img src="../image/core/caprice32/tube_on.png" alt="" /></p>
+<p>!!! attention
+These 'scr_intensity' core option screenshots have been taken with the 'cap32_scr_tube' core option set to 'color'.</p>
+<p>!!! note &quot;scr_intensity = 5&quot;
+<img src="../image/core/caprice32/5.png" alt="" /></p>
+<p>!!! note &quot;scr_intensity = 15&quot;
+<img src="../image/core/caprice32/15.png" alt="" /></p>
+<h2 id="controllers">Controllers</h2>
+<p>The Caprice32 core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<h3 id="user-1-2-device-types">User 1 - 2 device types</h3>
+<ul>
+<li>None - Doesn't disable input. There's no reason to switch to this.</li>
+<li><strong>RetroPad</strong> - Joypad - Don't use this. Switch to Amstrad Joystick for joypad input.</li>
+<li>Amstrad Joystick - Joypad - Use this for joypad input.</li>
+<li>Amstrad Keyboard - Keyboard - Keyboard input are always active. Has keymapper support.</li>
+</ul>
+<h3 id="other-controllers">Other controllers</h3>
+<ul>
+<li>Mouse - The mouse cursor in the Virtual Keyboard GUI can be controlled with mouse inputs.</li>
+</ul>
+<h3 id="controller-tables-using-retropad-device-type">Controller tables using RetroPad device Type</h3>
+<h4 id="joy-config-default-joystick">JOY CONFIG DEFAULT (JOYSTICK)</h4>
+<table>
+<thead>
+<tr>
+<th>User 1 Remap descriptors</th>
+<th>RetroPad Inputs</th>
+<th>Amstrad Joystick</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>FIRE1</td>
+</tr>
+<tr>
+<td>Y</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+<td></td>
+</tr>
+<tr>
+<td>Start</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+<td></td>
+</tr>
+<tr>
+<td>Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>JOY UP</td>
+</tr>
+<tr>
+<td>Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>JOY DOWN</td>
+</tr>
+<tr>
+<td>Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>JOY LEFT</td>
+</tr>
+<tr>
+<td>Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>JOY RIGHT</td>
+</tr>
+<tr>
+<td>A</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>FIRE2</td>
+</tr>
+<tr>
+<td>X</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+<td></td>
+</tr>
+<tr>
+<td>L</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+<td>CTRL</td>
+</tr>
+<tr>
+<td>R</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+<td>INTRO</td>
+</tr>
+<tr>
+<td>L2</td>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+<td>F1</td>
+</tr>
+<tr>
+<td>R2</td>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+<td>F2</td>
+</tr>
+<tr>
+<td>Select</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+<td>COMBO (see bellow)</td>
+</tr>
+<tr>
+<td>L3</td>
+<td><img src="../image/retropad/retro_l3.png" alt="" /></td>
+<td></td>
+</tr>
+<tr>
+<td>R3</td>
+<td><img src="../image/retropad/retro_r3.png" alt="" /></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="joy-config-qaop-general-keyb">JOY CONFIG QAOP (GENERAL KEYB)</h4>
+<table>
+<thead>
+<tr>
+<th>User 1 Remap descriptors</th>
+<th>RetroPad Inputs</th>
+<th>Amstrad Joystick</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>B</td>
+</tr>
+<tr>
+<td>Y</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+<td>Y</td>
+</tr>
+<tr>
+<td>Start</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+<td>K <em>(to select Keyb in games)</em></td>
+</tr>
+<tr>
+<td>Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>Q</td>
+</tr>
+<tr>
+<td>Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>A</td>
+</tr>
+<tr>
+<td>Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>O</td>
+</tr>
+<tr>
+<td>Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>P</td>
+</tr>
+<tr>
+<td>A</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>SPACE</td>
+</tr>
+<tr>
+<td>X</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+<td>N</td>
+</tr>
+<tr>
+<td>L</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+<td>CTRL</td>
+</tr>
+<tr>
+<td>R</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+<td>INTRO</td>
+</tr>
+<tr>
+<td>L2</td>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+<td>F1</td>
+</tr>
+<tr>
+<td>R2</td>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+<td>F2</td>
+</tr>
+<tr>
+<td>Select</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+<td>COMBO (see bellow)</td>
+</tr>
+<tr>
+<td>L3</td>
+<td><img src="../image/retropad/retro_l3.png" alt="" /></td>
+<td></td>
+</tr>
+<tr>
+<td>R3</td>
+<td><img src="../image/retropad/retro_r3.png" alt="" /></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="joy-incentive-incentive-games">JOY INCENTIVE (<a href="https://en.wikipedia.org/wiki/Incentive_Software">INCENTIVE GAMES</a>)</h4>
+<table>
+<thead>
+<tr>
+<th>User 1 Remap descriptors</th>
+<th>RetroPad Inputs</th>
+<th>Amstrad Joystick</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>SPACE</td>
+</tr>
+<tr>
+<td>Y</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+<td>W</td>
+</tr>
+<tr>
+<td>Start</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+<td>F</td>
+</tr>
+<tr>
+<td>Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>CURSOR UP</td>
+</tr>
+<tr>
+<td>Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>CURSOR DOWN</td>
+</tr>
+<tr>
+<td>Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>CURSOR LEFT</td>
+</tr>
+<tr>
+<td>Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>CURSOR RIGHT</td>
+</tr>
+<tr>
+<td>A</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>A</td>
+</tr>
+<tr>
+<td>X</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+<td>C</td>
+</tr>
+<tr>
+<td>L</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+<td>P</td>
+</tr>
+<tr>
+<td>R</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+<td>L</td>
+</tr>
+<tr>
+<td>L2</td>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+<td>R</td>
+</tr>
+<tr>
+<td>R2</td>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+<td>U</td>
+</tr>
+<tr>
+<td>Select</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+<td>COMBO (see bellow)</td>
+</tr>
+<tr>
+<td>L3</td>
+<td><img src="../image/retropad/retro_l3.png" alt="" /></td>
+<td></td>
+</tr>
+<tr>
+<td>R3</td>
+<td><img src="../image/retropad/retro_r3.png" alt="" /></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="combo-list">COMBO LIST</h4>
+<p>If you press <strong>SELECT</strong> you could make a combo with other buttons:</p>
+<table>
+<thead>
+<tr>
+<th>Combo</th>
+<th>RetroPad Inputs</th>
+<th>Amstrad Writes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Select + B</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /> + <img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>CAT</td>
+</tr>
+<tr>
+<td>Select + Y</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /> + <img src="../image/retropad/retro_y.png" alt="" /></td>
+<td>|CPM</td>
+</tr>
+<tr>
+<td>Select + Start</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /> + <img src="../image/retropad/retro_start.png" alt="" /></td>
+<td>SHOW V-KEYBOARD</td>
+</tr>
+<tr>
+<td>Select + Up</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /> + <img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>[1], [Y]</td>
+</tr>
+<tr>
+<td>Select + Down</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /> + <img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>[2], [N]</td>
+</tr>
+<tr>
+<td>Select + Left</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /> + <img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>[4], [S]</td>
+</tr>
+<tr>
+<td>Select + Right</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /> + <img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>[3], [J]</td>
+</tr>
+<tr>
+<td>Select + A</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /> + <img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>RUN&quot;DISK RUN&quot;DISC</td>
+</tr>
+<tr>
+<td>Select + X</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /> + <img src="../image/retropad/retro_x.png" alt="" /></td>
+<td>|TAPE RUN&quot;</td>
+</tr>
+</tbody>
+</table>
+<p><em>This combos are useful to load games and select options in game-menus.</em></p>
+<h4 id="keyboard">Keyboard</h4>
+<p>This core allows <strong>direct keyboard access</strong>, you could use your keyboard as an original CPC. To achieve that you must activate the <strong><a href="https://docs.libretro.com/guides/input-and-controls/#cores-with-direct-keyboard-input">Game Focus</a></strong>, by default the hotkey is configured to the <strong>SCROLL_LOCK</strong> key.</p>
+<h5 id="english-layout">English layout</h5>
+<p><img src="https://user-images.githubusercontent.com/560310/52812237-4c4fbd80-3097-11e9-8537-88f62e8ba5e8.png" alt="" /></p>
+<h5 id="spanish-layout">Spanish layout</h5>
+<p><img src="https://user-images.githubusercontent.com/560310/54316295-9ff2ef80-45e0-11e9-9ae4-a2e3fb064600.png" alt="" /></p>
+<h5 id="french-layout">French layout</h5>
+<p><img src="https://user-images.githubusercontent.com/560310/54316280-97021e00-45e0-11e9-91b5-da73a87534d6.png" alt="" /></p>
+<h4 id="keyboard-binds">Keyboard Binds</h4>
+<table>
+<thead>
+<tr>
+<th>RetroKeyboard Special Inputs</th>
+<th>Amstrad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keyboard Keypad 0</td>
+<td>CPC_KEY_F0</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 1</td>
+<td>CPC_KEY_F1</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 2</td>
+<td>CPC_KEY_F2</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 3</td>
+<td>CPC_KEY_F3</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 4</td>
+<td>CPC_KEY_F4</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 5</td>
+<td>CPC_KEY_F5</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 6</td>
+<td>CPC_KEY_F6</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 7</td>
+<td>CPC_KEY_F7</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 8</td>
+<td>CPC_KEY_F8</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 9</td>
+<td>CPC_KEY_F9</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Period .</td>
+<td>CPC_KEY_FDOT</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Enter</td>
+<td>CPC_KEY_SMALL_ENTER</td>
+</tr>
+<tr>
+<td>Keyboard Delete</td>
+<td>CPC_KEY_CLR</td>
+</tr>
+<tr>
+<td>Keyboard Insert</td>
+<td>CHANGE CURSOR/JOY EMULATION</td>
+</tr>
+<tr>
+<td>Keyboard Home</td>
+<td>PLAY TAPE</td>
+</tr>
+<tr>
+<td>Keyboard End</td>
+<td>STOP TAPE</td>
+</tr>
+<tr>
+<td>Keyboard Page Up</td>
+<td>TAPE REWIND</td>
+</tr>
+<tr>
+<td>Keyboard Page Down</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard F9</td>
+<td>SHOW V-KEYBOARD</td>
+</tr>
+<tr>
+<td>Keyboard F10</td>
+<td>MAIN GUI</td>
+</tr>
+<tr>
+<td>Keyboard Right Alt</td>
+<td>CPC_KEY_COPY</td>
+</tr>
+<tr>
+<td>Keyboard Left Alt</td>
+<td>CPC_KEY_COPY</td>
+</tr>
+<tr>
+<td>Keyboard Right Shift</td>
+<td>CPC_KEY_FIRE2 (JOY EMULATION)</td>
+</tr>
+<tr>
+<td>Keyboard Right Control</td>
+<td>CPC_KEY_FIRE1 (JOY EMULATION)</td>
+</tr>
+</tbody>
+</table>
+<p>Choose AMSTRAD KEYBOARD in Quick Menu &gt; Controls to customize your <strong>retropad keys per game</strong>.</p>
+<h4 id="mouse">Mouse</h4>
+<table>
+<thead>
+<tr>
+<th>RetroMouse Inputs</th>
+<th>Virtual Keyboard GUI Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retromouse/retro_mouse.png" alt="" /> Mouse Cursor</td>
+<td>Mouse Cursor</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_left.png" alt="" /> Mouse 1</td>
+<td>Mouse Left Button</td>
+</tr>
+</tbody>
+</table>
+<h2 id="m3u-and-disk-control">M3U and Disk control</h2>
+<p>When you have a multi disk game, you can use a m3u file to specify each disk of the game and change them from the RetroArch Disk control interface.</p>
+<p>A M3U file is a simple text file with one disk per line (see <a href="https://en.wikipedia.org/wiki/M3U">https://en.wikipedia.org/wiki/M3U</a>).</p>
+<p>Example: <strong>Alive (F).m3u</strong></p>
+<pre><code>Alive (F) - Disk 1A.dsk
+Alive (F) - Disk 1B.dsk
+</code></pre>
+<p>Path can be absolute or relative to the location of the M3U file.</p>
+<p>When a game ask for it, you can change the current disk in the RetroArch 'Disk Control' menu:</p>
+<ul>
+<li>Eject the current disk with 'Disk Cycle Tray Status'</li>
+<li>Select the right disk index</li>
+<li>Insert the new disk with 'Disk Cycle Tray Status'</li>
+</ul>
+<h3 id="specify-a-specific-command-to-launch-a-game">Specify a specific command to launch a game</h3>
+<p>If the autorun option of the core does a pretty good job to guess what command must be executed to launch a game on the CPC, there is some problems (cpm disk and strange catalogs for the most).</p>
+<p>You can specify a command to be executed on the CPC when the emu launch.</p>
+<p>All you have to do is to add a comment like this in the m3u file :</p>
+<pre><code>#COMMAND:&lt;YOUR_COMMAND_HERE&gt;
+</code></pre>
+<p>Even for one disk game, you can create a m3u file like this one :</p>
+<p>Jack the Nipper II... In Coconut Capers.m3u</p>
+<pre><code>#COMMAND:|CPM
+Jack the Nipper II... In Coconut Capers (E).dsk
+</code></pre>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://github.com/ColinPitrat/caprice32">Official Caprice32 Github Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/cap32_libretro.info">Libretro Caprice32 Core info file</a></li>
+<li><a href="https://github.com/libretro/libretro-cap32">Libretro Caprice32 Github Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-cap32/issues">Report Libretro Caprice32 Core Issues Here</a></li>
+</ul>
+<h3 id="see-also">See also</h3>
+<h4 id="amstrad-cpc">Amstrad - CPC</h4>
+<ul>
+<li><a href="crocods.md">Amstrad - CPC (CrocoDS)</a></li>
+</ul>

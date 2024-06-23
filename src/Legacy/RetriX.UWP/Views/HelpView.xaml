@@ -1,0 +1,16 @@
+﻿<Page
+    x:Class="RetriX.UWP.Pages.HelpView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Page.Resources>
+        <Style x:Name="ButtonLabelStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource SymbolThemeFontFamily}"/>
+            <Setter Property="LineHeight" Value="25"/>
+        </Style>
+    </Page.Resources>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ProgressBar IsIndeterminate="True" Height="8" x:Name="WeLoadingProgress" Canvas.ZIndex="10" VerticalAlignment="Top"></ProgressBar>
+        <ProgressRing IsEnabled="True" IsActive="True" x:Name="WeLoadingProgressRing" Canvas.ZIndex="10" Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center"></ProgressRing>
+        <WebView HorizontalAlignment="Stretch" Loaded="WebView_Loaded" LoadCompleted="WebView_LoadCompleted" DOMContentLoaded="WebView_DOMContentLoaded" ContentLoading="WebView_ContentLoading" Source="ms-appx-web:///Assets/HTML/help.html" VerticalAlignment="Stretch"></WebView>
+    </Grid>
+</Page>

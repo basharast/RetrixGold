@@ -1,0 +1,255 @@
+<h1 id="mattel-intellivision-freeintv">Mattel - Intellivision (FreeIntv)</h1>
+<h2 id="background">Background</h2>
+<p>FreeIntv is a libretro emulation core for the Mattel Intellivision designed to be compatible with joypads from the SNES era forward even if they originally required a number pad.</p>
+<p>!!! attention
+FreeIntv does not currently emulate Entertainment Computer System (ECS) functionality. Contributions to the source are welcome!</p>
+<h3 id="authorlicense">Author/License</h3>
+<p>The FreeIntv core has been authored by</p>
+<ul>
+<li>David Richardson</li>
+</ul>
+<p>The FreeIntv core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/FreeIntv/blob/master/LICENSE">GPLv3</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the FreeIntv core have the following file extensions:</p>
+<ul>
+<li>.int</li>
+<li>.rom</li>
+<li>.bin</li>
+</ul>
+<h2 id="databases">Databases</h2>
+<p>RetroArch database(s) that are associated with the FreeIntv core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Mattel%20-%20Intellivision.rdb">Mattel - Intellivision</a></li>
+</ul>
+<h2 id="bios">BIOS</h2>
+<p>Required or optional firmware files go in the frontend's system directory.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">exec.bin</td>
+<td style="text-align: center;">Executive ROM - Required</td>
+<td style="text-align: center;">62e761035cb657903761800f4437b8af</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">grom.bin</td>
+<td style="text-align: center;">Graphics ROM - Required</td>
+<td style="text-align: center;">0cd5946c6473e42e8e4c2137785e427f</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the FreeIntv core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Netplay (State based)</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Cheats (Cheats menu)</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The FreeIntv core's directory name is 'FreeIntv'</p>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The FreeIntv core's core provided FPS is 60</li>
+<li>The FreeIntv core's core provided sample rate is 44100 Hz</li>
+<li>The FreeIntv core's core provided aspect ratio is 11/7</li>
+</ul>
+<h2 id="controller-overlays">Controller overlays</h2>
+<p>Mattel Intellivision games were often meant to be played with game-specific cards overlaid on the numeric keypad. These overlays convey information which can be very useful in gameplay. Images of a limited selection of Intellivision titles are available at: <a href="http://www.intellivisionlives.com/bluesky/games/instructions.shtml">http://www.intellivisionlives.com/bluesky/games/instructions.shtml</a></p>
+<h2 id="controls">Controls</h2>
+<p><strong>Definitions:</strong></p>
+<ul>
+<li><strong>Mini-Keypad</strong> - Allows the user to view and select keys from a small Intellivision pad in the lower corner of the display.</li>
+<li><strong>Controller Swap</strong> - Some Intellivision games expect the left controller to be player one, others expect the right controller. This isn't a problem if you have two controllers (and don't mind juggling them) but users with only one controller or using a portable setup would be effectively locked out of some games. Controller Swap swaps the two controller interfaces so that the player does not have to physically swap controllers.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>RetroPad</th>
+<th>FreeIntv Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D-Pad</td>
+<td>8-way movement</td>
+</tr>
+<tr>
+<td>Left Analog Stick</td>
+<td>16-way disc</td>
+</tr>
+<tr>
+<td>Right Analog Stick</td>
+<td>Keypad 1-9</td>
+</tr>
+<tr>
+<td>A</td>
+<td>Right Action Button</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Left Action Button</td>
+</tr>
+<tr>
+<td>Y</td>
+<td>Top Action Button</td>
+</tr>
+<tr>
+<td>X</td>
+<td>Use the Last Selected Intellivision Keypad Button. In Astrosmash, for example, you can leave &quot;3&quot; selected to enable instant access to hyperspace.</td>
+</tr>
+<tr>
+<td>L/R</td>
+<td>Activate the Mini-Keypad</td>
+</tr>
+<tr>
+<td>LT</td>
+<td>Keypad Clear</td>
+</tr>
+<tr>
+<td>RT</td>
+<td>Keypad Enter</td>
+</tr>
+<tr>
+<td>Left Thumb</td>
+<td>Keypad 0</td>
+</tr>
+<tr>
+<td>Right Thumb</td>
+<td>Keypad 5</td>
+</tr>
+<tr>
+<td>Start</td>
+<td>Pause Game</td>
+</tr>
+<tr>
+<td>Select</td>
+<td>Controller Swap</td>
+</tr>
+</tbody>
+</table>
+<h2 id="compatibility">Compatibility</h2>
+<p>Awaiting description.</p>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="http://neocomputer.org/projects/freeintv/">Official FreeIntv Website</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/freeintv_libretro.info">Libretro FreeIntv Core info file</a></li>
+<li><a href="https://github.com/libretro/FreeIntv">Libretro FreeIntv Github Repository</a></li>
+<li><a href="https://github.com/RetroPie/RetroPie-Setup/wiki/Intellivision">Intellivision RetroPie Wiki page</a></li>
+<li><a href="https://retropie.org.uk/forum/topic/15665/libretro-intellivision-emulator">FreeIntv RetroPie Forums Topic</a></li>
+<li><a href="https://forums.libretro.com/t/video-demonstration-of-the-new-freeintv-intellivision-core/14389">FreeIntv Libretro Forums Topic</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLRbgg4gk_0Ie3IvIC1OLrsG-9qJ-RbP7r">Gameplay Videos</a></li>
+</ul>

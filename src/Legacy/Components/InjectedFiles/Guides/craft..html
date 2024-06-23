@@ -1,0 +1,380 @@
+<h1 id="minecraft-craft">Minecraft (Craft)</h1>
+<h2 id="background">Background</h2>
+<p>A simple Minecraft clone written in C using modern OpenGL (shaders).</p>
+<h2 id="features">Features</h2>
+<ul>
+<li>Simple but nice looking terrain generation using simplex noise.</li>
+<li>Biomes</li>
+<li>Water</li>
+<li>More than 20 types of blocks and more can be added easily.</li>
+<li>Supports plants (grass, flowers, trees, etc.) and transparency (glass).</li>
+<li>Simple clouds in the sky (they don't move).</li>
+<li>Day / night cycles and a textured sky dome.</li>
+<li>More sophisticated sunrise/sunset color blending</li>
+<li>Ambient occlusion for basic shading of blocks.</li>
+<li>World changes persisted in a sqlite3 database.</li>
+<li>Configurable draw distance. The draw distance has a big effect on the framerate, a draw distance of 1 or 2 can make this core playable even on very lightweight computers.</li>
+<li>Configurable field of view.</li>
+<li>Gamepad support (including analog stick support) configurable analog sensitivity and deadzones, preliminary mouse and keyboard support.</li>
+<li>Configurable resolutions, up to 4K.</li>
+<li>A ‘Jumping Flash’ mode that allows you to jump infinitely into the air all while the camera faces downwards.</li>
+</ul>
+<p>The Craft core has been authored by</p>
+<ul>
+<li>Michael Fogleman</li>
+</ul>
+<p>The Craft core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/Craft/blob/master/LICENSE.md">MIT</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>OpenGL or OpenGL ES</li>
+</ul>
+<h2 id="how-to-start-the-craft-core">How to start the Craft core:</h2>
+<ul>
+<li><p>To start the Craft core, go to RetroArch's main menu screen. Select 'Load Core', then 'Craft'.</p>
+</li>
+<li><p>Now, select 'Start Core'.</p>
+</li>
+</ul>
+<p>The content should now start running!</p>
+<h2 id="features-1">Features</h2>
+<p>Frontend-level settings or features that the Craft core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h2 id="directories">Directories</h2>
+<p>The Craft core's library name is 'Craft'</p>
+<p>The Craft core saves/loads to/from these directories.</p>
+<p><strong>Frontend's System directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">craft.db</td>
+<td style="text-align: center;">World data</td>
+</tr>
+</tbody>
+</table>
+<h2 id="geometry-and-timing">Geometry and timing</h2>
+<ul>
+<li>The Craft core's core provided FPS is 60.0</li>
+<li>The Craft core's core provided sample rate is 48000 Hz</li>
+<li>The Craft core's base width is 640</li>
+<li>The Craft core's base height is 480</li>
+<li>The Craft core's max width is 640</li>
+<li>The Craft core's max height is 480</li>
+<li>The Craft core's core provided aspect ratio is 16/9</li>
+</ul>
+<h2 id="core-options">Core options</h2>
+<p>The Craft core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Resolution (restart)</strong> [craft_resolution] (<strong>640x480</strong>|320x200|640x400|960x600|1280x800|1600x1000|1920x1200|2240x1400|2560x1600|2880x1800|3200x2000|3520x2200|3840x2400|7680x4320|15360x8640|16000x9000|320x240|320x480|360x200|360x240|360x400|360x480|400x224|480x272|512x224|512x240|512x384|512x512|640x224|640x240|640x448|720x576|800x480|800x600|960x720|1024x768|1280x720|1366x768|1600x900|1920x1080|2048x2048|4096x4096)</p>
+<p>Configure the resolution.</p>
+</li>
+</ul>
+<p>??? note &quot;Resolution - 320x240&quot;
+<img src="../image/core/craft/320.png" alt="" /></p>
+<p>??? note &quot;Resolution - 1920x1080&quot;
+<img src="../image/core/craft/1920.png" alt="" /></p>
+<ul>
+<li><p><strong>Show info text</strong> [craft_show_info_text] (<strong>disabled</strong>|enabled)</p>
+<p>Show game information in the upper left corner of Craft.</p>
+</li>
+</ul>
+<p>??? note &quot;Show info text - Off&quot;
+<img src="../image/core/craft/off.png" alt="" /></p>
+<p>??? note &quot;Show info text - On&quot;
+<img src="../image/core/craft/on.png" alt="" /></p>
+<ul>
+<li><p><strong>Jumping Flash mode</strong> (<strong>Off</strong>/On):</p>
+<p>Enabling this allows you to jump infinitely into the air all while the camera faces downwards.</p>
+</li>
+<li><p><strong>Field of view</strong> [craft_field_of_view] (<strong>65</strong> to 150 in increments of 5)</p>
+<p>Configure the field of view.</p>
+</li>
+</ul>
+<p>??? note &quot;Field of view - 65&quot;
+<img src="../image/core/craft/65.png" alt="" /></p>
+<p>??? note &quot;Field of view - 125&quot;
+<img src="../image/core/craft/125.png" alt="" /></p>
+<ul>
+<li><p><strong>Draw distance</strong> [craft_draw_distance] (1 to 32 in increments of 1. <strong>10 is default</strong>)</p>
+<p>Configure the draw distance.</p>
+</li>
+</ul>
+<p>??? note &quot;Draw distance - 10&quot;
+<img src="../image/core/craft/10.png" alt="" /></p>
+<p>??? note &quot;Draw distance - 32&quot;
+<img src="../image/core/craft/32.png" alt="" /></p>
+<ul>
+<li><p><strong>Inverted aim</strong> [craft_inverted_aim] (<strong>disabled</strong>|enabled)</p>
+<p>Invert up and down crosshair aiming controls for the RetroPad and the RetroMouse.</p>
+</li>
+<li><p><strong>Right analog sensitivity</strong> [craft_analog_sensitivity] (<strong>0.0150</strong> to 0.0500 in increments of 0.0025)</p>
+<p>Modify the RetroPad right analog stick's sensitivity.</p>
+</li>
+<li><p><strong>Analog deadzone size</strong> [craft_deadzone_radius] (<strong>0.010</strong> to 0.200 in increments of 0.005)</p>
+<p>Modify RetroPad analog sticks' deadzone.</p>
+</li>
+</ul>
+<h2 id="joypad">Joypad</h2>
+<table>
+<thead>
+<tr>
+<th>RetroPad Inputs</th>
+<th>Craft Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>Jump</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+<td>Destroy block</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+<td>Zoom out</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>Move forwards</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>Move backwards</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>Move crosshair left</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>Move crosshair right</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>Next block</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+<td>Place block</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+<td>Move left</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+<td>Move right</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+<td>Move crosshair up</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+<td>Move crosshair down</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> X</td>
+<td>Move left/right</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> Y</td>
+<td>Move up/down</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /> X</td>
+<td>Move crosshair left/right</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /> Y</td>
+<td>Move crosshair up.down</td>
+</tr>
+</tbody>
+</table>
+<h2 id="keyboard">Keyboard</h2>
+<table>
+<thead>
+<tr>
+<th>RetroKeyboard Inputs</th>
+<th>Craft Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keyboard Up</td>
+<td>Move forwards</td>
+</tr>
+<tr>
+<td>Keyboard Down</td>
+<td>Move backwards</td>
+</tr>
+<tr>
+<td>Keyboard Right</td>
+<td>Move crosshair left</td>
+</tr>
+<tr>
+<td>Keyboard Left</td>
+<td>Move crosshair right</td>
+</tr>
+<tr>
+<td>Keyboard Right Shift</td>
+<td>Zoom out</td>
+</tr>
+</tbody>
+</table>
+<h2 id="mouse">Mouse</h2>
+<table>
+<thead>
+<tr>
+<th>RetroMouse Inputs</th>
+<th>Craft Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retromouse/retro_mouse.png" alt="" /> Mouse Cursor</td>
+<td>Move crosshair</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_left.png" alt="" /> Mouse 1</td>
+<td>Destroy block</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_right.png" alt="" /> Mouse 2</td>
+<td>Place block</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_middle.png" alt="" /> Mouse 3</td>
+<td>Copy block</td>
+</tr>
+<tr>
+<td>Wheel Up</td>
+<td>Previous block</td>
+</tr>
+<tr>
+<td>Wheel Down</td>
+<td>Next block</td>
+</tr>
+</tbody>
+</table>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://www.michaelfogleman.com/projects/craft/">Official Craft Website</a></li>
+<li><a href="https://github.com/fogleman/Craft">Official Craft Github Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/craft_libretro.info">Libretro Craft Core info file</a></li>
+<li><a href="https://github.com/libretro/craft">Libretro Craft Github Repository</a></li>
+<li><a href="https://github.com/libretro/Craft/issues">Report Libretro Craft Core Issues Here</a></li>
+</ul>

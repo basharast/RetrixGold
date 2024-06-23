@@ -1,0 +1,286 @@
+<h1 id="nintendo-virtual-boy-beetle-vb">Nintendo - Virtual Boy (Beetle VB)</h1>
+<h2 id="background">Background</h2>
+<p>Port of Mednafen VB to libretro.</p>
+<h3 id="authorlicense">Author/License</h3>
+<p>The Beetle VB core has been authored by</p>
+<ul>
+<li><a href="https://mednafen.github.io/">Mednafen Team</a></li>
+</ul>
+<p>The Beetle VB core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/beetle-vb-libretro/blob/master/COPYING">GPLv2</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the Beetle VB core have the following file extensions:</p>
+<ul>
+<li>.vb</li>
+<li>.vboy</li>
+<li>.bin</li>
+</ul>
+<h2 id="databases">Databases</h2>
+<p>RetroArch database(s) that are associated with the Beetle VB core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Virtual%20Boy.rdb">Nintendo - Virtual Boy</a></li>
+</ul>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the Beetle VB core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay (State based)</td>
+<td style="text-align: center;">✔ (not link-cable emulation)</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Cheats (Cheats menu)</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The Beetle VB core's directory name is 'Beetle VB'</p>
+<p>The Beetle VB core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Save directory</strong></p>
+<ul>
+<li>'content-name'.srm (Cartridge battery save)</li>
+</ul>
+<p><strong>Frontend's State directory</strong></p>
+<ul>
+<li>'content-name'.state# (State)</li>
+</ul>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The Beetle VB core's core provided FPS is 50.27</li>
+<li>The Beetle VB core's core provided sample rate is 44100 Hz</li>
+<li>The Beetle VB core's core provided aspect ratio is 12/7</li>
+</ul>
+<h2 id="core-options">Core options</h2>
+<p>The Beetle VB core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Anaglyph preset (restart)</strong> [vb_anaglyph_preset] (<strong>Off</strong>/red &amp; blue/red &amp; cyan/red &amp; electric cyan/red &amp; green/green &amp; magenta/yellow &amp; blue)</p>
+<p>Select anaglyph 3D mode.</p>
+</li>
+</ul>
+<p>!!! attention
+These Analglyph preset screenshots have been taken with the Palette core option set to black &amp; red.</p>
+<p>??? note &quot;Anaglyph preset - Off&quot;
+<img src="../image/core/beetle_vb/off.png" alt="" /></p>
+<p>??? note &quot;Anaglyph preset - red &amp; blue&quot;
+<img src="../image/core/beetle_vb/red&amp;blue.png" alt="" /></p>
+<p>??? note &quot;Anaglyph preset - red &amp; cyan&quot;
+<img src="../image/core/beetle_vb/red&amp;cyan.png" alt="" /></p>
+<p>??? note &quot;Anaglyph preset - red &amp; electric cyan&quot;
+<img src="../image/core/beetle_vb/red&amp;electriccyan.png" alt="" /></p>
+<p>??? note &quot;Anaglyph preset - red &amp; green&quot;
+<img src="../image/core/beetle_vb/red&amp;green.png" alt="" /></p>
+<p>??? note &quot;Anaglyph preset - green &amp; magenta&quot;
+<img src="../image/core/beetle_vb/green&amp;magenta.png" alt="" /></p>
+<p>??? note &quot;Anaglyph preset - yellow &amp; blue&quot;
+<img src="../image/core/beetle_vb/yellow&amp;blue.png" alt="" /></p>
+<ul>
+<li><p><strong>Palette (restart)</strong> [vb_color_mode] (<strong>black &amp; red</strong>/black &amp; white)</p>
+<p>Choose which color palette to use.</p>
+</li>
+</ul>
+<p>??? note &quot;Palette - black &amp; red&quot;
+<img src="../image/core/beetle_vb/black&amp;red.png" alt="" /></p>
+<p>??? note &quot;Palette - black &amp; white&quot;
+<img src="../image/core/beetle_vb/black&amp;white.png" alt="" /></p>
+<ul>
+<li><p><strong>Right Analog to Digital</strong> [vb_right_analog_to_digital] (<strong>Off</strong>/On/invert x/invert y/invert both)</p>
+<p>Self-explanatory.</p>
+</li>
+</ul>
+<h2 id="controllers">Controllers</h2>
+<p>The Beetle VB core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<h3 id="user-1-device-types">User 1 device types</h3>
+<ul>
+<li>None - Doesn't disable input.</li>
+<li><strong>RetroPad</strong> - Joypad</li>
+<li>Retropad w/Analog - Joypad - There's no reason to switch to this.</li>
+</ul>
+<h3 id="controller-tables">Controller tables</h3>
+<h4 id="joypad">Joypad</h4>
+<p>!!! attention
+The Right D-Pad X and Right D-Pad Y inputs are only active when the 'Right Analog to Digital' core option is set to anything other than Off.</p>
+<table>
+<thead>
+<tr>
+<th>User 1 Remap descriptors</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>Select</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+</tr>
+<tr>
+<td>Start</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+</tr>
+<tr>
+<td>Left D-Pad Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>Left D-Pad Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>Left D-Pad Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>Left D-Pad Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>A</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+<tr>
+<td>L</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+</tr>
+<tr>
+<td>R</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+</tr>
+<tr>
+<td>Right D-Pad Up</td>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+</tr>
+<tr>
+<td>Right D-Pad Left</td>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+</tr>
+<tr>
+<td>Right D-Pad Down</td>
+<td><img src="../image/retropad/retro_l3.png" alt="" /></td>
+</tr>
+<tr>
+<td>Right D-Pad Right</td>
+<td><img src="../image/retropad/retro_r3.png" alt="" /></td>
+</tr>
+<tr>
+<td>Right D-Pad X</td>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /> X</td>
+</tr>
+<tr>
+<td>Right D-Pad Y</td>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /> Y</td>
+</tr>
+</tbody>
+</table>
+<h2 id="compatibility">Compatibility</h2>
+<p>Awaiting description.</p>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://mednafen.github.io/">Official Mednafen Website</a></li>
+<li><a href="https://mednafen.github.io/releases/">Official Mednafen Downloads</a></li>
+<li><a href="https://mednafen.github.io/documentation/vb.html">Official Mednafen Virtual Boy Documentation</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/mednafen_vb_libretro.info">Libretro Beetle VB Core info file</a></li>
+<li><a href="https://github.com/libretro/beetle-vb-libretro">Libretro Beetle VB Github Repository</a></li>
+<li><a href="https://github.com/libretro/beetle-vb-libretro/issues">Report Libretro Beetle VB Core Issues Here</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLRbgg4gk_0Ie8JxLxnW6r6_OeI8TSBPH_">Gameplay Videos</a></li>
+</ul>

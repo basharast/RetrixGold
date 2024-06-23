@@ -1,0 +1,330 @@
+<h1 id="nintendo-game-boy-color-gearboy">Nintendo - Game Boy / Color (Gearboy)</h1>
+<h2 id="background">Background</h2>
+<p>Gearboy is an open source, cross-platform, Nintendo Game Boy (DMG) / Game Boy Color (GBC) emulator written in C++.</p>
+<ul>
+<li>Accurate CPU emulation, passes cpu_instrs.gb from blargg's tests.</li>
+<li>Accurate instruction and memory timing, passes instr_timing.gb and mem_timing.gb from blargg's tests.</li>
+<li>Supported cartridges: ROM, ROM + RAM, MBC1, MBC2, MBC3 + RTC, MBC5, HuC-1 and MBC1M (multicart).</li>
+<li>Accurate LCD controller emulation with correct timings and priorities including mid-scanline effects.</li>
+<li>Sound emulation using SDL Audio and <a href="http://slack.net/%7Eant/libs/audio.html#Gb_Snd_Emu">Gb_Snd_Emu library</a>.</li>
+<li>Battery powered RAM save support.</li>
+<li>Save states.</li>
+<li>Game Genie and GameShark cheat support.</li>
+<li>Bootrom (BIOS) support.</li>
+<li>Supported platforms (libretro): Windows, Linux, macOS, Raspberry Pi, Android, iOS, tvOS, PlayStation Vita, PlayStation 3, Nintendo 3DS, Nintendo GameCube, Nintendo Wii, Nintendo WiiU, Nintendo Switch, Emscripten, Classic Mini systems (NES, SNES, C64, ...) and QNX.</li>
+</ul>
+<p>The Gearboy core has been authored by:</p>
+<ul>
+<li><a href="https://github.com/drhelius">Ignacio Sanchez (drhelius)</a></li>
+</ul>
+<p>The Gearboy core is licensed under:</p>
+<ul>
+<li><a href="https://github.com/drhelius/Gearboy/blob/master/LICENSE">GPLv3</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="bios">BIOS</h2>
+<p>Gearboy does not require bootrom (BIOS) files to work but they can be used optionally.</p>
+<p>When the bootrom is enabled it will execute as in original hardware, causing invalid roms to lock or forcing hardware like GB Pocket or GBA, depending on the bootrom file.</p>
+<p>Required or optional firmware files go in the frontend's system directory.</p>
+<p>!!! attention
+If you’d like to use any bootrom, you can place the following files in RetroArch's system directory. Then, you need to enable <a href="#core-options">DMG Bootrom</a> and/or <a href="#core-options">Game Boy Color Bootrom</a> core options for these bootrom files to be used.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">dmg_boot.bin</td>
+<td style="text-align: center;">Game Boy boot ROM - Optional</td>
+<td style="text-align: center;">32fbbd84168d3482956eb3c5051637f5</td>
+</tr>
+<tr>
+<td style="text-align: center;">cgb_boot.bin</td>
+<td style="text-align: center;">Game Boy Color boot ROM - Optional</td>
+<td style="text-align: center;">dbfce9db9deaa2567f6a84fde55f9680</td>
+</tr>
+</tbody>
+</table>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the Gearboy core have the following file extensions:</p>
+<ul>
+<li>.gb</li>
+<li>.dmg</li>
+<li>.gbc</li>
+<li>.cgb</li>
+<li>.sgb</li>
+</ul>
+<p>RetroArch database(s) that are associated with the Gearboy core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Game%20Boy.rdb">Nintendo - Game Boy</a></li>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Game%20Boy%20Color.rdb">Nintendo - Game Boy Color</a></li>
+</ul>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the Gearboy core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroArch Cheats - Game Genie</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroArch Cheats - GameShark</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The Gearboy core's library name is 'Gearboy'</p>
+<p>The Gearboy core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Save directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.srm</td>
+<td style="text-align: center;">Cartridge battery save</td>
+</tr>
+<tr>
+<td style="text-align: center;">*.rtc</td>
+<td style="text-align: center;">Real time clock save</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Frontend's State directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.state#</td>
+<td style="text-align: center;">State</td>
+</tr>
+</tbody>
+</table>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The Gearboy core's core provided FPS is 59.7275005696</li>
+<li>The Gearboy core's core provided sample rate is 44100 Hz</li>
+<li>The Gearboy core's base width is 160</li>
+<li>The Gearboy core's base height is 144</li>
+<li>The Gearboy core's max width is 160</li>
+<li>The Gearboy core's max height is 144</li>
+<li>The Gearboy core's core provided aspect ratio is 10/9</li>
+</ul>
+<h2 id="core-options">Core options</h2>
+<p>The Gearboy core has the following options that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Game Boy Model (restart)</strong> [gearboy_model] (<strong>Auto</strong>|Game Boy DMG|Game Boy Advance)</p>
+<p>Select which hardware/model is emulated.</p>
+<ul>
+<li><em>Auto</em> selects the best hardware based in the rom.</li>
+<li><em>Game Boy DMG</em> forces original Game Boy hardware.</li>
+<li><em>Game Boy Advance</em> enables Game Boy Advance hardware.</li>
+</ul>
+</li>
+<li><p><strong>Mapper (restart)</strong> [gearboy_mapper] (<strong>Auto</strong>|ROM Only|MBC 1|MBC 2|MBC 3|MBC 5|MBC 1 Multicart)</p>
+<p>Select which Memory Bank Controller (MBC or mapper) is emulated.</p>
+<ul>
+<li><em>Auto</em> selects the best MBC based in the rom.</li>
+<li><em>ROM Only</em> forces no MBC.</li>
+<li><em>MBC 1</em> forces MBC 1.</li>
+<li><em>MBC 2</em> forces MBC 2.</li>
+<li><em>MBC 3</em> forces MBC 3 + RTC.</li>
+<li><em>MBC 5</em> forces MBC 5.</li>
+<li><em>MBC 1 Multicart</em> forces MBC 1 Multicart.</li>
+</ul>
+</li>
+<li><p><strong>DMG Palette</strong> [gearboy_palette] (<strong>Original</strong>|Sharp|B/W|Autumn|Soft|Slime)</p>
+<p>Select a color palette for Game Boy DMG games.</p>
+</li>
+<li><p><strong>DMG Bootrom</strong> [gearboy_bootrom_dmg] (<strong>Disabled</strong>|Enabled)</p>
+<p>This option will enable/disable bootrom for Game Boy DMG model. For this to work, the <code>dmg_boot.bin</code> file must exist in the Retro Arch's system directory.</p>
+</li>
+<li><p><strong>Game Boy Color Bootrom</strong> [gearboy_bootrom_gbc] (<strong>Disabled</strong>|Enabled)</p>
+<p>This option will enable/disable bootrom for Game Boy Color model. For this to work, the <code>cgb_boot.bin</code> file must exist in the Retro Arch's system directory.</p>
+</li>
+<li><p><strong>Allow Up+Down / Left+Right</strong> [gearboy_up_down_allowed] (<strong>Disabled</strong>|Enabled)</p>
+<p>Enabling this will allow pressing / quickly alternating / holding both left and right (or up and down in some games) directions at the same time.</p>
+<p>This may cause movement based glitches to occur in certain games.</p>
+<p>It's best to keep this core option disabled.</p>
+</li>
+</ul>
+<h2 id="joypad">Joypad</h2>
+<p><img src="../image/controller/gb.png" alt="" /></p>
+<table>
+<thead>
+<tr>
+<th>User 1 input descriptors</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>Select</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+</tr>
+<tr>
+<td>Start</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+</tr>
+<tr>
+<td>Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>A</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<h2 id="compatibility">Compatibility</h2>
+<ul>
+<li><a href="https://github.com/drhelius/Gearboy#accuracy-tests">Gearboy Accuracy Tests</a></li>
+</ul>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://github.com/drhelius/Gearboy">Official Gearboy Github Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/gearboy_libretro.info">Libretro Gearboy Core info file</a></li>
+<li><a href="https://github.com/drhelius/Gearboy/issues">Report Libretro Gearboy Core Issues Here</a></li>
+</ul>
+<h3 id="see-also">See also</h3>
+<h4 id="nintendo-game-boy-color">Nintendo - Game Boy (+ Color)</h4>
+<ul>
+<li><a href="emux_gb.md">Nintendo - Game Boy / Color (Emux GB)</a></li>
+<li><a href="gambatte.md">Nintendo - Game Boy / Color (Gambatte)</a></li>
+<li><a href="sameboy.md">Nintendo - Game Boy / Color (SameBoy)</a></li>
+<li><a href="tgb_dual.md">Nintendo - Game Boy / Color (TGB Dual)</a></li>
+<li><a href="mgba.md">Nintendo - Game Boy Advance (mGBA)</a></li>
+<li><a href="vba_m.md">Nintendo - Game Boy Advance (VBA-M)</a></li>
+<li><a href="higan_accuracy.md">Nintendo - SNES / Famicom (higan Accuracy)</a></li>
+<li><a href="nside_balanced.md">Nintendo - SNES / Famicom (nSide Balanced)</a></li>
+<li><a href="mesen-s.md">Nintendo - SNES / Famicom (Mesen-S)</a></li>
+</ul>

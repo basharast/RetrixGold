@@ -1,0 +1,265 @@
+/*---------------------------------------
+    16. Sidebar CSS
+-----------------------------------------*/
+/*-- Sidebar css --*/
+.sidebar-area{
+    background-color: #f1f1f1;
+    padding: 30px 20px;
+}
+.single-sidebar-widget{
+    & h3{
+        font-size: 24px;
+        line-height: 28px;
+        margin-bottom: 12px;
+        //Responsive
+        @media #{$laptop-device}{
+            font-size: 22px;
+        }
+        @media #{$desktop-device}{
+            font-size: 16px;
+        }
+        @media #{$large-mobile}{
+            font-size: 20px;
+        }
+    }
+    & .single-featured-game{
+        & .game-img{
+            position: relative;
+            & a{
+                display: block;
+                & img{
+                    width: 100%;
+                }
+            }
+            & a.game-title{
+                position: absolute;
+                bottom: 25px;
+                left: 25px;
+                display: block;
+                font-size: 18px;
+                line-height: 28px;
+                font-family: $heading-font;
+                color: $white;
+                //Responsive
+                @media #{$desktop-device}{
+                    font-size: 14px;
+                    bottom: 10px;
+                    left: 10px;
+                }
+            }
+        }
+    }
+    & .sidebar-social{
+        & ul{
+            & li{
+                display: inline-block;
+                margin-right: 20px;
+                //Responsive
+                @media #{$laptop-device}{
+                    margin-right: 18px;
+                }
+                @media #{$desktop-device}{
+                    margin-right: 5px;
+                }
+                @media #{$large-mobile}{
+                    margin-right: 15px;
+                }
+                &:last-child{
+                    margin-right: 0;
+                }
+                & a{
+                    font-size: 18px;
+                    display: block;
+                    width: 40px;
+                    height: 40px;
+                    line-height: 38px;
+                    border: 1px solid #cccccc;
+                    text-align: center;
+                    border-radius: 100%;
+                    //Responsive
+                    @media #{$desktop-device}{
+                        width: 35px;
+                        height: 35px;
+                        line-height: 33px;
+                        font-size: 16px;
+                    }
+                    &.facebook{
+                        color: $facebook;
+                        &:hover{
+                            background-color: $facebook;
+                            border-color: $facebook;
+                            color: $white;
+                        }
+                    }
+                    &.youtube{
+                        color: $youtube;
+                        &:hover{
+                            background-color: $youtube;
+                            border-color: $youtube;
+                            color: $white;
+                        }
+                    }
+                    &.instagram{
+                        color: $instagram;
+                        &:hover{
+                            background-color: $instagram;
+                            border-color: $instagram;
+                            color: $white;
+                        }
+                    }
+                    &.twitter{
+                        color: $twitter;
+                        &:hover{
+                            background-color: $twitter;
+                            border-color: $twitter;
+                            color: $white;
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }
+    & .popular-game{
+        & .game-img{
+            & a{
+                display: block;
+                & img{
+                    width: 100%;
+                }
+            }
+        }
+        & .game-content{
+            overflow: hidden;
+            margin-top: 10px;
+            & h3{
+                font-size: 18px;
+                line-height: 28px;
+                margin-bottom: 0;
+                color: $body-color;
+                display: inline-block;
+                //Responsive
+                @media #{$desktop-device}{
+                    font-size: 14px;
+                }
+            }
+            & span{
+                font-size: 16px;
+                line-height: 28px;
+                color: $theme-color;
+                font-family: $heading-font;
+                float: right;
+                //Responsive
+                @media #{$desktop-device}{
+                    font-size: 10px;
+                }
+            }
+        }
+    }
+    & .sidebar-rc-post{
+        & ul{
+            & li{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+                & .rc-post-thumb{
+                    max-width: 83px;
+                    flex: 1 0 83px;
+                    //Responsive
+                    @media #{$desktop-device}{
+                        max-width: 65px;
+                        flex: 1 0 65px;
+                    }
+                }
+                & .rc-post-content{
+                    flex: 1 0 calc(100% - 83px);
+                    padding-left: 15px;
+                    //Responsive
+                    @media #{$desktop-device}{
+                        flex: 1 0 calc(100% - 65px);
+                    }
+                    & h3{
+                        font-size: 18px;
+                        line-height: 20px;
+                        margin-bottom: 0px;
+                        //Responsive
+                        @media #{$desktop-device}{
+                            font-size: 13px;
+                        }
+                        @media #{$large-mobile}{
+                            font-size: 14px;
+                        }
+                    }
+                    & .widget-date{
+                        font-size: 16px;
+                        line-height: 26px;
+                        font-weight: 300;
+                        //Responsive
+                        @media #{$desktop-device}{
+                            font-size: 12px;
+                            line-height: 20px;
+                        }
+                        @media #{$large-mobile}{
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    & .sidebar-instagram{
+        & ul{
+            margin: 0 -3px;
+            overflow: hidden;
+            & li{
+                float: left;
+                width: 97px;
+                padding: 0 3px;
+                padding-bottom: 7px;
+                //Responsive
+                @media #{$desktop-device}{
+                    width: 85px;
+                }
+                & a{
+                    display: block;
+                }
+            }
+        }
+    }
+    & .sidebar-banner{
+        margin: 0 -20px;
+        & a{
+            display: block;
+            & img{
+                width: 100%;
+            }
+        }
+    }
+}
+
+/*Sidebar Banner CSS*/
+.banner-group{
+    & .single-banner{
+        & a{
+            display: block;
+            & img{
+                width: 100%;
+            }
+        }
+    }
+    //Resonsive
+    @media #{$tablet-device}{
+        display: flex;
+        margin: 0 -7px;
+        & .single-banner{
+            padding: 0 7px;
+            & a{
+                display: block;
+                & img{
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

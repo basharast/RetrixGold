@@ -1,0 +1,781 @@
+<h1 id="enterprise-64128-ep128emu">Enterprise - 64/128 (ep128emu)</h1>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/vpqkDRUgwpU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2 id="background">Background</h2>
+<p>Leverage the convenience of libretro/retroarch to emulate the Z80 based home computers that the original ep128emu supports - that is, Enterprise 64/128, Videoton TVC, Amstrad CPC and ZX Spectrum. Focus is on Enterprise and TVC.</p>
+<p>The ep128emu core has been authored by:</p>
+<ul>
+<li>Istvan Varga (ep128emu)</li>
+<li>Zoltan Balogh (libretro core specific modifications)</li>
+</ul>
+<p>The ep128emu core is licensed under <a href="https://github.com/libretro/ep128emu-core/blob/master/COPYING">GPL2</a>. A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="requirements">Requirements</h2>
+<p>Since the emulated machines are 8-bit platforms from the 1980's, modern setups should have no problem emulating them. Tested on Raspberry Pi 2.</p>
+<h2 id="bios">BIOS</h2>
+<p>Following &quot;BIOS&quot; files are required for emulation. Note: in usual 8-bit terms, these are &quot;ROM&quot;s as they contain the original machine's read-only memory dumps.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>exos21.rom</code></td>
+<td style="text-align: center;">Enterprise 128 Expandible OS 2.1 <br> Required for EP128</td>
+<td style="text-align: center;">f36f24cbb87745fbd2714e4df881db09</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>basic21.rom</code></td>
+<td style="text-align: center;">Enterprise 128 BASIC Interpreter v2.1 <br> Required for EP128</td>
+<td style="text-align: center;">e972fe42b398c9ff1d93ff014786aec6</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>exdos13.rom</code></td>
+<td style="text-align: center;">Enterprise 128 Disk Controller v1.3 <br> Required for EP64/128 disk configs</td>
+<td style="text-align: center;">ddff70c014d1958dc75378b6c9aab6f8</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>exos20.rom</code></td>
+<td style="text-align: center;">Enterprise 64 Expandible OS 2.0 <br> Required for EP64</td>
+<td style="text-align: center;">5ad3baaad3b5156d6b60b34229a676fb</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>basic20.rom</code></td>
+<td style="text-align: center;">Enterprise 64 BASIC Interpreter v2.0 <br> Required for EP64</td>
+<td style="text-align: center;">8e18edce4a7acb2c33cc0ab18f988482</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>epfileio.rom</code></td>
+<td style="text-align: center;">Enterprise 128 Direct File I/O <br> Required for loading from host file (instead of disk or tape image)</td>
+<td style="text-align: center;">a68ebcbc73a4d2178d755b7755bf18fe</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>exos24uk.rom</code></td>
+<td style="text-align: center;">Enterprise 128 Expandible OS 2.4 <br> Optional, only for enhanced functions (fast memory test)</td>
+<td style="text-align: center;">55af78f877a21ca45eb2df68a74fcc60</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>hun.rom</code></td>
+<td style="text-align: center;">Enterprise 128 Hungarian language extension <br> Optional</td>
+<td style="text-align: center;">22167938f142c222f40992839aa21a06</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>epd19hft.rom</code></td>
+<td style="text-align: center;">Enterprise 128 EP-DOS with Hungarian language extension <br> Optional</td>
+<td style="text-align: center;">12cfc9c7e48c8a16c2e09edbd926d467</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>zt19hfnt.rom</code></td>
+<td style="text-align: center;">Enterprise 128 ZozoTools with Hungarian language extension 1.9 <br> Optional</td>
+<td style="text-align: center;">653daaf7b9b29c2c4e577f489580f247</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>brd.rom</code></td>
+<td style="text-align: center;">Enterprise 128 German language extension <br> Optional</td>
+<td style="text-align: center;">6af0402906944fd134004b85097c8524</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>zt19uk.rom</code></td>
+<td style="text-align: center;">Enterprise 128 ZozoTools extension <br> Required for loading from DTF files</td>
+<td style="text-align: center;">228540b6be83ae2acd7569c8ff0f91d0</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>tvc22_sys.rom</code></td>
+<td style="text-align: center;">Videoton TVC system BIOS <br> Required for TVC emulation</td>
+<td style="text-align: center;">8c54285f541930cde766069942bad0f2</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>tvc22_ext.rom</code></td>
+<td style="text-align: center;">Videoton TVC extension BIOS <br> Required for TVC emulation</td>
+<td style="text-align: center;">5ce95a26ceed5bec73995d83568da9cf</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>tvcfileio.rom</code></td>
+<td style="text-align: center;">Videoton TVC Direct File I/O <br> Required for loading from host file (instead of disk or tape image)</td>
+<td style="text-align: center;">a2cf86ba8e7fc58b242137fe59036832</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>tvc_dos12d.rom</code></td>
+<td style="text-align: center;">Videoton TVC disk BIOS <br> Required for TVC disk configs</td>
+<td style="text-align: center;">88dc7876d584f90e4106f91444ab23b7</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>cpc464.rom</code></td>
+<td style="text-align: center;">Amstrad CPC 464 BIOS <br> Required for CPC 464 emulation</td>
+<td style="text-align: center;">a993f85b88ac4350cf4d41554e87fe4f</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>cpc664.rom</code></td>
+<td style="text-align: center;">Amstrad CPC 664 BIOS <br> Required for CPC 664 emulation</td>
+<td style="text-align: center;">5a384a2310f472c7857888371c00ed66</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>cpc6128.rom</code></td>
+<td style="text-align: center;">Amstrad CPC 6128 BIOS <br> Required for CPC 6128 emulation</td>
+<td style="text-align: center;">b96280dc6c95a48857b4b8eb931533ae</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>cpc_amsdos.rom</code></td>
+<td style="text-align: center;">Amstrad CPC AMSDOS BIOS <br> Required for CPC disk configs</td>
+<td style="text-align: center;">25629dfe870d097469c217b95fdc1c95</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>zx128.rom</code></td>
+<td style="text-align: center;">ZX Spectrum 128 BIOS <br> Required for ZX Spectrum 128 emulation</td>
+<td style="text-align: center;">85fede415f4294cc777517d7eada482e</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>zx48.rom</code></td>
+<td style="text-align: center;">ZX Spectrum 48 BIOS <br> Required for ZX Spectrum 16/48 emulation</td>
+<td style="text-align: center;">4c42a2f075212361c3117015b107ff68</td>
+</tr>
+</tbody>
+</table>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the ep128emu core have the following file extensions:</p>
+<ul>
+<li><code>.img</code> (Enterprise, CPC or TVC floppy disk image)</li>
+<li><code>.dsk</code> (Enterprise, CPC or TVC floppy disk image)</li>
+<li><code>.tap</code> (Enterprise or ZX Spectrum tape image)</li>
+<li><code>.dtf</code> (Enterprise compressed file)</li>
+<li><code>.cas</code> (Videoton TVC file format)</li>
+<li><code>.cdt</code> (Amstrad CPC tape image)</li>
+<li><code>.tzx</code> (ZX Spectrum tape image)</li>
+<li><code>.bas</code>, <code>.com</code>, <code>.trn</code>, <code>.128</code>, <code>.</code> (common extensions for Enterprise executable files, including no extension)</li>
+</ul>
+<p>RetroArch database(s) that are associated with the ep128emu core:</p>
+<ul>
+<li>None yet</li>
+</ul>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the ep128emu core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h2 id="directories">Directories</h2>
+<p>The ep128emu core's library name is <code>ep128emu</code>. The ep128emu core saves/loads to/from these directories.</p>
+<p><strong>Frontend's System directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">ep128emu/rom/*</td>
+<td style="text-align: center;">BIOS files are loaded from here</td>
+</tr>
+<tr>
+<td style="text-align: center;">ep128emu/config/*</td>
+<td style="text-align: center;">System-wide emulation configuration files</td>
+</tr>
+</tbody>
+</table>
+<h2 id="geometry-and-timing">Geometry and timing</h2>
+<ul>
+<li>The ep128emu core's core provided FPS is 50</li>
+<li>The ep128emu core's core provided sample rate is 44.1 kHz</li>
+<li>The ep128emu core's base width is 768</li>
+<li>The ep128emu core's base height is 288</li>
+<li>The ep128emu core's max width is 768</li>
+<li>The ep128emu core's max height is 576 (interlace mode)</li>
+<li>The ep128emu core's core provided aspect ratio is 4:3 (interlace mode)</li>
+</ul>
+<p>The intelligent zoom function can reduce the apparent width/height, aspect ratio is also adjusted.</p>
+<h2 id="usage">Usage</h2>
+<p>Load any supported content file. Content type will be autodetected, and if possible, started. Without content, core starts with Enterprise 128 disk configuration.</p>
+<h2 id="core-options">Core options</h2>
+<p>The ep128emu core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.
+Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li>Main thread wait (ms) (<strong>0</strong>|1|5|10) - forced sleep in main thread for lower CPU use</li>
+<li>High sound quality (<strong>1</strong>|0) - disable in case of performance problems</li>
+<li>Use accelerated SW framebuffer (<strong>0</strong>|1) - enable in case of performance problems (has some known bugs with interlace mode)</li>
+<li>Enable resolution changes (requires restart) (<strong>1</strong>|0)</li>
+<li>Border lines to keep when zooming in (<strong>0</strong>|2|4|8|10|20)</li>
+<li>System ROM version (EP only) (<strong>Original</strong>|Enhanced) - enhanced ROM contains faster memory test at startup</li>
+<li>User 1 Zoom button (<strong>R3</strong>|Start|Select|X|Y|A|B|L|R|L2|R2|L3)</li>
+<li>User 1 Info button (<strong>L3</strong>|R3|Start|Select|X|Y|A|B|L|R|L2|R2)</li>
+<li>User 1 Autofire for button (<strong>None</strong>|X|Y|A|B|L|R|L2|R2|L3|R3|Start|Select)</li>
+<li>User 1 Autofire repeat delay (<strong>1</strong>|2|4|8|16)</li>
+</ul>
+<h2 id="control-device-types">Control device types</h2>
+<p>The emulated systems use several joystick types (all digital, with 1 fire button usually). Enterprise and TVC have a built-in joystick, and two external joystick connections. The ep128emu core supports device type changes in the controls menu. Change of the type updates the joypad and fire button mapping.</p>
+<table>
+<thead>
+<tr>
+<th>Emulated machine</th>
+<th>User 1 default joypad</th>
+<th>User 2 default joypad</th>
+<th>User 3 default joypad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enterprise</td>
+<td>Internal</td>
+<td>External 1</td>
+<td>External 2</td>
+</tr>
+<tr>
+<td>TVC</td>
+<td>Internal</td>
+<td>External 1</td>
+<td>External 2</td>
+</tr>
+<tr>
+<td>CPC</td>
+<td>External 1</td>
+<td>External 2</td>
+<td></td>
+</tr>
+<tr>
+<td>ZX</td>
+<td>Kempston</td>
+<td>Sinclair 1</td>
+<td>Sinclair 2</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Core default - Joypad and fire button is mapped as default (see above)</li>
+<li>Internal Joystick - Joypad and fire button is mapped for internal joystick</li>
+<li>External Joystick 1 / Kempston - Joypad and fire button is mapped for external joystick 1 (Kempston interface in case of ZX)</li>
+<li>External Joystick 2 - Joypad and fire button is mapped for external joystick 2</li>
+<li>Sinclair Joystick 1 - Joypad and fire button is mapped for Sinclair joystick 1. Only useful for ZX.</li>
+<li>Sinclair Joystick 2 - Joypad and fire button is mapped for Sinclair joystick 2. Only useful for ZX.</li>
+<li>Protek Joystick - Joypad and fire button is mapped for Protek joystick 1. Only useful for ZX.</li>
+<li>External Joystick 3 - Joypad and fire button is mapped for external joystick 3. Only useful for Enterprise, very rarely used.</li>
+<li>External Joystick 4 - Joypad and fire button is mapped for external joystick 4. Only useful for Enterprise, very rarely used.</li>
+<li>External Joystick 5 - Joypad and fire button is mapped for external joystick 5. Only useful for Enterprise, very rarely used.</li>
+<li>External Joystick 6 - Joypad and fire button is mapped for external joystick 6. Only useful for Enterprise, very rarely used.</li>
+</ul>
+<h2 id="joypad">Joypad</h2>
+<table>
+<thead>
+<tr>
+<th>RetroPad Inputs</th>
+<th>Default action for user 1</th>
+<th>Recommended override <br> for content-specific configuration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /> <img src="../image/retropad/retro_dpad_down.png" alt="" /> <br> <img src="../image/retropad/retro_dpad_left.png" alt="" /> <img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>Respective directions for: <br> Enterprise, TVC: Internal joystick <br> CPC: External joystick 1 <br> ZX Spectrum: Kempston interface</td>
+<td></td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+<td>Enterprise, TVC: space (fire for internal joystick) <br> CPC: External joystick 1 fire <br> ZX Spectrum: Kempston joystick</td>
+<td></td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+<td>Enter</td>
+<td></td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>CPC: External joystick 1 fire 2</td>
+<td>In-game key required for secondary action</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>-</td>
+<td>In-game key required for other action (if any)</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+<td>-</td>
+<td>In-game key required to select the supported input method (if any)</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+<td>-</td>
+<td>In-game key required to start the game (if any)</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+<td>Key 0</td>
+<td>In-game key required for other action (if any)</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+<td>Key 1</td>
+<td>In-game key required for other action (if any)</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+<td>Key 2</td>
+<td>In-game key required for other action (if any)</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+<td>Key 3</td>
+<td>In-game key required for other action (if any)</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_l3.png" alt="" /></td>
+<td>Info display</td>
+<td>-</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_r3.png" alt="" /></td>
+<td>Intelligent zoom</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="keyboard">Keyboard</h2>
+<h3 id="enterprise-128">Enterprise 128</h3>
+<p>The ep128emu core takes the Enterprise UK keyboard as a basis:
+<img src="../image/core/ep128emu/enterprise-128-uk-keyboard.png" alt="" /></p>
+<p>Most mappings are straightforward positionally from an ISO UK keyboard:</p>
+<ul>
+<li>Dark green: natural mapping, both position and function matches nicely</li>
+<li>Light green: either position or function is slightly different</li>
+<li>Yellow: function is different</li>
+<li>Red: extra mapping</li>
+<li>Dark grey: keys intentionally reserved for RetroArch / OS functions</li>
+</ul>
+<p><img src="../image/core/ep128emu/iso-mapping-for-enterprise-128.png" alt="" /></p>
+<p>Exceptions are marked in the following table:</p>
+<table>
+<thead>
+<tr>
+<th>RetroKeyboard Inputs</th>
+<th>Enterprise keyboard input</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keyboard F9</td>
+<td>Hold</td>
+</tr>
+<tr>
+<td>Keyboard F10</td>
+<td>Stop</td>
+</tr>
+<tr>
+<td>Keyboard Pause</td>
+<td>Stop</td>
+</tr>
+<tr>
+<td>Keyboard Backquote `</td>
+<td>Escape (alternative mapping)</td>
+</tr>
+<tr>
+<td>Keyboard Equals =</td>
+<td>^ (caret)</td>
+</tr>
+<tr>
+<td>Keyboard Backspace</td>
+<td>Erase</td>
+</tr>
+<tr>
+<td>Keyboard Left Bracket [</td>
+<td>@ (at)</td>
+</tr>
+<tr>
+<td>Keyboard Right Bracket ]</td>
+<td>[ (left bracket)</td>
+</tr>
+<tr>
+<td>Keyboard Quote '</td>
+<td>: (colon)</td>
+</tr>
+<tr>
+<td>Keyboard Backslash \</td>
+<td>] (right bracket) (shown as # in ISO map)</td>
+</tr>
+<tr>
+<td>Keyboard Oem 102</td>
+<td>\ (backslash)</td>
+</tr>
+<tr>
+<td>Keyboard Home</td>
+<td>\ (alternative mapping)</td>
+</tr>
+<tr>
+<td>Keyboard Delete</td>
+<td>Del</td>
+</tr>
+<tr>
+<td>Keyboard Insert</td>
+<td>Ins</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 0</td>
+<td>External joystick 1 fire</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 2</td>
+<td>External joystick 1 down</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 4</td>
+<td>External joystick 1 left</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 6</td>
+<td>External joystick 1 right</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 8</td>
+<td>External joystick 1 up</td>
+</tr>
+</tbody>
+</table>
+<h3 id="videoton-tvc">Videoton TVC</h3>
+<p>The Videoton TVC has a layout that is somewhat similar to ISO Hungarian layout:
+<img src="../image/core/ep128emu/videoton-tvc-keyboard.png" alt="" />
+<img src="../image/core/ep128emu/iso-mapping-for-videoton-tvc.png" alt="" /></p>
+<p>Since TVC has several extra keys, but no function keys, F-row is used as replacement for those.</p>
+<table>
+<thead>
+<tr>
+<th>RetroKeyboard Inputs</th>
+<th>TVC keyboard input</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keyboard F1</td>
+<td>@</td>
+</tr>
+<tr>
+<td>Keyboard F2</td>
+<td>;</td>
+</tr>
+<tr>
+<td>Keyboard F3</td>
+<td>&lt;</td>
+</tr>
+<tr>
+<td>Keyboard F4</td>
+<td>\</td>
+</tr>
+<tr>
+<td>Keyboard F5</td>
+<td>*</td>
+</tr>
+<tr>
+<td>Keyboard F6</td>
+<td>^</td>
+</tr>
+<tr>
+<td>Keyboard F7</td>
+<td>[</td>
+</tr>
+<tr>
+<td>Keyboard F8</td>
+<td>]</td>
+</tr>
+<tr>
+<td>Keyboard F9</td>
+<td>*</td>
+</tr>
+<tr>
+<td>Keyboard F10</td>
+<td>í</td>
+</tr>
+<tr>
+<td>Keyboard Backquote `</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Keyboard 0</td>
+<td>ö</td>
+</tr>
+<tr>
+<td>Keyboard Minus -</td>
+<td>ü</td>
+</tr>
+<tr>
+<td>Keyboard Equals =</td>
+<td>ó</td>
+</tr>
+<tr>
+<td>Keyboard Left Bracket [</td>
+<td>ő</td>
+</tr>
+<tr>
+<td>Keyboard Right Bracket ]</td>
+<td>ú</td>
+</tr>
+<tr>
+<td>Keyboard Semicolon ;</td>
+<td>é</td>
+</tr>
+<tr>
+<td>Keyboard Quote '</td>
+<td>á</td>
+</tr>
+<tr>
+<td>Keyboard Backslash \</td>
+<td>ű</td>
+</tr>
+<tr>
+<td>Keyboard Oem 102</td>
+<td>í</td>
+</tr>
+<tr>
+<td>Keyboard Home</td>
+<td>ű (alternative mapping)</td>
+</tr>
+<tr>
+<td>Keyboard Delete</td>
+<td>Del</td>
+</tr>
+<tr>
+<td>Keyboard Insert</td>
+<td>Ins</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 0</td>
+<td>External joystick 1 fire</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 2</td>
+<td>External joystick 1 down</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 4</td>
+<td>External joystick 1 left</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 6</td>
+<td>External joystick 1 right</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 8</td>
+<td>External joystick 1 up</td>
+</tr>
+</tbody>
+</table>
+<h3 id="amstrad-cpc">Amstrad CPC</h3>
+<p>The Amstrad CPC 464/664 and 6128 fit well to ISO UK layout, with only slight differences:
+<img src="../image/core/ep128emu/amstrad-cpc-464-keyboard.png" alt="" />
+<img src="../image/core/ep128emu/amstrad-cpc-6128-keyboard.png" alt="" />
+<img src="../image/core/ep128emu/iso-mapping-for-amstrad-cpc.png" alt="" /></p>
+<p>Function key row is mapped to Fn-array. Extra mappings are marked in the following table:</p>
+<table>
+<thead>
+<tr>
+<th>RetroKeyboard Inputs</th>
+<th>CPC keyboard input</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keyboard F1</td>
+<td>Fn1</td>
+</tr>
+<tr>
+<td>Keyboard F2</td>
+<td>Fn2</td>
+</tr>
+<tr>
+<td>Keyboard F3</td>
+<td>Fn3</td>
+</tr>
+<tr>
+<td>Keyboard F4</td>
+<td>Fn4</td>
+</tr>
+<tr>
+<td>Keyboard F5</td>
+<td>Fn5</td>
+</tr>
+<tr>
+<td>Keyboard F6</td>
+<td>Fn6</td>
+</tr>
+<tr>
+<td>Keyboard F7</td>
+<td>Fn7</td>
+</tr>
+<tr>
+<td>Keyboard F8</td>
+<td>Fn8</td>
+</tr>
+<tr>
+<td>Keyboard F9</td>
+<td>Fn9</td>
+</tr>
+<tr>
+<td>Keyboard F10</td>
+<td>Fn0</td>
+</tr>
+<tr>
+<td>Keyboard F11</td>
+<td>Fn Dot (.)</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Enter</td>
+<td>Fn Enter</td>
+</tr>
+<tr>
+<td>Keyboard Oem 102</td>
+<td>\</td>
+</tr>
+<tr>
+<td>Keyboard Home</td>
+<td>\ (alternative mapping)</td>
+</tr>
+<tr>
+<td>Keyboard Delete</td>
+<td>Del</td>
+</tr>
+<tr>
+<td>Keyboard Insert</td>
+<td>Copy</td>
+</tr>
+<tr>
+<td>Keyboard Left Alt</td>
+<td>Copy (alternative mapping)</td>
+</tr>
+<tr>
+<td>Keyboard Right Alt</td>
+<td>Fn Dot (alternative mapping)</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 0</td>
+<td>External joystick 1 fire</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Period .</td>
+<td>External joystick 1 fire 2</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 2</td>
+<td>External joystick 1 down</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 4</td>
+<td>External joystick 1 left</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 6</td>
+<td>External joystick 1 right</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 8</td>
+<td>External joystick 1 up</td>
+</tr>
+</tbody>
+</table>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://github.com/libretro/ep128emu-core">Official ep128emu-core Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/ep128emu_core_libretro.info">Libretro ep128emu Core info file</a></li>
+<li><a href="https://github.com/libretro/ep128emu-core/issues">Report Libretro ep128emu Core Issues Here</a></li>
+<li><a href="https://github.com/istvan-v/ep128emu">Original ep128emu Implementation</a></li>
+<li><a href="http://www.ep128.hu/">ep128.hu</a> - games for Enterprise</li>
+<li><a href="https://enterpriseforever.com/">enterpriseforever.com</a> - Enterprise community</li>
+<li><a href="http://tvc.homeserver.hu/">tvc.homeserver.hu</a> - TVC page (Hungarian only)</li>
+</ul>

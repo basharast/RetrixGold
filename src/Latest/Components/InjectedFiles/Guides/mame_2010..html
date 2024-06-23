@@ -1,0 +1,261 @@
+<h1 id="arcade-mame-2010">Arcade (MAME 2010)</h1>
+<h2 id="background">Background</h2>
+<p>MAME 2010 is a port of MAME 0.139 for libretro, originally sourced from <a href="https://github.com/mamedev/mame/releases/download/mame0139/mame0139s.zip">https://github.com/mamedev/mame/releases/download/mame0139/mame0139s.zip</a></p>
+<p>The OSD code is inspired by other MAME ports :</p>
+<ul>
+<li>mame2003: <a href="https://github.com/libretro/mame2003-libretro">https://github.com/libretro/mame2003-libretro</a></li>
+<li>ps3 mame0.125: <a href="http://www.volny.cz/molej/ps3/mame_ps3.htm">http://www.volny.cz/molej/ps3/mame_ps3.htm</a></li>
+<li>mame4droid: <a href="http://code.google.com/p/imame4all/source/browse/">http://code.google.com/p/imame4all/source/browse/</a></li>
+</ul>
+<h3 id="authorlicense">Author/License</h3>
+<p>MAME 2010 code is copyright <a href="http://mamedev.org/">Nicola Salmoria and the MAME team</a> and distributed under a <a href="https://raw.githubusercontent.com/libretro/mame2010-libretro/master/docs/license.txt">Non-Commercial MAME license</a>.</p>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by MAME 2010 have the following file extensions:</p>
+<ul>
+<li><code>.zip</code></li>
+<li><code>.7z</code></li>
+<li><code>.chd</code></li>
+</ul>
+<h2 id="databases">Databases</h2>
+<p>RetroArch database(s) that are associated with the MAME 2010 core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/MAME%202010.rdb?raw=true">MAME 2010</a></li>
+</ul>
+<h2 id="bios">BIOS</h2>
+<p>BIOS files should either be placed in the same folder as the Arcade romset ZIP file, or should be incorporated into the Arcade romset ZIP file itself in a &quot;Full Non-Merged&quot; romset format.</p>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the (Core name) core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>MAME 2010 requires the following directories exist, and will create them if they are missing:</p>
+<ul>
+<li>libretro system folder/mame2010/: location for cheat.zip cheats file</li>
+<li>libretro system folder/mame2010/artwork: MAME bezels and overlay files</li>
+<li>libretro system folder/mame2010/crosshairs: custom crosshair images</li>
+<li>libretro system folder/mame2010/fonts: custom fonts</li>
+<li>libretro system folder/mame2010/samples: audio sample zip files needed by some games</li>
+<li>libretro saves folder/mame2010/cfg: automatically-generated MAME configuration files</li>
+<li>libretro saves folder/mame2010/comment: MAME debugger comment files</li>
+<li>libretro saves folder/mame2010/ctrlr: MAME controller customization files</li>
+<li>libretro saves folder/mame2010/image: game image content</li>
+<li>libretro saves folder/mame2010/ini: MAME.ini files</li>
+<li>libretro saves folder/mame2010/input: Recorded input files</li>
+<li>libretro saves folder/mame2010/memcard: Save folder for emulated memcard device memory</li>
+<li>libretro saves folder/mame2010/nvram: Save folder for emulated nvram device memory</li>
+</ul>
+<h2 id="core-options">Core options</h2>
+<p>The MAME 2010 core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded. Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><strong>Mouse supported</strong> (disabled|enabled)</li>
+<li><strong>Video approach 1 Enabled</strong> (disabled|enabled)</li>
+<li><strong>Hide game info screen</strong> (disabled|enabled)</li>
+<li><strong>Hide warning screen</strong> (disabled|enabled)</li>
+<li><strong>Core provided aspect ratio</strong> (DAR|PAR)</li>
+<li><strong>Enable autofire</strong> (disabled|button 1|button 2|R2 to button 1 mapping|R2 to button 2 mapping)</li>
+<li><strong>Set autofire pulse speed</strong> (medium|slow|fast)</li>
+<li><strong>Set frameskip</strong> (0|1|2|3|4|automatic)</li>
+<li><strong>Set sample rate</strong> (Restart)** (48000Hz|44100Hz|32000Hz|22050Hz)</li>
+<li><strong>Set brightness</strong> (default|+1%|+2%|+3%|+4%|+5%|+6%|+7%|+8%|+9%|+10%|+11%|+12%|+13%|+14%|+15%|+16%|+17%|+18%|+19%|+20%|-20%|-19%|-18%|-17%|-16%|-15%|-14%|-13%|-12%|-11%|-10%|-9%|-8%|-7%|-6%|-5%|-4%|-3%|-2%|-1%)</li>
+<li><strong>Set contrast</strong> (default|+1%|+2%|+3%|+4%|+5%|+6%|+7%|+8%|+9%|+10%|+11%|+12%|+13%|+14%|+15%|+16%|+17%|+18%|+19%|+20%|-20%|-19%|-18%|-17%|-16%|-15%|-14%|-13%|-12%|-11%|-10%|-9%|-8%|-7%|-6%|-5%|-4%|-3%|-2%|-1%)</li>
+<li><strong>Set gamma</strong> (default|+1%|+2%|+3%|+4%|+5%|+6%|+7%|+8%|+9%|+10%|+11%|+12%|+13%|+14%|+15%|+16%|+17%|+18%|+19%|+20%|-20%|-19%|-18%|-17%|-16%|-15%|-14%|-13%|-12%|-11%|-10%|-9%|-8%|-7%|-6%|-5%|-4%|-3%|-2%|-1%)</li>
+<li><strong>Use external hiscore.dat</strong> (disabled|enabled)</li>
+</ul>
+<h2 id="controllers">Controllers</h2>
+<p>MAME 2010 supports keyboard use and up to four joypads.</p>
+<pre><code>       RetroPad                        MAME Equivalent
+   RETRO_DEVICE_ID_JOYPAD_START    [KEY_START]
+   RETRO_DEVICE_ID_JOYPAD_SELECT   [KEY_COIN]
+   RETRO_DEVICE_ID_JOYPAD_A	   [KEY_BUTTON_1]
+   RETRO_DEVICE_ID_JOYPAD_B        [KEY_BUTTON_2]
+   RETRO_DEVICE_ID_JOYPAD_X        [KEY_BUTTON_3]
+   RETRO_DEVICE_ID_JOYPAD_Y        [KEY_BUTTON_4]
+   RETRO_DEVICE_ID_JOYPAD_L        [KEY_BUTTON_5]
+   RETRO_DEVICE_ID_JOYPAD_R        [KEY_BUTTON_6]
+   RETRO_DEVICE_ID_JOYPAD_L2       [KEY_TAB]
+   RETRO_DEVICE_ID_JOYPAD_R3       [KEY_F3]
+   RETRO_DEVICE_ID_JOYPAD_L3       [KEY_F2]
+   RETRO_DEVICE_ID_JOYPAD_UP       [KEY_JOYSTICK_U]
+   RETRO_DEVICE_ID_JOYPAD_DOWN     [KEY_JOYSTICK_D]
+   RETRO_DEVICE_ID_JOYPAD_LEFT     [KEY_JOYSTICK_L]
+   RETRO_DEVICE_ID_JOYPAD_RIGHT    [KEY_JOYSTICK_R]
+</code></pre>
+<h4 id="lightgun">Lightgun</h4>
+<p>To be written for MAME 2010</p>
+<table>
+<thead>
+<tr>
+<th>RetroLightgun Inputs</th>
+<th>(Device name) Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retromouse/retro_mouse.png" alt="" /> Gun Crosshair</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Gun Trigger</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Gun Reload</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Gun Aux A</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Gun Aux B</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Gun Aux C</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Gun Start</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Gun Select</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Gun D-pad Up</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Gun D-pad Down</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Gun D-pad Left</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Gun D-pad Right</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://github.com/libretro/mame2010-libretro">MAME 2010 Github Repository</a></li>
+<li><a href="http://mamedev.org/">MAMEdev</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/mame2010_libretro.info">MAME 2010 Core info file</a></li>
+<li><a href="https://github.com/libretro/mame2010-libretro/blob/master/README.md">MAME 2010 README</a></li>
+<li><a href="https://github.com/libretro/mame2010-libretro/issues">Report MAME 2010 Issues Here</a></li>
+</ul>
+<h3 id="see-also">See also</h3>
+<ul>
+<li><a href="mame_2003.md">MAME 2003</a></li>
+<li><a href="mame2003_plus.md">MAME 2003 Plus</a></li>
+<li><a href="same_cdi.md">SAME_CDI</a></li>
+</ul>

@@ -1,0 +1,687 @@
+<h1 id="quake-1-tyrquake">Quake 1 (TyrQuake)</h1>
+<h2 id="background">Background</h2>
+<p>Libretro port of Tyrquake (Quake 1 engine).</p>
+<p>Features</p>
+<ul>
+<li>Runs at fixed frametimes</li>
+<li>Software bilinear filtering</li>
+<li>Software Half-Life/Quake 2-style colored lighting RGBA</li>
+<li>Chasecam / thirdperson view mode</li>
+<li>Interpolated animation applied on the keyframe animation for smooth animation</li>
+</ul>
+<p>The TyrQuake core has been authored by</p>
+<ul>
+<li>Kevin Shanahan (Tyrann)</li>
+</ul>
+<p>The TyrQuake core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/tyrquake/blob/master/gnu.txt">GPLv2</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the TyrQuake core have the following file extensions:</p>
+<ul>
+<li>.pak</li>
+</ul>
+<p>RetroArch database(s) that are associated with the TyrQuake core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Quake1.rdb">Quake1</a></li>
+</ul>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the TyrQuake core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The TyrQuake core's library name is 'TyrQuake'</p>
+<p>The TyrQuake core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Save directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">(game directory)/config.cfg</td>
+<td style="text-align: center;">Config</td>
+</tr>
+<tr>
+<td style="text-align: center;">(game directory)/*.sav</td>
+<td style="text-align: center;">Save</td>
+</tr>
+</tbody>
+</table>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The TyrQuake core's core provided FPS is 60</li>
+<li>The TyrQuake core's core provided sample rate is 44100 Hz</li>
+<li>The TyrQuake core's base width is dependent on the Resolution core option.</li>
+<li>The TyrQuake core's base height is dependent on the Resolution core option.</li>
+<li>The TyrQuake core's max width is dependent on the Resolution core option.</li>
+<li>The TyrQuake core's max height is dependent on the Resolution core option.</li>
+<li>The TyrQuake core's core provided aspect ratio is 4/3</li>
+</ul>
+<h2 id="loading-quake-and-expansion-paks">Loading Quake and Expansion Paks</h2>
+<p>Follow this directory structure</p>
+<ul>
+<li>'id1' for the main game</li>
+<li>'hipnotic' for the 1st mission pack</li>
+<li>'rogue' for the 2nd mission pack</li>
+<li>'dopa' for the official &quot;Episode 5: Dimension of the Past&quot; expansion</li>
+<li>Put BGM into a subfolder named music in each of them.</li>
+</ul>
+<pre><code>id1/
+├── pak0.pak ## shareware data
+├── pak1.pak ## registered data
+├── music/
+│   ├── track02.ogg
+│   ├── ...
+│   └── track11.ogg
+│
+hipnotic/
+├── pak0.pak
+├── music/
+│   ├── track02.ogg
+│   ├── ...
+│   └── track09.ogg
+│
+rogue/
+├── pak0.pak
+├── music/
+│   ├── track02.ogg
+│   ├── ...
+│   └── track09.ogg
+│
+dopa/
+└──  pak0.pak
+</code></pre>
+<p>Game saves and internal configuration files will be created in the frontend-defined save directory with a folder layout that mirrors the game data structure:</p>
+<pre><code>id1/
+├── config.cfg
+├── s0.sav
+├── s1.sav
+│
+hipnotic/
+├── config.cfg
+├── s0.sav
+├── s1.sav
+│
+rogue/
+├── config.cfg
+├── s0.sav
+├── s1.sav
+│
+dopa/
+├── config.cfg
+├── s0.sav
+└── s1.sav
+</code></pre>
+<p>Game saves are numbered from 's0.sav' to 's11.sav'.</p>
+<h2 id="soundtrack-files">Soundtrack files</h2>
+<p>TyrQuake supports playback of the original soundtrack from the base game and official mission packs' CDs.</p>
+<p>CD audio should be ripped into OGG format files, and placed into a subfolder named music of the appropriate folder (id1, hipnotic or rogue). The ripped CD tracks must be named trackXX.ogg, corresponding to the original CD track index for each audio track. Considering that the first CD track in all cases is the data track, the first audio track will always begin with track 02, which should be reflected in the filename of the ripped audio files.</p>
+<h2 id="username">Username</h2>
+<p>The TyrQuake core uses RetroArch's username setting for the in-game player name.</p>
+<h2 id="config">Config</h2>
+<p>TyrQuake's internal game settings can be found in the 'config.cfg' file inside each game's save directory.</p>
+<p>Many of these settings may be changed from the in-game menu. Notable options are as follows:</p>
+<ul>
+<li><p>VIDEO → SCREEN SIZE</p>
+<p>With the slider at the 3rd position from the right, all HUD information is shown.</p>
+<p>With the slider at the 2nd position from the right, the gameplay area is increased while the HUD size is reduced such that only armour, health and current ammo are shown.</p>
+<p>With the slider at the far right position, the gameplay area fills the screen and no HUD is shown.</p>
+</li>
+<li><p>VIDEO → GAMMA</p>
+<p>Sets display brightness</p>
+</li>
+<li><p>VIDEO → DITHER FILTERING (<strong>OFF</strong>|ON)</p>
+<p>Enables texture smoothing.</p>
+</li>
+<li><p>VIDEO → SMOOTH ANIMATION (<strong>OFF</strong>|ON)</p>
+<p>Enables linear interpolation of character animation.</p>
+</li>
+<li><p>VIDEO → SMOOTH MOVEMENT (<strong>OFF</strong>|ON)</p>
+<p>Enables linear interpolation of character movement.</p>
+</li>
+<li><p>GAME → CROSSHAIR (<strong>OFF</strong>|ON)</p>
+<p>Enables display of targeting reticule.</p>
+</li>
+</ul>
+<h2 id="core-options">Core options</h2>
+<p>The TyrQuake core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Colored lighting (restart)</strong> [tyrquake_colored_lighting] (<strong>disabled</strong>|enabled)</p>
+<p>Enables colored lightning when the loaded content supports it. Requires a restart.</p>
+</li>
+<li><p><strong>Resolution (restart)</strong> [tyrquake_resolution] (<strong>320x200</strong>|640x400|960x600|1280x800|1600x1000|1920x1200|320x240|320x480|360x200|360x240|360x400|360x480|400x224|480x272|512x224|512x240|512x384|512x512|640x224|640x240|640x448|640x480|720x576|800x480|800x600|960x720|1024x768|1280x720|1600x900|1920x1080)</p>
+<p>Configure the resolution. Requires a restart.</p>
+</li>
+</ul>
+<p>??? note &quot;Resolution - 320x240&quot;
+<img src="../image/core/tyrquake/320x240.png" alt="" /></p>
+<p>??? note &quot;Resolution - 1920x1080&quot;
+<img src="../image/core/tyrquake/1920x1080.png" alt="" /></p>
+<ul>
+<li><p><strong>Rumble</strong> [tyrquake_rumble] (<strong>disabled</strong>|enabled)</p>
+<p>Enables joypad rumble.</p>
+</li>
+<li><p><strong>Invert Y Axis</strong> [tyrquake_invert_y_axis] (<strong>disabled</strong>|enabled)</p>
+<p>Invert the gamepad right analog stick's Y axis.</p>
+</li>
+<li><p><strong>Analog Deadzone (percent)</strong> [tyrquake_analog_deadzone] (<strong>15</strong>|20|25|30|0|5|10)</p>
+<p>Sets the deadzone of the Gamepad analog sticks when the input device type is set to 'Gamepad Classic' or 'Gamepad Modern'.</p>
+</li>
+</ul>
+<h2 id="user-1-device-types">User 1 device types</h2>
+<p>The TyrQuake core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<ul>
+<li>None - Input disabled.</li>
+<li><strong>Gamepad Classic</strong> - Joypad</li>
+<li><strong>Gamepad Classic Alt</strong> - Joypad</li>
+<li><strong>Gamepad Modern</strong> - Joypad</li>
+<li><strong>Keyboard + Mouse</strong> - Keyboard and Mouse - Switch to this for keyboard and mouse input. Has keymapper support.</li>
+</ul>
+<h2 id="rumble-support">Rumble support</h2>
+<p>Rumble only works in the TyrQuake core when</p>
+<ul>
+<li>The content being ran has rumble support.</li>
+<li>The frontend being used has rumble support.</li>
+<li>The joypad device being used has rumble support.</li>
+<li>The <a href="#core-options">'Rumble' core option</a> is set to enabled.</li>
+</ul>
+<h2 id="joypad">Joypad</h2>
+<table>
+<thead>
+<tr>
+<th>User 1 Remap descriptors for 'Gamepad Classic' device type</th>
+<th>RetroPad Inputs</th>
+<th>TyrQuake inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jump</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>Jump</td>
+</tr>
+<tr>
+<td>Fire</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+<td>Fire</td>
+</tr>
+<tr>
+<td>Toggle Run Mode</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+<td>Toggle Run Mode</td>
+</tr>
+<tr>
+<td>Menu</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+<td>Menu</td>
+</tr>
+<tr>
+<td>D-Pad Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>D-Pad Up</td>
+</tr>
+<tr>
+<td>D-Pad Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>D-Pad Down</td>
+</tr>
+<tr>
+<td>D-Pad Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>D-Pad Left</td>
+</tr>
+<tr>
+<td>D-Pad Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>D-Pad Right</td>
+</tr>
+<tr>
+<td>Cycle Weapon</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>Cycle Weapon</td>
+</tr>
+<tr>
+<td>Freelook</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+<td>Freelook</td>
+</tr>
+<tr>
+<td>Strafe Left</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+<td>Strafe Left</td>
+</tr>
+<tr>
+<td>Strafe Right</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+<td>Strafe Right</td>
+</tr>
+<tr>
+<td>Look Up</td>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+<td>Look Up</td>
+</tr>
+<tr>
+<td>Look Down</td>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+<td>Look Down</td>
+</tr>
+<tr>
+<td>Move Down</td>
+<td><img src="../image/retropad/retro_l3.png" alt="" /></td>
+<td>Move Down</td>
+</tr>
+<tr>
+<td>Swim Up</td>
+<td><img src="../image/retropad/retro_r3.png" alt="" /></td>
+<td>Swim Up</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> X</td>
+<td>Strafe Left/Right</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> Y</td>
+<td>D-Pad Up/Down</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /> X</td>
+<td>D-Pad Left/Right</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /> Y</td>
+<td>Look Up/Down</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>User 1 Remap descriptors for 'Gamepad Classic Alt' device type</th>
+<th>RetroPad Inputs</th>
+<th>TyrQuake inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Look Down</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>Look Down</td>
+</tr>
+<tr>
+<td>Look Left</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+<td>Look Left</td>
+</tr>
+<tr>
+<td>Toggle Run Mode</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+<td>Toggle Run Mode</td>
+</tr>
+<tr>
+<td>Menu</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+<td>Menu</td>
+</tr>
+<tr>
+<td>D-Pad Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>D-Pad Up</td>
+</tr>
+<tr>
+<td>D-Pad Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>D-Pad Down</td>
+</tr>
+<tr>
+<td>D-Pad Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>D-Pad Left</td>
+</tr>
+<tr>
+<td>D-Pad Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>D-Pad Right</td>
+</tr>
+<tr>
+<td>Look Right</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>Look Right</td>
+</tr>
+<tr>
+<td>Look Up</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+<td>Look Up</td>
+</tr>
+<tr>
+<td>Jump</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+<td>Jump</td>
+</tr>
+<tr>
+<td>Fire</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+<td>Fire</td>
+</tr>
+<tr>
+<td>Run</td>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+<td>Run</td>
+</tr>
+<tr>
+<td>Next Weapon</td>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+<td>Next Weapon</td>
+</tr>
+<tr>
+<td>Swim Down</td>
+<td><img src="../image/retropad/retro_l3.png" alt="" /></td>
+<td>Swim Down</td>
+</tr>
+<tr>
+<td>Previous Weapon</td>
+<td><img src="../image/retropad/retro_r3.png" alt="" /></td>
+<td>Previous Weapon</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> X</td>
+<td>Strafe Left/Right</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> Y</td>
+<td>D-Pad Up/Down</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /> X</td>
+<td>D-Pad Left/Right</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /> Y</td>
+<td>Look Up/Down</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>User 1 Remap descriptors for 'Gamepad Modern' device type</th>
+<th>RetroPad Inputs</th>
+<th>TyrQuake inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Swim Down</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>Swim Down</td>
+</tr>
+<tr>
+<td>Swim Up</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+<td>Swim Up</td>
+</tr>
+<tr>
+<td>Show Scores</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+<td>Show Scores</td>
+</tr>
+<tr>
+<td>Menu</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+<td>Menu</td>
+</tr>
+<tr>
+<td>D-Pad Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>D-Pad Up</td>
+</tr>
+<tr>
+<td>D-Pad Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>D-Pad Down</td>
+</tr>
+<tr>
+<td>D-Pad Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>D-Pad Left</td>
+</tr>
+<tr>
+<td>D-Pad Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>D-Pad Right</td>
+</tr>
+<tr>
+<td>Strafe Right</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>Strafe Right</td>
+</tr>
+<tr>
+<td>Strafe Left</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+<td>Strafe Left</td>
+</tr>
+<tr>
+<td>Previous weapon</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+<td>Previous weapon</td>
+</tr>
+<tr>
+<td>Next weapon</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+<td>Next weapon</td>
+</tr>
+<tr>
+<td>Jump</td>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+<td>Jump</td>
+</tr>
+<tr>
+<td>Fire</td>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+<td>Fire</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_l3.png" alt="" /></td>
+<td>Move Down</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_r3.png" alt="" /></td>
+<td>Swim Up</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> X</td>
+<td>Strafe Left/Right</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> Y</td>
+<td>D-Pad Up/Down</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /> X</td>
+<td>Look Left/Right</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /> Y</td>
+<td>Look Up/Down</td>
+</tr>
+</tbody>
+</table>
+<p>In-game menu controls:</p>
+<table>
+<thead>
+<tr>
+<th>Menu Function</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Navigate Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>Navigate Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>Adjust Value</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>Adjust Value</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>Select Current Option</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+<tr>
+<td>Return To Previous Level/Close Menu</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<h2 id="keyboard">Keyboard</h2>
+<ul>
+<li>Keyboard binds are in config.cfg</li>
+</ul>
+<h2 id="mouse">Mouse</h2>
+<ul>
+<li>Mouse binds are in config.cfg</li>
+</ul>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="http://disenchant.net/tyrquake/">Official TyrQuake Website</a></li>
+<li><a href="http://disenchant.net/git/?p=tyrquake">Official TyrQuake Git Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/tyrquake_libretro.info">Libretro TyrQuake Core info file</a></li>
+<li><a href="https://github.com/libretro/tyrquake">Libretro TyrQuake Github Repository</a></li>
+<li><a href="https://github.com/libretro/tyrquake/issues">Report Libretro TyrQuake Core Issues Here</a></li>
+</ul>
+<h2 id="id-software">id Software</h2>
+<ul>
+<li><a href="prboom.md">Doom (PrBoom)</a></li>
+</ul>

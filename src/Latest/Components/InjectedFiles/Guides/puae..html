@@ -1,0 +1,1627 @@
+<h1 id="puae">PUAE</h1>
+<h2 id="background">Background</h2>
+<p>PUAE tries to continue where E-UAE left off. PUAE versioning is based on the merged WinUAE version.</p>
+<p>E-UAE is an Amiga emulator, a program that allows you to run software
+designed for Amiga computers on other platforms, such as Linux or Mac
+OS. It is based on UAE, the original Ubiquitous Amiga Emulator, and
+WinUAE, the Windows version of UAE. While it owes a huge debt to these
+two great projects, E-UAE diverges from both, aiming to improve
+performance and features on a variety of host platforms.</p>
+<p>The PUAE core have been authored by</p>
+<ul>
+<li>UAE Team</li>
+</ul>
+<p>The PUAE core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-uae/blob/master/COPYING">GPLv2</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the PUAE core have the following file extensions:</p>
+<h3 id="floppies">Floppies</h3>
+<ul>
+<li>.adf</li>
+<li>.adz</li>
+<li>.dms</li>
+<li>.fdi</li>
+<li>.ipf</li>
+</ul>
+<h3 id="hard-drives">Hard drives</h3>
+<ul>
+<li>.hdf</li>
+<li>.hdz</li>
+<li>directory</li>
+</ul>
+<h3 id="whdload">WHDLoad</h3>
+<ul>
+<li>.lha</li>
+<li>.slave</li>
+<li>.info</li>
+</ul>
+<h3 id="compact-discs">Compact discs</h3>
+<ul>
+<li>.cue</li>
+<li>.ccd</li>
+<li>.chd</li>
+<li>.nrg</li>
+<li>.mds</li>
+<li>.iso</li>
+</ul>
+<h3 id="other">Other</h3>
+<ul>
+<li>.uae</li>
+<li>.m3u</li>
+<li>.zip</li>
+<li>.7z</li>
+</ul>
+<h2 id="databases">Databases</h2>
+<p>RetroArch database(s) that are associated with the PUAE core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Commodore%20-%20Amiga.rdb">Commodore - Amiga</a></li>
+</ul>
+<h2 id="bios">BIOS</h2>
+<p>Required or optional firmware files go in the frontend's system directory.</p>
+<p>The core has a somewhat compatible built-in AROS Kickstart, which is used as a fallback when the proper Kickstart is not found.</p>
+<p>Amiga Forever and TOSEC filenames are also accepted.</p>
+<table>
+<thead>
+<tr>
+<th>Filename</th>
+<th>Amiga Forever</th>
+<th>Description</th>
+<th>md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>kick33180.A500</td>
+<td>amiga-os-120.rom</td>
+<td>Kickstart v1.2 rev 33.180</td>
+<td>85ad74194e87c08904327de1a9443b7a</td>
+</tr>
+<tr>
+<td>kick34005.A500</td>
+<td>amiga-os-130.rom</td>
+<td>Kickstart v1.3 rev 34.005</td>
+<td>82a21c1890cae844b3df741f2762d48d</td>
+</tr>
+<tr>
+<td>kick37175.A500</td>
+<td>amiga-os-204.rom</td>
+<td>Kickstart v2.04 rev 37.175</td>
+<td>dc10d7bdd1b6f450773dfb558477c230</td>
+</tr>
+<tr>
+<td>kick37350.A600</td>
+<td>amiga-os-205-a600.rom</td>
+<td>Kickstart v2.05 rev 37.350</td>
+<td>465646c9b6729f77eea5314d1f057951</td>
+</tr>
+<tr>
+<td>kick40063.A600</td>
+<td>amiga-os-310-a600.rom</td>
+<td>Kickstart v3.1 rev 40.063</td>
+<td>e40a5dfb3d017ba8779faba30cbd1c8e</td>
+</tr>
+<tr>
+<td>kick39106.A1200</td>
+<td>amiga-os-300-a1200.rom</td>
+<td>Kickstart v3.0 rev 39.106</td>
+<td>b7cc148386aa631136f510cd29e42fc3</td>
+</tr>
+<tr>
+<td>kick40068.A1200</td>
+<td>amiga-os-310-a1200.rom</td>
+<td>Kickstart v3.1 rev 40.068</td>
+<td>646773759326fbac3b2311fd8c8793ee</td>
+</tr>
+<tr>
+<td>kick39106.A4000</td>
+<td>amiga-os-300-a4000.rom</td>
+<td>Kickstart v3.0 rev 39.106</td>
+<td>9b8bdd5a3fd32c2a5a6f5b1aefc799a5</td>
+</tr>
+<tr>
+<td>kick40068.A4000</td>
+<td>amiga-os-310-a4000.rom</td>
+<td>Kickstart v3.1 rev 40.068</td>
+<td>9bdedde6a4f33555b4a270c8ca53297d</td>
+</tr>
+<tr>
+<td>kick34005.CDTV</td>
+<td>amiga-os-130-cdtv-ext.rom</td>
+<td>CDTV extended ROM v1.00</td>
+<td>89da1838a24460e4b93f4f0c5d92d48d</td>
+</tr>
+<tr>
+<td>kick40060.CD32</td>
+<td>amiga-os-310-cd32.rom</td>
+<td>CD32 Kickstart v3.1 rev 40.060</td>
+<td>5f8924d013dd57a89cf349f4cdedc6b1</td>
+</tr>
+<tr>
+<td>kick40060.CD32.ext</td>
+<td>amiga-os-310-cd32-ext.rom</td>
+<td>CD32 extended ROM rev 40.060</td>
+<td>bb72565701b1b6faece07d68ea5da639</td>
+</tr>
+<tr>
+<td>kick40060.CD32</td>
+<td></td>
+<td>CD32 KS + extended v3.1 rev 40.060</td>
+<td>f2f241bf094168cfb9e7805dc2856433</td>
+</tr>
+</tbody>
+</table>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the PUAE core respect.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✔</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The PUAE core's internal core name is 'puae'.</p>
+<p>The PUAE core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Save directory</strong></p>
+<ul>
+<li>'content-name'.nvr (CD32/CDTV NVRAM)</li>
+<li><code>BootHD</code>/<code>puae_libretro.hdf</code> (Optional global boot hard drive image directory/file)</li>
+<li><code>WHDLoad</code>/<code>WHDLoad.hdf</code> (WHDLoad helper image directory/file)</li>
+<li><code>WHDSaves</code>/<code>WHDSaves.hdf</code> (WHDLoad save image directory/file)</li>
+</ul>
+<p><strong>Frontend's State directory</strong></p>
+<ul>
+<li>'content-name'.state# (State)</li>
+</ul>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The PUAE core's core provided FPS is dynamic, but initially 49.9201277955271580 for PAL and 59.8250950570342180 for NTSC</li>
+<li>The PUAE core's core provided sample rate is 44100 Hz</li>
+<li>The PUAE core's base width is 360 in LoRes, 720 in HiRes 1440 in SuperHires</li>
+<li>The PUAE core's base height is 288 for PAL single line, 576 for PAL double line, 240 for NTSC single line, 480 for NTSC double line</li>
+<li>The PUAE core's max width is 1440</li>
+<li>The PUAE core's max height is 576</li>
+<li>The PUAE core's core provided aspect ratio is automatically set based on core options</li>
+</ul>
+<h3 id="m3u-and-disk-control">M3U and Disk control</h3>
+<p>When you have a multi disk game, you can use a M3U playlist file to be able to change disks via RetroArch Disc Control interface.</p>
+<p>A M3U file is a simple text file with one disk per line (<a href="https://en.wikipedia.org/wiki/M3U">Wikipedia</a>).</p>
+<p>Example:</p>
+<p><code>Simpsons, The - Bart vs. The Space Mutants.m3u</code></p>
+<pre><code>Simpsons, The - Bart vs. The Space Mutants_Disk1.adf
+Simpsons, The - Bart vs. The Space Mutants_Disk2.adf
+</code></pre>
+<p>Path can be absolute or relative to the location of the M3U file.</p>
+<p>When the game asks for it, you can change the current disk in the RetroArch &quot;Disc Control&quot; menu:</p>
+<ul>
+<li>Eject the current disk with &quot;Eject Disc&quot;</li>
+<li>Select the right disk index with &quot;Current Disc Index&quot;</li>
+<li>Insert the new disk with &quot;Insert Disc&quot;</li>
+</ul>
+<p>For games that support multiple disk drives, append &quot;<strong>(MD)</strong>&quot; as in &quot;MultiDrive&quot; to the M3U filename to insert each disk in different drives. Only possible with maximum 4 disks!</p>
+<p><em><strong>MultiDrive option is enabled by default, so the tag is not necessary, but some games require disabling it, because they can't handle multiple disk drives.</strong></em></p>
+<p>For games that require a dedicated save disk, one may be generated automatically by entering the following line in an M3U file: <code>#SAVEDISK:VolumeName</code>. <code>VolumeName</code> is optional and may be omitted. For example, this will create a blank, unlabelled disk image at disk index 5:</p>
+<p><code>Secret of Monkey Island.m3u</code></p>
+<pre><code>Secret of Monkey Island_Disk 1.adf
+Secret of Monkey Island_Disk 2.adf
+Secret of Monkey Island_Disk 3.adf
+Secret of Monkey Island_Disk 4.adf
+#SAVEDISK:
+</code></pre>
+<p>Some games require save disks to have a specific label - for example, <code>It Came from the Desert</code> will only save to a disk named <code>DSAVE</code>:</p>
+<p><code>It Came from the Desert.m3u</code></p>
+<pre><code>It Came from the Desert_Disk 1.adf
+It Came from the Desert_Disk 2.adf
+It Came from the Desert_Disk 3.adf
+#SAVEDISK:DSAVE
+</code></pre>
+<p>Although one save disk is normally sufficient, an arbitrary number of <code>#SAVEDISK:VolumeName</code> lines may be included. Save disks are located in the frontend's save directory, with the following name: <code>[M3U_FILE_NAME].save[DISK_INDEX].adf</code>.</p>
+<p>By default, RetroArch will display the filename (without extension) of each M3U entry when selecting a disk via the <code>Current Disc Index</code> drop-down menu. Custom display labels may be set for each disk using the syntax: <code>DISK_FILE|DISK_LABEL</code>. For example, the following M3U file:</p>
+<p><code>Valhalla &amp; the Fortress of Eve.m3u</code></p>
+<pre><code>Valhalla &amp; the Fortress of Eve_Disk1.adf|Game Disk
+Valhalla &amp; the Fortress of Eve_Disk2.adf|Data Disk
+Valhalla &amp; the Fortress of Eve_Disk3.adf|Level 1 Disk
+Valhalla &amp; the Fortress of Eve_Disk4.adf|Level 2 Disk
+Valhalla &amp; the Fortress of Eve_Disk5.adf|Level 3 Disk
+Valhalla &amp; the Fortress of Eve_Disk6.adf|Level 4 Disk
+</code></pre>
+<p>...will be shown in RetroArch's disk selection menu as:</p>
+<pre><code>1: Game Disk
+2: Data Disk
+3: Level 1 Disk
+4: Level 2 Disk
+5: Level 3 Disk
+6: Level 4 Disk
+</code></pre>
+<p>If <code>DISK_LABEL</code> is intentionally left blank (i.e. <code>DISK_FILE|</code>) then only the disk index will be displayed.</p>
+<p>Save disks generated by the <code>#SAVEDISK:</code> keyword are automatically assigned the label: <code>Save Disk [SAVE_DISK_INDEX]</code>.</p>
+<h4 id="extra-m3u-features">Extra M3U features</h4>
+<ul>
+<li><code>#SAVEDISK:&lt;label&gt;</code>
+<ul>
+<li>Create a save disk in <code>saves</code></li>
+</ul>
+</li>
+<li><code>&lt;disk&gt;.adf|&lt;label&gt;</code>
+<ul>
+<li>Set a friendly name (shown in &quot;Disc Control&quot;)</li>
+</ul>
+</li>
+<li><code>&lt;disks&gt;.zip#&lt;disk&gt;.adf</code>
+<ul>
+<li>Specify a disk inside a ZIP with multiple disks (not needed with single file ZIPs)</li>
+</ul>
+</li>
+</ul>
+<p>M3U playlist supports floppy disks, hard drives (all images are mounted at once) and compact discs.</p>
+<h3 id="zip-support">ZIP support</h3>
+<p>ZIPs are extracted to a temporary directory in <code>saves</code>, bypassing the default frontend extraction.
+The temporary directory is emptied but not removed on exit. ZIP is not repacked, which means saves and highscores are lost.</p>
+<p>This allows:</p>
+<ul>
+<li>Automatic M3U playlist generation of all files</li>
+<li>The use of zipped images in M3Us</li>
+<li>If no compatible images are found, the ZIP will be treated as a directory</li>
+</ul>
+<h3 id="floppy-drive-sounds">Floppy drive sounds</h3>
+<p>The core has embedded internal floppy drive samples. External sound samples have to be copied from <a href="https://github.com/libretro/libretro-uae/tree/master/sources/uae_data">https://github.com/libretro/libretro-uae/tree/master/sources/uae_data</a> into a directory named <code>uae_data</code> or <code>uae</code> in RetroArch <code>system</code> directory.</p>
+<h3 id="ipf-support">IPF support</h3>
+<p>Most full-price commercial Amiga games had some form of custom disk format and/or copy protection. For this reason, most commercial Amiga games cannot be stored in ADF files unaltered, but there is an alternative called Interchangeable Preservation Format (IPF) which was specifically designed for this purpose.</p>
+<p>IPF support is done through CAPSIMG library. To enable it you have to put the dynamic library called <code>capsimg.dll</code> (Windows) or <code>capsimg.so</code> (Linux, macOS) in RetroArch <code>system</code> or executable directory.</p>
+<p>Compatible CAPSIMG libraries for Windows, macOS and Linux can be found at <a href="http://www.softpres.org/download">http://www.softpres.org/download</a> and <a href="https://fs-uae.net/download#plugins">https://fs-uae.net/download#plugins</a></p>
+<p>Compatible CAPSIMG libraries for Android can be found at <a href="https://github.com/rsn8887/capsimg/releases/latest">https://github.com/rsn8887/capsimg/releases/latest</a></p>
+<p>Please be aware that there are 32-bits and 64-bits versions of the library. Choose the one corresponding to your RetroArch executable.</p>
+<h2 id="usage">Usage</h2>
+<h3 id="default-controls">Default controls</h3>
+<table>
+<thead>
+<tr>
+<th>RetroPad button</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D-Pad</td>
+<td>Joystick</td>
+</tr>
+<tr>
+<td>Left Analog</td>
+<td>Mouse</td>
+</tr>
+<tr>
+<td>Right Analog</td>
+<td>Mouse</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Fire button 1 / Red</td>
+</tr>
+<tr>
+<td>A</td>
+<td>Fire button 2 / Blue</td>
+</tr>
+<tr>
+<td>X</td>
+<td>Space</td>
+</tr>
+<tr>
+<td>L2</td>
+<td>Left mouse button</td>
+</tr>
+<tr>
+<td>R2</td>
+<td>Right mouse button</td>
+</tr>
+<tr>
+<td>Select (Short)</td>
+<td>Toggle virtual keyboard</td>
+</tr>
+<tr>
+<td>Select (Long)</td>
+<td>Toggle statusbar</td>
+</tr>
+<tr>
+<td>Select (Hold)</td>
+<td>Fast-Forward</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Keyboard key</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>F12</td>
+<td>Toggle statusbar</td>
+</tr>
+<tr>
+<td>RControl</td>
+<td>Switch between joystick/mouse</td>
+</tr>
+</tbody>
+</table>
+<h3 id="virtual-keyboard">Virtual keyboard</h3>
+<p>The PUAE core has a virtual keyboard that can be accessed by default through RetroPad Select.</p>
+<p>The virtual keyboard can be controlled with:</p>
+<ul>
+<li><p><strong>RetroPad</strong></p>
+<table>
+<thead>
+<tr>
+<th>Button</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D-Pad</td>
+<td>Move</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Keypress</td>
+</tr>
+<tr>
+<td>A</td>
+<td>Toggle transparency</td>
+</tr>
+<tr>
+<td>Y</td>
+<td>Toggle CapsLock</td>
+</tr>
+<tr>
+<td>X</td>
+<td>Press Space</td>
+</tr>
+<tr>
+<td>Start</td>
+<td>Press Return</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p><strong>Keyboard</strong></p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cursors</td>
+<td>Move</td>
+</tr>
+<tr>
+<td>Enter</td>
+<td>Keypress</td>
+</tr>
+<tr>
+<td>CapsLock</td>
+<td>Toggle CapsLock</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p><strong>Mouse</strong></p>
+</li>
+<li><p><strong>Touch screen</strong></p>
+</li>
+</ul>
+<p>The virtual keyboard has these additional actions:</p>
+<ul>
+<li><p><code>J/M</code> = Switch between joystick/mouse</p>
+</li>
+<li><p><code>TRBF</code> = Toggle turbo fire</p>
+</li>
+<li><p>CapsLock off:</p>
+<ul>
+<li><code>ASPR</code> = Toggle aspect ratio</li>
+<li><code>STBR</code> = Toggle statusbar</li>
+</ul>
+</li>
+<li><p>CapsLock on:</p>
+<ul>
+<li><code>ZOOM</code> = Toggle zoom mode</li>
+<li><code>SVDS</code> = Create/Insert &amp; remove save disk</li>
+</ul>
+</li>
+<li><p>Reset (Red key with undo icon, soft reset = Ctrl-Amiga-Amiga)</p>
+</li>
+<li><p>Mouse controls (Left+right button, up, down, left, right)</p>
+</li>
+<li><p>Numpad key (Toggles numbers, arrows, Return etc. to numpad variants)</p>
+</li>
+</ul>
+<p>Long press for sticky keys. Stickying the third key will replace the second.</p>
+<h3 id="joyport-control">Joyport control</h3>
+<p>Some games use mouse instead of joystick. D-Pad can be switched between joystick and mouse control in several ways:</p>
+<ul>
+<li>Use the core option: <code>Quick Menu -&gt; Options -&gt; RetroPad Joystick/Mouse</code></li>
+<li>Bring up the virtual keyboard with <code>Select</code> button, and press the key labeled <code>J/M</code></li>
+<li>Press the default keyboard shortcut <code>Right Control</code></li>
+<li>Assign <code>Switch Joystick/Mouse</code> to any RetroPad button under <code>Quick Menu -&gt; Options</code></li>
+</ul>
+<h3 id="model-overriding">Model overriding</h3>
+<p>You can force a specific model if a game needs one (AGA games for instance) either by the &quot;Model&quot; core option or by file path tags.</p>
+<p>The &quot;Model&quot; core option at &quot;<strong>Automatic</strong>&quot; will default to A500 when booting floppy disks, A600 when booting hard drives, and CD32 when booting CD images.</p>
+<p>The whole path (filename and directory) will be searched for the following tags if the model is &quot;<strong>Automatic</strong>&quot;:</p>
+<table>
+<thead>
+<tr>
+<th>Floppy</th>
+<th>HD/LHA</th>
+<th>CD</th>
+<th>String</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>x</strong></td>
+<td><strong>x</strong></td>
+<td></td>
+<td><strong>(A500OG)</strong>, <strong>(512K)</strong>, <strong>(512KB)</strong></td>
+<td>Amiga 500 (0.5MB Chip RAM)</td>
+</tr>
+<tr>
+<td><strong>x</strong></td>
+<td><strong>x</strong></td>
+<td></td>
+<td><strong>(A500)</strong>, <strong>OCS</strong></td>
+<td>Amiga 500 (0.5MB Chip RAM + 0.5MB Slow RAM)</td>
+</tr>
+<tr>
+<td><strong>x</strong></td>
+<td><strong>x</strong></td>
+<td></td>
+<td><strong>(A500+)</strong>, <strong>(A500PLUS)</strong></td>
+<td>Amiga 500+ (1MB Chip RAM)</td>
+</tr>
+<tr>
+<td><strong>x</strong></td>
+<td><strong>x</strong></td>
+<td></td>
+<td><strong>(A600)</strong>, <strong>ECS</strong></td>
+<td>Amiga 600 (2MB Chip RAM + 8MB Fast RAM)</td>
+</tr>
+<tr>
+<td><strong>x</strong></td>
+<td><strong>x</strong></td>
+<td></td>
+<td><strong>(A1200OG)</strong>, <strong>(A1200NF)</strong></td>
+<td>Amiga 1200 (2MB Chip RAM)</td>
+</tr>
+<tr>
+<td><strong>x</strong></td>
+<td><strong>x</strong></td>
+<td></td>
+<td><strong>(A1200)</strong>, <strong>AGA</strong>, <strong>CD32</strong>, <strong>AmigaCD</strong></td>
+<td>Amiga 1200 (2MB Chip RAM + 8MB Fast RAM)</td>
+</tr>
+<tr>
+<td><strong>x</strong></td>
+<td><strong>x</strong></td>
+<td></td>
+<td><strong>(A4030)</strong>, <strong>(030)</strong></td>
+<td>Amiga 4000/030 (2MB Chip RAM + 8MB Fast RAM)</td>
+</tr>
+<tr>
+<td><strong>x</strong></td>
+<td><strong>x</strong></td>
+<td></td>
+<td><strong>(A4040)</strong>, <strong>(040)</strong></td>
+<td>Amiga 4000/040 (2MB Chip RAM + 8MB Fast RAM)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><strong>x</strong></td>
+<td><strong>CDTV</strong></td>
+<td>Amiga CDTV (1MB Chip RAM)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><strong>x</strong></td>
+<td><strong>(CD32)</strong>, <strong>(CD32NF)</strong></td>
+<td>Amiga CD32 (2MB Chip RAM)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><strong>x</strong></td>
+<td><strong>(CD32FR)</strong>, <strong>FastRAM</strong></td>
+<td>Amiga CD32 (2MB Chip RAM + 8MB Fast RAM)</td>
+</tr>
+<tr>
+<td><strong>x</strong></td>
+<td><strong>x</strong></td>
+<td><strong>x</strong></td>
+<td><strong>NTSC</strong>, <strong>(USA)</strong></td>
+<td>NTSC 60Hz</td>
+</tr>
+<tr>
+<td><strong>x</strong></td>
+<td><strong>x</strong></td>
+<td><strong>x</strong></td>
+<td><strong>PAL</strong>, <strong>(Europe)</strong> (!)</td>
+<td>PAL 50Hz</td>
+</tr>
+<tr>
+<td><strong>x</strong></td>
+<td></td>
+<td></td>
+<td><strong>(MD)</strong> (!!)</td>
+<td>Insert each disk in different drives</td>
+</tr>
+<tr>
+<td><strong>x</strong></td>
+<td><strong>x</strong></td>
+<td><strong>x</strong></td>
+<td><strong>(CE)</strong></td>
+<td>Force CPU Cycle-exact</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>(!) Additional tags: <strong>(Denmark)</strong>, <strong>(Finland)</strong>, <strong>(France)</strong>, <strong>(Germany)</strong>, <strong>(Italy)</strong>, <strong>(Spain)</strong>, <strong>(Sweden)</strong></li>
+<li>(!!) <strong>Maximum 4 disks</strong></li>
+</ul>
+<p>Example: When launching &quot;Alien Breed 2 AGA.hdf&quot; or &quot;AGA/Alien Breed 2.hdf&quot; the model will be Amiga 1200.</p>
+<p>Note: <strong>CD32</strong> and <strong>AmigaCD</strong> are a bit misleading, since they have nothing to do with actual CDs. They are for automatically selecting the appropriate model with certain WHDLoad slaves and AmigaCD-to-HDF conversions.</p>
+<h3 id="whdload-1">WHDLoad</h3>
+<p>Pre-installed WHDLoad LHA archives can be launched directly without any kind of manual preparing and downloading.</p>
+<ul>
+<li>WHDLoad helper files (Directory or HDF) will be generated to <code>saves</code>, <code>WHDLoad.prefs</code> will be generated to <code>system</code></li>
+<li><code>WHDLoad.prefs</code> &amp; <code>WHDLoad.key</code> will be copied from <code>system</code> to the helper image</li>
+<li>Kickstarts will be copied automatically to the helper image</li>
+<li>To update <code>WHDLoad:</code> simply delete the directory or the HDF</li>
+</ul>
+<h4 id="overrides-at-startup">Overrides at startup</h4>
+<ul>
+<li><strong>(Red)</strong> Hold fire button for launch selector
+<ul>
+<li>For alternate <code>.info</code> launching</li>
+</ul>
+</li>
+<li><strong>(Red+Blue)</strong> Hold fire + 2nd fire for <code>ReadMe</code> + <code>MkCustom</code>
+<ul>
+<li>For creating default <code>CUSTOM</code> parameters</li>
+</ul>
+</li>
+</ul>
+<h4 id="whdload-splash-screen-core-option-overrides">'WHDLoad Splash Screen' core option overrides</h4>
+<ul>
+<li><strong>(Blue)</strong> Hold 2nd fire for WHDLoad Config
+<ul>
+<li>Waits for user input if the slave supports splash screen configurations</li>
+</ul>
+</li>
+<li><strong>(LMB)</strong> Hold left mouse button for WHDLoad Splash
+<ul>
+<li>Briefly shows the splash screen while preloading (default WHDLoad behavior)</li>
+</ul>
+</li>
+<li><strong>(RMB)</strong> Hold right mouse button for WHDLoad Config+Splash
+<ul>
+<li>Always waits for user input at the splash screen</li>
+</ul>
+</li>
+</ul>
+<p>For more detailed history of WHDLoad support visit the <a href="https://github.com/libretro/libretro-uae#whdload">Github repository</a>.</p>
+<h3 id="using-configuration-files">Using configuration files</h3>
+<p>You can pass <code>.uae</code> configuration files and they will be appended to the core option configuration.</p>
+<p>If the file <code>puae_libretro_global.uae</code> exists in RetroArch <code>saves</code> it will be appended to the configuration.</p>
+<p>The final generated configuration output is available in debug level log.</p>
+<p><em><strong>Note that the use of configuration files is no longer encouraged or necessary. The core has been modified to always use the core options as a base, so that all custom configurations will be appended to the created configuration, effectively overriding the core options. The problem with this is that changing any core option while the core is running will reset all duplicate configurations. Therefore only add configurations which will require a restart or do not exist in the core options, if you must use a custom uae. If there is an option missing that is a must have, please make an issue about it.</strong></em></p>
+<p>Example 1: You want to mount four non-RDB HDF files. You have one bootable 1000 MB file called <code>System.hdf</code> created with <code>surfaces=1</code>, and three non-bootable 2000 MB files called <code>WHDGamesA.hdf</code>, <code>WHDGamesB.hdf</code>, <code>WHDGamesC.hdf</code> created with <code>surfaces=2</code>. Your HDF files are located in the folder with absolute path <code>/emuroms/amiga/hdf/</code>. For that scenario, you should create a .uae text file with the following content:</p>
+<pre><code>hardfile=read-write,32,1,2,512,/emuroms/amiga/hdf/System.hdf
+hardfile=read-write,32,2,2,512,/emuroms/amiga/hdf/WHDGamesA.hdf
+hardfile=read-write,32,2,2,512,/emuroms/amiga/hdf/WHDGamesB.hdf
+hardfile=read-write,32,2,2,512,/emuroms/amiga/hdf/WHDGamesC.hdf
+</code></pre>
+<p>Example 2: You want to mount a directory full of extracted data as a hard drive:</p>
+<pre><code>filesystem2=rw,DH0:data:/emuroms/amiga/,0
+</code></pre>
+<p>Windows tip:</p>
+<ul>
+<li>If paths are enclosed with quotes, Windows needs double backslashes: <code>filesystem2=rw,DH0:data:&quot;c:\\emuroms\\amiga&quot;,0</code>.</li>
+</ul>
+<p>Linux tip:</p>
+<ul>
+<li>Leave the ending slash to the path to make sure UAE sees it as a directory.</li>
+</ul>
+<p>If you are using RDB HDF files, please use <code>0,0,0,512</code> instead of geometry numbers like <code>32,1,2,512</code>. The geometry will then be read from the file. This only works for RDB HDF files.</p>
+<h2 id="core-options">Core options</h2>
+<p>The PUAE core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Model</strong> [puae_model] (<strong>auto</strong>|A500OG|A500|A500PLUS|A600|A1200OG|A1200|A2000OG|A2000|A4030|A4040|CDTV|CD32|CD32FR)</p>
+<p>'Automatic' switches region per file path tags.</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A500OG</td>
+<td>A500 (v1.2, 0.5M Chip)</td>
+</tr>
+<tr>
+<td>A500</td>
+<td>A500 (v1.3, 0.5M Chip + 0.5M Slow)</td>
+</tr>
+<tr>
+<td>A500PLUS</td>
+<td>A500+ (v2.04, 1M Chip)</td>
+</tr>
+<tr>
+<td>A600</td>
+<td>A600 (v3.1, 2M Chip + 8M Fast)</td>
+</tr>
+<tr>
+<td>A1200OG</td>
+<td>A1200 (v3.1, 2M Chip)</td>
+</tr>
+<tr>
+<td>A1200</td>
+<td>A1200 (v3.1, 2M Chip + 8M Fast)</td>
+</tr>
+<tr>
+<td>A2000OG</td>
+<td>A2000 (v1.2, 0.5M Chip + 0.5M Slow)</td>
+</tr>
+<tr>
+<td>A2000</td>
+<td>A2000 (v3.1, 1M Chip)</td>
+</tr>
+<tr>
+<td>A4030</td>
+<td>A4000/030 (v3.1, 2M Chip + 8M Fast)</td>
+</tr>
+<tr>
+<td>A4040</td>
+<td>A4000/040 (v3.1, 2M Chip + 8M Fast)</td>
+</tr>
+<tr>
+<td>CDTV</td>
+<td>CDTV (1M Chip)</td>
+</tr>
+<tr>
+<td>CD32</td>
+<td>CD32 (2M Chip)</td>
+</tr>
+<tr>
+<td>CD32FR</td>
+<td>CD32 (2M Chip + 8M Fast)</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p><strong>Show Automatic Model Options</strong> [puae_model_options_display] (<strong>disabled</strong>|enabled)</p>
+<p>Show/hide default model options (Floppy/HD/CD) for 'Automatic' model. Page refresh by menu toggle required!</p>
+</li>
+<li><p><strong>Automatic Floppy</strong> [puae_model_fd] (A500OG|<strong>A500</strong>|A500PLUS|A600|A1200OG|A1200|A2000OG|A2000|A4030|A4040)</p>
+<p>Default model when floppies are launched with 'Automatic' model. Core restart required.</p>
+</li>
+<li><p><strong>Automatic HD</strong> [puae_model_hd] (A600|A1200OG|<strong>A1200</strong>|A2000|A4030|A4040)</p>
+<p>Default model when HD interface is used with 'Automatic' model. Affects WHDLoad installs and other hard drive images. Core restart required.</p>
+</li>
+<li><p><strong>Automatic CD</strong> [puae_model_cd] (CDTV|<strong>CD32</strong>|CD32FR)</p>
+<p>Default model when compact discs are launched with 'Automatic' model. Core restart required.</p>
+</li>
+<li><p><strong>Kickstart ROM</strong> [puae_kickstart] (<strong>auto</strong>|aros|kick33180.A500|kick34005.A500|kick37175.A500|kick37350.A600|kick40063.A600|kick39106.A1200|kick40068.A1200|kick39106.A4000|kick40068.A4000)</p>
+<p>'Automatic' defaults to the most compatible version for the model. 'AROS' is a built-in replacement with fair compatibility. Core restart required.</p>
+</li>
+<li><p><strong>CPU Compatibility</strong> [puae_cpu_compatibility] (normal|<strong>compatible</strong>|memory|exact)</p>
+<p>Some games have graphic and/or speed issues without 'Cycle-exact'. 'Cycle-exact' can be forced with '(CE)' file path tag.</p>
+</li>
+<li><p><strong>CPU Speed</strong> [puae_cpu_throttle] (-900.0|<strong>0.0</strong>|10000.0)</p>
+<p>Ignored with 'Cycle-exact'.</p>
+</li>
+<li><p><strong>CPU Cycle-exact Speed</strong> [puae_cpu_multiplier] (<strong>0</strong>|1|2|4|8|10|12|16)</p>
+<p>Applies only with 'Cycle-exact'.</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Default</td>
+</tr>
+<tr>
+<td>1</td>
+<td>3.546895 MHz</td>
+</tr>
+<tr>
+<td>2</td>
+<td>7.093790 MHz (A500)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>14.187580 MHz (A1200)</td>
+</tr>
+<tr>
+<td>8</td>
+<td>28.375160 MHz</td>
+</tr>
+<tr>
+<td>10</td>
+<td>35.468950 MHz</td>
+</tr>
+<tr>
+<td>12</td>
+<td>42.562740 MHz</td>
+</tr>
+<tr>
+<td>16</td>
+<td>56.750320 MHz</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h3 id="media-options">Media options</h3>
+<ul>
+<li><p><strong>Automatic Load Fast-Forward</strong> [puae_autoloadfastforward] (<strong>disabled</strong>|enabled|fd|hd|cd)</p>
+<p>Toggle frontend fast-forward during media access if there is no audio output. Mutes 'Floppy Sound Emulation'.</p>
+</li>
+<li><p><strong>Floppy Speed</strong> [puae_floppy_speed] (<strong>100</strong>|200|400|800|0)</p>
+<p>'Turbo' removes disk rotation emulation.</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>100</td>
+<td>Default (300RPM)</td>
+</tr>
+<tr>
+<td>200</td>
+<td>2x (600RPM)</td>
+</tr>
+<tr>
+<td>400</td>
+<td>4x (1200RPM)</td>
+</tr>
+<tr>
+<td>800</td>
+<td>8x (2400RPM)</td>
+</tr>
+<tr>
+<td>0</td>
+<td>Turbo</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p><strong>Floppy MultiDrive</strong> [puae_floppy_multidrive] (disabled|<strong>enabled</strong>)</p>
+<p>Insert each disk in different drives. Can be forced with '(MD)' file path tag. Maximum is 4 disks due to external drive limit! Not all games support external drives! Core restart required.</p>
+</li>
+<li><p><strong>Floppy Write Protection</strong> [puae_floppy_write_protection] (<strong>disabled</strong>|enabled)</p>
+<p>Set all drives read only. Changing this while emulation is running ejects and reinserts all disks. IPF images are always read only!</p>
+</li>
+<li><p><strong>CD Speed</strong> [puae_cd_speed] (<strong>100</strong>|0)</p>
+<p>Transfer rate in CD32 is 300KB/s (double-speed), CDTV is 150KB/s (single-speed). 'Turbo' removes seek delay emulation.&quot;</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>100</td>
+<td>Default</td>
+</tr>
+<tr>
+<td>0</td>
+<td>Turbo</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p><strong>CD Startup Delayed Insert</strong> [puae_cd_startup_delayed_insert] (<strong>disabled</strong>|enabled)</p>
+<p>Some games fail to load if CD32/CDTV is powered on with CD inserted. 'ON' inserts CD during boot animation.</p>
+</li>
+<li><p><strong>CD32/CDTV Shared NVRAM</strong> [puae_shared_nvram] (<strong>disabled</strong>|enabled)</p>
+<p>'OFF' saves separate files per content. Starting without content uses the shared file. CD32 and CDTV use separate shared files. Core restart required.</p>
+</li>
+<li><p><strong>Global Boot HD</strong> [puae_use_boot_hd] (<strong>disabled</strong>|files|hdf20|hdf40|hdf80|hdf128|hdf256|hdf512)</p>
+<p>Attach a hard disk meant for Workbench usage, not for WHDLoad! Enabling forces a model with HD interface. Changing HDF size will not replace or edit the existing HDF. Core restart required.</p>
+</li>
+<li><p><strong>WHDLoad Support</strong> [puae_use_whdload] (disabled|<strong>files</strong>|hdfs)</p>
+<p>Enable launching pre-installed WHDLoad installs. Creates a helper image for loading content and an empty image for saving. Core restart required.</p>
+<ul>
+<li>'Files' creates the data in directories</li>
+<li>'HDFs' contains the data in images</li>
+</ul>
+</li>
+<li><p><strong>WHDLoad Splash Screen</strong> [puae_use_whdload_prefs] (<strong>disabled</strong>|config|splash|both)</p>
+<p>Space/Enter/Fire work as the WHDLoad Start-button. Core restart required.</p>
+<p>Override with buttons while booting:</p>
+<ul>
+<li>'Config': Hold 2nd fire / Blue</li>
+<li>'Splash': Hold LMB</li>
+<li>'Config + Splash': Hold RMB</li>
+<li>ReadMe + MkCustom: Hold Red+Blue</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>config</td>
+<td>Config (Show only if available)</td>
+</tr>
+<tr>
+<td>splash</td>
+<td>Splash (Show briefly)</td>
+</tr>
+<tr>
+<td>both</td>
+<td>Config + Splash (Wait for user input)</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h3 id="video-options">Video options</h3>
+<ul>
+<li><p><strong>Show Video Options</strong> [puae_video_options_display] (<strong>disabled</strong>|enabled)</p>
+<p>Page refresh by menu toggle required!</p>
+</li>
+<li><p><strong>Allow PAL/NTSC Hz Change</strong> [puae_video_allow_hz_change] (disabled|enabled|<strong>locked</strong>)</p>
+<p>Let Amiga decide the exact refresh rate when interlace mode or PAL/NTSC changes.</p>
+<p>'Locked' changes only when video standard changes.</p>
+</li>
+<li><p><strong>Standard</strong> [puae_video_standard] (<strong>PAL auto</strong>|NTSC auto|PAL|NTSC)</p>
+<p>'Automatic' switches region per file path tags.</p>
+<p>Output Hz &amp; height:</p>
+<ul>
+<li>'PAL': 50Hz - 288px / 576px</li>
+<li>'NTSC': 60Hz - 240px / 480px</li>
+</ul>
+</li>
+<li><p><strong>Resolution</strong> [puae_video_resolution] (<strong>auto</strong>|lores|hires|superhires)</p>
+<p>'Automatic' defaults to 'High' and switches to 'Super-High' when needed.</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>auto</td>
+<td>Automatic</td>
+</tr>
+<tr>
+<td>lores</td>
+<td>Low 360px</td>
+</tr>
+<tr>
+<td>hires</td>
+<td>High 720px</td>
+</tr>
+<tr>
+<td>superhires</td>
+<td>Super-High 1440px</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p><strong>Line Mode</strong> [puae_video_vresolution] (<strong>auto</strong>|single|double)</p>
+<p>'Automatic' defaults to 'Single Line' and switches to 'Double Line' on interlaced screens.</p>
+</li>
+<li><p><strong>Pixel Aspect Ratio</strong> [puae_video_aspect] (<strong>auto</strong>|PAL|NTSC)</p>
+<p>Hotkey toggling disables this option until core restart.</p>
+<ul>
+<li>'PAL': 1/1 = 1.000</li>
+<li>'NTSC': 44/52 = 0.846</li>
+</ul>
+</li>
+<li><p><strong>Zoom Mode</strong> [puae_zoom_mode] (<strong>disabled</strong>|minimum|smaller|small|medium|large|larger|maximum|auto)</p>
+<p>Crop borders to fit various host screens.</p>
+<p>Requirements in RetroArch settings:</p>
+<ul>
+<li>Aspect Ratio: Core provided</li>
+<li>Integer Scale: Off</li>
+</ul>
+</li>
+<li><p><strong>Zoom Mode Crop</strong> [puae_zoom_mode_crop] (<strong>both</strong>|horizontal|vertical|16:9|16:10|4:3|5:4)</p>
+<p>'Horizontal + Vertical' &amp; 'Automatic' removes borders completely.</p>
+</li>
+<li><p><strong>Vertical Position</strong> [puae_vertical_pos] (<strong>auto</strong>|0|-20...70)</p>
+<p>'Automatic' keeps only zoomed screens centered. Positive values move upward and negative values move downward.</p>
+</li>
+<li><p><strong>Horizontal Position</strong> [puae_horizontal_pos] (<strong>auto</strong>|0|-40...40)</p>
+<p>'Automatic' keeps screen centered. Positive values move right and negative values move left.</p>
+</li>
+<li><p><strong>Remove Interlace Artifacts</strong> [puae_gfx_flickerfixer] (<strong>disabled</strong>|enabled)</p>
+<p>Best suited for still screens, Workbench etc.</p>
+</li>
+<li><p><strong>Immediate/Waiting Blits</strong> [puae_immediate_blits] (false|immediate|<strong>waiting</strong>)</p>
+<p>'Immediate Blitter' is ignored with 'Cycle-exact'.</p>
+</li>
+<li><p><strong>Collision Level</strong> [puae_collision_level] (none|sprites|<strong>playfields</strong>|full)</p>
+<p>'Sprites and Playfields' is recommended.</p>
+</li>
+<li><p><strong>Frameskip</strong> [puae_gfx_framerate] (<strong>disabled</strong>|1|2)</p>
+<p>Not compatible with 'Cycle-exact'.</p>
+</li>
+<li><p><strong>Color Gamma</strong> [puae_gfx_gamma] (-500|<strong>0</strong>|500)</p>
+<p>Adjust color gamma.</p>
+</li>
+<li><p><strong>Color Depth (Restart)</strong> [puae_gfx_colors] (<strong>16bit</strong>|24bit)</p>
+<p>'24-bit' is slower and not available on all platforms. Full restart required.</p>
+</li>
+</ul>
+<h3 id="on-screen-display-options">On-Screen Display options</h3>
+<ul>
+<li><p><strong>Virtual KBD Theme</strong> [puae_vkbd_theme] (<strong>auto</strong>|auto_outline|beige|beige_outline|cd32|cd32_outline|light|light_outline|dark|dark_outline)</p>
+<p>The keyboard comes up with RetroPad Select by default.</p>
+</li>
+<li><p><strong>Virtual KBD Transparency</strong> [puae_vkbd_transparency] (0%|<strong>25%</strong>|50%|75%|100%)</p>
+<p>Keyboard transparency can be toggled with RetroPad A.</p>
+</li>
+<li><p><strong>Statusbar Mode</strong> [puae_statusbar] (<strong>bottom</strong>|bottom_minimal|bottom_basic|bottom_basic_minimal|top|top_minimal|top_basic|top_basic_minimal)</p>
+<ul>
+<li>'Full': Joyports + Current image + LEDs</li>
+<li>'Basic': Current image + LEDs</li>
+<li>'Minimal': Track number + FPS hidden</li>
+</ul>
+</li>
+</ul>
+<h3 id="audio-options">Audio options</h3>
+<ul>
+<li><p><strong>Show Audio Options</strong> [puae_audio_options_display] (<strong>disabled</strong>|enabled)</p>
+<p>Page refresh by menu toggle required!</p>
+</li>
+<li><p><strong>Stereo Separation</strong> [puae_sound_stereo_separation] (0%|10%|20%|30%|40%|50%|60%|70%|80%|90%|<strong>100%</strong>)</p>
+<p>Paula sound chip channel panning. Does not affect CD audio.</p>
+</li>
+<li><p><strong>Interpolation</strong> [puae_sound_interpol] (none|<strong>anti</strong>|sinc|rh|crux)</p>
+<p>Paula sound chip interpolation type.</p>
+</li>
+<li><p><strong>Filter</strong> [puae_sound_filter] (<strong>emulated</strong>|off|on)</p>
+<p>'Emulated' allows states between ON/OFF.</p>
+</li>
+<li><p><strong>Filter Type</strong> [puae_sound_filter_type] (<strong>auto</strong>|standard|enhanced)</p>
+<p>'Automatic' picks the filter type for the hardware.</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>auto</td>
+<td>Automatic</td>
+</tr>
+<tr>
+<td>standard</td>
+<td>A500</td>
+</tr>
+<tr>
+<td>enhanced</td>
+<td>A1200</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p><strong>CD Audio Volume</strong> [puae_sound_volume_cd] (0%|5%|10%|15%|20%|25%|30%|35%|40%|45%|50%|55%|60%|65%|70%|75%|80%|85%|90%|95%|<strong>100%</strong>)</p>
+<p>CD volume in percent.</p>
+</li>
+<li><p><strong>Floppy Sound Emulation</strong> [puae_floppy_sound] (100|95|90|85|<strong>80</strong>|75|70|65|60|55|50|45|40|35|30|25|20|15|10|5|0)</p>
+<p><em><strong>Values are inverted, '80' = '20% volume'</strong></em></p>
+</li>
+<li><p><strong>Floppy Sound Mute Ejected</strong> [puae_floppy_sound_empty_mute] (<strong>disabled</strong>|enabled)</p>
+<p>Mute drive head clicking when floppy is not inserted.</p>
+</li>
+<li><p><strong>Floppy Sound Type</strong> [puae_floppy_sound_type] (<strong>internal</strong>|A500|LOUD)</p>
+<p>External files go in <code>system/uae_data/</code> or <code>system/uae/</code>.</p>
+</li>
+</ul>
+<h3 id="input-options">Input options</h3>
+<ul>
+<li><p><strong>Analog Stick Mouse</strong> [puae_analogmouse] (disabled|left|right|<strong>both</strong>)</p>
+<p>Default mouse control stick when remappings are empty.</p>
+</li>
+<li><p><strong>Analog Stick Mouse Deadzone</strong> [puae_analogmouse_deadzone] (0|5|10|15|<strong>20</strong>|25|30|35|40|45|50)</p>
+<p>Required distance from stick center to register input.</p>
+</li>
+<li><p><strong>Analog Stick Mouse Speed</strong> [puae_analogmouse_speed] (0.1|0.2|0.3|0.4|0.5|0.6|0.7|0.8|0.9|<strong>1.0</strong>|1.1|1.2|1.3|1.4|1.5|1.6|1.7|1.8|1.9|2.0|2.1|2.2|2.3|2.4|2.5|2.6|2.7|2.8|2.9|3.0)</p>
+<p>Mouse movement speed multiplier for analog stick.</p>
+</li>
+<li><p><strong>D-Pad Mouse Speed</strong> [puae_dpadmouse_speed] (1|2|3|4|5|<strong>6</strong>|7|8|9|10|11|12|13|14|15|16|17|18)</p>
+<p>Mouse movement speed multiplier for directional pad.</p>
+</li>
+<li><p><strong>Mouse Speed</strong> [puae_mouse_speed] (10|20|30|40|50|60|70|80|90|<strong>100</strong>|110|120|130|140|150|160|170|180|190|200|210|220|230|240|250|260|270|280|290|300)</p>
+<p>Global mouse speed.</p>
+</li>
+<li><p><strong>Physical Mouse</strong> [puae_physicalmouse] (disabled|<strong>enabled</strong>|double)</p>
+<p>'Double' requirements: raw/udev input driver and proper mouse index per port. Does not affect RetroPad emulated mice.</p>
+</li>
+<li><p><strong>Keyrah Keypad Mappings</strong> [puae_keyrah_keypad_mappings] (<strong>disabled</strong>|enabled)</p>
+<p>Hardcoded keypad to joyport mappings for Keyrah hardware.</p>
+</li>
+<li><p><strong>Keyboard Pass-through</strong> [puae_physical_keyboard_pass_through] (<strong>disabled</strong>|enabled)</p>
+<p>'ON' passes all physical keyboard events to the core. 'OFF' prevents RetroPad keys from generating keyboard events.</p>
+</li>
+<li><p><strong>Show Mapping Options</strong> [puae_mapping_options_display] (disabled|<strong>enabled</strong>)</p>
+<p>Page refresh by menu toggle required!</p>
+</li>
+<li><p><strong>Toggle Virtual Keyboard</strong> [puae_mapper_vkbd] (<strong>---</strong>)</p>
+</li>
+<li><p><strong>Toggle Statusbar</strong> [puae_mapper_statusbar] (<strong>RETROK_F12</strong>)</p>
+</li>
+<li><p><strong>Switch Joystick/Mouse</strong> [puae_mapper_mouse_toggle] (<strong>RETROK_RCTRL</strong>)</p>
+</li>
+<li><p><strong>Reset</strong> [puae_mapper_reset] (<strong>---</strong>)</p>
+</li>
+<li><p><strong>Toggle Aspect Ratio</strong> [puae_mapper_aspect_ratio_toggle] (<strong>---</strong>)</p>
+</li>
+<li><p><strong>Toggle Zoom Mode</strong> [puae_mapper_zoom_mode_toggle] (<strong>---</strong>)</p>
+</li>
+<li><p><strong>RetroPad Select</strong> [puae_mapper_select] (<strong>TOGGLE_VKBD</strong>)</p>
+</li>
+<li><p><strong>RetroPad Start</strong> [puae_mapper_start] (<strong>---</strong>)</p>
+</li>
+<li><p><strong>RetroPad B</strong> [puae_mapper_b] (<strong>---</strong>)</p>
+</li>
+<li><p><strong>RetroPad A</strong> [puae_mapper_a] (<strong>---</strong>)</p>
+</li>
+<li><p><strong>RetroPad Y</strong> [puae_mapper_y] (<strong>---</strong>)</p>
+</li>
+<li><p><strong>RetroPad X</strong> [puae_mapper_x] (<strong>RETROK_SPACE</strong>)</p>
+</li>
+<li><p><strong>RetroPad L</strong> [puae_mapper_l] (<strong>---</strong>)</p>
+</li>
+<li><p><strong>RetroPad R</strong> [puae_mapper_r] (<strong>---</strong>)</p>
+</li>
+<li><p><strong>RetroPad L2</strong> [puae_mapper_l2] (<strong>MOUSE_LEFT_BUTTON</strong>)</p>
+</li>
+<li><p><strong>RetroPad R2</strong> [puae_mapper_r2] (<strong>MOUSE_RIGHT_BUTTON</strong>)</p>
+</li>
+<li><p><strong>RetroPad L3</strong> [puae_mapper_l3] (<strong>---</strong>)</p>
+</li>
+<li><p><strong>RetroPad R3</strong> [puae_mapper_r3] (<strong>---</strong>)</p>
+</li>
+<li><p><strong>RetroPad Left Analog Up</strong> [puae_mapper_lu] (<strong>---</strong>)</p>
+</li>
+<li><p><strong>RetroPad Left Analog Down</strong> [puae_mapper_ld] (<strong>---</strong>)</p>
+</li>
+<li><p><strong>RetroPad Left Analog Left</strong> [puae_mapper_ll] (<strong>---</strong>)</p>
+</li>
+<li><p><strong>RetroPad Left Analog Right</strong> [puae_mapper_lr] (<strong>---</strong>)</p>
+</li>
+<li><p><strong>RetroPad Right Analog Up</strong> [puae_mapper_ru] (<strong>---</strong>)</p>
+</li>
+<li><p><strong>RetroPad Right Analog Down</strong> [puae_mapper_rd] (<strong>---</strong>)</p>
+</li>
+<li><p><strong>RetroPad Right Analog Left</strong> [puae_mapper_rl] (<strong>---</strong>)</p>
+</li>
+<li><p><strong>RetroPad Right Analog Right</strong> [puae_mapper_rr] (<strong>---</strong>)</p>
+</li>
+<li><p><strong>RetroPad Turbo Fire</strong> [puae_turbo_fire] (<strong>disabled</strong>|enabled)</p>
+<p>Hotkey toggling disables this option until core restart.</p>
+</li>
+<li><p><strong>RetroPad Turbo Button</strong> [puae_turbo_fire_button] (<strong>B</strong>|A|Y|X|L|R|L2|R2)</p>
+<p>Replace the mapped button with turbo fire button.</p>
+</li>
+<li><p><strong>RetroPad Turbo Pulse</strong> [puae_turbo_pulse] (2|4|<strong>6</strong>|8|10|12)</p>
+<p>Frames in a button cycle.</p>
+</li>
+<li><p><strong>RetroPad Joystick/Mouse</strong> [puae_joyport] (<strong>joystick</strong>|mouse)</p>
+<p>Change D-Pad control between joyports. Hotkey toggling disables this option until core restart.</p>
+</li>
+<li><p><strong>RetroPad Joyport Order</strong> [puae_joyport_order] (<strong>1234</strong>|2143|3412|4321)</p>
+<p>Plug RetroPads in different ports. Useful for Arcadia system and games that use the 4-player adapter.</p>
+</li>
+<li><p><strong>RetroPad Face Button Options</strong> [puae_retropad_options] (<strong>disabled</strong>|jump|rotate|rotate_jump)</p>
+<p>Rotate face buttons clockwise and/or make 2nd fire press up.</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>disabled</td>
+<td>B = Fire, A = 2nd fire</td>
+</tr>
+<tr>
+<td>jump</td>
+<td>B = Fire, A = Up</td>
+</tr>
+<tr>
+<td>rotate</td>
+<td>Y = Fire, B = 2nd fire</td>
+</tr>
+<tr>
+<td>rotate_jump</td>
+<td>Y = Fire, B = Up</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p><strong>CD32 Pad Face Button Options</strong> [puae_cd32pad_options] (<strong>disabled</strong>|jump|rotate|rotate_jump)</p>
+<p>Rotate face buttons clockwise and/or make blue button press up.</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>disabled</td>
+<td>B = Red, A = Blue</td>
+</tr>
+<tr>
+<td>jump</td>
+<td>B = Red, A = Up</td>
+</tr>
+<tr>
+<td>rotate</td>
+<td>Y = Red, B = Blue</td>
+</tr>
+<tr>
+<td>rotate_jump</td>
+<td>Y = Red, B = Up</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h2 id="controllers">Controllers</h2>
+<p>The PUAE core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<h3 id="user-1-2-device-types">User 1 - 2 device types</h3>
+<ul>
+<li>None - Input disabled.</li>
+<li><strong>RetroPad</strong> - Joypad - Standard one or two fire button joystick + customizable buttons with keyboard keys and hotkeys.</li>
+<li>CD32 Pad - Joypad - Standard CD32 controller with unused buttons available for RetroPad extra mappings.</li>
+<li>Analog Joystick - Joypad - Standard Analog joystick with unused buttons available for RetroPad extra mappings.</li>
+<li>Joystick - Joypad - Standard one or two fire button joystick.</li>
+<li>Keyboard - Keyboard - Keyboard input is always active. Has keymapper support.</li>
+</ul>
+<h3 id="user-3-4-device-types">User 3 - 4 device types</h3>
+<ul>
+<li>None - Input disabled.</li>
+<li><strong>RetroPad</strong> - Joypad - Standard one or two fire button joystick + customizable buttons with keyboard keys and hotkeys.</li>
+<li>Joystick - Joypad - Standard one or two fire button joystick.</li>
+<li>Keyboard - Keyboard - Keyboard input is always active. Has keymapper support.</li>
+</ul>
+<h3 id="other-controllers">Other controllers</h3>
+<ul>
+<li>Mouse - Enabled by default.</li>
+</ul>
+<h3 id="controller-tables">Controller tables</h3>
+<h4 id="joypad">Joypad</h4>
+<p><img src="../image/controller/psx.png" alt="" /></p>
+<table>
+<thead>
+<tr>
+<th>Input descriptors for Retropad</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D-Pad Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>B / Fire</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>A / 2nd fire</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+<tr>
+<td>Y</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+</tr>
+<tr>
+<td>X</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+</tr>
+<tr>
+<td>Select</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+</tr>
+<tr>
+<td>Start</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+</tr>
+<tr>
+<td>L</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+</tr>
+<tr>
+<td>R</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+</tr>
+<tr>
+<td>L2</td>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+</tr>
+<tr>
+<td>R2</td>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+</tr>
+<tr>
+<td>L3</td>
+<td><img src="../image/retropad/retro_l3.png" alt="" /></td>
+</tr>
+<tr>
+<td>R3</td>
+<td><img src="../image/retropad/retro_r3.png" alt="" /></td>
+</tr>
+<tr>
+<td>Left Analog X</td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> X</td>
+</tr>
+<tr>
+<td>Left Analog Y</td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> Y</td>
+</tr>
+<tr>
+<td>Right Analog X</td>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /> X</td>
+</tr>
+<tr>
+<td>Right Analog Y</td>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /> Y</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Input descriptors for CD32 pad</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D-Pad Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>Red</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>Blue</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+<tr>
+<td>Green</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+</tr>
+<tr>
+<td>Yellow</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+</tr>
+<tr>
+<td>(Select)</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+</tr>
+<tr>
+<td>Play</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+</tr>
+<tr>
+<td>Forward</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+</tr>
+<tr>
+<td>(L2)</td>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+</tr>
+<tr>
+<td>(R2)</td>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+</tr>
+<tr>
+<td>(L3)</td>
+<td><img src="../image/retropad/retro_l3.png" alt="" /></td>
+</tr>
+<tr>
+<td>(R3)</td>
+<td><img src="../image/retropad/retro_r3.png" alt="" /></td>
+</tr>
+<tr>
+<td>(Left Analog X)</td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> X</td>
+</tr>
+<tr>
+<td>(Left Analog Y)</td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> Y</td>
+</tr>
+<tr>
+<td>(Right Analog X)</td>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /> X</td>
+</tr>
+<tr>
+<td>(Right Analog Y)</td>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /> Y</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Input descriptors for Joystick</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D-Pad Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>B / Fire</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>A / 2nd Fire</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Input descriptors for Analog Joystick</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Left Analog X</td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> X</td>
+</tr>
+<tr>
+<td>Left Analog Y</td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> Y</td>
+</tr>
+<tr>
+<td>Fire 1</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>Fire 2</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+<tr>
+<td>Fire 3</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+</tr>
+<tr>
+<td>Fire 4</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<h4 id="keyboard">Keyboard</h4>
+<p>English layout</p>
+<table>
+<thead>
+<tr>
+<th>RetroKeyboard Special Inputs</th>
+<th>Commodore</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keyboard Left Meta/Super</td>
+<td>Left Amiga</td>
+</tr>
+<tr>
+<td>Keyboard Right Meta/Super</td>
+<td>Right Amiga</td>
+</tr>
+<tr>
+<td>Keyboard Page Up</td>
+<td>Left Amiga</td>
+</tr>
+<tr>
+<td>Keyboard Page Down</td>
+<td>Right Amiga</td>
+</tr>
+<tr>
+<td>Keyboard Insert</td>
+<td>Help</td>
+</tr>
+<tr>
+<td>Keyboard Home</td>
+<td>[</td>
+</tr>
+<tr>
+<td>Keyboard End</td>
+<td>]</td>
+</tr>
+</tbody>
+</table>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://github.com/libretro/libretro-uae">Libretro PUAE Github repository</a></li>
+<li><a href="https://github.com/libretro/libretro-uae/issues">Report Libretro PUAE core issues here</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLRbgg4gk_0IeRAk8nYYneBAHZhbPLvHEz">Gameplay Videos</a></li>
+</ul>

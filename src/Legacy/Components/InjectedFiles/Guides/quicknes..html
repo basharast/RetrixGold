@@ -1,0 +1,343 @@
+<h1 id="nintendo-nes-famicom-quicknes">Nintendo - NES / Famicom (QuickNES)</h1>
+<h2 id="background">Background</h2>
+<p>Nes_Emu, the core NES emulator library used by QuickNES, began as a very simple NES emulator sometime in 2004. It was based on the 6502 CPU core and APU sound core used in the Game_Music_Emu sound engine.</p>
+<p>The QuickNES core has been authored by</p>
+<ul>
+<li>blargg</li>
+<li>kode54</li>
+</ul>
+<p>The QuickNES core is licensed under</p>
+<ul>
+<li><a href="https://github.com/kode54/QuickNES/blob/master/COPYING">LGPLv2.1+</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="compatibility">Compatibility</h2>
+<table>
+<thead>
+<tr>
+<th>Game</th>
+<th>Issue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Burai Fighter</td>
+<td>Softlocks when entering a level. Confirmed issue. MMC3 incompatible.</td>
+</tr>
+<tr>
+<td>Family Circuit '91</td>
+<td>Crashes on start. Unsupported Mapper 210.</td>
+</tr>
+<tr>
+<td>Huge Insect</td>
+<td>No enemies spawn. Mapper 3 confirmed issue. Unemulated bus conflict handling.</td>
+</tr>
+<tr>
+<td>Skull &amp; Crossbones</td>
+<td>Crashes on start. Unsupported Mapper.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the QuickNES core have the following file extensions:</p>
+<ul>
+<li>.nes</li>
+</ul>
+<p>RetroArch database(s) that are associated with the QuickNES core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Nintendo%20Entertainment%20System.rdb">Nintendo - Nintendo Entertainment System</a></li>
+</ul>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the QuickNES core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The QuickNES core's library name is 'QuickNES'</p>
+<p>The QuickNES core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Save directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.srm</td>
+<td style="text-align: center;">Cartridge battery save</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Frontend's State directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.state#</td>
+<td style="text-align: center;">State</td>
+</tr>
+</tbody>
+</table>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The QuickNES core's core provided FPS is 60</li>
+<li>The QuickNES core's core provided sample rate is 44100 Hz</li>
+<li>The QuickNES core's base width is 256</li>
+<li>The QuickNES core's base height is 240</li>
+<li>The QuickNES core's max width is 256</li>
+<li>The QuickNES core's max height is 240</li>
+<li>The QuickNES core's core provided aspect ratio is 4/3 when the 'Aspect Ratio' core option is set to 4/3</li>
+<li>The QuickNES core's core provided aspect ratio is 8/7 when the 'Aspect Ratio' core option is set to 8/7</li>
+</ul>
+<h2 id="core-options">Core options</h2>
+<p>The QuickNES core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Allow Opposing Directions</strong> [quicknes_up_down_allowed] (<strong>disabled</strong>|enabled)</p>
+<p>Enabling this will allow pressing / quickly alternating / holding both left and right (or up and down in some games) directions at the same time.</p>
+<p>This may cause movement based glitches to occur in certain games.</p>
+<p>It's best to keep this core option disabled.</p>
+</li>
+<li><p><strong>Aspect ratio</strong> [quicknes_aspect_ratio_par] (<strong>PAR</strong>|4:3)</p>
+<p>Configure QuickNES's core provided aspect ratio.</p>
+</li>
+<li><p><strong>Show horizontal overscan</strong> [quicknes_use_overscan_h] (<strong>enabled</strong>|disabled)</p>
+<p>Set this to disabled to crop out (horizontally) the potentially random glitchy video output that would have been hidden by the bezel around the edge of a standard-definition television screen.</p>
+</li>
+<li><p><strong>Show vertical overscan</strong> [quicknes_use_overscan_v] (<strong>disabled</strong>|enabled)</p>
+<p>Set this to disabled to crop out (vertically) the potentially random glitchy video output that would have been hidden by the bezel around the edge of a standard-definition television screen.</p>
+</li>
+<li><p><strong>No sprite limit</strong> [quicknes_no_sprite_limit] (<strong>enabled</strong>|disabled)</p>
+<pre><code>  Removes the 8-per-scanline hardware limit. This reduces sprite flickering but can cause some games to glitch since some use this for effects.
+</code></pre>
+</li>
+<li><p><strong>Audio mode</strong> [quicknes_audio_nonlinear] (<strong>nonlinear</strong>|linear|stereo panning)</p>
+<p>Configure audio mode.</p>
+<p>Stereo panning simulates stereo by using a panning method and some reverb effects to add some depth.</p>
+</li>
+<li><p><strong>Audio equalizer preset</strong> [quicknes_audio_eq] (<strong>default</strong>|famicom|tv|flat|crisp|tinny)</p>
+<p>Applies a preset to the audio equalizer.</p>
+</li>
+<li><p><strong>Color Palette</strong> [quicknes_palette] (<strong>default</strong>|asqrealc|nintendo-vc|rgb|yuv-v3|unsaturated-final|sony-cxa2025as-us|pal|bmf-final2|bmf-final3|smooth-fbx|composite-direct-fbx|pvm-style-d93-fbx|ntsc-hardware-fbx|nes-classic-fbx-fs|nescap|wavebeam)</p>
+<p>Specifies which color palette to use when decoding the NTSC video signal output by the NES.</p>
+</li>
+</ul>
+<p>??? note &quot;Color Palette: default&quot;
+<img src="../image/core/quicknes/default.png" alt="" /></p>
+<p>??? note &quot;Color Palette: asqrealc&quot;
+<img src="../image/core/quicknes/asqrealc.png" alt="" /></p>
+<p>??? note &quot;Color Palette: nintendo-vc&quot;
+<img src="../image/core/quicknes/nintendo-vc.png" alt="" /></p>
+<p>??? note &quot;Color Palette: rgb&quot;
+<img src="../image/core/quicknes/rgb.png" alt="" /></p>
+<p>??? note &quot;Color Palette: yuv-v3&quot;
+<img src="../image/core/quicknes/yuv-v3.png" alt="" /></p>
+<p>??? note &quot;Color Palette: unsaturated-final&quot;
+<img src="../image/core/quicknes/unsaturated-final.png" alt="" /></p>
+<p>??? note &quot;Color Palette: sony-cxa2025as-us&quot;
+<img src="../image/core/quicknes/sony-cxa2025as-us.png" alt="" /></p>
+<p>??? note &quot;Color Palette: pal&quot;
+<img src="../image/core/quicknes/pal.png" alt="" /></p>
+<p>??? note &quot;Color Palette: bmf-final2&quot;
+<img src="../image/core/quicknes/bmf-final2.png" alt="" /></p>
+<p>??? note &quot;Color Palette: bmf-final3&quot;
+<img src="../image/core/quicknes/bmf-final3.png" alt="" /></p>
+<p>??? note &quot;Color Palette: smooth-fbx&quot;
+<img src="../image/core/quicknes/smooth-fbx.png" alt="" /></p>
+<p>??? note &quot;Color Palette: composite-direct-fbx&quot;
+<img src="../image/core/quicknes/composite-direct-fbx.png" alt="" /></p>
+<p>??? note &quot;Color Palette: pvm-style-d93-fbx&quot;
+<img src="../image/core/quicknes/pvm-style-d93-fbx.png" alt="" /></p>
+<p>??? note &quot;Color Palette: ntsc-hardware-fbx&quot;
+<img src="../image/core/quicknes/ntsc-hardware-fbx.png" alt="" /></p>
+<p>??? note &quot;Color Palette: nes-classic-fbx-fs&quot;
+<img src="../image/core/quicknes/nes-classic-fbx-fs.png" alt="" /></p>
+<p>??? note &quot;Color Palette: nescap&quot;
+<img src="../image/core/quicknes/nescap.png" alt="" /></p>
+<p>??? note &quot;Color Palette: wavebeam&quot;
+<img src="../image/core/quicknes/wavebeam.png" alt="" /></p>
+<ul>
+<li><p><strong>Turbo enable</strong> [quicknes_turbo_enable] (<strong>none</strong>|player 1|player 2|both)</p>
+<p>Enables the use of the <a href="#joypad">Turbo A and Turbo B buttons</a>.</p>
+</li>
+<li><p><strong>Turbo pulse width (in frames)</strong> [quicknes_turbo_pulse_width] (<strong>3</strong>|5|10|15|30|60|1|2)</p>
+<p>Specifies both the width and spacing (in frames) of input 'pulses' when the <a href="#joypad">Turbo A and Turbo B buttons</a> are held down. For example, the default setting of '3' corresponds to a (60/(3+3)) = 10 Hz turbo frequency (10 presses per second).</p>
+</li>
+</ul>
+<h2 id="joypad">Joypad</h2>
+<p><img src="../image/controller/nes.png" alt="" /></p>
+<table>
+<thead>
+<tr>
+<th>User 1 - 2 input descriptors</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>Turbo B</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+</tr>
+<tr>
+<td>Select</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+</tr>
+<tr>
+<td>Start</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>A</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+<tr>
+<td>Turbo A</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://github.com/kode54/QuickNES">Official QuickNES Github Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/quicknes_libretro.info">Libretro QuickNES Core info file</a></li>
+<li><a href="https://github.com/libretro/QuickNES_Core">Libretro QuickNES Github Repository</a></li>
+<li><a href="https://github.com/libretro/QuickNES_Core/issues">Report Libretro QuickNES Core Issues Here</a></li>
+</ul>
+<h2 id="nintendo-nintendo-entertainment-system">Nintendo - Nintendo Entertainment System</h2>
+<ul>
+<li><a href="bnes.md">Nintendo - NES / Famicom (bnes)</a></li>
+<li><a href="emux_nes.md">Nintendo - NES / Famicom (Emux NES)</a></li>
+<li><a href="fceumm.md">Nintendo - NES / Famicom (FCEUmm)</a></li>
+<li><a href="mesen.md">Nintendo - NES / Famicom (Mesen)</a></li>
+<li><a href="nestopia_ue.md">Nintendo - NES / Famicom (Nestopia UE)</a></li>
+</ul>

@@ -1,0 +1,176 @@
+/*----------------------------------------*/
+/*  19. Footer CSS
+/*----------------------------------------*/
+.footer-section {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: relative;
+    z-index: 1;
+    &.style-2{
+        &::before{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            content: "";
+            background-color: #000000;
+            opacity: 0.5;
+            z-index: -1;
+        }
+    }
+}
+
+/*-- Footer Widget --*/
+.footer-widget {
+    //Responsive
+    @media #{$large-mobile}{
+        text-align: center;
+    }
+    & .footer-nav{
+        & ul{
+            text-align: center;
+            // Responsive
+            @media #{$large-mobile}{
+               margin: 20px 0;
+                margin-bottom: 10px;
+            }
+            & li{
+                display: inline-block;
+                margin-right: 50px;
+                // Responsive
+                @media #{$laptop-device}{
+                   margin-right: 30px;
+                }
+                @media #{$desktop-device}{
+                   margin-right: 30px;
+                }
+                @media #{$large-mobile}{
+                   margin-right: 10px;
+                }
+                &:last-child{
+                    margin-right: 0;
+                }
+                & a{
+                    font-size: 18px;
+                    line-height: 26px;
+                    color: $white;
+                    display: block;
+                    font-family: $heading-font;
+                    &:hover{
+                        color: $hover-color;
+                    }
+                }
+            }
+        }
+    }
+}
+/*-- Footer Social --*/
+.footer-social {
+    //Responsive
+    @media #{$tablet-device}{
+        text-align: center;
+        margin: 30px 0;
+    }
+    & span{
+        font-size: 20px;
+        line-height: 28px;
+        color: $white;
+        font-family: $heading-font;
+        margin-right: 30px;
+        // Responsive
+        @media #{$laptop-device}{
+           margin-right: 17px;
+        }
+        @media #{$desktop-device}{
+           margin-right: 10px;
+        }
+        @media #{$large-mobile}{
+           margin-right: 0px;
+           margin-bottom: 10px;
+           display: block;
+        }
+    }
+    & ul{
+        display: inline-block;
+        & li{
+            display: inline-block;
+            margin-right: 40px;
+            // Responsive
+            @media #{$laptop-device}{
+               margin-right: 20px;
+            }
+            @media #{$desktop-device}{
+               margin-right: 20px;
+            }
+            &:last-child{
+                margin-right: 0;
+            }
+            & a{
+                font-size: 18px;
+                line-height: 26px;
+                color: $white;
+                display: block;
+                &:hover{
+                    color: $hover-color;
+                }
+            }
+        }
+    }
+}
+/*-- Footer News Letter --*/
+.footer-newsletter {
+    display: flex;
+    flex-wrap: wrap;
+    & input {
+        width: calc(100% - 40px);
+        max-width: 250px;
+        border: 1px solid rgba($white, 0.3);
+        background-color: transparent;
+        color: $white;
+        line-height: 24px;
+        padding: 7px 15px;
+        font-size: 13px;
+    }
+    & button {
+        width: 40px;
+        height: 40px;
+        border: none;
+        background-color: $theme-color;
+        color: $white;
+    }
+}
+
+/*-- Footer Bottom --*/
+.footer-bottom {
+    padding-top: 20px;
+    padding-bottom: 25px;
+    border-top: 1px solid #5e6bb7;
+    &.border-color{
+        border-color: #6c7676;
+    }
+    // Responsive
+    @media #{$large-mobile}{
+       padding: 15px 0;
+    }
+}
+/*-- Copyright --*/
+.copyright {
+    & p {
+        font-size: 18px;
+        line-height: 30px;
+        color: $body-color-light;
+        font-weight: 300;
+        color: #c4c2c2;
+        // Responsive
+        @media #{$large-mobile}{
+           font-size: 13px;
+        }
+        & a {
+            &:hover {
+                color: $hover-color;
+            }
+        }
+    }
+}

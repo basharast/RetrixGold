@@ -1,0 +1,391 @@
+<h1 id="the-3do-company-3do-opera">The 3DO Company - 3DO (Opera)</h1>
+<h2 id="background">Background</h2>
+<p>Opera is an open-source, low-level emulator for the 3DO Game Console. Opera is a fork of 4DO, originally a port of 4DO, itself a fork of FreeDO, to libretro. The fork/rename occurred due to the original 4DO project being dormant and to differentiate the project due to new development and focus.</p>
+<p>The Opera core has been authored by</p>
+<ul>
+<li>trapexit</li>
+<li>JohnnyDude</li>
+<li>FreeDO team</li>
+</ul>
+<p>The Opera core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/opera-libretro/blob/master/libopera/opera_3do.c">Modified GNU LGPL / Non-commercial</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="bios">BIOS</h2>
+<p>One of the following system BIOSes is required to run software. Place in the frontend's system directory.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">panafz1.bin</td>
+<td style="text-align: center;">Panasonic FZ-1</td>
+<td style="text-align: center;">f47264dd47fe30f73ab3c010015c155b</td>
+</tr>
+<tr>
+<td style="text-align: center;">panafz10.bin</td>
+<td style="text-align: center;">Panasonic FZ-10</td>
+<td style="text-align: center;">51f2f43ae2f3508a14d9f56597e2d3ce</td>
+</tr>
+<tr>
+<td style="text-align: center;">panafz10-norsa.bin</td>
+<td style="text-align: center;">Panasonic FZ-10 [RSA Patch]</td>
+<td style="text-align: center;">1477bda80dc33731a65468c1f5bcbee9</td>
+</tr>
+<tr>
+<td style="text-align: center;">panafz10e-anvil.bin</td>
+<td style="text-align: center;">Panasonic FZ-10-E [Anvil]</td>
+<td style="text-align: center;">a48e6746bd7edec0f40cff078f0bb19f</td>
+</tr>
+<tr>
+<td style="text-align: center;">panafz10e-anvil-norsa.bin</td>
+<td style="text-align: center;">Panasonic FZ-10-E [Anvil RSA Patch]</td>
+<td style="text-align: center;">cf11bbb5a16d7af9875cca9de9a15e09</td>
+</tr>
+<tr>
+<td style="text-align: center;">panafz1j.bin</td>
+<td style="text-align: center;">Panasonic FZ-1J</td>
+<td style="text-align: center;">a496cfdded3da562759be3561317b605</td>
+</tr>
+<tr>
+<td style="text-align: center;">panafz1j-norsa.bin</td>
+<td style="text-align: center;">Panasonic FZ-1J [RSA Patch]</td>
+<td style="text-align: center;">f6c71de7470d16abe4f71b1444883dc8</td>
+</tr>
+<tr>
+<td style="text-align: center;">goldstar.bin</td>
+<td style="text-align: center;">Goldstar  GDO-101M</td>
+<td style="text-align: center;">8639fd5e549bd6238cfee79e3e749114</td>
+</tr>
+<tr>
+<td style="text-align: center;">sanyotry.bin</td>
+<td style="text-align: center;">Sanyo IMP-21J TRY</td>
+<td style="text-align: center;">35fa1a1ebaaeea286dc5cd15487c13ea</td>
+</tr>
+<tr>
+<td style="text-align: center;">3do_arcade_saot.bin</td>
+<td style="text-align: center;">Shootout At Old Tucson</td>
+<td style="text-align: center;">8970fc987ab89a7f64da9f8a8c4333ff</td>
+</tr>
+</tbody>
+</table>
+<h2 id="font-rom">FONT ROM</h2>
+<p>Required for some Japanese games. Optional otherwise.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">panafz1-kanji.bin</td>
+<td style="text-align: center;">Panasonic FZ-1 Kanji ROM</td>
+<td style="text-align: center;">b8dc97f778a6245c58e064b0312e8281</td>
+</tr>
+<tr>
+<td style="text-align: center;">panafz10ja-anvil-kanji.bin</td>
+<td style="text-align: center;">Panasonic FZ-10JA Kanji ROM</td>
+<td style="text-align: center;">428577250f43edc902ea239c50d2240d</td>
+</tr>
+<tr>
+<td style="text-align: center;">panafz1j-kanji.bin</td>
+<td style="text-align: center;">Panasonic FZ-1J Kanji ROM</td>
+<td style="text-align: center;">c23fb5d5e6bb1c240d02cf968972be37</td>
+</tr>
+</tbody>
+</table>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the Opera core have the following file extensions:</p>
+<ul>
+<li>.iso</li>
+<li>.bin</li>
+<li>.chd</li>
+<li>.cue</li>
+</ul>
+<p>RetroArch database(s) that are associated with the Opera core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/The%203DO%20Company%20-%203DO.rdb">The 3DO Company - 3DO</a></li>
+</ul>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the Opera core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The Opera core's library name is 'Opera'</p>
+<p>The Opera core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Save directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.srm</td>
+<td style="text-align: center;">Per game NVRAM</td>
+</tr>
+<tr>
+<td style="text-align: center;">3DO.nvram</td>
+<td style="text-align: center;">Shared NVRAM</td>
+</tr>
+<tr>
+<td style="text-align: center;">3DO.nvram.tmp</td>
+<td style="text-align: center;">Only used for atomic saves</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Frontend's State directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.state#</td>
+<td style="text-align: center;">State</td>
+</tr>
+</tbody>
+</table>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The Opera core's core provided FPS is 60</li>
+<li>The Opera core's core provided sample rate is 44100 Hz</li>
+<li>The Opera core's base width is 320 when the 'High Resolution' core option is set to disabled.</li>
+<li>The Opera core's base height is 240 when the 'High Resolution' core option is set to disabled.</li>
+<li>The Opera core's max width is 320 when the 'High Resolution' core option is set to disabled.</li>
+<li>The Opera core's max height is 240 when the 'High Resolution' core option is set to disabled.</li>
+<li>The Opera core's base width is 640 when the 'High Resolution' core option is set to enabled.</li>
+<li>The Opera core's base height is 480 when the 'High Resolution' core option is set to enabled.</li>
+<li>The Opera core's max width is 640 when the 'High Resolution' core option is set to enabled.</li>
+<li>The Opera core's max height is 480 when the 'High Resolution' core option is set to enabled.</li>
+<li>The Opera core's core provided aspect ratio is 4/3</li>
+</ul>
+<h2 id="core-options">Core options</h2>
+<p>The Opera core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>CPU overclock</strong> [opera_cpu_overclock] (<strong>1.0x (12.50Mhz)</strong>|1.1x (13.75Mhz)|1.2x (15.00Mhz)|1.5x (18.75Mhz)|1.6x (20.00Mhz)|1.8x (22.50Mhz)|2.0x (25.00Mhz))</p>
+<p>The 3DO used a 12.5MHz ARM60 CPU as its central processor. We have implemented a CPU overclocking feature in the Opera core so that you can increase performance upto 2x.</p>
+<p><strong>May not have an impact on all games.</strong></p>
+<p><a href="https://www.youtube.com/watch?v=7bT2ecwKdHQ">https://www.youtube.com/watch?v=7bT2ecwKdHQ</a></p>
+</li>
+<li><p><strong>High Resolution</strong> [opera_high_resolution] (<strong>disabled</strong>|enabled)</p>
+<p>The default internal resolution is 320x240, but the output resolution is 640x480. This feature makes the system behave as if it has a 640x480 framebuffer.</p>
+</li>
+</ul>
+<p>??? note &quot;High Resolution - disabled&quot;
+<img src="../image/core/opera/high_off.png" alt="" /></p>
+<p>??? note &quot;High Resolution - enabled&quot;
+<img src="../image/core/opera/high_on.png" alt="" /></p>
+<ul>
+<li><p><strong>NVRAM Storage</strong> [opera_nvram_storage] (<strong>per game</strong>|shared)</p>
+<p>Choose whether NVRAM saves are per game or NVRAM saves are shared between all games.</p>
+<p>Look at the <a href="#directories">Directories section</a> for more information.</p>
+</li>
+<li><p><strong>Active Devices</strong> [opera_active_devices] (<strong>1</strong>|2|3|4|5|6|7|8|0)</p>
+<p>There is a bug (maybe in Opera but possibly in certain games) in which having more than 1 controller emulated causes the game not to respond to input. This allows working around the issue.</p>
+</li>
+<li><p><strong>Timing Hack 1 (Crash 'n Burn)</strong> [opera_hack_timing_1] (<strong>disabled</strong>|enabled)</p>
+<p>Enable this to fix Crash 'n Burn.</p>
+</li>
+<li><p><strong>Timing Hack 3 (Dinopark Tycoon)</strong> [opera_hack_timing_3] (<strong>disabled</strong>|enabled)</p>
+<p>Enable this to fix Dinopark Tycoon.</p>
+</li>
+<li><p><strong>Timing Hack 5 (Microcosm)</strong> [opera_hack_timing_5] (<strong>disabled</strong>|enabled)</p>
+<p>Enable this to fix Microcosm.</p>
+</li>
+<li><p><strong>Timing Hack 6 (Alone in the Dark)</strong> [opera_hack_timing_6] (<strong>disabled</strong>|enabled)</p>
+<p>Enable this to fix Alone in the Dark.</p>
+</li>
+<li><p><strong>Graphics Step Y Hack (Samurai Shodown)</strong> [opera_hack_graphics_step_y] (<strong>disabled</strong>|enabled)</p>
+<p>Enable this to fix Samurai Shodown's background rendering.</p>
+</li>
+</ul>
+<h2 id="joypad">Joypad</h2>
+<p><img src="../image/controller/3do.png" alt="" /></p>
+<table>
+<thead>
+<tr>
+<th>User 1 - 2 Remap descriptors</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>A</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+</tr>
+<tr>
+<td>X (Stop)</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+</tr>
+<tr>
+<td>P (Play/Pause)</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>C</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+<tr>
+<td>L</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+</tr>
+<tr>
+<td>R</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<h2 id="compatibility">Compatibility</h2>
+<ul>
+<li><a href="http://wiki.fourdo.com/Compatibility_List">Opera Core Compatibility List</a></li>
+</ul>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="http://www.fourdo.com/">Official 4DO Website</a></li>
+<li><a href="http://wiki.fourdo.com/Main_Page">Official 4DO Wiki</a></li>
+<li><a href="https://sourceforge.net/projects/fourdo/">Official 4DO SourceForge Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/opera_libretro.info">Libretro Opera Core info file</a></li>
+<li><a href="https://github.com/libretro/opera-libretro">Libretro Opera Github Repository</a></li>
+<li><a href="https://github.com/libretro/opera-libretro/issues">Report Libretro Opera Core Issues Here</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLRbgg4gk_0IeD-Mj2GG13qsYasGgRNQg4">Gameplay Videos</a></li>
+</ul>

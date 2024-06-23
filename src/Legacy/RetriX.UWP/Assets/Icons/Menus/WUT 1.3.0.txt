@@ -1,0 +1,31 @@
+- Use HyperText for groups titles
+- Add Google drive download
+- Try to create low res thumb for effects preview
+- Fix Recent Added button (it gives empty results)
+- Add app preview feature
+- Improve auto package detector
+- Update tasks header with counters
+- Add Option to prevent file from delete on failed
+- Add Zoom Slider
+- Solve compress info dialog (keep visible in some cases)
+- Check if store results returns all the packages (test on 9wzdncrfhwvf)
+- Auto switch when URL selected and ID entered
+- Cancel extract is not interrupt the current file (specially if it's big)
+- Download video from reddit
+- Add Portal app to featured apps
+- Fix opera logo (it's appear on everything contains 'opera')
+-Youtube with age restriction take unlimited loading time
+-Add Unsplash Integration
+-Add Donate links
+-Add Import option or WUT repos (.wut)
+-Try to restore the scroll position when go back
+-Group Repo List
+-Add Video Tutorials section
+-Implement (wallpaper, lockscreen) feature to photos viewer
+-Prevent back keyboard from go back when focus in input
+-When cancel youtube download (duplicated 'From..' will appear at the bottom)
+-Add Import txt file with links inside (batch download feature)
+-Add also batch download from clipboard
+-Disable features is not working very well (1-Icon's still appear in the main menu, 2- options were active on next start)
+-Login to MEGA (should show offline message when no internet active)
+-Fix typo in Welcome screen 'Managment your packages..'

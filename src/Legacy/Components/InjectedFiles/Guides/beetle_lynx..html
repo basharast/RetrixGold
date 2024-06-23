@@ -1,0 +1,279 @@
+<h1 id="atari-lynx-beetle-lynx">Atari - Lynx (Beetle Lynx)</h1>
+<h2 id="background">Background</h2>
+<p>Beetle Lynx is an Atari Lynx video game system emulator that can be used as a libretro core. Specifically it's a port of Mednafen Lynx which is a fork of Handy.</p>
+<h3 id="authorlicense">Author/License</h3>
+<p>The Beetle Lynx core has been authored by</p>
+<ul>
+<li>
+<ol type="A" start="11">
+<li>Wilkins</li>
+</ol>
+</li>
+<li><a href="https://mednafen.github.io/">Mednafen Team</a></li>
+</ul>
+<p>The Beetle Lynx core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/beetle-lynx-libretro/blob/master/mednafen/lynx/license.txt">zlib</a>, <a href="https://github.com/libretro/beetle-lynx-libretro/blob/master/COPYING">GPLv2</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the Beetle Lynx core have the following file extensions:</p>
+<ul>
+<li>.lnx</li>
+<li>.o</li>
+</ul>
+<h2 id="databases">Databases</h2>
+<p>RetroArch database(s) that are associated with the Beetle Lynx core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Atari%20-%20Lynx.rdb">Atari - Lynx</a></li>
+</ul>
+<h2 id="bios">BIOS</h2>
+<p>Required or optional firmware files go in the frontend's system directory.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">lynxboot.img</td>
+<td style="text-align: center;">Lynx Boot Image - Required</td>
+<td style="text-align: center;">fcd403db69f54290b51035d82f835e7b</td>
+</tr>
+</tbody>
+</table>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the Beetle Lynx core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay (State based)</td>
+<td style="text-align: center;">✔ (not link-cable emulation)</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Cheats (Cheats menu)</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The Beetle Lynx core's directory name is 'Beetle Lynx'</p>
+<p>The Beetle Lynx core saves/loads to/from these directories.</p>
+<p><strong>Frontend's State directory</strong></p>
+<ul>
+<li>'content-name'.state# (State)</li>
+</ul>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The Beetle Lynx core's core provided FPS is 75</li>
+<li>The Beetle Lynx core's core provided sample rate is 44100 Hz</li>
+<li>The Beetle Lynx core's core provided aspect ratio is 80/51</li>
+</ul>
+<h2 id="loading-content">Loading content</h2>
+<p>Beetle Lynx supports Lynx headered roms and non-headered roms. It also supports homebrews in *.o extensions.</p>
+<h2 id="core-options">Core options</h2>
+<p>The Beetle Lynx core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Auto-rotate Screen</strong> [lynx_rot_screen] (<strong>enabled</strong>/disabled)</p>
+<p>Virtually rotates the screen orientation and keymaps automatically for known games.
+When disabled, screen rotation is manually adjusted by pressing the SELECT button.</p>
+</li>
+</ul>
+<h2 id="controllers">Controllers</h2>
+<p>The Beetle Lynx core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<h3 id="user-1-device-types">User 1 device types</h3>
+<ul>
+<li>None - Doesn't disable input.</li>
+<li><strong>RetroPad</strong> - Joypad</li>
+<li>RetroPad w/Analog - Joypad - There's no reason to switch to this.</li>
+</ul>
+<h3 id="controller-tables">Controller tables</h3>
+<p><img src="../image/controller/lynx.png" alt="" /></p>
+<h4 id="joypad">Joypad</h4>
+<table>
+<thead>
+<tr>
+<th>User 1 Remap descriptors</th>
+<th>RetroPad Inputs</th>
+<th>Beetle Lynx core inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>B</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+<td>Pause</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>D-Pad Up</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>D-Pad Down</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>D-Pad Left</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>D-Pad Right</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>A</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+<td>Option 1</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+<td>Option 2</td>
+</tr>
+</tbody>
+</table>
+<p>Supported combinations</p>
+<ul>
+<li>Option 1 + Pause = Flips Screen</li>
+<li>Option 2 + Pause = Restarts game</li>
+</ul>
+<h2 id="compatibility">Compatibility</h2>
+<table>
+<thead>
+<tr>
+<th>Game</th>
+<th>Issue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RoadBlasters</td>
+<td>Graphics glitches. Minor flickering and glitches after starting a race.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://mednafen.github.io/">Official Mednafen Website</a></li>
+<li><a href="https://mednafen.github.io/releases/">Official Mednafen Downloads</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/mednafen_lynx_libretro.info">Libretro Beetle Lynx Core info file</a></li>
+<li><a href="https://github.com/libretro/beetle-lynx-libretro">Libretro Beetle Lynx Github Repository</a></li>
+<li><a href="https://github.com/libretro/beetle-lynx-libretro/issues">Report Libretro Beetle Lynx Core Issues Here</a></li>
+</ul>
+<h3 id="see-also">See also</h3>
+<h4 id="atari-lynx">Atari - Lynx</h4>
+<ul>
+<li><a href="handy.md">Atari - Lynx (Handy)</a></li>
+</ul>

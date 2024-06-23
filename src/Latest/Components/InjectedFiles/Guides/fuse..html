@@ -1,0 +1,709 @@
+<h1 id="zx-spectrum-fuse">ZX Spectrum (Fuse)</h1>
+<h2 id="background">Background</h2>
+<p>The Free Unix Spectrum Emulator (Fuse): an emulator of the 1980s home computer and various clones for Unix, Mac OS X and Windows.</p>
+<p>The Fuse core has been authored by</p>
+<ul>
+<li>Team Fuse</li>
+</ul>
+<p>The Fuse core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/fuse-libretro/blob/master/LICENSE">GPLv3</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="bios">BIOS</h2>
+<p>Required or optional firmware files go in the frontend's system directory.</p>
+<p>!!! attention
+The BIOS for the last four machines need to be in a directory named 'fuse' in RetroArch's System directory.</p>
+<ul>
+<li><p>Spectrum 48K</p>
+</li>
+<li><p>Spectrum 48K (NTSC)</p>
+</li>
+<li><p>Spectrum 128K</p>
+</li>
+<li><p>Spectrum +2</p>
+</li>
+<li><p>Spectrum +2A</p>
+</li>
+<li><p>Spectrum +3</p>
+</li>
+<li><p>Spectrum +3e</p>
+</li>
+<li><p>Spectrum SE</p>
+</li>
+<li><p>Timex TC2048</p>
+</li>
+<li><p>Timex TC2068</p>
+</li>
+<li><p>Timex TS2068</p>
+</li>
+<li><p>Spectrum 16K</p>
+</li>
+<li><p>Pentagon 128K</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">fuse/128p-0.rom</td>
+<td style="text-align: center;">Pentagon 128K ROM - Required</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">fuse/128p-1.rom</td>
+<td style="text-align: center;">Pentagon 128K ROM - Required</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">fuse/trdos.rom</td>
+<td style="text-align: center;">Pentagon 128K ROM - Required</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Pentagon 512K</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">fuse/128p-0.rom</td>
+<td style="text-align: center;">Pentagon 512K ROM - Required</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">fuse/128p-1.rom</td>
+<td style="text-align: center;">Pentagon 512K ROM - Required</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">fuse/gluck.rom</td>
+<td style="text-align: center;">Pentagon 512K ROM - Required</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">fuse/trdos.rom</td>
+<td style="text-align: center;">Pentagon 512K ROM - Required</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Pentagon 1024</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">fuse/128p-0.rom</td>
+<td style="text-align: center;">Pentagon 1024 ROM - Required</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">fuse/128p-1.rom</td>
+<td style="text-align: center;">Pentagon 1024 ROM - Required</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">fuse/gluck.rom</td>
+<td style="text-align: center;">Pentagon 1024 ROM - Required</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">fuse/trdos.rom</td>
+<td style="text-align: center;">Pentagon 1024 ROM - Required</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Scorpion 256K</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">fuse/256s-0.rom</td>
+<td style="text-align: center;">Scorpion 256K ROM - Required</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">fuse/256s-1.rom</td>
+<td style="text-align: center;">Scorpion 256K ROM - Required</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">fuse/256s-2.rom</td>
+<td style="text-align: center;">Scorpion 256K ROM - Required</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">fuse/256s-3.rom</td>
+<td style="text-align: center;">Scorpion 256K ROM - Required</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the Fuse core have the following file extensions:</p>
+<ul>
+<li>.tzx</li>
+<li>.tap</li>
+<li>.z80</li>
+<li>.rzx</li>
+<li>.scl</li>
+<li>.trd</li>
+</ul>
+<p>RetroArch database(s) that are associated with the Fuse core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Sinclair%20-%20ZX%20Spectrum%20%2B3.rdb">Sinclair - ZX Spectrum +3</a></li>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Sinclair%20-%20ZX%20Spectrum.rdb">Sinclair - ZX Spectrum</a></li>
+</ul>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the Fuse core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The Fuse core's library name is 'fuse'</p>
+<p>The Fuse core saves/loads to/from these directories.</p>
+<p><strong>Frontend's State directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.state#</td>
+<td style="text-align: center;">State</td>
+</tr>
+</tbody>
+</table>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The Fuse core's core provided FPS is (FPS)</li>
+<li>The Fuse core's core provided sample rate is 44100 Hz</li>
+<li>The Fuse core's base width is (Base width)</li>
+<li>The Fuse core's base height is (Base height)</li>
+<li>The Fuse core's max width is (Max width)</li>
+<li>The Fuse core's max height is (Max height)</li>
+<li>The Fuse core's core provided aspect ratio is (Ratio)</li>
+</ul>
+<h2 id="games">Games</h2>
+<p>There are hundreds of free, legally available ZX Spectrum games at <a href="http://www.worldofspectrum.org/">World of Spectrum</a>. You should start at the <a href="http://www.worldofspectrum.org/bestgames.html">Visitor Voted Top 100 Best Games</a>.</p>
+<h2 id="core-options">Core options</h2>
+<p>The Fuse core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Model (needs content load)</strong> [fuse_machine] (<strong>Spectrum 48K</strong>|Spectrum 48K (NTSC)|Spectrum 128K|Spectrum +2|Spectrum +2A|Spectrum +3|Spectrum +3e|Spectrum SE|Timex TC2048|Timex TC2068|Timex TS2068|Spectrum 16K|Pentagon 128K|Pentagon 512K|Pentagon 1024|Scorpion 256K)</p>
+<p>Set the machine to emulate. Note that the this setting will have effect only when a new content is loaded.</p>
+</li>
+<li><p><strong>Hide Video Border</strong> [fuse_hide_border] (<strong>Off</strong>|On)</p>
+<p>Hides the video border, making the game occupy the entire screen area.</p>
+</li>
+<li><p><strong>Tape Fast Load</strong> [fuse_fast_load] (Off|<strong>On</strong>)</p>
+<p>Instantly loads tape files if enabled, or disabled it to see the moving horizontal lines in the video border while the game loads.</p>
+</li>
+<li><p><strong>Tape Load Sound</strong> [fuse_load_sound] (Off|<strong>On</strong>)</p>
+<p>Outputs the tape sound if fast load is disabled.</p>
+</li>
+<li><p><strong>Speaker Type</strong> [fuse_speaker_type] (<strong>tv speaker</strong>|beeper|unfiltered)</p>
+<p>Applies an audio filter.</p>
+</li>
+<li><p><strong>AV Stereo Separation</strong> [fise_ay_stereo_separation] (<strong>none</strong>|acb|abc)</p>
+<p>The AY sound chip stereo separation.</p>
+</li>
+<li><p><strong>Transparent Keyboard Overlay</strong> [fuse_key_ovrlay_transp] (Off|<strong>On</strong>)</p>
+<p>If the keyboard overlay is transparent or opaque.</p>
+</li>
+<li><p><strong>Time to Release Key in ms</strong> [fuse_key_hold_time] (<strong>500</strong>|1000|100|300)</p>
+<p>How much time to keep a key pressed before releasing it (used when a key is pressed using the keyboard overlay).</p>
+</li>
+<li><p><strong>Joy Left mapping</strong> [fuse_joypad_left] (<strong><none></strong>|0|1|2|3|4|5|6|7|8|9|a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z|Enter|Caps|Symbol|Space)</p>
+<p>Map the Left joypad input to a keyboard input.</p>
+</li>
+<li><p><strong>Joy Right mapping</strong> [fuse_joypad_right] (<strong><none></strong>|0|1|2|3|4|5|6|7|8|9|a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z|Enter|Caps|Symbol|Space)</p>
+<p>Map the Right joypad input to a keyboard input.</p>
+</li>
+<li><p><strong>Joy Up mapping</strong> [fuse_joypad_up] (<strong><none></strong>|0|1|2|3|4|5|6|7|8|9|a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z|Enter|Caps|Symbol|Space)</p>
+<p>Map the Up joypad input to a keyboard input.</p>
+</li>
+<li><p><strong>Joy Down mapping</strong> [fuse_joypad_down] (<strong><none></strong>|0|1|2|3|4|5|6|7|8|9|a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z|Enter|Caps|Symbol|Space)</p>
+<p>Map the Down joypad input to a keyboard input.</p>
+</li>
+<li><p><strong>Joy Start mapping</strong> [fuse_joypad_start] (<strong><none></strong>|0|1|2|3|4|5|6|7|8|9|a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z|Enter|Caps|Symbol|Space)</p>
+<p>Map the Start joypad input to a keyboard input.</p>
+</li>
+<li><p><strong>Joy A mapping</strong> [fuse_joypad_a] (<strong><none></strong>|0|1|2|3|4|5|6|7|8|9|a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z|Enter|Caps|Symbol|Space)</p>
+<p>Map the A joypad input to a keyboard input.</p>
+</li>
+<li><p><strong>Joy B mapping</strong> [fuse_joypad_b] (<strong><none></strong>|0|1|2|3|4|5|6|7|8|9|a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z|Enter|Caps|Symbol|Space)</p>
+<p>Map the B joypad input to a keyboard input.</p>
+</li>
+<li><p><strong>Joy X mapping</strong> [fuse_joypad_x] (<strong><none></strong>|0|1|2|3|4|5|6|7|8|9|a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z|Enter|Caps|Symbol|Space)</p>
+<p>Map the X joypad input to a keyboard input.</p>
+</li>
+<li><p><strong>Joy Y mapping</strong> [fuse_joypad_y] (<strong><none></strong>|0|1|2|3|4|5|6|7|8|9|a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z|Enter|Caps|Symbol|Space)</p>
+<p>Map the Y joypad input to a keyboard input.</p>
+</li>
+<li><p><strong>Joy L mapping</strong> [fuse_joypad_l] (<strong><none></strong>|0|1|2|3|4|5|6|7|8|9|a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z|Enter|Caps|Symbol|Space)</p>
+<p>Map the L joypad input to a keyboard input.</p>
+</li>
+<li><p><strong>Joy R mapping</strong> [fuse_joypad_r] (<strong><none></strong>|0|1|2|3|4|5|6|7|8|9|a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z|Enter|Caps|Symbol|Space)</p>
+<p>Map the R joypad input to a keyboard input.</p>
+</li>
+<li><p><strong>Joy L2 mapping</strong> [fuse_joypad_l2] (<strong><none></strong>|0|1|2|3|4|5|6|7|8|9|a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z|Enter|Caps|Symbol|Space)</p>
+<p>Map the L2 joypad input to a keyboard input.</p>
+</li>
+<li><p><strong>Joy R2 mapping</strong> [fuse_joypad_r2] (<strong><none></strong>|0|1|2|3|4|5|6|7|8|9|a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z|Enter|Caps|Symbol|Space)</p>
+<p>Map the R2 joypad input to a keyboard input.</p>
+</li>
+<li><p><strong>Joy L3 mapping</strong> [fuse_joypad_l3] (<strong><none></strong>|0|1|2|3|4|5|6|7|8|9|a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z|Enter|Caps|Symbol|Space)</p>
+<p>Map the L3 joypad input to a keyboard input.</p>
+</li>
+<li><p><strong>Joy R3 mapping</strong> [fuse_joypad_r3] (<strong><none></strong>|0|1|2|3|4|5|6|7|8|9|a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z|Enter|Caps|Symbol|Space)</p>
+<p>Map the R3 joypad input to a keyboard input.</p>
+</li>
+</ul>
+<h2 id="controllers-usage">Controllers usage</h2>
+<p>There are seven types of joysticks emulated:</p>
+<ol>
+<li>Cursor</li>
+<li>Kempston</li>
+<li>Sinclair 1</li>
+<li>Sinclair 2</li>
+<li>Timex 1</li>
+<li>Timex 2</li>
+<li>Fuller Joystick</li>
+</ol>
+<p>Users can configure their joystick types in the input configuration on the front end. However, fuse-libretro allows for two joysticks at maximum so only users one and two can actually use theirs in the emulation.</p>
+<p>Users 1 and 2 can choose any of the joysticks as their device types, user 3 can only choose the Sinclair Keyboard.</p>
+<p>Buttons A, X and Y are mapped to the joystick's fire button, and button B is mapped to the UP directional button. Buttons L1 and R1 are mapped to RETURN and SPACE, respectively. The SELECT button brings up the embedded, on-screen keyboard which is useful if you only have controllers attached to your box.</p>
+<p>There are some conflicts in the way the input devices interact because of the use of the physical keyboard keys as joystick buttons. For a good gaming experience, set the user device types as follows:</p>
+<ul>
+<li>For joystick games: Set user 1 to a joystick type. Optionally, set user 2 to another joystick type (local cooperative games). Set user 3 to none. This way, you can use L1 as RETURN, R1 as SPACE, and SELECT to bring the embedded keyboard.</li>
+<li>For keyboard games: Set users 1 and 2 to none, and user 3 to Sinclair Keyboard. You won't have any joystick and the embedded keyboard won't work, but the entire physical keyboard will be available for you to type in those text adventure commands.</li>
+</ul>
+<p>If you set a joystick along with the keyboard, the joystick will work just fine except for the bindings to RETURN and SPACE, and the keyboard won't register the keys assigned to the Cursor joystick, or to the L1 and R1 buttons for all other joystick types.</p>
+<h3 id="device-types">Device types</h3>
+<p>The Fuse core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<h4 id="user-1-2-device-types">User 1 - 2 device types</h4>
+<ul>
+<li>None - Input disabled.</li>
+<li><strong>RetroPad</strong> - Joypad</li>
+<li>Cursor Joystick - Joypad</li>
+<li>Kempston Joystick - Joypad</li>
+<li>Sinclair 1 Joystick - Joypad</li>
+<li>Sinclair 2 Joystick - Joypad</li>
+<li>Timex 1 Joystick - Joypad</li>
+<li>Timex 2 Joystick - Joypad</li>
+<li>Fuller Joystick - Joypad</li>
+</ul>
+<h4 id="user-3-device-types">User 3 device types</h4>
+<ul>
+<li>None - Input disabled.</li>
+<li><strong>RetroPad</strong> - Joypad</li>
+<li>Sinclair Keyboard - Keyboard - Has keymapper support</li>
+</ul>
+<h3 id="joypad">Joypad</h3>
+<table>
+<thead>
+<tr>
+<th>User 1 - 7 input descriptors</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Up</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>Fire</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+</tr>
+<tr>
+<td>Keyboard overlay</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+</tr>
+<tr>
+<td>Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>Fire</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+<tr>
+<td>Fire</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+</tr>
+<tr>
+<td>Enter</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+</tr>
+<tr>
+<td>Space</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<h3 id="keyboard">Keyboard</h3>
+<table>
+<thead>
+<tr>
+<th>RetroKeyboard Inputs</th>
+<th>Sinclair Keyboard</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keyboard Backspace</td>
+<td>Backspace</td>
+</tr>
+<tr>
+<td>Keyboard Return</td>
+<td>Return</td>
+</tr>
+<tr>
+<td>Keyboard Space</td>
+<td>Space</td>
+</tr>
+<tr>
+<td>Keyboard 0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Keyboard 1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Keyboard 2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Keyboard 3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Keyboard 4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Keyboard 5</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Keyboard 6</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Keyboard 7</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Keyboard 8</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Keyboard 9</td>
+<td>9</td>
+</tr>
+<tr>
+<td>Keyboard a</td>
+<td>a</td>
+</tr>
+<tr>
+<td>Keyboard b</td>
+<td>b</td>
+</tr>
+<tr>
+<td>Keyboard c</td>
+<td>c</td>
+</tr>
+<tr>
+<td>Keyboard d</td>
+<td>d</td>
+</tr>
+<tr>
+<td>Keyboard e</td>
+<td>e</td>
+</tr>
+<tr>
+<td>Keyboard f</td>
+<td>f</td>
+</tr>
+<tr>
+<td>Keyboard g</td>
+<td>g</td>
+</tr>
+<tr>
+<td>Keyboard h</td>
+<td>h</td>
+</tr>
+<tr>
+<td>Keyboard i</td>
+<td>i</td>
+</tr>
+<tr>
+<td>Keyboard j</td>
+<td>j</td>
+</tr>
+<tr>
+<td>Keyboard k</td>
+<td>k</td>
+</tr>
+<tr>
+<td>Keyboard l</td>
+<td>l</td>
+</tr>
+<tr>
+<td>Keyboard m</td>
+<td>m</td>
+</tr>
+<tr>
+<td>Keyboard n</td>
+<td>n</td>
+</tr>
+<tr>
+<td>Keyboard o</td>
+<td>o</td>
+</tr>
+<tr>
+<td>Keyboard p</td>
+<td>p</td>
+</tr>
+<tr>
+<td>Keyboard q</td>
+<td>q</td>
+</tr>
+<tr>
+<td>Keyboard r</td>
+<td>r</td>
+</tr>
+<tr>
+<td>Keyboard s</td>
+<td>s</td>
+</tr>
+<tr>
+<td>Keyboard t</td>
+<td>t</td>
+</tr>
+<tr>
+<td>Keyboard u</td>
+<td>u</td>
+</tr>
+<tr>
+<td>Keyboard v</td>
+<td>v</td>
+</tr>
+<tr>
+<td>Keyboard w</td>
+<td>w</td>
+</tr>
+<tr>
+<td>Keyboard x</td>
+<td>x</td>
+</tr>
+<tr>
+<td>Keyboard y</td>
+<td>y</td>
+</tr>
+<tr>
+<td>Keyboard z</td>
+<td>z</td>
+</tr>
+<tr>
+<td>Keyboard Right Shift</td>
+<td>Right Shift</td>
+</tr>
+<tr>
+<td>Keyboard Left Shift</td>
+<td>Left Shift</td>
+</tr>
+<tr>
+<td>Keyboard Right Control</td>
+<td>Right Control</td>
+</tr>
+<tr>
+<td>Keyboard Left Control</td>
+<td>Left Control</td>
+</tr>
+<tr>
+<td>Keyboard Right Alt</td>
+<td>Right Alt</td>
+</tr>
+<tr>
+<td>Keyboard Left Alt</td>
+<td>Left Alt</td>
+</tr>
+<tr>
+<td>Keyboard Right Meta</td>
+<td>Right Meta</td>
+</tr>
+<tr>
+<td>Keyboard Left Meta</td>
+<td>Left Meta</td>
+</tr>
+<tr>
+<td>Keyboard Right Super</td>
+<td>Right Super</td>
+</tr>
+<tr>
+<td>Keyboard Left Super</td>
+<td>Left Super</td>
+</tr>
+</tbody>
+</table>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="http://fuse-emulator.sourceforge.net/">Official Fuse Website</a></li>
+<li><a href="https://sourceforge.net/projects/fuse-emulator/">Official Fuse SourceForge Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/fuse_libretro.info">Libretro Fuse Core info file</a></li>
+<li><a href="https://github.com/libretro/fuse-libretro">Libretro Fuse Github Repository</a></li>
+<li><a href="https://github.com/libretro/fuse-libretro/issues">Report Libretro Fuse Core Issues Here</a></li>
+</ul>

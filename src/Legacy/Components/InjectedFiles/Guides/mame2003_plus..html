@@ -1,0 +1,379 @@
+<h1 id="mame-2003-plus">MAME 2003-Plus</h1>
+<h2 id="background">Background</h2>
+<p>MAME 2003-Plus (also referred to as MAME 2003+ and mame2003-plus) is a libretro multi-arcade system emulator core which prioritizes 1) usability and frontend integration, 2) performance, and 3) compatibility across the range of libretro-supported platforms including mobile devices, single board computers, and consoles. MAME 2003-Plus is part of a long tradition in arcade emulation of producing platform-specific and performance-optimized MAME builds.</p>
+<p>!!! Question &quot;Why is it called <strong>Plus</strong>?&quot;
+Unlike the other 'historic' libretro MAME cores which remain fixed at one MAME version, MAME 2003-Plus is actively maintained and has to date added support for hundreds of new games along with dozens of new features.</p>
+<p>MAME 2003-Plus is part of a lineage of codebase forks and ports: this core was forked from MAME 2003, which is itself derived from Xmame 0.78, the X11/Unix port of MAME 0.78.</p>
+<p><strong>Authors</strong>: MAMEdev, MAME 2003-Plus team, et al (see <a href="https://raw.githubusercontent.com/libretro/mame2003-plus-libretro/master/LICENSE.md">LICENSE.md</a> and <a href="https://raw.githubusercontent.com/libretro/mame2003-plus-libretro/master/CHANGELOG.md">CHANGELOG.md</a>)</p>
+<h2 id="contribute-to-this-documentation">Contribute to this documentation</h2>
+<p>In order to propose improvements to this document, <a href="https://github.com/libretro/docs/blob/master/docs/library/mame2003-plus.md">visit it's corresponding source page on github</a>. Changes are proposed using &quot;Pull Requests.&quot;</p>
+<h2 id="see-also">See also</h2>
+<p><a href="mame_2003.md">MAME 2003</a></p>
+<h2 id="license">License</h2>
+<p><a href="https://raw.githubusercontent.com/libretro/mame2003-libretro/master/LICENSE.md">MAME Non-Commercial</a></p>
+<h2 id="extensions">Extensions</h2>
+<p>zip, chd</p>
+<p>!!! Note &quot;CHD paths&quot;
+Some games require data from an internal hard drive, CD-ROM, laserdisk, or other media in order to be emulated -- those forms of media are packaged as CHD files. CHD files should be copied to subfolders within the folder where the romset zips have been installed: <code>/libretro content dir/blitz/blitz.chd</code></p>
+<h2 id="building-romsets-for-mame-2003-plus">Building romsets for MAME 2003-Plus</h2>
+<p>MAME 2003-Plus began with the game drivers from MAME 0.78, meaning that 95% or more of MAME 0.78 romsets will work as-is in MAME 2003-Plus, where they immediately benefit from its bugfixes and other improvements. <strong>In order to play the new games and games which received ROM updates in MAME 2003-Plus, you will need to find or build MAME 2003-Plus romsets.</strong></p>
+<p>!!! question &quot;What is a romset?&quot;
+Arcade games are packaged as zip files, most of which are composed of more than one individual 'ROM' files. That is why some resources inaccurately refer to an individual arcade game as a ROM (like people use to describe a zipped game cartridge ROM) while other resources refer to an individual game as a <strong>ROM set</strong>, <strong>ROMset</strong>, or <strong>romset</strong>.</p>
+<p>MAME 2003-Plus has the ability to generate an XML &quot;DAT&quot; file directly from the <a href="#MAME-menu">MAME menu</a>.</p>
+<h3 id="step-1-obtaining-an-xml-dat">Step 1: Obtaining an XML DAT</h3>
+<p>DAT files describe the exact ROM contents that the emulator needs including filenames, file sizes, and checksums to verify contents are not incorrect or corrupt. mame2003-plus has the ability to generate an XML &quot;DAT&quot; file from the MAME Menu. You can also access the MAME menu by turning it on as a core option, selecting <strong>Generate XML DAT</strong> and then disabing the menu as a core option.</p>
+<h3 id="step-2-finding-a-source-for-roms">Step 2: Finding a source for ROMs</h3>
+<p>In order to build a complete MAME 2003-Plus collection, the ingredients are:</p>
+<ul>
+<li>A complete MAME 0.223 or later romset collection</li>
+<li>A complete MAME 0.223 or later &quot;rollback&quot; romset collection</li>
+<li>MAME 0.78 CHD collection</li>
+<li>The NeoGeo UniBIOS 3.3, freely available at <a href="http://unibios.free.fr/">http://unibios.free.fr/</a></li>
+</ul>
+<h3 id="step-3-building-mame-2003-plus-romsets">Step 3: Building MAME 2003-Plus romsets</h3>
+<p>Refer to <a href="https://github.com/RetroPie/RetroPie-Setup/wiki/Validating,-Rebuilding,-and-Filtering-ROM-Collections">Validating, Rebuilding, and Filtering ROM Collections</a> for details on how to configure ClrMamePro to use your sources as &quot;rebuild&quot; folders.</p>
+<p>We recommend the <strong>Full Non-Merged</strong> format, where each romset zip files includes all the files needed to run each game, including any ROMs from 'parent' ROM sets and BIOS sets. To configure ClrMamePro to validate or rebuild a Full Non-Merged collection, use &quot;Non-Merged&quot; mode and disable &quot;Separate BIOS Sets&quot; from the &quot;Advanced&quot; menu in both ClrMamePro's Rebuild and Scanner menus.</p>
+<p>!!! tip
+A complete <strong>Full Non-Merged</strong> romset collection with CHDs and Samples only requires approximately 6% more storage space than the <strong>Split</strong> format romsets that are also sometimes used to structure arcade romsets. MAME 2003-Plus can read <strong>Split, TorrentZipped</strong> romsets, but the RetroArch playlist scanner only supports <strong>Full Non-Merged, TorrentZipped</strong> romsets for MAME 2003-Plus.</p>
+<h4 id="recommended-clrmamepro-settings">Recommended ClrMamePro settings</h4>
+<p>ClrMamePro remains the most popular tool for rebuilding MAME romsets, at least for now. That said, ClrMamePro is focused on supporting more recent MAME versions so there are at least two things to know if you are using ClrMamePro to generate a MAME 2003-Plus set:</p>
+<ol>
+<li>If you are scanning CHDs, go to <code>Settings</code> -&gt; <code>Compressor</code> -&gt; <code>CHDMan</code> tab and change <code>Req. CHD Version</code> to <code>3</code>.</li>
+<li>If you are using the suggested setting of <code>Disable Separate BIOS Sets</code> then ClrMamePro will report the BIOS romset files as missing even though you told the program you don't want them. mame2003-plus incorporates 15 different kinds of BIOS romsets, so it is normal to see a ClrMamePro message like this after a clean and complete scan: <code>You are missing 15 of 4831 known mame2003-plus.xml sets (+ BIOS sets)</code></li>
+</ol>
+<h3 id="sourcing-chds">Sourcing CHDs</h3>
+<p>MAME 2003-Plus uses exactly the same MAME 0.78 CHDs (CHD v3) as MAME 2003.</p>
+<h2 id="bios">BIOS</h2>
+<p>BIOS romsets are not needed when using &quot;Full Non-Merged&quot; arcade romsets. For &quot;Split&quot; and &quot;Non-Merged&quot; romsets, place the BIOS in the same directory as the game romset.</p>
+<h2 id="features">Features</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Saves</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td>game-dependent</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td>✕</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td>✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>Controllers</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td>✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td>✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td>✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td>✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td>✕</td>
+</tr>
+</tbody>
+</table>
+<h2 id="input-system-controls-and-options">Input system, controls, and options</h2>
+<p>mame2003-plus emulates thousands of games, many of which have unique control layouts. These games are emulated on more than a thousand variations of arcade hardware. The purpose of the input system is to communicate input from the user's physical controls through the libretro frontend, the mame2003-plus emulator core, and into the emulated game itself.</p>
+<p>No system of default input mappings can address the full range of emulated games and supported controls. Some degree of per-game customization should ways be expected. However, to the extent possible it is also within the purpose of the MAME 2003-Plus input system to attempt to provide predictable and meaningful defaults for input across this wide range.</p>
+<h2 id="default-retropad-layouts">Default RetroPad Layouts</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Classic Gamepad</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The <strong>Classic Gamepad</strong> is based on mainline MAME's default Xbox 360 controller layout and is also likely to suit DualShock or SNES-style gamepads. The corresponding option in configuration file is <code>input_libretro_device_pX = &quot;1&quot;</code> (where X is the player number, <code>input_libretro_device_p1 = &quot;1&quot;</code> for player 1, etc.).<br><img src="../image/controller/xbox360.png" alt="Xbox 360-style RetroPad" /><br><img src="../image/controller/psx.png" alt="PSX DualShock-style RetroPad" /></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th><strong>Modern Fightstick</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The <strong>Modern Fightstick</strong> layout is the fight stick and pad layout popularized by Street Fighter IV and assumes an 8+ button controller. The corresponding option in configuration file is <code>input_libretro_device_pX = &quot;257&quot;</code> (where X is the player number, <code>input_libretro_device_p1 = &quot;257&quot;</code> for player 1, etc.). Gamepad can also serve as an alternative Xbox/PSX-style layout for Street Fighter 2.<br>For arcade control panels, <strong>Modern Fightstick</strong> can be mapped in this way:<br></td>
+</tr>
+<tr>
+<td><img src="../image/core/mame2003-plus/fightstick.png" alt="Modern Fightstick mapping for arcade controls" /></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th><strong>6-Button</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>6-button</strong> is a layout intended for SNES-type RetroPad controls as well as 6-button arcade panels arcade panels. The corresponding option in configuration file is <code>input_libretro_device_pX = &quot;769&quot;</code> (where X is the player number, <code>input_libretro_device_p1 = &quot;769&quot;</code> for player 1, etc.). <strong>6-button</strong> can be mapped in this way:<br><img src="../image/core/mame2003-plus/6button.png" alt="6-button mapping for arcade controls" /></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th><strong>8-Button</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>8-button</strong> is a layout intended for an arcade panel. The corresponding option in configuration file is <code>input_libretro_device_pX = &quot;513&quot;</code> (where X is the player number, <code>input_libretro_device_p1 = &quot;513&quot;</code> for player 1, etc.). <strong>8-button</strong> is configured like this<br><img src="../image/core/mame2003-plus/8button.png" alt="8-button mapping for arcade controls" /></td>
+</tr>
+</tbody>
+</table>
+<h3 id="keyboard-input">Keyboard Input</h3>
+<p><code>mame_keyboard</code> sets the core to process keyboard input directly through the legacy &quot;MAME&quot; keyboard interface. Use this input mode only if your input device is seen as a keyboard, including some arcade control panel hardware.</p>
+<h3 id="mouse-and-trackball-support">Mouse and trackball support</h3>
+<p>MAME 2003-Plus has support for multiple mice or touch devices in games that support trackballs, etc. MAME 2003-Plus also supports one or two spinners/dials via the &quot;Share 2 player dial controls across one X/Y device&quot; core option. By default, mice/trackballs and analog sticks (the left one, for controllers with 2) are supported in games that would have them, or equivalents. For example, Centipede supports the mouse/trackball, and Afterburner supports the stick.</p>
+<h3 id="pointer-trackpad-touchscreen-support">Pointer, trackpad, touchscreen support</h3>
+<p>Absolute pointer devices are supported, but need to be turned on via the corresponding core option.</p>
+<h3 id="lightgun-support">Lightgun support</h3>
+<p>Because MAME 2003-Plus does not yet implement the libretro lightgun API, the core currently supports lightguns only if they are configured to emulate a mouse.</p>
+<h3 id="player-dial-and-spinner-devices">2-player dial and spinner devices</h3>
+<p>2-player spinner and dial devices can be represented as 1 device with 2 axes. MAME 2003-Plus can be configured to share this device across both players: Player 1 = X axis, Player 2 = Y axis. This can be enabled via a setting in the <code>retroarch-core-options.cfg</code> file:
+<code>mame2003-plus-dialsharexy = &quot;enabled&quot;</code></p>
+<p>!!! Warning
+Enabling this option will disable standard mouse support.</p>
+<h3 id="analog-and-digital-controller-support">Analog and digital controller support</h3>
+<p>MAME 2003-Plus natively supports analog and digital controls.</p>
+<h3 id="way-joystick-simulation">4-way joystick simulation</h3>
+<p>4-way joysticks are an essential aspect of the gameplay for many iconic arcade titles including games like Donkey Kong, Pac-Man, and Q-Bert. Because modern joysticks generally use 8-way designs, it is usually impossible to play these games well without special hardware. MAME 2003-Plus includes a core option to simulate 4-way joysticks. When enabled, this logic analyzes input from 8-way digital joysticks in order to render its position as if the joystick had a 4-way design. This simulation is not the same as using a real 4-way joystick, but it can make a significant improvement to playability.</p>
+<h3 id="content-aware-control-names">Content-aware control names</h3>
+<p>In the same way that content-aware core options only appear when they are relevant to the current game, MAME 2003-Plus has added support for content-aware control names. In other words, when remapping Street Fighter 2 controls, the libretro frontend can display the control names that were printed on the real arcade control panel like <code>Jump</code>, <code>Strong Punch</code> and <code>Forward Kick</code> instead of a generic labels like <code>Up</code>, <code>Button 1</code>, <code>Button 2</code>, etc.</p>
+<p>Because support for control names is relatively new and is derived from the third-party <strong>controls.dat</strong> project, control names need to be verified by a human being before they are activated. As of end end of 2018, dozens of games have these active control names, but hundreds more need to be double-checked before being enabled. <a href="https://github.com/libretro/mame2003-plus-libretro/wiki/Submitting-Button-Names">Coders, and users who are willing to learn basic github commands, are invited to join in this effort</a>.</p>
+<hr />
+<h2 id="other-key-features">Other key features</h2>
+<h2 id="audio-samples">Audio samples</h2>
+<p>Some games require an additional zip file with recorded sounds or music in order for audio to work correctly. Audio 'sample' files should be placed in a <code>samples</code> subdirectory within <code>/libretro system dir/mame2003-plus/</code>.</p>
+<p>!!! tip &quot;Alternate CD soundtrack support&quot;
+MAME 2003-Plus also supports alternate soundtracks for several popular arcade titles that were also released in other formats with high quality audio soundtracks. Alternate soundtracks are supported for <strong>Double Dragon</strong>, <strong>Final Fight</strong>, <strong>Mortal Kombat</strong>, <strong>Michael Jackson’s Moonwalker</strong>, <strong>NBA Jam</strong>, and <strong>Out Run</strong>.</p>
+<h3 id="backdrop-artwork">Backdrop artwork</h3>
+<p>Some games require backdrop artwork files in order to be fully emulated. Because RetroArch, the reference libretro frontend, does not yet incorporate support for so-called &quot;backdrop&quot; artwork, the MAME 2003-Plus github repository includes <a href="https://github.com/libretro/mame2003-plus-libretro/tree/master/metadata/artwork">a folder of high-resolution backdrop artwork</a> that is compatible with the core's built-in artwork display system. These artwork <code>zip</code> files should be placed within <code>/libretro system dir/mame2003-plus/artwork</code>.</p>
+<p><img src="../image/core/mame2003-plus/armor-attack-backdrop-artwork.jpg" alt="Armor Attack with backdrop artwork" /></p>
+<p><em>&quot;Armor Attack&quot; backdrop artwork pack prepared by UDB23</em></p>
+<h3 id="run-ahead-input-lag-reduction">Run Ahead input lag reduction</h3>
+<p>This core supports the RetroArch &quot;Run Ahead&quot; input latency reduction feature when Run Ahead is set to <code>Second Instance</code>, but as of the end of 2018 there are <a href="https://github.com/libretro/mame2003-plus-libretro/issues/434">known issues preventing Run Ahead from functioning properly and a bounty fundraiser to fix them</a>.</p>
+<h3 id="mame-menu">MAME Menu</h3>
+<p>The simplest way to access the &quot;MAME menu&quot; is by enabling it in the core options. If your input mode is set to allow input to the <code>mame_keyboard</code> interface, you can also enter the menu by pressing the <code>Tab</code> key.</p>
+<h3 id="dip-switches">Dip-switches</h3>
+<p>Many arcade games have hardware switches for arcade owners to modify certain parameters which can be adjusted by accessing the MAME menu and selecting the '<strong>Dip Switches</strong>' option. Dip switches often controlled features like free play (no coins needed), difficulty level, and cocktail table cabinet rotation mode.</p>
+<h3 id="service-menu">Service menu</h3>
+<p>For games where dip switches are not available directly within the MAME menu, MAME 2003-Plus the core can often access a game's internal servic menus to set options by pressing <code>F2</code> with a keyboard while <code>mame_keyboard</code> or <code>simultaneous</code> input mode is enabled.</p>
+<h3 id="high-scores">High scores</h3>
+<p>The <strong>hiscore.dat</strong> is compiled into MAME 2003-Plus and then spawned into <code>/libretro system dir/mame2003-plus/</code> the first time the core is run. Users do not need to install the <strong>hiscore.dat</strong> themselves. From then on, users can modify or replace this file with their own custom DAT if they choose. When high scores are saved, they are either stored as NVRAM data in <code>libretro system dir/mame2003-plus/nvram/</code> or as hiscore data in: <code>libretro system dir/mame2003-plus/hi/</code></p>
+<h3 id="cheats">Cheats</h3>
+<p>MAME 2003-Plus supports the MAME cheat engine, allowing you to use the MAME menu to enable various in-game cheats. To activate these, there is a necessary supplementary file called <code>cheat.dat</code>. This file can be <a href="https://github.com/libretro/mame2003-plus-libretro/tree/master/metadata">downloaded from the MAME 2003-Plus 'metadata' repository</a>. Place <code>cheat.dat</code> in: <code>libretro system dir/mame2003-plus/</code>.</p>
+<h3 id="history-dat">History DAT</h3>
+<p>MAME 2003-Plus supports the use of the <strong>history.dat</strong> file, which displays background information about many games from within the <strong>MAME Menu</strong>. This file can be <a href="https://github.com/libretro/mame2003-plus-libretro/tree/master/metadata">downloaded from the MAME 2003-Plus 'metadata' repository</a>. Place <code>history.dat</code> in: <code>libretro system dir/mame2003-plus/ </code>.</p>
+<h3 id="led-output-system">LED output system</h3>
+<p>As of late 2018, MAME 2003-Plus incorporates preliminary support for the libretro LED lighting output system. Documentation is yet to be written on this topic.</p>
+<hr />
+<h2 id="core-generated-content">Core-generated content</h2>
+<p>Core-generated content is placed in sub-directories within <code>/libretro savefile dir/mame2003-plus/</code>:</p>
+<pre><code>/libretro savefile dir/mame2003-plus/diff/
+/libretro savefile dir/mame2003-plus/nvram/
+/libretro savefile dir/mame2003-plus/hi/
+/libretro savefile dir/mame2003-plus/cfg/
+/libretro savefile dir/mame2003-plus/memcard/
+</code></pre>
+<hr />
+<h2 id="core-options">Core options</h2>
+<p>!!! Tip
+<strong>Restart core</strong> indicates that the core must be restarted in order for changes to that option to take effect.</p>
+<p>!!! Tip &quot;Content-aware core options&quot;
+Because MAME 2003-Plus supports more than 4,000 games, there are a number of core options which only apply to a subset of its library. For example, there are several options to configure vector displays which have no effect for games with any other kind of display. <strong>MAME 2003-Plus only presents core options to the frontend that are relevant to the game that is currently loaded</strong> In other words, the vector options only appear when a vector game is currently loaded.</p>
+<table>
+<thead>
+<tr>
+<th>Core option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4-way joystick emulation on 8-way joysticks</td>
+<td>See <strong>4-way joystick simulation</strong> section of this doc. <code>mame2003-plus_four_way_emulation = &quot;enabled|disabled&quot;</code></td>
+</tr>
+<tr>
+<td>Mouse Device</td>
+<td>Set mouse device input to be read either from a mouse, a pointer (pointer, trackpad, touchscreen), or to be disabled. <code> mame2003-plus_mouse_device = &quot;mouse|pointer|disabled&quot;</code></td>
+</tr>
+<tr>
+<td>Show Lightgun crosshair</td>
+<td>Toggle crosshair visibilty for lightgun games. <code>mame2003-plus_crosshair_enabled = &quot;enabled|disabled&quot;</code></td>
+</tr>
+<tr>
+<td>Skip Disclaimer</td>
+<td>Skip the copyright disclaimer message. <code>mame2003-plus_skip_disclaimer = &quot;disabled|enabled&quot;</code></td>
+</tr>
+<tr>
+<td>Skip Warnings</td>
+<td><em>Advanced feature: changing from the default is not recommended in most cases.</em> Skip any driver warnings about emulation quality. <code>mame2003-plus_skip_warnings = &quot;disabled|enabled&quot;</code></td>
+</tr>
+<tr>
+<td>Display MAME menu</td>
+<td>Enable this core option to display the core's <strong>MAME Menu</strong> and then disable it when you have finished using the <strong>MAME Menu</strong>. <code>mame2003-plus_display_setup = &quot;disabled|enabled&quot;</code></td>
+</tr>
+<tr>
+<td>Specify Neo Geo BIOS (Restart core)</td>
+<td>Manually specify your choice of Neo Geo BIOS from among those supported. <code>mame2003-plus_neogeo_bios = &quot;default|euro|euro-s1|us|us-e|asia|japan|japan-s2|unibios33|unibios20|unibios13|unibios11|unibios10|debug|asia-aes&quot;</code></td>
+</tr>
+<tr>
+<td>Specify Sega ST-V BIOS (Restart core)</td>
+<td>Manually specify your choice of ST-V BIOS from among those supported. <code>mame2003-plus_stv_bios = &quot;default|japan|japana|us|japan_b|taiwan|europe&quot;</code></td>
+</tr>
+<tr>
+<td>Use CD soundtrack (Restart core)</td>
+<td>See <strong>Alternate CD soundtrack support</strong> in the <strong>Audio samples</strong> section of this doc. <code>mame2003-plus_use_alt_sound = &quot;enabled|disabled&quot;</code></td>
+</tr>
+<tr>
+<td>Share 2 player dial controls across one X/Y device</td>
+<td>See the <strong>2-player dial and spinner devices</strong> section of this doc. <code>mame2003-plus_dialsharexy = &quot;disabled|enabled&quot;</code></td>
+</tr>
+<tr>
+<td>Vector resolution multiplier (Restart core)</td>
+<td>Attempts to create a higher quality emulation of vector display hardware by upscaling the emulated display to a higher resolution. <code>mame2003-plus_vector_resolution = &quot;1024x768|640x480|1280x960|1440x1080|1600x1200|original&quot;</code></td>
+</tr>
+<tr>
+<td>Vector antialiasing</td>
+<td>Enables or disables the <strong>anti-aliasing</strong> for vector games. <code>mame2003-plus_vector_antialias = &quot;enabled|disabled&quot;</code></td>
+</tr>
+<tr>
+<td>Vector beam width</td>
+<td>Sets the emulated width of the vector beam in pixels. This setting is only effective when <strong>anti-aliasing</strong> is enabled. <code>mame2003-plus_vector_beam_width = &quot;2|1|1.2|1.4|1.6|1.8|2.5|3|4|5|6|7|8|9|10|11|12&quot;</code></td>
+</tr>
+<tr>
+<td>Vector translucency</td>
+<td>Emulates the partial transparency of vector display hardware.</td>
+</tr>
+<tr>
+<td>Vector flicker</td>
+<td>Emulates the flicker of vector display hardware. <code>mame2003-plus_vector_flicker = &quot;20|0|10|30|40|50|60|70|80|90|1001.5|0.5|1|2|2.5|3&quot;</code></td>
+</tr>
+<tr>
+<td>Vector intensity</td>
+<td>Emulates the variable intensity of vector display hardware. <code>mame2003-plus_vector_intensity  = &quot;1.5|0.5|1|2|2.5|3&quot;</code></td>
+</tr>
+<tr>
+<td>DCS Speedhack</td>
+<td><em>Advanced feature: changing from the default is not recommended in most cases.</em> Use so-called &quot;speed hacks&quot; to improve the performance of DCS sound hardware. <code>mame2003-plus_dcs_speedhack = &quot;enabled|disabled&quot;</code></td>
+</tr>
+<tr>
+<td>Locate system files within a subfolder</td>
+<td>For historical reasons, MAME 2003-Plus reads system files within a subfolder named <code>mame2003-plus</code> even though this is not part of the libretro API. <code>mame2003-plus_core_sys_subfolder = &quot;enabled|disabled&quot;</code></td>
+</tr>
+<tr>
+<td>Locate save files within a subfolder</td>
+<td>For historical reasons, MAME 2003-Plus saves files within a subfolder named <code>mame2003-plus</code> even though this is not part of the libretro API. <code>mame2003-plus_core_save_subfolder = &quot;enabled|disabled&quot;</code></td>
+</tr>
+<tr>
+<td>TATE Mode</td>
+<td>From the Japanese 縦 (ta-te) meaning &quot;vertical&quot;, <strong>TATE Mode</strong> renders vertical games lengthwise along the display. This mode is intended for use with rotating monitors and portable devices that can make the full use of their viewable area for games which used vertical monitors. <code>mame2003-plus_tate_mode = &quot;disabled|enabled&quot;</code></td>
+</tr>
+<tr>
+<td>Brightness</td>
+<td>Simple brightness adjustment. <code>mame2003-plus_brightness = &quot;1.0|0.2|0.3|0.4|0.5|0.6|0.7|0.8|0.9|1.1|1.2|1.3|1.4|1.5|1.6|1.7|1.8|1.9|2.0&quot;</code></td>
+</tr>
+<tr>
+<td>Gamma correction</td>
+<td>Simple gamma adjustment. <code>mame2003-plus_gamma = &quot;1.0|0.5|0.6|0.7|0.8|0.9|1.1|1.2|1.3|1.4|1.5|1.6|1.7|1.8|1.9|2.0&quot;</code></td>
+</tr>
+<tr>
+<td>Frameskip</td>
+<td><em>Advanced feature: changing from the default is not recommended in most cases.</em> <code>mame2003-plus_frameskip = &quot;0|1|2|3|4|5&quot;</code></td>
+</tr>
+<tr>
+<td>Sample Rate (KHz)</td>
+<td><em>Advanced feature: changing from the default is not recommended in most cases.</em> <code>mame2003-plus_sample_rate = &quot;48000|8000|11025|22050|30000|44100&quot;</code></td>
+</tr>
+<tr>
+<td>Input interface</td>
+<td><em>Advanced feature: changing from the default is not recommended in most cases.</em> <strong>retropad</strong>, the default option, processes input via the libretro retropad abstraction, including from any keyboard which are bound to the retropad. The <strong>keyboard</strong> setting only sends keyboard input directly to the core, ignoring the retropad. The <strong>simultaneous</strong> setting sends inputs both ways at the same time and is not recommended. This setting exists for historical reasons. <code>mame2003-plus_input_interface = &quot;retropad|keyboard|simultaneous&quot;</code></td>
+</tr>
+<tr>
+<td>Legacy Remapping</td>
+<td><em>Note: Using the legacy MAME control remapper may affect stateless netplay between two users with their MAME remappings set differently.</em> <code>mame2003-plus_mame_remapping = &quot;enabled|disabled&quot;</code></td>
+</tr>
+<tr>
+<td>Display artwork (Restart core)</td>
+<td>Display artwork packs from within the core, particularly &quot;backdrop&quot; artwork. <code>mame2003-plus_display_artwork = &quot;enabled|disabled&quot;</code></td>
+</tr>
+<tr>
+<td>Artwork resolution multiplier (Restart core)</td>
+<td>Upscales games with artwork backs so that the artwork can be displayed at a higher resolution. <code>mame2003-plus_art_resolution = &quot;1|2&quot;</code></td>
+</tr>
+<tr>
+<td>NVRAM Bootstraps</td>
+<td><em>Advanced feature: changing from the default is not recommended in most cases.</em> <code>mame2003-plus_nvram_bootstraps = &quot;enabled|disabled&quot;</code></td>
+</tr>
+<tr>
+<td>Dip switch/Cheat input ports</td>
+<td><em>Advanced feature: changing from the default is not recommended in most cases.</em> Activates a few specific cheats that manipulate the dipswitch input system. <code>mame2003-plus_cheat_input_ports = &quot;disabled|enabled&quot;</code></td>
+</tr>
+<tr>
+<td>Bypass audio skew (Restart core)</td>
+<td><em>Advanced feature: changing from the default is not recommended in most cases.</em> Bypass the frontend's &quot;audio skew&quot; feature which attempts to adjust the audio for games which displayed at framerates not native to modern displays. <code>mame2003-plus_machine_timing = &quot;enabled|disabled&quot;</code></td>
+</tr>
+<tr>
+<td>Center joystick axis for digital controls</td>
+<td>Emulates the center position of an analog joystick to allow digital joysticks to play analog based games. This is only applied when the AD Stick type is used. <code>mame2003-plus_digital_joy_centering = &quot;enabled|disabled&quot;</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://github.com/libretro/mame2003-plus-libretro">MAME 2003-Plus Github Repository</a></li>
+</ul>
+<h3 id="see-also-1">See also</h3>
+<ul>
+<li><a href="mame_2003.md">MAME 2003</a></li>
+<li><a href="mame_2010.md">MAME 2010</a></li>
+<li><a href="same_cdi.md">SAME_CDI</a></li>
+</ul>

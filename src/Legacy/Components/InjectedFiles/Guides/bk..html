@@ -1,0 +1,613 @@
+<h1 id="elektronika-bk-0010bk-0011m-bk">Elektronika - BK-0010/BK-0011(M) (bk)</h1>
+<h2 id="background">Background</h2>
+<p>A port of the PDP11 emulator to libretro. This core emulates the Soviet Electronica BK computers series, including the BK-0010, BK-0010.01 and BK-0011(M), as well as the Terak 8510/a, which is a 1976 American PDP-11/03 platform that the Electronica BK series were designed after. The BK series computers were the first mass-produced, affordable personal computers in Russia in the 1980s and they had a tremendous effect on the development of the Russian-speaking software community, similar to the C64, ZX Spectrum and Atari 2600 communities elsewhere in the world. These computers will accept console commands in English but respond mostly in Russian, so this core is mostly of use to Russian-speaking users.</p>
+<p>This is a core for Soviet (russian) Electronica BK series:</p>
+<ul>
+<li>БК-0010</li>
+<li>БК-0010.01</li>
+<li>БК-0011(М)</li>
+</ul>
+<p>You may read more about the series at <a href="http://en.wikipedia.org/wiki/Electronika_BK">http://en.wikipedia.org/wiki/Electronika_BK</a></p>
+<p>The author's (Leonid A. Broukhis) page can be found at <a href="http://www.mailcom.com/bk0010/index_en.shtml">here</a>.</p>
+<p>Additionally, it supports emulation of Terak 8510/a, which is a 1976 american PDP-11/03 platform and of which the Electronica BK series are indeed clones.</p>
+<p>The Electronica BK computers were the first mass produced, affordable personal computers in Russia in the eighties of 20th century, and have had tremendous effect on the development of Russian-speaking software community. Every russian computer, hardware or ham radio geek born in seventies or eighties probably had one of those machines during their formational years. They are the C64s, ZX Spectrums and Atari 2600s of the now defunct USSR.</p>
+<p>All of the BK machines accept console commands in English, but respond mostly in Russian.</p>
+<p>Virtually all of BK schematics, documentation, hardware hacks and software has been preserved and is available on the internet. Unfortunately, most if not all of these things are only available in Russian.</p>
+<h3 id="authorlicense">Author/License</h3>
+<p>The bk core has been authored by</p>
+<ul>
+<li>Eric A. Edwards</li>
+<li>Leonid A. Broukhis</li>
+<li>emestee</li>
+<li>arcade-mini</li>
+<li>phcoder</li>
+</ul>
+<p>The bk core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/bk-emulator/blob/master/COPYING">BSD</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the bk core have the following file extensions:</p>
+<ul>
+<li>.bin</li>
+</ul>
+<h2 id="databases-wip">Databases <em>WIP</em></h2>
+<p>RetroArch database(s) that are associated with the bk core:</p>
+<h2 id="bios">BIOS</h2>
+<p>Required or optional firmware files go in the frontend's system directory.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">bk/B11M_BOS.ROM</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">fe4627d1e3a1535874085050733263e7</td>
+</tr>
+<tr>
+<td style="text-align: center;">bk/B11M_EXT.ROM</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">dc52f365d56fa1951f5d35b1101b9e3f</td>
+</tr>
+<tr>
+<td style="text-align: center;">bk/BAS11M_0.ROM</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">946f6f23ded03c0e26187f0b3ca75993</td>
+</tr>
+<tr>
+<td style="text-align: center;">bk/BAS11M_1.ROM</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">1e6637f32aa7d1de03510030cac40bcf</td>
+</tr>
+<tr>
+<td style="text-align: center;">bk/DISK_327.ROM</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">5015228eeeb238e65da8edcd1b6dfac7</td>
+</tr>
+<tr>
+<td style="text-align: center;">bk/BASIC10.ROM</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">3fa774326d75410a065659aea80252f0</td>
+</tr>
+<tr>
+<td style="text-align: center;">bk/FOCAL10.ROM</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">5737f972e8638831ab71e9139abae052</td>
+</tr>
+<tr>
+<td style="text-align: center;">bk/MONIT10.ROM</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">95f8c41c6abf7640e35a6a03cecebd01</td>
+</tr>
+</tbody>
+</table>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the bk core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The bk core's library name is 'bk'</p>
+<p>The bk core saves/loads to/from these directories.</p>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The bk core's core provided FPS is 25.</li>
+<li>The bk core's core provided sample rate is 44100 Hz.</li>
+<li>The bk core's base width is 1080.</li>
+<li>The bk core's base height is 1080.</li>
+<li>The bk core's core provided aspect ratio is 1/1.</li>
+</ul>
+<h2 id="core-options">Core options</h2>
+<p>The bk core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Model (restart)</strong> [bk_model] (<strong>BK-0010</strong>|BK-0010.01|BK-0010.01 + FDD|BK-0011M + FDD|Terak 8510/a|Slow BK-0011M)</p>
+</li>
+<li><p><strong>Peripheral (UP port, restart)</strong> [bk_peripheral] (<strong>none</strong>|covox|ay_3_8910|mouse_high|mouse_low|joystick)</p>
+</li>
+<li><p><strong>Keyboard layout</strong> [bk_layout] (<strong>qwerty</strong>|jcuken)</p>
+</li>
+<li><p><strong>Double CPU speed</strong> [bk_doublespeed] (<strong>disabled</strong>|enabled)</p>
+</li>
+<li><p><strong>Use color display</strong> [bk_color] (<strong>enabled</strong>|disabled)</p>
+</li>
+<li><p><strong>Keyboard type (restart)</strong> [bk_keyboard_type] (<strong>poll</strong>|callback)</p>
+</li>
+<li><p><strong>Aspect ratio</strong> [bk_aspect_ratio] (<strong>1:1</strong>|4:3)</p>
+</li>
+</ul>
+<h2 id="controllers">Controllers</h2>
+<p>The bk core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<h3 id="user-1-device-types">User 1 device types</h3>
+<ul>
+<li>None - Doesn't disable input. There's no reason to switch to this.</li>
+<li><strong>Joystick</strong> - Joypad</li>
+<li>RetroKeyboard - Keyboard - Keyboard inputs are always active. Has keymapper support.</li>
+<li>RetroPad Keyboard Map - Joypad - Awaiting description.</li>
+</ul>
+<h3 id="controller-tables">Controller tables</h3>
+<h4 id="keyboard">Keyboard</h4>
+<table>
+<thead>
+<tr>
+<th>RetroKeyboard Inputs</th>
+<th>RetroKeyboard</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keyboard Backspace</td>
+<td>BACKSPACE</td>
+</tr>
+<tr>
+<td>Keyboard Tab</td>
+<td>TAB</td>
+</tr>
+<tr>
+<td>Keyboard Return</td>
+<td>RETURN</td>
+</tr>
+<tr>
+<td>Keyboard Pause</td>
+<td>PAUSE</td>
+</tr>
+<tr>
+<td>Keyboard Escape</td>
+<td>ESCAPE</td>
+</tr>
+<tr>
+<td>Keyboard Space</td>
+<td>SPACE</td>
+</tr>
+<tr>
+<td>Keyboard Quote '</td>
+<td>COLON</td>
+</tr>
+<tr>
+<td>Keyboard Comma ,</td>
+<td>COMMA</td>
+</tr>
+<tr>
+<td>Keyboard Minus -</td>
+<td>NEGATIVE</td>
+</tr>
+<tr>
+<td>Keyboard Period .</td>
+<td>PERIOD</td>
+</tr>
+<tr>
+<td>Keyboard Slash /</td>
+<td>DIVIDE</td>
+</tr>
+<tr>
+<td>Keyboard 0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Keyboard 1</td>
+<td>1, Player 1 Coleco #0</td>
+</tr>
+<tr>
+<td>Keyboard 2</td>
+<td>2, Player 1 Coleco #9</td>
+</tr>
+<tr>
+<td>Keyboard 3</td>
+<td>3, Player 2 Coleco #0</td>
+</tr>
+<tr>
+<td>Keyboard 4</td>
+<td>4, Player 2 Coleco #9</td>
+</tr>
+<tr>
+<td>Keyboard 5</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Keyboard 6</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Keyboard 7</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Keyboard 8</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Keyboard 9</td>
+<td>9</td>
+</tr>
+<tr>
+<td>Keyboard Semicolon ;</td>
+<td>SEMICOLON</td>
+</tr>
+<tr>
+<td>Keyboard Equals =</td>
+<td>CIRCUMFLEX</td>
+</tr>
+<tr>
+<td>Keyboard Left Bracket [</td>
+<td>LEFT BRACKET</td>
+</tr>
+<tr>
+<td>Keyboard Backslash \</td>
+<td>BACKSLASH (YEN)</td>
+</tr>
+<tr>
+<td>Keyboard Right Bracket ]</td>
+<td>RIGHT BRACKET</td>
+</tr>
+<tr>
+<td>Keyboard Backquote `</td>
+<td>AT</td>
+</tr>
+<tr>
+<td>Keyboard a</td>
+<td>A</td>
+</tr>
+<tr>
+<td>Keyboard b</td>
+<td>B</td>
+</tr>
+<tr>
+<td>Keyboard c</td>
+<td>C</td>
+</tr>
+<tr>
+<td>Keyboard d</td>
+<td>D</td>
+</tr>
+<tr>
+<td>Keyboard e</td>
+<td>E</td>
+</tr>
+<tr>
+<td>Keyboard f</td>
+<td>F</td>
+</tr>
+<tr>
+<td>Keyboard g</td>
+<td>G</td>
+</tr>
+<tr>
+<td>Keyboard h</td>
+<td>H</td>
+</tr>
+<tr>
+<td>Keyboard i</td>
+<td>I</td>
+</tr>
+<tr>
+<td>Keyboard j</td>
+<td>J</td>
+</tr>
+<tr>
+<td>Keyboard k</td>
+<td>K</td>
+</tr>
+<tr>
+<td>Keyboard l</td>
+<td>L</td>
+</tr>
+<tr>
+<td>Keyboard m</td>
+<td>M</td>
+</tr>
+<tr>
+<td>Keyboard n</td>
+<td>N</td>
+</tr>
+<tr>
+<td>Keyboard o</td>
+<td>O</td>
+</tr>
+<tr>
+<td>Keyboard p</td>
+<td>P</td>
+</tr>
+<tr>
+<td>Keyboard q</td>
+<td>Q</td>
+</tr>
+<tr>
+<td>Keyboard r</td>
+<td>R</td>
+</tr>
+<tr>
+<td>Keyboard s</td>
+<td>S</td>
+</tr>
+<tr>
+<td>Keyboard t</td>
+<td>T</td>
+</tr>
+<tr>
+<td>Keyboard u</td>
+<td>U</td>
+</tr>
+<tr>
+<td>Keyboard v</td>
+<td>V</td>
+</tr>
+<tr>
+<td>Keyboard w</td>
+<td>W</td>
+</tr>
+<tr>
+<td>Keyboard x</td>
+<td>X</td>
+</tr>
+<tr>
+<td>Keyboard y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>Keyboard z</td>
+<td>Z</td>
+</tr>
+<tr>
+<td>Keyboard Delete</td>
+<td>DELETE</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 0</td>
+<td>NUMPAD 0</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 1</td>
+<td>NUMPAD 1</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 2</td>
+<td>NUMPAD 2</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 3</td>
+<td>NUMPAD 3</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 4</td>
+<td>NUMPAD 4</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 5</td>
+<td>NUMPAD 5</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 6</td>
+<td>NUMPAD 6</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 7</td>
+<td>NUMPAD 7</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 8</td>
+<td>NUMPAD 8</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 9</td>
+<td>NUMPAD 9</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Period .</td>
+<td>NUMPAD COMMA</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Divide /</td>
+<td>NUMPAD DIVIDE</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Multiply *</td>
+<td>NUMPAD MULTIPLY</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Minus -</td>
+<td>NUMPAD SUBTRACTION</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Plus +</td>
+<td>NUMPAD ADD</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Enter</td>
+<td>NUMPAD PERIOD</td>
+</tr>
+<tr>
+<td>Keyboard Up</td>
+<td>UP</td>
+</tr>
+<tr>
+<td>Keyboard Down</td>
+<td>DOWN</td>
+</tr>
+<tr>
+<td>Keyboard Right</td>
+<td>RIGHT</td>
+</tr>
+<tr>
+<td>Keyboard Left</td>
+<td>LEFT</td>
+</tr>
+<tr>
+<td>Keyboard Insert</td>
+<td>INSERT</td>
+</tr>
+<tr>
+<td>Keyboard Home</td>
+<td>CLS</td>
+</tr>
+<tr>
+<td>Keyboard End</td>
+<td>STOP</td>
+</tr>
+<tr>
+<td>Keyboard Page Up</td>
+<td>SELECT</td>
+</tr>
+<tr>
+<td>Keyboard F1</td>
+<td>F1</td>
+</tr>
+<tr>
+<td>Keyboard F2</td>
+<td>F2</td>
+</tr>
+<tr>
+<td>Keyboard F3</td>
+<td>F3</td>
+</tr>
+<tr>
+<td>Keyboard F4</td>
+<td>F4</td>
+</tr>
+<tr>
+<td>Keyboard F5</td>
+<td>F5</td>
+</tr>
+<tr>
+<td>Keyboard Caps Lock</td>
+<td>CAPS</td>
+</tr>
+<tr>
+<td>Keyboard Right Shift</td>
+<td>RIGHT SHIFT</td>
+</tr>
+<tr>
+<td>Keyboard Left Shift</td>
+<td>LEFT SHIFT</td>
+</tr>
+<tr>
+<td>Keyboard Left Control</td>
+<td>CONTROL</td>
+</tr>
+<tr>
+<td>Keyboard Left Alt</td>
+<td>GRAPH</td>
+</tr>
+<tr>
+<td>Keyboard Print</td>
+<td>PRINT</td>
+</tr>
+</tbody>
+</table>
+<p>Supported combinations</p>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="http://www.mailcom.com/bk0010/index_en.shtml">Official bk Website</a></li>
+<li><a href="https://github.com/emestee/bk-emulator">bk Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/bk_libretro.info">Libretro bk Core info file</a></li>
+<li><a href="https://github.com/libretro/bk-emulator">Libretro bk Github Repository</a></li>
+<li><a href="https://github.com/libretro/bk-emulator/issues">Report Libretro bk Core Issues Here</a></li>
+</ul>

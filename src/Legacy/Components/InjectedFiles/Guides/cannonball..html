@@ -1,0 +1,358 @@
+<h1 id="cannonball">Cannonball</h1>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/ILGQqmpbg6E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2 id="background">Background</h2>
+<p>This is an OutRun game engine recreation written by Chris White in 2014. It has been ported to the libretro API. The Cannonball core has been authored by</p>
+<ul>
+<li>Chris White</li>
+</ul>
+<p>The Cannonball core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/cannonball/blob/master/docs/license.txt">Non-commercial</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="how-to-start-the-cannonball-core">How to start the Cannonball core:</h2>
+<ul>
+<li><p>To start the Cannonball core, you need to obtain Cannonball's data files. You can do this by going to RetroArch's main menu screen and selecting 'Online Updater'. From there, select 'Content Downloader'.</p>
+</li>
+<li><p>Select 'Cannonball', then select 'CannonBall.zip'. This should download and extract this file to RetroArch's Downloads directory.</p>
+</li>
+<li><p>Next, follow this <a href="https://github.com/djyt/cannonball/blob/master/roms/roms.txt">guide</a> and place OutRun Revision B ROMs in the CannonBall directory.</p>
+</li>
+<li><p>Below is a pictured example of a working Cannonball setup.</p>
+</li>
+</ul>
+<p><img src="../image/core/cb/cb.png" alt="" /></p>
+<ul>
+<li><p>Go back to RetroArch's main menu screen. Select 'Load Content', then 'Downloads'.</p>
+</li>
+<li><p>Select the 'CannonBall' directory, then select 'CannonBall.game'.</p>
+</li>
+<li><p>If you are asked which core to select, choose 'Cannonball'.</p>
+</li>
+</ul>
+<p>The content should now start running!</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the Cannonball core have the following file extensions:</p>
+<ul>
+<li>.game</li>
+<li>.88</li>
+</ul>
+<p>RetroArch database(s) that are associated with the Cannonball core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Cannonball.rdb">Cannonball</a></li>
+</ul>
+<h2 id="features">Features</h2>
+<ul>
+<li>Smoother 60fps gameplay</li>
+<li><a href="https://youtube.com/clip/UgkxU6mqSPJX9ZAiAyd8N0oXCmHk8rRVHTdS">True Widescreen Play Mode</a></li>
+<li>Force Feedback support</li>
+<li>Custom Track support from <a href="https://github.com/djyt/layout/wiki">LayOut</a></li>
+<li>New Game Modes (Continuous Mode &amp; Time Trial Mode)</li>
+<li><a href="https://github.com/djyt/cannonball/wiki/Cannonball-Manual#enhancements">Many, many more enhancements</a></li>
+</ul>
+<p>Frontend-level settings or features that the Cannonball core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h2 id="directories">Directories</h2>
+<p>The Cannonball core's library name is 'Cannonball'</p>
+<p>The Cannonball core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Home directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">config.xml</td>
+<td style="text-align: center;">Config File</td>
+</tr>
+<tr>
+<td style="text-align: center;">hiscores.xml</td>
+<td style="text-align: center;">Hiscores File</td>
+</tr>
+</tbody>
+</table>
+<h2 id="geometry-and-timing">Geometry and timing</h2>
+<ul>
+<li>The Cannonball core's core provided FPS is 60 when the <a href="#core-options">Video Framerate core option</a> is set to Smooth (60) or Original (60/30)</li>
+<li>The Cannonball core's core provided FPS is 120 when the <a href="#core-options">Video Framerate core option</a> is set to Ultra Smooth (120)</li>
+<li>The Cannonball core's core provided FPS is 30 when the <a href="#core-options">Video Framerate core option</a> is set to Low (30)</li>
+<li>The Cannonball core's core provided sample rate is 44040 Hz when the <a href="#core-options">Video Framerate core option</a> is set to Ultra Smooth (120)</li>
+<li>The Cannonball core's core provided sample rate is 44100 Hz when the <a href="#core-options">Video Framerate core option</a> is not set to Ultra Smooth (120)</li>
+<li>The Cannonball core's base width is 320</li>
+<li>The Cannonball core's base height is 224</li>
+<li>The Cannonball core's max width is 640</li>
+<li>The Cannonball core's max height is 448</li>
+<li>The Cannonball core's core provided aspect ratio is 4/3 when the <a href="#core-options">Video Widescreen Mode core option</a> is set to Off</li>
+<li>The Cannonball core's core provided aspect ratio is 16/9 when the <a href="#core-options">Video Widescreen Mode core option</a> is set to On</li>
+</ul>
+<h2 id="core-options">Core options</h2>
+<p>The Cannonball core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Menu At Start</strong> [cannonball_menu_enabled] (<strong>ON</strong>|OFF)</p>
+<p>When enabled; the Cannonball core shows the main menu upon startup.</p>
+<p>When disabled; the Cannonball core goes into attract mode upon startup.</p>
+</li>
+<li><p><strong>Menu Road Scroll Speed</strong> [cannonball_menu_road_scroll_speed] (<strong>50</strong>|60|70|80|90|100|150|200|300|400|500|5|10|15|20|25|30|40)</p>
+<p>Use this to configure the speed at which the road on the Main Menu scrolls at.</p>
+</li>
+<li><p><strong>Video Widescreen Mode</strong> [cannonball_video_widescreen] (<strong>ON</strong>|OFF)</p>
+<p>Explained <a href="https://github.com/djyt/cannonball/wiki/Cannonball-Manual#video-modes">here</a>.</p>
+</li>
+<li><p><strong>Video High-Resolution Mode</strong> [cannonball_video_hires] (<strong>OFF</strong>|ON)</p>
+<p>The original game ran at 320x224. This mode doubles that resolution to 640x448. However, rather than simply doubling up the display, the sprites and road are rendered at a higher resolution where possible.</p>
+</li>
+<li><p><strong>Video Framerate</strong> [cannonball_video_fps] (<strong>Smooth (60)</strong>|Ultra Smooth (120)|Original (60/30))</p>
+<p>Explained <a href="https://github.com/djyt/cannonball/wiki/Cannonball-Manual#video-modes">here</a>.</p>
+</li>
+<li><p><strong>Advertise Sound</strong> [cannonball_sound_advertise] (<strong>ON</strong>|OFF)</p>
+<p>Play sounds in attract mode.</p>
+</li>
+<li><p><strong>Preview Music</strong> [cannonball_sound_preview] (<strong>ON</strong>|OFF)</p>
+<p>Preview the music tracks at the point of selection in-game. The original game did not have this option and you would not hear the audio track until the game started.</p>
+</li>
+<li><p><strong>Fix Samples (use opr-10188.71f)</strong> [cannonball_sound_fix_samples] (<strong>ON</strong>|OFF)</p>
+<p>Explained <a href="https://github.com/djyt/cannonball/wiki/Cannonball-Manual#fix-corrupted-audio">here</a>.</p>
+</li>
+<li><p><strong>Gear Mode</strong> [cannonball_gear] (<strong>Manual</strong>|Manual Cabinet|Manual 2 Buttons|Automatic)</p>
+<p>Change the gear shift behaviour. Useful to configure based on your target hardware.</p>
+<p>0 = Manual (Click to shift, for normal play)
+1 = Manual (Hold to shift, for cabinet play)
+2 = Manual (Separate Buttons for High/Low)
+3 = Automatic (No need to change gear)</p>
+</li>
+<li><p><strong>Analog Controls (off to allow digital speed setup)</strong> [cannonball_analog] (<strong>ON</strong>|OFF)</p>
+<p>Self-explanatory.</p>
+</li>
+<li><p><strong>Digital Steer Speed</strong> [cannonball_steer_speed] (<strong>3</strong>|4|5|6|7|8|9|1|2)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Digital Pedal Speed</strong> [cannonball_pedal_speed] (<strong>4</strong>|5|6|7|8|9|1|2|3)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Time</strong> [cannonball_dip_time] (<strong>Easy (80s)</strong>|Normal (75s)|Hard (72s)|Very Hard (70s)|Infinite Time)</p>
+<p>Explained <a href="https://github.com/djyt/cannonball/wiki/Cannonball-Manual#outrun-engine-settings">here</a>.</p>
+</li>
+<li><p><strong>Traffic</strong> [cannonball_dip_traffic] (<strong>Normal</strong>|Hard|Very Hard|No Traffic|Easy)</p>
+<p>Explained <a href="https://github.com/djyt/cannonball/wiki/Cannonball-Manual#outrun-engine-settings">here</a>.</p>
+</li>
+<li><p><strong>Freeplay Mode</strong> [cannonball_freeplay] (<strong>OFF</strong>|ON)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Use Japanese Tracks Version</strong> [cannonball_jap] (<strong>OFF</strong>|ON)</p>
+<p>Explained <a href="https://github.com/djyt/cannonball/wiki/Cannonball-Manual#japanese-courses">here</a></p>
+</li>
+<li><p><strong>Use Prototype Stage 1</strong> [cannonball_prototype] (<strong>OFF</strong>|ON)</p>
+<p>Explained <a href="https://github.com/djyt/cannonball/wiki/Cannonball-Manual#prototype-coconut-beach">here</a>.</p>
+</li>
+<li><p><strong>Objects Limit Enhanced</strong> [cannonball_level_objects] (<strong>ON</strong>|OFF)</p>
+<p>Explained <a href="https://github.com/djyt/cannonball/wiki/Cannonball-Manual#outrun-engine-settings">here</a></p>
+</li>
+<li><p><strong>Original Traffic Patterns Randomization</strong> [cannonball_randomgen] (<strong>ON</strong>|OFF)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Force AI To Play</strong> [cannonball_force_ai] (<strong>OFF</strong>|ON)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Fix Original Game Bugs</strong> [cannonball_fix_bugs] (<strong>ON</strong>|OFF)</p>
+<p>Explained <a href="https://github.com/djyt/cannonball/wiki/Cannonball-Manual#bug-fixes">here</a></p>
+</li>
+<li><p><strong>Fix Timing Bugs</strong> [cannonball_fix_timer] (<strong>OFF</strong>|ON)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Display Debug Info For LayOut</strong> [cannonball_layout_debug] (<strong>OFF</strong>|ON)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>New Attract</strong> [cannonball_new_attract] (<strong>ON</strong>|OFF)</p>
+<p>Explained <a href="https://github.com/djyt/cannonball/wiki/Cannonball-Manual#outrun-engine-settings">here</a>.</p>
+</li>
+<li><p><strong>Time Trial Laps</strong> [cannonball_ttrial_laps] (<strong>3</strong>|4|5|1|2)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Time Trial Traffic Amount</strong> [cannonball_ttrial_traffic] (<strong>3</strong>|4|5|6|7|8|0|1|2)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Continuous Mode Traffic Amount</strong> [cannonball_cont_traffic] (<strong>3</strong>|4|5|6|7|8|0|1|2)</p>
+<p>Awaiting description.</p>
+</li>
+</ul>
+<h2 id="joypad">Joypad</h2>
+<table>
+<thead>
+<tr>
+<th>RetroPad Inputs</th>
+<th>User 1 input descriptors</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>Accelerate</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+<td>Brake</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+<td>Coin</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+<td>Start</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>Up</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>Down</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>Left</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>Right</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>Gear</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+<td>Gear</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+<td>Adjust View</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+<td>Go Back To Menu</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> X</td>
+<td>Analog X</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> Y</td>
+<td>Analog Y</td>
+</tr>
+</tbody>
+</table>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://github.com/djyt/cannonball/wiki">Official Cannoball Github Wiki</a></li>
+<li><a href="https://github.com/djyt/cannonball">Official Cannonball Github Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/cannonball_libretro.info">Libretro Cannonball Core info file</a></li>
+<li><a href="https://github.com/libretro/cannonball">Libretro Cannonball Github Repository</a></li>
+<li><a href="https://github.com/libretro/cannonball/issues">Report Libretro Cannonball Core Issues Here</a></li>
+<li><a href="https://www.youtube.com/watch?v=ILGQqmpbg6E">How to setup video</a></li>
+</ul>

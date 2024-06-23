@@ -1,0 +1,605 @@
+<h1 id="nintendo-snes-famicom-snes9x">Nintendo - SNES / Famicom (Snes9x)</h1>
+<h2 id="background">Background</h2>
+<p>Port of upstream mainline <strong>up-to-date</strong> Snes9x, a portable Super Nintendo Entertainment System emulator to libretro.</p>
+<p>The Snes9x core has been authored by</p>
+<ul>
+<li>Snes9x Team</li>
+</ul>
+<p>The Snes9x core is licensed under</p>
+<ul>
+<li><a href="https://github.com/snes9xgit/snes9x/blob/master/LICENSE">Non-commercial</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="features">Features</h2>
+<ul>
+<li><strong>Most up-to-date libretro Snes9x core available.</strong></li>
+<li>Highly accurate SNES emulation.</li>
+<li>Simplified and easily accessible MSU-1 expansion chip support.</li>
+<li>Recommended for netplay</li>
+</ul>
+<h2 id="bios">BIOS</h2>
+<p>Required or optional firmware files go in the frontend's system directory.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">BS-X.bin</td>
+<td style="text-align: center;">BS-X - Sore wa Namae o Nusumareta Machi no Monogatari (Japan) (Rev 1) - Optional</td>
+<td style="text-align: center;">fed4d8242cfbed61343d53d48432aced</td>
+</tr>
+<tr>
+<td style="text-align: center;">STBIOS.bin</td>
+<td style="text-align: center;">Sufami Turbo (Japan) - Optional</td>
+<td style="text-align: center;">d3a44ba7d42a74d3ac58cb9c14c6a5ca</td>
+</tr>
+</tbody>
+</table>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the Snes9x core have the following file extensions:</p>
+<ul>
+<li>.smc</li>
+<li>.sfc</li>
+<li>.swc</li>
+<li>.fig</li>
+<li>.bs</li>
+<li>.st</li>
+</ul>
+<p>RetroArch database(s) that are associated with the Snes9x core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Super%20Nintendo%20Entertainment%20System.rdb">Nintendo - Super Nintendo Entertainment System</a></li>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Sufami%20Turbo.rdb">Nintendo - Sufami Turbo</a></li>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Satellaview.rdb">Nintendo - Satellaview</a></li>
+</ul>
+<h2 id="features-1">Features</h2>
+<p>Frontend-level settings or features that the Snes9x core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h2 id="directories">Directories</h2>
+<p>The Snes9x core's library name is 'Snes9x'</p>
+<p>The Snes9x core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Save directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.srm</td>
+<td style="text-align: center;">Cartridge battery save</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Frontend's State directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.state#</td>
+<td style="text-align: center;">State</td>
+</tr>
+</tbody>
+</table>
+<h2 id="geometry-and-timing">Geometry and timing</h2>
+<ul>
+<li>The Snes9x core's core provided FPS is 60.0988118623 for NTSC games and 50.0069789082 for PAL games.</li>
+<li>The Snes9x core's core provided sample rate is 32040 Hz</li>
+<li>The Snes9x core's base width is 256</li>
+<li>The Snes9x core's base height is 224 when the Crop Overscan core option is set to enabled. 239 when it's set to disabled.</li>
+<li>The Snes9x core's max width is 512</li>
+<li>The Snes9x core's max height is 478</li>
+<li>The Snes9x core's core provided aspect ratio is dependent on the <a href="#core-options">'Preferred aspect ratio' core option</a>.</li>
+</ul>
+<h2 id="msu-1-support">MSU-1 support</h2>
+<p>MSU-1 support in the Snes9x core follows the SD2SNES.mdSnes9x naming format, i.e.</p>
+<pre><code>gamename.sfc
+gamename.msu
+gamename-#.pcm
+</code></pre>
+<p>Loading a manifest.bml file or having a xml file isn't necessary. <strong>Just load gamename.sfc.</strong></p>
+<p>Here's an example of a working MSU-1 setup done with <a href="https://www.romhacking.net/hacks/2467/">Secret of Mana MSU-1</a>. Please note that som_msu1.sfc is being <a href="../guides/softpatching.md">softpatched</a> in this example.</p>
+<p><img src="../image/core/snes9x/msu.png" alt="" /></p>
+<h2 id="bs-x-and-sufami-turbo">BS-X and Sufami Turbo</h2>
+<p>In order to load BS-X and Sufami Turbo games, you'll need BS-X.bin and STBIOS.bin in the frontend's system directory.</p>
+<p>To load multi-cart games specifically, a more complex procedure needs to be followed.</p>
+<ul>
+<li>First, load the base game first by using the &quot;Load Content&quot; option in RetroArch's Main Menu.</li>
+<li>Second, go back to RetroArch's Main Menu and select the &quot;Load Multi-Cart Link&quot; option.</li>
+<li>Third, load the base game while in the &quot;Load Multi-Cart Link&quot; screen.</li>
+<li>Fourth, go back to RetroArch's Main Menu and select the &quot;Load Multi-Cart Link&quot; option.</li>
+<li>Fifth, load the add-on game while in the &quot;Load Multi-Cart Link&quot; screen.</li>
+<li>Sixth, go back to RetroArch's Main Menu for the final time and select the &quot;Start Multi-Cart Link&quot; option.</li>
+</ul>
+<p>Please note that for multi-cart Sufami Turbo games, you must first run each game individually to create sram files for them. Then the multi-link will function correctly.</p>
+<h2 id="core-options">Core options</h2>
+<p>The Snes9x core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Allow Opposing Directions</strong> [snes9x_up_down_allowed] (<strong>disabled</strong>|enabled)</p>
+<p>Enabling this will allow pressing / quickly alternating / holding both left and right (or up and down in some games) directions at the same time.</p>
+<p>This may cause movement based glitches to occur in certain games.</p>
+<p>It's best to keep this core option disabled.</p>
+</li>
+<li><p><strong>SuperFX Frequency</strong> [snes9x_overclock] (50% to 500%. <strong>100% is default.</strong>)</p>
+<p>Overclock the <a href="https://en.wikipedia.org/wiki/Super_FX">SuperFX chip</a>.</p>
+<p><a href="https://www.youtube.com/watch?v=3gVg8vDhfQk">Example video here</a></p>
+</li>
+<li><p><strong>Reduce Slowdown (Hack, Unsafe)</strong> [snes9x_overclock_cycles] (<strong>disabled</strong>|light|compatible|max)</p>
+<p>Many games for the SNES suffered from slowdown due to the weak main CPU. This option helps allievate that at the cost of possible bugs.</p>
+<p><a href="https://www.youtube.com/watch?v=8xA9fosum4Q">Example video here</a></p>
+<p>light: Slightly reduces slowdown, more compatible than the &quot;compatible&quot; option.</p>
+<p>compatible: Reduce slowdown but keep as much game compatibility as much as possible.</p>
+<p>max: Reduce slowdown as much as possible but will break more games.</p>
+</li>
+<li><p><strong>Reduce Flickering (Hack, Unsafe)</strong> [snes9x_reduce_sprite_flicker] (<strong>disabled</strong>|enabled)</p>
+<p>Raises sprite limit to reduce flickering in games.</p>
+</li>
+<li><p><strong>Randomize Memory (Unsafe)</strong> [snes9x_randomize_memory] (<strong>disabled</strong>|enabled)</p>
+<p>Randomizes the system RAM upon startup.</p>
+<p>Some games such as Super Off Road use system RAM as a random number generator for item placement and AI behavior to make gameplay more unpredictable.</p>
+<p>It's best to keep this core option disabled.</p>
+</li>
+<li><p><strong>Hires Blending</strong> [snes9x_hires_blend] (<strong>disabled</strong>|merge|blur)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Audio Interpolation</strong> [snes9x_audio_interpolation] (<strong>gaussian</strong>|cubic|sinc|none|linear)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Blargg NTSC filter</strong> [snes9x_blargg] (<strong>disabled</strong>|monochrome|rf|composite|s-video|rgb)</p>
+<p>Self-explanatory.</p>
+</li>
+<li><p><strong>Show layer 1</strong> [snes9x_layer_1] (<strong>enabled</strong>|disabled)</p>
+<p>Show graphical layer 1.</p>
+<p>It's best to keep this core option enabled.</p>
+</li>
+<li><p><strong>Show layer 2</strong> [snes9x_layer_2] (<strong>enabled</strong>|disabled)</p>
+<p>Show graphical layer 2.</p>
+<p>It's best to keep this core option enabled.</p>
+</li>
+<li><p><strong>Show layer 3</strong> [snes9x_layer_3] (<strong>enabled</strong>|disabled)</p>
+<p>Show graphical layer 3.</p>
+<p>It's best to keep this core option enabled.</p>
+</li>
+<li><p><strong>Show layer 4</strong> [snes9x_layer_4] (<strong>enabled</strong>|disabled)</p>
+<p>Show graphical layer 4.</p>
+<p>It's best to keep this core option enabled.</p>
+</li>
+<li><p><strong>Show sprite layer</strong> [snes9x_layer_5] (<strong>enabled</strong>|disabled)</p>
+<p>Show sprite layer.</p>
+<p>It's best to keep this core option enabled.</p>
+</li>
+<li><p><strong>Enable graphic clip windows</strong> [snes9x_gfx_clip] (<strong>enabled</strong>|disabled)</p>
+<p>Show graphic clip windows.</p>
+<p>It's best to keep this core option enabled.</p>
+</li>
+<li><p><strong>Enable transparency effects</strong> [snes9x_gfx_transp] (<strong>enabled</strong>|disabled)</p>
+<p>Show transparency effects.</p>
+<p>It's best to keep this core option enabled.</p>
+</li>
+<li><p><strong>Enable hires mode</strong> [snes9x_gfx_hires] (<strong>enabled</strong>|disabled)</p>
+<p>Enable hires mode.</p>
+<p>It's best to keep this core option enabled.</p>
+</li>
+<li><p><strong>Enable sound channel 1</strong> [snes9x_sndchan_1] (<strong>enabled</strong>|disabled)</p>
+<p>Enabled sound channel 1.</p>
+<p>It's best to keep this core option enabled.</p>
+</li>
+<li><p><strong>Enable sound channel 2</strong> [snes9x_sndchan_2] (<strong>enabled</strong>|disabled)</p>
+<p>Enabled sound channel 2.</p>
+<p>It's best to keep this core option enabled.</p>
+</li>
+<li><p><strong>Enable sound channel 3</strong> [snes9x_sndchan_3] (<strong>enabled</strong>|disabled)</p>
+<p>Enabled sound channel 3.</p>
+<p>It's best to keep this core option enabled.</p>
+</li>
+<li><p><strong>Enable sound channel 4</strong> [snes9x_sndchan_4] (<strong>enabled</strong>|disabled)</p>
+<p>Enabled sound channel 4.</p>
+<p>It's best to keep this core option enabled.</p>
+</li>
+<li><p><strong>Enable sound channel 5</strong> [snes9x_sndchan_5] (<strong>enabled</strong>|disabled)</p>
+<p>Enabled sound channel 5.</p>
+<p>It's best to keep this core option enabled.</p>
+</li>
+<li><p><strong>Enable sound channel 6</strong> [snes9x_sndchan_6] (<strong>enabled</strong>|disabled)</p>
+<p>Enabled sound channel 6.</p>
+<p>It's best to keep this core option enabled.</p>
+</li>
+<li><p><strong>Enable sound channel 7</strong> [snes9x_sndchan_7] (<strong>enabled</strong>|disabled)</p>
+<p>Enabled sound channel 7.</p>
+<p>It's best to keep this core option enabled.</p>
+</li>
+<li><p><strong>Enable sound channel 8</strong> [snes9x_sndchan_8] (<strong>enabled</strong>|disabled)</p>
+<p>Enabled sound channel 8.</p>
+<p>It's best to keep this core option enabled.</p>
+</li>
+<li><p><strong>Crop overscan</strong> [snes9x_overscan] (<strong>enabled</strong>|disabled|auto)</p>
+<p>Crop out the potentially random glitchy video output that would have been hidden by the bezel around the edge of a standard-definition television screen.</p>
+</li>
+</ul>
+<p>??? note &quot;Crop overscan - On&quot;
+<img src="../image/core/snes9x/crop_on.png" alt="" /></p>
+<p>??? note &quot;Crop overscan - Off&quot;
+<img src="../image/core/snes9x/crop_off.png" alt="" /></p>
+<ul>
+<li><p><strong>Preferred aspect ratio</strong> [snes9x_aspect] (<strong>4:3</strong>|uncorrected|auto|ntsc|pal)</p>
+<p>Choose the preferred aspect ratio. RetroArch's aspect ratio must be set to Core provided in the Video settings.</p>
+</li>
+</ul>
+<p>??? note &quot;Preferred aspect ratio - ntsc&quot;
+<img src="../image/core/snes9x/ntsc.png" alt="" /></p>
+<p>??? note &quot;Preferred aspect ratio - pal&quot;
+<img src="../image/core/snes9x/pal.png" alt="" /></p>
+<p>??? note &quot;Preferred aspect ratio - 4:3&quot;
+<img src="../image/core/snes9x/4by3.png" alt="" /></p>
+<ul>
+<li><p><strong>Console region (Reload core)</strong> [snes9x_region] (<strong>auto</strong>|ntsc|pal)</p>
+<p>Select what region the system is from.</p>
+</li>
+<li><p><strong>Super Scope crosshair</strong> [snes9x_superscope_crosshair] (0 to 16 in increments of 1. <strong>2 is default</strong>.)</p>
+<p>Configure the crosshair size for the &quot;SuperScope&quot; device type.</p>
+</li>
+<li><p><strong>Super Scope color</strong> [snes9x_superscope_color] (<strong>White</strong>|White (blend)|Red|Red (blend)|Orange|Orange (blend)|Yellow|Yellow (blend)|Green|Green (blend)|Cyan|Cyan (blend)|Sky|Sky (blend)|Blue|Blue (blend)|Violet|Violet (blend)|Pink|Pink (blend)|Purple|Purple (blend)|Black|Black (blend)|25% Grey|25% Grey (blend)|50% Grey|50% Grey (blend)|75% Grey|75% Grey (blend))</p>
+<p>Configure the crosshair color for the &quot;SuperScope&quot; device type.</p>
+</li>
+<li><p><strong>Justifier 1 crosshair</strong> [snes9x_justifier1_crosshair] (0 to 16 in increments of 1. <strong>4 is default</strong>.)</p>
+<p>Configure the crosshair size for the &quot;Justifier&quot; device type.</p>
+</li>
+<li><p><strong>Justifier 1 color</strong> [snes9x_justifier1_color] (<strong>Blue</strong>|Blue (blend)|Violet|Violet (blend)|Pink|Pink (blend)|Purple|Purple (blend)|Black|Black (blend)|25% Grey|25% Grey (blend)|50% Grey|50% Grey (blend)|75% Grey|75% Grey (blend)|White|White (blend)|Red|Red (blend)|Orange|Orange (blend)|Yellow|Yellow (blend)|Green|Green (blend)|Cyan|Cyan (blend)|Sky|Sky (blend))</p>
+<p>Configure the crosshair color for the &quot;Justifier&quot; device type.</p>
+</li>
+<li><p><strong>Justifier 2 crosshair</strong> [snes9x_justifier2_crosshair] (0 to 16 in increments of 1. <strong>4 is default</strong>.)</p>
+<p>Configure the crosshair size for the &quot;Justifier (2P)&quot; device type.</p>
+</li>
+<li><p><strong>Justifier 2 color</strong> [snes9x_justifier2_color] (<strong>Pink</strong>|Pink (blend)|Purple|Purple (blend)|Black|Black (blend)|25% Grey|25% Grey (blend)|50% Grey|50% Grey (blend)|75% Grey|75% Grey (blend)|White|White (blend)|Red|Red (blend)|Orange|Orange (blend)|Yellow|Yellow (blend)|Green|Green (blend)|Cyan|Cyan (blend)|Sky|Sky (blend)|Blue|Blue (blend)|Violet|Violet (blend))</p>
+<p>Configure the crosshair color for the &quot;Justifier (2P)&quot; device type.</p>
+</li>
+<li><p><strong>M.A.C.S. rifle crosshair</strong> [snes9x_rifle_crosshair] (0 to 16 in increments of 1. <strong>2 is default</strong>.)</p>
+<p>Configure the crosshair size for the &quot;M.A.C.S. Rifle&quot; device type.</p>
+</li>
+<li><p><strong>M.A.C.S. rifle color</strong> [snes9x_rifle_color] (<strong>White</strong>|White (blend)|Red|Red (blend)|Orange|Orange (blend)|Yellow|Yellow (blend)|Green|Green (blend)|Cyan|Cyan (blend)|Sky|Sky (blend)|Blue|Blue (blend)|Violet|Violet (blend)|Pink|Pink (blend)|Purple|Purple (blend)|Black|Black (blend)|25% Grey|25% Grey (blend)|50% Grey|50% Grey (blend)|75% Grey|75% Grey (blend))</p>
+<p>Configure the crosshair color for the &quot;M.A.C.S. Rifle&quot; device type.</p>
+</li>
+<li><p><strong>Block Invalid VRAM Access</strong> [snes9x_block_invalid_vram_access] (<strong>enabled</strong>|disabled)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Echo Buffer Hack (Unsafe, only enable for old addmusic hacks)</strong> [snes9x_echo_buffer_hack] (<strong>disabled</strong>|enabled)</p>
+<p>Awaiting description.</p>
+</li>
+</ul>
+<h2 id="user-1-device-types">User 1 device types</h2>
+<p>The Snes9x core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<ul>
+<li>None - Doesn't disable input.</li>
+<li><strong><a href="https://nintendo.fandom.com/wiki/Super_Nintendo_Entertainment_System_controller">SNES Joypad</a></strong> - Joypad</li>
+<li><a href="https://en.wikipedia.org/wiki/Super_NES_Mouse">SNES Mouse</a> - Mouse</li>
+<li><a href="https://nintendo.fandom.com/wiki/Super_Multitap">Multitap</a> - Joypad - Allows for up to five players to play together in multitap games.</li>
+</ul>
+<h2 id="user-2-device-types">User 2 device types</h2>
+<ul>
+<li>None - Doesn't disable input.</li>
+<li><strong><a href="https://nintendo.fandom.com/wiki/Super_Nintendo_Entertainment_System_controller">SNES Joypad</a></strong> - Joypad</li>
+<li><a href="https://en.wikipedia.org/wiki/Super_NES_Mouse">SNES Mouse</a> - Mouse</li>
+<li><a href="https://nintendo.fandom.com/wiki/Super_Multitap">Multitap</a> - Joypad - Allows for up to five players to play together in mulitap games.</li>
+<li><a href="https://en.wikipedia.org/wiki/Super_Scope">SuperScope</a> - Lightgun</li>
+<li><a href="https://en.wikipedia.org/wiki/Konami_Justifier">Justifier</a> - Lightgun</li>
+<li><a href="https://snescentral.com/article.php?id=0901">M.A.C.S. Rifle</a> - Lightgun</li>
+</ul>
+<h2 id="user-3-device-types">User 3 device types</h2>
+<ul>
+<li>None - Doesn't disable input.</li>
+<li><strong><a href="https://nintendo.fandom.com/wiki/Super_Nintendo_Entertainment_System_controller">SNES Joypad</a></strong> - Joypad</li>
+<li><a href="https://en.wikipedia.org/wiki/Konami_Justifier">Justifier (2P)</a> - Lightgun</li>
+</ul>
+<h2 id="user-4-8-device-types">User 4 - 8 device types</h2>
+<ul>
+<li>None - Doesn't disable input.</li>
+<li><strong><a href="https://nintendo.fandom.com/wiki/Super_Nintendo_Entertainment_System_controller">SNES Joypad</a></strong> - Joypad</li>
+</ul>
+<h2 id="multitap">Multitap</h2>
+<p>Activating multitap support in compatible games can be configured by switching to the 'Multitap' device type for the corresponding users.</p>
+<h2 id="joypad">Joypad</h2>
+<p><img src="../image/controller/snes.png" alt="" /></p>
+<table>
+<thead>
+<tr>
+<th>RetroPad Inputs</th>
+<th>User 1 - 5 input descriptors</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>B</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+<td>Y</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+<td>Select</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+<td>Start</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>D-Pad Up</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>D-Pad Down</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>D-Pad Left</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>D-Pad Right</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>A</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+<td>X</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+<td>L</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+<td>R</td>
+</tr>
+</tbody>
+</table>
+<h2 id="mouse">Mouse</h2>
+<table>
+<thead>
+<tr>
+<th>RetroMouse Inputs</th>
+<th>SNES Mouse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retromouse/retro_mouse.png" alt="" /> Mouse Cursor</td>
+<td>SNES Mouse Cursor</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_left.png" alt="" /> Mouse 1</td>
+<td>SNES Mouse Left Button</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_right.png" alt="" /> Mouse 2</td>
+<td>SNES Mouse Right Button</td>
+</tr>
+</tbody>
+</table>
+<h2 id="lightgun">Lightgun</h2>
+<table>
+<thead>
+<tr>
+<th>RetroLightgun Inputs</th>
+<th>SuperScope</th>
+<th>Justifier</th>
+<th>M.A.C.S. Rifle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retromouse/retro_mouse.png" alt="" /> Gun Crosshair</td>
+<td>SuperScope Crosshair</td>
+<td>Justifier Crosshair</td>
+<td>M.A.C.S. Rifle Crosshair</td>
+</tr>
+<tr>
+<td>Gun Trigger</td>
+<td>SuperScope Trigger</td>
+<td>Justifier Trigger</td>
+<td>M.A.C.S. Rifle Trigger</td>
+</tr>
+<tr>
+<td>Gun Aux A</td>
+<td>SuperScope Cursor</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Gun Aux B</td>
+<td>SuperScope Turbo</td>
+<td>Justifier Offscreen</td>
+<td></td>
+</tr>
+<tr>
+<td>Gun Start</td>
+<td>SuperScope Pause</td>
+<td>Justifier Start</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="compatibility">Compatibility</h2>
+<table>
+<thead>
+<tr>
+<th>Game</th>
+<th>Issue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A.S.P. Air Strike Patrol</td>
+<td>The shadow below the aircraft is missing. Glitched graphics on the briefing screens.</td>
+</tr>
+<tr>
+<td>BS-Zelda MottZilla Patch</td>
+<td>Only shows a black screen.</td>
+</tr>
+<tr>
+<td>Doom</td>
+<td>Colored dots appear during gameplay.</td>
+</tr>
+<tr>
+<td>Funaki Masakatsu Hybrid Wrestler – Tougi Denshou</td>
+<td>Corrupted graphics on the Pancrase logo screen.</td>
+</tr>
+<tr>
+<td>Hayazashi Nidan Morita Shougi 2</td>
+<td>Matches won’t start.</td>
+</tr>
+<tr>
+<td>Mecarobot Golf</td>
+<td>The ground &quot;wobbles&quot; during gameplay.</td>
+</tr>
+<tr>
+<td>Secret of Evermore (PAL versions)</td>
+<td>Randomly freezes when the background music changes.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="http://www.snes9x.com/">Official Snes9x Website (no longer updated)</a></li>
+<li><a href="https://github.com/snes9xgit/snes9x">Official Snes9x Github Repository</a></li>
+<li><a href="http://www.s9x-w32.de/dl/">Official Upstream Snes9x Downloads</a></li>
+<li><a href="https://sites.google.com/site/bearoso/">Alternate Official Upstream Snes9x Downloads</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/snes9x_libretro.info">Libretro Snes9x Core info file</a></li>
+<li><a href="https://github.com/libretro/snes9x">Libretro Snes9x Github Repository</a></li>
+<li><a href="https://github.com/libretro/snes9x/issues">Report Libretro Snes9x Core Issues Here</a></li>
+</ul>
+<h2 id="snes">SNES</h2>
+<ul>
+<li><a href="beetle_bsnes.md">Nintendo - SNES / Famicom (Beetle bsnes)</a></li>
+<li><a href="bsnes_mercury_accuracy.md">Nintendo - SNES / Famicom (bsnes-mercury Accuracy)</a></li>
+<li><a href="bsnes_mercury_balanced.md">Nintendo - SNES / Famicom (bsnes-mercury Balanced)</a></li>
+<li><a href="bsnes_mercury_performance.md">Nintendo - SNES / Famicom (bsnes-mercury Performance)</a></li>
+<li><a href="bsnes_accuracy.md">Nintendo - SNES / Famicom (bsnes Accuracy)</a></li>
+<li><a href="bsnes_balanced.md">Nintendo - SNES / Famicom (bsnes Balanced)</a></li>
+<li><a href="bsnes_cplusplus98.md">Nintendo - SNES / Famicom (bsnes C++98 (v085))</a></li>
+<li><a href="bsnes_performance.md">Nintendo - SNES / Famicom (bsnes Performance)</a></li>
+<li><a href="higan_accuracy.md">Nintendo - SNES / Famicom (higan Accuracy)</a></li>
+<li><a href="nside_balanced.md">Nintendo - SNES / Famicom (nSide Balanced)</a></li>
+<li><a href="mesen-s.md">Nintendo - SNES / Famicom (Mesen-S)</a></li>
+<li><a href="snes9x_2002.md">Nintendo - SNES / Famicom (Snes9x 2002)</a></li>
+<li><a href="snes9x_2005_plus.md">Nintendo - SNES / Famicom (Snes9x 2005 Plus)</a></li>
+<li><a href="snes9x_2005.md">Nintendo - SNES / Famicom (Snes9x 2005)</a></li>
+<li><a href="snes9x_2010.md">Nintendo - SNES / Famicom (Snes9x 2010)</a></li>
+</ul>

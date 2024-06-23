@@ -1,0 +1,216 @@
+<h1 id="arcade-same_cdi-wip">Arcade (SAME_CDI) <em>WIP</em></h1>
+<h2 id="background">Background</h2>
+<p>SAME CDi is a S(ingle) A(rcade) M(achine) E(mulator) for libretro, forked from MAME libretro, which is in turn a fork of MAME. It includes only the Philips CD-i driver, and simplifies the loading of CD content to provide a 'plug and play' experience.</p>
+<p>The SAME_CDI core has been authored by</p>
+<ul>
+<li>zach-morris</li>
+</ul>
+<p>The SAME_CDI core is licensed under</p>
+<ul>
+<li>GPLv2</li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the SAME_CDI core have the following file extensions:</p>
+<ul>
+<li>.chd</li>
+<li>.iso</li>
+</ul>
+<h2 id="databases">Databases</h2>
+<p>RetroArch database(s) that are associated with the SAME_CDI core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/MAME.rdb">SAME_CDI</a></li>
+</ul>
+<h2 id="bios">BIOS</h2>
+<p>SAME_CDI does require BIOS (bootrom) files to work. You'll need to have following directory under retroarch system folder and put bios files: <code>../same_cdi/bios/</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">cdibios.zip</td>
+<td style="text-align: center;">cdi200.rom, cdi220b.rom and zx405042p__cdi_slave_2.0__b43t__zzmk9213.mc68hc705c8a_withtestrom.7206</td>
+</tr>
+<tr>
+<td style="text-align: center;">cdimono1.zip</td>
+<td style="text-align: center;">cdi200.rom, cdi220.rom, cdi220b.rom, zx405037p__cdi_servo_2.1__b43t__llek9215.mc68hc705c8a_withtestrom.7201 and zx405042p__cdi_slave_2.0__b43t__zzmk9213.mc68hc705c8a_withtestrom.7206</td>
+</tr>
+<tr>
+<td style="text-align: center;">cdimono2</td>
+<td style="text-align: center;">philips__cdi-220_ph3_r1.2__mb834200b-15__02f_aa__9402_z04.tc574200-le._1.7211, zc405351p__servo_cdi_4.1__0d67p__lluk9404.mc68hc705c8a.7490 and zc405352p__slave_cdi_4.1__0d67p__lltr9403.mc68hc705c8a.7206</td>
+</tr>
+</tbody>
+</table>
+<h2 id="features">Features</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Softpatching</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan (in RetroArch's Video settings)</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The SAME_CDI core's doesn't create any directory.</p>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<p>SAME_CDI's core provided aspect ratio is 1/1.</p>
+<h2 id="core-options-wip">Core options <em>WIP</em></h2>
+<h2 id="controllers-wip">Controllers <em>WIP</em></h2>
+<h3 id="device-types">Device types</h3>
+<p>The SAME_CDI core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<h4 id="user-1-1-device-types">User 1 - 1 device types</h4>
+<ul>
+<li>None - Input disabled.</li>
+<li><strong>RetroPad</strong> - Joypad</li>
+<li>RetroPad w/Analog - Joypad - <strong>There is no reason to switch to this.</strong></li>
+</ul>
+<h3 id="controller-tables">Controller tables</h3>
+<h4 id="joypad-and-analog-device-type-table">Joypad and analog device type table</h4>
+<table>
+<thead>
+<tr>
+<th>RetroPad Inputs</th>
+<th>User 1 - 5 input descriptors</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>Z</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>X</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+<td>S</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+<td>A</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>D-Pad Up</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>D-Pad Down</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>D-Pad Left</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>D-Pad Right</td>
+</tr>
+</tbody>
+</table>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://github.com/libretro/same_cdi/blob/master/same_cdi_libretro.info">Libretro SAME_CDI Core info file</a></li>
+<li><a href="https://github.com/libretro/same_cdi">Libretro SAME_CDI Github Repository</a></li>
+<li><a href="https://github.com/libretro/same_cdi/issues">Report SAME_CDI Core Issues Here</a></li>
+</ul>
+<h3 id="see-also">See also</h3>
+<ul>
+<li><a href="mame_2003.md">MAME 2003</a></li>
+<li><a href="mame2003_plus.md">MAME 2003 Plus</a></li>
+<li><a href="mame_2010.md">MAME 2010</a></li>
+</ul>

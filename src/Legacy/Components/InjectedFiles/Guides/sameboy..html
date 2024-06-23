@@ -1,0 +1,355 @@
+<h1 id="nintendo-game-boy-color-sameboy">Nintendo - Game Boy / Color (SameBoy)</h1>
+<h2 id="background">Background</h2>
+<p>SameBoy is an extremely accurate open source Gameboy (DMG) and Gameboy Color (CGB) emulator, written in portable C.</p>
+<ul>
+<li>Supports GameBoy (DMG) and GameBoy Color (CGB) emulation</li>
+<li>Battery save support</li>
+<li>Save states</li>
+<li>Includes open source DMG and CGB boot ROMs</li>
+<li>Real time clock emulation</li>
+<li>Extremely high accuracy</li>
+<li>Link-cable emulation</li>
+</ul>
+<h3 id="authorlicense">Author/License</h3>
+<p>The SameBoy core has been authored by</p>
+<ul>
+<li>LIJI32</li>
+</ul>
+<p>The SameBoy core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/SameBoy/blob/master/LICENSE">MIT</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the SameBoy core have the following file extensions:</p>
+<ul>
+<li>.gb</li>
+<li>.gbc</li>
+</ul>
+<h2 id="databases">Databases</h2>
+<p>RetroArch database(s) that are associated with the SameBoy core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Game%20Boy.rdb">Nintendo - Game Boy</a></li>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Game%20Boy%20Color.rdb">Nintendo - Game Boy Color</a></li>
+</ul>
+<h2 id="bios">BIOS</h2>
+<p>Required or optional firmware files go in the frontend's system directory.</p>
+<p>!!! attention
+The SameBoy core has reverse engineered Game Boy/Game Boy Color boot ROMs baked into the core itself so real BIOS files aren't required. If you’d like to override this, you can place the following BIOS files in RetroArch's system directory.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">dmg_boot.bin</td>
+<td style="text-align: center;">Game Boy boot ROM - Optional</td>
+<td style="text-align: center;">32fbbd84168d3482956eb3c5051637f5</td>
+</tr>
+<tr>
+<td style="text-align: center;">cgb_boot.bin</td>
+<td style="text-align: center;">Game Boy Color boot ROM - Optional</td>
+<td style="text-align: center;">dbfce9db9deaa2567f6a84fde55f9680</td>
+</tr>
+</tbody>
+</table>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the SameBoy core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The SameBoy core's internal core name is 'SameBoy'</p>
+<p>The SameBoy core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Save directory</strong></p>
+<ul>
+<li>'content-name'.srm (Cartridge backup save)</li>
+<li>'content-name'.rtc (Real time clock save)</li>
+</ul>
+<p><strong>Frontend's State directory</strong></p>
+<ul>
+<li>'content-name'.state# (State)</li>
+</ul>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The SameBoy core's core provided FPS is 59.7275 FPS</li>
+<li>The SameBoy core's core provided sample rate is 48000 Hz</li>
+<li>The SameBoy core's core provided aspect ratio is 10:9 in single mode, varies in dual mode</li>
+</ul>
+<h2 id="link">Link</h2>
+<p>Link cable emulation is supported in single-cart mode and in dual-cart mode.
+To use it in single-cart mode enable the <strong>Single cart dual mode</strong> option under options and reload the content</p>
+<p>!!! note
+The savefile for the second slot in this mode will be named 'gamename.srm.2'</p>
+<p>To use it in dual-cart mode you have to load content via the Subsystem API which you can achieve via the GUI or via CLI</p>
+<p><strong>Load content via Subsystem API from GUI</strong></p>
+<p>First, we load the first GameBoy ROM through '2 Player Game Boy Link' in RetroArch's Main Menu.</p>
+<p><img src="../image/core/sameboy/menu1.png" alt="" /></p>
+<p><img src="../image/core/sameboy/gb1.png" alt="" /></p>
+<p>Next, we load our Super GameBoy ROM through 'Load Super GameBoy' in RetroArch's Menu Menu.</p>
+<p><img src="../image/core/sameboy/menu2.png" alt="" /></p>
+<p><img src="../image/core/sameboy/gb2.png" alt="" /></p>
+<p>Then, we start the content by selecting 'Start GameBoy' In RetroArch's Menu Menu.</p>
+<p>!!! warning
+You have to load any game in the core for the '2 Player Game Boy Link' entries to show up, this is a RetroArch limitation, not a core limitation</p>
+<p>!!! warning While loading the same game in this mode should work some users reported issues while linking them, you should use single cart mode for that scenario</p>
+<p><strong>Load Content via Subsystem API from CLI</strong></p>
+<pre><code>retroarch -L {path to sameboy core} {path to first GameBoy ROM} --subsystem gb_link_2p {path to second GameBoy ROM}
+</code></pre>
+<h2 id="core-options">Core options</h2>
+<p>The SameBoy core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<h3 id="regular-options">Regular Options</h3>
+<ul>
+<li><p><strong>Single cart dual mode (reload)</strong> [sameboy_dual] (<strong>disabled</strong>|enabled)</p>
+<p>Emulate two Game Boy games at the same time.</p>
+</li>
+<li><p><strong>Color correction</strong> [sameboy_color_correction_mode] (<strong>off</strong>|correct curves|emulate hardware|preserve brightness)</p>
+<p>Only for Gameboy Color games.</p>
+<p>Select color correction.</p>
+</li>
+</ul>
+<p>??? note &quot;Color Correction - off&quot;
+<img src="../image/core/sameboy/color_off.png" alt="" /></p>
+<p>??? note &quot;Color Correction - correct curves&quot;
+<img src="../image/core/sameboy/color_curves.png" alt="" /></p>
+<p>??? note &quot;Color Correction - emulate hardware&quot;
+<img src="../image/core/sameboy/color_hardware.png" alt="" /></p>
+<p>??? note &quot;Color Correction - preserve brightness&quot;
+<img src="../image/core/sameboy/color_brightness.png" alt="" /></p>
+<ul>
+<li><p><strong>High-pass filter</strong> [sameboy_high_pass_filter_mode] (<strong>off</strong>|accurate|remove dc offset)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Emulated model</strong> [sameboy_model] (<strong>Game Boy Color</strong>|Game Boy Advance|Auto|Game Boy)</p>
+<p>Select what console/model the content is being ran on. May activate special in-game content.</p>
+</li>
+</ul>
+<h3 id="dual-mode-options">Dual Mode Options</h3>
+<ul>
+<li><p><strong>Single cart dual mode (reload)</strong> [sameboy_dual] (<strong>disabled</strong>|enabled)</p>
+<p>Emulate two Game Boy games at the same time.</p>
+<p>This core option is enabled by default and is hidden from view when the 2 Player Game Boy Link Subsystem API is used.</p>
+</li>
+<li><p><strong>Link cable emulation</strong> [sameboy_link] (<strong>enabled</strong>|disabled)</p>
+<p>Enable in-game Game Boy link cable functions.</p>
+</li>
+<li><p><strong>Screen layout</strong> [sameboy_screen_layout] (<strong>top-down</strong>|left-right)</p>
+<p>Configure the layout of the two emulated Game Boys.</p>
+</li>
+<li><p><strong>Audio output</strong> [sameboy_audio_output] (<strong>Game Boy #1</strong>|Game Boy #2)</p>
+<p>Select which Game Boy will output audio.</p>
+</li>
+<li><p><strong>Emulated model for Game Boy #1</strong> [sameboy_model_1] (<strong>Game Boy Color</strong>|Game Boy Advance|Auto|Game Boy)</p>
+<p>Select what console/model the content is being ran on for Game Boy #1.</p>
+<p>May activate special in-game content.</p>
+</li>
+<li><p><strong>Emulated model for Game Boy #2</strong> [sameboy_model_2] (<strong>Game Boy Color</strong>|Game Boy Advance|Auto|Game Boy)</p>
+<p>Select what console/model the content is being ran on for Game Boy #2.</p>
+<p>May activate special in-game content.</p>
+</li>
+<li><p><strong>Color correction for Game Boy #1</strong> [sameboy_color_correction_mode_1] (<strong>off</strong>|correct curves|emulate hardware|preserve brightness)</p>
+<p>Only for Gameboy Color games.</p>
+<p>Select color correction for Game Boy #1.</p>
+</li>
+<li><p><strong>Color correction for Game Boy #2</strong> [sameboy_color_correction_mode_2] (<strong>off</strong>|correct curves|emulate hardware|preserve brightness)</p>
+<p>Only for Gameboy Color games.</p>
+<p>Select color correction for Game Boy #2.</p>
+</li>
+<li><p><strong>High-pass filter for Game Boy #1</strong> [sameboy_high_pass_filter_mode_1] (<strong>off</strong>|accurate|remove dc offset)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>High-pass filter for Game Boy #2</strong> [sameboy_high_pass_filter_mode_2] (<strong>off</strong>|accurate|remove dc offset)</p>
+<p>Awaiting description.</p>
+</li>
+</ul>
+<h2 id="controllers">Controllers</h2>
+<p>The SameBoy core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<h3 id="user-1-2-device-types">User 1 - 2 device types</h3>
+<ul>
+<li>None - Doesn't disable input. There's no reason to switch to this.</li>
+<li><strong>RetroPad</strong> - Joypad - Stay on this.</li>
+<li>Nintendo Game Boy - Joypad - Same as RetroPad. There's no reason to switch to this.</li>
+</ul>
+<h3 id="rumble-support">Rumble support</h3>
+<p>Rumble only works in the SameBoy core when</p>
+<ul>
+<li>The content being ran has rumble support.</li>
+<li>The frontend being used has rumble support.</li>
+<li>The joypad device being used has rumble support.</li>
+</ul>
+<h3 id="controller-tables">Controller tables</h3>
+<h4 id="joypad">Joypad</h4>
+<p><img src="../image/controller/gb.png" alt="" /></p>
+<table>
+<thead>
+<tr>
+<th>User 1 - 2 Remap descriptors</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>Select</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+</tr>
+<tr>
+<td>Start</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+</tr>
+<tr>
+<td>Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>A</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<h2 id="compatibility">Compatibility</h2>
+<p><a href="https://sameboy.github.io/automation/">SameBoy automation results</a></p>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://sameboy.github.io/">Official SameBoy Website</a></li>
+<li><a href="https://github.com/LIJI32/SameBoy">Official SameBoy Github Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/sameboy_libretro.info">Libretro SameBoy Core info file</a></li>
+<li><a href="https://github.com/libretro/SameBoy">Libretro SameBoy Github Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-meta/issues">Report Libretro SameBoy Core Issues Here</a></li>
+</ul>
+<h3 id="see-also">See also</h3>
+<h4 id="nintendo-game-boy-color">Nintendo - Game Boy (+ Color)</h4>
+<ul>
+<li><a href="emux_gb.md">Nintendo - Game Boy / Color (Emux GB)</a></li>
+<li><a href="gambatte.md">Nintendo - Game Boy / Color (Gambatte)</a></li>
+<li><a href="gearboy.md">Nintendo - Game Boy / Color (Gearboy)</a></li>
+<li><a href="tgb_dual.md">Nintendo - Game Boy / Color (TGB Dual)</a></li>
+<li><a href="mgba.md">Nintendo - Game Boy Advance (mGBA)</a></li>
+<li><a href="vba_m.md">Nintendo - Game Boy Advance (VBA-M)</a></li>
+<li><a href="higan_accuracy.md">Nintendo - SNES / Famicom (higan Accuracy)</a></li>
+<li><a href="nside_balanced.md">Nintendo - SNES / Famicom (nSide Balanced)</a></li>
+<li><a href="mesen-s.md">Nintendo - SNES / Famicom (Mesen-S)</a></li>
+</ul>

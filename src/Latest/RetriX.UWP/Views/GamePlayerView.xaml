@@ -1,0 +1,1388 @@
+﻿<Page
+    x:Class="RetriX.UWP.Pages.GamePlayerView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:controls="using:RetriX.UWP.Controls"
+    xmlns:vm="using:RetriX.Shared.ViewModels"
+    xmlns:local="using:RetriX.UWP.Converters"
+    xmlns:data="using:RetriX.UWP.Pages"
+    xmlns:lcore="using:LibRetriX.RetroBindings"
+    xmlns:services="using:RetriX.UWP.Services"
+    xmlns:behaviors="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors" 
+    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:Core="using:Microsoft.Xaml.Interactions.Core" 
+    Loaded="Page_Loaded"
+    Unloaded="Page_Unloaded"
+    x:Name="GamePlayPage"
+    mc:Ignorable="d">
+
+
+    <Page.Resources>
+        <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        <local:PercentageConverter x:Key="PercentageConverter" />
+        <local:BoolNegationConverter x:Key="BoolNegationConverter" />
+        <CollectionViewSource x:Name="MenusGridSource" Source="{x:Bind VM.MenusGrid, Mode=OneWay}" IsSourceGrouped="true" />
+
+        <Style x:Key="LeftVirtualPadStyle" TargetType="controls:VirtualPad">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="UpButtonInputType" Value="DeviceIdJoypadUp"/>
+            <Setter Property="DownButtonInputType" Value="DeviceIdJoypadDown"/>
+            <Setter Property="LeftButtonInputType" Value="DeviceIdJoypadLeft"/>
+            <Setter Property="RightButtonInputType" Value="DeviceIdJoypadRight"/>
+        </Style>
+
+        <Style x:Key="RightVirtualPadStyle" TargetType="controls:VirtualPadActions">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="XButtonInputType" Value="DeviceIdJoypadX"/>
+            <Setter Property="BButtonInputType" Value="DeviceIdJoypadB"/>
+            <Setter Property="YButtonInputType" Value="DeviceIdJoypadY"/>
+            <Setter Property="AButtonInputType" Value="DeviceIdJoypadA"/>
+            <Setter Property="CButtonInputType" Value="DeviceIdJoypadC"/>
+            <Setter Property="ZButtonInputType" Value="DeviceIdJoypadZ"/>
+            <Setter Property="StartButtonInputType" Value="DeviceIdJoypadStart"/>
+            <Setter Property="SelectButtonInputType" Value="DeviceIdJoypadSelect"/>
+        </Style>
+
+        <Style x:Key="DialogStyle" TargetType="ContentDialog">
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
+
+        <Style x:Key="GameSystemRecentsListItemIconFrameStyle" TargetType="Border">
+            <Setter Property="Background" Value="{StaticResource SystemControlForegroundAccentBrush}"/>
+            <Setter Property="Padding" Value="6"/>
+            <Setter Property="Margin" Value="8"/>
+        </Style>
+        <Style TargetType="HyperlinkButton">
+            <Setter Property="Foreground" Value="#FF73A9D8" />
+            <Setter Property="Padding" Value="2,0,2,0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Top"/>
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="HyperlinkButton">
+                        <Grid Background="{TemplateBinding Background}">
+
+                            <TextBlock
+                      x:Name="UnderlineTextBlock"
+                      Text="{TemplateBinding Content}"
+                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                      Margin="{TemplateBinding Padding}"
+                      Visibility="Collapsed"/>
+                            <TextBlock Canvas.ZIndex="1"
+                      x:Name="DisabledOverlay"
+                      Text="{TemplateBinding Content}"
+                      Foreground="#FFAAAAAA"
+                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                      Margin="{TemplateBinding Padding}"
+                      Visibility="Collapsed"/>
+                            <ContentPresenter 
+                      x:Name="contentPresenter"
+                      Content="{TemplateBinding Content}"
+                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                      Margin="{TemplateBinding Padding}"/>
+                            <Rectangle x:Name="FocusVisualElement" Stroke="#FF6DBDD1" StrokeThickness="1" Opacity="0" IsHitTestVisible="false" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <DataTemplate x:Key="CoreLogItemTemplate" x:DataType="lcore:CoreLogItem">
+            <StackPanel Margin="0,0,0,10" Orientation="Horizontal">
+                <Border BorderThickness="2" BorderBrush="{x:Bind backColor, Mode=OneWay}" CornerRadius="5" Visibility="{x:Bind TypeVisible, Mode=OneWay}" MinWidth="60">
+                    <TextBlock Text="{x:Bind Type, Mode=OneWay}" Foreground="{x:Bind backColor, Mode=OneWay}" FontSize="14" Padding="5,2,5,2" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                </Border>
+                <TextBlock Text="{x:Bind Message, Mode=OneWay}" Margin="5,0,0,0" VerticalAlignment="Center"></TextBlock>
+            </StackPanel>
+        </DataTemplate>
+
+
+        <CollectionViewSource x:Name="CoreOptionListItemsGroup" IsSourceGrouped="true" />
+        <DataTemplate x:Key="CoreOptionListItemTemplate" x:DataType="data:CoreOptionListItem">
+            <StackPanel Margin="0,0,0,10">
+                <TextBlock Text="{x:Bind Name, Mode=OneWay}" TextWrapping="WrapWholeWords" Margin="0,0,0,3"></TextBlock>
+                <Border CornerRadius="5" BorderThickness="1" BorderBrush="#AA304ffe">
+                    <ComboBox BorderThickness="0" SelectionChanged="SelectionChangedEvent" DropDownClosed="ComboBox_DropDownClosed" IsDropDownOpen="{x:Bind DroppedDown, Mode=TwoWay}"  ItemsSource="{x:Bind Values, Mode=OneWay}" IsEnabled="{x:Bind isEnabled, Mode=OneWay}"  SelectedValue="{x:Bind SelectedValue, Mode=TwoWay}" Tag="{x:Bind Key, Mode=OneWay}"  HorizontalAlignment="Stretch">
+                    </ComboBox>
+                </Border>
+            </StackPanel>
+        </DataTemplate>
+
+        <CollectionViewSource x:Name="ButtonsListItemsGroup" IsSourceGrouped="true" />
+        <DataTemplate x:Key="ButtonsListItemTemplate" x:DataType="data:ButtonListItem">
+            <StackPanel Margin="0,0,0,10">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{x:Bind Name, Mode=OneWay}" Margin="0,0,0,3" FontWeight="Bold" Opacity="0.8"></TextBlock>
+                    <TextBlock Text="{x:Bind TouchName, Mode=OneWay}" Margin="3,0,0,3" Foreground="Green" Opacity="0.7" Visibility="{x:Bind isTouchNameVisible, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"></TextBlock>
+                    <TextBlock Text="{x:Bind KeyboardName, Mode=OneWay}" Margin="3,0,0,3" Foreground="Gray" Opacity="0.7" Visibility="{x:Bind isKeyboardNameVisible, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"></TextBlock>
+                </StackPanel>
+                <Border CornerRadius="5" BorderThickness="1" BorderBrush="#AA304ffe">
+                    <ComboBox BorderThickness="0" SelectionChanged="ControlsSelectionChangedEvent" DropDownClosed="Controls_DropDownClosed" IsDropDownOpen="{x:Bind DroppedDown, Mode=TwoWay}"  ItemsSource="{x:Bind Values, Mode=OneWay}" SelectedValue="{x:Bind SelectedValue, Mode=TwoWay}" IsEnabled="{x:Bind isEnabled, Mode=OneWay}" Tag="{x:Bind Key, Mode=OneWay}"  HorizontalAlignment="Stretch">
+                    </ComboBox>
+                </Border>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="EffectsListItemTemplate" x:DataType="data:EffectsListItem">
+            <StackPanel Margin="0,0,0,10" Visibility="{x:Bind EffectVisible, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                <Border BorderThickness="1" Margin="0,15,0,0" Tag="{x:Bind Tag, Mode=OneWay}" CornerRadius="5" BorderBrush="Gray" >
+                    <Grid Margin="0,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Issue expected!" Foreground="Orange" HorizontalAlignment="Right" Margin="0,10,10,0" Visibility="{x:Bind compatibiltyTag, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"></TextBlock>
+
+                        <Grid Margin="0,0,0,0" Padding="2,2,2,2" HorizontalAlignment="Left">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="5,5,5,5" FontWeight="Bold" Text="{x:Bind EffectName, Mode=OneWay}" FontSize="17"/>
+                                <ToggleSwitch x:Name="EffectActiveState" Foreground="DodgerBlue" IsOn="{x:Bind IsOn, Mode=TwoWay}"/>
+                            </StackPanel>
+                        </Grid>
+
+                        <StackPanel Grid.Row="1" Margin="10,5,10,5">
+                            <Slider Header="{x:Bind Value1Title, Mode=OneWay}"  Value="{x:Bind Value1,Mode=TwoWay}" IsEnabled="{Binding ElementName=EffectActiveState,Path=IsOn}" Maximum="{x:Bind Value1Max,Mode=OneWay}" Minimum="{x:Bind Value1Min,Mode=OneWay}" StepFrequency="{x:Bind Value1Step,Mode=OneWay}" Visibility="{x:Bind Value1State, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"></Slider>
+                            <Slider Header="{x:Bind Value2Title, Mode=OneWay}"  Value="{x:Bind Value2,Mode=TwoWay}" IsEnabled="{Binding ElementName=EffectActiveState,Path=IsOn}" Maximum="{x:Bind Value2Max,Mode=OneWay}" Minimum="{x:Bind Value2Min,Mode=OneWay}" StepFrequency="{x:Bind Value2Step,Mode=OneWay}" Visibility="{x:Bind Value2State, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"></Slider>
+                            <Slider Header="{x:Bind Value3Title, Mode=OneWay}"  Value="{x:Bind Value3,Mode=TwoWay}" IsEnabled="{Binding ElementName=EffectActiveState,Path=IsOn}" Maximum="{x:Bind Value3Max,Mode=OneWay}" Minimum="{x:Bind Value3Min,Mode=OneWay}" StepFrequency="{x:Bind Value3Step,Mode=OneWay}" Visibility="{x:Bind Value3State, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"></Slider>
+                            <Slider Header="{x:Bind Value4Title, Mode=OneWay}"  Value="{x:Bind Value4, Mode=TwoWay}" IsEnabled="{Binding ElementName=EffectActiveState,Path=IsOn}" Maximum="{x:Bind Value4Max,Mode=OneWay}" Minimum="{x:Bind Value4Min,Mode=OneWay}" StepFrequency="{x:Bind Value4Step,Mode=OneWay}" Visibility="{x:Bind Value4State, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"></Slider>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </StackPanel>
+        </DataTemplate>
+
+        <Style x:Key="GridViewItemStyle1" TargetType="GridViewItem">
+            <Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}"/>
+            <Setter Property="FontSize" Value="{StaticResource ControlContentThemeFontSize}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="TabNavigation" Value="Local"/>
+            <Setter Property="IsHoldingEnabled" Value="True"/>
+            <Setter Property="Margin" Value="0,0,0,0"/>
+            <Setter Property="Padding" Value="0"/>
+        </Style>
+
+        <Style x:Key="GridViewItemStyle2" TargetType="GridViewItem">
+            <Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}"/>
+            <Setter Property="FontSize" Value="{StaticResource ControlContentThemeFontSize}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="TabNavigation" Value="Local"/>
+            <Setter Property="IsHoldingEnabled" Value="True"/>
+            <Setter Property="Margin" Value="0,0,-17,0"/>
+            <Setter Property="Padding" Value="0"/>
+        </Style>
+        <SolidColorBrush x:Key="InActive" Color="Transparent" />
+        <SolidColorBrush x:Key="ActiveButton" Color="#FF3067DD" />
+
+        <CollectionViewSource x:Name="KeyboardListItemsGroup" IsSourceGrouped="true"/>
+        <DataTemplate x:Key="KeyboardButtonTemplate" x:DataType="services:KeyboardKey">
+            <RepeatButton x:Name="KeyboardButton" Delay="500" Opacity="{x:Bind KeyOpacity, Mode=OneWay}" PointerReleased="KeyboardButton_PointerReleased" PointerExited="KeyboardButton_PointerExited" Tag="{x:Bind KeyRef, Mode=OneWay}" Background="Transparent" Click="KeyboardButton_Click" Tapped="KeyboardButton_Tapped">
+                <!--<Button x:Name="KeyboardButton" Opacity="{x:Bind KeyOpacity, Mode=OneWay}" Tag="{x:Bind KeyRef, Mode=OneWay}" Background="Transparent">-->
+                <Grid CornerRadius="5" BorderThickness="1" BorderBrush="{x:Bind BorderColor, Mode=OneWay}" Background="{x:Bind BackgroundColor, Mode=OneWay}" Width="{x:Bind MinWidth, Mode=OneWay}" Height="{x:Bind MinHeight, Mode=OneWay}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="{x:Bind ShiftName, Mode=OneWay}" Padding="5,0,0,1" FontSize="{x:Bind SubFontSize, Mode=OneWay}" Visibility="{x:Bind ShiftTextVisible, Mode=OneWay}" Foreground="Gray" Opacity="0.6"></TextBlock>
+                    <TextBlock Text="{x:Bind KeyName, Mode=OneWay}" Foreground="Wheat" FontWeight="Bold" Grid.Row="1" Padding="{x:Bind Padding, Mode=OneWay}" FontSize="{x:Bind MainFontSize, Mode=OneWay}" VerticalAlignment="Center" Margin="{x:Bind Margin, Mode=OneWay}" HorizontalAlignment="Center"></TextBlock>
+                </Grid>
+            </RepeatButton>
+        </DataTemplate>
+
+        <Style x:Key="GameSystemListItemIconFrameStyle" TargetType="Border">
+            <Setter Property="Padding" Value="12"/>
+            <Setter Property="Margin" Value="8"/>
+        </Style>
+
+        <DataTemplate x:Key="BrowseGridMenuItemTemplate" x:DataType="data:CoresQuickListItem">
+            <StackPanel  BorderThickness="1" BorderBrush="{x:Bind BorderColor, Mode=OneWay}" CornerRadius="3" MinHeight="120" MinWidth="120" MaxWidth="120" MaxHeight="120"  Orientation="Vertical" Margin="2,5,2,5">
+                <Grid VerticalAlignment="Stretch">
+                    <TextBlock Canvas.ZIndex="10" Opacity="0.6" Margin="5,0,0,0" Text="{x:Bind TagGray, Mode=OneWay,  FallbackValue='Version'}" Foreground="Gray" MaxWidth="98" TextTrimming="CharacterEllipsis" Visibility="{x:Bind TagVisibilityGray, Mode=OneWay}" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Left"  FontSize="11" />
+                    <TextBlock Canvas.ZIndex="10" Opacity="0.8" Margin="5,1,0,0" Text="{x:Bind Tag, Mode=OneWay,  FallbackValue='Tag'}" Foreground="DodgerBlue" Visibility="{x:Bind TagVisibility, Mode=OneWay}" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Left"  FontSize="10" />
+
+                    <TextBlock Canvas.ZIndex="10" Opacity="0.8" Margin="10,0,5,0" Text="{x:Bind Description, Mode=OneWay,  FallbackValue='Description'}" Visibility="{x:Bind DescriptionVisibility, Mode=OneWay}" Foreground="#3049ab" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Right"  FontSize="11" />
+                    <Border Style="{StaticResource GameSystemListItemIconFrameStyle}" Visibility="{x:Bind IsIcon, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Image Width="50" Height="50">
+                            <Image.Source>
+                                <BitmapImage UriSource="{x:Bind MenuIcon, Mode=OneTime, FallbackValue=ms-appx:///Assets/Icons/Menus/web-console.bmp}"/>
+                            </Image.Source>
+                        </Image>
+                    </Border>
+
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="{x:Bind ProgressState, Mode=OneWay}" Background="{StaticResource InGameBlurBackground2}">
+                        <ProgressRing HorizontalAlignment="Stretch" IsActive="{x:Bind ProgressActive, Mode=OneWay}" Visibility="{x:Bind ProgressState, Mode=OneWay}" Canvas.ZIndex="100" Foreground="DodgerBlue" VerticalAlignment="Stretch" Width="32" Height="32"></ProgressRing>
+                    </Grid>
+                    <Grid HorizontalAlignment="Stretch" Height="120" Visibility="{x:Bind IsImage, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <Border CornerRadius="3" BorderThickness="1" Margin="1" HorizontalAlignment="Stretch" BorderBrush="DodgerBlue" Background="#EE000000" VerticalAlignment="Top" Canvas.ZIndex="10">
+                            <TextBlock HorizontalAlignment="Center" Canvas.ZIndex="10" Opacity="0.8" Text="{x:Bind Tag, Mode=OneTime,  FallbackValue='Tag'}" Foreground="DodgerBlue" FontWeight="Bold" FontSize="10" />
+                        </Border>
+                        <Image Margin="0,0,0,0" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" Source="{x:Bind bitmapImage, Mode=OneWay}">
+
+                        </Image>
+                    </Grid>
+                </Grid>
+
+                <TextBlock Text="{x:Bind Title, Mode=OneWay, FallbackValue='Title'}" Visibility="{x:Bind IsIcon, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"  Margin="4"  VerticalAlignment="Bottom" TextTrimming="CharacterEllipsis" HorizontalAlignment="Center" FontWeight="Bold" FontSize="12"/>
+            </StackPanel>
+        </DataTemplate>
+        
+        <DataTemplate x:Key="SystemRecentsListItemDT" x:DataType="vm:SaveSlotsModel">
+            <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,5,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Border  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="5" BorderThickness="2" BorderBrush="Gray">
+                    <Grid Grid.Row="1" HorizontalAlignment="Stretch" Height="100" Width="120">
+                        <Image Margin="0" Stretch="{x:Bind StretchState, Mode=OneTime}" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image.Source>
+                                <BitmapImage UriSource="{x:Bind Snapshot, FallbackValue=ms-appx:///Assets/Icons/GN.bmp, Mode=OneWay}" CreateOptions="IgnoreImageCache" />
+                            </Image.Source>
+                        </Image>
+                        <Grid Grid.Row="1" Margin="0,2,0,0"  BorderThickness="1" Background="{StaticResource BlurBackground1}" BorderBrush="#AA304ffe" CornerRadius="2" VerticalAlignment="Bottom" HorizontalAlignment="Stretch">
+                            <TextBlock Text="{x:Bind SlotType, Mode=OneWay, FallbackValue='Game Console'}" Foreground="{x:Bind GameColor,Mode=OneWay}" Margin="0,1,0,2" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" HorizontalAlignment="Center" FontWeight="Bold" FontSize="14" />
+                        </Grid>
+                    </Grid>
+                </Border>
+                <StackPanel Orientation="Vertical" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,0,0">
+                    <TextBlock Text="{x:Bind SaveDate, FallbackValue='Save Date'}" Margin="0,0,0,3" TextWrapping="WrapWholeWords" Foreground="Gray" FontWeight="Bold"/>
+                    <TextBlock Text="{x:Bind SaveTime, FallbackValue='Save Time'}" TextWrapping="WrapWholeWords" FontSize="15" FontWeight="Bold" Foreground="DodgerBlue"/>
+                </StackPanel>
+                <Border Grid.Row="2" Grid.RowSpan="3" Width="350" BorderThickness="0,0,0,1" Opacity="0.3" BorderBrush="Gray" Grid.ColumnSpan="2" HorizontalAlignment="Left"></Border>
+            </Grid>
+        </DataTemplate>
+
+        <Style x:Key="GameSystemMenuGridItemIconFrameStyle" TargetType="Border">
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Margin" Value="8"/>
+        </Style>
+        <DataTemplate x:Key="SystemMenuGridItemDT" x:DataType="vm:SystemMenuModel">
+            <Grid Canvas.ZIndex="200" Grid.Row="0"  Grid.ColumnSpan="2" VerticalAlignment="Stretch" Background="#33000000" CornerRadius="5" IsTapEnabled="{x:Bind isEnabled, Mode=OneWay}" Opacity="{x:Bind isEnabledOpacity, Mode=OneWay}" HorizontalAlignment="Stretch" Width="Auto" Height="Auto" MinWidth="100" MinHeight="100">
+                
+                <Border Style="{StaticResource GameSystemMenuGridItemIconFrameStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,10">
+                        <Image Width="{x:Bind IconSize, Mode=OneWay}" Height="{x:Bind IconSize, Mode=OneWay}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Image.Source>
+                                <BitmapImage UriSource="{x:Bind MenuIcon, FallbackValue=ms-appx:///Assets/Icons/GN.bmp, Mode=OneWay}" CreateOptions="None" />
+                            </Image.Source>
+                        </Image>
+                </Border>
+                <Grid  Visibility="{x:Bind MenuSwitch, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Background="{x:Bind colorBrush, Mode=OneWay}" CornerRadius="5" VerticalAlignment="Top" HorizontalAlignment="Left" Padding="0,5,0,5" Margin="10,10,0,0" Width="25" Height="20">
+                    <TextBlock Text="{x:Bind StateText, Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="11" Margin="0,0,0,1"/>
+                </Grid>
+                <Grid VerticalAlignment="Bottom" HorizontalAlignment="Center"  Margin="0,0,0,10">
+                    <TextBlock Text="{x:Bind MenuName, Mode=OneWay,  FallbackValue='Menu Name'}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" HorizontalAlignment="Center" FontWeight="Bold" FontSize="12" />
+                </Grid>
+            </Grid>
+        </DataTemplate>
+
+        <Style x:Key="RootListStyle" TargetType="ListViewBase">
+            <Setter Property="SelectionMode" Value="None"/>
+            <Setter Property="IsItemClickEnabled" Value="True"/>
+            <Setter Property="Grid.Row" Value="1"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid x:Name="MainPage" Background="Black">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition x:Name="PanelRow" Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="localNotificationGrid" Grid.RowSpan="4"  Grid.ColumnSpan="3" Visibility="Collapsed"  Margin="0,5,0,0" Canvas.ZIndex="10000" MaxHeight="200" VerticalAlignment="Top" MaxWidth="500" HorizontalAlignment="Center">
+            <Border x:Name="localNotificationBorder"  CornerRadius="5" Padding="10" BorderThickness="1" BorderBrush="Gold" Background="DodgerBlue" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="notifcationMessageText" Grid.Column="1" Text="Notification" TextWrapping="WrapWholeWords" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                    <Viewbox MaxHeight="15" MaxWidth="15" Margin="0,0,5,0">
+                        <FontIcon x:Name="NotificationIcon" FontFamily="Segoe MDL2 Assets" Glyph="&#xE74C;"
+                                              Grid.Column="0"
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Center" />
+
+                    </Viewbox>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <canvas:CanvasAnimatedControl x:Name="PlayerPanel" Draw="PlayerPanel_Draw" Tapped="PlayerPanel_Tapped" PointerPressed="PanelPointerPressed" PointerReleased="PointerReleased" RightTapped="PlayerPanel_RightTapped"  PointerMoved="Moved" PointerEntered="PlayerPanel_PointerEntered" Grid.Row="0" Visibility="{x:Bind VM.ScreenState, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Grid.ColumnSpan="3" Grid.RowSpan="{x:Bind VM.FitScreen, Mode=OneWay}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" RenderTransformOrigin="0.5,0.5">
+            <canvas:CanvasAnimatedControl.RenderTransform>
+                <TransformGroup>
+                    <RotateTransform Angle="{x:Bind VM.RotateDegree, Mode=OneWay}"/>
+                    <ScaleTransform ScaleX="{x:Bind VM.SX, Mode=OneWay}" ScaleY="{x:Bind VM.SY, Mode=OneWay}"></ScaleTransform>
+                    <TranslateTransform X="{x:Bind VM.PX, Mode=OneWay}" Y="{x:Bind VM.PY, Mode=OneWay}"></TranslateTransform>
+                </TransformGroup>
+            </canvas:CanvasAnimatedControl.RenderTransform>
+        </canvas:CanvasAnimatedControl>
+        <Image x:Name="UIOutputViewer" Tapped="PlayerPanel_Tapped" Stretch="Uniform" PointerPressed="PanelPointerPressed" PointerReleased="PointerReleased" RightTapped="PlayerPanel_RightTapped"  PointerMoved="Moved" PointerEntered="PlayerPanel_PointerEntered" Grid.Row="{x:Bind VM.ScreenRow, Mode=OneWay}" Visibility="Collapsed" Grid.ColumnSpan="3" Grid.RowSpan="{x:Bind VM.FitScreen, Mode=OneWay}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" RenderTransformOrigin="0.5,0.5">
+            
+        </Image>
+
+        <Image Source="ms-appx:///Assets/scanlines5.bmp" Tapped="PlayerPanel_Tapped" Grid.RowSpan="3" Grid.ColumnSpan="3" Stretch="UniformToFill" Visibility="{x:Bind VM.ScanLines1, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"/>
+        <Image Source="ms-appx:///Assets/scanlines4.bmp" Tapped="PlayerPanel_Tapped" Grid.RowSpan="3" Grid.ColumnSpan="3" Stretch="UniformToFill" Visibility="{x:Bind VM.ScanLines2, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"/>
+        <Image Source="ms-appx:///Assets/scanlines3.bmp" Tapped="PlayerPanel_Tapped" Grid.RowSpan="3" Grid.ColumnSpan="3" Stretch="UniformToFill" Visibility="{x:Bind VM.ScanLines3, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"/>
+
+        <CommandBar  Opacity="{x:Bind VM.TouchPadOpacity, Mode=OneWay}" Visibility="{x:Bind VM.SettingsBarVisibility, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Background="{StaticResource InGameCommandBarMainBackground}" Grid.Row="3" Grid.ColumnSpan="3">
+            <AppBarButton x:Name="StopButton" Icon="Stop" Label="Stop" Command="{x:Bind VM.StopCommand}">
+
+            </AppBarButton>
+
+            <AppBarToggleButton Visibility="{x:Bind isPauseVisible, Mode=OneWay}" x:Name="PauseButton" Icon="Pause" Label="Pause" IsChecked="{x:Bind VM.GameIsPaused, Mode=OneWay}" Command="{x:Bind VM.TogglePauseCommand}" IsEnabled="{x:Bind VM.ShowMainActions,Mode=OneWay}">
+
+            </AppBarToggleButton>
+
+            <AppBarButton Visibility="{x:Bind VM.isGameStarted, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" x:Name="ResetButton" Icon="Refresh" Label="Reset" Command="{x:Bind VM.ResetCommand}" IsEnabled="{x:Bind VM.ShowMainActions,Mode=OneWay}">
+
+            </AppBarButton>
+            <AppBarButton  x:Name="InGameMenu" Icon="Setting" Click="InGameMenu_Click" Label="Menu">
+
+            </AppBarButton>
+            <AppBarButton Label="Saves" Icon="Save" x:Name="ShowSavesList" Click="ShowSavesList_Click" Visibility="{x:Bind VM.isGameStarted, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"></AppBarButton>
+            <AppBarToggleButton x:Name="KeyboardToggle" Icon="Keyboard" Label="Keyboard" IsChecked="{x:Bind KeyboardVisible, Mode=TwoWay}" IsEnabled="{x:Bind VM.ShowMainActions,Mode=OneWay}" Visibility="{x:Bind isKeyboardActive, Converter={StaticResource BoolToVisibilityConverter}}">
+            </AppBarToggleButton>
+            <CommandBar.SecondaryCommands>
+                <!--
+                <AppBarToggleButton Label="Use L3,R3" Icon="Keyboard" IsChecked="{x:Bind UseL3R3InsteadOfX1X2,Mode=TwoWay}" AllowFocusOnInteraction="False"></AppBarToggleButton>
+                <AppBarToggleButton Label="Show L2,R2" Icon="Keyboard" IsChecked="{x:Bind VM.ShowL2R2Controls, Mode=OneWay}" Command="{x:Bind VM.SetShowL2R2Controls}"/>
+                -->
+                <AppBarButton  Icon="Keyboard" Label="L,R Config">
+                    <AppBarButton.Flyout>
+                        <MenuFlyout>
+                            <ToggleMenuFlyoutItem Text="Use L3,R3" Icon="Keyboard" IsChecked="{x:Bind UseL3R3InsteadOfX1X2,Mode=TwoWay}"></ToggleMenuFlyoutItem>
+                            <ToggleMenuFlyoutItem Text="Show L2,R2" Icon="Keyboard" IsChecked="{x:Bind VM.ShowL2R2Controls,Mode=OneWay}" Command="{x:Bind VM.SetShowL2R2Controls}"></ToggleMenuFlyoutItem>
+                        </MenuFlyout>
+                    </AppBarButton.Flyout>
+                </AppBarButton>
+                <AppBarToggleButton Label="Top Bar" Visibility="Collapsed" Icon="SwitchApps" IsChecked="{x:Bind VM.DisplayPlayerUI,Mode=OneWay}"  Command="{x:Bind VM.TappedCommand}"/>
+                <AppBarSeparator></AppBarSeparator>
+                <!--
+                <AppBarToggleButton Label="Analog (R)" Icon="MapPin" IsChecked="{x:Bind ThumbstickSate,Mode=TwoWay}"  AllowFocusOnInteraction="False"></AppBarToggleButton>
+                <AppBarToggleButton Label="Continues" Icon="TouchPointer" IsChecked="{x:Bind DynamicPosition,Mode=TwoWay}"  AllowFocusOnInteraction="False"></AppBarToggleButton>
+                <AppBarToggleButton Label="Mouse" Icon="TouchPointer" IsChecked="{x:Bind MouseSate,Mode=TwoWay}"  AllowFocusOnInteraction="False"></AppBarToggleButton>
+                -->
+                <AppBarButton  Icon="MapPin" Label="Analog">
+                    <AppBarButton.Flyout>
+                        <MenuFlyout>
+                            <ToggleMenuFlyoutItem Text="Tap Event" Icon="Target" IsChecked="{x:Bind TapEvent,Mode=TwoWay}"></ToggleMenuFlyoutItem>
+                            <ToggleMenuFlyoutItem Text="Analog (R)" Icon="MapPin" IsChecked="{x:Bind ThumbstickSate,Mode=TwoWay}"></ToggleMenuFlyoutItem>
+                            <ToggleMenuFlyoutItem Text="Continues" Icon="TouchPointer" IsChecked="{x:Bind DynamicPosition,Mode=TwoWay}"></ToggleMenuFlyoutItem>
+                            <ToggleMenuFlyoutItem Text="Mouse" Icon="TouchPointer" IsChecked="{x:Bind MouseSate,Mode=TwoWay}"></ToggleMenuFlyoutItem>
+                        </MenuFlyout>
+                    </AppBarButton.Flyout>
+                </AppBarButton>
+                <AppBarSeparator></AppBarSeparator>
+                <AppBarButton  Icon="Switch" Label="Actions" IsEnabled="{x:Bind VM.ShowMainActions,Mode=OneWay}">
+                    <AppBarButton.Flyout>
+                        <MenuFlyout>
+                            <ToggleMenuFlyoutItem Text="Actions Switch" Icon="Switch" IsChecked="{x:Bind VM.ReverseLeftRight,Mode=TwoWay}"></ToggleMenuFlyoutItem>
+                            <ToggleMenuFlyoutItem Text="Save Slots" Icon="Save" IsChecked="{x:Bind VM.ActionsToSave,Mode=TwoWay}"></ToggleMenuFlyoutItem>
+                            <MenuFlyoutItem Text="Actions Help" Icon="Help" Click="OptionsInfo2_Click"></MenuFlyoutItem>
+                        </MenuFlyout>
+                    </AppBarButton.Flyout>
+                </AppBarButton>
+                <AppBarSeparator></AppBarSeparator>
+                <AppBarButton  Icon="TouchPointer" Label="Touchpad">
+                    <AppBarButton.Flyout>
+                        <MenuFlyout>
+                            <ToggleMenuFlyoutItem x:Uid="ControlsFilteringMenuFlyout" IsChecked="{x:Bind VM.ControlsMapVisible, Mode=OneWay}" Command="{x:Bind VM.SetControlsMapVisible}" IsEnabled="True"/>
+                            <MenuFlyoutItem Text="Ports Map" Click="MenuFlyoutItem_Click_1"></MenuFlyoutItem>
+                            <MenuFlyoutSubItem Text="Profile">
+                                <MenuFlyoutItem Text="Suggested" Click="MenuFlyoutItem_Click_2" />
+                                <MenuFlyoutItem Text="Default" Click="MenuFlyoutItem_Click_3"/>
+                            </MenuFlyoutSubItem>
+                            <MenuFlyoutSeparator></MenuFlyoutSeparator>
+                            <ToggleMenuFlyoutItem x:Uid="TabSoundFilteringMenuFlyout" IsChecked="{x:Bind VM.TabSoundEffect, Mode=OneWay}" Command="{x:Bind VM.SetTabSoundEffect}" IsEnabled="True"/>
+                            <ToggleMenuFlyoutItem x:Uid="HideXYZTouchGamepadMenuFlyoutItem" Text="ShowXYZ" IsChecked="{x:Bind VM.ShowXYZ, Mode=OneWay}" Command="{x:Bind VM.SetShowXYZ}" Visibility="{x:Bind VM.IsSegaSystem, Converter={StaticResource BoolToVisibilityConverter},Mode=OneWay}"  IsEnabled="True"/>
+                            <ToggleMenuFlyoutItem x:Uid="ShowSpeicalButtonsFilteringMenuFlyout" IsChecked="{x:Bind VM.ShowSpecialButtons, Mode=OneWay}" Command="{x:Bind VM.SetShowSpecialButtons}" IsEnabled="True"/>
+                            <ToggleMenuFlyoutItem x:Uid="ShowActionsButtonsFilteringMenuFlyout" IsChecked="{x:Bind VM.ShowActionsButtons, Mode=OneWay}" Command="{x:Bind VM.SetShowActionsButtons}" IsEnabled="True"/>
+                            <MenuFlyoutSeparator></MenuFlyoutSeparator>
+                            <MenuFlyoutSubItem x:Uid="AdjustmentsMenuFlyout" Text="Design 11">
+                                <MenuFlyoutItem Text="Swap Controls" Command="{x:Bind VM.CallSwapControls}"  IsEnabled="True"/>
+                                <ToggleMenuFlyoutItem x:Uid="ScaleFactorVisibleMenuFlyoutItem" Text="ScaleFactorVisible" IsChecked="{x:Bind VM.ScaleFactorVisible, Mode=OneWay}" Command="{x:Bind VM.SetScaleFactorVisible}"  IsEnabled="True"/>
+                                <ToggleMenuFlyoutItem x:Uid="CustomScaleFactorVisibleMenuFlyoutItem" Text="CustomScaleFactorVisible" IsChecked="{x:Bind VM.CustomConsoleEditMode, Mode=OneWay}" Command="{x:Bind VM.SetSetCustomConsoleEditMode}"  IsEnabled="True"/>
+                                <ToggleMenuFlyoutItem x:Uid="ButtonsCustomizeVisibleMenuFlyoutItem" Text="ButtonCustomizeVisible" IsChecked="{x:Bind VM.ButtonsCustomization, Mode=OneWay}" Command="{x:Bind VM.SetButtonsCustomization}"  IsEnabled="True"/>
+                                <MenuFlyoutItem x:Uid="ResetAdjustmentsMenuFlyoutItem" Text="ResetAdjustments" Command="{x:Bind VM.ResetAdjustments}" />
+                            </MenuFlyoutSubItem>
+                        </MenuFlyout>
+                    </AppBarButton.Flyout>
+                </AppBarButton>
+                <AppBarSeparator></AppBarSeparator>
+                <AppBarButton Visibility="{x:Bind VM.isGameStarted, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" x:Name="ScreenShot" Icon="Camera" Label="Screenshot" Click="ScreenShot_Click"></AppBarButton>
+                <AppBarSeparator Visibility="{x:Bind VM.isGameStarted, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"></AppBarSeparator>
+                <AppBarToggleButton x:Name="FullScreenButton" Icon="FullScreen" Label="FullScreen" IsChecked="{x:Bind VM.IsFullScreenMode, Mode=OneWay}" Command="{x:Bind VM.ToggleFullScreenCommand}" Visibility="{x:Bind VM.FullScreenChangingPossible, Converter={StaticResource BoolToVisibilityConverter}}" IsEnabled="{x:Bind VM.ShowMainActions,Mode=OneWay}">
+                </AppBarToggleButton>
+                <AppBarToggleButton x:Name="FastForward" Icon="Forward" Label="FastForward" IsChecked="{x:Bind VM.FastForward, Mode=TwoWay}" IsEnabled="{x:Bind VM.ShowMainActions,Mode=OneWay}">
+                </AppBarToggleButton>
+               
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+        
+        
+        <controls:PlayerOverlay  AllowFocusOnInteraction="False" ViewModel="{x:Bind VM}" Opacity="{x:Bind VM.TopBarOpacity, Mode=OneWay}" Canvas.ZIndex="-100" VerticalAlignment="Top" Grid.Row="0"
+                                Visibility="{x:Bind VM.DisplayPlayerUI, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Grid.ColumnSpan="3" HorizontalAlignment="Stretch"/>
+        
+        <Border x:Name="FPSCounterGrid" Grid.Row="1" BorderBrush="Gray" ManipulationMode = "TranslateX, TranslateY, Scale" ManipulationDelta="FPSCounterGrid_ManipulationDelta" BorderThickness="1" CornerRadius="5"  MinHeight="30" Opacity="0.6" Background="{StaticResource InGameInfoBackground}" VerticalAlignment="Top" HorizontalAlignment="Left" Visibility="{x:Bind VM.ShowFPSCounter, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Margin="{x:Bind VM.fpsMargin, Mode=OneWay}" MinWidth="30" MaxWidth="450" Height="30" >
+            <TextBlock x:Name="FPSCounterText" Text="{x:Bind VM.FPSCounter, Mode=OneWay}" TextWrapping="Wrap" TextAlignment="Center" Margin="5,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+            <Border.RenderTransform>
+                <CompositeTransform x:Name="FPSCounterGridTransform" TranslateX="{x:Bind XCurrent, Mode=OneWay}" TranslateY="{x:Bind YCurrent, Mode=OneWay}"/>
+            </Border.RenderTransform>
+        </Border>
+        <Border x:Name="BufferCounterGrid" Grid.Row="1" Opacity="0.6" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" MinHeight="30" Height="30" Background="{StaticResource InGameInfoBackground}" VerticalAlignment="Top" HorizontalAlignment="Left" Visibility="{x:Bind VM.ShowBufferCounter, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Margin="{x:Bind VM.bufferMargin, Mode=OneWay}" MinWidth="50" MaxWidth="450" Grid.Column="1">
+            <TextBlock x:Name="BufferCounterText" Text="{x:Bind VM.BufferCounter, Mode=OneWay}" TextWrapping="Wrap" TextAlignment="Center" Margin="5,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+        </Border>
+
+        <Border x:Name="DebugGrid" BorderBrush="Gray" Opacity="0.6" BorderThickness="1" Grid.Row="1" CornerRadius="5" MinHeight="30" Background="{StaticResource InGameInfoBackground}" VerticalAlignment="Top" HorizontalAlignment="Left" Visibility="{x:Bind VM.ShowSensorsInfo, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Margin="5,8,10,0" MinWidth="50" MaxWidth="450" Grid.Column="1">
+            <TextBlock x:Name="DebugText" Text="No debug info" TextWrapping="Wrap" TextAlignment="Left" Margin="5,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+        </Border>
+
+        <Border Grid.Row="1" x:Name="LEDOffCounterGrid" BorderBrush="Orange" BorderThickness="1" CornerRadius="3"  Height="25" Opacity="0.8" Background="{StaticResource InGameInfoBackground}" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="Collapsed" Margin="0,10,10,0" MinWidth="30" MaxWidth="450" >
+            <TextBlock x:Name="LEDOffCounterGridText" Text="LED" FontWeight="Bold" TextWrapping="Wrap" Foreground="Orange" FontSize="13" TextAlignment="Center" Margin="5,0,5,1" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+            <Border.RenderTransform>
+                <CompositeTransform x:Name="LEDOffCounterGridTransform" TranslateX="{x:Bind XCurrent, Mode=OneWay}" TranslateY="{x:Bind YCurrent, Mode=OneWay}"/>
+            </Border.RenderTransform>
+        </Border>
+
+        <Border Grid.Row="1" x:Name="LEDCounterGrid" BorderBrush="LightGreen" BorderThickness="1" CornerRadius="3"  Height="25" Opacity="0.8" Background="{StaticResource InGameInfoBackground}" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="Collapsed" Margin="0,10,10,0" MinWidth="30" MaxWidth="450" >
+            <TextBlock x:Name="LEDCounterGridText" Text="LED" FontWeight="Bold" TextWrapping="Wrap" Foreground="LightGreen" FontSize="13" TextAlignment="Center" Margin="5,0,5,1" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+            <Border.RenderTransform>
+                <CompositeTransform x:Name="LEDCounterGridTransform" TranslateX="{x:Bind XCurrent, Mode=OneWay}" TranslateY="{x:Bind YCurrent, Mode=OneWay}"/>
+            </Border.RenderTransform>
+        </Border>
+
+        <Border Grid.Row="1" x:Name="LogErrorCounterGrid" BorderBrush="Red" BorderThickness="1" CornerRadius="3"  Height="25" Opacity="0.8" Background="{StaticResource InGameInfoBackground}" VerticalAlignment="Top" HorizontalAlignment="Left" Visibility="Collapsed" Margin="{x:Bind VM.logMargin, Mode=OneWay}" MinWidth="30" MaxWidth="450" >
+            <TextBlock x:Name="LogErrorCounterGridText" Text="LOG" FontWeight="Bold" TextWrapping="Wrap" Foreground="Red" FontSize="13" TextAlignment="Center" Margin="5,0,5,1" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+            <Border.RenderTransform>
+                <CompositeTransform x:Name="LogErrorCounterGridTransform" TranslateX="{x:Bind XCurrent, Mode=OneWay}" TranslateY="{x:Bind YCurrent, Mode=OneWay}"/>
+            </Border.RenderTransform>
+        </Border>
+
+        <Border Grid.Row="1" x:Name="LogCounterGrid" BorderBrush="DodgerBlue" BorderThickness="1" CornerRadius="3"  Height="25" Opacity="0.8" Background="{StaticResource InGameInfoBackground}" VerticalAlignment="Top" HorizontalAlignment="Left" Visibility="Collapsed" Margin="{x:Bind VM.logMargin, Mode=OneWay}" MinWidth="30" MaxWidth="450" >
+            <TextBlock x:Name="LogCounterGridText" Text="LOG" FontWeight="Bold" TextWrapping="Wrap" Foreground="DodgerBlue" FontSize="13" TextAlignment="Center" Margin="5,0,5,1" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+            <Border.RenderTransform>
+                <CompositeTransform x:Name="LogCounterGridTransform" TranslateX="{x:Bind XCurrent, Mode=OneWay}" TranslateY="{x:Bind YCurrent, Mode=OneWay}"/>
+            </Border.RenderTransform>
+        </Border>
+
+        <Border Grid.Row="1" x:Name="VFSCounterGrid" BorderBrush="Green" BorderThickness="1" CornerRadius="3"  Height="25" Opacity="0.9" Background="{StaticResource InGameInfoBackground}" VerticalAlignment="Top" HorizontalAlignment="Left" Visibility="Collapsed" Margin="{x:Bind VM.vfsMargin, Mode=OneWay}" MinWidth="30" MaxWidth="450" >
+            <TextBlock x:Name="VFSCounterGridText" Text="VFS" FontWeight="Bold" TextWrapping="Wrap" Foreground="Green" FontSize="13" TextAlignment="Center" Margin="5,0,5,1" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+            <Border.RenderTransform>
+                <CompositeTransform x:Name="VFSCounterGridTransform" TranslateX="{x:Bind XCurrent, Mode=OneWay}" TranslateY="{x:Bind YCurrent, Mode=OneWay}"/>
+            </Border.RenderTransform>
+        </Border>
+
+        <Border Grid.Row="1" x:Name="VFSErrorCounterGrid" BorderBrush="Red" BorderThickness="1" CornerRadius="3"  Height="25" Opacity="0.9" Background="{StaticResource InGameInfoBackground}" VerticalAlignment="Top" HorizontalAlignment="Left" Visibility="Collapsed" Margin="{x:Bind VM.vfsMargin, Mode=OneWay}" MinWidth="30" MaxWidth="450" >
+            <TextBlock x:Name="VFSErrorCounterGridText" Text="VFS" FontWeight="Bold" TextWrapping="Wrap" Foreground="Red" FontSize="13" TextAlignment="Center" Margin="5,0,5,1" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+            <Border.RenderTransform>
+                <CompositeTransform x:Name="VFSErrorCounterGridTransform" TranslateX="{x:Bind XCurrent, Mode=OneWay}" TranslateY="{x:Bind YCurrent, Mode=OneWay}"/>
+            </Border.RenderTransform>
+        </Border>
+
+        <Grid x:Name="AIGrid" Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="{x:Bind VM.GameIsPaused, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Margin="10,5,5,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Border BorderBrush="Transparent" BorderThickness="1" CornerRadius="3"  Height="25" Opacity="0.5" Background="{StaticResource InGameInfoBackground}"  Margin="0,0,0,0" MinWidth="30" MaxWidth="450" >
+                <TextBlock x:Name="AIGridText" Text="STATE" FontWeight="Bold" TextWrapping="Wrap" Foreground="Gold" FontSize="13" TextAlignment="Center" Margin="5,0,5,1" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+            </Border>
+
+            <Border Grid.Column="1" x:Name="AIGridInfo" BorderBrush="Transparent" BorderThickness="1" CornerRadius="3"  Height="25" Opacity="0.5" Background="{StaticResource InGameInfoBackground}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0,0,0,0" MinWidth="30" MaxWidth="450" >
+                <TextBlock x:Name="AISubText" Text="PAUSED" FontWeight="Bold" TextWrapping="Wrap" Foreground="Wheat" FontSize="13" TextAlignment="Center" Margin="5,0,5,1" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+            </Border>
+        </Grid>
+        
+
+
+        <Grid  x:Name="ActionsGrid" Grid.Row="0" Grid.RowSpan="4"  Grid.ColumnSpan="3" Visibility="{x:Bind VM.ActionsGridVisiblity, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="{x:Bind VM.PreviewButtonsSet,Mode=OneWay}" TextWrapping="Wrap" Grid.ColumnSpan="3" TextAlignment="Center" Margin="15,15,15,0" Grid.Row="1"/>
+
+                <Grid Background="{StaticResource InGameBackground}" Grid.Row="0">
+                    <Grid VerticalAlignment="Top" Grid.Row="2" Margin="10,10,0,7" Canvas.ZIndex="100" Opacity="0.7"  Visibility="{x:Bind isXBOX, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Horizontal">
+                            <Border BorderThickness="1" CornerRadius="10"  Background="DarkRed">
+                                <TextBlock Text="Select" Padding="5.8,2,5.8,2" Margin="1,0,0,1.5" FontWeight="Bold" FontSize="12"></TextBlock>
+                            </Border>
+                            <TextBlock Text="Reset" Margin="5,3,0,0" FontSize="12" FontWeight="Bold"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="5,0,0,0">
+                            <Border BorderThickness="1" CornerRadius="10"  Background="Green">
+                                <TextBlock Text="Start" Padding="5.8,2,5.8,2" Margin="1,0,0,1.5" FontWeight="Bold" FontSize="12"></TextBlock>
+                            </Border>
+                            <TextBlock Text="Save" FontSize="12" Margin="5,3,0,0" FontWeight="Bold"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Column="3" Margin="5,0,0,0">
+                            <Border BorderThickness="1" CornerRadius="10"  Background="Gold">
+                                <TextBlock Text="L.Thumbstick" Padding="5.8,2,5.8,2" Margin="1,0,0,1.5" FontWeight="Bold" FontSize="12"></TextBlock>
+                            </Border>
+                            <TextBlock Text="Cancel" FontSize="12" Margin="5,3,0,0" FontWeight="Bold"></TextBlock>
+                        </StackPanel>
+                    </Grid>
+                    <CommandBar Background="{StaticResource InGameCommandBarBackground}" Visibility="{x:Bind VM.SettingsBarVisibility, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" VerticalAlignment="Top" AllowFocusOnInteraction="False">
+                        <AppBarToggleButton Label="A+A" Icon="Add" IsChecked="{x:Bind VM.ActionsCustomDelay, Mode=TwoWay}"></AppBarToggleButton>
+                        <AppBarButton Label="Save" Icon="Save" Click="SaveButton_Click"/>
+                        <AppBarButton Label="Cancel" Icon="Cancel" Click="CancelButton_Click"/>
+                        <CommandBar.SecondaryCommands>
+                            <AppBarButton Label="Reset" Icon="Refresh" Click="ResetButton_Click" />
+                            <AppBarButton  x:Name="ActionsHelp" Label="Help" Icon="Help" Click="ActionsHelp_Click"/>
+                        </CommandBar.SecondaryCommands>
+                    </CommandBar>
+                </Grid>
+
+            </Grid>
+            <Grid Canvas.ZIndex="-1"  Grid.RowSpan="5" Grid.ColumnSpan="5" Background="{StaticResource InGameBlurBackground2}">
+                <interactivity:Interaction.Behaviors>
+                    <behaviors:Blur Value="7" Duration="0" Delay="0" AutomaticallyStart="true"/>
+                </interactivity:Interaction.Behaviors>
+            </Grid>
+        </Grid>
+
+        <Grid  x:Name="EditModeGrid" Grid.Row="0" Grid.RowSpan="3" Grid.ColumnSpan="3" Visibility="{x:Bind VM.ScaleFactorVisible, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Grid HorizontalAlignment="Stretch" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                
+                <StackPanel Grid.Row="2">
+                    <TextBlock Text="Touch controls inactive" TextWrapping="Wrap" Grid.ColumnSpan="3" TextAlignment="Center" Margin="15,15,15,0" FontSize="16"/>
+
+                    <StackPanel Margin="50,20,50,0" HorizontalAlignment="Stretch">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <TextBlock  FontSize="12" Margin="0,0,5,0" FontWeight="Bold" Text="{x:Bind VM.LeftControlsScaleText, Mode=OneWay}"></TextBlock>
+                            <TextBlock Text="{Binding ElementName=LeftScaleFactorSlider,Path=Value, Mode=OneWay, Converter={StaticResource PercentageConverter}}" FontSize="12" Foreground="DodgerBlue"></TextBlock>
+                        </StackPanel>
+                        <Slider x:Name="LeftScaleFactorSlider"  Minimum="0.01" HorizontalAlignment="Stretch" Maximum="3" StepFrequency="0.01" Value="{x:Bind VM.LeftScaleFactorValue, Mode=TwoWay}"  Visibility="{x:Bind VM.ScaleFactorVisible, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Grid.Row="1"/>
+                    </StackPanel>
+                    <StackPanel  Margin="50,10,50,0" HorizontalAlignment="Stretch">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <TextBlock  FontSize="12" Margin="0,0,5,0" FontWeight="Bold" Text="{x:Bind VM.RightControlsScaleText, Mode=OneWay}"></TextBlock>
+                            <TextBlock Text="{Binding ElementName=RightScaleFactorSlider,Path=Value, Mode=OneWay, Converter={StaticResource PercentageConverter}}" FontSize="12" Foreground="Gold"></TextBlock>
+                        </StackPanel>
+                        
+                        <Slider x:Name="RightScaleFactorSlider"  Grid.Column="1" HorizontalAlignment="Stretch" Minimum="0.01" Maximum="3" StepFrequency="0.01" Value="{x:Bind VM.RightScaleFactorValue, Mode=TwoWay}" Visibility="{x:Bind VM.ScaleFactorVisible, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Grid.Row="1" />
+                    </StackPanel>
+                    <StackPanel  Margin="50,10,50,0" HorizontalAlignment="Stretch">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <TextBlock  FontSize="12" Margin="0,0,5,0" FontWeight="Bold">Pad Opacity:</TextBlock>
+                            <TextBlock Text="{Binding ElementName=OpacityFactorSlider,Path=Value, Mode=OneWay, Converter={StaticResource PercentageConverter}}" FontSize="12" Foreground="Purple"></TextBlock>
+                        </StackPanel>
+
+                        <Slider x:Name="OpacityFactorSlider"  Grid.Column="1" HorizontalAlignment="Stretch" Minimum="0.01" Maximum="1" StepFrequency="0.01" Value="{x:Bind VM.ButtonsOpacity, Mode=TwoWay}" Visibility="{x:Bind VM.ScaleFactorVisible, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Grid.Row="1" />
+                    </StackPanel>
+                    <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" HorizontalAlignment="Left" Margin="50,10,0,0" Visibility="{x:Bind VM.CustomConsoleEditMode, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"> 
+                        <StackPanel Margin="10">
+                            <TextBlock Text="When you finish click Save" TextWrapping="Wrap" Foreground="Green" Grid.ColumnSpan="3" TextAlignment="Left" Margin="0,0,0,0" FontSize="12"/>
+                            <TextBlock Text="Changes will be for the current console" Foreground="Orange" TextWrapping="Wrap" Grid.ColumnSpan="3" TextAlignment="Left" Margin="0,10,0,0" FontSize="12"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+                <Grid Background="{StaticResource InGameBackground}" HorizontalAlignment="Stretch">
+
+                    <CommandBar Background="{StaticResource InGameCommandBarBackground}"  VerticalAlignment="Top"  AllowFocusOnInteraction="False">
+                        <AppBarButton Label="Reset" Icon="Refresh" x:Name="ResetCustomization" Click="ResetCustomization_Click"/>
+                        <AppBarButton Label="Delete" Icon="Delete" x:Name="DeleteCustomization" Click="DeleteCustomization_Click" Visibility="{x:Bind VM.CustomConsoleEditMode, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                        <AppBarButton Label="Save" Icon="Save" x:Name="SaveCustomization" Click="SaveCustomization_Click" Visibility="{x:Bind VM.CustomConsoleEditMode, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                        <AppBarButton Label="Close" Icon="Cancel" x:Name="DisableEditMode" Click="DisableEditMode_Click"/>
+                    </CommandBar>
+                </Grid>
+
+            </Grid>
+            <Grid Canvas.ZIndex="-1"  Grid.RowSpan="5" Grid.ColumnSpan="5" Background="{StaticResource InGameBlurBackground2}">
+                <interactivity:Interaction.Behaviors>
+                    <behaviors:Blur Value="7" Duration="0" Delay="0" AutomaticallyStart="true"/>
+                </interactivity:Interaction.Behaviors>
+            </Grid>
+        </Grid>
+
+        <Grid  x:Name="ButtonsEditModeGrid" Grid.Row="0" Grid.RowSpan="3" Grid.ColumnSpan="3" Visibility="{x:Bind VM.ButtonsCustomization, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Grid HorizontalAlignment="Stretch" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Row="1">
+                    <TextBlock Text="Customize right buttons" TextWrapping="Wrap" Grid.ColumnSpan="3" TextAlignment="Center" Margin="15,15,15,0"/>
+                    <TextBlock Text="Right buttons inactive" TextWrapping="Wrap" Grid.ColumnSpan="3" TextAlignment="Center" Margin="15,15,15,0" FontSize="20"/>
+                </StackPanel>
+                <Grid Background="{StaticResource InGameBackground}" HorizontalAlignment="Stretch">
+
+                    <CommandBar Background="{StaticResource InGameCommandBarBackground}"  VerticalAlignment="Top" AllowFocusOnInteraction="False">
+                        <AppBarButton Label="Reset" Icon="Refresh" x:Name="ResetButtonsCustomization" Click="ResetButtonsCustomization_Click"/>
+                        <AppBarButton Label="Save" Icon="Save" x:Name="SaveButtonsCustomization" Click="SaveButtonsCustomization_Click"/>
+                        <AppBarButton Label="Close" Icon="Cancel" x:Name="DisableButtonsEditMode" Click="DisableButtonsEditMode_Click"/>
+                    </CommandBar>
+                </Grid>
+
+            </Grid>
+            <Grid Canvas.ZIndex="-1"  Grid.RowSpan="5" Grid.ColumnSpan="5" Background="{StaticResource InGameBlurBackground2}">
+                <interactivity:Interaction.Behaviors>
+                    <behaviors:Blur Value="7" Duration="0" Delay="0" AutomaticallyStart="true"/>
+                </interactivity:Interaction.Behaviors>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="LogsGrid" Grid.RowSpan="4" Grid.Row="0" Grid.ColumnSpan="3" Canvas.ZIndex="50" Visibility="{x:Bind VM.ShowLogsList, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ListView x:Name="LogsList" ItemsSource="{x:Bind VM.LogsList, Mode=OneWay}" SelectionMode="None" Grid.Row="1" ItemTemplate="{StaticResource CoreLogItemTemplate}" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.IsHorizontalRailEnabled="True">
+            </ListView>
+            <Grid Background="{StaticResource InGameBackground}" HorizontalAlignment="Stretch">
+                <Grid VerticalAlignment="Bottom" Grid.Row="2" Margin="10,0,0,7" Canvas.ZIndex="100" Opacity="0.7"  Visibility="{x:Bind isXBOX, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                        <Border BorderThickness="1" CornerRadius="20"  Background="Green">
+                            <TextBlock Text="A" Padding="5.8,2,5.8,2" Margin="1,0,0,1.5" FontWeight="Bold" FontSize="12"></TextBlock>
+                        </Border>
+                        <TextBlock Text="Select" Margin="5,3,0,0" FontSize="12" FontWeight="Bold"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="5,0,0,0">
+                        <Border BorderThickness="1" CornerRadius="20"  Background="DarkRed">
+                            <TextBlock Text="B" Padding="5.8,2,5.8,2" Margin="1,0,0,1.5" FontWeight="Bold" FontSize="12"></TextBlock>
+                        </Border>
+                        <TextBlock Text="Back" FontSize="12" Margin="5,3,0,0" FontWeight="Bold"></TextBlock>
+                    </StackPanel>
+                </Grid>
+                <CommandBar Background="{StaticResource InGameCommandBarBackground}"  VerticalAlignment="Top"  AllowFocusOnInteraction="False">
+                    <AppBarButton Label="Refresh" Icon="Refresh" x:Name="RefreshLogList" Click="RefreshLogList_Click"/>
+                    <AppBarToggleButton IsChecked="{x:Bind VM.EnabledDebugLogsList, Mode=OneWay}" Label="Debug" Icon="SwitchApps" x:Name="DebugLogList" Click="DebugLogList_Click"/>
+                    <AppBarButton Label="Close" Icon="Cancel" x:Name="CloseLogList" Click="CloseLogList_Click"/>
+                    <CommandBar.SecondaryCommands>
+                        <AppBarToggleButton Icon="ClosedCaption" Label="Log File" x:Name="logToFile" Click="logToFile_Click"></AppBarToggleButton>
+                        <AppBarButton IsEnabled="{Binding ElementName=logToFile,Path=IsChecked}" Icon="Download" Label="Save Logs" x:Name="downloadLogs" Click="downloadLogs_Click"></AppBarButton>
+                        <AppBarButton IsEnabled="{Binding ElementName=logToFile,Path=IsChecked}" Icon="Delete" Label="Reset Logs" x:Name="resetLogFile" Click="resetLogFile_Click"></AppBarButton>
+                        <AppBarSeparator></AppBarSeparator>
+                        <AppBarToggleButton IsEnabled="{Binding ElementName=logToFile,Path=IsChecked}" x:Name="VFSLog" Label="VFS Logs" Icon="Document" Click="VFSLog_Click"></AppBarToggleButton>
+                        <AppBarSeparator></AppBarSeparator>
+                        <AppBarButton Icon="Clear" Label="Clear List" x:Name="clearListLogs" Click="clearListLogs_Click"></AppBarButton>
+
+                    </CommandBar.SecondaryCommands>
+                </CommandBar>
+            </Grid>
+            <Grid Canvas.ZIndex="-1"  Grid.RowSpan="5" Grid.ColumnSpan="5" Background="{StaticResource InGameBlurBackground2}">
+                <interactivity:Interaction.Behaviors>
+                    <behaviors:Blur Value="7" Duration="0" Delay="0" AutomaticallyStart="true"/>
+                </interactivity:Interaction.Behaviors>
+            </Grid>
+        </Grid>
+
+        <Border x:Name="SystemInfoGrid" Visibility="Collapsed" Margin="{x:Bind VM.infoMargin, Mode=OneWay}" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.ColumnSpan="2">
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Now Playing" TextWrapping="Wrap" TextAlignment="Left" Margin="2,5,15,5" Foreground="DodgerBlue" Grid.Row="0" FontSize="11"  FontWeight="Bold"/>
+                <Grid Grid.Row="1" BorderBrush="Gray" BorderThickness="2" MinHeight="35" CornerRadius="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="35"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{x:Bind VM.SystemNamePreview,Mode=OneWay}" TextAlignment="Center" VerticalAlignment="Center" Margin="2,0,5,0" Grid.Column="1" Grid.Row="1" FontSize="14" FontWeight="Bold"/>
+                    <Image Source="{x:Bind VM.SystemIcon,Mode=OneWay, FallbackValue=ms-appx:///Assets/Icons/GN.bmp}" MaxWidth="35" MaxHeight="35"  Margin="2,2,0,2" />
+                    <Grid Canvas.ZIndex="-1"  Grid.RowSpan="5" Grid.ColumnSpan="5" Background="{StaticResource InGameBlurBackground2}">
+                        <interactivity:Interaction.Behaviors>
+                            <behaviors:Blur Value="7" Duration="0" Delay="0" AutomaticallyStart="true"/>
+                        </interactivity:Interaction.Behaviors>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Border>
+
+
+        <Grid Grid.Row="2" Height="{x:Bind VM.ControlsAreaHeight, Mode=OneWay}" Opacity="{x:Bind VM.TouchPadOpacity, Mode=OneWay}" Grid.ColumnSpan="3" Visibility="{x:Bind VM.DisplayTouchGamepad, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Margin="0,0,0,5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <Grid HorizontalAlignment="{x:Bind VM.LeftControlsAlignment, Mode=OneWay}" RenderTransformOrigin="{x:Bind VM.LeftControlsTransformOrigin, Mode=OneWay}" Grid.Column="{x:Bind VM.LeftControlsColumn, Mode=OneWay}" Grid.Row="1" MaxWidth="{x:Bind VM.LeftMaxWidth, Mode=OneWay}" MinWidth="{x:Bind VM.LeftMinWidth, Mode=OneWay}">
+                <controls:VirtualPad  AllowFocusOnInteraction="False" ManipulationMode = "TranslateX, TranslateY, Scale" ManipulationDelta="LeftControlSetup" x:Name="LeftVirtualPad" Style="{StaticResource LeftVirtualPadStyle}" ViewModel="{x:Bind VM}" Grid.Column="0" Margin="5,0,0,5" MinWidth="155">
+                    <controls:VirtualPad.RenderTransform>
+                        <CompositeTransform x:Name="LeftControlsTransform" TranslateX="{x:Bind VM.LeftTransformXCurrent, Mode=OneWay}" TranslateY="{x:Bind VM.LeftTransformYCurrent, Mode=OneWay}"/>
+                    </controls:VirtualPad.RenderTransform>
+                </controls:VirtualPad>
+                <!--<controls:ActionsPack  AllowFocusOnInteraction="False" ManipulationMode = "TranslateX, TranslateY, Scale" ManipulationDelta="ActionsControlSetup" x:Name="ActionsPack" ViewModel="{x:Bind VM}" Visibility="{x:Bind VM.ShowActionsButtons, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="2.1,2,0,0" Width="165">
+                    <controls:ActionsPack.RenderTransform>
+                        <CompositeTransform x:Name="ActionsControlsTransform" TranslateX="{x:Bind VM.ActionsTransformXCurrent, Mode=OneWay}" TranslateY="{x:Bind VM.ActionsTransformYCurrent, Mode=OneWay}"/>
+                    </controls:ActionsPack.RenderTransform>
+                </controls:ActionsPack>-->
+                <Grid.RenderTransform >
+                    <ScaleTransform x:Name="LeftScaleFactor" ScaleX="{x:Bind LeftScaleFactorSlider.Value, Mode=OneWay}" ScaleY="{x:Bind LeftScaleFactorSlider.Value, Mode=OneWay}"></ScaleTransform>
+                </Grid.RenderTransform>
+            </Grid>
+
+            <Grid HorizontalAlignment="{x:Bind VM.RightControlsAlignment, Mode=OneWay}" RenderTransformOrigin="{x:Bind VM.RightControlsTransformOrigin, Mode=OneWay}" Grid.Row="1" Grid.Column="{x:Bind VM.RightControlsColumn, Mode=OneWay}" MaxWidth="{x:Bind VM.RightMaxWidth, Mode=OneWay}" MinWidth="{x:Bind VM.RightMinWidth, Mode=OneWay}">
+                <controls:VirtualPadActions  AllowFocusOnInteraction="False" ManipulationMode = "TranslateX, TranslateY, Scale" ManipulationDelta="RightControlSetup" x:Name="RightVirtualPad" Style="{StaticResource RightVirtualPadStyle}" ViewModel="{x:Bind VM}" HorizontalAlignment="Right" Margin="0,0,5,18">
+                    <controls:VirtualPadActions.RenderTransform>
+                        <CompositeTransform x:Name="RightControlsTransform" TranslateX="{x:Bind VM.RightTransformXCurrent, Mode=OneWay}" TranslateY="{x:Bind VM.RightTransformYCurrent, Mode=OneWay}"/>
+                    </controls:VirtualPadActions.RenderTransform>
+                </controls:VirtualPadActions>
+                <Grid.RenderTransform>
+                    <ScaleTransform x:Name="RightScaleFactor" ScaleX="{x:Bind RightScaleFactorSlider.Value, Mode=OneWay}" ScaleY="{x:Bind RightScaleFactorSlider.Value, Mode=OneWay}"></ScaleTransform>
+                </Grid.RenderTransform>
+            </Grid>
+
+        </Grid>
+
+        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" x:Name="InfosGrid" Canvas.ZIndex="300" MinHeight="38" Grid.ColumnSpan="3"  VerticalAlignment="Top" HorizontalAlignment="Center" Visibility="{x:Bind VM.PreviewCurrentInfoState, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Margin="0,15,0,0" Grid.Row="1">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <TextBlock Text="{x:Bind VM.PreviewCurrentInfo,Mode=OneWay}" TextWrapping="Wrap" TextAlignment="Center" Margin="15,0,15,0" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+                <Grid Canvas.ZIndex="-1"  Grid.RowSpan="5" Grid.ColumnSpan="5" Background="{StaticResource InGameBlurBackground2}">
+                    <interactivity:Interaction.Behaviors>
+                        <behaviors:Blur Value="7" Duration="0" Delay="0" AutomaticallyStart="true"/>
+                    </interactivity:Interaction.Behaviors>
+                </Grid>
+            </Grid>
+        </Border>
+        <Grid x:Name="GameLoadingProgress" HorizontalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Center" Visibility="{x:Bind VM.GameIsLoading, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <ProgressRing Grid.Row="0"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="50" IsActive="{x:Bind VM.GameIsLoading, Mode=OneWay}" />
+            <TextBlock Foreground="White" Text="{x:Bind VM.currentFileEntry, Mode=OneWay}" TextTrimming="CharacterEllipsis" HorizontalAlignment="Center"  Grid.Row="1" Margin="25,10,25,0" Visibility="{x:Bind VM.isProgressVisible, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"></TextBlock>
+            <ProgressBar IsIndeterminate="True" Value="{x:Bind VM.currentFileProgress, Mode=OneWay}" HorizontalAlignment="Stretch" Width="300" Height="8" Margin="0,5,0,0" Grid.Row="2" Visibility="{x:Bind VM.isProgressVisible, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"></ProgressBar>
+        </Grid>
+
+        <Grid x:Name="ControlsPanel" Canvas.ZIndex="51" Grid.Row="0" Grid.ColumnSpan="3" Visibility="{x:Bind VM.ControlsMapVisible, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Grid.RowSpan="4">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid x:Name="ControlsLoadingProgress" Canvas.ZIndex="1" Grid.Row="0" Grid.RowSpan="4" Grid.ColumnSpan="2" Background="#EE000000" Visibility="Collapsed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <ProgressRing x:Name="ControlsLoadingProgressBar" Width="50" Height="50" IsActive="True" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Grid>
+            <Border CornerRadius="5" x:Name="GamePadPortsContainer" BorderThickness="1" BorderBrush="#AF004f00" Grid.Row="1" Margin="12,10,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.ColumnSpan="2" MaxWidth="580">
+                <ComboBox x:Name="GamePadPorts" HorizontalAlignment="Stretch"  BorderThickness="0"  Grid.ColumnSpan="2" SelectionChanged="GamePadPorts_SelectionChanged">
+                <ComboBoxItem x:Name="Port1" Content="Port1" Tag="0"></ComboBoxItem>
+                <ComboBoxItem x:Name="Port2" Content="Port2" Tag="1"></ComboBoxItem>
+                <ComboBoxItem x:Name="Port3" Content="Port3" Tag="2"></ComboBoxItem>
+                <ComboBoxItem x:Name="Port4" Content="Port4" Tag="3"></ComboBoxItem>
+                <ComboBoxItem x:Name="Port5" Content="Port5" Tag="4"></ComboBoxItem>
+                <ComboBoxItem x:Name="Port6" Content="Port6" Tag="5"></ComboBoxItem>
+                <ComboBoxItem x:Name="Port7" Content="Port7" Tag="6"></ComboBoxItem>
+                <ComboBoxItem x:Name="Port8" Content="Port8" Tag="7"></ComboBoxItem>
+                <ComboBoxItem x:Name="Port9" Content="Port9" Tag="8"></ComboBoxItem>
+                <ComboBoxItem x:Name="Port10" Content="Port10" Tag="9"></ComboBoxItem>
+                <ComboBoxItem x:Name="Port11" Content="Port11" Tag="10"></ComboBoxItem>
+                <ComboBoxItem x:Name="Port12" Content="Port12" Tag="11"></ComboBoxItem>
+            </ComboBox>
+               
+            </Border>
+            <ListView x:Name="ControlsPage" Margin="0,5,0,35" Grid.Row="2" MaxWidth="600" Width="{x:Bind InitWidthSizeCustom, Mode=OneWay}" Grid.ColumnSpan="2" HorizontalContentAlignment="Stretch" IsItemClickEnabled="True" ItemClick="ControlsPage_ItemClick" SelectionMode="None" ItemsSource="{Binding Source={StaticResource ButtonsListItemsGroup}}" ItemTemplate="{StaticResource ButtonsListItemTemplate}">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment"  Value="Stretch"></Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.HeaderTemplate>
+                            <DataTemplate>
+                                <Grid HorizontalAlignment="Stretch" Margin="0,0,32,0">
+                                    <TextBlock Text="{Binding Key}" Foreground="DodgerBlue" HorizontalAlignment="Stretch" Opacity="0.7" TextTrimming="CharacterEllipsis" FontWeight="Bold" FontSize="14" />
+                                </Grid>
+                            </DataTemplate>
+                        </GroupStyle.HeaderTemplate>
+                    </GroupStyle>
+                </ListView.GroupStyle>
+            </ListView>
+
+            <!--<TextBlock Grid.ColumnSpan="2" x:Name="OptionsNotice" HorizontalAlignment="Center" Text="Some options require to reopen the game" Margin="10,10,10,10" FontSize="15" FontWeight="Normal" VerticalAlignment="Stretch" Grid.Row="2" FocusVisualPrimaryBrush="MediumBlue" Foreground="MediumBlue"/>-->
+            <Grid Background="{StaticResource InGameBackground}" Grid.ColumnSpan="2" Grid.Row="3">
+                <Grid VerticalAlignment="Bottom" Grid.Row="2" Margin="10,0,0,7" Canvas.ZIndex="100" Opacity="0.7"  Visibility="{x:Bind isXBOX, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                        <Border BorderThickness="1" CornerRadius="20"  Background="Green">
+                            <TextBlock Text="A" Padding="5.8,2,5.8,2" Margin="1,0,0,1.5" FontWeight="Bold" FontSize="12"></TextBlock>
+                        </Border>
+                        <TextBlock Text="Select" Margin="5,3,0,0" FontSize="12" FontWeight="Bold"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="5,0,0,0">
+                        <Border BorderThickness="1" CornerRadius="20"  Background="DarkRed">
+                            <TextBlock Text="B" Padding="5.8,2,5.8,2" Margin="1,0,0,1.5" FontWeight="Bold" FontSize="12"></TextBlock>
+                        </Border>
+                        <TextBlock Text="Back" FontSize="12" Margin="5,3,0,0" FontWeight="Bold"></TextBlock>
+                    </StackPanel>
+                </Grid>
+                <CommandBar Background="{StaticResource InGameCommandBarBackground}" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Grid.Row="4"  AllowFocusOnInteraction="False">
+                    <AppBarButton x:Name="ControlsSave" Label="Save" Icon="Save" Click="ControlsSave_Click"/>
+                    <CommandBar.SecondaryCommands>
+                        <AppBarButton x:Name="SaveControlsGamesOnly" Icon="Save" Label="Game Only" Click="SaveControlsGamesOnly_Click"></AppBarButton>
+                        <AppBarButton x:Name="DeleteControlsGamesOnly" Icon="Delete" Label="Game Only" Click="DeleteControlsGamesOnly_Click"></AppBarButton>
+                        <AppBarSeparator></AppBarSeparator>
+                        <AppBarButton x:Name="ControlsReset" Label="Reset" Icon="Refresh" Click="ControlsReset_Click"/>
+                        <AppBarButton x:Name="ControlsCancel" Label="Close" Icon="Cancel" Click="ControlsCancel_Click"/>
+                    </CommandBar.SecondaryCommands>
+                </CommandBar>
+            </Grid>
+            <Grid Canvas.ZIndex="-1"  Grid.RowSpan="5" Grid.ColumnSpan="5" Background="{StaticResource InGameBlurBackground2}">
+                <interactivity:Interaction.Behaviors>
+                    <behaviors:Blur Value="7" Duration="0" Delay="0" AutomaticallyStart="true"/>
+                </interactivity:Interaction.Behaviors>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="KeyboardPanel" PointerReleased="KeyboardPanel_PointerReleased" Margin="{x:Bind boxMargin2, Mode=OneWay}" Opacity="{x:Bind KeyboardOpacity, Mode=OneWay}" Canvas.ZIndex="50"  Grid.RowSpan="4" Grid.Row="1" Grid.ColumnSpan="3" Visibility="{x:Bind KeyboardVisible, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <ScrollViewer>
+                <Viewbox HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
+                    <GridView x:Name="MainKeys"  HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="{x:Bind boxMargin3, Mode=OneWay}" IsItemClickEnabled="False" ItemsSource="{Binding Source={StaticResource KeyboardListItemsGroup}}" PointerReleased="MainKeys_PointerReleased" SelectionMode="None" KeyDown="MainKeys_KeyDown" ItemTemplate="{StaticResource KeyboardButtonTemplate}" ItemContainerStyle="{x:Bind KeyboardStyle, Mode=OneWay}">
+                        <GridView.GroupStyle>
+                            <GroupStyle>
+                                <GroupStyle.HeaderTemplate>
+                                    <DataTemplate>
+                                        <Grid HorizontalAlignment="Stretch">
+                                            <TextBlock Text="{Binding Key}" Foreground="DodgerBlue" HorizontalAlignment="Stretch" Opacity="0.7" TextTrimming="CharacterEllipsis" FontWeight="Bold" FontSize="14" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </GroupStyle.HeaderTemplate>
+                                <GroupStyle.Panel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel BorderBrush="Red" BorderThickness="1" Margin="8,0,18,0" />
+                                    </ItemsPanelTemplate>
+                                </GroupStyle.Panel>
+                                <GroupStyle.HeaderContainerStyle>
+                                    <Style TargetType="GridViewHeaderItem">
+                                        <Setter Property="HorizontalAlignment" Value="Left" />
+                                    </Style>
+                                </GroupStyle.HeaderContainerStyle>
+                            </GroupStyle>
+                        </GridView.GroupStyle>
+                        <GridView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <ItemsWrapGrid MaximumRowsOrColumns="13" Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </GridView.ItemsPanel>
+                    </GridView>
+                </Viewbox>
+            </ScrollViewer>
+
+            <Grid VerticalAlignment="Bottom" Grid.Row="1" Margin="10,0,0,7" Canvas.ZIndex="100" Opacity="0.7"  Visibility="{x:Bind isXBOX, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <Border BorderThickness="1" CornerRadius="20"  Background="DodgerBlue">
+                        <TextBlock Text="X" Padding="6.8,2,6.8,2" Margin="1,0,0,1.5" FontWeight="Bold"  FontSize="12"></TextBlock>
+                    </Border>
+                    <TextBlock Text="Select" Margin="5,3,0,0" FontWeight="Bold" FontSize="12"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="5,0,0,0">
+                    <Border BorderThickness="1" CornerRadius="20"  Background="DarkRed">
+                        <TextBlock Text="B" Padding="6.8,2,6.8,2" Margin="1,0,0,1.5" FontWeight="Bold"  FontSize="12"></TextBlock>
+                    </Border>
+                    <TextBlock Text="Back" Margin="5,3,0,0" FontWeight="Bold"  FontSize="12"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Column="2" Margin="5,0,0,0" Visibility="{x:Bind ShowExtraShortCuts, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <Border BorderThickness="1" CornerRadius="5"  Background="Orange">
+                        <TextBlock Text="R1" Padding="6.8,2,6.8,2" Margin="1,0,0,1.5" FontWeight="Bold"  FontSize="12"></TextBlock>
+                    </Border>
+                    <TextBlock Text="Remove" Margin="5,3,0,0" FontWeight="Bold"  FontSize="12"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Column="3" Margin="5,0,0,0" Visibility="{x:Bind ShowExtraShortCuts, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <Border BorderThickness="1" CornerRadius="5"  Background="GreenYellow">
+                        <TextBlock Text="L1" Padding="6.8,2,6.8,2" Margin="1,0,0,1.5" FontWeight="Bold"  FontSize="12"></TextBlock>
+                    </Border>
+                    <TextBlock Text="Space" Margin="5,3,0,0" FontWeight="Bold"  FontSize="12"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Column="4" Margin="5,0,0,0" Visibility="{x:Bind ShowExtraShortCuts2, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <Border BorderThickness="1" CornerRadius="5"  Background="Gray">
+                        <TextBlock Text="R.A." Padding="6.8,2,6.8,2" Margin="1,0,0,1.5" FontWeight="Bold"  FontSize="12"></TextBlock>
+                    </Border>
+                    <TextBlock Text="Move" Margin="5,3,0,0" FontWeight="Bold"  FontSize="12"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Column="5" Margin="5,0,0,0" Visibility="{x:Bind ShowExtraShortCuts2, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <Border BorderThickness="1" CornerRadius="5"  Background="Gray">
+                        <TextBlock Text="Start" Padding="6.8,2,6.8,2" Margin="1,0,0,1.5" FontWeight="Bold"  FontSize="12"></TextBlock>
+                    </Border>
+                    <TextBlock Text="Enter" Margin="5,3,0,0" FontWeight="Bold"  FontSize="12"></TextBlock>
+                </StackPanel>
+            </Grid>
+            <CommandBar x:Name="Controls" Grid.Row="1" Background="{StaticResource InGameBackground}">
+                <AppBarToggleButton x:Name="Ctrl" Click="Ctrl_Click">Ctrl</AppBarToggleButton>
+                <AppBarToggleButton x:Name="Shift" Click="Shift_Click" IsChecked="{x:Bind keyboard.ShiftKeyState, Mode=OneWay}">Shift</AppBarToggleButton>
+                <AppBarToggleButton x:Name="Alt" Click="Alt_Click">Alt</AppBarToggleButton>
+                <AppBarButton x:Name="Esc" Click="Esc_Click" Tapped="Esc_Tapped" PointerExited="Esc_PointerExited" KeyUp="Esc_KeyUp">Esc</AppBarButton>
+                <CommandBar.SecondaryCommands>
+                    <AppBarButton Icon="Cancel" Label="Close" x:Name="CloseKeyboard" Click="CloseKeyboard_Click"></AppBarButton>
+                </CommandBar.SecondaryCommands>
+            </CommandBar>
+            <Grid Canvas.ZIndex="-1"  Grid.RowSpan="5" Grid.ColumnSpan="5" Opacity="0.05" Background="{StaticResource InGameBlurBackground2}">
+                <interactivity:Interaction.Behaviors>
+                    <behaviors:Blur Value="2" Duration="0" Delay="0" AutomaticallyStart="true"/>
+                </interactivity:Interaction.Behaviors>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="CoresOptionsPanel" Margin="{x:Bind boxMargin, Mode=OneWay}" Canvas.ZIndex="50"  Grid.RowSpan="4" Grid.Row="{x:Bind currentRow, Mode=OneWay}" Grid.ColumnSpan="{x:Bind columnSpan, Mode=OneWay}" Visibility="{x:Bind VM.CoreOptionsVisible, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.ColumnSpan="2" x:Name="OptionsMainTitle" HorizontalAlignment="Center" Text="{x:Bind VM.SystemName,Mode=OneWay}" Margin="10,10,10,0" FontSize="15" FontWeight="Bold" VerticalAlignment="Stretch" Visibility="Collapsed"/>
+            <ComboBox x:Name="SystemCoresList" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Margin="10,10,10,0" Grid.Row="1" Background="#669182EC" Visibility="Collapsed"/>
+
+            <ProgressRing x:Name="OptionsLoadingProgress" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Width="50" Height="50" IsActive="True" Grid.ColumnSpan="3"/>
+
+            <ListView x:Name="CoreOptionsPage" Margin="0,10,0,35" Grid.Row="1" MaxWidth="600" Width="{x:Bind InitWidthSizeCustom, Mode=OneWay}" Grid.ColumnSpan="2" HorizontalContentAlignment="Stretch" IsItemClickEnabled="True" ItemClick="CoreOptionsPage_ItemClick" SelectionMode="None" ItemsSource="{Binding Source={StaticResource CoreOptionListItemsGroup}}" ItemTemplate="{StaticResource CoreOptionListItemTemplate}">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment"  Value="Stretch"></Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.HeaderTemplate>
+                            <DataTemplate>
+                                <Grid HorizontalAlignment="Stretch" Margin="0,0,32,0">
+                                    <TextBlock Text="{Binding Key}" Foreground="DodgerBlue" HorizontalAlignment="Stretch" Opacity="0.7" TextTrimming="CharacterEllipsis" FontWeight="Bold" FontSize="14" />
+                                </Grid>
+                            </DataTemplate>
+                        </GroupStyle.HeaderTemplate>
+                    </GroupStyle>
+                </ListView.GroupStyle>
+            </ListView>
+            <Grid x:Name="NoOptionsTextGrid" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2" Grid.Row="1" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock x:Name="NoOptionsText1" Text="No options!" HorizontalAlignment="Center" FontSize="25" FontWeight="Bold"></TextBlock>
+                <TextBlock x:Name="NoOptionsText2" Text="Core doesn't support options" Grid.Row="1" HorizontalAlignment="Center" FontSize="25"></TextBlock>
+            </Grid>
+
+            <!--<TextBlock Grid.ColumnSpan="2" x:Name="OptionsNotice" HorizontalAlignment="Center" Text="Some options require to reopen the game" Margin="10,10,10,10" FontSize="15" FontWeight="Normal" VerticalAlignment="Stretch" Grid.Row="2" FocusVisualPrimaryBrush="MediumBlue" Foreground="MediumBlue"/>-->
+            <Grid Background="{StaticResource InGameBackground}" Grid.ColumnSpan="2" Grid.Row="4">
+                <Grid VerticalAlignment="Bottom" Grid.Row="2" Margin="10,0,0,7" Canvas.ZIndex="100" Opacity="0.7"  Visibility="{x:Bind isXBOX, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                        <Border BorderThickness="1" CornerRadius="20"  Background="Green">
+                            <TextBlock Text="A" Padding="5.8,2,5.8,2" Margin="1,0,0,1.5" FontWeight="Bold" FontSize="12"></TextBlock>
+                        </Border>
+                        <TextBlock Text="Select" Margin="5,3,0,0" FontSize="12" FontWeight="Bold"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="5,0,0,0">
+                        <Border BorderThickness="1" CornerRadius="20"  Background="DarkRed">
+                            <TextBlock Text="B" Padding="5.8,2,5.8,2" Margin="1,0,0,1.5" FontWeight="Bold" FontSize="12"></TextBlock>
+                        </Border>
+                        <TextBlock Text="Back" FontSize="12" Margin="5,3,0,0" FontWeight="Bold"></TextBlock>
+                    </StackPanel>
+                </Grid>
+                <CommandBar Background="{StaticResource InGameCommandBarBackground}" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Grid.Row="4" AllowFocusOnInteraction="False">
+                    <AppBarButton x:Name="OptionsSave" Label="Save" Icon="Save" Click="OptionsSave_Click"/>
+                    <CommandBar.SecondaryCommands>
+                        <AppBarButton x:Name="OptionsSaveGame" Label="Game Only" Icon="Save" Click="OptionsSaveGame_Click"/>
+                        <AppBarButton x:Name="OptionsRemoveGame" Label="Game Only" Icon="Delete" Click="OptionsRemoveGame_Click"/>
+                        <AppBarSeparator></AppBarSeparator>
+                        <AppBarButton x:Name="OptionsReset" Label="Reset" Icon="Refresh" Click="OptionsReset_Click_1"/>
+                        <AppBarButton x:Name="OptionsCancel" Label="Close" Icon="Cancel" Click="OptionsCancel_Click"/>
+                    </CommandBar.SecondaryCommands>
+                </CommandBar>
+            </Grid>
+            <Grid Canvas.ZIndex="-1"  Grid.RowSpan="5" Grid.ColumnSpan="5" Background="{StaticResource InGameBlurBackground2}">
+                <!--<interactivity:Interaction.Behaviors>
+                    <behaviors:Blur Value="7" Duration="0" Delay="0" AutomaticallyStart="true"/>
+                </interactivity:Interaction.Behaviors>-->
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="EffectsPanel" Margin="{x:Bind boxMargin, Mode=OneWay}" Canvas.ZIndex="50" Grid.RowSpan="4" Grid.Row="{x:Bind currentRow, Mode=OneWay}" Grid.ColumnSpan="{x:Bind columnSpan, Mode=OneWay}" Visibility="{x:Bind VM.EffectsVisible, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Border CornerRadius="5" BorderThickness="1" BorderBrush="#AA304ffe" Margin="8,10,8,0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MaxWidth="600">
+                <ComboBox x:Name="EffectsList" SelectionChanged="EffectsList_SelectionChanged"  BorderThickness="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                <ComboBoxItem x:Name="AllEffects" Content="All Effects" Tag="All" ></ComboBoxItem>
+            </ComboBox>
+            </Border>
+            <Grid x:Name="EffectsPage" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="1" Margin="0,5,0,5" HorizontalAlignment="Center" VerticalAlignment="Stretch" MaxWidth="600">
+                <ListView x:Name="EffectsPageList" Margin="0,0,0,35" MaxWidth="600" Width="{x:Bind InitWidthSizeCustom, Mode=OneWay}" ItemClick="EffectsPageList_ItemClick"  IsItemClickEnabled="True"  HorizontalContentAlignment="Stretch" SelectionMode="None" ItemsSource="{x:Bind EffectsGroupList, Mode=OneWay}" ItemTemplate="{StaticResource EffectsListItemTemplate}">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment"  Value="Stretch"></Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.GroupStyle>
+                        <GroupStyle>
+                            <GroupStyle.HeaderTemplate>
+                                <DataTemplate>
+                                    <Grid HorizontalAlignment="Stretch" Margin="0,0,32,0">
+                                        <TextBlock Text="GPU Effects" Foreground="DodgerBlue" HorizontalAlignment="Stretch" Opacity="0.7" TextTrimming="CharacterEllipsis" FontWeight="Bold" FontSize="14" />
+                                    </Grid>
+                                </DataTemplate>
+                            </GroupStyle.HeaderTemplate>
+                        </GroupStyle>
+                    </ListView.GroupStyle>
+                </ListView>
+            </Grid>
+            <ProgressRing x:Name="EffectsLoadingProgress" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Width="50" Height="50" IsActive="True" Grid.ColumnSpan="3"/>
+
+            <Grid Background="{StaticResource InGameBackground}" Grid.Row="2">
+                <Grid VerticalAlignment="Bottom" Grid.Row="2" Margin="10,0,0,7" Canvas.ZIndex="100" Opacity="0.7"  Visibility="{x:Bind isXBOX, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                        <Border BorderThickness="1" CornerRadius="20"  Background="Green">
+                            <TextBlock Text="A" Padding="5.8,2,5.8,2" Margin="1,0,0,1.5" FontWeight="Bold" FontSize="12"></TextBlock>
+                        </Border>
+                        <TextBlock Text="Select" Margin="5,3,0,0" FontSize="12" FontWeight="Bold"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="5,0,0,0">
+                        <Border BorderThickness="1" CornerRadius="20"  Background="DarkRed">
+                            <TextBlock Text="B" Padding="5.8,2,5.8,2" Margin="1,0,0,1.5" FontWeight="Bold" FontSize="12"></TextBlock>
+                        </Border>
+                        <TextBlock Text="Back" FontSize="12" Margin="5,3,0,0" FontWeight="Bold"></TextBlock>
+                    </StackPanel>
+                </Grid>
+                <CommandBar Background="{StaticResource InGameCommandBarBackground}" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Grid.Row="4"  AllowFocusOnInteraction="False">
+                    <AppBarButton x:Name="EffectsReset" Label="Reset" Icon="Refresh" Click="EffectsReset_Click"/>
+                    <CommandBar.SecondaryCommands>
+                        <AppBarButton x:Name="EffectsCancel" Label="Close" Icon="Cancel" Click="EffectsCancel_Click"/>
+                    </CommandBar.SecondaryCommands>
+                </CommandBar>
+            </Grid>
+            <Grid Canvas.ZIndex="-1"  Grid.RowSpan="5" Grid.ColumnSpan="5" Background="{StaticResource InGameBlurBackground2}">
+                <!--<interactivity:Interaction.Behaviors>
+                    <behaviors:Blur Value="7" Duration="0" Delay="0" AutomaticallyStart="true"/>
+                </interactivity:Interaction.Behaviors>-->
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="MenuPanel" Visibility="{x:Bind VM.MenuGridActive, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Canvas.ZIndex="50" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="4">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <WebView x:Name="webViewGuides" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Canvas.ZIndex="100" Visibility="{x:Bind VM.WebViewGuidesVisible, Mode=OneWay}"></WebView>
+            <!-- NEW IN-GAME MENU -->
+            <ScrollViewer Grid.Row="0" KeyDown="mainGrid_KeyDown" Margin="0,8,0,0" x:Name="CoresQuickAccessContainer" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <!--Here main page items will be generated by the code-->
+            </ScrollViewer>
+            
+            <Grid x:Name="GridMenusPage" Visibility="Collapsed"  Margin="0,10,0,5" HorizontalAlignment="Stretch" >
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <GridView x:Name="MenusGrid" IsItemClickEnabled="True" ItemClick="MenusGrid_ItemClick" ItemsSource="{Binding Source={StaticResource MenusGridSource}}" ItemTemplate="{StaticResource SystemMenuGridItemDT}" Style="{StaticResource RootListStyle}">
+                    <GridView.GroupStyle>
+                        <GroupStyle>
+                            <GroupStyle.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Key}" Margin="5" FontSize="12" HorizontalAlignment="Left" FontWeight="Bold" Foreground="Gray"  MinWidth="130"/>
+                                </DataTemplate>
+                            </GroupStyle.HeaderTemplate>
+                            <GroupStyle.HeaderContainerStyle>
+                                <Style TargetType="GridViewHeaderItem">
+                                    <Setter Property="HorizontalAlignment" Value="Left" />
+                                </Style>
+                            </GroupStyle.HeaderContainerStyle>
+                        </GroupStyle>
+                    </GridView.GroupStyle>
+                </GridView>
+
+            </Grid>
+
+
+            <Grid Background="{StaticResource InGameBackground}"  Grid.Row="2">
+                <Grid VerticalAlignment="Bottom" Grid.Row="2" Margin="10,0,0,7" Canvas.ZIndex="100" Opacity="0.7"  Visibility="{x:Bind isXBOX, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                        <Border BorderThickness="1" CornerRadius="20"  Background="Green">
+                            <TextBlock Text="A" Padding="5.8,2,5.8,2" Margin="1,0,0,1.5" FontWeight="Bold" FontSize="12"></TextBlock>
+                        </Border>
+                        <TextBlock Text="Select" Margin="5,3,0,0" FontSize="12" FontWeight="Bold"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="5,0,0,0">
+                        <Border BorderThickness="1" CornerRadius="20"  Background="DarkRed">
+                            <TextBlock Text="B" Padding="5.8,2,5.8,2" Margin="1,0,0,1.5" FontWeight="Bold" FontSize="12"></TextBlock>
+                        </Border>
+                        <TextBlock Text="Back" FontSize="12" Margin="5,3,0,0" FontWeight="Bold"></TextBlock>
+                    </StackPanel>
+                </Grid>
+                <CommandBar Background="{StaticResource InGameCommandBarBackground}"  VerticalAlignment="Bottom"  >
+                    <AppBarButton x:Name="MenusCancel" Label="Close" Icon="Cancel" Click="MenusCancel_Click"/>
+                </CommandBar>
+            </Grid>
+
+            <Grid Canvas.ZIndex="-1"  Grid.RowSpan="5" Grid.ColumnSpan="5" Background="{StaticResource InGameBlurBackground2}">
+                <interactivity:Interaction.Behaviors>
+                    <behaviors:Blur Value="7" Duration="0" Delay="0" AutomaticallyStart="true"/>
+                </interactivity:Interaction.Behaviors>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="SavesPanel" Visibility="{x:Bind VM.SavesListActive, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Canvas.ZIndex="50" Grid.Row="0" Grid.ColumnSpan="4" Grid.RowSpan="4">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <ListView x:Name="SavesList" Margin="0,10,0,0" Grid.Row="0" VerticalAlignment="Stretch" IsItemClickEnabled="True" MaxWidth="600" RightTapped="SavesList_RightTapped" KeyUp="SavesList_KeyUp" Holding="SavesList_Holding" ItemClick="SavesList_ItemClick" ItemsSource="{x:Bind VM.GameSavesList, Mode=OneWay}" ItemTemplate="{StaticResource SystemRecentsListItemDT}" Style="{StaticResource RootListStyle}">
+
+            </ListView>
+            
+            <Grid Grid.RowSpan="2" Background="#E6000000" Canvas.ZIndex="200" Visibility="{x:Bind VM.LoadSaveListInProgress, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                <ProgressRing x:Name="SystemSavesLoadingProgress" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Width="50" Height="50" IsActive="{x:Bind VM.LoadSaveListInProgress, Mode=OneWay}"/>
+                <TextBlock Text="Please wait.." HorizontalAlignment="Center" FontWeight="Bold" VerticalAlignment="Center" Margin="0,100,0,0" TextAlignment="Center"></TextBlock>
+            </Grid>
+            <Grid x:Name="NoRecentsTextGrid" Padding="30,0,30,0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind VM.NoSavesActive, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock x:Name="NoRecentsText1" Text="No saves found!" Grid.Row="1" HorizontalAlignment="Center" FontSize="17" FontWeight="Bold"></TextBlock>
+                <TextBlock x:Name="NoRecentsText2" Text="Try to save some states" Grid.Row="2" HorizontalAlignment="Center" FontSize="17"></TextBlock>
+                <Image Width="72" Height="72">
+                    <Image.Source>
+                        <BitmapImage UriSource="ms-appx:///Assets/Icons/Menus/web-free.bmp"/>
+                    </Image.Source>
+                </Image>
+            </Grid>
+
+            <Grid Background="{StaticResource InGameBackground}"  Grid.Row="2">
+                <Grid VerticalAlignment="Bottom" Grid.Row="2" Margin="10,0,0,7" Canvas.ZIndex="100" Opacity="0.7" Visibility="{x:Bind isXBOX, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                        <Border BorderThickness="1" CornerRadius="20"  Background="Green">
+                            <TextBlock Text="A" Padding="5.8,2,5.8,2" Margin="1,0,0,1.5" FontWeight="Bold" FontSize="12"></TextBlock>
+                        </Border>
+                        <TextBlock Text="Select" Margin="5,3,0,0" FontSize="12" FontWeight="Bold"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="5,0,0,0">
+                        <Border BorderThickness="1" CornerRadius="20"  Background="DarkRed">
+                            <TextBlock Text="B" Padding="5.8,2,5.8,2" Margin="1,0,0,1.5" FontWeight="Bold" FontSize="12"></TextBlock>
+                        </Border>
+                        <TextBlock Text="Back" FontSize="12" Margin="5,3,0,0" FontWeight="Bold"></TextBlock>
+                    </StackPanel>
+                </Grid>
+                <CommandBar Background="{StaticResource InGameCommandBarBackground}"  VerticalAlignment="Bottom" >
+                    <!--<AppBarButton x:Name="SavesInfo" Label="Info" Icon="Help" Click="SavesInfo_Click"/>-->
+                    <!--<AppBarButton x:Name="SavesSlots" Label="View" Icon="ViewAll">
+                        <AppBarButton.Flyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem x:Uid="SavesAll" Text="All" Click="SavesAll_Click" IsEnabled="True"/>
+                                <MenuFlyoutItem x:Uid="SavesQuick" Text="Quick" Click="SavesQuick_Click" IsEnabled="True"/>
+                                <MenuFlyoutItem x:Uid="SavesAuto" Text="Auto" Click="SavesAuto_Click" IsEnabled="True"/>
+                                <MenuFlyoutItem x:Uid="SavesSlots" Text="Slots" Click="SavesSlots_Click" IsEnabled="True"/>
+                            </MenuFlyout>
+                        </AppBarButton.Flyout>
+                    </AppBarButton>-->
+                    <AppBarButton x:Name="SavesMenu" Icon="Setting" Label="Actions" IsEnabled="{x:Bind VM.ShowMainActions,Mode=OneWay}">
+                        <AppBarButton.Flyout>
+                            <MenuFlyout>
+                                <MenuFlyoutSubItem x:Uid="Slot1MenuFlyoutItem" Text="Design 1">
+                                    <MenuFlyoutItem x:Uid="LoadMenuFlyoutItem" Command="{x:Bind VM.LoadStateSlot1}" IsEnabled="True"/>
+                                    <MenuFlyoutItem x:Uid="SaveMenuFlyoutItem" Command="{x:Bind VM.SaveStateSlot1}" IsEnabled="True"/>
+                                </MenuFlyoutSubItem>
+                                <MenuFlyoutSubItem x:Uid="Slot2MenuFlyoutItem" Text="Design 2">
+                                    <MenuFlyoutItem x:Uid="LoadMenuFlyoutItem" Command="{x:Bind VM.LoadStateSlot2}" IsEnabled="True"/>
+                                    <MenuFlyoutItem x:Uid="SaveMenuFlyoutItem" Command="{x:Bind VM.SaveStateSlot2}" IsEnabled="True"/>
+                                </MenuFlyoutSubItem>
+                                <MenuFlyoutSubItem x:Uid="Slot3MenuFlyoutItem" Text="Design 3">
+                                    <MenuFlyoutItem x:Uid="LoadMenuFlyoutItem" Command="{x:Bind VM.LoadStateSlot3}" IsEnabled="True"/>
+                                    <MenuFlyoutItem x:Uid="SaveMenuFlyoutItem" Command="{x:Bind VM.SaveStateSlot3}" IsEnabled="True"/>
+                                </MenuFlyoutSubItem>
+                                <MenuFlyoutSubItem x:Uid="Slot4MenuFlyoutItem" Text="Design 4">
+                                    <MenuFlyoutItem x:Uid="LoadMenuFlyoutItem" Command="{x:Bind VM.LoadStateSlot4}" IsEnabled="True"/>
+                                    <MenuFlyoutItem x:Uid="SaveMenuFlyoutItem" Command="{x:Bind VM.SaveStateSlot4}" IsEnabled="True"/>
+                                </MenuFlyoutSubItem>
+                                <MenuFlyoutSubItem x:Uid="Slot5MenuFlyoutItem" Text="Design 5">
+                                    <MenuFlyoutItem x:Uid="LoadMenuFlyoutItem" Command="{x:Bind VM.LoadStateSlot5}" IsEnabled="True"/>
+                                    <MenuFlyoutItem x:Uid="SaveMenuFlyoutItem" Command="{x:Bind VM.SaveStateSlot5}" IsEnabled="True"/>
+                                </MenuFlyoutSubItem>
+                                <MenuFlyoutSubItem x:Uid="MoreMenuFlyoutItem" Text="Design 11">
+                                    <MenuFlyoutSubItem x:Uid="Slot6MenuFlyoutItem" Text="Design 6">
+                                        <MenuFlyoutItem x:Uid="LoadMenuFlyoutItem" Command="{x:Bind VM.LoadStateSlot6}" IsEnabled="True"/>
+                                        <MenuFlyoutItem x:Uid="SaveMenuFlyoutItem" Command="{x:Bind VM.SaveStateSlot6}" IsEnabled="True"/>
+                                    </MenuFlyoutSubItem>
+                                    <MenuFlyoutSubItem x:Uid="Slot7MenuFlyoutItem" Text="Design 7">
+                                        <MenuFlyoutItem x:Uid="LoadMenuFlyoutItem" Command="{x:Bind VM.LoadStateSlot7}" IsEnabled="True"/>
+                                        <MenuFlyoutItem x:Uid="SaveMenuFlyoutItem" Command="{x:Bind VM.SaveStateSlot7}" IsEnabled="True"/>
+                                    </MenuFlyoutSubItem>
+                                    <MenuFlyoutSubItem x:Uid="Slot8MenuFlyoutItem" Text="Design 8">
+                                        <MenuFlyoutItem x:Uid="LoadMenuFlyoutItem" Command="{x:Bind VM.LoadStateSlot8}" IsEnabled="True"/>
+                                        <MenuFlyoutItem x:Uid="SaveMenuFlyoutItem" Command="{x:Bind VM.SaveStateSlot8}" IsEnabled="True"/>
+                                    </MenuFlyoutSubItem>
+                                    <MenuFlyoutSubItem x:Uid="Slot9MenuFlyoutItem" Text="Design 9">
+                                        <MenuFlyoutItem x:Uid="LoadMenuFlyoutItem" Command="{x:Bind VM.LoadStateSlot9}" IsEnabled="True"/>
+                                        <MenuFlyoutItem x:Uid="SaveMenuFlyoutItem" Command="{x:Bind VM.SaveStateSlot9}" IsEnabled="True"/>
+                                    </MenuFlyoutSubItem>
+                                    <MenuFlyoutSubItem x:Uid="Slot10MenuFlyoutItem" Text="Design 10">
+                                        <MenuFlyoutItem x:Uid="LoadMenuFlyoutItem" Command="{x:Bind VM.LoadStateSlot10}" IsEnabled="True"/>
+                                        <MenuFlyoutItem x:Uid="SaveMenuFlyoutItem" Command="{x:Bind VM.SaveStateSlot10}" IsEnabled="True"/>
+                                    </MenuFlyoutSubItem>
+                                </MenuFlyoutSubItem>
+                                <MenuFlyoutSeparator></MenuFlyoutSeparator>
+                                <MenuFlyoutItem x:Uid="ClearAllMenuFlyoutItem" Command="{x:Bind VM.ClearAllSaves}" IsEnabled="True"/>
+                                <MenuFlyoutSubItem x:Uid="AutoSaveFilteringMenuFlyout" Text="FilteringDesign">
+                                    <ToggleMenuFlyoutItem x:Uid="OnStopFilteringMenuFlyout" IsChecked="{x:Bind VM.AutoSave, Mode=OneWay}" Command="{x:Bind VM.SetAutoSave}" IsEnabled="True"/>
+                                    <ToggleMenuFlyoutItem x:Uid="Seconds15FilteringMenuFlyout" IsChecked="{x:Bind VM.AutoSave15Sec, Mode=OneWay}" Command="{x:Bind VM.SetAutoSave15Sec}" IsEnabled="True"/>
+                                    <ToggleMenuFlyoutItem x:Uid="Seconds30FilteringMenuFlyout" IsChecked="{x:Bind VM.AutoSave30Sec, Mode=OneWay}" Command="{x:Bind VM.SetAutoSave30Sec}" IsEnabled="True"/>
+                                    <ToggleMenuFlyoutItem x:Uid="Seconds60FilteringMenuFlyout" IsChecked="{x:Bind VM.AutoSave60Sec, Mode=OneWay}" Command="{x:Bind VM.SetAutoSave60Sec}" IsEnabled="True"/>
+                                    <ToggleMenuFlyoutItem x:Uid="Seconds90FilteringMenuFlyout" IsChecked="{x:Bind VM.AutoSave90Sec, Mode=OneWay}" Command="{x:Bind VM.SetAutoSave90Sec}" IsEnabled="True"/>
+                                    <ToggleMenuFlyoutItem x:Uid="AutoSaveNotifyFilteringMenuFlyout" IsChecked="{x:Bind VM.AutoSaveNotify, Mode=OneWay}" Command="{x:Bind VM.SetAutoSaveNotify}" IsEnabled="True"/>
+                                </MenuFlyoutSubItem>
+                            </MenuFlyout>
+                        </AppBarButton.Flyout>
+                    </AppBarButton>
+                    <CommandBar.SecondaryCommands>
+                        <AppBarButton x:Name="SavesAll" Label="All" Icon="Filter" Click="SavesAll_Click"/>
+                        <AppBarButton x:Name="SavesQuick" Label="Quick" Icon="Filter" Click="SavesQuick_Click"/>
+                        <AppBarButton x:Name="SavesAuto" Label="Auto" Icon="Filter" Click="SavesAuto_Click"/>
+                        <AppBarButton x:Name="SavesSlots" Label="Slots" Icon="Filter" Click="SavesSlots_Click"/>
+
+                        <AppBarSeparator></AppBarSeparator>
+                        <AppBarButton x:Name="SavesCancel" Label="Close" Icon="Cancel" Click="SavesCancel_Click"/>
+                    </CommandBar.SecondaryCommands>
+                </CommandBar>
+            </Grid>
+            <Grid Canvas.ZIndex="-1"  Grid.RowSpan="5" Grid.ColumnSpan="5" Background="{StaticResource InGameBlurBackground2}">
+                <interactivity:Interaction.Behaviors>
+                    <behaviors:Blur Value="7" Duration="0" Delay="0" AutomaticallyStart="true"/>
+                </interactivity:Interaction.Behaviors>
+            </Grid>
+        </Grid>
+        <Border x:Name="LayoutRoot" CornerRadius="5" Margin="0,20,20,20" ManipulationMode = "TranslateX, TranslateY, Scale" ManipulationDelta="SensorsGrid_ManipulationDelta" Background="#C10C0C0C" Grid.ColumnSpan="3" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top"  Visibility="{x:Bind VM.ShowSensorsInfo, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Canvas.ZIndex="100">
+            <Border.RenderTransform>
+                <CompositeTransform x:Name="SensorsGridTransform" TranslateX="{x:Bind XSCurrent, Mode=OneWay}" TranslateY="{x:Bind YSCurrent, Mode=OneWay}"/>
+            </Border.RenderTransform>
+            <Grid Margin="0,-10,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock HorizontalAlignment="Left" Height="25" Margin="8,20,0,0" TextWrapping="Wrap" Text="X-axis:" VerticalAlignment="Top" Width="62" Foreground="#FF2975E4"/>
+                <TextBlock HorizontalAlignment="Left" Height="27" Margin="8,49,0,0" TextWrapping="Wrap" Text="Y-axis:" VerticalAlignment="Top" Width="62" Foreground="#FFD9E21A"/>
+                <TextBlock HorizontalAlignment="Left" Height="23" Margin="8,80,0,0" TextWrapping="Wrap" Text="Z-axis:" VerticalAlignment="Top" Width="62" Foreground="#FF75F31E"/>
+                <TextBlock HorizontalAlignment="Left" Height="23" Margin="8,110,0,0" TextWrapping="Wrap" Text="Memory:" VerticalAlignment="Top" Width="62" Foreground="#FFF5901E"/>
+                <TextBlock x:Name="txtXAxis" Text="{x:Bind VM.txtXAxis, Mode=OneWay}" HorizontalAlignment="Left" Height="15" Margin="70,23,0,1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="61" Foreground="#FF2975E4" FontSize="12"/>
+                <TextBlock x:Name="txtYAxis" Text="{x:Bind VM.txtYAxis, Mode=OneWay}" HorizontalAlignment="Left" Height="15" Margin="70,52,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="53" Foreground="#FFD9E21A" FontSize="12"/>
+                <TextBlock x:Name="txtZAxis" Text="{x:Bind VM.txtZAxis, Mode=OneWay}" HorizontalAlignment="Left" Height="15" Margin="70,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="53" Foreground="#FF75F31E" FontSize="12"/>
+                <TextBlock x:Name="txtMemory" HorizontalAlignment="Left" Height="15" Margin="70,113,0,0" TextWrapping="Wrap" Text="{x:Bind VM.txtMemory, Mode=OneWay}" VerticalAlignment="Top" Width="53" Foreground="#FFF5901E" FontSize="12"/>
+                <Button Content="Close" HorizontalAlignment="Stretch" Grid.Row="1"  Command="{x:Bind VM.SetShowSensorsInfo}" Margin="5,0,5,5"></Button>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

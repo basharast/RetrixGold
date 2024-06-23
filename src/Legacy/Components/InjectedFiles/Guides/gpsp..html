@@ -1,0 +1,352 @@
+<h1 id="nintendo-game-boy-advance-gpsp">Nintendo - Game Boy Advance (gpSP)</h1>
+<h2 id="background">Background</h2>
+<p>gpSP is a Game Boy Advance emulator based on notaz' fork of gpSP with additional codebase improvements.</p>
+<h3 id="authorlicense">Author/License</h3>
+<p>The gpSP core has been authored by</p>
+<ul>
+<li>Exophase</li>
+</ul>
+<p>The gpSP core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/gpsp/blob/master/COPYING">GPLv2</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the gpSP core have the following file extensions:</p>
+<ul>
+<li>.gba</li>
+<li>.bin</li>
+</ul>
+<h2 id="databases">Databases</h2>
+<p>RetroArch database(s) that are associated with the gpSP core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Game%20Boy%20Advance.rdb">Nintendo - Game Boy Advance</a></li>
+</ul>
+<h2 id="bios">BIOS</h2>
+<p>Required or optional firmware files go in the frontend's system directory.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">gba_bios.bin</td>
+<td style="text-align: center;">Game Boy Advance Image - Optional</td>
+<td style="text-align: center;">a860e8c0b6d573d191e4ec7db1b1e4f6</td>
+</tr>
+</tbody>
+</table>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the gpSP core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The gpSP core's directory name is 'gpSP'</p>
+<p>The gpSP core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Save directory</strong></p>
+<ul>
+<li>'content-name'.sav (Cartridge backup save)</li>
+</ul>
+<p><strong>Frontend's State directory</strong></p>
+<ul>
+<li>'content-name'.state# (State)</li>
+</ul>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The gpSP core's core provided FPS is 59.72750057</li>
+<li>The gpSP core's core provided sample rate is 65536 Hz</li>
+<li>The gpSP core's core provided aspect ratio is 3/2</li>
+</ul>
+<h2 id="controllers">Controllers</h2>
+<p>The gpSP core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<h3 id="user-1-device-types">User 1 device types</h3>
+<ul>
+<li>None - Doesn't disable input.</li>
+<li><strong>RetroPad</strong> - Joypad</li>
+<li>RetroPad w/Analog - Joypad - There's no reason to switch to this.</li>
+</ul>
+<h3 id="controller-tables">Controller tables</h3>
+<h4 id="joypad">Joypad</h4>
+<p><img src="../image/controller/gba.png" alt="" /></p>
+<table>
+<thead>
+<tr>
+<th>User 1 Remap descriptors</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>Select</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+</tr>
+<tr>
+<td>Start</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>A</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<h2 id="compatibility">Compatibility</h2>
+<table>
+<thead>
+<tr>
+<th>Game</th>
+<th>Issue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Activision Anthology</td>
+<td>Freezes when entering a game.</td>
+</tr>
+<tr>
+<td>Banjo-Kazooie - Grunty's Revenge</td>
+<td>Black screen during developer logo. Resets when Banjo leaves his house.</td>
+</tr>
+<tr>
+<td>Boktai Trilogy</td>
+<td>The solar sensor is not emulated.</td>
+</tr>
+<tr>
+<td>DemiKids - Light/Dark Version</td>
+<td>Crashes when entering a battle.</td>
+</tr>
+<tr>
+<td>Digimon Racing (Europe)</td>
+<td>Freezes during the intro.</td>
+</tr>
+<tr>
+<td>Dragon Ball Z - The Legacy of Goku</td>
+<td>Graphics glitches.</td>
+</tr>
+<tr>
+<td>Final Fantasy VI</td>
+<td>Background/tiling order issues.</td>
+</tr>
+<tr>
+<td>Game Boy Advance Video - Dragon Ball GT - Volume 1</td>
+<td>White screen.</td>
+</tr>
+<tr>
+<td>Grand Theft Auto Advance</td>
+<td>Crashes after first dialog.</td>
+</tr>
+<tr>
+<td>Harry Potter - Quidditch World Cup</td>
+<td>Crashes when going ingame.</td>
+</tr>
+<tr>
+<td>Koro Koro Puzzle Happy Panechu!</td>
+<td>The tilt sensor is not emulated.</td>
+</tr>
+<tr>
+<td>Mario &amp; Luigi - Superstar Saga</td>
+<td>Crashes when entering a battle.</td>
+</tr>
+<tr>
+<td>Phantasy Star Collection</td>
+<td>Phantasy Star 1 flickers.</td>
+</tr>
+<tr>
+<td>R-Type III - The Third Lightning</td>
+<td>Softlocks at Irem startup screen.</td>
+</tr>
+<tr>
+<td>Rock 'n Roll Racing</td>
+<td>Corrupted graphics, not playable.</td>
+</tr>
+<tr>
+<td>Rockman &amp; Forte</td>
+<td>Doesn't continue after GBA BIOS screen.</td>
+</tr>
+<tr>
+<td>Sims 2, The - Pets</td>
+<td>Graphics glitches. Heavy flickering, black objects.</td>
+</tr>
+<tr>
+<td>Street Racing Syndicate</td>
+<td>Freezes at startup screen, doesn't continue.</td>
+</tr>
+<tr>
+<td>Super Monkey Ball Jr.</td>
+<td>Softlocks at startup screen.</td>
+</tr>
+<tr>
+<td>Super Street Fighter II Turbo/X Revival</td>
+<td>Small graphics glitch. Selecting speed 'Turbo 1' and beyond on the character select screen makes the game speed window not fully visible.</td>
+</tr>
+<tr>
+<td>Tales of Phantasia (USA version)</td>
+<td>Softlocks during the introduction sequence (just before the small guy hits the tall guy in the right).</td>
+</tr>
+<tr>
+<td>WarioWare: Twisted!</td>
+<td>The tilt sensor is not emulated.</td>
+</tr>
+<tr>
+<td>Wolfenstein 3D</td>
+<td>Softlocks at id Software startup screen.</td>
+</tr>
+<tr>
+<td>Yoshi’s Universal Gravitation</td>
+<td>The tilt sensor is not emulated.</td>
+</tr>
+</tbody>
+</table>
+<p>??? note &quot;(1)&quot;
+<img src="../image/core/gpsp/goku.png" alt="" /></p>
+<p>??? note &quot;(2)&quot;
+<img src="../image/core/gpsp/sims.png" alt="" /></p>
+<p>??? note &quot;(3)&quot;
+<img src="../image/core/gpsp/fighter.png" alt="" /></p>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="http://notaz.gp2x.de/other.php">Official gpSP Website</a></li>
+<li><a href="https://github.com/notaz/gpsp">Official gpSP Github Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/gpsp_libretro.info">Libretro gpSP Core info file</a></li>
+<li><a href="https://github.com/libretro/gpsp">Libretro gpSP Github Repository</a></li>
+<li><a href="https://github.com/libretro/gpsp/issues">Report Libretro gpSP Core Issues Here</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLRbgg4gk_0Iczn5l7AfS11JNbXUv5Widl">Gameplay Videos</a></li>
+</ul>
+<h3 id="see-also">See also</h3>
+<h4 id="nintendo-game-boy-advance">Nintendo - Game Boy Advance</h4>
+<ul>
+<li><a href="beetle_gba.md">Nintendo - Game Boy Advance (Beetle GBA)</a></li>
+<li><a href="meteor.md">Nintendo - Game Boy Advance (Meteor)</a></li>
+<li><a href="mgba.md">Nintendo - Game Boy Advance (mGBA)</a></li>
+<li><a href="tempgba.md">Nintendo - Game Boy Advance (TempGBA)</a></li>
+<li><a href="vba_m.md">Nintendo - Game Boy Advance (VBA-M)</a></li>
+<li><a href="vba_next.md">Nintendo - Game Boy Advance (VBA Next)</a></li>
+</ul>

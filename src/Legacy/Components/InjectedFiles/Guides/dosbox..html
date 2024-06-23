@@ -1,0 +1,828 @@
+<h1 id="dos-dosbox">DOS (DOSBox)</h1>
+<h2 id="background">Background</h2>
+<p>DOSBox is a multiplatform DOS-emulator</p>
+<p>The DOSBox core has been authored by</p>
+<ul>
+<li>DOSBox Team</li>
+</ul>
+<p>The DOSBox core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/dosbox-libretro/blob/master/COPYING">GPLv2</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the DOSBox core have the following file extensions:</p>
+<ul>
+<li>.exe</li>
+<li>.com</li>
+<li>.bat</li>
+<li>.conf</li>
+</ul>
+<p>RetroArch database(s) that are associated with the DOSBox core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/DOS.rdb">DOS</a></li>
+</ul>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the DOSBox core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The DOSBox core's library name is 'DOSBox'</p>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The DOSBox core's core provided FPS is 60.0</li>
+<li>The DOSBox core's core provided sample rate is (Rate)</li>
+<li>The DOSBox core's base width is 320</li>
+<li>The DOSBox core's base height is 200</li>
+<li>The DOSBox core's max width is 1024</li>
+<li>The DOSBox core's max height is 768</li>
+<li>The DOSBox core's core provided aspect ratio is 4/3</li>
+</ul>
+<h2 id="loading-content">Loading content</h2>
+<ul>
+<li>To use you can either load an exe/com/bat file or a *.conf file.</li>
+<li>If loading exe/com/bat the system directory will be searched for a 'dosbox.conf' file to load. If one isn't available default values will be used. This mode is equivalent to running a DOSBox binary with the specified file as the command line argument.</li>
+<li>If loading a conf file DOSBox will be loaded with the options in the config file. This mode is useful if you just want to be dumped at a command prompt, but can also be used to load a game by putting commands in the autoexec section.</li>
+<li>To be useful the frontend will need to have keyboard+mouse support, and all keyboard shortcuts need to be remapped.</li>
+</ul>
+<h2 id="usage">Usage</h2>
+<p>DOSBox can load DOS executables or custom config files. To get started you can generate a config file by creating the DOSbox folder in your libretro SYSTEM directory, and then loading any DOS application, exit back to the command interpreter and then run config -wcd, Configuration files allow you far better control than core options so far. Eventually every single useable option will be exposed but in the meantime combining both is the best alternative.</p>
+<p>If you generate a default config it will always be loaded by default, but you can override it by saving your custom settings, preferably in the game folder. You can create a config like this:</p>
+<pre><code>[autoexec]
+@echo off
+mount d &quot;/storage/roms/dos/game&quot;
+d:
+game.exe
+</code></pre>
+<p>Then you can store this config in the game folder (or any other directory) and just the config instead of the exe file. Once you change a setting using the config command or via core options, you can always update the config file by using config -wc</p>
+<h2 id="midi">MIDI</h2>
+<ul>
+<li>To use MIDI you need MT32_CONTROL.ROM and MT32_PCM.ROM in the system directory of RetroArch.Then set:</li>
+</ul>
+<pre><code>[midi]
+mpu401=intelligent
+mididevice=mt32
+</code></pre>
+<h2 id="core-options">Core options</h2>
+<p>The DOSBox core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Machine type</strong> [dosbox_machine_type] (<strong>vgaonly</strong>|svga_s3|svga_et3000|svga_et4000|svga_paradise|hercules|cga|tandy|pcjr|ega)</p>
+<p>Select what machine will be emulated.</p>
+</li>
+<li><p><strong>Gamepad emulated mouse</strong> [dosbox_emulated_mouse] (<strong>enable</strong>|disable)</p>
+<p>CPU cycles are divided in core options to allow fine control of the desired CPU cycles. Setting this too low may cause slow gameplay, setting this too high might cause sound crackling and bad performance.</p>
+</li>
+<li><p><strong>CPU cycles x 100000</strong> [dosbox_cpu_cycles_0] (<strong>0</strong>|1|2|3|4|5|6|7|8|9)</p>
+<p>CPU cycles are divided in core options to allow fine control of the desired CPU cycles. Setting this too low may cause slow gameplay, setting this too high might cause sound crackling and bad performance.</p>
+</li>
+<li><p><strong>PU cycles x 10000</strong> [dosbox_cpu_cycles_1] (<strong>0</strong>|1|2|3|4|5|6|7|8|9)</p>
+<p>CPU cycles are divided in core options to allow fine control of the desired CPU cycles. Setting this too low may cause slow gameplay, setting this too high might cause sound crackling and bad performance.</p>
+</li>
+<li><p><strong>CPU cycles x 1000</strong> [dosbox_cpu_cycles_2] (<strong>1</strong>|2|3|4|5|6|7|8|9|0)</p>
+<p>CPU cycles are divided in core options to allow fine control of the desired CPU cycles. Setting this too low may cause slow gameplay, setting this too high might cause sound crackling and bad performance.</p>
+</li>
+<li><p><strong>CPU cycles x 100</strong> [dosbox_cpu_cycles_3] (<strong>0</strong>|1|2|3|4|5|6|7|8|9&quot;)</p>
+<p>CPU cycles are divided in core options to allow fine control of the desired CPU cycles. Setting this too low may cause slow gameplay, setting this too high might cause sound crackling and bad performance.</p>
+</li>
+</ul>
+<h2 id="user-1-2-device-types">User 1 - 2 device types</h2>
+<p>The DOSBox core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<ul>
+<li>None - Input disabled.</li>
+<li><strong>Gamepad</strong> - Joypad</li>
+<li>Joystick - Analog</li>
+<li>Keyboard - Keyboard - Keyboard inputs are always active. Has keymapper support.</li>
+</ul>
+<h2 id="joypad">Joypad</h2>
+<table>
+<thead>
+<tr>
+<th>Input descriptors for Gamepad 2 Button</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Button 2</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>Button 1</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Input descriptors for Gamepad 4 Button</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Button 3</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>Button 1</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>Button 4</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+<tr>
+<td>Button 2</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Input descriptors for Joystick 2 Button</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Button 2</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>Button 1</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+</tr>
+<tr>
+<td>Left Analog X</td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> X</td>
+</tr>
+<tr>
+<td>Left Analog Y</td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> Y</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Input descriptors for Joystick 4 Button</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Button 3</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>Button 1</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+</tr>
+<tr>
+<td>Button 4</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+<tr>
+<td>Button 2</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+</tr>
+<tr>
+<td>Left Analog X</td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> X</td>
+</tr>
+<tr>
+<td>Left Analog Y</td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> Y</td>
+</tr>
+<tr>
+<td>Right Analog X</td>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /> X</td>
+</tr>
+<tr>
+<td>Right Analog Y</td>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /> Y</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Input descriptors for Keyboard</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Esc</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+</tr>
+<tr>
+<td>Enter</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+</tr>
+<tr>
+<td>Kbd Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>Kbd Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>Kbd Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>Kbd Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Input descriptors for Emulated mouse</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Emulated Mouse Right Click</td>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+</tr>
+<tr>
+<td>Emulated Mouse Left Click</td>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+</tr>
+<tr>
+<td>Emulated Mouse X Axis</td>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /> X</td>
+</tr>
+<tr>
+<td>Emulated Mouse Y Axis</td>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /> Y</td>
+</tr>
+</tbody>
+</table>
+<h2 id="keyboard">Keyboard</h2>
+<table>
+<thead>
+<tr>
+<th>RetroKeyboard Inputs</th>
+<th>Keyboard</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keyboard Backspace</td>
+<td>Backspace</td>
+</tr>
+<tr>
+<td>Keyboard Tab</td>
+<td>Tab</td>
+</tr>
+<tr>
+<td>Keyboard Return</td>
+<td>Enter</td>
+</tr>
+<tr>
+<td>Keyboard Pause</td>
+<td>Pause</td>
+</tr>
+<tr>
+<td>Keyboard Escape</td>
+<td>Escape</td>
+</tr>
+<tr>
+<td>Keyboard Space</td>
+<td>Space</td>
+</tr>
+<tr>
+<td>Keyboard '</td>
+<td>'</td>
+</tr>
+<tr>
+<td>Keyboard ,</td>
+<td>,</td>
+</tr>
+<tr>
+<td>Keyboard .</td>
+<td>.</td>
+</tr>
+<tr>
+<td>Keyboard /</td>
+<td>/</td>
+</tr>
+<tr>
+<td>Keyboard 0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Keyboard 1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Keyboard 2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Keyboard 3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Keyboard 4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Keyboard 5</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Keyboard 6</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Keyboard 7</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Keyboard 8</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Keyboard 9</td>
+<td>9</td>
+</tr>
+<tr>
+<td>Keyboard ;</td>
+<td>;</td>
+</tr>
+<tr>
+<td>Keyboard -</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard =</td>
+<td>=</td>
+</tr>
+<tr>
+<td>Keyboard [</td>
+<td>[</td>
+</tr>
+<tr>
+<td>Keyboard \</td>
+<td>\</td>
+</tr>
+<tr>
+<td>Keyboard ]</td>
+<td>]</td>
+</tr>
+<tr>
+<td>Keyboard <code>                   |</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Keyboard a</td>
+<td>a</td>
+</tr>
+<tr>
+<td>Keyboard b</td>
+<td>b</td>
+</tr>
+<tr>
+<td>Keyboard c</td>
+<td>c</td>
+</tr>
+<tr>
+<td>Keyboard d</td>
+<td>d</td>
+</tr>
+<tr>
+<td>Keyboard e</td>
+<td>e</td>
+</tr>
+<tr>
+<td>Keyboard f</td>
+<td>f</td>
+</tr>
+<tr>
+<td>Keyboard g</td>
+<td>g</td>
+</tr>
+<tr>
+<td>Keyboard h</td>
+<td>h</td>
+</tr>
+<tr>
+<td>Keyboard i</td>
+<td>i</td>
+</tr>
+<tr>
+<td>Keyboard j</td>
+<td>j</td>
+</tr>
+<tr>
+<td>Keyboard k</td>
+<td>k</td>
+</tr>
+<tr>
+<td>Keyboard l</td>
+<td>l</td>
+</tr>
+<tr>
+<td>Keyboard m</td>
+<td>m</td>
+</tr>
+<tr>
+<td>Keyboard n</td>
+<td>n</td>
+</tr>
+<tr>
+<td>Keyboard o</td>
+<td>o</td>
+</tr>
+<tr>
+<td>Keyboard p</td>
+<td>p</td>
+</tr>
+<tr>
+<td>Keyboard q</td>
+<td>q</td>
+</tr>
+<tr>
+<td>Keyboard r</td>
+<td>r</td>
+</tr>
+<tr>
+<td>Keyboard s</td>
+<td>s</td>
+</tr>
+<tr>
+<td>Keyboard t</td>
+<td>t</td>
+</tr>
+<tr>
+<td>Keyboard u</td>
+<td>u</td>
+</tr>
+<tr>
+<td>Keyboard v</td>
+<td>v</td>
+</tr>
+<tr>
+<td>Keyboard w</td>
+<td>w</td>
+</tr>
+<tr>
+<td>Keyboard x</td>
+<td>x</td>
+</tr>
+<tr>
+<td>Keyboard y</td>
+<td>y</td>
+</tr>
+<tr>
+<td>Keyboard z</td>
+<td>z</td>
+</tr>
+<tr>
+<td>Keyboard Delete</td>
+<td>Delete</td>
+</tr>
+<tr>
+<td>Keyboard Numpad 0</td>
+<td>Numpad 0</td>
+</tr>
+<tr>
+<td>Keyboard Numpad 1</td>
+<td>Numpad 1</td>
+</tr>
+<tr>
+<td>Keyboard Numpad 2</td>
+<td>Numpad 2</td>
+</tr>
+<tr>
+<td>Keyboard Numpad 3</td>
+<td>Numpad 3</td>
+</tr>
+<tr>
+<td>Keyboard Numpad 4</td>
+<td>Numpad 4</td>
+</tr>
+<tr>
+<td>Keyboard Numpad 5</td>
+<td>Numpad 5</td>
+</tr>
+<tr>
+<td>Keyboard Numpad 6</td>
+<td>Numpad 6</td>
+</tr>
+<tr>
+<td>Keyboard Numpad 7</td>
+<td>Numpad 7</td>
+</tr>
+<tr>
+<td>Keyboard Numpad 8</td>
+<td>Numpad 8</td>
+</tr>
+<tr>
+<td>Keyboard Numpad 9</td>
+<td>Numpad 9</td>
+</tr>
+<tr>
+<td>Keyboard Numpad .</td>
+<td>Numpad .</td>
+</tr>
+<tr>
+<td>Keyboard Numpad /</td>
+<td>Numpad /</td>
+</tr>
+<tr>
+<td>Keyboard Numpad *</td>
+<td>Numpad *</td>
+</tr>
+<tr>
+<td>Keyboard Numpad -</td>
+<td>Numpad -</td>
+</tr>
+<tr>
+<td>Keyboard Numpad +</td>
+<td>Numpad +</td>
+</tr>
+<tr>
+<td>Keyboard Numpad Enter</td>
+<td>Numpad Enter</td>
+</tr>
+<tr>
+<td>Keyboard Up</td>
+<td>Up</td>
+</tr>
+<tr>
+<td>Keyboard Down</td>
+<td>Down</td>
+</tr>
+<tr>
+<td>Keyboard Right</td>
+<td>Left</td>
+</tr>
+<tr>
+<td>Keyboard Left</td>
+<td>Right</td>
+</tr>
+<tr>
+<td>Keyboard Insert</td>
+<td>Insert</td>
+</tr>
+<tr>
+<td>Keyboard Home</td>
+<td>Home</td>
+</tr>
+<tr>
+<td>Keyboard End</td>
+<td>End</td>
+</tr>
+<tr>
+<td>Keyboard Page Up</td>
+<td>Page Up</td>
+</tr>
+<tr>
+<td>Keyboard Page Down</td>
+<td>Page Down</td>
+</tr>
+<tr>
+<td>Keyboard F1</td>
+<td>F1</td>
+</tr>
+<tr>
+<td>Keyboard F2</td>
+<td>F2</td>
+</tr>
+<tr>
+<td>Keyboard F3</td>
+<td>F3</td>
+</tr>
+<tr>
+<td>Keyboard F4</td>
+<td>F4</td>
+</tr>
+<tr>
+<td>Keyboard F5</td>
+<td>F5</td>
+</tr>
+<tr>
+<td>Keyboard F6</td>
+<td>F6</td>
+</tr>
+<tr>
+<td>Keyboard F7</td>
+<td>F7</td>
+</tr>
+<tr>
+<td>Keyboard F8</td>
+<td>F8</td>
+</tr>
+<tr>
+<td>Keyboard F9</td>
+<td>F9</td>
+</tr>
+<tr>
+<td>Keyboard F10</td>
+<td>F10</td>
+</tr>
+<tr>
+<td>Keyboard F11</td>
+<td>F11</td>
+</tr>
+<tr>
+<td>Keyboard F12</td>
+<td>F12</td>
+</tr>
+<tr>
+<td>Keyboard Num Lock</td>
+<td>Num Lock</td>
+</tr>
+<tr>
+<td>Keyboard Caps Lock</td>
+<td>Caps Lock</td>
+</tr>
+<tr>
+<td>Keyboard Scroll Lock</td>
+<td>Scroll Lock</td>
+</tr>
+<tr>
+<td>Keyboard Right Shift</td>
+<td>Right Shift</td>
+</tr>
+<tr>
+<td>Keyboard Left Shift</td>
+<td>Left Shift</td>
+</tr>
+<tr>
+<td>Keyboard Right Control</td>
+<td>Right Control</td>
+</tr>
+<tr>
+<td>Keyboard Left Control</td>
+<td>Left Control</td>
+</tr>
+<tr>
+<td>Keyboard Right Alt</td>
+<td>Right Alt</td>
+</tr>
+<tr>
+<td>Keyboard Left Alt</td>
+<td>Left Alt</td>
+</tr>
+<tr>
+<td>Keyboard Sys Req</td>
+<td>Print Screen</td>
+</tr>
+</tbody>
+</table>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://www.dosbox.com/">Official DOSBox Website</a></li>
+<li><a href="https://sourceforge.net/projects/dosbox/">Official/Original DOSBox SourceForge Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/dosbox_libretro.info">Libretro DOSBox Core info file</a></li>
+<li><a href="https://github.com/libretro/dosbox-libretro">Libretro DOSBox Github Repository</a></li>
+<li><a href="https://github.com/libretro/dosbox-libretro/issues">Report Libretro DOSBox Core Issues Here</a></li>
+</ul>

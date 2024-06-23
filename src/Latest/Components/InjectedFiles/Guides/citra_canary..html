@@ -1,0 +1,383 @@
+<p>#Nintendo - 3DS (Citra Canary/Experimental)</p>
+<h2 id="background">Background</h2>
+<p>Citra is an experimental open-source Nintendo 3DS emulator/debugger written in C++. It is written with portability in mind.</p>
+<p><strong>Citra Canary is the new performance-optimized version of Citra.</strong></p>
+<p>The Citra Canary/Experimental core has been authored by</p>
+<ul>
+<li>Citra Emulation Project</li>
+</ul>
+<p>The Citra Canary/Experimental core is licensed under</p>
+<ul>
+<li><a href="https://github.com/citra-emu/citra/blob/master/license.txt">GPLv2</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h3 id="requirements">Requirements</h3>
+<p>OpenGL 3.3 or higher</p>
+<p><img src="../image/core/citra/gl.png" alt="" /></p>
+<p>!!! warning
+There is currently no ‘working’ macOS version available. This is because this core requires OpenGL core 3.3 context, and RetroArch on macOS currently does not support this. We will have to add support for this to a future version of RetroArch on macOS before this core will start to work on it.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the Citra Canary/Experimental core have the following file extensions:</p>
+<ul>
+<li>.3ds</li>
+<li>.3dsx</li>
+<li>.elf</li>
+<li>.axf</li>
+<li>.cci</li>
+<li>.cxi</li>
+<li>.app</li>
+</ul>
+<p>RetroArch database(s) that are associated with the Citra Canary/Experimental core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Nintendo%203DS.rdb">Nintendo - Nintendo 3DS</a></li>
+</ul>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the Citra Canary/Experimental core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The Citra Canary/Experimental core's library name is 'Citra'</p>
+<p>The Citra Canary/Experimental core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Save directory</strong></p>
+<ul>
+<li><a href="https://citra-emu.org/wiki/user-directory/">Citra System and Save files</a></li>
+</ul>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The Citra Canary/Experimental core's core provided FPS is 60.0</li>
+<li>The Citra Canary/Experimental core's core provided sample rate is 32728 Hz</li>
+<li>The Citra Canary/Experimental core's base width is (Base width)</li>
+<li>The Citra Canary/Experimental core's base height is (Base height)</li>
+<li>The Citra Canary/Experimental core's max width is (Max width)</li>
+<li>The Citra Canary/Experimental core's max height is (Max height)</li>
+<li>The Citra Canary/Experimental core's core provided aspect ratio is (Ratio)</li>
+</ul>
+<h2 id="core-options">Core options</h2>
+<p>The Citra Canary/Experimental core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Enable CPU JIT</strong> [citra_use_cpu_jit] (<strong>enabled</strong>|disabled)</p>
+<p>Enable Citra's 'dynarmic' dynamic recomplier. Can improve performance. Instructions that are not implemented by the recompiler fall back into the interpreter CPU core.</p>
+<p>If disabled, Citra will solely use the Interpreter CPU core.</p>
+</li>
+<li><p><strong>Select Renderer</strong> [citra_renderer] (<strong>enabled</strong>|disabled)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Enable shader JIT</strong> [citra_use_shader_jit] (<strong>enabled</strong>|disabled)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Resolution scale factor</strong> [citra_resolution_factor] (<strong>1x (Native)</strong>|2x|3x|4x|5x|6x|7x|8x|9x|10x)</p>
+<p>Self-explanatory.</p>
+</li>
+</ul>
+<p>??? note &quot;Screen layout positioning - Default Top-Bottom Screen&quot;
+<img src="../image/core/citra/default.png" alt="" /></p>
+<p>??? note &quot;Screen layout positioning - Single Screen Only&quot;
+<img src="../image/core/citra/single.png" alt="" /></p>
+<p>??? note &quot;Screen layout positioning - Large Screen, Small Screen)&quot;
+<img src="../image/core/citra/large.png" alt="" /></p>
+<ul>
+<li><p><strong>Screen layout positioning</strong> [citra_layout_option] (<strong>Default Top-Bottom Screen</strong>|Single Screen Only|Large Screen, Small Screen|Side by Side)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Prominent 3DS screen</strong> [citra_swap_screen] (<strong>Top</strong>|Bottom)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Right analog function</strong> [citra_analog_function] (<strong>C-Stick and Touchscreen Pointer</strong>|Touchscreen Pointer|C-Stick)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Emulated pointer deadzone (%)</strong> [citra_deadzone] (<strong>15</strong>|20|25|30|35|0|5|10)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>What hardware shaders to enable</strong> [citra_hw_shaders] (<strong>None</strong>|Partial|Full)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Enables accurate hardware shaders (infinity * 0 = 0), required for some games, though slow on some hardware</strong> [citra_use_accurate_mul] (<strong>enabled</strong>|disabled)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Enable virtual SD card</strong> [citra_use_virtual_sd] (<strong>enabled</strong>|disabled)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Savegame location</strong> [citra_use_libretro_save_path] (<strong>LibRetro Default</strong>|Citra Default)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>3DS system model</strong> [citra_is_new_3ds] (<strong>Old 3DS</strong>|New 3DS)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>3DS system region</strong> [citra_region_value] (<strong>Auto</strong>|Japan|USA|Europe|Australia|China|Korea|Taiwan)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>&quot;Enable GDB stub</strong> [citra_use_gdbstub] (<strong>disabled</strong>|enabled)</p>
+<p>Awaiting description.</p>
+</li>
+</ul>
+<h2 id="joypad">Joypad</h2>
+<table>
+<thead>
+<tr>
+<th>User 1 input descriptors</th>
+<th>RetroPad Inputs</th>
+<th>Citra inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>B</td>
+</tr>
+<tr>
+<td>Y</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+<td>Y</td>
+</tr>
+<tr>
+<td>Select</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+<td>Select</td>
+</tr>
+<tr>
+<td>Start</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+<td>Start</td>
+</tr>
+<tr>
+<td>Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>Up</td>
+</tr>
+<tr>
+<td>Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>Down</td>
+</tr>
+<tr>
+<td>Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>Left</td>
+</tr>
+<tr>
+<td>Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>Right</td>
+</tr>
+<tr>
+<td>A</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>A</td>
+</tr>
+<tr>
+<td>X</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+<td>X</td>
+</tr>
+<tr>
+<td>L</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+<td>L</td>
+</tr>
+<tr>
+<td>R</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+<td>R</td>
+</tr>
+<tr>
+<td>ZL</td>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+<td>ZL</td>
+</tr>
+<tr>
+<td>ZR</td>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+<td>ZR</td>
+</tr>
+<tr>
+<td>Home</td>
+<td><img src="../image/retropad/retro_l3.png" alt="" /></td>
+<td>Home</td>
+</tr>
+<tr>
+<td>Touch Screen Touch</td>
+<td><img src="../image/retropad/retro_r3.png" alt="" /></td>
+<td>Touch Screen Touch</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> X</td>
+<td>Circle Pad X</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> Y</td>
+<td>Circle Pad Y</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /> X</td>
+<td><a href="#core-options">Right analog function</a></td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /> Y</td>
+<td><a href="#core-options">Right analog function</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="mouse">Mouse</h3>
+<table>
+<thead>
+<tr>
+<th>RetroMouse Inputs</th>
+<th>Citra inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retromouse/retro_mouse.png" alt="" /> Mouse Cursor</td>
+<td>Touchscreen Pointer</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_left.png" alt="" /> Mouse 1</td>
+<td>Touch Screen Touch</td>
+</tr>
+</tbody>
+</table>
+<h3 id="pointer">Pointer</h3>
+<table>
+<thead>
+<tr>
+<th>RetroPointer Inputs</th>
+<th>Citra inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retromouse/retro_mouse.png" alt="" /> or <img src="../image/Button_Pack/Gestures/Gesture_Finger_Front.png" alt="" /> Pointer Position</td>
+<td>Touchscreen Pointer</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_left.png" alt="" /> or <img src="../image/Button_Pack/Gestures/Gesture_Tap.png" alt="" /> Pointer Pressed</td>
+<td>Touch Screen Touch</td>
+</tr>
+</tbody>
+</table>
+<h2 id="compatibility">Compatibility</h2>
+<ul>
+<li><a href="https://citra-emu.org/game/">Citra Game Compatibility List</a></li>
+</ul>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://citra-emu.org/">Official Citra Canary/Experimental Website</a></li>
+<li><a href="https://github.com/citra-emu/citra">Official Citra Canary/Experimental Github Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/citra_canary_libretro.info">Libretro Citra Canary/Experimental Core info file</a></li>
+<li><a href="https://github.com/libretro/citra/tree/canary">Libretro Citra Canary/Experimental Github Repository</a></li>
+<li><a href="https://github.com/libretro/citra/issues">Report Libretro Citra Canary/Experimental Core Issues Here</a></li>
+</ul>
+<h2 id="nintendo-nintendo-3ds">Nintendo - Nintendo 3DS</h2>
+<ul>
+<li><a href="citra.md">Nintendo - 3DS (Citra)</a></li>
+</ul>

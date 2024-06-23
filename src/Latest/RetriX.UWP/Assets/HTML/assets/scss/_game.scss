@@ -1,0 +1,708 @@
+/*---------------------------------------
+    12. Game CSS
+-----------------------------------------*/
+
+.game-slide{
+    &.row-7{
+        & .col-4{
+            padding: 0 7px;
+        }
+    }
+    & .slick-arrow{
+        position: absolute;
+        top: -75px;
+        right: 8px;
+        background-color: transparent;
+        border: 0;
+        font-size: 26px;
+        line-height: 28px;
+        color: #b0b0b0;
+        transition: all 0.3s ease-in-out;
+        //Responsive
+        @media #{$large-mobile}{
+            top: -62px;
+        }
+        &.slick-prev{
+            right: 30px;
+        }
+        &:hover{
+            color: $theme-color;
+        }
+    }
+}
+.single-game{
+    &.game-slide-item{
+        background: $white;
+        border-radius: 10px;
+        & .game-img{
+            & img{
+                border-radius: 10px 10px 0px 0px;
+            }
+        }
+        & .game-content{
+            //Responsive
+            @media #{$tablet-device}{
+                padding: 10px;
+            }
+            @media #{$large-mobile}{
+                padding: 10px;
+            }
+            & span{
+                //Responsive
+                @media #{$large-mobile}{
+                    float: none;
+                 }
+            }
+            & h4{
+                //Responsive
+                @media #{$tablet-device}{
+                    font-size: 14px;
+                    line-height: 26px;
+                }
+                @media #{$large-mobile}{
+                    font-size: 14px;
+                    line-height: 26px;
+                }
+            }
+            & span{
+                //Responsive
+                @media #{$tablet-device}{
+                    font-size: 10px;
+                }
+                @media #{$large-mobile}{
+                    font-size: 12px;
+                }
+            }
+        }
+        &:hover{
+           & .game-img{
+                & img{
+                    transform: scale(1);
+                }
+            } 
+        }
+    }
+    & .game-img{
+        overflow: hidden;
+        & a{
+            display: block;
+            & img{
+                width: 100%;
+                transition: all 3s cubic-bezier(.25,.46,.45,.94);
+            }
+        }
+    }
+    & .game-content{
+            padding: 20px 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        & h4{
+            font-size: 20px;
+            line-height: 28px;
+            margin-bottom: 0;
+            color: $body-color;
+            display: inline-block;
+            //Responsive 
+            @media #{$laptop-device}{
+                font-size: 16px;
+            }
+            @media #{$desktop-device}{
+                font-size: 18px;
+            }
+            @media #{$large-mobile}{
+                font-size: 16px;
+            }
+            & a{
+                display: block;
+            }
+        }
+        & span{
+            font-size: 16px;
+            line-height: 28px;
+            color: $theme-color;
+            font-family: $heading-font;
+            float: right;
+            //Responsive 
+            @media #{$laptop-device}{
+                font-size: 14px;
+            }
+            @media #{$desktop-device}{
+                font-size: 14px;
+            }
+            @media #{$large-mobile}{
+                font-size: 12px;
+            }
+        }
+        & p{
+            font-size: 16px;
+            line-height: 24px;
+            margin-bottom: 10px;
+            margin-top: 15px;
+        }
+    }
+    &:hover{
+        & .game-img{
+                & img{
+                    transform: scale(1.15);
+                }
+            }
+    }
+}
+
+
+/*-- Upcoming Game CSS --*/
+.upcoming-game{
+    margin-top: 4px;
+    & .row.no-gutters{
+        & .col-lg-3{
+            flex: 0 0 23%;
+            max-width: 23%;
+            //Responsive
+            @media #{$laptop-device}{
+                flex: 0 0 25%;
+                max-width: 25%;
+            }
+            @media #{$desktop-device}{
+                flex: 0 0 30%;
+                max-width: 30%;
+            }
+            @media #{$tablet-device}{
+                flex: 0 0 40%;
+                max-width: 40%;
+            }
+            @media #{$large-mobile}{
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
+        & .col-lg-9{
+            flex: 0 0 77%;
+            max-width: 77%;
+            //Responsive
+            @media #{$laptop-device}{
+                flex: 0 0 75%;
+                max-width: 75%;
+            }
+            @media #{$desktop-device}{
+                flex: 0 0 70%;
+                max-width: 70%;
+            }
+            @media #{$tablet-device}{
+                flex: 0 0 60%;
+                max-width: 60%;
+            }
+            @media #{$large-mobile}{
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
+    }
+}
+.upcoming-game-area{
+    background-image: url(../images/banner/game-banner.jpg);
+    background-position: center center;
+    background-size: cover;
+    position: relative;
+    padding: 80px 105px;
+    position: relative;
+    z-index: 9;
+    //Responsive
+    @media #{$laptop-device}{
+        padding: 45px 55px;
+    }
+    @media #{$desktop-device}{
+        padding: 45px 55px;
+    }
+    @media #{$tablet-device}{
+        padding: 45px 55px;
+    }
+    @media #{$large-mobile}{
+        padding: 45px 55px;
+    }
+    &::before{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        content: "";
+        background-color: $black;
+        opacity: 0.5;
+        z-index: -1;
+    }
+    & h2{
+        font-size: 36px;
+        line-height: 45px;
+        color: #e4a92e; 
+        //Responsive
+        @media #{$laptop-device}{
+            font-size: 30px;
+        }
+    }
+}
+.upcoming-game-slider{
+    .single-upcoming-game{
+        padding: 0 2px;
+        & .upcoming-game-img{
+            & img{
+                width: 100%;
+            }
+        }
+        & .upcoming-game-content{
+            padding: 15px 10px;
+            //Responsive
+            @media #{$desktop-device}{
+                padding: 10px;
+            }
+            @media #{$tablet-device}{
+                padding: 10px;
+            }
+            @media #{$large-mobile}{
+                padding: 10px;
+            }
+            & h4{
+                font-size: 20px;
+                line-height: 28px;
+                margin-bottom: 0;
+                display: inline-block;
+                //Responsive
+                @media #{$laptop-device}{
+                    font-size: 18px;
+                }
+                @media #{$desktop-device}{
+                    font-size: 18px;
+                }
+                @media #{$tablet-device}{
+                    font-size: 16px;
+                }
+                @media #{$tablet-device}{
+                    font-size: 16px;
+                }
+                @media #{$large-mobile}{
+                    font-size: 18px;
+                }
+            }
+            & span{
+                font-size: 16px;
+                line-height: 28px;
+                color: $theme-color;
+                font-family: $heading-font;
+                //Responsive
+                @media #{$laptop-device}{
+                    font-size: 14px;
+                }
+                @media #{$desktop-device}{
+                    font-size: 14px;
+                }
+                @media #{$tablet-device}{
+                    font-size: 10px;
+                }
+                @media #{$large-mobile}{
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+    
+}
+
+
+/*-- Games Toolbar CSS --*/
+.games-area{
+    //Responsive
+    @media #{$laptop-device}{
+        margin-bottom: -5px;
+    }
+    @media #{$tablet-device}{
+        margin-bottom: -5px;
+    }
+    @media #{$large-mobile}{
+        margin-bottom: -5px;
+    }
+}
+.game-topbar-wrapper{
+    margin-bottom: 40px;
+    & .game-search-box{
+        display: flex;
+        align-items: flex-end;
+        position: relative;
+        //Responsive
+        @media #{$large-mobile}{
+            flex-wrap: wrap;
+        }
+        & h3{
+            font-size: 24px;
+            line-height: 28px;
+            margin-bottom: 0;
+            margin-right: 25px;
+            //Responsive
+            @media #{$desktop-device}{
+                font-size: 18px;
+                line-height: 24px;
+                margin-right: 15px;
+            }
+            @media #{$tablet-device}{
+                font-size: 16px;
+                line-height: 24px;
+                margin-right: 10px;
+            }
+        }
+        & input{
+            height: 50px;
+            border: 0;
+            border-bottom: 1px solid #616161;
+            color: #5c5c5c;
+            padding: 0 40px 0 0px;
+            font-size: 16px;
+            width: 265px;
+            //Responsive
+            @media #{$desktop-device}{
+                width: 200px;
+            }
+            @media #{$tablet-device}{
+                width: 170px;
+                font-size: 14px;
+                height: 40px;
+            }
+            @media #{$large-mobile}{
+                width: 100%;
+                font-size: 14px;
+                height: 40px;
+            }
+        }
+        & button{
+            background-color: transparent;
+            border: 0;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            font-size: 16px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            padding: 0;
+        }
+    }
+    & .toolbar-shorter{
+        display: flex;
+        align-items: flex-end;
+        margin-right: 50px;
+        &:last-child{
+            margin-right: 0;
+        }
+        //Responsive
+        @media #{$tablet-device}{
+            margin-right: 20px;
+        }
+        @media #{$large-mobile}{
+            margin-right: 0px;
+        }
+        & h3{
+            font-size: 24px;
+            line-height: 28px;
+            margin-bottom: 0;
+            margin-right: 25px;
+            //Responsive
+            @media #{$desktop-device}{
+                font-size: 18px;
+                line-height: 24px;
+                margin-right: 15px;
+            }
+            @media #{$tablet-device}{
+                font-size: 16px;
+                line-height: 24px;
+                margin-right: 10px;
+            }
+        }
+        & .nice-select{
+            width: 140px;
+            border: 0;
+            border-bottom: 1px solid #616161;
+            border-radius: 0;
+            padding-left: 0;
+            //Responsive
+            @media #{$desktop-device}{
+                width: 120px;
+            }
+            @media #{$tablet-device}{
+                width: 100px;
+                height: 40px;
+            }
+            @media #{$large-mobile}{
+                width: 140px;
+            }
+        }
+    }
+}
+
+
+/*-- Games Details CSS --*/
+.game-image-gallery-wrap{
+    & .game-image-thumbs{
+        overflow: hidden;
+        margin: 0 -5px;
+        margin-top: 10px;
+        & .sm-image{
+            padding: 0 5px;
+            & img{
+                width: 100%;
+            }
+        }
+    }
+    & .game-description{
+        margin-top: 30px;
+        & h3{
+            font-size: 24px;
+            line-height: 28px;
+            margin-bottom: 15px;
+        }
+        & p{
+            font-size: 16px;
+            line-height: 28px;
+            font-weight: 400;
+        }
+    }
+}
+.timelaine-wrapper{
+    padding-left: 30px;
+    & .single-timeline{
+        position: relative;
+        &::before{
+            content: "";
+            position: absolute;
+            top: 4px;
+            left: -37px;
+            width: 25px;
+            height: 25px;
+            background-color: $theme-color;
+            border-radius: 100%;
+            border: 8px solid $white;
+        }
+        &::after{
+            content: "";
+            position: absolute;
+            top: 28px;
+            left: -26px;
+            width: 1px;
+            height: 100%;
+            background-color: #b7b7b7;
+            z-index: -1;
+        }
+        &:last-child{
+            &::after{
+                    display: none;
+                }    
+            }
+        & h4{
+            font-size: 20px;
+            line-height: 28px;
+            margin-bottom: 15px;
+        }
+        & p{
+            font-size: 16px;
+            line-height: 28px;
+            font-weight: 400;
+        }
+        & span{
+            font-size: 16px;
+            line-height: 28px;
+            font-weight: 500;
+            color: $theme-color;
+        }
+        & a{
+            font-size: 16px;
+            line-height: 28px;
+            font-weight: 500;
+            color: $theme-color;
+            margin-left: 30px;
+            //Responsive
+            @media #{$large-mobile}{
+                margin-left: 0;
+                margin-top: 10px;
+            }
+            &:hover{
+                color: $hover-color;
+            }
+        }
+    }
+}
+.ratting-wrap{
+    & h3{
+        font-size: 24px;
+        line-height: 28px;
+        margin-bottom: 15px;
+    }
+    & .rating-area {
+        display: flex;
+        align-items: center;
+        //Responsive
+        @media #{$large-mobile}{
+            flex-wrap: wrap;
+            overflow: hidden;
+        }
+        & .total-rating{
+            max-width: 220px;
+            flex: 1 0 220px;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 50px 0;
+            & h2{
+                font-size: 36px;
+                line-height: 28px;
+                color: $theme-color;
+                margin-bottom: 5px;
+            }
+            & span{
+                font-size: 18px;
+                line-height: 28px;
+            }
+        }
+        & .rating-review{
+            max-width: 390px;
+            flex: 1 0 390px;
+            padding-left: 50px;
+            //Responsive
+            @media #{$large-mobile}{
+                padding-left: 0;
+                flex: 1 0 300px;
+                margin-top: 20px;
+                max-width: 300px;
+            }
+            & .single-rating{
+                overflow: hidden;
+                margin-bottom: 10px;
+                & .rating-star {
+                    float: left;
+                    width: 45px;
+                    & span{
+                        font-size: 18px;
+                        line-height: 28px;
+                        font-family: $heading-font;
+                        color: $body-color;
+                    }
+                    & i{
+                        font-size: 18px;
+                        line-height: 28px;
+                        color: #ecb800;
+                        margin-left: 10px;
+                    }
+                }
+                & .rating-progress {
+                    float: left;
+                    width: 220px;
+                    margin-top: 10px;
+                    padding-left: 14px;
+                    //Responsive
+                    @media #{$large-mobile}{
+                        width: 160px;
+                    }
+                    & .progress{
+                        height: 6px;
+                        & .progress-bar{
+                            background-color: $theme-color;
+                        }
+                    }
+                }
+                & .rating-count {
+                    float: left;
+                    width: 35px;
+                    padding-left: 20px;
+                    & span{
+                        font-size: 20px;
+                        line-height: 28px;
+                        color: $body-color;
+                        font-family: $heading-font;
+                    }
+                }
+            }
+        }
+    }
+}
+.review-wrap{
+    //Responsive
+    @media #{$desktop-device}{
+        margin-bottom: -10px;
+    }
+    @media #{$large-mobile}{
+        margin-bottom: -10px;
+    }
+    & h3{
+        font-size: 24px;
+        line-height: 28px;
+        margin-bottom: 15px;
+    }
+    & .single-review{
+        & h4{
+            font-size: 18px;
+            line-height: 28px;
+            color: $body-color;
+            margin-bottom: 0;
+        }
+        & .ratting{
+            margin-bottom: 20px;
+            & i{
+                color: #ecb800;
+                font-size: 14px;
+            }
+        }
+        & p{
+            font-size: 16px;
+            line-height: 24px;
+            font-weight: 400;
+            max-width: 675px;
+        }
+        & .review-name-action{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 675px;
+            & a{
+                font-size: 16px;
+                line-height: 24px;
+                display: block;
+            }
+            & ul{
+                display: flex;
+                & li{
+                    margin-right: 20px;
+                    &:last-child{
+                        margin-right: 0;
+                    }
+                    & a{
+                        font-family: "Ubuntu", sans-serif;
+                        font-weight: 500;
+                        font-size: 16px;
+                        list-style: 24px;
+                        & i{
+                            margin-right: 5px;
+                        }
+                    }
+                    &:nth-child(2){
+                        & a{
+                            color: #b6b6b6;  
+                            &:hover{
+                                color: $theme-color;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    & .reply-btn {
+        & a{
+            display: block;
+            font-size: 14px;
+            line-height: 28px;
+            color: #7c7c7c;
+            font-family: $heading-font;
+            &:hover{
+                color: $theme-color;
+            }
+            & i{
+                font-size: 20px;
+                vertical-align: middle;
+            }
+        }
+    }
+    
+}

@@ -1,0 +1,2746 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{17975A5B-67F5-494F-937D-9132AC78BD35}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RetriX.UWP</RootNamespace>
+    <AssemblyName>RetriX.UWP</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.19041.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
+    <PackageCertificateKeyFile>
+    </PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>9F65A72F7B7496B7C77B690DE22E285EB35D102E</PackageCertificateThumbprint>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <AppxBundle>Never</AppxBundle>
+    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
+    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppInstallerUpdateFrequency>0</AppInstallerUpdateFrequency>
+    <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
+    <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+    <GenerateTestArtifacts>True</GenerateTestArtifacts>
+    <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+    <GenerateTemporaryStoreCertificate>True</GenerateTemporaryStoreCertificate>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NETFX_CORE;WINDOWS_UWP;CODE_ANALYSIS;TARGET_X86</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <UseDotNetNativeToolchain>false</UseDotNetNativeToolchain>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP;CODE_ANALYSIS;TARGET_X86;CODE_ANALYSIS</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <EnableGatekeeperAnalysis>false</EnableGatekeeperAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NETFX_CORE;WINDOWS_UWP;CODE_ANALYSIS;TARGET_ARM</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <UseDotNetNativeToolchain>false</UseDotNetNativeToolchain>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP;CODE_ANALYSIS;TARGET_ARM;CODE_ANALYSIS</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <EnableGatekeeperAnalysis>false</EnableGatekeeperAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NETFX_CORE;WINDOWS_UWP;CODE_ANALYSIS;TARGET_X64;CODE_ANALYSIS;CODE_ANALYSIS</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <UseDotNetNativeToolchain>false</UseDotNetNativeToolchain>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP;CODE_ANALYSIS;TARGET_X64;CODE_ANALYSIS</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <EnableGatekeeperAnalysis>false</EnableGatekeeperAnalysis>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AppResources.xaml.cs">
+      <DependentUpon>AppResources.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AudioVisualizer\AudioGraphProvider.cs" />
+    <Compile Include="AudioVisualizer\DSP\Complex.cs" />
+    <Compile Include="AudioVisualizer\DSP\FastFourierTransformation.cs" />
+    <Compile Include="AudioVisualizer\DSP\FftMode.cs" />
+    <Compile Include="AudioVisualizer\DSP\FftProvider.cs" />
+    <Compile Include="AudioVisualizer\DSP\FftSize.cs" />
+    <Compile Include="AudioVisualizer\IAudioProvider.cs" />
+    <Compile Include="AudioVisualizer\IMemoryBufferByteAccess.cs" />
+    <Compile Include="AudioVisualizer\Spectrum\BasicSpectrumProvider.cs" />
+    <Compile Include="AudioVisualizer\Spectrum\Extensoins.cs" />
+    <Compile Include="AudioVisualizer\Spectrum\ISpectrumProvider.cs" />
+    <Compile Include="AudioVisualizer\Spectrum\LineSpectrum.cs" />
+    <Compile Include="AudioVisualizer\Spectrum\ScalingStrategy.cs" />
+    <Compile Include="AudioVisualizer\Spectrum\SpectrumBase.cs" />
+    <Compile Include="BindableBase.cs" />
+    <Compile Include="Command.cs" />
+    <Compile Include="ConfirmConfig.cs" />
+    <Compile Include="Controls\PlayerOverlay.xaml.cs">
+      <DependentUpon>PlayerOverlay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\VirtualPadActions.xaml.cs">
+      <DependentUpon>VirtualPadActions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\VirtualPad.xaml.cs">
+      <DependentUpon>VirtualPad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\BoolNegationConverter.cs" />
+    <Compile Include="Converters\BrushToAcrylic.cs" />
+    <Compile Include="Converters\ComboBoxItemConvert.cs" />
+    <Compile Include="Converters\HoldingEventArgsConverter.cs" />
+    <Compile Include="Converters\ImageToBitmapImageConverter.cs" />
+    <Compile Include="Converters\ItemClickEventArgsConverter.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\PercentageConverter.cs" />
+    <Compile Include="Converters\StretchConverter.cs" />
+    <Compile Include="Cores\RetriXGoldCore.cs" />
+    <Compile Include="NativeArchiveHelper.cs" />
+    <Compile Include="NativeMethods.cs" />
+    <Compile Include="PackageArchiveHelper.cs" />
+    <Compile Include="Position.cs" />
+    <Compile Include="RetroBindings\Constants.cs" />
+    <Compile Include="RetroBindings\ControllerDescription.cs" />
+    <Compile Include="RetroBindings\ControllerInfo.cs" />
+    <Compile Include="RetroBindings\Core\LibretroAPI.cs" />
+    <Compile Include="RetroBindings\Core\LibretroCore.cs" />
+    <Compile Include="RetroBindings\Core\VFSHandler.cs" />
+    <Compile Include="RetroBindings\Delegates.cs" />
+    <Compile Include="RetroBindings\Framebuffer.cs" />
+    <Compile Include="RetroBindings\GameInfo.cs" />
+    <Compile Include="RetroBindings\GameInfoSpecial.cs" />
+    <Compile Include="RetroBindings\HWContext.cs" />
+    <Compile Include="RetroBindings\HWDelegates.cs" />
+    <Compile Include="RetroBindings\HWHandler.cs" />
+    <Compile Include="RetroBindings\HWInterfaceD3D.cs" />
+    <Compile Include="RetroBindings\HWInterface.cs" />
+    <Compile Include="RetroBindings\HwRenderContextNegotiationInterfaceTypes.cs" />
+    <Compile Include="RetroBindings\HwRenderInterfaceTypes.cs" />
+    <Compile Include="RetroBindings\Keys.cs" />
+    <Compile Include="RetroBindings\Languages.cs" />
+    <Compile Include="RetroBindings\LibRetriX\Enums\InputTypes.cs" />
+    <Compile Include="RetroBindings\LibRetriX\Enums\PixelFormats.cs" />
+    <Compile Include="RetroBindings\LibRetriX\Enums\Rotations.cs" />
+    <Compile Include="RetroBindings\LibRetriX\Types\CoreOption.cs" />
+    <Compile Include="RetroBindings\LibRetriX\Types\FileDependency.cs" />
+    <Compile Include="RetroBindings\LibRetriX\Types\GameGeometry.cs" />
+    <Compile Include="RetroBindings\LibRetriX\Types\SystemTimings.cs" />
+    <Compile Include="RetroBindings\LibretroVariable.cs" />
+    <Compile Include="RetroBindings\LogCallbackDescriptor.cs" />
+    <Compile Include="RetroBindings\LogLevels.cs" />
+    <Compile Include="RetroBindings\Modifiers.cs" />
+    <Compile Include="RetroBindings\Structs\DiskController.cs" />
+    <Compile Include="RetroBindings\Structs\DiskControllerEX.cs" />
+    <Compile Include="RetroBindings\Structs\InputDesc.cs" />
+    <Compile Include="RetroBindings\Structs\KeyboardInput.cs" />
+    <Compile Include="RetroBindings\Structs\LEDInterface.cs" />
+    <Compile Include="RetroBindings\Structs\LibretroCoreOptions.cs" />
+    <Compile Include="RetroBindings\Structs\MidiInterface.cs" />
+    <Compile Include="RetroBindings\Structs\MMAP.cs" />
+    <Compile Include="RetroBindings\Structs\PerfInterface.cs" />
+    <Compile Include="RetroBindings\Structs\RetroMessage.cs" />
+    <Compile Include="RetroBindings\Structs\VideoViewport.cs" />
+    <Compile Include="RetroBindings\SystemAVInfo.cs" />
+    <Compile Include="RetroBindings\SystemInfo.cs" />
+    <Compile Include="RetroBindings\Tools\Converter.cs" />
+    <Compile Include="RetroBindings\VFSInterface.cs" />
+    <Compile Include="RetroBindings\VFSInterfaceInfo.cs" />
+    <Compile Include="Ripple.cs" />
+    <Compile Include="SegoeMDL2Assets.cs" />
+    <Compile Include="Services\Helpers.cs" />
+    <Compile Include="Services\InputService.cs" />
+    <Compile Include="Shadow.cs" />
+    <Compile Include="Shared\Components\CrazyBufferMove.cs" />
+    <Compile Include="Shared\Components\FramebufferConverter.cs" />
+    <Compile Include="Shared\Components\UnmanagedMemoryManager.cs" />
+    <Compile Include="Shared\Models\GameLaunchEnvironment.cs" />
+    <Compile Include="Shared\Services\AudioServiceBase.cs" />
+    <Compile Include="Shared\Services\CopyFileProgress.cs" />
+    <Compile Include="Shared\Services\CryptographyService.cs" />
+    <Compile Include="Shared\Services\EmulationService.cs" />
+    <Compile Include="Shared\Services\GameSystemsProviderServiceBase.cs" />
+    <Compile Include="Shared\Services\PlatformServiceEventArgs.cs" />
+    <Compile Include="Shared\Services\SaveStateService.cs" />
+    <Compile Include="Shared\StreamProviders\ArchiveStreamProvider.cs" />
+    <Compile Include="Shared\ViewModels\CoresOptions.cs" />
+    <Compile Include="Shared\ViewModels\FileImporterViewModel.cs" />
+    <Compile Include="Shared\ViewModels\GamePlayerViewModel.cs" />
+    <Compile Include="Shared\ViewModels\GameSystemAnyCore.cs" />
+    <Compile Include="Shared\ViewModels\GameSystemRecentModel.cs" />
+    <Compile Include="Shared\ViewModels\GameSystemSelectionViewModel.cs" />
+    <Compile Include="Shared\ViewModels\GameSystemViewModel.cs" />
+    <Compile Include="Shared\ViewModels\SaveSlotsModel.cs" />
+    <Compile Include="Shared\ViewModels\SystemCustomTouchPad.cs" />
+    <Compile Include="Shared\ViewModels\SystemMenuModel.cs" />
+    <Compile Include="Unsafe\Components\RenderEffect.cs" />
+    <Compile Include="Unsafe\Components\RenderTargetManager.cs" />
+    <Compile Include="Unsafe\Services\AudioService.cs" />
+    <Compile Include="Unsafe\Services\VideoService.cs" />
+    <Compile Include="Views\AboutView.xaml.cs">
+      <DependentUpon>AboutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ContentDialogCustom.xaml.cs">
+      <DependentUpon>ContentDialogCustom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HelpView.xaml.cs">
+      <DependentUpon>HelpView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GameSystemSelectionView.xaml.cs">
+      <DependentUpon>GameSystemSelectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GamePlayerView.xaml.cs">
+      <DependentUpon>GamePlayerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\PlatformService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <Content Include="Assets\Backgrounds\ParallexVertical.bmp" />
+    <Content Include="Assets\Backgrounds\ParallexVertical.png" />
+    <Content Include="Assets\Backgrounds\ParallexWide.bmp" />
+    <Content Include="Assets\Backgrounds\ParallexWide.png" />
+    <Content Include="Assets\FilesIcons\32X.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\32X.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\32X.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\32X.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\3DO.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\3DO.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\3DO.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\3DO.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\3DO.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\3DO.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\3DO.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\3DO.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\3DS.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\3DS.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\3DS.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\3DS.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\3DS.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\3DS.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\3DS.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\3DS.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\appx.bmp" />
+    <Content Include="Assets\FilesIcons\appx.png" />
+    <Content Include="Assets\FilesIcons\Arcade 2.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\Arcade 2.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\Arcade 2.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\Arcade 2.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\Arcade.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\Arcade.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\Arcade.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\Arcade.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\Atari7800.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\Atari7800.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\Atari7800.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\Atari7800.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\Atari7800.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\Atari7800.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\Atari7800.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\Atari7800.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\AtariJaguar.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\AtariJaguar.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\AtariJaguar.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\AtariJaguar.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\AtariJaguar.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\AtariJaguar.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\AtariJaguar.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\AtariJaguar.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\atom.bmp" />
+    <Content Include="Assets\FilesIcons\atom.png" />
+    <Content Include="Assets\FilesIcons\audio.bmp" />
+    <Content Include="Assets\FilesIcons\audio.png" />
+    <Content Include="Assets\FilesIcons\bin.bmp" />
+    <Content Include="Assets\FilesIcons\bin.png" />
+    <Content Include="Assets\FilesIcons\browser.bmp" />
+    <Content Include="Assets\FilesIcons\browser.png" />
+    <Content Include="Assets\FilesIcons\cer.bmp" />
+    <Content Include="Assets\FilesIcons\cer.png" />
+    <Content Include="Assets\FilesIcons\cert.bmp" />
+    <Content Include="Assets\FilesIcons\cert.png" />
+    <Content Include="Assets\FilesIcons\cs.bmp" />
+    <Content Include="Assets\FilesIcons\cs.png" />
+    <Content Include="Assets\FilesIcons\doc.bmp" />
+    <Content Include="Assets\FilesIcons\doc.png" />
+    <Content Include="Assets\FilesIcons\Dreamcast.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\Dreamcast.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\Dreamcast.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\Dreamcast.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\Dreamcast.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\Dreamcast.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\Dreamcast.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\Dreamcast.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\excel.bmp" />
+    <Content Include="Assets\FilesIcons\excel.png" />
+    <Content Include="Assets\FilesIcons\exe.bmp" />
+    <Content Include="Assets\FilesIcons\exe.png" />
+    <Content Include="Assets\FilesIcons\font.bmp" />
+    <Content Include="Assets\FilesIcons\font.png" />
+    <Content Include="Assets\FilesIcons\Gameboy.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\Gameboy.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\Gameboy.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\Gameboy.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\GameboyAdvance.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\GameboyAdvance.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\GameboyAdvance.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\GameboyAdvance.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\GameboyAdvanceSP.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\GameboyAdvanceSP.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\GameboyAdvanceSP.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\GameboyAdvanceSP.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\GameboyAdvanceSP.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\GameboyAdvanceSP.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\GameboyAdvanceSP.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\GameboyAdvanceSP.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\GameboyColor.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\GameboyColor.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\GameboyColor.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\GameboyColor.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\GameboyColor.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\GameboyColor.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\GameboyColor.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\GameboyColor.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\GameboyMicro.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\GameboyMicro.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\GameboyMicro.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\GameboyMicro.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\GameboyMicro.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\GameboyMicro.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\GameboyMicro.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\GameboyMicro.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\GameCube.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\GameCube.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\GameCube.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\GameCube.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\GameCube.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\GameCube.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\GameCube.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\GameCube.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\GameGear.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\GameGear.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\GameGear.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\GameGear.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\General.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\General.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\General.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\General.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\gif.bmp" />
+    <Content Include="Assets\FilesIcons\gif.png" />
+    <Content Include="Assets\FilesIcons\git.bmp" />
+    <Content Include="Assets\FilesIcons\git.png" />
+    <Content Include="Assets\FilesIcons\GN.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\GN.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\GN.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\GN.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\history.bmp" />
+    <Content Include="Assets\FilesIcons\history.png" />
+    <Content Include="Assets\FilesIcons\hlp.bmp" />
+    <Content Include="Assets\FilesIcons\hlp.png" />
+    <Content Include="Assets\FilesIcons\html.bmp" />
+    <Content Include="Assets\FilesIcons\html.png" />
+    <Content Include="Assets\FilesIcons\ico.bmp" />
+    <Content Include="Assets\FilesIcons\ico.png" />
+    <Content Include="Assets\FilesIcons\image.bmp" />
+    <Content Include="Assets\FilesIcons\image.png" />
+    <Content Include="Assets\FilesIcons\info.bmp" />
+    <Content Include="Assets\FilesIcons\info.png" />
+    <Content Include="Assets\FilesIcons\js.bmp" />
+    <Content Include="Assets\FilesIcons\js.png" />
+    <Content Include="Assets\FilesIcons\json.bmp" />
+    <Content Include="Assets\FilesIcons\json.png" />
+    <Content Include="Assets\FilesIcons\lnk.bmp" />
+    <Content Include="Assets\FilesIcons\lnk.png" />
+    <Content Include="Assets\FilesIcons\Lynx.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\Lynx.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\Lynx.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\Lynx.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\Lynx.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\Lynx.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\Lynx.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\Lynx.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\MasterSystem.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\MasterSystem.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\MasterSystem.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\MasterSystem.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\MegaCD.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\MegaCD.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\MegaCD.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\MegaCD.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\MegaDrive.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\MegaDrive.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\MegaDrive.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\MegaDrive.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\movies.bmp" />
+    <Content Include="Assets\FilesIcons\movies.png" />
+    <Content Include="Assets\FilesIcons\mp3.bmp" />
+    <Content Include="Assets\FilesIcons\mp3.png" />
+    <Content Include="Assets\FilesIcons\msi.bmp" />
+    <Content Include="Assets\FilesIcons\msi.png" />
+    <Content Include="Assets\FilesIcons\MSX.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\MSX.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\MSX.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\MSX.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\MSX.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\MSX.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\MSX.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\MSX.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\N64.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\N64.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\N64.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\N64.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\NDS.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\NDS.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\NDS.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\NDS.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\NeoGeo.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\NeoGeo.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\NeoGeo.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\NeoGeo.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\NeoGeoPocket.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\NeoGeoPocket.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\NeoGeoPocket.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\NeoGeoPocket.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\NES.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\NES.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\NES.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\NES.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\notepad.bmp" />
+    <Content Include="Assets\FilesIcons\notepad.png" />
+    <Content Include="Assets\FilesIcons\office.bmp" />
+    <Content Include="Assets\FilesIcons\office.png" />
+    <Content Include="Assets\FilesIcons\onenote.bmp" />
+    <Content Include="Assets\FilesIcons\onenote.png" />
+    <Content Include="Assets\FilesIcons\PCDFX.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\PCDFX.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\PCDFX.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\PCDFX.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\PCE.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\PCE.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\PCE.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\PCE.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\PCECD.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\PCECD.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\PCECD.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\PCECD.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\pdf.bmp" />
+    <Content Include="Assets\FilesIcons\pdf.png" />
+    <Content Include="Assets\FilesIcons\photoshop.bmp" />
+    <Content Include="Assets\FilesIcons\photoshop.png" />
+    <Content Include="Assets\FilesIcons\php.bmp" />
+    <Content Include="Assets\FilesIcons\php.png" />
+    <Content Include="Assets\FilesIcons\Playstation.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\Playstation.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\Playstation.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\Playstation.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\ppt.bmp" />
+    <Content Include="Assets\FilesIcons\ppt.png" />
+    <Content Include="Assets\FilesIcons\PS2.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\PS2.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\PS2.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\PS2.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\PS2.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\PS2.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\PS2.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\PS2.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\PS3.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\PS3.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\PS3.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\PS3.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\PS3.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\PS3.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\PS3.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\PS3.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\PS4.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\PS4.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\PS4.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\PS4.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\PS4.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\PS4.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\PS4.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\PS4.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\PSP.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\PSP.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\PSP.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\PSP.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\python.bmp" />
+    <Content Include="Assets\FilesIcons\python.png" />
+    <Content Include="Assets\FilesIcons\reg.bmp" />
+    <Content Include="Assets\FilesIcons\reg.png" />
+    <Content Include="Assets\FilesIcons\runtime.bmp" />
+    <Content Include="Assets\FilesIcons\runtime.png" />
+    <Content Include="Assets\FilesIcons\Saturn.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\Saturn.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\Saturn.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\Saturn.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\SG1000.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\SG1000.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\SG1000.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\SG1000.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\sln.bmp" />
+    <Content Include="Assets\FilesIcons\sln.png" />
+    <Content Include="Assets\FilesIcons\SNES.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\SNES.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\SNES.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\SNES.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\Switch.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\Switch.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\Switch.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\Switch.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\Switch.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\Switch.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\Switch.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\Switch.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\telegram.bmp" />
+    <Content Include="Assets\FilesIcons\telegram.png" />
+    <Content Include="Assets\FilesIcons\unigram-theme.bmp" />
+    <Content Include="Assets\FilesIcons\unigram-theme.png" />
+    <Content Include="Assets\FilesIcons\Vectrex.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\Vectrex.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\Vectrex.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\Vectrex.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\Vectrex.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\Vectrex.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\Vectrex.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\Vectrex.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\vegas.bmp" />
+    <Content Include="Assets\FilesIcons\vegas.png" />
+    <Content Include="Assets\FilesIcons\video.bmp" />
+    <Content Include="Assets\FilesIcons\video.png" />
+    <Content Include="Assets\FilesIcons\VirtualBoy.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\VirtualBoy.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\VirtualBoy.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\VirtualBoy.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\VirtualBoy.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\VirtualBoy.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\VirtualBoy.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\VirtualBoy.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\w10mc.bmp" />
+    <Content Include="Assets\FilesIcons\w10mc.png" />
+    <Content Include="Assets\FilesIcons\w10ms.bmp" />
+    <Content Include="Assets\FilesIcons\w10ms.png" />
+    <Content Include="Assets\FilesIcons\w10mz.bmp" />
+    <Content Include="Assets\FilesIcons\w10mz.png" />
+    <Content Include="Assets\FilesIcons\w81m.bmp" />
+    <Content Include="Assets\FilesIcons\w81m.png" />
+    <Content Include="Assets\FilesIcons\Wii.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\Wii.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\Wii.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\Wii.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\Wii.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\Wii.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\Wii.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\Wii.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\WonderSwan.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\WonderSwan.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\WonderSwan.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\WonderSwan.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\wutc.bmp" />
+    <Content Include="Assets\FilesIcons\wutc.png" />
+    <Content Include="Assets\FilesIcons\wuts.bmp" />
+    <Content Include="Assets\FilesIcons\wuts.png" />
+    <Content Include="Assets\FilesIcons\wutz.bmp" />
+    <Content Include="Assets\FilesIcons\wutz.png" />
+    <Content Include="Assets\FilesIcons\xap.bmp" />
+    <Content Include="Assets\FilesIcons\xap.png" />
+    <Content Include="Assets\FilesIcons\xbox.bmp" />
+    <Content Include="Assets\FilesIcons\xbox.png" />
+    <Content Include="Assets\FilesIcons\XBOX.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\XBOX.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\XBOX.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\XBOX.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\XBOX.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\XBOX.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\XBOX.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\XBOX.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\XBOX360.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\XBOX360.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\XBOX360.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\XBOX360.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\XBOX360.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\XBOX360.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\XBOX360.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\XBOX360.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\XBOXOne.targetsize-16.bmp" />
+    <Content Include="Assets\FilesIcons\XBOXOne.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\XBOXOne.targetsize-256.bmp" />
+    <Content Include="Assets\FilesIcons\XBOXOne.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\XBOXOne.targetsize-32.bmp" />
+    <Content Include="Assets\FilesIcons\XBOXOne.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\XBOXOne.targetsize-48.bmp" />
+    <Content Include="Assets\FilesIcons\XBOXOne.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\xlsx.bmp" />
+    <Content Include="Assets\FilesIcons\xlsx.png" />
+    <Content Include="Assets\FilesIcons\zip.bmp" />
+    <Content Include="Assets\FilesIcons\zip.png" />
+    <Content Include="Assets\HTML\assets\css\bauhaus93.css" />
+    <Content Include="Assets\HTML\assets\css\bootstrap.min.css" />
+    <Content Include="Assets\HTML\assets\css\font-awesome.min.css" />
+    <Content Include="Assets\HTML\assets\css\helper.css" />
+    <Content Include="Assets\HTML\assets\css\icofont.min.css" />
+    <Content Include="Assets\HTML\assets\css\plugins.css" />
+    <Content Include="Assets\HTML\assets\css\qanto.css" />
+    <Content Include="Assets\HTML\assets\css\style.css" />
+    <Content Include="Assets\HTML\assets\css\_game.css" />
+    <Content Include="Assets\HTML\assets\css\_review.css" />
+    <Content Include="Assets\HTML\assets\css\_video.css" />
+    <Content Include="Assets\HTML\assets\fonts\bauhaus93\Bauhaus93.svg" />
+    <Content Include="Assets\HTML\assets\fonts\fontawesome-webfont.svg" />
+    <Content Include="Assets\HTML\assets\fonts\icofont.svg" />
+    <Content Include="Assets\HTML\assets\fonts\qanto\Qanto.svg" />
+    <Content Include="Assets\HTML\assets\fonts\qanto\Qanto_1.svg" />
+    <Content Include="Assets\HTML\assets\fonts\qanto\Qanto_2.svg" />
+    <Content Include="Assets\HTML\assets\fonts\qanto\Qanto_3.svg" />
+    <Content Include="Assets\HTML\assets\js\bootstrap.min.js" />
+    <Content Include="Assets\HTML\assets\js\main.js" />
+    <Content Include="Assets\HTML\assets\js\plugins.js" />
+    <Content Include="Assets\HTML\assets\js\popper.min.js" />
+    <Content Include="Assets\HTML\assets\js\vendor\jquery-1.12.4.min.js" />
+    <Content Include="Assets\HTML\assets\js\vendor\modernizr-2.8.3.min.js" />
+    <Content Include="Assets\HTML\help.html" />
+    <Content Include="Assets\HTML\terms.html" />
+    <Content Include="Assets\Icons\2048.bmp" />
+    <Content Include="Assets\Icons\2048.png" />
+    <Content Include="Assets\Icons\32X.bmp" />
+    <Content Include="Assets\Icons\3DO.bmp" />
+    <Content Include="Assets\Icons\3DO.png" />
+    <Content Include="Assets\Icons\3DS.bmp" />
+    <Content Include="Assets\Icons\3DS.png" />
+    <Content Include="Assets\Icons\Amstrad CPC.bmp" />
+    <Content Include="Assets\Icons\Amstrad CPC.png" />
+    <Content Include="Assets\Icons\Arcade 2.bmp" />
+    <Content Include="Assets\Icons\Arcade.bmp" />
+    <Content Include="Assets\Icons\ArcadeAlpha.bmp" />
+    <Content Include="Assets\Icons\ArcadeAlpha.png" />
+    <Content Include="Assets\Icons\Atari Jaguar.bmp" />
+    <Content Include="Assets\Icons\Atari Jaguar.png" />
+    <Content Include="Assets\Icons\Atari2600 2014.bmp" />
+    <Content Include="Assets\Icons\Atari2600 2014.png" />
+    <Content Include="Assets\Icons\Atari2600.bmp" />
+    <Content Include="Assets\Icons\Atari2600.png" />
+    <Content Include="Assets\Icons\Atari5200.bmp" />
+    <Content Include="Assets\Icons\Atari5200.png" />
+    <Content Include="Assets\Icons\Atari7800.bmp" />
+    <Content Include="Assets\Icons\Atari7800.png" />
+    <Content Include="Assets\Icons\Cannonball.bmp" />
+    <Content Include="Assets\Icons\Cannonball.png" />
+    <Content Include="Assets\Icons\Cave Story.gif" />
+    <Content Include="Assets\Icons\ChannelF.bmp" />
+    <Content Include="Assets\Icons\ChannelF.png" />
+    <Content Include="Assets\Icons\ColecoVision.bmp" />
+    <Content Include="Assets\Icons\ColecoVision.png" />
+    <Content Include="Assets\Icons\Controller.gif" />
+    <Content Include="Assets\Icons\Doom.bmp" />
+    <Content Include="Assets\Icons\Doom.png" />
+    <Content Include="Assets\Icons\DOSBox.bmp" />
+    <Content Include="Assets\Icons\DOSBox.png" />
+    <Content Include="Assets\Icons\DOSBoxPure.bmp" />
+    <Content Include="Assets\Icons\DOSBoxPure.png" />
+    <Content Include="Assets\Icons\DOSBoxSVN.bmp" />
+    <Content Include="Assets\Icons\DOSBoxSVN.png" />
+    <Content Include="Assets\Icons\Dreamcast.bmp" />
+    <Content Include="Assets\Icons\Dreamcast.png" />
+    <Content Include="Assets\Icons\GameCube.bmp" />
+    <Content Include="Assets\Icons\GameCube.png" />
+    <Content Include="Assets\Icons\GameGear.bmp" />
+    <Content Include="Assets\Icons\GB.bmp" />
+    <Content Include="Assets\Icons\GB.gif" />
+    <Content Include="Assets\Icons\GBA.bmp" />
+    <Content Include="Assets\Icons\GBA.gif" />
+    <Content Include="Assets\Icons\GBA2.gif" />
+    <Content Include="Assets\Icons\GBASP.bmp" />
+    <Content Include="Assets\Icons\GBASP.png" />
+    <Content Include="Assets\Icons\GBC.bmp" />
+    <Content Include="Assets\Icons\GBC.gif" />
+    <Content Include="Assets\Icons\GBC.png" />
+    <Content Include="Assets\Icons\GBC1.bmp" />
+    <Content Include="Assets\Icons\GBC1.png" />
+    <Content Include="Assets\Icons\GBC2.bmp" />
+    <Content Include="Assets\Icons\GBC2.png" />
+    <Content Include="Assets\Icons\GBC3.bmp" />
+    <Content Include="Assets\Icons\GBC3.png" />
+    <Content Include="Assets\Icons\GBM.bmp" />
+    <Content Include="Assets\Icons\GBM.gif" />
+    <Content Include="Assets\Icons\GBM.png" />
+    <Content Include="Assets\Icons\GN.bmp" />
+    <Content Include="Assets\Icons\GNFail.bmp" />
+    <Content Include="Assets\Icons\GNFail.png" />
+    <Content Include="Assets\Icons\GNSkipped.bmp" />
+    <Content Include="Assets\Icons\GNSkipped.png" />
+    <Content Include="Assets\Icons\GW.bmp" />
+    <Content Include="Assets\Icons\GW.png" />
+    <Content Include="Assets\Icons\Intellivision.bmp" />
+    <Content Include="Assets\Icons\Intellivision.png" />
+    <Content Include="Assets\Icons\JNB.bmp" />
+    <Content Include="Assets\Icons\JNB.png" />
+    <Content Include="Assets\Icons\LowResNX.bmp" />
+    <Content Include="Assets\Icons\LowResNX.png" />
+    <Content Include="Assets\Icons\Lynx.bmp" />
+    <Content Include="Assets\Icons\Lynx.png" />
+    <Content Include="Assets\Icons\LynxHandy.bmp" />
+    <Content Include="Assets\Icons\LynxHandy.png" />
+    <Content Include="Assets\Icons\MAME.bmp" />
+    <Content Include="Assets\Icons\MAME.png" />
+    <Content Include="Assets\Icons\MAME2000.bmp" />
+    <Content Include="Assets\Icons\MAME2000.gif" />
+    <Content Include="Assets\Icons\MAME2000.png" />
+    <Content Include="Assets\Icons\MasterSystem.bmp" />
+    <Content Include="Assets\Icons\MegaCD.bmp" />
+    <Content Include="Assets\Icons\MegaDrive.bmp" />
+    <Content Include="Assets\Icons\MegaDriveWide.bmp" />
+    <Content Include="Assets\Icons\MegaDriveWide.png" />
+    <Content Include="Assets\Icons\Menus\3gp.bmp" />
+    <Content Include="Assets\Icons\Menus\3gp.png" />
+    <Content Include="Assets\Icons\Menus\7z.bmp" />
+    <Content Include="Assets\Icons\Menus\7z.png" />
+    <Content Include="Assets\Icons\Menus\7zip.bmp" />
+    <Content Include="Assets\Icons\Menus\7zip.png" />
+    <Content Include="Assets\Icons\Menus\aab.bmp" />
+    <Content Include="Assets\Icons\Menus\aab.png" />
+    <Content Include="Assets\Icons\Menus\aac.bmp" />
+    <Content Include="Assets\Icons\Menus\aac.png" />
+    <Content Include="Assets\Icons\Menus\about.bmp" />
+    <Content Include="Assets\Icons\Menus\about.png" />
+    <Content Include="Assets\Icons\Menus\access.bmp" />
+    <Content Include="Assets\Icons\Menus\access.png" />
+    <Content Include="Assets\Icons\Menus\adb.bmp" />
+    <Content Include="Assets\Icons\Menus\adb.png" />
+    <Content Include="Assets\Icons\Menus\adds.bmp" />
+    <Content Include="Assets\Icons\Menus\adds.png" />
+    <Content Include="Assets\Icons\Menus\aif.bmp" />
+    <Content Include="Assets\Icons\Menus\aif.png" />
+    <Content Include="Assets\Icons\Menus\alarm.bmp" />
+    <Content Include="Assets\Icons\Menus\alarm.png" />
+    <Content Include="Assets\Icons\Menus\android.bmp" />
+    <Content Include="Assets\Icons\Menus\android.png" />
+    <Content Include="Assets\Icons\Menus\any.bmp" />
+    <Content Include="Assets\Icons\Menus\any.png" />
+    <Content Include="Assets\Icons\Menus\apk.bmp" />
+    <Content Include="Assets\Icons\Menus\apk.png" />
+    <Content Include="Assets\Icons\Menus\app-record.bmp" />
+    <Content Include="Assets\Icons\Menus\app-record.png" />
+    <Content Include="Assets\Icons\Menus\appear.bmp" />
+    <Content Include="Assets\Icons\Menus\appear.png" />
+    <Content Include="Assets\Icons\Menus\appx.bmp" />
+    <Content Include="Assets\Icons\Menus\appx.png" />
+    <Content Include="Assets\Icons\Menus\appxbundle.bmp" />
+    <Content Include="Assets\Icons\Menus\appxbundle.png" />
+    <Content Include="Assets\Icons\Menus\astoria.bmp" />
+    <Content Include="Assets\Icons\Menus\astoria.png" />
+    <Content Include="Assets\Icons\Menus\atom.bmp" />
+    <Content Include="Assets\Icons\Menus\atom.png" />
+    <Content Include="Assets\Icons\Menus\audacity.bmp" />
+    <Content Include="Assets\Icons\Menus\audacity.png" />
+    <Content Include="Assets\Icons\Menus\audio.bmp" />
+    <Content Include="Assets\Icons\Menus\audio.png" />
+    <Content Include="Assets\Icons\Menus\auth.bmp" />
+    <Content Include="Assets\Icons\Menus\auth.png" />
+    <Content Include="Assets\Icons\Menus\autocad.bmp" />
+    <Content Include="Assets\Icons\Menus\autocad.png" />
+    <Content Include="Assets\Icons\Menus\avi.bmp" />
+    <Content Include="Assets\Icons\Menus\avi.png" />
+    <Content Include="Assets\Icons\Menus\band81.bmp" />
+    <Content Include="Assets\Icons\Menus\band81.png" />
+    <Content Include="Assets\Icons\Menus\bat.bmp" />
+    <Content Include="Assets\Icons\Menus\bat.png" />
+    <Content Include="Assets\Icons\Menus\battery.bmp" />
+    <Content Include="Assets\Icons\Menus\battery.png" />
+    <Content Include="Assets\Icons\Menus\bin.bmp" />
+    <Content Include="Assets\Icons\Menus\bin.png" />
+    <Content Include="Assets\Icons\Menus\blend.bmp" />
+    <Content Include="Assets\Icons\Menus\blend.png" />
+    <Content Include="Assets\Icons\Menus\blender.bmp" />
+    <Content Include="Assets\Icons\Menus\blender.png" />
+    <Content Include="Assets\Icons\Menus\browser.bmp" />
+    <Content Include="Assets\Icons\Menus\browser.png" />
+    <Content Include="Assets\Icons\Menus\cache.bmp" />
+    <Content Include="Assets\Icons\Menus\cache.png" />
+    <Content Include="Assets\Icons\Menus\calculator.bmp" />
+    <Content Include="Assets\Icons\Menus\calculator.png" />
+    <Content Include="Assets\Icons\Menus\calendar.bmp" />
+    <Content Include="Assets\Icons\Menus\calendar.png" />
+    <Content Include="Assets\Icons\Menus\camera.bmp" />
+    <Content Include="Assets\Icons\Menus\camera.png" />
+    <Content Include="Assets\Icons\Menus\cer.bmp" />
+    <Content Include="Assets\Icons\Menus\cer.png" />
+    <Content Include="Assets\Icons\Menus\cert.bmp" />
+    <Content Include="Assets\Icons\Menus\cert.png" />
+    <Content Include="Assets\Icons\Menus\ch8.bmp" />
+    <Content Include="Assets\Icons\Menus\ch8.png" />
+    <Content Include="Assets\Icons\Menus\chrome.bmp" />
+    <Content Include="Assets\Icons\Menus\chrome.png" />
+    <Content Include="Assets\Icons\Menus\chromium.bmp" />
+    <Content Include="Assets\Icons\Menus\chromium.png" />
+    <Content Include="Assets\Icons\Menus\cmdi.bmp" />
+    <Content Include="Assets\Icons\Menus\cmdi.png" />
+    <Content Include="Assets\Icons\Menus\compress.bmp" />
+    <Content Include="Assets\Icons\Menus\compress.png" />
+    <Content Include="Assets\Icons\Menus\crt.bmp" />
+    <Content Include="Assets\Icons\Menus\crt.png" />
+    <Content Include="Assets\Icons\Menus\cs.bmp" />
+    <Content Include="Assets\Icons\Menus\cs.png" />
+    <Content Include="Assets\Icons\Menus\css.bmp" />
+    <Content Include="Assets\Icons\Menus\css.png" />
+    <Content Include="Assets\Icons\Menus\default.bmp" />
+    <Content Include="Assets\Icons\Menus\default.png" />
+    <Content Include="Assets\Icons\Menus\dll.bmp" />
+    <Content Include="Assets\Icons\Menus\dll.png" />
+    <Content Include="Assets\Icons\Menus\doc.bmp" />
+    <Content Include="Assets\Icons\Menus\doc.png" />
+    <Content Include="Assets\Icons\Menus\docx.bmp" />
+    <Content Include="Assets\Icons\Menus\docx.png" />
+    <Content Include="Assets\Icons\Menus\download.bmp" />
+    <Content Include="Assets\Icons\Menus\download.png" />
+    <Content Include="Assets\Icons\Menus\downloads.bmp" />
+    <Content Include="Assets\Icons\Menus\downloads.png" />
+    <Content Include="Assets\Icons\Menus\dropbox.bmp" />
+    <Content Include="Assets\Icons\Menus\dropbox.png" />
+    <Content Include="Assets\Icons\Menus\dtelnet.bmp" />
+    <Content Include="Assets\Icons\Menus\dtelnet.png" />
+    <Content Include="Assets\Icons\Menus\easy.bmp" />
+    <Content Include="Assets\Icons\Menus\easy.png" />
+    <Content Include="Assets\Icons\Menus\edge.bmp" />
+    <Content Include="Assets\Icons\Menus\edge.png" />
+    <Content Include="Assets\Icons\Menus\efiles.bmp" />
+    <Content Include="Assets\Icons\Menus\efiles.png" />
+    <Content Include="Assets\Icons\Menus\email.bmp" />
+    <Content Include="Assets\Icons\Menus\email.png" />
+    <Content Include="Assets\Icons\Menus\excel.bmp" />
+    <Content Include="Assets\Icons\Menus\excel.png" />
+    <Content Include="Assets\Icons\Menus\exe.bmp" />
+    <Content Include="Assets\Icons\Menus\exe.png" />
+    <Content Include="Assets\Icons\Menus\fav.bmp" />
+    <Content Include="Assets\Icons\Menus\fav.png" />
+    <Content Include="Assets\Icons\Menus\features.bmp" />
+    <Content Include="Assets\Icons\Menus\features.png" />
+    <Content Include="Assets\Icons\Menus\feedback.bmp" />
+    <Content Include="Assets\Icons\Menus\feedback.png" />
+    <Content Include="Assets\Icons\Menus\ffu.bmp" />
+    <Content Include="Assets\Icons\Menus\ffu.png" />
+    <Content Include="Assets\Icons\Menus\firefox.bmp" />
+    <Content Include="Assets\Icons\Menus\firefox.png" />
+    <Content Include="Assets\Icons\Menus\firewall.bmp" />
+    <Content Include="Assets\Icons\Menus\firewall.png" />
+    <Content Include="Assets\Icons\Menus\folder-apps.bmp" />
+    <Content Include="Assets\Icons\Menus\folder-apps.png" />
+    <Content Include="Assets\Icons\Menus\folder-band.bmp" />
+    <Content Include="Assets\Icons\Menus\folder-band.png" />
+    <Content Include="Assets\Icons\Menus\folder-Browser.bmp" />
+    <Content Include="Assets\Icons\Menus\folder-Browser.png" />
+    <Content Include="Assets\Icons\Menus\folder-camera.bmp" />
+    <Content Include="Assets\Icons\Menus\folder-camera.png" />
+    <Content Include="Assets\Icons\Menus\folder-clock.bmp" />
+    <Content Include="Assets\Icons\Menus\folder-clock.png" />
+    <Content Include="Assets\Icons\Menus\folder-customize.bmp" />
+    <Content Include="Assets\Icons\Menus\folder-customize.png" />
+    <Content Include="Assets\Icons\Menus\folder-d.bmp" />
+    <Content Include="Assets\Icons\Menus\folder-d.png" />
+    <Content Include="Assets\Icons\Menus\folder-deps.bmp" />
+    <Content Include="Assets\Icons\Menus\folder-deps.png" />
+    <Content Include="Assets\Icons\Menus\folder-exclusive.bmp" />
+    <Content Include="Assets\Icons\Menus\folder-exclusive.png" />
+    <Content Include="Assets\Icons\Menus\folder-extensions.bmp" />
+    <Content Include="Assets\Icons\Menus\folder-extensions.png" />
+    <Content Include="Assets\Icons\Menus\folder-games.bmp" />
+    <Content Include="Assets\Icons\Menus\folder-games.png" />
+    <Content Include="Assets\Icons\Menus\Folder-GPS,Navigation.bmp" />
+    <Content Include="Assets\Icons\Menus\Folder-GPS,Navigation.png" />
+    <Content Include="Assets\Icons\Menus\folder-guides.bmp" />
+    <Content Include="Assets\Icons\Menus\folder-guides.png" />
+    <Content Include="Assets\Icons\Menus\folder-guids.bmp" />
+    <Content Include="Assets\Icons\Menus\folder-guids.png" />
+    <Content Include="Assets\Icons\Menus\Folder-Health.bmp" />
+    <Content Include="Assets\Icons\Menus\Folder-Health.png" />
+    <Content Include="Assets\Icons\Menus\folder-hp.bmp" />
+    <Content Include="Assets\Icons\Menus\folder-hp.png" />
+    <Content Include="Assets\Icons\Menus\folder-mail.bmp" />
+    <Content Include="Assets\Icons\Menus\folder-mail.png" />
+    <Content Include="Assets\Icons\Menus\folder-media.bmp" />
+    <Content Include="Assets\Icons\Menus\folder-media.png" />
+    <Content Include="Assets\Icons\Menus\folder-memo.bmp" />
+    <Content Include="Assets\Icons\Menus\folder-memo.png" />
+    <Content Include="Assets\Icons\Menus\folder-microsoft.bmp" />
+    <Content Include="Assets\Icons\Menus\folder-microsoft.png" />
+    <Content Include="Assets\Icons\Menus\Folder-MSN.bmp" />
+    <Content Include="Assets\Icons\Menus\Folder-MSN.png" />
+    <Content Include="Assets\Icons\Menus\folder-music.bmp" />
+    <Content Include="Assets\Icons\Menus\folder-music.png" />
+    <Content Include="Assets\Icons\Menus\folder-office.bmp" />
+    <Content Include="Assets\Icons\Menus\folder-office.png" />
+    <Content Include="Assets\Icons\Menus\Folder-Old Memories.bmp" />
+    <Content Include="Assets\Icons\Menus\Folder-Old Memories.png" />
+    <Content Include="Assets\Icons\Menus\folder-pctools.bmp" />
+    <Content Include="Assets\Icons\Menus\folder-pctools.png" />
+    <Content Include="Assets\Icons\Menus\folder-products.bmp" />
+    <Content Include="Assets\Icons\Menus\folder-products.png" />
+    <Content Include="Assets\Icons\Menus\folder-security.bmp" />
+    <Content Include="Assets\Icons\Menus\folder-security.png" />
+    <Content Include="Assets\Icons\Menus\folder-social.bmp" />
+    <Content Include="Assets\Icons\Menus\folder-social.png" />
+    <Content Include="Assets\Icons\Menus\folder-tools.bmp" />
+    <Content Include="Assets\Icons\Menus\folder-tools.png" />
+    <Content Include="Assets\Icons\Menus\folder-transfer.bmp" />
+    <Content Include="Assets\Icons\Menus\folder-transfer.png" />
+    <Content Include="Assets\Icons\Menus\folder-travel.bmp" />
+    <Content Include="Assets\Icons\Menus\folder-travel.png" />
+    <Content Include="Assets\Icons\Menus\Folder-Weather, News.bmp" />
+    <Content Include="Assets\Icons\Menus\Folder-Weather, News.png" />
+    <Content Include="Assets\Icons\Menus\folder-wtools.bmp" />
+    <Content Include="Assets\Icons\Menus\folder-wtools.png" />
+    <Content Include="Assets\Icons\Menus\folder-xbox.bmp" />
+    <Content Include="Assets\Icons\Menus\folder-xbox.png" />
+    <Content Include="Assets\Icons\Menus\folder-XboxLive.bmp" />
+    <Content Include="Assets\Icons\Menus\folder-XboxLive.png" />
+    <Content Include="Assets\Icons\Menus\folder.bmp" />
+    <Content Include="Assets\Icons\Menus\folder.png" />
+    <Content Include="Assets\Icons\Menus\font.bmp" />
+    <Content Include="Assets\Icons\Menus\font.png" />
+    <Content Include="Assets\Icons\Menus\general.bmp" />
+    <Content Include="Assets\Icons\Menus\general.png" />
+    <Content Include="Assets\Icons\Menus\gif.bmp" />
+    <Content Include="Assets\Icons\Menus\gif.png" />
+    <Content Include="Assets\Icons\Menus\git.bmp" />
+    <Content Include="Assets\Icons\Menus\git.png" />
+    <Content Include="Assets\Icons\Menus\github-link.bmp" />
+    <Content Include="Assets\Icons\Menus\github-link.png" />
+    <Content Include="Assets\Icons\Menus\grepo.bmp" />
+    <Content Include="Assets\Icons\Menus\grepo.png" />
+    <Content Include="Assets\Icons\Menus\groove.bmp" />
+    <Content Include="Assets\Icons\Menus\groove.png" />
+    <Content Include="Assets\Icons\Menus\gz.bmp" />
+    <Content Include="Assets\Icons\Menus\gz.png" />
+    <Content Include="Assets\Icons\Menus\heart.bmp" />
+    <Content Include="Assets\Icons\Menus\heart.png" />
+    <Content Include="Assets\Icons\Menus\history.bmp" />
+    <Content Include="Assets\Icons\Menus\history.png" />
+    <Content Include="Assets\Icons\Menus\hlp.bmp" />
+    <Content Include="Assets\Icons\Menus\hlp.png" />
+    <Content Include="Assets\Icons\Menus\htm.bmp" />
+    <Content Include="Assets\Icons\Menus\htm.png" />
+    <Content Include="Assets\Icons\Menus\html.bmp" />
+    <Content Include="Assets\Icons\Menus\html.png" />
+    <Content Include="Assets\Icons\Menus\i2v.bmp" />
+    <Content Include="Assets\Icons\Menus\i2v.png" />
+    <Content Include="Assets\Icons\Menus\ico.bmp" />
+    <Content Include="Assets\Icons\Menus\ico.png" />
+    <Content Include="Assets\Icons\Menus\info.bmp" />
+    <Content Include="Assets\Icons\Menus\info.png" />
+    <Content Include="Assets\Icons\Menus\interop.bmp" />
+    <Content Include="Assets\Icons\Menus\interop.png" />
+    <Content Include="Assets\Icons\Menus\iso.bmp" />
+    <Content Include="Assets\Icons\Menus\iso.png" />
+    <Content Include="Assets\Icons\Menus\itools.bmp" />
+    <Content Include="Assets\Icons\Menus\itools.png" />
+    <Content Include="Assets\Icons\Menus\jpeg.bmp" />
+    <Content Include="Assets\Icons\Menus\jpeg.png" />
+    <Content Include="Assets\Icons\Menus\jpg.bmp" />
+    <Content Include="Assets\Icons\Menus\jpg.png" />
+    <Content Include="Assets\Icons\Menus\js.bmp" />
+    <Content Include="Assets\Icons\Menus\js.png" />
+    <Content Include="Assets\Icons\Menus\json.bmp" />
+    <Content Include="Assets\Icons\Menus\json.png" />
+    <Content Include="Assets\Icons\Menus\keyboard.bmp" />
+    <Content Include="Assets\Icons\Menus\keyboard.png" />
+    <Content Include="Assets\Icons\Menus\lnk.bmp" />
+    <Content Include="Assets\Icons\Menus\lnk.png" />
+    <Content Include="Assets\Icons\Menus\local.bmp" />
+    <Content Include="Assets\Icons\Menus\local.png" />
+    <Content Include="Assets\Icons\Menus\logs.bmp" />
+    <Content Include="Assets\Icons\Menus\logs.png" />
+    <Content Include="Assets\Icons\Menus\media-pause.bmp" />
+    <Content Include="Assets\Icons\Menus\media-pause.png" />
+    <Content Include="Assets\Icons\Menus\media-play.bmp" />
+    <Content Include="Assets\Icons\Menus\media-play.png" />
+    <Content Include="Assets\Icons\Menus\media-stop.bmp" />
+    <Content Include="Assets\Icons\Menus\media-stop.png" />
+    <Content Include="Assets\Icons\Menus\media-test.bmp" />
+    <Content Include="Assets\Icons\Menus\media-test.png" />
+    <Content Include="Assets\Icons\Menus\mega-link.bmp" />
+    <Content Include="Assets\Icons\Menus\mega-link.png" />
+    <Content Include="Assets\Icons\Menus\misc.bmp" />
+    <Content Include="Assets\Icons\Menus\misc.png" />
+    <Content Include="Assets\Icons\Menus\mkv.bmp" />
+    <Content Include="Assets\Icons\Menus\mkv.png" />
+    <Content Include="Assets\Icons\Menus\mouse.bmp" />
+    <Content Include="Assets\Icons\Menus\mouse.png" />
+    <Content Include="Assets\Icons\Menus\movies.bmp" />
+    <Content Include="Assets\Icons\Menus\movies.png" />
+    <Content Include="Assets\Icons\Menus\mp3.bmp" />
+    <Content Include="Assets\Icons\Menus\mp3.png" />
+    <Content Include="Assets\Icons\Menus\mp4.bmp" />
+    <Content Include="Assets\Icons\Menus\mp4.png" />
+    <Content Include="Assets\Icons\Menus\msband.bmp" />
+    <Content Include="Assets\Icons\Menus\msband.png" />
+    <Content Include="Assets\Icons\Menus\msi.bmp" />
+    <Content Include="Assets\Icons\Menus\msi.png" />
+    <Content Include="Assets\Icons\Menus\msix.bmp" />
+    <Content Include="Assets\Icons\Menus\msix.png" />
+    <Content Include="Assets\Icons\Menus\msixbundle.bmp" />
+    <Content Include="Assets\Icons\Menus\msixbundle.png" />
+    <Content Include="Assets\Icons\Menus\netflix.bmp" />
+    <Content Include="Assets\Icons\Menus\netflix.png" />
+    <Content Include="Assets\Icons\Menus\network.bmp" />
+    <Content Include="Assets\Icons\Menus\network.png" />
+    <Content Include="Assets\Icons\Menus\notepad.bmp" />
+    <Content Include="Assets\Icons\Menus\notepad.png" />
+    <Content Include="Assets\Icons\Menus\office.bmp" />
+    <Content Include="Assets\Icons\Menus\office.png" />
+    <Content Include="Assets\Icons\Menus\ogg.bmp" />
+    <Content Include="Assets\Icons\Menus\ogg.png" />
+    <Content Include="Assets\Icons\Menus\onedrive.bmp" />
+    <Content Include="Assets\Icons\Menus\onedrive.png" />
+    <Content Include="Assets\Icons\Menus\onenote.bmp" />
+    <Content Include="Assets\Icons\Menus\onenote.png" />
+    <Content Include="Assets\Icons\Menus\open.bmp" />
+    <Content Include="Assets\Icons\Menus\open.png" />
+    <Content Include="Assets\Icons\Menus\opera.bmp" />
+    <Content Include="Assets\Icons\Menus\opera.png" />
+    <Content Include="Assets\Icons\Menus\opus.bmp" />
+    <Content Include="Assets\Icons\Menus\opus.png" />
+    <Content Include="Assets\Icons\Menus\others.bmp" />
+    <Content Include="Assets\Icons\Menus\others.png" />
+    <Content Include="Assets\Icons\Menus\packages.bmp" />
+    <Content Include="Assets\Icons\Menus\packages.png" />
+    <Content Include="Assets\Icons\Menus\paint.bmp" />
+    <Content Include="Assets\Icons\Menus\paint.png" />
+    <Content Include="Assets\Icons\Menus\patreon.bmp" />
+    <Content Include="Assets\Icons\Menus\patreon.png" />
+    <Content Include="Assets\Icons\Menus\paypal.bmp" />
+    <Content Include="Assets\Icons\Menus\paypal.png" />
+    <Content Include="Assets\Icons\Menus\pdf.bmp" />
+    <Content Include="Assets\Icons\Menus\pdf.png" />
+    <Content Include="Assets\Icons\Menus\people.bmp" />
+    <Content Include="Assets\Icons\Menus\people.png" />
+    <Content Include="Assets\Icons\Menus\performance.bmp" />
+    <Content Include="Assets\Icons\Menus\performance.png" />
+    <Content Include="Assets\Icons\Menus\person.bmp" />
+    <Content Include="Assets\Icons\Menus\person.png" />
+    <Content Include="Assets\Icons\Menus\pfx.bmp" />
+    <Content Include="Assets\Icons\Menus\pfx.png" />
+    <Content Include="Assets\Icons\Menus\phoneh.bmp" />
+    <Content Include="Assets\Icons\Menus\phoneh.png" />
+    <Content Include="Assets\Icons\Menus\photoshop.bmp" />
+    <Content Include="Assets\Icons\Menus\photoshop.png" />
+    <Content Include="Assets\Icons\Menus\php.bmp" />
+    <Content Include="Assets\Icons\Menus\php.png" />
+    <Content Include="Assets\Icons\Menus\png.bmp" />
+    <Content Include="Assets\Icons\Menus\png.png" />
+    <Content Include="Assets\Icons\Menus\powerpoint.bmp" />
+    <Content Include="Assets\Icons\Menus\powerpoint.png" />
+    <Content Include="Assets\Icons\Menus\ppsspp.bmp" />
+    <Content Include="Assets\Icons\Menus\ppsspp.png" />
+    <Content Include="Assets\Icons\Menus\ppt.bmp" />
+    <Content Include="Assets\Icons\Menus\ppt.png" />
+    <Content Include="Assets\Icons\Menus\pptx.bmp" />
+    <Content Include="Assets\Icons\Menus\pptx.png" />
+    <Content Include="Assets\Icons\Menus\print.bmp" />
+    <Content Include="Assets\Icons\Menus\print.png" />
+    <Content Include="Assets\Icons\Menus\ps1.bmp" />
+    <Content Include="Assets\Icons\Menus\ps1.png" />
+    <Content Include="Assets\Icons\Menus\py.bmp" />
+    <Content Include="Assets\Icons\Menus\py.png" />
+    <Content Include="Assets\Icons\Menus\python.bmp" />
+    <Content Include="Assets\Icons\Menus\python.png" />
+    <Content Include="Assets\Icons\Menus\rar.bmp" />
+    <Content Include="Assets\Icons\Menus\rar.png" />
+    <Content Include="Assets\Icons\Menus\rdp.bmp" />
+    <Content Include="Assets\Icons\Menus\rdp.png" />
+    <Content Include="Assets\Icons\Menus\reader.bmp" />
+    <Content Include="Assets\Icons\Menus\reader.png" />
+    <Content Include="Assets\Icons\Menus\record.bmp" />
+    <Content Include="Assets\Icons\Menus\record.png" />
+    <Content Include="Assets\Icons\Menus\reg.bmp" />
+    <Content Include="Assets\Icons\Menus\reg.png" />
+    <Content Include="Assets\Icons\Menus\remote.bmp" />
+    <Content Include="Assets\Icons\Menus\remote.png" />
+    <Content Include="Assets\Icons\Menus\rems.bmp" />
+    <Content Include="Assets\Icons\Menus\rems.png" />
+    <Content Include="Assets\Icons\Menus\repo.bmp" />
+    <Content Include="Assets\Icons\Menus\repo.png" />
+    <Content Include="Assets\Icons\Menus\repodirect.bmp" />
+    <Content Include="Assets\Icons\Menus\repodirect.png" />
+    <Content Include="Assets\Icons\Menus\repolocal.bmp" />
+    <Content Include="Assets\Icons\Menus\repolocal.png" />
+    <Content Include="Assets\Icons\Menus\repos.bmp" />
+    <Content Include="Assets\Icons\Menus\repos.png" />
+    <Content Include="Assets\Icons\Menus\repos2.bmp" />
+    <Content Include="Assets\Icons\Menus\repos2.png" />
+    <Content Include="Assets\Icons\Menus\retrix.bmp" />
+    <Content Include="Assets\Icons\Menus\retrix.png" />
+    <Content Include="Assets\Icons\Menus\RetroArch.bmp" />
+    <Content Include="Assets\Icons\Menus\RetroArch.png" />
+    <Content Include="Assets\Icons\Menus\root.bmp" />
+    <Content Include="Assets\Icons\Menus\root.png" />
+    <Content Include="Assets\Icons\Menus\runtime.bmp" />
+    <Content Include="Assets\Icons\Menus\runtime.png" />
+    <Content Include="Assets\Icons\Menus\rupdates.bmp" />
+    <Content Include="Assets\Icons\Menus\rupdates.png" />
+    <Content Include="Assets\Icons\Menus\scale.bmp" />
+    <Content Include="Assets\Icons\Menus\scale.png" />
+    <Content Include="Assets\Icons\Menus\screen-record.bmp" />
+    <Content Include="Assets\Icons\Menus\screen-record.png" />
+    <Content Include="Assets\Icons\Menus\scripts.bmp" />
+    <Content Include="Assets\Icons\Menus\scripts.png" />
+    <Content Include="Assets\Icons\Menus\scummvm.bmp" />
+    <Content Include="Assets\Icons\Menus\scummvm.png" />
+    <Content Include="Assets\Icons\Menus\sdcard.bmp" />
+    <Content Include="Assets\Icons\Menus\sdcard.png" />
+    <Content Include="Assets\Icons\Menus\search.bmp" />
+    <Content Include="Assets\Icons\Menus\search.png" />
+    <Content Include="Assets\Icons\Menus\security.bmp" />
+    <Content Include="Assets\Icons\Menus\security.png" />
+    <Content Include="Assets\Icons\Menus\send.bmp" />
+    <Content Include="Assets\Icons\Menus\send.png" />
+    <Content Include="Assets\Icons\Menus\settings.bmp" />
+    <Content Include="Assets\Icons\Menus\settings.png" />
+    <Content Include="Assets\Icons\Menus\share.bmp" />
+    <Content Include="Assets\Icons\Menus\share.png" />
+    <Content Include="Assets\Icons\Menus\shorts.bmp" />
+    <Content Include="Assets\Icons\Menus\shorts.png" />
+    <Content Include="Assets\Icons\Menus\skype.bmp" />
+    <Content Include="Assets\Icons\Menus\skype.png" />
+    <Content Include="Assets\Icons\Menus\sln.bmp" />
+    <Content Include="Assets\Icons\Menus\sln.png" />
+    <Content Include="Assets\Icons\Menus\spotify.bmp" />
+    <Content Include="Assets\Icons\Menus\spotify.png" />
+    <Content Include="Assets\Icons\Menus\starts.bmp" />
+    <Content Include="Assets\Icons\Menus\starts.png" />
+    <Content Include="Assets\Icons\Menus\steam.bmp" />
+    <Content Include="Assets\Icons\Menus\steam.png" />
+    <Content Include="Assets\Icons\Menus\stops.bmp" />
+    <Content Include="Assets\Icons\Menus\stops.png" />
+    <Content Include="Assets\Icons\Menus\store.bmp" />
+    <Content Include="Assets\Icons\Menus\store.png" />
+    <Content Include="Assets\Icons\Menus\support.bmp" />
+    <Content Include="Assets\Icons\Menus\support.png" />
+    <Content Include="Assets\Icons\Menus\svg.bmp" />
+    <Content Include="Assets\Icons\Menus\svg.png" />
+    <Content Include="Assets\Icons\Menus\tar.bmp" />
+    <Content Include="Assets\Icons\Menus\tar.png" />
+    <Content Include="Assets\Icons\Menus\tasks.bmp" />
+    <Content Include="Assets\Icons\Menus\tasks.png" />
+    <Content Include="Assets\Icons\Menus\telg.bmp" />
+    <Content Include="Assets\Icons\Menus\telg.png" />
+    <Content Include="Assets\Icons\Menus\telnet.bmp" />
+    <Content Include="Assets\Icons\Menus\telnet.png" />
+    <Content Include="Assets\Icons\Menus\term.bmp" />
+    <Content Include="Assets\Icons\Menus\term.png" />
+    <Content Include="Assets\Icons\Menus\tif.bmp" />
+    <Content Include="Assets\Icons\Menus\tif.png" />
+    <Content Include="Assets\Icons\Menus\tmp.bmp" />
+    <Content Include="Assets\Icons\Menus\tmp.png" />
+    <Content Include="Assets\Icons\Menus\tools.bmp" />
+    <Content Include="Assets\Icons\Menus\tools.png" />
+    <Content Include="Assets\Icons\Menus\translate.bmp" />
+    <Content Include="Assets\Icons\Menus\translate.png" />
+    <Content Include="Assets\Icons\Menus\ttf.bmp" />
+    <Content Include="Assets\Icons\Menus\ttf.png" />
+    <Content Include="Assets\Icons\Menus\txt.bmp" />
+    <Content Include="Assets\Icons\Menus\txt.png" />
+    <Content Include="Assets\Icons\Menus\uni-theme.bmp" />
+    <Content Include="Assets\Icons\Menus\uni-theme.png" />
+    <Content Include="Assets\Icons\Menus\unig.bmp" />
+    <Content Include="Assets\Icons\Menus\unig.png" />
+    <Content Include="Assets\Icons\Menus\unigram-theme.bmp" />
+    <Content Include="Assets\Icons\Menus\unigram-theme.png" />
+    <Content Include="Assets\Icons\Menus\unsplash.bmp" />
+    <Content Include="Assets\Icons\Menus\unsplash.png" />
+    <Content Include="Assets\Icons\Menus\users-add.bmp" />
+    <Content Include="Assets\Icons\Menus\users-add.png" />
+    <Content Include="Assets\Icons\Menus\users-query.bmp" />
+    <Content Include="Assets\Icons\Menus\users-query.png" />
+    <Content Include="Assets\Icons\Menus\users-remove.bmp" />
+    <Content Include="Assets\Icons\Menus\users-remove.png" />
+    <Content Include="Assets\Icons\Menus\uupdate.bmp" />
+    <Content Include="Assets\Icons\Menus\uupdate.png" />
+    <Content Include="Assets\Icons\Menus\vegas.bmp" />
+    <Content Include="Assets\Icons\Menus\vegas.png" />
+    <Content Include="Assets\Icons\Menus\video-encoder.bmp" />
+    <Content Include="Assets\Icons\Menus\video-encoder.png" />
+    <Content Include="Assets\Icons\Menus\vlc.bmp" />
+    <Content Include="Assets\Icons\Menus\vlc.png" />
+    <Content Include="Assets\Icons\Menus\w10m.bmp" />
+    <Content Include="Assets\Icons\Menus\w10m.png" />
+    <Content Include="Assets\Icons\Menus\w10mc.bmp" />
+    <Content Include="Assets\Icons\Menus\w10mc.png" />
+    <Content Include="Assets\Icons\Menus\w10ms.bmp" />
+    <Content Include="Assets\Icons\Menus\w10ms.png" />
+    <Content Include="Assets\Icons\Menus\w10mz.bmp" />
+    <Content Include="Assets\Icons\Menus\w10mz.png" />
+    <Content Include="Assets\Icons\Menus\w81m.bmp" />
+    <Content Include="Assets\Icons\Menus\w81m.png" />
+    <Content Include="Assets\Icons\Menus\wav.bmp" />
+    <Content Include="Assets\Icons\Menus\wav.png" />
+    <Content Include="Assets\Icons\Menus\web-addext.bmp" />
+    <Content Include="Assets\Icons\Menus\web-addext.png" />
+    <Content Include="Assets\Icons\Menus\web-block.bmp" />
+    <Content Include="Assets\Icons\Menus\web-block.png" />
+    <Content Include="Assets\Icons\Menus\web-bmode.bmp" />
+    <Content Include="Assets\Icons\Menus\web-bmode.png" />
+    <Content Include="Assets\Icons\Menus\web-cache.bmp" />
+    <Content Include="Assets\Icons\Menus\web-cache.png" />
+    <Content Include="Assets\Icons\Menus\web-capturec.bmp" />
+    <Content Include="Assets\Icons\Menus\web-capturec.png" />
+    <Content Include="Assets\Icons\Menus\web-capturef.bmp" />
+    <Content Include="Assets\Icons\Menus\web-capturef.png" />
+    <Content Include="Assets\Icons\Menus\web-console.bmp" />
+    <Content Include="Assets\Icons\Menus\web-console.png" />
+    <Content Include="Assets\Icons\Menus\web-cookies.bmp" />
+    <Content Include="Assets\Icons\Menus\web-cookies.png" />
+    <Content Include="Assets\Icons\Menus\web-dagent.bmp" />
+    <Content Include="Assets\Icons\Menus\web-dagent.png" />
+    <Content Include="Assets\Icons\Menus\web-errors.bmp" />
+    <Content Include="Assets\Icons\Menus\web-errors.png" />
+    <Content Include="Assets\Icons\Menus\web-find.bmp" />
+    <Content Include="Assets\Icons\Menus\web-find.png" />
+    <Content Include="Assets\Icons\Menus\web-free.bmp" />
+    <Content Include="Assets\Icons\Menus\web-free.png" />
+    <Content Include="Assets\Icons\Menus\web-gpu.bmp" />
+    <Content Include="Assets\Icons\Menus\web-gpu.png" />
+    <Content Include="Assets\Icons\Menus\web-help.bmp" />
+    <Content Include="Assets\Icons\Menus\web-help.png" />
+    <Content Include="Assets\Icons\Menus\web-home.bmp" />
+    <Content Include="Assets\Icons\Menus\web-home.png" />
+    <Content Include="Assets\Icons\Menus\web-iads.bmp" />
+    <Content Include="Assets\Icons\Menus\web-iads.png" />
+    <Content Include="Assets\Icons\Menus\web-iadsc.bmp" />
+    <Content Include="Assets\Icons\Menus\web-iadsc.png" />
+    <Content Include="Assets\Icons\Menus\web-iblack.bmp" />
+    <Content Include="Assets\Icons\Menus\web-iblack.png" />
+    <Content Include="Assets\Icons\Menus\web-iblackc.bmp" />
+    <Content Include="Assets\Icons\Menus\web-iblackc.png" />
+    <Content Include="Assets\Icons\Menus\web-indexed.bmp" />
+    <Content Include="Assets\Icons\Menus\web-indexed.png" />
+    <Content Include="Assets\Icons\Menus\web-info.bmp" />
+    <Content Include="Assets\Icons\Menus\web-info.png" />
+    <Content Include="Assets\Icons\Menus\web-java.bmp" />
+    <Content Include="Assets\Icons\Menus\web-java.png" />
+    <Content Include="Assets\Icons\Menus\web-lite.bmp" />
+    <Content Include="Assets\Icons\Menus\web-lite.png" />
+    <Content Include="Assets\Icons\Menus\web-lock.bmp" />
+    <Content Include="Assets\Icons\Menus\web-lock.png" />
+    <Content Include="Assets\Icons\Menus\web-magent.bmp" />
+    <Content Include="Assets\Icons\Menus\web-magent.png" />
+    <Content Include="Assets\Icons\Menus\web-mobile.bmp" />
+    <Content Include="Assets\Icons\Menus\web-mobile.png" />
+    <Content Include="Assets\Icons\Menus\web-new.bmp" />
+    <Content Include="Assets\Icons\Menus\web-new.png" />
+    <Content Include="Assets\Icons\Menus\web-post.bmp" />
+    <Content Include="Assets\Icons\Menus\web-post.png" />
+    <Content Include="Assets\Icons\Menus\web-read.bmp" />
+    <Content Include="Assets\Icons\Menus\web-read.png" />
+    <Content Include="Assets\Icons\Menus\web-settings.bmp" />
+    <Content Include="Assets\Icons\Menus\web-settings.png" />
+    <Content Include="Assets\Icons\Menus\web-tabs.bmp" />
+    <Content Include="Assets\Icons\Menus\web-tabs.png" />
+    <Content Include="Assets\Icons\Menus\web-translateg.bmp" />
+    <Content Include="Assets\Icons\Menus\web-translateg.png" />
+    <Content Include="Assets\Icons\Menus\web-translatem.bmp" />
+    <Content Include="Assets\Icons\Menus\web-translatem.png" />
+    <Content Include="Assets\Icons\Menus\web-unblock.bmp" />
+    <Content Include="Assets\Icons\Menus\web-unblock.png" />
+    <Content Include="Assets\Icons\Menus\web-viewext.bmp" />
+    <Content Include="Assets\Icons\Menus\web-viewext.png" />
+    <Content Include="Assets\Icons\Menus\web-zoom.bmp" />
+    <Content Include="Assets\Icons\Menus\web-zoom.png" />
+    <Content Include="Assets\Icons\Menus\web.bmp" />
+    <Content Include="Assets\Icons\Menus\web.png" />
+    <Content Include="Assets\Icons\Menus\webm.bmp" />
+    <Content Include="Assets\Icons\Menus\webm.png" />
+    <Content Include="Assets\Icons\Menus\Welcome.bmp" />
+    <Content Include="Assets\Icons\Menus\Welcome.png" />
+    <Content Include="Assets\Icons\Menus\windows.bmp" />
+    <Content Include="Assets\Icons\Menus\windows.png" />
+    <Content Include="Assets\Icons\Menus\wma.bmp" />
+    <Content Include="Assets\Icons\Menus\wma.png" />
+    <Content Include="Assets\Icons\Menus\wmv.bmp" />
+    <Content Include="Assets\Icons\Menus\wmv.png" />
+    <Content Include="Assets\Icons\Menus\word.bmp" />
+    <Content Include="Assets\Icons\Menus\word.png" />
+    <Content Include="Assets\Icons\Menus\wpi.bmp" />
+    <Content Include="Assets\Icons\Menus\wpi.png" />
+    <Content Include="Assets\Icons\Menus\WUT 1.3.0.txt" />
+    <Content Include="Assets\Icons\Menus\wut.bmp" />
+    <Content Include="Assets\Icons\Menus\wut.png" />
+    <Content Include="Assets\Icons\Menus\wutc.bmp" />
+    <Content Include="Assets\Icons\Menus\wutc.png" />
+    <Content Include="Assets\Icons\Menus\wuts.bmp" />
+    <Content Include="Assets\Icons\Menus\wuts.png" />
+    <Content Include="Assets\Icons\Menus\wutz.bmp" />
+    <Content Include="Assets\Icons\Menus\wutz.png" />
+    <Content Include="Assets\Icons\Menus\xap.bmp" />
+    <Content Include="Assets\Icons\Menus\xap.png" />
+    <Content Include="Assets\Icons\Menus\xapk.bmp" />
+    <Content Include="Assets\Icons\Menus\xapk.png" />
+    <Content Include="Assets\Icons\Menus\xbox-map.bmp" />
+    <Content Include="Assets\Icons\Menus\xbox-map.png" />
+    <Content Include="Assets\Icons\Menus\xbox.bmp" />
+    <Content Include="Assets\Icons\Menus\xbox.png" />
+    <Content Include="Assets\Icons\Menus\xbox_game.bmp" />
+    <Content Include="Assets\Icons\Menus\xbox_game.png" />
+    <Content Include="Assets\Icons\Menus\xls.bmp" />
+    <Content Include="Assets\Icons\Menus\xls.png" />
+    <Content Include="Assets\Icons\Menus\xlsx.bmp" />
+    <Content Include="Assets\Icons\Menus\xlsx.png" />
+    <Content Include="Assets\Icons\Menus\youtube-link.bmp" />
+    <Content Include="Assets\Icons\Menus\youtube-link.png" />
+    <Content Include="Assets\Icons\Menus\zip.bmp" />
+    <Content Include="Assets\Icons\Menus\zip.png" />
+    <Content Include="Assets\Icons\MiniVMac.bmp" />
+    <Content Include="Assets\Icons\MiniVMac.png" />
+    <Content Include="Assets\Icons\MSX.bmp" />
+    <Content Include="Assets\Icons\MSX.png" />
+    <Content Include="Assets\Icons\MSXCom.bmp" />
+    <Content Include="Assets\Icons\MSXCom.png" />
+    <Content Include="Assets\Icons\MusicEmu.bmp" />
+    <Content Include="Assets\Icons\MusicEmu.png" />
+    <Content Include="Assets\Icons\N64.bmp" />
+    <Content Include="Assets\Icons\NDS.bmp" />
+    <Content Include="Assets\Icons\NDS2.bmp" />
+    <Content Include="Assets\Icons\NDS2.png" />
+    <Content Include="Assets\Icons\NDS3.bmp" />
+    <Content Include="Assets\Icons\NDS3.png" />
+    <Content Include="Assets\Icons\NDS4.bmp" />
+    <Content Include="Assets\Icons\NDS4.png" />
+    <Content Include="Assets\Icons\NeoGeo CD.bmp" />
+    <Content Include="Assets\Icons\NeoGeo CD.png" />
+    <Content Include="Assets\Icons\NeoGeo Pocket.bmp" />
+    <Content Include="Assets\Icons\NeoGeo PocketRACE.bmp" />
+    <Content Include="Assets\Icons\NeoGeo PocketRACE.png" />
+    <Content Include="Assets\Icons\NeoGeo.bmp" />
+    <Content Include="Assets\Icons\NES.bmp" />
+    <Content Include="Assets\Icons\NESN.bmp" />
+    <Content Include="Assets\Icons\NESN.png" />
+    <Content Include="Assets\Icons\NESQ.bmp" />
+    <Content Include="Assets\Icons\NESQ.png" />
+    <Content Include="Assets\Icons\Oberon.bmp" />
+    <Content Include="Assets\Icons\Oberon.png" />
+    <Content Include="Assets\Icons\Odyssey2.bmp" />
+    <Content Include="Assets\Icons\Odyssey2.png" />
+    <Content Include="Assets\Icons\OutRun.bmp" />
+    <Content Include="Assets\Icons\OutRun.png" />
+    <Content Include="Assets\Icons\PC8800.bmp" />
+    <Content Include="Assets\Icons\PC8800.png" />
+    <Content Include="Assets\Icons\PCE.bmp" />
+    <Content Include="Assets\Icons\PCECD.bmp" />
+    <Content Include="Assets\Icons\PCEFast.bmp" />
+    <Content Include="Assets\Icons\PCEFast.png" />
+    <Content Include="Assets\Icons\PCEFX.bmp" />
+    <Content Include="Assets\Icons\Playstation.bmp" />
+    <Content Include="Assets\Icons\Playstation2.bmp" />
+    <Content Include="Assets\Icons\Playstation2.png" />
+    <Content Include="Assets\Icons\PlaystationDuck.bmp" />
+    <Content Include="Assets\Icons\PlaystationDuck.png" />
+    <Content Include="Assets\Icons\PlaystationReARMed.bmp" />
+    <Content Include="Assets\Icons\PlaystationReARMed.png" />
+    <Content Include="Assets\Icons\PocketCDG.bmp" />
+    <Content Include="Assets\Icons\PocketCDG.png" />
+    <Content Include="Assets\Icons\PokeMini.bmp" />
+    <Content Include="Assets\Icons\PokeMini.png" />
+    <Content Include="Assets\Icons\PS2.bmp" />
+    <Content Include="Assets\Icons\PS2.png" />
+    <Content Include="Assets\Icons\PS3.bmp" />
+    <Content Include="Assets\Icons\PS3.png" />
+    <Content Include="Assets\Icons\PS4.bmp" />
+    <Content Include="Assets\Icons\PS4.png" />
+    <Content Include="Assets\Icons\PSP.bmp" />
+    <Content Include="Assets\Icons\Quake.bmp" />
+    <Content Include="Assets\Icons\Quake.png" />
+    <Content Include="Assets\Icons\Reminiscence.bmp" />
+    <Content Include="Assets\Icons\Reminiscence.png" />
+    <Content Include="Assets\Icons\RickDangrous.bmp" />
+    <Content Include="Assets\Icons\RickDangrous.png" />
+    <Content Include="Assets\Icons\Saturn.bmp" />
+    <Content Include="Assets\Icons\SaturnYabause.bmp" />
+    <Content Include="Assets\Icons\SaturnYabause.png" />
+    <Content Include="Assets\Icons\ScummVM.bmp" />
+    <Content Include="Assets\Icons\ScummVM.png" />
+    <Content Include="Assets\Icons\SG1000.bmp" />
+    <Content Include="Assets\Icons\SNES.bmp" />
+    <Content Include="Assets\Icons\SNES2005.bmp" />
+    <Content Include="Assets\Icons\SNES2005.png" />
+    <Content Include="Assets\Icons\success.wav" />
+    <Content Include="Assets\Icons\SuperVision.bmp" />
+    <Content Include="Assets\Icons\SuperVision.png" />
+    <Content Include="Assets\Icons\Switch.bmp" />
+    <Content Include="Assets\Icons\Switch.png" />
+    <Content Include="Assets\Icons\TIC80.bmp" />
+    <Content Include="Assets\Icons\TIC80.png" />
+    <Content Include="Assets\Icons\Vectrex.bmp" />
+    <Content Include="Assets\Icons\Vectrex.png" />
+    <Content Include="Assets\Icons\vice-c128.bmp" />
+    <Content Include="Assets\Icons\vice-c128.png" />
+    <Content Include="Assets\Icons\vice-c610.bmp" />
+    <Content Include="Assets\Icons\vice-c610.png" />
+    <Content Include="Assets\Icons\vice-c6102.bmp" />
+    <Content Include="Assets\Icons\vice-c6102.png" />
+    <Content Include="Assets\Icons\vice-c64.bmp" />
+    <Content Include="Assets\Icons\vice-c64.png" />
+    <Content Include="Assets\Icons\vice-c64su1.bmp" />
+    <Content Include="Assets\Icons\vice-c64su1.png" />
+    <Content Include="Assets\Icons\vice-c64su2.bmp" />
+    <Content Include="Assets\Icons\vice-c64su2.png" />
+    <Content Include="Assets\Icons\vice-pet.bmp" />
+    <Content Include="Assets\Icons\vice-pet.png" />
+    <Content Include="Assets\Icons\vice-plus4.bmp" />
+    <Content Include="Assets\Icons\vice-plus4.png" />
+    <Content Include="Assets\Icons\vice-vic20.bmp" />
+    <Content Include="Assets\Icons\vice-vic20.png" />
+    <Content Include="Assets\Icons\VirtualBoy.bmp" />
+    <Content Include="Assets\Icons\VirtualBoy.png" />
+    <Content Include="Assets\Icons\Wii.bmp" />
+    <Content Include="Assets\Icons\Wii.png" />
+    <Content Include="Assets\Icons\WonderSwan.bmp" />
+    <Content Include="Assets\Icons\WonderSwanColor.bmp" />
+    <Content Include="Assets\Icons\WonderSwanColor.png" />
+    <Content Include="Assets\Icons\XBOX.bmp" />
+    <Content Include="Assets\Icons\XBOX.png" />
+    <Content Include="Assets\Icons\XBOX360.bmp" />
+    <Content Include="Assets\Icons\XBOX360.png" />
+    <Content Include="Assets\Icons\XBOXOne.bmp" />
+    <Content Include="Assets\Icons\XBOXOne.png" />
+    <Content Include="Assets\Icons\ZX81.bmp" />
+    <Content Include="Assets\Icons\ZX81.png" />
+    <Content Include="Assets\Menus\aab.bmp" />
+    <Content Include="Assets\Menus\aab.png" />
+    <Content Include="Assets\Menus\aac.bmp" />
+    <Content Include="Assets\Menus\aac.png" />
+    <Content Include="Assets\Menus\access.bmp" />
+    <Content Include="Assets\Menus\access.png" />
+    <Content Include="Assets\Menus\actions1.bmp" />
+    <Content Include="Assets\Menus\actions1.png" />
+    <Content Include="Assets\Menus\actions2.bmp" />
+    <Content Include="Assets\Menus\actions2.png" />
+    <Content Include="Assets\Menus\actions3.bmp" />
+    <Content Include="Assets\Menus\actions3.png" />
+    <Content Include="Assets\Menus\adb.bmp" />
+    <Content Include="Assets\Menus\adb.png" />
+    <Content Include="Assets\Menus\aif.bmp" />
+    <Content Include="Assets\Menus\aif.png" />
+    <Content Include="Assets\Menus\alarm.bmp" />
+    <Content Include="Assets\Menus\alarm.png" />
+    <Content Include="Assets\Menus\android.bmp" />
+    <Content Include="Assets\Menus\android.png" />
+    <Content Include="Assets\Menus\apk.bmp" />
+    <Content Include="Assets\Menus\apk.png" />
+    <Content Include="Assets\Menus\app-record.bmp" />
+    <Content Include="Assets\Menus\app-record.png" />
+    <Content Include="Assets\Menus\appx.bmp" />
+    <Content Include="Assets\Menus\appx.png" />
+    <Content Include="Assets\Menus\appxbundle.bmp" />
+    <Content Include="Assets\Menus\appxbundle.png" />
+    <Content Include="Assets\Menus\astoria.bmp" />
+    <Content Include="Assets\Menus\astoria.png" />
+    <Content Include="Assets\Menus\atom.bmp" />
+    <Content Include="Assets\Menus\atom.png" />
+    <Content Include="Assets\Menus\audacity.bmp" />
+    <Content Include="Assets\Menus\audacity.png" />
+    <Content Include="Assets\Menus\audio.bmp" />
+    <Content Include="Assets\Menus\audio.png" />
+    <Content Include="Assets\Menus\auth.bmp" />
+    <Content Include="Assets\Menus\auth.png" />
+    <Content Include="Assets\Menus\autocad.bmp" />
+    <Content Include="Assets\Menus\autocad.png" />
+    <Content Include="Assets\Menus\avi.bmp" />
+    <Content Include="Assets\Menus\avi.png" />
+    <Content Include="Assets\Menus\band81.bmp" />
+    <Content Include="Assets\Menus\band81.png" />
+    <Content Include="Assets\Menus\bat.bmp" />
+    <Content Include="Assets\Menus\bat.png" />
+    <Content Include="Assets\Menus\battery.bmp" />
+    <Content Include="Assets\Menus\battery.png" />
+    <Content Include="Assets\Menus\bin.bmp" />
+    <Content Include="Assets\Menus\bin.png" />
+    <Content Include="Assets\Menus\blend.bmp" />
+    <Content Include="Assets\Menus\blend.png" />
+    <Content Include="Assets\Menus\blender.bmp" />
+    <Content Include="Assets\Menus\blender.png" />
+    <Content Include="Assets\Menus\browser.bmp" />
+    <Content Include="Assets\Menus\browser.png" />
+    <Content Include="Assets\Menus\bw.bmp" />
+    <Content Include="Assets\Menus\bw.png" />
+    <Content Include="Assets\Menus\calculator.bmp" />
+    <Content Include="Assets\Menus\calculator.png" />
+    <Content Include="Assets\Menus\calendar.bmp" />
+    <Content Include="Assets\Menus\calendar.png" />
+    <Content Include="Assets\Menus\camera.bmp" />
+    <Content Include="Assets\Menus\camera.png" />
+    <Content Include="Assets\Menus\cbuf.bmp" />
+    <Content Include="Assets\Menus\cbuf.png" />
+    <Content Include="Assets\Menus\cer.bmp" />
+    <Content Include="Assets\Menus\cer.png" />
+    <Content Include="Assets\Menus\cert.bmp" />
+    <Content Include="Assets\Menus\cert.png" />
+    <Content Include="Assets\Menus\ch8.bmp" />
+    <Content Include="Assets\Menus\ch8.png" />
+    <Content Include="Assets\Menus\chrome.bmp" />
+    <Content Include="Assets\Menus\chrome.png" />
+    <Content Include="Assets\Menus\chromium.bmp" />
+    <Content Include="Assets\Menus\chromium.png" />
+    <Content Include="Assets\Menus\close.bmp" />
+    <Content Include="Assets\Menus\close.png" />
+    <Content Include="Assets\Menus\cmdi.bmp" />
+    <Content Include="Assets\Menus\cmdi.png" />
+    <Content Include="Assets\Menus\controls.bmp" />
+    <Content Include="Assets\Menus\controls.png" />
+    <Content Include="Assets\Menus\core.bmp" />
+    <Content Include="Assets\Menus\core.png" />
+    <Content Include="Assets\Menus\crt.bmp" />
+    <Content Include="Assets\Menus\crt.png" />
+    <Content Include="Assets\Menus\cs.bmp" />
+    <Content Include="Assets\Menus\cs.png" />
+    <Content Include="Assets\Menus\css.bmp" />
+    <Content Include="Assets\Menus\css.png" />
+    <Content Include="Assets\Menus\default.bmp" />
+    <Content Include="Assets\Menus\default.png" />
+    <Content Include="Assets\Menus\dim.bmp" />
+    <Content Include="Assets\Menus\dim.png" />
+    <Content Include="Assets\Menus\dll.bmp" />
+    <Content Include="Assets\Menus\dll.png" />
+    <Content Include="Assets\Menus\doc.bmp" />
+    <Content Include="Assets\Menus\doc.png" />
+    <Content Include="Assets\Menus\docx.bmp" />
+    <Content Include="Assets\Menus\docx.png" />
+    <Content Include="Assets\Menus\download.bmp" />
+    <Content Include="Assets\Menus\download.png" />
+    <Content Include="Assets\Menus\dropbox.bmp" />
+    <Content Include="Assets\Menus\dropbox.png" />
+    <Content Include="Assets\Menus\easy.bmp" />
+    <Content Include="Assets\Menus\easy.png" />
+    <Content Include="Assets\Menus\echo.bmp" />
+    <Content Include="Assets\Menus\echo.png" />
+    <Content Include="Assets\Menus\edge.bmp" />
+    <Content Include="Assets\Menus\edge.png" />
+    <Content Include="Assets\Menus\email.bmp" />
+    <Content Include="Assets\Menus\email.png" />
+    <Content Include="Assets\Menus\excel.bmp" />
+    <Content Include="Assets\Menus\excel.png" />
+    <Content Include="Assets\Menus\exe.bmp" />
+    <Content Include="Assets\Menus\exe.png" />
+    <Content Include="Assets\Menus\fav.bmp" />
+    <Content Include="Assets\Menus\fav.png" />
+    <Content Include="Assets\Menus\feedback.bmp" />
+    <Content Include="Assets\Menus\feedback.png" />
+    <Content Include="Assets\Menus\firefox.bmp" />
+    <Content Include="Assets\Menus\firefox.png" />
+    <Content Include="Assets\Menus\firewall.bmp" />
+    <Content Include="Assets\Menus\firewall.png" />
+    <Content Include="Assets\Menus\folder-apps.bmp" />
+    <Content Include="Assets\Menus\folder-apps.png" />
+    <Content Include="Assets\Menus\folder-band.bmp" />
+    <Content Include="Assets\Menus\folder-band.png" />
+    <Content Include="Assets\Menus\folder-Browser.bmp" />
+    <Content Include="Assets\Menus\folder-Browser.png" />
+    <Content Include="Assets\Menus\folder-camera.bmp" />
+    <Content Include="Assets\Menus\folder-camera.png" />
+    <Content Include="Assets\Menus\folder-clock.bmp" />
+    <Content Include="Assets\Menus\folder-clock.png" />
+    <Content Include="Assets\Menus\folder-customize.bmp" />
+    <Content Include="Assets\Menus\folder-customize.png" />
+    <Content Include="Assets\Menus\folder-d.bmp" />
+    <Content Include="Assets\Menus\folder-d.png" />
+    <Content Include="Assets\Menus\folder-deps.bmp" />
+    <Content Include="Assets\Menus\folder-deps.png" />
+    <Content Include="Assets\Menus\folder-exclusive.bmp" />
+    <Content Include="Assets\Menus\folder-exclusive.png" />
+    <Content Include="Assets\Menus\folder-extensions.bmp" />
+    <Content Include="Assets\Menus\folder-extensions.png" />
+    <Content Include="Assets\Menus\folder-games.bmp" />
+    <Content Include="Assets\Menus\folder-games.png" />
+    <Content Include="Assets\Menus\Folder-GPS,Navigation.bmp" />
+    <Content Include="Assets\Menus\Folder-GPS,Navigation.png" />
+    <Content Include="Assets\Menus\folder-guides.bmp" />
+    <Content Include="Assets\Menus\folder-guides.png" />
+    <Content Include="Assets\Menus\folder-guids.bmp" />
+    <Content Include="Assets\Menus\folder-guids.png" />
+    <Content Include="Assets\Menus\Folder-Health.bmp" />
+    <Content Include="Assets\Menus\Folder-Health.png" />
+    <Content Include="Assets\Menus\folder-hp.bmp" />
+    <Content Include="Assets\Menus\folder-hp.png" />
+    <Content Include="Assets\Menus\folder-mail.bmp" />
+    <Content Include="Assets\Menus\folder-mail.png" />
+    <Content Include="Assets\Menus\folder-media.bmp" />
+    <Content Include="Assets\Menus\folder-media.png" />
+    <Content Include="Assets\Menus\folder-memo.bmp" />
+    <Content Include="Assets\Menus\folder-memo.png" />
+    <Content Include="Assets\Menus\folder-microsoft.bmp" />
+    <Content Include="Assets\Menus\folder-microsoft.png" />
+    <Content Include="Assets\Menus\Folder-MSN.bmp" />
+    <Content Include="Assets\Menus\Folder-MSN.png" />
+    <Content Include="Assets\Menus\folder-music.bmp" />
+    <Content Include="Assets\Menus\folder-music.png" />
+    <Content Include="Assets\Menus\folder-office.bmp" />
+    <Content Include="Assets\Menus\folder-office.png" />
+    <Content Include="Assets\Menus\Folder-Old Memories.bmp" />
+    <Content Include="Assets\Menus\Folder-Old Memories.png" />
+    <Content Include="Assets\Menus\folder-pctools.bmp" />
+    <Content Include="Assets\Menus\folder-pctools.png" />
+    <Content Include="Assets\Menus\folder-products.bmp" />
+    <Content Include="Assets\Menus\folder-products.png" />
+    <Content Include="Assets\Menus\folder-security.bmp" />
+    <Content Include="Assets\Menus\folder-security.png" />
+    <Content Include="Assets\Menus\folder-social.bmp" />
+    <Content Include="Assets\Menus\folder-social.png" />
+    <Content Include="Assets\Menus\folder-tools.bmp" />
+    <Content Include="Assets\Menus\folder-tools.png" />
+    <Content Include="Assets\Menus\folder-transfer.bmp" />
+    <Content Include="Assets\Menus\folder-transfer.png" />
+    <Content Include="Assets\Menus\folder-travel.bmp" />
+    <Content Include="Assets\Menus\folder-travel.png" />
+    <Content Include="Assets\Menus\Folder-Weather, News.bmp" />
+    <Content Include="Assets\Menus\Folder-Weather, News.png" />
+    <Content Include="Assets\Menus\folder-wtools.bmp" />
+    <Content Include="Assets\Menus\folder-wtools.png" />
+    <Content Include="Assets\Menus\folder-xbox.bmp" />
+    <Content Include="Assets\Menus\folder-xbox.png" />
+    <Content Include="Assets\Menus\folder-XboxLive.bmp" />
+    <Content Include="Assets\Menus\folder-XboxLive.png" />
+    <Content Include="Assets\Menus\folder.bmp" />
+    <Content Include="Assets\Menus\folder.png" />
+    <Content Include="Assets\Menus\font.bmp" />
+    <Content Include="Assets\Menus\font.png" />
+    <Content Include="Assets\Menus\fps.bmp" />
+    <Content Include="Assets\Menus\fps.png" />
+    <Content Include="Assets\Menus\fst.bmp" />
+    <Content Include="Assets\Menus\fst.png" />
+    <Content Include="Assets\Menus\gif.bmp" />
+    <Content Include="Assets\Menus\gif.png" />
+    <Content Include="Assets\Menus\git.bmp" />
+    <Content Include="Assets\Menus\git.png" />
+    <Content Include="Assets\Menus\grid.bmp" />
+    <Content Include="Assets\Menus\grid.png" />
+    <Content Include="Assets\Menus\groove.bmp" />
+    <Content Include="Assets\Menus\groove.png" />
+    <Content Include="Assets\Menus\gz.bmp" />
+    <Content Include="Assets\Menus\gz.png" />
+    <Content Include="Assets\Menus\heart.bmp" />
+    <Content Include="Assets\Menus\heart.png" />
+    <Content Include="Assets\Menus\help.bmp" />
+    <Content Include="Assets\Menus\help.png" />
+    <Content Include="Assets\Menus\high.bmp" />
+    <Content Include="Assets\Menus\high.png" />
+    <Content Include="Assets\Menus\history.bmp" />
+    <Content Include="Assets\Menus\history.png" />
+    <Content Include="Assets\Menus\hlp.bmp" />
+    <Content Include="Assets\Menus\htm.bmp" />
+    <Content Include="Assets\Menus\html.bmp" />
+    <Content Include="Assets\Menus\ico.bmp" />
+    <Content Include="Assets\Menus\info.bmp" />
+    <Content Include="Assets\Menus\interop.bmp" />
+    <Content Include="Assets\Menus\iso.bmp" />
+    <Content Include="Assets\Menus\jpeg.bmp" />
+    <Content Include="Assets\Menus\jpg.bmp" />
+    <Content Include="Assets\Menus\js.bmp" />
+    <Content Include="Assets\Menus\json.bmp" />
+    <Content Include="Assets\Menus\keyboard.bmp" />
+    <Content Include="Assets\Menus\keyboard.png" />
+    <Content Include="Assets\Menus\left.bmp" />
+    <Content Include="Assets\Menus\line.bmp" />
+    <Content Include="Assets\Menus\lines.bmp" />
+    <Content Include="Assets\Menus\lnk.bmp" />
+    <Content Include="Assets\Menus\logs.bmp" />
+    <Content Include="Assets\Menus\low.bmp" />
+    <Content Include="Assets\Menus\media-pause.bmp" />
+    <Content Include="Assets\Menus\media-play.bmp" />
+    <Content Include="Assets\Menus\media-stop.bmp" />
+    <Content Include="Assets\Menus\media-test.bmp" />
+    <Content Include="Assets\Menus\media-test.png" />
+    <Content Include="Assets\Menus\memory.bmp" />
+    <Content Include="Assets\Menus\memory2.bmp" />
+    <Content Include="Assets\Menus\memory3.bmp" />
+    <Content Include="Assets\Menus\memory4.bmp" />
+    <Content Include="Assets\Menus\mkv.bmp" />
+    <Content Include="Assets\Menus\mouse.bmp" />
+    <Content Include="Assets\Menus\mouse.png" />
+    <Content Include="Assets\Menus\movies.bmp" />
+    <Content Include="Assets\Menus\mp3.bmp" />
+    <Content Include="Assets\Menus\mp4.bmp" />
+    <Content Include="Assets\Menus\msband.bmp" />
+    <Content Include="Assets\Menus\msi.bmp" />
+    <Content Include="Assets\Menus\msix.bmp" />
+    <Content Include="Assets\Menus\msixbundle.bmp" />
+    <Content Include="Assets\Menus\multi.bmp" />
+    <Content Include="Assets\Menus\mute.bmp" />
+    <Content Include="Assets\Menus\near.bmp" />
+    <Content Include="Assets\Menus\netflix.bmp" />
+    <Content Include="Assets\Menus\network.bmp" />
+    <Content Include="Assets\Menus\none.bmp" />
+    <Content Include="Assets\Menus\notepad.bmp" />
+    <Content Include="Assets\Menus\office.bmp" />
+    <Content Include="Assets\Menus\ogg.bmp" />
+    <Content Include="Assets\Menus\onedrive.bmp" />
+    <Content Include="Assets\Menus\onenote.bmp" />
+    <Content Include="Assets\Menus\opera.bmp" />
+    <Content Include="Assets\Menus\opus.bmp" />
+    <Content Include="Assets\Menus\others.bmp" />
+    <Content Include="Assets\Menus\others.png" />
+    <Content Include="Assets\Menus\paint.bmp" />
+    <Content Include="Assets\Menus\pause.bmp" />
+    <Content Include="Assets\Menus\pdf.bmp" />
+    <Content Include="Assets\Menus\people.bmp" />
+    <Content Include="Assets\Menus\performance.bmp" />
+    <Content Include="Assets\Menus\pfx.bmp" />
+    <Content Include="Assets\Menus\photoshop.bmp" />
+    <Content Include="Assets\Menus\php.bmp" />
+    <Content Include="Assets\Menus\play.bmp" />
+    <Content Include="Assets\Menus\png.bmp" />
+    <Content Include="Assets\Menus\powerpoint.bmp" />
+    <Content Include="Assets\Menus\ppsspp.bmp" />
+    <Content Include="Assets\Menus\ppt.bmp" />
+    <Content Include="Assets\Menus\pptx.bmp" />
+    <Content Include="Assets\Menus\ps1.bmp" />
+    <Content Include="Assets\Menus\py.bmp" />
+    <Content Include="Assets\Menus\python.bmp" />
+    <Content Include="Assets\Menus\quicksave.bmp" />
+    <Content Include="Assets\Menus\rar.bmp" />
+    <Content Include="Assets\Menus\rdp.bmp" />
+    <Content Include="Assets\Menus\reader.bmp" />
+    <Content Include="Assets\Menus\record.bmp" />
+    <Content Include="Assets\Menus\reg.bmp" />
+    <Content Include="Assets\Menus\remote.bmp" />
+    <Content Include="Assets\Menus\repo.bmp" />
+    <Content Include="Assets\Menus\repodirect.bmp" />
+    <Content Include="Assets\Menus\repolocal.bmp" />
+    <Content Include="Assets\Menus\retrix.bmp" />
+    <Content Include="Assets\Menus\retro.bmp" />
+    <Content Include="Assets\Menus\RetroArch.bmp" />
+    <Content Include="Assets\Menus\right.bmp" />
+    <Content Include="Assets\Menus\root.bmp" />
+    <Content Include="Assets\Menus\runtime.bmp" />
+    <Content Include="Assets\Menus\savenstop.bmp" />
+    <Content Include="Assets\Menus\savenstop.png" />
+    <Content Include="Assets\Menus\saves.bmp" />
+    <Content Include="Assets\Menus\scummvm.bmp" />
+    <Content Include="Assets\Menus\sdcard.bmp" />
+    <Content Include="Assets\Menus\search.bmp" />
+    <Content Include="Assets\Menus\security.bmp" />
+    <Content Include="Assets\Menus\sensors.bmp" />
+    <Content Include="Assets\Menus\sepia.bmp" />
+    <Content Include="Assets\Menus\Settings.bmp" />
+    <Content Include="Assets\Menus\share.bmp" />
+    <Content Include="Assets\Menus\skipframes.bmp" />
+    <Content Include="Assets\Menus\skype.bmp" />
+    <Content Include="Assets\Menus\sln.bmp" />
+    <Content Include="Assets\Menus\speed1.bmp" />
+    <Content Include="Assets\Menus\speed1.png" />
+    <Content Include="Assets\Menus\speed2.bmp" />
+    <Content Include="Assets\Menus\speed2.png" />
+    <Content Include="Assets\Menus\speed3.bmp" />
+    <Content Include="Assets\Menus\speed3.png" />
+    <Content Include="Assets\Menus\spotify.bmp" />
+    <Content Include="Assets\Menus\steam.bmp" />
+    <Content Include="Assets\Menus\stop.bmp" />
+    <Content Include="Assets\Menus\store.bmp" />
+    <Content Include="Assets\Menus\svg.bmp" />
+    <Content Include="Assets\Menus\tar.bmp" />
+    <Content Include="Assets\Menus\telg.bmp" />
+    <Content Include="Assets\Menus\threads2.bmp" />
+    <Content Include="Assets\Menus\threads4.bmp" />
+    <Content Include="Assets\Menus\threads8.bmp" />
+    <Content Include="Assets\Menus\threadsnone.bmp" />
+    <Content Include="Assets\Menus\threadswait.bmp" />
+    <Content Include="Assets\Menus\tif.bmp" />
+    <Content Include="Assets\Menus\timer30.bmp" />
+    <Content Include="Assets\Menus\timer60.bmp" />
+    <Content Include="Assets\Menus\timer60.png" />
+    <Content Include="Assets\Menus\timer95.bmp" />
+    <Content Include="Assets\Menus\timer95.png" />
+    <Content Include="Assets\Menus\hlp.png" />
+    <Content Include="Assets\Menus\htm.png" />
+    <Content Include="Assets\Menus\html.png" />
+    <Content Include="Assets\Menus\ico.png" />
+    <Content Include="Assets\Menus\info.png" />
+    <Content Include="Assets\Menus\interop.png" />
+    <Content Include="Assets\Menus\iso.png" />
+    <Content Include="Assets\Menus\jpeg.png" />
+    <Content Include="Assets\Menus\jpg.png" />
+    <Content Include="Assets\Menus\js.png" />
+    <Content Include="Assets\Menus\json.png" />
+    <Content Include="Assets\Menus\left.png" />
+    <Content Include="Assets\Menus\line.png" />
+    <Content Include="Assets\Menus\lines.png" />
+    <Content Include="Assets\Menus\lnk.png" />
+    <Content Include="Assets\Menus\logs.png" />
+    <Content Include="Assets\Menus\low.png" />
+    <Content Include="Assets\Menus\media-pause.png" />
+    <Content Include="Assets\Menus\media-play.png" />
+    <Content Include="Assets\Menus\media-stop.png" />
+    <Content Include="Assets\Menus\memory.png" />
+    <Content Include="Assets\Menus\memory2.png" />
+    <Content Include="Assets\Menus\memory3.png" />
+    <Content Include="Assets\Menus\memory4.png" />
+    <Content Include="Assets\Menus\mkv.png" />
+    <Content Include="Assets\Menus\movies.png" />
+    <Content Include="Assets\Menus\mp3.png" />
+    <Content Include="Assets\Menus\mp4.png" />
+    <Content Include="Assets\Menus\msband.png" />
+    <Content Include="Assets\Menus\msi.png" />
+    <Content Include="Assets\Menus\msix.png" />
+    <Content Include="Assets\Menus\msixbundle.png" />
+    <Content Include="Assets\Menus\multi.png" />
+    <Content Include="Assets\Menus\mute.png" />
+    <Content Include="Assets\Menus\near.png" />
+    <Content Include="Assets\Menus\netflix.png" />
+    <Content Include="Assets\Menus\network.png" />
+    <Content Include="Assets\Menus\none.png" />
+    <Content Include="Assets\Menus\notepad.png" />
+    <Content Include="Assets\Menus\office.png" />
+    <Content Include="Assets\Menus\ogg.png" />
+    <Content Include="Assets\Menus\onedrive.png" />
+    <Content Include="Assets\Menus\onenote.png" />
+    <Content Include="Assets\Menus\opera.png" />
+    <Content Include="Assets\Menus\opus.png" />
+    <Content Include="Assets\Menus\paint.png" />
+    <Content Include="Assets\Menus\pause.png" />
+    <Content Include="Assets\Menus\pdf.png" />
+    <Content Include="Assets\Menus\people.png" />
+    <Content Include="Assets\Menus\performance.png" />
+    <Content Include="Assets\Menus\pfx.png" />
+    <Content Include="Assets\Menus\photoshop.png" />
+    <Content Include="Assets\Menus\php.png" />
+    <Content Include="Assets\Menus\play.png" />
+    <Content Include="Assets\Menus\png.png" />
+    <Content Include="Assets\Menus\powerpoint.png" />
+    <Content Include="Assets\Menus\ppsspp.png" />
+    <Content Include="Assets\Menus\ppt.png" />
+    <Content Include="Assets\Menus\pptx.png" />
+    <Content Include="Assets\Menus\ps1.png" />
+    <Content Include="Assets\Menus\py.png" />
+    <Content Include="Assets\Menus\python.png" />
+    <Content Include="Assets\Menus\quicksave.png" />
+    <Content Include="Assets\Menus\rar.png" />
+    <Content Include="Assets\Menus\rdp.png" />
+    <Content Include="Assets\Menus\reader.png" />
+    <Content Include="Assets\Menus\record.png" />
+    <Content Include="Assets\Menus\reg.png" />
+    <Content Include="Assets\Menus\remote.png" />
+    <Content Include="Assets\Menus\repo.png" />
+    <Content Include="Assets\Menus\repodirect.png" />
+    <Content Include="Assets\Menus\repolocal.png" />
+    <Content Include="Assets\Menus\retrix.png" />
+    <Content Include="Assets\Menus\retro.png" />
+    <Content Include="Assets\Menus\RetroArch.png" />
+    <Content Include="Assets\Menus\right.png" />
+    <Content Include="Assets\Menus\root.png" />
+    <Content Include="Assets\Menus\runtime.png" />
+    <Content Include="Assets\Menus\saves.png" />
+    <Content Include="Assets\Menus\scummvm.png" />
+    <Content Include="Assets\Menus\sdcard.png" />
+    <Content Include="Assets\Menus\search.png" />
+    <Content Include="Assets\Menus\security.png" />
+    <Content Include="Assets\Menus\sensors.png" />
+    <Content Include="Assets\Menus\sepia.png" />
+    <Content Include="Assets\Menus\Settings.png" />
+    <Content Include="Assets\Menus\share.png" />
+    <Content Include="Assets\Menus\skipframes.png" />
+    <Content Include="Assets\Menus\skype.png" />
+    <Content Include="Assets\Menus\sln.png" />
+    <Content Include="Assets\Menus\spotify.png" />
+    <Content Include="Assets\Menus\steam.png" />
+    <Content Include="Assets\Menus\stop.png" />
+    <Content Include="Assets\Menus\store.png" />
+    <Content Include="Assets\Menus\svg.png" />
+    <Content Include="Assets\Menus\tar.png" />
+    <Content Include="Assets\Menus\telg.png" />
+    <Content Include="Assets\Menus\threads2.png" />
+    <Content Include="Assets\Menus\threads4.png" />
+    <Content Include="Assets\Menus\threads8.png" />
+    <Content Include="Assets\Menus\threadsnone.png" />
+    <Content Include="Assets\Menus\threadswait.png" />
+    <Content Include="Assets\Menus\tif.png" />
+    <Content Include="Assets\Menus\timer30.png" />
+    <Content Include="Assets\Menus\timernotify.bmp" />
+    <Content Include="Assets\Menus\timernotify.png" />
+    <Content Include="Assets\Menus\tmp.bmp" />
+    <Content Include="Assets\Menus\tmp.png" />
+    <Content Include="Assets\Menus\tools.bmp" />
+    <Content Include="Assets\Menus\tools.png" />
+    <Content Include="Assets\Menus\translate.bmp" />
+    <Content Include="Assets\Menus\translate.png" />
+    <Content Include="Assets\Menus\ttf.bmp" />
+    <Content Include="Assets\Menus\ttf.png" />
+    <Content Include="Assets\Menus\txt.bmp" />
+    <Content Include="Assets\Menus\txt.png" />
+    <Content Include="Assets\Menus\uni-theme.bmp" />
+    <Content Include="Assets\Menus\uni-theme.png" />
+    <Content Include="Assets\Menus\unig.bmp" />
+    <Content Include="Assets\Menus\unig.png" />
+    <Content Include="Assets\Menus\unigram-theme.bmp" />
+    <Content Include="Assets\Menus\unigram-theme.png" />
+    <Content Include="Assets\Menus\vegas.bmp" />
+    <Content Include="Assets\Menus\vegas.png" />
+    <Content Include="Assets\Menus\vlc.bmp" />
+    <Content Include="Assets\Menus\vlc.png" />
+    <Content Include="Assets\Menus\w10m.bmp" />
+    <Content Include="Assets\Menus\w10m.png" />
+    <Content Include="Assets\Menus\w10mc.bmp" />
+    <Content Include="Assets\Menus\w10mc.png" />
+    <Content Include="Assets\Menus\w10ms.bmp" />
+    <Content Include="Assets\Menus\w10ms.png" />
+    <Content Include="Assets\Menus\w10mz.bmp" />
+    <Content Include="Assets\Menus\w10mz.png" />
+    <Content Include="Assets\Menus\w81m.bmp" />
+    <Content Include="Assets\Menus\w81m.png" />
+    <Content Include="Assets\Menus\wav.bmp" />
+    <Content Include="Assets\Menus\wav.png" />
+    <Content Include="Assets\Menus\webm.bmp" />
+    <Content Include="Assets\Menus\webm.png" />
+    <Content Include="Assets\Menus\Welcome.bmp" />
+    <Content Include="Assets\Menus\Welcome.png" />
+    <Content Include="Assets\Menus\windows.bmp" />
+    <Content Include="Assets\Menus\windows.png" />
+    <Content Include="Assets\Menus\wma.bmp" />
+    <Content Include="Assets\Menus\wma.png" />
+    <Content Include="Assets\Menus\wmv.bmp" />
+    <Content Include="Assets\Menus\wmv.png" />
+    <Content Include="Assets\Menus\word.bmp" />
+    <Content Include="Assets\Menus\word.png" />
+    <Content Include="Assets\Menus\wut.bmp" />
+    <Content Include="Assets\Menus\wut.png" />
+    <Content Include="Assets\Menus\wutc.bmp" />
+    <Content Include="Assets\Menus\wutc.png" />
+    <Content Include="Assets\Menus\wuts.bmp" />
+    <Content Include="Assets\Menus\wuts.png" />
+    <Content Include="Assets\Menus\wutz.bmp" />
+    <Content Include="Assets\Menus\wutz.png" />
+    <Content Include="Assets\Menus\xap.bmp" />
+    <Content Include="Assets\Menus\xap.png" />
+    <Content Include="Assets\Menus\xapk.bmp" />
+    <Content Include="Assets\Menus\xapk.png" />
+    <Content Include="Assets\Menus\xbox-map.bmp" />
+    <Content Include="Assets\Menus\xbox-map.png" />
+    <Content Include="Assets\Menus\xbox.bmp" />
+    <Content Include="Assets\Menus\xbox.png" />
+    <Content Include="Assets\Menus\xbox_game.bmp" />
+    <Content Include="Assets\Menus\xbox_game.png" />
+    <Content Include="Assets\Menus\xls.bmp" />
+    <Content Include="Assets\Menus\xls.png" />
+    <Content Include="Assets\Menus\xlsx.bmp" />
+    <Content Include="Assets\Menus\xlsx.png" />
+    <Content Include="Assets\Menus\zip.bmp" />
+    <Content Include="Assets\Menus\zip.png" />
+    <Content Include="Assets\ParallexVertical.png" />
+    <Content Include="Assets\ParallexWide.png" />
+    <Content Include="Assets\RomsIcons\2048.bmp" />
+    <Content Include="Assets\RomsIcons\2048.png" />
+    <Content Include="Assets\RomsIcons\32X.bmp" />
+    <Content Include="Assets\RomsIcons\32X.png" />
+    <Content Include="Assets\RomsIcons\3DO.bmp" />
+    <Content Include="Assets\RomsIcons\3DO.png" />
+    <Content Include="Assets\RomsIcons\3DS.bmp" />
+    <Content Include="Assets\RomsIcons\3DS.png" />
+    <Content Include="Assets\RomsIcons\7Zip.bmp" />
+    <Content Include="Assets\RomsIcons\7Zip.png" />
+    <Content Include="Assets\RomsIcons\Amstrad CPC.bmp" />
+    <Content Include="Assets\RomsIcons\Amstrad CPC.png" />
+    <Content Include="Assets\RomsIcons\Arcade 2.bmp" />
+    <Content Include="Assets\RomsIcons\Arcade 2.png" />
+    <Content Include="Assets\RomsIcons\Arcade.bmp" />
+    <Content Include="Assets\RomsIcons\Arcade.png" />
+    <Content Include="Assets\RomsIcons\ArcadeAlpha.bmp" />
+    <Content Include="Assets\RomsIcons\ArcadeAlpha.png" />
+    <Content Include="Assets\RomsIcons\Atari Jaguar.bmp" />
+    <Content Include="Assets\RomsIcons\Atari Jaguar.png" />
+    <Content Include="Assets\RomsIcons\Atari2600 2014.bmp" />
+    <Content Include="Assets\RomsIcons\Atari2600 2014.png" />
+    <Content Include="Assets\RomsIcons\Atari2600.bmp" />
+    <Content Include="Assets\RomsIcons\Atari2600.png" />
+    <Content Include="Assets\RomsIcons\Atari5200.bmp" />
+    <Content Include="Assets\RomsIcons\Atari5200.png" />
+    <Content Include="Assets\RomsIcons\Atari7800.bmp" />
+    <Content Include="Assets\RomsIcons\Atari7800.png" />
+    <Content Include="Assets\RomsIcons\Cannonball.bmp" />
+    <Content Include="Assets\RomsIcons\Cannonball.png" />
+    <Content Include="Assets\RomsIcons\Cave Story.gif" />
+    <Content Include="Assets\RomsIcons\CD.bmp" />
+    <Content Include="Assets\RomsIcons\CD.png" />
+    <Content Include="Assets\RomsIcons\ChannelF.bmp" />
+    <Content Include="Assets\RomsIcons\ChannelF.png" />
+    <Content Include="Assets\RomsIcons\ColecoVision.bmp" />
+    <Content Include="Assets\RomsIcons\ColecoVision.png" />
+    <Content Include="Assets\RomsIcons\Controller.gif" />
+    <Content Include="Assets\RomsIcons\Doom.bmp" />
+    <Content Include="Assets\RomsIcons\Doom.png" />
+    <Content Include="Assets\RomsIcons\DOSBox.bmp" />
+    <Content Include="Assets\RomsIcons\DOSBox.png" />
+    <Content Include="Assets\RomsIcons\DOSBoxPure.bmp" />
+    <Content Include="Assets\RomsIcons\DOSBoxPure.png" />
+    <Content Include="Assets\RomsIcons\DOSBoxSVN.bmp" />
+    <Content Include="Assets\RomsIcons\DOSBoxSVN.png" />
+    <Content Include="Assets\RomsIcons\Dreamcast.bmp" />
+    <Content Include="Assets\RomsIcons\Dreamcast.png" />
+    <Content Include="Assets\RomsIcons\GameCube.bmp" />
+    <Content Include="Assets\RomsIcons\GameCube.png" />
+    <Content Include="Assets\RomsIcons\GameGear.bmp" />
+    <Content Include="Assets\RomsIcons\GameGear.png" />
+    <Content Include="Assets\RomsIcons\GB.bmp" />
+    <Content Include="Assets\RomsIcons\GB.gif" />
+    <Content Include="Assets\RomsIcons\GB.png" />
+    <Content Include="Assets\RomsIcons\GBA.bmp" />
+    <Content Include="Assets\RomsIcons\GBA.gif" />
+    <Content Include="Assets\RomsIcons\GBA.png" />
+    <Content Include="Assets\RomsIcons\GBA2.bmp" />
+    <Content Include="Assets\RomsIcons\GBA2.gif" />
+    <Content Include="Assets\RomsIcons\GBA2.png" />
+    <Content Include="Assets\RomsIcons\GBASP.bmp" />
+    <Content Include="Assets\RomsIcons\GBASP.png" />
+    <Content Include="Assets\RomsIcons\GBC.bmp" />
+    <Content Include="Assets\RomsIcons\GBC.gif" />
+    <Content Include="Assets\RomsIcons\GBC.png" />
+    <Content Include="Assets\RomsIcons\GBC1.bmp" />
+    <Content Include="Assets\RomsIcons\GBC1.png" />
+    <Content Include="Assets\RomsIcons\GBC2.bmp" />
+    <Content Include="Assets\RomsIcons\GBC2.png" />
+    <Content Include="Assets\RomsIcons\GBC3.bmp" />
+    <Content Include="Assets\RomsIcons\GBC3.png" />
+    <Content Include="Assets\RomsIcons\GBM.bmp" />
+    <Content Include="Assets\RomsIcons\GBM.gif" />
+    <Content Include="Assets\RomsIcons\GBM.png" />
+    <Content Include="Assets\RomsIcons\GN.bmp" />
+    <Content Include="Assets\RomsIcons\GN.png" />
+    <Content Include="Assets\RomsIcons\GNFail.bmp" />
+    <Content Include="Assets\RomsIcons\GNFail.png" />
+    <Content Include="Assets\RomsIcons\GNSkipped.bmp" />
+    <Content Include="Assets\RomsIcons\GNSkipped.png" />
+    <Content Include="Assets\RomsIcons\GW.bmp" />
+    <Content Include="Assets\RomsIcons\GW.png" />
+    <Content Include="Assets\RomsIcons\GZ.bmp" />
+    <Content Include="Assets\RomsIcons\GZ.png" />
+    <Content Include="Assets\RomsIcons\Intellivision.bmp" />
+    <Content Include="Assets\RomsIcons\Intellivision.png" />
+    <Content Include="Assets\RomsIcons\JNB.bmp" />
+    <Content Include="Assets\RomsIcons\JNB.png" />
+    <Content Include="Assets\RomsIcons\LowResNX.bmp" />
+    <Content Include="Assets\RomsIcons\LowResNX.png" />
+    <Content Include="Assets\RomsIcons\Lynx.bmp" />
+    <Content Include="Assets\RomsIcons\Lynx.png" />
+    <Content Include="Assets\RomsIcons\LynxHandy.bmp" />
+    <Content Include="Assets\RomsIcons\LynxHandy.png" />
+    <Content Include="Assets\RomsIcons\MAME.bmp" />
+    <Content Include="Assets\RomsIcons\MAME.png" />
+    <Content Include="Assets\RomsIcons\MAME2000.bmp" />
+    <Content Include="Assets\RomsIcons\MAME2000.gif" />
+    <Content Include="Assets\RomsIcons\MAME2000.png" />
+    <Content Include="Assets\RomsIcons\MasterSystem.bmp" />
+    <Content Include="Assets\RomsIcons\MasterSystem.png" />
+    <Content Include="Assets\RomsIcons\MegaCD.bmp" />
+    <Content Include="Assets\RomsIcons\MegaCD.png" />
+    <Content Include="Assets\RomsIcons\MegaDrive.bmp" />
+    <Content Include="Assets\RomsIcons\MegaDrive.png" />
+    <Content Include="Assets\RomsIcons\MegaDriveWide.bmp" />
+    <Content Include="Assets\RomsIcons\MegaDriveWide.png" />
+    <Content Include="Assets\RomsIcons\MiniVMac.bmp" />
+    <Content Include="Assets\RomsIcons\MiniVMac.png" />
+    <Content Include="Assets\RomsIcons\MSX.bmp" />
+    <Content Include="Assets\RomsIcons\MSX.png" />
+    <Content Include="Assets\RomsIcons\MSXCom.bmp" />
+    <Content Include="Assets\RomsIcons\MSXCom.png" />
+    <Content Include="Assets\RomsIcons\MusicEmu.bmp" />
+    <Content Include="Assets\RomsIcons\MusicEmu.png" />
+    <Content Include="Assets\RomsIcons\N64.bmp" />
+    <Content Include="Assets\RomsIcons\N64.png" />
+    <Content Include="Assets\RomsIcons\NDS.bmp" />
+    <Content Include="Assets\RomsIcons\NDS.png" />
+    <Content Include="Assets\RomsIcons\NDS2.bmp" />
+    <Content Include="Assets\RomsIcons\NDS2.png" />
+    <Content Include="Assets\RomsIcons\NDS3.bmp" />
+    <Content Include="Assets\RomsIcons\NDS3.png" />
+    <Content Include="Assets\RomsIcons\NDS4.bmp" />
+    <Content Include="Assets\RomsIcons\NDS4.png" />
+    <Content Include="Assets\RomsIcons\NeoGeo CD.bmp" />
+    <Content Include="Assets\RomsIcons\NeoGeo CD.png" />
+    <Content Include="Assets\RomsIcons\NeoGeo Pocket.bmp" />
+    <Content Include="Assets\RomsIcons\NeoGeo Pocket.png" />
+    <Content Include="Assets\RomsIcons\NeoGeo PocketRACE.bmp" />
+    <Content Include="Assets\RomsIcons\NeoGeo PocketRACE.png" />
+    <Content Include="Assets\RomsIcons\NeoGeo.bmp" />
+    <Content Include="Assets\RomsIcons\NeoGeo.png" />
+    <Content Include="Assets\RomsIcons\NES.bmp" />
+    <Content Include="Assets\RomsIcons\NES.png" />
+    <Content Include="Assets\RomsIcons\NESN.bmp" />
+    <Content Include="Assets\RomsIcons\NESN.png" />
+    <Content Include="Assets\RomsIcons\NESQ.bmp" />
+    <Content Include="Assets\RomsIcons\NESQ.png" />
+    <Content Include="Assets\RomsIcons\Oberon.bmp" />
+    <Content Include="Assets\RomsIcons\Oberon.png" />
+    <Content Include="Assets\RomsIcons\Odyssey2.bmp" />
+    <Content Include="Assets\RomsIcons\Odyssey2.png" />
+    <Content Include="Assets\RomsIcons\OutRun.bmp" />
+    <Content Include="Assets\RomsIcons\OutRun.png" />
+    <Content Include="Assets\RomsIcons\PC8800.bmp" />
+    <Content Include="Assets\RomsIcons\PC8800.png" />
+    <Content Include="Assets\RomsIcons\PCE.bmp" />
+    <Content Include="Assets\RomsIcons\PCE.png" />
+    <Content Include="Assets\RomsIcons\PCECD.bmp" />
+    <Content Include="Assets\RomsIcons\PCECD.png" />
+    <Content Include="Assets\RomsIcons\PCEFast.bmp" />
+    <Content Include="Assets\RomsIcons\PCEFast.png" />
+    <Content Include="Assets\RomsIcons\PCEFX.bmp" />
+    <Content Include="Assets\RomsIcons\PCEFX.png" />
+    <Content Include="Assets\RomsIcons\Playstation.bmp" />
+    <Content Include="Assets\RomsIcons\Playstation.png" />
+    <Content Include="Assets\RomsIcons\Playstation2.bmp" />
+    <Content Include="Assets\RomsIcons\Playstation2.png" />
+    <Content Include="Assets\RomsIcons\PlaystationDuck.bmp" />
+    <Content Include="Assets\RomsIcons\PlaystationDuck.png" />
+    <Content Include="Assets\RomsIcons\PlaystationReARMed.bmp" />
+    <Content Include="Assets\RomsIcons\PlaystationReARMed.png" />
+    <Content Include="Assets\RomsIcons\PocketCDG.bmp" />
+    <Content Include="Assets\RomsIcons\PocketCDG.png" />
+    <Content Include="Assets\RomsIcons\PokeMini.bmp" />
+    <Content Include="Assets\RomsIcons\PokeMini.png" />
+    <Content Include="Assets\RomsIcons\PS2.bmp" />
+    <Content Include="Assets\RomsIcons\PS2.png" />
+    <Content Include="Assets\RomsIcons\PS3.bmp" />
+    <Content Include="Assets\RomsIcons\PS3.png" />
+    <Content Include="Assets\RomsIcons\PS4.bmp" />
+    <Content Include="Assets\RomsIcons\PS4.png" />
+    <Content Include="Assets\RomsIcons\PSP.bmp" />
+    <Content Include="Assets\RomsIcons\PSP.png" />
+    <Content Include="Assets\RomsIcons\Quake.bmp" />
+    <Content Include="Assets\RomsIcons\Quake.png" />
+    <Content Include="Assets\RomsIcons\RAR.bmp" />
+    <Content Include="Assets\RomsIcons\RAR.png" />
+    <Content Include="Assets\RomsIcons\Reminiscence.bmp" />
+    <Content Include="Assets\RomsIcons\Reminiscence.png" />
+    <Content Include="Assets\RomsIcons\RickDangrous.bmp" />
+    <Content Include="Assets\RomsIcons\RickDangrous.png" />
+    <Content Include="Assets\RomsIcons\Saturn.bmp" />
+    <Content Include="Assets\RomsIcons\Saturn.png" />
+    <Content Include="Assets\RomsIcons\SaturnYabause.bmp" />
+    <Content Include="Assets\RomsIcons\SaturnYabause.png" />
+    <Content Include="Assets\RomsIcons\ScummVM.bmp" />
+    <Content Include="Assets\RomsIcons\ScummVM.png" />
+    <Content Include="Assets\RomsIcons\SG1000.bmp" />
+    <Content Include="Assets\RomsIcons\SG1000.png" />
+    <Content Include="Assets\RomsIcons\SNES.bmp" />
+    <Content Include="Assets\RomsIcons\SNES.png" />
+    <Content Include="Assets\RomsIcons\SNES2005.bmp" />
+    <Content Include="Assets\RomsIcons\SNES2005.png" />
+    <Content Include="Assets\RomsIcons\success.wav" />
+    <Content Include="Assets\RomsIcons\SuperVision.bmp" />
+    <Content Include="Assets\RomsIcons\SuperVision.png" />
+    <Content Include="Assets\RomsIcons\Switch.bmp" />
+    <Content Include="Assets\RomsIcons\Switch.png" />
+    <Content Include="Assets\RomsIcons\TIC80.bmp" />
+    <Content Include="Assets\RomsIcons\TIC80.png" />
+    <Content Include="Assets\RomsIcons\Vectrex.bmp" />
+    <Content Include="Assets\RomsIcons\Vectrex.png" />
+    <Content Include="Assets\RomsIcons\vice-c128.bmp" />
+    <Content Include="Assets\RomsIcons\vice-c128.png" />
+    <Content Include="Assets\RomsIcons\vice-c610.bmp" />
+    <Content Include="Assets\RomsIcons\vice-c610.png" />
+    <Content Include="Assets\RomsIcons\vice-c6102.bmp" />
+    <Content Include="Assets\RomsIcons\vice-c6102.png" />
+    <Content Include="Assets\RomsIcons\vice-c64.bmp" />
+    <Content Include="Assets\RomsIcons\vice-c64.png" />
+    <Content Include="Assets\RomsIcons\vice-c64su1.bmp" />
+    <Content Include="Assets\RomsIcons\vice-c64su1.png" />
+    <Content Include="Assets\RomsIcons\vice-c64su2.bmp" />
+    <Content Include="Assets\RomsIcons\vice-c64su2.png" />
+    <Content Include="Assets\RomsIcons\vice-pet.bmp" />
+    <Content Include="Assets\RomsIcons\vice-pet.png" />
+    <Content Include="Assets\RomsIcons\vice-plus4.bmp" />
+    <Content Include="Assets\RomsIcons\vice-plus4.png" />
+    <Content Include="Assets\RomsIcons\vice-vic20.bmp" />
+    <Content Include="Assets\RomsIcons\vice-vic20.png" />
+    <Content Include="Assets\RomsIcons\VirtualBoy.bmp" />
+    <Content Include="Assets\RomsIcons\VirtualBoy.png" />
+    <Content Include="Assets\RomsIcons\Wii.bmp" />
+    <Content Include="Assets\RomsIcons\Wii.png" />
+    <Content Include="Assets\RomsIcons\WonderSwan.bmp" />
+    <Content Include="Assets\RomsIcons\WonderSwan.png" />
+    <Content Include="Assets\RomsIcons\WonderSwanColor.bmp" />
+    <Content Include="Assets\RomsIcons\WonderSwanColor.png" />
+    <Content Include="Assets\RomsIcons\XBOX.bmp" />
+    <Content Include="Assets\RomsIcons\XBOX.png" />
+    <Content Include="Assets\RomsIcons\XBOX360.bmp" />
+    <Content Include="Assets\RomsIcons\XBOX360.png" />
+    <Content Include="Assets\RomsIcons\XBOXOne.bmp" />
+    <Content Include="Assets\RomsIcons\XBOXOne.png" />
+    <Content Include="Assets\RomsIcons\Zip.bmp" />
+    <Content Include="Assets\RomsIcons\Zip.png" />
+    <Content Include="Assets\RomsIcons\ZX81.bmp" />
+    <Content Include="Assets\RomsIcons\ZX81.png" />
+    <Content Include="Assets\BadgeLogo.scale-100.png" />
+    <Content Include="Assets\BadgeLogo.scale-125.png" />
+    <Content Include="Assets\BadgeLogo.scale-150.png" />
+    <Content Include="Assets\BadgeLogo.scale-200.png" />
+    <Content Include="Assets\BadgeLogo.scale-400.png" />
+    <Content Include="Assets\FileIcon.targetsize-16.png" />
+    <Content Include="Assets\FileIcon.targetsize-256.png" />
+    <Content Include="Assets\FileIcon.targetsize-32.png" />
+    <Content Include="Assets\FileIcon.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\32X.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\32X.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\32X.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\32X.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\Arcade 2.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\Arcade 2.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\Arcade 2.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\Arcade 2.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\Arcade.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\Arcade.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\Arcade.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\Arcade.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\Gameboy.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\Gameboy.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\Gameboy.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\Gameboy.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\GameboyAdvance.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\GameboyAdvance.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\GameboyAdvance.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\GameboyAdvance.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\GameGear.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\GameGear.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\GameGear.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\GameGear.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\General.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\General.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\General.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\General.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\GN.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\GN.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\GN.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\GN.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\MasterSystem.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\MasterSystem.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\MasterSystem.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\MasterSystem.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\MegaCD.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\MegaCD.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\MegaCD.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\MegaCD.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\MegaDrive.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\MegaDrive.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\MegaDrive.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\MegaDrive.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\N64.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\N64.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\N64.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\N64.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\NDS.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\NDS.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\NDS.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\NDS.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\NeoGeo.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\NeoGeo.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\NeoGeo.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\NeoGeo.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\NeoGeoPocket.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\NeoGeoPocket.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\NeoGeoPocket.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\NeoGeoPocket.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\NES.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\NES.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\NES.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\NES.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\PCDFX.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\PCDFX.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\PCDFX.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\PCDFX.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\PCE.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\PCE.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\PCE.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\PCE.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\PCECD.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\PCECD.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\PCECD.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\PCECD.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\Playstation.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\Playstation.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\Playstation.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\Playstation.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\PSP.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\PSP.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\PSP.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\PSP.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\Saturn.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\Saturn.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\Saturn.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\Saturn.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\SG1000.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\SG1000.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\SG1000.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\SG1000.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\SNES.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\SNES.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\SNES.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\SNES.targetsize-48.png" />
+    <Content Include="Assets\FilesIcons\WonderSwan.targetsize-16.png" />
+    <Content Include="Assets\FilesIcons\WonderSwan.targetsize-256.png" />
+    <Content Include="Assets\FilesIcons\WonderSwan.targetsize-32.png" />
+    <Content Include="Assets\FilesIcons\WonderSwan.targetsize-48.png" />
+    <Content Include="Assets\GameGlyphs.ttf" />
+    <PRIResource Include="Strings\en-US\Resources.resw">
+      <SubType>Designer</SubType>
+    </PRIResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Icons\32X.png" />
+    <Content Include="Assets\Icons\Arcade 2.png" />
+    <Content Include="Assets\Icons\Arcade.png" />
+    <Content Include="Assets\Icons\GameGear.png" />
+    <Content Include="Assets\Icons\GB.png" />
+    <Content Include="Assets\Icons\GBA.png" />
+    <Content Include="Assets\Icons\GN.png" />
+    <Content Include="Assets\Icons\MasterSystem.png" />
+    <Content Include="Assets\Icons\MegaCD.png" />
+    <Content Include="Assets\Icons\MegaDrive.png" />
+    <Content Include="Assets\Icons\N64.png" />
+    <Content Include="Assets\Icons\NDS.png" />
+    <Content Include="Assets\Icons\NeoGeo Pocket.png" />
+    <Content Include="Assets\Icons\NeoGeo.png" />
+    <Content Include="Assets\Icons\NES.png" />
+    <Content Include="Assets\Icons\PCE.png" />
+    <Content Include="Assets\Icons\PCECD.png" />
+    <Content Include="Assets\Icons\PCEFX.png" />
+    <Content Include="Assets\Icons\Playstation.png" />
+    <Content Include="Assets\Icons\PSP.png" />
+    <Content Include="Assets\Icons\Saturn.png" />
+    <Content Include="Assets\Icons\SG1000.png" />
+    <Content Include="Assets\Icons\SNES.png" />
+    <Content Include="Assets\Icons\WonderSwan.png" />
+    <Content Include="Assets\LargeTile.scale-100.png" />
+    <Content Include="Assets\LargeTile.scale-125.png" />
+    <Content Include="Assets\LargeTile.scale-150.png" />
+    <Content Include="Assets\LargeTile.scale-200.png" />
+    <Content Include="Assets\LargeTile.scale-400.png" />
+    <Content Include="Assets\PackageLogo.scale-100.png" />
+    <Content Include="Assets\PackageLogo.scale-125.png" />
+    <Content Include="Assets\PackageLogo.scale-150.png" />
+    <Content Include="Assets\PackageLogo.scale-200.png" />
+    <Content Include="Assets\PackageLogo.scale-400.png" />
+    <Content Include="Assets\scanlines.png" />
+    <Content Include="Assets\scanlines2.png" />
+    <Content Include="Assets\scanlines3.bmp" />
+    <Content Include="Assets\scanlines3.png" />
+    <Content Include="Assets\scanlines4.bmp" />
+    <Content Include="Assets\scanlines4.png" />
+    <Content Include="Assets\scanlines5.bmp" />
+    <Content Include="Assets\scanlines5.png" />
+    <Content Include="Assets\SFX\alert.mp3" />
+    <Content Include="Assets\SFX\analog-01.mp3" />
+    <Content Include="Assets\SFX\analog-02.mp3" />
+    <Content Include="Assets\SFX\analog.mp3" />
+    <Content Include="Assets\SFX\button-01.mp3" />
+    <Content Include="Assets\SFX\button-02.mp3" />
+    <Content Include="Assets\SFX\button-03.mp3" />
+    <Content Include="Assets\SFX\button-04.mp3" />
+    <Content Include="Assets\SFX\error.mp3" />
+    <Content Include="Assets\SFX\faild.mp3" />
+    <Content Include="Assets\SFX\gamestarted.mp3" />
+    <Content Include="Assets\SFX\launched.mp3" />
+    <Content Include="Assets\SFX\notice.mp3" />
+    <Content Include="Assets\SFX\option-changed.mp3" />
+    <Content Include="Assets\SFX\root-needed.mp3" />
+    <Content Include="Assets\SFX\save-state.mp3" />
+    <Content Include="Assets\SFX\select.mp3" />
+    <Content Include="Assets\SFX\stop.mp3" />
+    <Content Include="Assets\SFX\success.mp3" />
+    <Content Include="Assets\SFX\wait_music 01.mp3" />
+    <Content Include="Assets\SFX\wait_music 02.mp3" />
+    <Content Include="Assets\SFX\wait_music 03.mp3" />
+    <Content Include="Assets\SFX\wait_music 04.mp3" />
+    <Content Include="Assets\SmallTile.scale-100.png" />
+    <Content Include="Assets\SmallTile.scale-125.png" />
+    <Content Include="Assets\SmallTile.scale-150.png" />
+    <Content Include="Assets\SmallTile.scale-200.png" />
+    <Content Include="Assets\SmallTile.scale-400.png" />
+    <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\SplashScreen.scale-125.png" />
+    <Content Include="Assets\SplashScreen.scale-150.png" />
+    <Content Include="Assets\SplashScreen.scale-400.png" />
+    <Content Include="Assets\Square150x150Logo.scale-100.png" />
+    <Content Include="Assets\Square150x150Logo.scale-125.png" />
+    <Content Include="Assets\Square150x150Logo.scale-150.png" />
+    <Content Include="Assets\Square150x150Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-48.png" />
+    <Content Include="Assets\Square44x44Logo.scale-100.png" />
+    <Content Include="Assets\Square44x44Logo.scale-125.png" />
+    <Content Include="Assets\Square44x44Logo.scale-150.png" />
+    <Content Include="Assets\Square44x44Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-48.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-100.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-125.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-150.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-400.png" />
+    <Content Include="Properties\Default.rd.xml" />
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="AppResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Controls\PlayerOverlay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\VirtualPadActions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\VirtualPad.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MaterialDesign.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MaterialDesignColor.Amber.Named.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MaterialDesignColor.Black.Named.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MaterialDesignColor.Blue.Named.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MaterialDesignColor.BlueGrey.Named.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MaterialDesignColor.Brown.Named.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MaterialDesignColor.Cyan.Named.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MaterialDesignColor.DeepOrange.Named.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MaterialDesignColor.DeepPurple.Named.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MaterialDesignColor.Green.Named.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MaterialDesignColor.Grey.Named.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MaterialDesignColor.Indigo.Named.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MaterialDesignColor.LightBlue.Named.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MaterialDesignColor.LightGreen.Named.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MaterialDesignColor.Lime.Named.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MaterialDesignColor.Orange.Named.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MaterialDesignColor.Pink.Named.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MaterialDesignColor.Purple.Named.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MaterialDesignColor.Red.Named.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MaterialDesignColor.Teal.Named.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MaterialDesignColor.Yellow.Named.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AboutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ContentDialogCustom.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\HelpView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GameSystemSelectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GamePlayerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
+      <Version>6.2.14</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI">
+      <Version>4.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Animations">
+      <Version>4.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
+      <Version>2.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="SharpDX">
+      <Version>4.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="SharpDX.D3DCompiler">
+      <Version>4.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="SharpDX.Direct3D11">
+      <Version>4.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="UWPQuickCharts">
+      <Version>1.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Win2D.uwp">
+      <Version>1.26.0</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugins.Settings">
+      <Version>3.1.1</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Components\InjectedFiles\InjectedFiles.csproj">
+      <Project>{25794655-506d-4192-a5f0-f1df48ca42ae}</Project>
+      <Name>InjectedFiles</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Components\SharpCompress\SharpCompress.csproj">
+      <Project>{8f9bb3ee-e365-4fe0-b5ee-fb45d7e7fe41}</Project>
+      <Name>SharpCompress</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RetriX.UWP.Native\RetriX.UWP.Native.vcxproj">
+      <Project>{0e82ee5a-b44a-4b8b-928a-a981c2cf8917}</Project>
+      <Name>RetriX.UWP.Native</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\Cores\" />
+    <Folder Include="Assets\Libraries\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\HTML\assets\fonts\bauhaus93\Bauhaus93.eot" />
+    <Content Include="Assets\HTML\assets\fonts\bauhaus93\Bauhaus93.ttf" />
+    <None Include="Assets\HTML\assets\fonts\bauhaus93\Bauhaus93.woff" />
+    <None Include="Assets\HTML\assets\fonts\bauhaus93\Bauhaus93.woff2" />
+    <None Include="Assets\HTML\assets\fonts\fontawesome-webfont.eot" />
+    <Content Include="Assets\HTML\assets\fonts\fontawesome-webfont.ttf" />
+    <None Include="Assets\HTML\assets\fonts\fontawesome-webfont.woff" />
+    <None Include="Assets\HTML\assets\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Assets\HTML\assets\fonts\FontAwesome.otf" />
+    <None Include="Assets\HTML\assets\fonts\icofont.eot" />
+    <Content Include="Assets\HTML\assets\fonts\icofont.ttf" />
+    <None Include="Assets\HTML\assets\fonts\icofont.woff" />
+    <None Include="Assets\HTML\assets\fonts\icofont.woff2" />
+    <None Include="Assets\HTML\assets\fonts\qanto\Qanto.eot" />
+    <Content Include="Assets\HTML\assets\fonts\qanto\Qanto.ttf" />
+    <None Include="Assets\HTML\assets\fonts\qanto\Qanto.woff" />
+    <None Include="Assets\HTML\assets\fonts\qanto\Qanto.woff2" />
+    <None Include="Assets\HTML\assets\fonts\qanto\Qanto_1.eot" />
+    <Content Include="Assets\HTML\assets\fonts\qanto\Qanto_1.ttf" />
+    <None Include="Assets\HTML\assets\fonts\qanto\Qanto_1.woff" />
+    <None Include="Assets\HTML\assets\fonts\qanto\Qanto_1.woff2" />
+    <None Include="Assets\HTML\assets\fonts\qanto\Qanto_2.eot" />
+    <Content Include="Assets\HTML\assets\fonts\qanto\Qanto_2.ttf" />
+    <None Include="Assets\HTML\assets\fonts\qanto\Qanto_2.woff" />
+    <None Include="Assets\HTML\assets\fonts\qanto\Qanto_2.woff2" />
+    <None Include="Assets\HTML\assets\fonts\qanto\Qanto_3.eot" />
+    <Content Include="Assets\HTML\assets\fonts\qanto\Qanto_3.ttf" />
+    <None Include="Assets\HTML\assets\fonts\qanto\Qanto_3.woff" />
+    <None Include="Assets\HTML\assets\fonts\qanto\Qanto_3.woff2" />
+    <None Include="Assets\HTML\assets\fonts\summernote.eot" />
+    <Content Include="Assets\HTML\assets\fonts\summernote.ttf" />
+    <None Include="Assets\HTML\assets\fonts\summernote.woff" />
+    <None Include="Assets\HTML\assets\php\mail.php" />
+    <None Include="Assets\HTML\assets\scss\helper.scss" />
+    <None Include="Assets\HTML\assets\scss\style.scss" />
+    <None Include="Assets\HTML\assets\scss\_about.scss" />
+    <None Include="Assets\HTML\assets\scss\_blog.scss" />
+    <None Include="Assets\HTML\assets\scss\_checkout.scss" />
+    <None Include="Assets\HTML\assets\scss\_comment.scss" />
+    <None Include="Assets\HTML\assets\scss\_common.scss" />
+    <None Include="Assets\HTML\assets\scss\_contact.scss" />
+    <None Include="Assets\HTML\assets\scss\_download.scss" />
+    <None Include="Assets\HTML\assets\scss\_feature.scss" />
+    <None Include="Assets\HTML\assets\scss\_footer.scss" />
+    <None Include="Assets\HTML\assets\scss\_forum.scss" />
+    <None Include="Assets\HTML\assets\scss\_gallery.scss" />
+    <None Include="Assets\HTML\assets\scss\_game.scss" />
+    <None Include="Assets\HTML\assets\scss\_header.scss" />
+    <None Include="Assets\HTML\assets\scss\_hero.scss" />
+    <None Include="Assets\HTML\assets\scss\_install.scss" />
+    <None Include="Assets\HTML\assets\scss\_login.scss" />
+    <None Include="Assets\HTML\assets\scss\_newslatter.scss" />
+    <None Include="Assets\HTML\assets\scss\_review.scss" />
+    <None Include="Assets\HTML\assets\scss\_sidebar.scss" />
+    <None Include="Assets\HTML\assets\scss\_testimonial.scss" />
+    <None Include="Assets\HTML\assets\scss\_variabls.scss" />
+    <None Include="Assets\HTML\assets\scss\_video.scss" />
+    <None Include="RetriX.UWP_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="WindowsMobile, Version=10.0.19041.0">
+      <Name>Windows Mobile Extensions for the UWP</Name>
+    </SDKReference>
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Store|x86'">
+    <OutputPath>bin\x86\Store\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP;CODE_ANALYSIS;TARGET_X86;CODE_ANALYSIS;CODE_ANALYSIS</DefineConstants>
+    <Optimize>true</Optimize>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+    <PlatformTarget>x86</PlatformTarget>
+    <NoWarn>;2008</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Store|ARM'">
+    <OutputPath>bin\ARM\Store\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP;CODE_ANALYSIS;TARGET_ARM;CODE_ANALYSIS;CODE_ANALYSIS</DefineConstants>
+    <EnableGatekeeperAnalysis>false</EnableGatekeeperAnalysis>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+    <Optimize>true</Optimize>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>ARM</PlatformTarget>
+    <NoWarn>;2008</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Store|x64'">
+    <OutputPath>bin\x64\Store\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP;CODE_ANALYSIS;TARGET_X64;CODE_ANALYSIS;CODE_ANALYSIS</DefineConstants>
+    <Optimize>true</Optimize>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+    <PlatformTarget>x64</PlatformTarget>
+    <NoWarn>;2008</NoWarn>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+
+  <Target Name="ChangeAliasesOfSystemDrawing" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences">
+    <ItemGroup>
+      <ReferencePath Condition="'%(FileName)' == 'System.Drawing'">
+        <Aliases>SystemDrawing</Aliases>
+      </ReferencePath>
+    </ItemGroup>
+  </Target>  -->
+</Project>

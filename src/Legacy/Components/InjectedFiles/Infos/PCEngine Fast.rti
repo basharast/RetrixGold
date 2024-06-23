@@ -1,0 +1,1 @@
+{"desc" : "Beetle PC Engine Fast is a port/fork of Mednafen's PC Engine Fast 'pce_fast' module to the libretro API. This libretro core contains CD-ROM2 support but unlike Mednafen's PCE Fast module, lacks SuperGrafx support. SuperGrafx support is available in the Beetle SuperGrafx core or the Beetle PC Engine 'pce' core.","year" : "1987~88","company" : "NEC"}

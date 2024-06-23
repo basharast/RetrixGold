@@ -1,0 +1,642 @@
+<h1 id="nintendo-game-boy-color-gambatte">Nintendo - Game Boy / Color (Gambatte)</h1>
+<h2 id="background">Background</h2>
+<p>Gambatte is an accuracy-focused, open-source, cross-platform Game Boy Color emulator written in C++. It is based on hundreds of corner case hardware tests, as well as previous documentation and reverse engineering efforts.</p>
+<p>The Gambatte core has been authored by</p>
+<ul>
+<li>Sinamas</li>
+</ul>
+<p>The Gambatte core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/gambatte-libretro/blob/master/COPYING">GPLv2</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="bios">BIOS</h2>
+<p>Required or optional firmware files go in the frontend's system directory.</p>
+<p>!!! attention
+The <a href="#core-options">'Use official bootloader' core option</a> must be set to On in order for these BIOS files to be used.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">gb_bios.bin</td>
+<td style="text-align: center;">Game Boy BIOS - Optional</td>
+<td style="text-align: center;">32fbbd84168d3482956eb3c5051637f5</td>
+</tr>
+<tr>
+<td style="text-align: center;">gbc_bios.bin</td>
+<td style="text-align: center;">Game Boy Color BIOS - Optional</td>
+<td style="text-align: center;">dbfce9db9deaa2567f6a84fde55f9680</td>
+</tr>
+</tbody>
+</table>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the Gambatte core have the following file extensions:</p>
+<ul>
+<li>.gb</li>
+<li>.gbc</li>
+<li>.dmg</li>
+</ul>
+<p>RetroArch database(s) that are associated with the Gambatte core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Game%20Boy.rdb">Nintendo - Game Boy</a></li>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Game%20Boy%20Color.rdb">Nintendo - Game Boy Color</a></li>
+</ul>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the Gambatte core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h2 id="directories">Directories</h2>
+<p>The Gambatte core's library name is 'Gambatte'</p>
+<p>The Gambatte core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Save directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.srm</td>
+<td style="text-align: center;">Cartridge battery save</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Frontend's State directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.state#</td>
+<td style="text-align: center;">State</td>
+</tr>
+</tbody>
+</table>
+<p>*<strong>Frontend's System directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">palettes/Default.pal</td>
+<td style="text-align: center;">Global custom palette</td>
+</tr>
+<tr>
+<td style="text-align: center;">palettes/'content-name'.pal</td>
+<td style="text-align: center;">Per-game custom palette</td>
+</tr>
+</tbody>
+</table>
+<h2 id="geometry-and-timing">Geometry and timing</h2>
+<ul>
+<li>The Gambatte core's core provided FPS is 59.7275005696</li>
+<li>The Gambatte core's core provided sample rate is [Sample rate]</li>
+<li>The Gambatte core's base width is [Base width]</li>
+<li>The Gambatte core's base height is [Base height]</li>
+<li>The Gambatte core's max width is [Max width]</li>
+<li>The Gambatte core's max height is [Max height]</li>
+<li>The Gambatte core's core provided aspect ratio is [Aspect ratio]</li>
+</ul>
+<h2 id="custom-palettes-for-game-boy-games">Custom palettes for Game Boy games</h2>
+<p>The 'GB Colorization' core option must be set to custom.</p>
+<p>Create a folder called &quot;palettes&quot; in RetroArch's system directory. Then, you can place custom palette files (.pal) inside the &quot;palettes&quot; folder</p>
+<p>You can define different palettes for specific games by creating a .pal file in the &quot;palettes&quot; folder with 'INTERNALROMNAME.pal' or &quot;rom-name.pal&quot;. If no specific palette is found for a ROM then the default palette is used.</p>
+<p>You can also define a palette to be used for all Game Boy games by creating a .pal file in the &quot;palettes&quot; folder named &quot;Default.pal&quot;</p>
+<p>??? note &quot;<em>Custom palettes can be created from the GUI in standalone Gambatte</em>&quot;
+<img src="../image/core/gambatte/tool.png" alt="" /></p>
+<h2 id="core-options">Core options</h2>
+<p>The Gambatte core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Allow Opposing Directions</strong> [gambatte_up_down_allowed] (<strong>disabled</strong>/enabled)</p>
+<p>Enabling this will allow pressing / quickly alternating / holding both left and right (or up and down in some games) directions at the same time.</p>
+<p>This may cause movement based glitches to occur in certain games.</p>
+<p>It's best to keep this core option disabled.</p>
+</li>
+<li><p><strong>GB Colorization</strong> [gambatte_gb_colorization] (<strong>disabled</strong>|auto|GBC|SGB|internal|custom)</p>
+<p>Enables colorization of Game Boy games, using pre-defined or user-selected color palettes.</p>
+<p>'auto': Selects automatically the 'best' (most colorful/appropriate) palette for each individual game, using the following order of preference:</p>
+<pre><code> 1. Game-specific Super Game Boy palette, if defined and more colorful than game-specific Game Boy Color palette.
+
+ 2. Game-specific Game Boy Color palette, if defined.
+
+ 3. Game-specific Super Game Boy palette, if defined.
+
+ 4. Palette specified by 'Internal Palette' core option.
+</code></pre>
+<p>'GBC': Selects game-specific Game Boy Color palette, if defined. If not, falls back to the Game Boy Color hardware default palette of 'GBC - Dark Green'.</p>
+<p>'SGB': Selects game-specific Super Game Boy palette, if defined. If not, falls back to the Super Game Boy hardware default palette of 'SGB - 1A'.</p>
+<p>'internal': Selects palette specified by 'Internal Palette' core option.</p>
+<p>'custom': Loads user-created palettes from RetroArch's system directory, as described in the 'Custom palettes for Game Boy games' section.</p>
+</li>
+</ul>
+<p>??? note &quot;<em>GB Colorization: Off</em>&quot;
+<img src="../image/core/gambatte/color_off.png" alt="" /></p>
+<p>??? note &quot;<em>GB Colorization: auto (in this case, a game-specific SGB palette is auto-selected)</em>&quot;
+<img src="../image/core/gambatte/color_auto.png" alt="" /></p>
+<p>??? note &quot;<em>GB Colorization: GBC</em>&quot;
+<img src="../image/core/gambatte/color_gbc.png" alt="" /></p>
+<ul>
+<li><p><strong>Internal Palette</strong> [gambatte_gb_internal_palette] (<strong>GB - DMG</strong>|GB - Pocket|GB - Light|GBC - Blue|GBC - Brown|GBC - Dark Blue|GBC - Dark Brown|GBC - Dark Green|GBC - Grayscale|GBC - Green|GBC - Inverted|GBC - Orange|GBC - Pastel Mix|GBC - Red|GBC - Yellow|SGB - 1A|SGB - 1B|SGB - 1C|SGB - 1D|SGB - 1E|SGB - 1F|SGB - 1G|SGB - 1H|SGB - 2A|SGB - 2B|SGB - 2C|SGB - 2D|SGB - 2E|SGB - 2F|SGB - 2G|SGB - 2H|SGB - 3A|SGB - 3B|SGB - 3C|SGB - 3D|SGB - 3E|SGB - 3F|SGB - 3G|SGB - 3H|SGB - 4A|SGB - 4B|SGB - 4C|SGB - 4D|SGB - 4E|SGB - 4F|SGB - 4G|SGB - 4H|Special 1|Special 2|Special 3)</p>
+<p>Selects the internal color palette to use for colorizing Game Boy games when the 'GB Colorization' core option is set to 'internal', or when the 'GB Colorization' core option is set to 'auto' and a game has no pre-defined Super Game Boy/Game Boy Color palette.</p>
+<p>'GB' palettes mimic the display characteristics of original Game Boy hardware.</p>
+<p>'GBC' palettes are identical to those used by original Game Boy Color hardware when colorizing Game Boy games.</p>
+<p>'SGB' palettes are identical to those used by original Super Game Boy hardware when colorizing Game Boy games.</p>
+</li>
+</ul>
+<p>??? note &quot;<em>Internal Palette: GB - DMG</em>&quot;
+<img src="../image/core/gambatte/gb_dmg.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: GB - Pocket</em>&quot;
+<img src="../image/core/gambatte/gb_pocket.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: GB - Light</em>&quot;
+<img src="../image/core/gambatte/gb_light.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: GBC - Blue</em>&quot;
+<img src="../image/core/gambatte/gbc_blue.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: GBC - Brown</em>&quot;
+<img src="../image/core/gambatte/gbc_brown.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: GBC - Dark Blue</em>&quot;
+<img src="../image/core/gambatte/gbc_dark_blue.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: GBC - Dark Brown</em>&quot;
+<img src="../image/core/gambatte/gbc_dark_brown.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: GBC - Dark Green</em>&quot;
+<img src="../image/core/gambatte/gbc_dark_green.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: GBC - Grayscale</em>&quot;
+<img src="../image/core/gambatte/gbc_grayscale.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: GBC - Green</em>&quot;
+<img src="../image/core/gambatte/gbc_green.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: GBC - Inverted</em>&quot;
+<img src="../image/core/gambatte/gbc_inverted.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: GBC - Orange</em>&quot;
+<img src="../image/core/gambatte/gbc_orange.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: GBC - Pastel Mix</em>&quot;
+<img src="../image/core/gambatte/gbc_pastel.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: GBC - Red</em>&quot;
+<img src="../image/core/gambatte/gbc_red.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: GBC - Yellow</em>&quot;
+<img src="../image/core/gambatte/gbc_yellow.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: SGB - 1A</em>&quot;
+<img src="../image/core/gambatte/sgb_1a.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: SGB - 1B</em>&quot;
+<img src="../image/core/gambatte/sgb_1b.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: SGB - 1C</em>&quot;
+<img src="../image/core/gambatte/sgb_1c.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: SGB - 1D</em>&quot;
+<img src="../image/core/gambatte/sgb_1d.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: SGB - 1E</em>&quot;
+<img src="../image/core/gambatte/sgb_1e.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: SGB - 1F</em>&quot;
+<img src="../image/core/gambatte/sgb_1f.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: SGB - 1G</em>&quot;
+<img src="../image/core/gambatte/sgb_1g.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: SGB - 1H</em>&quot;
+<img src="../image/core/gambatte/sgb_1h.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: SGB - 2A</em>&quot;
+<img src="../image/core/gambatte/sgb_2a.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: SGB - 2B</em>&quot;
+<img src="../image/core/gambatte/sgb_2b.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: SGB - 2C</em>&quot;
+<img src="../image/core/gambatte/sgb_2c.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: SGB - 2D</em>&quot;
+<img src="../image/core/gambatte/sgb_2d.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: SGB - 2E</em>&quot;
+<img src="../image/core/gambatte/sgb_2e.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: SGB - 2F</em>&quot;
+<img src="../image/core/gambatte/sgb_2f.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: SGB - 2G</em>&quot;
+<img src="../image/core/gambatte/sgb_2g.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: SGB - 2H</em>&quot;
+<img src="../image/core/gambatte/sgb_2h.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: SGB - 3A</em>&quot;
+<img src="../image/core/gambatte/sgb_3a.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: SGB - 3B</em>&quot;
+<img src="../image/core/gambatte/sgb_3b.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: SGB - 3C</em>&quot;
+<img src="../image/core/gambatte/sgb_3c.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: SGB - 3D</em>&quot;
+<img src="../image/core/gambatte/sgb_3d.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: SGB - 3E</em>&quot;
+<img src="../image/core/gambatte/sgb_3e.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: SGB - 3F</em>&quot;
+<img src="../image/core/gambatte/sgb_3f.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: SGB - 3G</em>&quot;
+<img src="../image/core/gambatte/sgb_3g.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: SGB - 3H</em>&quot;
+<img src="../image/core/gambatte/sgb_3h.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: SGB - 4A</em>&quot;
+<img src="../image/core/gambatte/sgb_4a.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: SGB - 4B</em>&quot;
+<img src="../image/core/gambatte/sgb_4b.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: SGB - 4C</em>&quot;
+<img src="../image/core/gambatte/sgb_4c.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: SGB - 4D</em>&quot;
+<img src="../image/core/gambatte/sgb_4d.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: SGB - 4E</em>&quot;
+<img src="../image/core/gambatte/sgb_4e.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: SGB - 4F</em>&quot;
+<img src="../image/core/gambatte/sgb_4f.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: SGB - 4G</em>&quot;
+<img src="../image/core/gambatte/sgb_4g.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: SGB - 4H</em>&quot;
+<img src="../image/core/gambatte/sgb_4h.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: Special 1</em>&quot;
+<img src="../image/core/gambatte/special1.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: Special 2</em>&quot;
+<img src="../image/core/gambatte/special2.png" alt="" /></p>
+<p>??? note &quot;<em>Internal Palette: Special 3</em>&quot;
+<img src="../image/core/gambatte/special3.png" alt="" /></p>
+<ul>
+<li><p><strong>Color correction</strong> [gambatte_gbc_color_correction] (<strong>GBC only</strong>|always|disabled)</p>
+<p>Enables adjustment of output colors to match the display characteristics of the LCD panel used in original Game Boy Color hardware.</p>
+<p>'GBC only': Color correction is only applied when playing Game Boy Color games, or when using a Game Boy Color palette to colorize a Game Boy game.</p>
+<p>'always': Color correction is always applied, regardless of which color palette is being used.</p>
+</li>
+</ul>
+<p>!!! attention
+Setting this option to 'always' will result in unexpected/suboptimal output when using 'GB' or 'SGB' internal color palettes, since these are intended for display on a normal TV/monitor rather than a Game Boy Color LCD panel.</p>
+<ul>
+<li><p><strong>Color correction mode</strong> [gambatte_gbc_color_correction_mode] (<strong>accurate</strong>|fast)</p>
+<p>Specifies the method to use when performing color correction.</p>
+<p>'accurate': Provides a very close approximation of the image displayed on a real Game Boy Color LCD panel.</p>
+<p>'fast': Darkens colors in a loose approximation of the image displayed on a real Game Boy Color LCD panel. Has negligible performance impact, and may be used on low-end hardware in cases where the 'accurate' method is too slow.</p>
+</li>
+</ul>
+<p>??? note &quot;<em>Color correction: Off</em>&quot;
+<img src="../image/core/gambatte/correct_off.png" alt="" /></p>
+<p>??? note &quot;<em>Color correction: fast</em>&quot;
+<img src="../image/core/gambatte/correct_fast.png" alt="" /></p>
+<p>??? note &quot;<em>Color correction: accurate</em>&quot;
+<img src="../image/core/gambatte/correct_accurate.png" alt="" /></p>
+<ul>
+<li><p><strong>Color correction - frontlight position</strong> [gambatte_gbc_frontlight_position] (<strong>central</strong>|above screen|below screen)</p>
+<p>Simulates the physical response of the Game Boy Color LCD panel when illuminated from different angles.</p>
+<p>'central': Standard color reproduction, corresponding to ambient light hitting the screen at 90°.</p>
+<p>'above screen': Increases brightness (gamma), corresponding to sunlight or a ceiling light shining on the screen from above.</p>
+<p>'below screen': Reduces brightness (gamma), corresponding to light shining on the screen from below.</p>
+</li>
+</ul>
+<p>!!! attention
+This setting only takes effect when 'Color correction mode' is set to 'accurate'.</p>
+<p>??? note &quot;<em>Color correction - frontlight position: central</em>&quot;
+<img src="../image/core/gambatte/frontlight_central.png" alt="" /></p>
+<p>??? note &quot;<em>Color correction - frontlight position: above screen</em>&quot;
+<img src="../image/core/gambatte/frontlight_above_screen.png" alt="" /></p>
+<p>??? note &quot;<em>Color correction - frontlight position: below screen</em>&quot;
+<img src="../image/core/gambatte/frontlight_below_screen.png" alt="" /></p>
+<ul>
+<li><p><strong>Dark Filter Level (percent)</strong> [gambatte_dark_filter_level] (<strong>0</strong>|5|10|15|20|25|30|35|40|45|50)</p>
+<p>Enables selective brightness reduction based upon pixel luminosity. May be used to reduce glare/eye strain. Of particular value when playing games with white backgrounds, which are intended for display on a non-backlit Game Boy Color LCD panel and appear uncomfortably bright when viewed on a modern backlit screen.</p>
+</li>
+</ul>
+<p>??? note &quot;<em>Dark Filter Level: 0%</em>&quot;
+<img src="../image/core/gambatte/dark_filter_off.png" alt="" /></p>
+<p>??? note &quot;<em>Dark Filter Level: 30%</em>&quot;
+<img src="../image/core/gambatte/dark_filter_30.png" alt="" /></p>
+<ul>
+<li><p><strong>Emulated hardware (restart)</strong> [gambatte_gb_hwmode] (<strong>Auto</strong>|GB|GBC|GBA)</p>
+<p>Choose which hardware is emulated Game Boy, Game Boy Color, or Game Boy Advance.</p>
+</li>
+<li><p><strong>Use official bootloader (restart)</strong> [gambatte_gb_bootloader] (<strong>enabled</strong>|disabled)</p>
+<p>Enables support for using official Game Boy and Game Boy Color bootloaders with startup logos. Check the <a href="#bios">BIOS section</a> to see what files are needed.</p>
+</li>
+</ul>
+<p>??? note &quot;<em>Game Boy bootloader</em>&quot;
+<img src="../image/core/gambatte/gb_bios.png" alt="" /></p>
+<p>??? note &quot;<em>Game Boy Color bootloader</em>&quot;
+<img src="../image/core/gambatte/gbc_bios.png" alt="" /></p>
+<ul>
+<li><p><strong>Mix frames</strong> [gambatte_mix_frames] (<strong>disabled</strong>|accurate|fast)</p>
+<p>Enables simulation of LCD ghosting effects by blending the current and previous frames.</p>
+<p>'accurate': Blends pixel RGB values with floating point precision.</p>
+<p>'fast': Blends pixel RGB values using fast bit manipulation. Causes slight color darkening/shifting (due to rounding errors). May be used on low-end hardware in cases where the 'accurate' method is too slow.</p>
+</li>
+</ul>
+<p>!!! attention
+A number of games generate transparency effects (or additional shades of color) by drawing objects on alternate frames, relying on the LCD ghosting of original hardware to 'smooth out' the result. Notable examples are Wave Race, Ballistic and Chikyuu Kaihou Gun ZAS. In order for these games to render correctly, 'Mix frames' must be set to 'accurate' or 'fast'. More importantly, the rapid flickering that is produced by these games when 'Mix frames' is disabled can lead to a form of screen burn-in on certain types of LCD panel (that of the 3DS in particular).</p>
+<p>??? note &quot;<em>Mix frames: Off</em>&quot;
+<img src="../image/core/gambatte/mix_frames_off.gif" alt="" /></p>
+<p>??? note &quot;<em>Mix frames: accurate</em>&quot;
+<img src="../image/core/gambatte/mix_frames_accurate.gif" alt="" /></p>
+<p>??? note &quot;<em>Mix frames: fast</em>&quot;
+<img src="../image/core/gambatte/mix_frames_fast.gif" alt="" /></p>
+<ul>
+<li><strong>GameBoy Link Mode</strong> - New config options</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Core Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gambatte_gb_link_mode</td>
+<td><strong>Not Connected</strong> / Network Server / Network Client</td>
+</tr>
+<tr>
+<td>gambatte_gb_link_network_port</td>
+<td>56400 to 56420 in increments of 1. <strong>56400 is default</strong></td>
+</tr>
+<tr>
+<td>gambatte_show_gb_link_settings</td>
+<td>enabled / <strong>disabled</strong></td>
+</tr>
+<tr>
+<td>gambatte_gb_link_network_server_ip_1</td>
+<td>(client only) 0 to 9, 1st digit of ipv4 address, (eg. 1)</td>
+</tr>
+<tr>
+<td>gambatte_gb_link_network_server_ip_2</td>
+<td>(client only) 0 to 9, 2nd digit of ipv4 address, (eg. 9)</td>
+</tr>
+<tr>
+<td>gambatte_gb_link_network_server_ip_3</td>
+<td>(client only) 0 to 9, 3rd digit of ipv4 address, (eg. 2)</td>
+</tr>
+<tr>
+<td>gambatte_gb_link_network_server_ip_4</td>
+<td>(client only) 0 to 9, 4th digit of ipv4 address, (eg. 1)</td>
+</tr>
+<tr>
+<td>gambatte_gb_link_network_server_ip_5</td>
+<td>(client only) 0 to 9, 5th digit of ipv4 address, (eg. 6)</td>
+</tr>
+<tr>
+<td>gambatte_gb_link_network_server_ip_6</td>
+<td>(client only) 0 to 9, 6th digit of ipv4 address, (eg. 8)</td>
+</tr>
+<tr>
+<td>gambatte_gb_link_network_server_ip_7</td>
+<td>(client only) 0 to 9, 7th digit of ipv4 address, (eg. 0)</td>
+</tr>
+<tr>
+<td>gambatte_gb_link_network_server_ip_8</td>
+<td>(client only) 0 to 9, 8th digit of ipv4 address, (eg. 0)</td>
+</tr>
+<tr>
+<td>gambatte_gb_link_network_server_ip_9</td>
+<td>(client only) 0 to 9, 9th digit of ipv4 address, (eg. 1)</td>
+</tr>
+<tr>
+<td>gambatte_gb_link_network_server_ip_10</td>
+<td>(client only) 0 to 9, 10th digit of ipv4 address, (eg. 0)</td>
+</tr>
+<tr>
+<td>gambatte_gb_link_network_server_ip_11</td>
+<td>(client only) 0 to 9, 11th digit of ipv4 address, (eg. 0)</td>
+</tr>
+<tr>
+<td>gambatte_gb_link_network_server_ip_12</td>
+<td>(client only) 0 to 9, 12th digit of ipv4 address, (eg. 1)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>GameBoy Link Mode</strong> - Old config options</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Core Option</th>
+<th>Description, values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gambatte_gb_link_mode</td>
+<td>Mode, <strong>Not Connected</strong> / Network Server / Network Client</td>
+</tr>
+<tr>
+<td>gambatte_gb_link_network_port</td>
+<td>Network link port, 56400 to 56420 in increments of 1. <strong>56400 is default</strong></td>
+</tr>
+<tr>
+<td>gambatte_gb_link_network_server_ip_octet1</td>
+<td>(client only) Network link server address part 1, (0 to 255 in increments of 1. <strong>0 is default</strong>.)</td>
+</tr>
+<tr>
+<td>gambatte_gb_link_network_server_ip_octet2</td>
+<td>(client only) Network link server address part 2, (0 to 255 in increments of 1. <strong>0 is default</strong>.)</td>
+</tr>
+<tr>
+<td>gambatte_gb_link_network_server_ip_octet3</td>
+<td>(client only) Network link server address part 3, (0 to 255 in increments of 1. <strong>0 is default</strong>.)</td>
+</tr>
+<tr>
+<td>gambatte_gb_link_network_server_ip_octet4</td>
+<td>(client only) Network link server address part 4, (0 to 255 in increments of 1. <strong>0 is default</strong>.)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="joypad">Joypad</h2>
+<p><img src="../image/controller/gb.png" alt="" /></p>
+<table>
+<thead>
+<tr>
+<th>RetroPad Inputs</th>
+<th>User 1 input descriptors</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>B</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+<td>Select</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+<td>Start</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>D-Pad Up</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>D-Pad Down</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>D-Pad Left</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>D-Pad Right</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>A</td>
+</tr>
+</tbody>
+</table>
+<h2 id="compatibility">Compatibility</h2>
+<table>
+<thead>
+<tr>
+<th>Game</th>
+<th>Issue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Command Master</td>
+<td>Crashes on start. Unemulated MBC7 mapper.</td>
+</tr>
+<tr>
+<td>Game Boy Camera</td>
+<td>Crashes on start. Unemulated Pocket Camera mapper.</td>
+</tr>
+<tr>
+<td>Game de Hakken!! Tamagotchi - Osutchi to Mesutchi</td>
+<td>Crashes on start. Unemulated TAMA5 mapper.</td>
+</tr>
+<tr>
+<td>Kirby Tilt 'n' Tumble</td>
+<td>Crashes on start. Unemulated MBC7 mapper.</td>
+</tr>
+<tr>
+<td>Net de Get: Mini-Game @ 100</td>
+<td>Crashes on start. Unemulated MBC6 mapper.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://github.com/sinamas/gambatte">Official Gambatte Github Repository</a></li>
+<li><a href="https://sourceforge.net/projects/gambatte/files/gambatte/">Old Standalone Gambatte builds</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/gambatte_libretro.info">Libretro Gambatte Core info file</a></li>
+<li><a href="https://github.com/libretro/gambatte-libretro">Libretro Gambatte Github Repository</a></li>
+<li><a href="https://github.com/libretro/gambatte-libretro/issues">Report Libretro Gambatte Core Issues Here</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLRbgg4gk_0IdJ4pq_2h9d8Q0QO7FA7Ukd">Gameplay Videos</a></li>
+</ul>
+<h2 id="nintendo-game-boy-color">Nintendo - Game Boy (+ Color)</h2>
+<ul>
+<li><a href="emux_gb.md">Nintendo - Game Boy / Color (Emux GB)</a></li>
+<li><a href="gearboy.md">Nintendo - Game Boy / Color (Gearboy)</a></li>
+<li><a href="sameboy.md">Nintendo - Game Boy / Color (SameBoy)</a></li>
+<li><a href="tgb_dual.md">Nintendo - Game Boy / Color (TGB Dual)</a></li>
+<li><a href="mgba.md">Nintendo - Game Boy Advance (mGBA)</a></li>
+<li><a href="vba_m.md">Nintendo - Game Boy Advance (VBA-M)</a></li>
+<li><a href="higan_accuracy.md">Nintendo - SNES / Famicom (higan Accuracy)</a></li>
+<li><a href="nside_balanced.md">Nintendo - SNES / Famicom (nSide Balanced)</a></li>
+<li><a href="mesen-s.md">Nintendo - SNES / Famicom (Mesen-S)</a></li>
+</ul>

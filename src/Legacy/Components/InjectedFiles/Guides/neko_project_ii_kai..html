@@ -1,0 +1,905 @@
+<h1 id="nec-pc-98-neko-project-ii-kai">NEC - PC-98 (Neko Project II Kai)</h1>
+<h2 id="background">Background</h2>
+<p>NP2kai is a PC-9801 series core. The NEC PC-9800, also known as the PC-98, were a family of computers made by NEC throughout 1982 to 2000. Despite using Intel x86 chips, MS-DOS and Windows OS, and many other superficial similarities, the series is not IBM compatible. Some PC-98 software may work on an IBM or vice versa, but this is very YMMV. In fact, the introduction of a native Japanese version of standard MS-DOS in the early 90s and subsequent entry of cheaper foreign IBM clones in the Japanese market was the nail in the coffin for the PC-98. They were not released or marketed outside of Japan (besides few attempts such as APC-III and PC-9801FC), but still useful for playing early visual novels and Touhou games.</p>
+<h3 id="authorlicense">Author/License</h3>
+<p>The Neko Project II Kai core has been authored by</p>
+<ul>
+<li>Neko Project II Team</li>
+<li>Tomohiro Yoshidomi</li>
+</ul>
+<p>The Neko Project II Kai core is licensed under</p>
+<ul>
+<li><a href="https://github.com/AZO234/NP2kai/blob/master/LICENSE">MIT</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the Neko Project II Kai core have the following file extensions:</p>
+<ul>
+<li>.d98</li>
+<li>.zip</li>
+<li>.98d</li>
+<li>.fdi</li>
+<li>.fdd</li>
+<li>.2hd</li>
+<li>.tfd</li>
+<li>.d88</li>
+<li>.88d</li>
+<li>.hdm</li>
+<li>.xdf</li>
+<li>.dup</li>
+<li>.cmd</li>
+<li>.hdi</li>
+<li>.thd</li>
+<li>.nhd</li>
+<li>.hdd</li>
+<li>.hdn</li>
+</ul>
+<h2 id="bios">BIOS</h2>
+<p>Required or optional firmware files go in the frontend's system directory.</p>
+<p>!!! attention
+These firmware files need to be in a directory named 'np2kai' in the frontend's system directory.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">np2kai/font.bmp</td>
+<td style="text-align: center;">Needed to display text - Required</td>
+<td style="text-align: center;">7da1e5b7c482d4108d22a5b09631d967</td>
+</tr>
+<tr>
+<td style="text-align: center;">np2kai/FONT.ROM</td>
+<td style="text-align: center;">Alt font file - Required</td>
+<td style="text-align: center;">2af6179d7de4893ea0b705c00e9a98d6</td>
+</tr>
+<tr>
+<td style="text-align: center;">np2kai/bios.rom</td>
+<td style="text-align: center;">- Required</td>
+<td style="text-align: center;">e246140dec5124c5e404869a84caefce</td>
+</tr>
+<tr>
+<td style="text-align: center;">np2kai/itf.rom</td>
+<td style="text-align: center;">- Required</td>
+<td style="text-align: center;">e9fc3890963b12cf15d0a2eea5815b72</td>
+</tr>
+<tr>
+<td style="text-align: center;">np2kai/sound.rom</td>
+<td style="text-align: center;">- Required</td>
+<td style="text-align: center;">caf90f22197aed6f14c471c21e64658d</td>
+</tr>
+<tr>
+<td style="text-align: center;">np2kai/bios9821.rom</td>
+<td style="text-align: center;">- Optional</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">np2kai/d8000.rom</td>
+<td style="text-align: center;">- Optional</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">np2kai/2608_BD.WAV</td>
+<td style="text-align: center;">YM2608 RYTHM sample - Optional</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">np2kai/2608_SD.WAV</td>
+<td style="text-align: center;">YM2608 RYTHM sample - Optional</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">np2kai/2608_TOP.WAV</td>
+<td style="text-align: center;">YM2608 RYTHM sample - Optional</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">np2kai/2608_HH.WAV</td>
+<td style="text-align: center;">YM2608 RYTHM sample - Optional</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">np2kai/2608_TOM.WAV</td>
+<td style="text-align: center;">YM2608 RYTHM sample - Optional</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">np2kai/2608_RIM.WAV</td>
+<td style="text-align: center;">YM2608 RYTHM sample - Optional</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the Neko Project II Kai core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The Neko Project II Kai core's directory name is 'Neko Project II kai'</p>
+<p>The Neko Project II Kai core saves/loads to/from these directories.</p>
+<p>-<strong>Frontend's Home directory</strong></p>
+<ul>
+<li>######.bmp (???)</li>
+</ul>
+<p><strong>Frontend's State directory</strong></p>
+<ul>
+<li>'content-name'.state# (State)</li>
+</ul>
+<p><strong>Frontend's System directory</strong></p>
+<ul>
+<li>np2/np2.cfg (Neko Project II Config file)</li>
+</ul>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The Neko Project II Kai core's core provided FPS is <code>56.4</code>.</li>
+<li>The Neko Project II Kai core's core provided sample rate is <code>44100Hz</code>.</li>
+<li>The Neko Project II Kai core's core provided aspect ratio is <code>8/5</code>.</li>
+</ul>
+<h2 id="usage">Usage</h2>
+<p>NP2 menu can FDD/HDD swap.</p>
+<p>Mouse is cuptured (hidden/show toggle) by F11 key.</p>
+<p>NP2 menu is opened when F12 key</p>
+<p>Keep 'end' key down when booting for machine options.</p>
+<p>How to set GDC 2.5MHz/5MHz?</p>
+<ol>
+<li>Press End key(assigned Help key) + reset</li>
+<li>Select 'ディップスイッチ２'(DIP switch 2)</li>
+</ol>
+<p>How to use CD drive with MS-DOS 6.2?</p>
+<p>Write follow to CONFIG.SYS.</p>
+<pre><code>    LASTDRIVE=Z
+    DEVICE=A:￥DOS￥NECCDD.SYS /D:CD_101
+</code></pre>
+<p>And write follow to AUTOEXEC.BAT.</p>
+<pre><code>    A:￥DOS￥MSCDEX.EXE /D:CD_101 /L:Q
+</code></pre>
+<p>Then, you'll can use CD drive as Q drive.</p>
+<h2 id="core-options">Core options</h2>
+<p>The Neko Project II Kai core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>PC Model (Restart)</strong> [np2kai_model] (<strong>PC-9801VX</strong>/PC-286/PC-9801VM)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>CPU Base Clock (Restart)</strong> [np2kai_clk_base] (<strong>2.4576 MHz</strong>/1.9968 MHz)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>CPU Clock Multiplier (Restart)</strong> [np2kai_clk_mult] (<strong>4</strong>/5/6/8/10/12/16/20/24/30/36/40/42/1/2)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p>*<em>RAM Size (Restart)</em> [np2kai_ExMemory] (<strong>3</strong>/7/11/13/16/32/64/120/230/1)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>GDC</strong> [np2kai_gdc] (<strong>uPD7220</strong>/uPD72020)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Skipline Revisions</strong> [np2kai_skipline] (<strong>Full 255 lines</strong>/ON/OFF)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Real Palettes</strong> [np2kai_realpal] (<strong>OFF</strong>/ON)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>LCD</strong> [np2kai_lcd ] (<strong>OFF</strong>/ON)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Sound Board (Restart)</strong> [np2kai_SNDboard] (<strong>PC9801-86</strong>/PC9801-26K + 86/PC9801-86 + Chibi-oto/PC9801-118/PC9801-86 + Mate-X PCM(B460)/Mate-X PCM(B460)/Chibi-oto/Speak Board/Spark Board/Sound Orchestra/Sound Orchestra-V/Sound Blaster 16/AMD-98/Otomi-chanx2/Otomi-chanx2 + 86/None/PC9801-14/PC9801-26K)</p>
+<p>26K: for old games. 86: for newer games.</p>
+</li>
+<li><p><strong>JastSound</strong> [np2kai_jast_snd] (<strong>OFF</strong>/ON)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Sound Generator</strong> [np2kai_usefmgen] (<strong>fmgen</strong>/Default)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Volume FM</strong> [np2kai_volume_F] (0 to 128 in increments of 4. <strong>64 is default</strong>.)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Volume SSG</strong> [np2kai_volume_S] (0 to 128 in increments of 4. <strong>64 is default</strong>.)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Volume ADPCM</strong> [np2kai_volume_A] (0 to 128 in increments of 4. <strong>64 is default</strong>.)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Volume PCM</strong> [np2kai_volume_P] (0 to 128 in increments of 4. <strong>64 is default</strong>.)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Volume RHYTHM</strong> [np2kai_volume_R] (0 to 128 in increments of 4. <strong>64 is default</strong>.)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Volume CD-DA</strong> [np2kai_volume_C] (0 to 255 in increments of 8. <strong>128 is default</strong>.)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Floppy Seek Sound</strong> [np2kai_Seek_Snd] (<strong>OFF</strong>/ON)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Volume Floppy Seek</strong> [np2kai_Seek_Vol] (0 to 128 in increments of 4. <strong>80 is default</strong>.)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Volume Beep</strong> [np2kai_BEEP_vol] (<strong>3</strong>/0/1/2)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Joypad to Mouse Mapping</strong> [np2kai_joy2mouse] (<strong>OFF</strong>/ON)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Joypad to Keyboard Mapping</strong> [np2kai_joy2key] (<strong>OFF</strong>/Arrows/Keypad)</p>
+<p>Awaiting description.</p>
+</li>
+</ul>
+<h2 id="controllers">Controllers</h2>
+<p>The Neko Project II Kai core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<h3 id="user-1-device-types">User 1 device types</h3>
+<ul>
+<li>None - Doesn't disable input.</li>
+<li><strong>RetroPad</strong> - Joypad</li>
+<li>RetroPad w/Analog - Joypad - There's no reason to switch to this.</li>
+</ul>
+<h3 id="controller-tables">Controller tables</h3>
+<h4 id="joypad">Joypad</h4>
+<p>!!! attention
+The Joy2Key and Joy2Mouse modes can be activated with the 'Joypad to Mouse Mapping' and 'Joypad to Keyboard Mapping' core options.</p>
+<table>
+<thead>
+<tr>
+<th>RetroPad Inputs</th>
+<th>Joy2Key (Arrows)</th>
+<th>Joy2Key (Keypad)</th>
+<th>Joy2Mouse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>Z key</td>
+<td>Z key</td>
+<td>Mouse left button</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+<td>Left control key</td>
+<td>Left control key</td>
+<td></td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+<td>Escape key</td>
+<td>Escape key</td>
+<td></td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+<td>Return key</td>
+<td>Return key</td>
+<td></td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>Up arrow key</td>
+<td>Keypad Up arrow key (8)</td>
+<td>Move mouse up</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>Down arrow key</td>
+<td>Keypad down arrow key (2)</td>
+<td>Move mouse down</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>Left arrow key</td>
+<td>Keypad left arrow key (4)</td>
+<td>Move mouse left</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>Right arrow key</td>
+<td>Keypad right arrow key (6)</td>
+<td>Move mouse right</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>X key</td>
+<td>X key</td>
+<td>Mouse right button</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+<td>Space key</td>
+<td>Space key</td>
+<td></td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+<td>Backspace key</td>
+<td>Backspace key</td>
+<td>Increase mouse speed</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+<td>Right shift key</td>
+<td>Right shift key</td>
+<td></td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+<td>NP2 menu key</td>
+<td>NP2 menu key</td>
+<td>NP2 menu key</td>
+</tr>
+</tbody>
+</table>
+<h4 id="keyboard">Keyboard</h4>
+<table>
+<thead>
+<tr>
+<th>RetroKeyboard Inputs</th>
+<th>NP2 Keyboard Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keyboard Backspace</td>
+<td>NKEY_BACKSPACE</td>
+</tr>
+<tr>
+<td>Keyboard Tab</td>
+<td>NKEY_TAB</td>
+</tr>
+<tr>
+<td>Keyboard Return</td>
+<td>NKEY_RETURN</td>
+</tr>
+<tr>
+<td>Keyboard Pause</td>
+<td>NKEY_STOP</td>
+</tr>
+<tr>
+<td>Keyboard Escape</td>
+<td>NKEY_ESC</td>
+</tr>
+<tr>
+<td>Keyboard Space</td>
+<td>NKEY_SPACE</td>
+</tr>
+<tr>
+<td>Keyboard Quote '</td>
+<td>NKEY_COLON</td>
+</tr>
+<tr>
+<td>Keyboard Comma ,</td>
+<td>NKEY_COMMA</td>
+</tr>
+<tr>
+<td>Keyboard Minus -</td>
+<td>NKEY_MINUS</td>
+</tr>
+<tr>
+<td>Keyboard Period .</td>
+<td>NKEY_DOT</td>
+</tr>
+<tr>
+<td>Keyboard Slash /</td>
+<td>NKEY_SLASH</td>
+</tr>
+<tr>
+<td>Keyboard 0</td>
+<td>NKEY_0</td>
+</tr>
+<tr>
+<td>Keyboard 1</td>
+<td>NKEY_1</td>
+</tr>
+<tr>
+<td>Keyboard 2</td>
+<td>NKEY_2</td>
+</tr>
+<tr>
+<td>Keyboard 3</td>
+<td>NKEY_3</td>
+</tr>
+<tr>
+<td>Keyboard 4</td>
+<td>NKEY_4</td>
+</tr>
+<tr>
+<td>Keyboard 5</td>
+<td>NKEY_5</td>
+</tr>
+<tr>
+<td>Keyboard 6</td>
+<td>NKEY_6</td>
+</tr>
+<tr>
+<td>Keyboard 7</td>
+<td>NKEY_7</td>
+</tr>
+<tr>
+<td>Keyboard 8</td>
+<td>NKEY_8</td>
+</tr>
+<tr>
+<td>Keyboard 9</td>
+<td>NKEY_9</td>
+</tr>
+<tr>
+<td>Keyboard Colon :</td>
+<td>NKEY_COLON</td>
+</tr>
+<tr>
+<td>Keyboard Semicolon ;</td>
+<td>NKEY_SEMICOLON</td>
+</tr>
+<tr>
+<td>Keyboard Equals =</td>
+<td>NKEY_CIRCUMFLEX</td>
+</tr>
+<tr>
+<td>Keyboard At @</td>
+<td>NKEY_ATMARK</td>
+</tr>
+<tr>
+<td>Keyboard Left Bracket [</td>
+<td>NKEY_LEFTSBRACKET</td>
+</tr>
+<tr>
+<td>Keyboard Backslash \</td>
+<td>NKEY_YEN</td>
+</tr>
+<tr>
+<td>Keyboard Right Bracket ]</td>
+<td>NKEY_RIGHTSBRACKET</td>
+</tr>
+<tr>
+<td>Keyboard Caret ^</td>
+<td>NKEY_CIRCUMFLEX</td>
+</tr>
+<tr>
+<td>Keyboard Underscore _</td>
+<td>NKEY_UNDERSCORE</td>
+</tr>
+<tr>
+<td>Keyboard Backquote `</td>
+<td>NKEY_ATMARK</td>
+</tr>
+<tr>
+<td>Keyboard a</td>
+<td>NKEY_A</td>
+</tr>
+<tr>
+<td>Keyboard b</td>
+<td>NKEY_B</td>
+</tr>
+<tr>
+<td>Keyboard c</td>
+<td>NKEY_C</td>
+</tr>
+<tr>
+<td>Keyboard d</td>
+<td>NKEY_D</td>
+</tr>
+<tr>
+<td>Keyboard e</td>
+<td>NKEY_E</td>
+</tr>
+<tr>
+<td>Keyboard f</td>
+<td>NKEY_F</td>
+</tr>
+<tr>
+<td>Keyboard g</td>
+<td>NKEY_G</td>
+</tr>
+<tr>
+<td>Keyboard h</td>
+<td>NKEY_H</td>
+</tr>
+<tr>
+<td>Keyboard i</td>
+<td>NKEY_I</td>
+</tr>
+<tr>
+<td>Keyboard j</td>
+<td>NKEY_J</td>
+</tr>
+<tr>
+<td>Keyboard k</td>
+<td>NKEY_K</td>
+</tr>
+<tr>
+<td>Keyboard l</td>
+<td>NKEY_L</td>
+</tr>
+<tr>
+<td>Keyboard m</td>
+<td>NKEY_M</td>
+</tr>
+<tr>
+<td>Keyboard n</td>
+<td>NKEY_N</td>
+</tr>
+<tr>
+<td>Keyboard o</td>
+<td>NKEY_O</td>
+</tr>
+<tr>
+<td>Keyboard p</td>
+<td>NKEY_P</td>
+</tr>
+<tr>
+<td>Keyboard q</td>
+<td>NKEY_Q</td>
+</tr>
+<tr>
+<td>Keyboard r</td>
+<td>NKEY_R</td>
+</tr>
+<tr>
+<td>Keyboard s</td>
+<td>NKEY_S</td>
+</tr>
+<tr>
+<td>Keyboard t</td>
+<td>NKEY_T</td>
+</tr>
+<tr>
+<td>Keyboard u</td>
+<td>NKEY_U</td>
+</tr>
+<tr>
+<td>Keyboard v</td>
+<td>NKEY_V</td>
+</tr>
+<tr>
+<td>Keyboard w</td>
+<td>NKEY_W</td>
+</tr>
+<tr>
+<td>Keyboard x</td>
+<td>NKEY_X</td>
+</tr>
+<tr>
+<td>Keyboard y</td>
+<td>NKEY_Q</td>
+</tr>
+<tr>
+<td>Keyboard z</td>
+<td>NKEY_Z</td>
+</tr>
+<tr>
+<td>Keyboard Delete</td>
+<td>NKEY_DEL</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 0</td>
+<td>NKEY_KP_0</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 1</td>
+<td>NKEY_KP_1</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 2</td>
+<td>NKEY_KP_2</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 3</td>
+<td>NKEY_KP_2</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 4</td>
+<td>NKEY_KP_4</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 5</td>
+<td>NKEY_KP_5</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 6</td>
+<td>NKEY_KP_6</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 7</td>
+<td>NKEY_KP_7</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 8</td>
+<td>NKEY_KP_8</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 9</td>
+<td>NKEY_KP_9</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Period .</td>
+<td>NKEY_KP_DOT</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Divide /</td>
+<td>NKEY_KP_SLASH</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Multiply *</td>
+<td>NKEY_KP_ASTERISK</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Minus -</td>
+<td>NKEY_KP_MINUS</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Plus +</td>
+<td>NKEY_KP_PLUS</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Enter</td>
+<td>NKEY_RETURN</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Equals =</td>
+<td>NKEY_KP_EQUAL</td>
+</tr>
+<tr>
+<td>Keyboard Up</td>
+<td>NKEY_UP</td>
+</tr>
+<tr>
+<td>Keyboard Down</td>
+<td>NKEY_DOWN</td>
+</tr>
+<tr>
+<td>Keyboard Right</td>
+<td>NKEY_RIGHT</td>
+</tr>
+<tr>
+<td>Keyboard Left</td>
+<td>NKEY_LEFT</td>
+</tr>
+<tr>
+<td>Keyboard Insert</td>
+<td>NKEY_INS</td>
+</tr>
+<tr>
+<td>Keyboard Home</td>
+<td>NKEY_HOMECLR</td>
+</tr>
+<tr>
+<td>Keyboard End</td>
+<td>NKEY_HELP</td>
+</tr>
+<tr>
+<td>Keyboard Page Up</td>
+<td>NKEY_ROLLUP</td>
+</tr>
+<tr>
+<td>Keyboard Page Down</td>
+<td>NKEY_ROLLDOWN</td>
+</tr>
+<tr>
+<td>Keyboard F1</td>
+<td>NKEY_F1</td>
+</tr>
+<tr>
+<td>Keyboard F2</td>
+<td>NKEY_F2</td>
+</tr>
+<tr>
+<td>Keyboard F3</td>
+<td>NKEY_F3</td>
+</tr>
+<tr>
+<td>Keyboard F4</td>
+<td>NKEY_F4</td>
+</tr>
+<tr>
+<td>Keyboard F5</td>
+<td>NKEY_F5</td>
+</tr>
+<tr>
+<td>Keyboard F6</td>
+<td>NKEY_F6</td>
+</tr>
+<tr>
+<td>Keyboard F7</td>
+<td>NKEY_F7</td>
+</tr>
+<tr>
+<td>Keyboard F8</td>
+<td>NKEY_F8</td>
+</tr>
+<tr>
+<td>Keyboard F9</td>
+<td>NKEY_F9</td>
+</tr>
+<tr>
+<td>Keyboard F10</td>
+<td>NKEY_F10</td>
+</tr>
+<tr>
+<td>Keyboard F11</td>
+<td>Mouse capture (hidden/show toggle)</td>
+</tr>
+<tr>
+<td>Keyboard F12</td>
+<td>NP2 menu key</td>
+</tr>
+<tr>
+<td>Keyboard Caps Lock</td>
+<td>NKEY_CAPS</td>
+</tr>
+<tr>
+<td>Keyboard Right Shift</td>
+<td>NKEY_SHIFT</td>
+</tr>
+<tr>
+<td>Keyboard Left Shift</td>
+<td>NKEY_SHIFT</td>
+</tr>
+<tr>
+<td>Keyboard Right Control</td>
+<td>NKEY_CTRL</td>
+</tr>
+<tr>
+<td>Keyboard Left Control</td>
+<td>NKEY_CTRL</td>
+</tr>
+<tr>
+<td>Keyboard Right Alt</td>
+<td>NKEY_KANA</td>
+</tr>
+<tr>
+<td>Keyboard Left Alt</td>
+<td>NKEY_KANA</td>
+</tr>
+<tr>
+<td>Keyboard Print</td>
+<td>NKEY_COPY</td>
+</tr>
+</tbody>
+</table>
+<p>Supported combinations</p>
+<ul>
+<li>If you use 104 western keyboard, to input underscore(_), press Shift+right Ctrl.</li>
+</ul>
+<h4 id="mouse">Mouse</h4>
+<table>
+<thead>
+<tr>
+<th>RetroMouse Inputs</th>
+<th>NP2 Mouse Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retromouse/retro_mouse.png" alt="" /> Mouse Cursor</td>
+<td>Mouse Cursor</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_left.png" alt="" /> Mouse 1</td>
+<td>Mouse Left Button</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_right.png" alt="" /> Mouse 2</td>
+<td>Mouse Right Button</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_middle.png" alt="" /> Mouse 3</td>
+<td>NP2 menu key</td>
+</tr>
+</tbody>
+</table>
+<h2 id="compatibility">Compatibility</h2>
+<p>Awaiting description.</p>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="http://domisan.sakura.ne.jp/article/np2kai/np2kai.html">Official Neko Project II Kai Website</a></li>
+<li><a href="http://www.yui.ne.jp/np2/">Original Neko Project II Website</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/np2kai_libretro.info">Libretro Neko Project II Kai Core info file</a></li>
+<li><a href="https://github.com/AZO234/NP2kai">Libretro Neko Project II Kai Repository</a></li>
+<li><a href="https://github.com/AZO234/NP2kai/issues">Report Libretro Neko Project II Kai Core Issues Here</a></li>
+</ul>

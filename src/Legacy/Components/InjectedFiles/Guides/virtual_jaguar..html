@@ -1,0 +1,398 @@
+<h1 id="atari-jaguar-virtual-jaguar">Atari - Jaguar (Virtual Jaguar)</h1>
+<h2 id="background">Background</h2>
+<p>Virtual Jaguar is a portable Jaguar emulator which is based on the source code of what used to be Potato Emulation.</p>
+<h3 id="authorlicense">Author/License</h3>
+<p>The Virtual Jaguar core has been authored by</p>
+<ul>
+<li>David Raingeard</li>
+<li>Shamus</li>
+</ul>
+<p>The Virtual Jaguar core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/virtualjaguar-libretro/blob/master/docs/GPLv3">GPLv3</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the Virtual Jaguar core have the following file extensions:</p>
+<ul>
+<li>.j64</li>
+<li>.jag</li>
+<li>.rom</li>
+<li>.abs</li>
+<li>.cof</li>
+<li>.bin</li>
+<li>.prg</li>
+</ul>
+<h2 id="databases">Databases</h2>
+<p>RetroArch database(s) that are associated with the Virtual Jaguar core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Atari%20-%20Jaguar.rdb">Atari - Jaguar</a></li>
+</ul>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the Virtual Jaguar core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The Virtual Jaguar core's internal core name is 'Virtual Jaguar'</p>
+<p>The Virtual Jaguar core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Save directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.srm</td>
+<td style="text-align: center;">Cartridge EEPROM save</td>
+</tr>
+<tr>
+<td style="text-align: center;">*.cdrom.srm</td>
+<td style="text-align: center;">CD-ROM EEPROM save</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> When performing an in-game save, the Virtual Jaguar core creates both a Cartridge EEPROM save file and a CD-ROM EEPROM save file, regardless of the game type.</p>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The Virtual Jaguar core's core provided FPS is 50 for PAL games and 60 for NTSC games.</li>
+<li>The Virtual Jaguar core's core provided sample rate is 48000 Hz</li>
+<li>The Virtual Jaguar core's core provided aspect ratio is 4/3</li>
+</ul>
+<h2 id="core-options">Core options</h2>
+<p>The Virtual Jaguar core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Fast Blitter</strong> [virtualjaguar_usefastblitter] (<strong>disabled</strong>|enabled)</p>
+<p>This option will force Virtual Jaguar to use the older, less compatible yet faster blitter. Some games will not work properly with this option on.</p>
+</li>
+<li><p><strong>Doom Res Hack</strong> [virtualjaguar_doom_res_hack] (<strong>disabled</strong>|enabled)</p>
+<p>A hack that needs to be enabled for Doom to run at its correct resolution.</p>
+</li>
+</ul>
+<p>??? note &quot;<em>Doom Res Hack - Disabled</em>&quot;
+<img src="../image/core/virtual_jaguar/doom_off.png" alt="" /></p>
+<p>??? note &quot;<em>Doom Res Hack - Enabled</em>&quot;
+<img src="../image/core/virtual_jaguar/doom_on.png" alt="" /></p>
+<ul>
+<li><p><strong>Bios</strong> [virtualjaguar_bios] (<strong>disabled</strong>|enabled)</p>
+<p>Enables BIOS loading sequence.</p>
+</li>
+</ul>
+<p>??? note &quot;<em>Bios - Enabled</em>&quot;
+<img src="../image/core/virtual_jaguar/bios.png" alt="" /></p>
+<ul>
+<li><p><strong>Pal (Restart)</strong> [virtualjaguar_pal] (<strong>disabled</strong>|enabled)</p>
+<p>NTSC to PAL switch. Setting this to on switches to PAL mode.</p>
+</li>
+</ul>
+<h2 id="controllers">Controllers</h2>
+<p>The Virtual Jaguar core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<h3 id="user-1-2-device-types">User 1 - 2 device types</h3>
+<ul>
+<li>None - Doesn't disable input. There's no reason to switch to this.</li>
+<li><strong>RetroPad</strong> - Joypad - Stay on this.</li>
+<li>RetroPad w/Analog - Joypad - Same as RetroPad. There's no reason to switch to this.</li>
+</ul>
+<h3 id="controller-tables">Controller tables</h3>
+<h4 id="joypad">Joypad</h4>
+<p><img src="../image/controller/jaguar.png" alt="" /></p>
+<table>
+<thead>
+<tr>
+<th>User 1 - 2 Remap descriptors</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>C</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+</tr>
+<tr>
+<td>Pause</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+</tr>
+<tr>
+<td>Option</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>A</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+<tr>
+<td>Numpad 0</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+</tr>
+<tr>
+<td>Numpad 1</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+</tr>
+<tr>
+<td>Numpad 2</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+</tr>
+<tr>
+<td>Numpad 3</td>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+</tr>
+<tr>
+<td>Numpad 4</td>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+</tr>
+<tr>
+<td>Numpad 5</td>
+<td><img src="../image/retropad/retro_l3.png" alt="" /></td>
+</tr>
+<tr>
+<td>Numpad 6</td>
+<td><img src="../image/retropad/retro_r3.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<h4 id="keyboard">Keyboard</h4>
+<table>
+<thead>
+<tr>
+<th>User 1 Joypad Descriptors</th>
+<th>Keyboard Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Numpad 0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Numpad 1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Numpad 2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Numpad 3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Numpad 4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Numpad 5</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Numpad 6</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Numpad 7</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Numpad 8</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Numpad 9</td>
+<td>9</td>
+</tr>
+<tr>
+<td>Numpad *</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Numpad #</td>
+<td>=</td>
+</tr>
+</tbody>
+</table>
+<h2 id="compatibility">Compatibility</h2>
+<p>A reference compatibility table can be found on the bottom of this <a href="https://icculus.org/virtualjaguar/">page</a></p>
+<table>
+<thead>
+<tr>
+<th>Game</th>
+<th>Issue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cybermorph</td>
+<td>Graphics glitches. (1)</td>
+</tr>
+<tr>
+<td>Doom</td>
+<td>Enable Doom core option hack for proper graphics pitch.</td>
+</tr>
+<tr>
+<td>Iron Soldier</td>
+<td>Hangs after selecting a stage.</td>
+</tr>
+<tr>
+<td>Iron Soldier 2</td>
+<td>Hangs after selecting a stage. Audio glitches.</td>
+</tr>
+<tr>
+<td>Kasumi Ninja</td>
+<td>Graphics glitches. Missing background layers (2)</td>
+</tr>
+<tr>
+<td>Ruiner Pinball</td>
+<td>Doesn't boot.</td>
+</tr>
+<tr>
+<td>Super Burnout</td>
+<td>Hangs after selecting a track.</td>
+</tr>
+<tr>
+<td>Towers II</td>
+<td>Heavy flickering.</td>
+</tr>
+<tr>
+<td>Wolfenstein 3D</td>
+<td>ROM version doesn't boot, J64 version does.</td>
+</tr>
+</tbody>
+</table>
+<p>??? note &quot;(1)&quot;
+<img src="../image/core/virtual_jaguar/cyber.png" alt="" /></p>
+<p>??? note &quot;(2)&quot;
+<img src="../image/core/virtual_jaguar/ninja.png" alt="" /></p>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://icculus.org/virtualjaguar/">Official Virtual Jaguar Website</a></li>
+<li><a href="http://shamusworld.gotdns.org/git/virtualjaguar">Official Virtual Jaguar Git Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/virtualjaguar_libretro.info">Libretro Virtual Jaguar Core info file</a></li>
+<li><a href="https://github.com/libretro/virtualjaguar-libretro">Libretro Virtual Jaguar Github Repository</a></li>
+<li><a href="https://github.com/libretro/virtualjaguar-libretro/issues">Report Libretro Virtual Jaguar Core Issues Here</a></li>
+</ul>

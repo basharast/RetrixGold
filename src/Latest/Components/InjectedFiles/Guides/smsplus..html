@@ -1,0 +1,343 @@
+<h1 id="sega-msgg-sms-plus-gx">Sega - MS/GG (SMS Plus GX)</h1>
+<h2 id="background">Background</h2>
+<p>SMS Plus is an open-source Sega Master System and Game Gear emulator written by Charles MacDonald.
+SMS Plus GX is an enhanced version which includes improved accuracy, bug fixes with most games and others.</p>
+<h2 id="added-support-for-coleco-system-experimental">Added support for coleco system (experimental).</h2>
+<h3 id="authorlicense">Author/License</h3>
+<p>The SMS Plus GX core has been authored by</p>
+<ul>
+<li>Charles Mcdonald</li>
+<li>Eke-Eke (GX)</li>
+</ul>
+<p>The SMS Plus GX core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/smsplus-gx/blob/master/docs/license">GPLv2</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the SMS Plus GX core have the following file extensions:</p>
+<ul>
+<li>.sms</li>
+<li>.bin</li>
+<li>.rom</li>
+<li>.gg</li>
+<li>.col</li>
+</ul>
+<h2 id="databases">Databases</h2>
+<p>RetroArch database(s) that are associated with the SMS Plus GX core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Sega%20-%20Game%20Gear.rdb">Sega - Game Gear</a></li>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Sega%20-%20Master%20System%20-%20Mark%20III.rdb">Sega - Master System - Mark III</a></li>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Coleco%20-%20ColecoVision.rdb">Coleco - ColecoVision</a></li>
+</ul>
+<h2 id="bios">BIOS</h2>
+<p>Required or optional firmware files go in the frontend's system directory.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">bios.sms</td>
+<td style="text-align: center;">Master System BIOS - Optional</td>
+<td style="text-align: center;">840481177270d5642a14ca71ee72844c</td>
+</tr>
+<tr>
+<td style="text-align: center;">BIOS.col</td>
+<td style="text-align: center;">Coleco BIOS - Required</td>
+<td style="text-align: center;">2c66f5911e5b42b8ebe113403548eee7</td>
+</tr>
+</tbody>
+</table>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the SMS Plus GX core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The SMS Plus GX core's internal core name is 'SMS Plus GX'</p>
+<p><strong>Frontend's Save directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.srm</td>
+<td style="text-align: center;">Cartridge battery save</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Frontend's State directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.state#</td>
+<td style="text-align: center;">State</td>
+</tr>
+</tbody>
+</table>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The SMS Plus GX core's core provided FPS is 60 for NTSC games and 50 for PAL games</li>
+<li>The SMS Plus GX core's core provided sample rate is 44100 Hz</li>
+<li>The SMS Plus GX core's base width is dependent on loaded content and when using ntsc filter</li>
+<li>The SMS Plus GX core's base height can be 192/224/240 for Master System/Coleco and 144 for Game Gear games</li>
+<li>The SMS Plus GX core's max width is 602</li>
+<li>The SMS Plus GX core's max height is 240</li>
+<li>The SMS Plus GX core's core provided aspect ratio is 4:3</li>
+</ul>
+<h2 id="core-options">Core options</h2>
+<p>The SMS Plus GX core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Hardware (Restart)</strong> [smsplus_hardware] (<strong>auto</strong>/master system/master system II/game gear/game gear (sms compatibility)/coleco)</p>
+<p>Emulates which system hardware to use.</p>
+</li>
+<li><p><strong>Region (Restart)</strong> [smsplus_region] (<strong>auto</strong>/ntsc-u/pal/ntsc-j)</p>
+<p>Runs console at a specific video timing based on region</p>
+</li>
+<li><p><strong>Remove Border</strong> [smsplus_remove_left_border] (<strong>disabled</strong>/enabled)</p>
+<p>Removes the black border on the left of some games. (SMS Only)</p>
+</li>
+<li><p><strong>Blargg NTSC Filter</strong> [smsplus_ntsc_filter] (<strong>disabled</strong>/monochrome/composite/svideo/rgb)</p>
+<p>Replicates the analog signal effects such as color bleeding and pixel artifacts to match the images a TV would show.</p>
+</li>
+</ul>
+<h2 id="controllers">Controllers</h2>
+<p>The SMS Plus GX core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<h3 id="user-1-device-types">User 1 device types</h3>
+<ul>
+<li>None - Doesn't diable input. There's no reason to switch to this.</li>
+<li><strong>RetroPad</strong> - Joypad - Stay on this.</li>
+<li>RetroPad w/Analog - Joypad - There's no reason to switch to this.</li>
+</ul>
+<h3 id="controller-tables">Controller tables</h3>
+<h4 id="joypad">Joypad</h4>
+<p><img src="../image/controller/gg.png" alt="" /></p>
+<p><img src="../image/controller/sms.png" alt="" /></p>
+<table>
+<thead>
+<tr>
+<th>RetroPad Inputs</th>
+<th>SMS Plus GX core Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>1</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+<td>Pause</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>D-Pad Up</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>D-Pad Down</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>D-Pad Left</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>D-Pad Right</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<h4 id="keyboard">Keyboard</h4>
+<table>
+<thead>
+<tr>
+<th>RetroKeyboard Inputs</th>
+<th>RetroKeyboard</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keyboard 1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Keyboard 2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Keyboard 3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Keyboard 4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Keyboard 5</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Keyboard 6</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Keyboard 7</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Keyboard 8</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Keyboard 9</td>
+<td>9</td>
+</tr>
+<tr>
+<td>Keyboard Dollar</td>
+<td>$</td>
+</tr>
+<tr>
+<td>Keyboard Asterisk</td>
+<td>*</td>
+</tr>
+</tbody>
+</table>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://github.com/libretro/smsplus-gx">Libretro SMS Plus GX Github Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/smsplus_libretro.info">Libretro SMS Plus GX Core info file</a></li>
+<li><a href="https://github.com/libretro/smsplus-gx/issues">Report Libretro SMS Plus GX Core Issues Here</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLRbgg4gk_0IeQQFDtJZI8xpOvbY-yqJhA">Gameplay Videos</a></li>
+</ul>
+<h3 id="see-also">See also</h3>
+<ul>
+<li><a href="emux_sms.md">Sega - Master System (Emux SMS)</a></li>
+<li><a href="genesis_plus_gx.md">Sega - MS/GG/MD/CD (Genesis Plus GX)</a></li>
+<li><a href="picodrive.md">Sega - MS/MD/CD/32X (PicoDrive)</a></li>
+<li><a href="gearsystem.md">Sega - MS/GG/SG-1000 (Gearsystem)</a></li>
+<li><a href="bluemsx.md">MSX/SVI/ColecoVision/SG-1000 (blueMSX)</a></li>
+<li><a href="gearcoleco.md">Coleco - ColecoVision (Gearcoleco)</a></li>
+</ul>

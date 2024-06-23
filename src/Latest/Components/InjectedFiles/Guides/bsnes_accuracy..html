@@ -1,0 +1,491 @@
+<h1 id="nintendo-snes-famicom-bsnes-accuracy">Nintendo - SNES / Famicom (bsnes Accuracy)</h1>
+<h2 id="background">Background</h2>
+<p>bsnes is a Super Nintendo emulator that began development on 2004-10-14. It focuses on accuracy and clean code above all else. It never uses speed or compatibility hacks. As a result, the minimum system requirements are greater than with other emulators. bsnes comes in three different profiles (accuracy, balanced and performance) which contain minor differences in the PPU (graphics) emulation.</p>
+<p>This core has been compiled with the Accuracy profile.</p>
+<p>Highly accurate SNES emulation. Whether to use the Accuracy, or Balanced or Performance core depends on how much accuracy you want to give up for game performance.</p>
+<p>Please check the <a href="#compatibility">compatibility section</a> for more information.</p>
+<h3 id="authorlicense">Author/License</h3>
+<p>The bsnes Accuracy core has been authored by</p>
+<ul>
+<li>byuu</li>
+</ul>
+<p>The bsnes Accuracy core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/bsnes-libretro/blob/libretro/COPYING">GPLv3</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the bsnes Accuracy core have the following file extensions:</p>
+<ul>
+<li>.sfc</li>
+<li>.smc</li>
+<li>.bml</li>
+</ul>
+<h2 id="databases">Databases</h2>
+<p>RetroArch database(s) that are associated with the bsnes Accuracy core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Super%20Nintendo%20Entertainment%20System.rdb">Nintendo - Super Nintendo Entertainment System</a></li>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Super%20Nintendo%20Entertainment%20System%20Hacks.rdb">Nintendo - Super Nintendo Entertainment System Hacks</a></li>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Sufami%20Turbo.rdb">Nintendo - Sufami Turbo</a></li>
+</ul>
+<h2 id="bios">BIOS</h2>
+<p>Required or optional firmware files go in the frontend's system directory.</p>
+<p>!!! attention
+The bsnes Accuracy core uses split ROMS for <a href="https://en.wikipedia.org/wiki/List_of_Super_NES_enhancement_chips#List_of_Super_NES_games_that_use_enhancement_chips">special chip games</a>.</p>
+<p>Notable DSP1/DSP1B Games:</p>
+<ul>
+<li>Super Mario Kart</li>
+<li>Pilotwings</li>
+</ul>
+<p>Notable DSP2 Games:</p>
+<ul>
+<li>Dungeon Master</li>
+</ul>
+<p>Notable DSP3 Games:</p>
+<ul>
+<li>SD Gundam GX</li>
+</ul>
+<p>Notable DSP4 Games:</p>
+<ul>
+<li>Top Gear 3000</li>
+</ul>
+<p>Notable Cx4 Games:</p>
+<ul>
+<li>Mega Man X2</li>
+<li>Mega Man X3</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">dsp1.data.rom</td>
+<td style="text-align: center;">DSP1 co-processor firmware</td>
+<td style="text-align: center;">3d81b45fa0c2aa8b852dfb1ece7c0971</td>
+</tr>
+<tr>
+<td style="text-align: center;">dsp1.program.rom</td>
+<td style="text-align: center;">DSP1 co-processor firmware</td>
+<td style="text-align: center;">ae209fbe789fbf11a48aea5ab1197321</td>
+</tr>
+<tr>
+<td style="text-align: center;">dsp1b.data.rom</td>
+<td style="text-align: center;">DSP1B co-processor firmware</td>
+<td style="text-align: center;">1e3f568634a7d8284020dddc0ae905bc</td>
+</tr>
+<tr>
+<td style="text-align: center;">dsp1b.program.rom</td>
+<td style="text-align: center;">DSP1B co-processor firmware</td>
+<td style="text-align: center;">d10f446888e097cbf500f3f663cf4f6d</td>
+</tr>
+<tr>
+<td style="text-align: center;">dsp2.data.rom</td>
+<td style="text-align: center;">DSP2 co-processor firmware</td>
+<td style="text-align: center;">e9417e29223b139c3c4b635a2a3b8744</td>
+</tr>
+<tr>
+<td style="text-align: center;">dsp2.program.rom</td>
+<td style="text-align: center;">DSP2 co-processor firmware</td>
+<td style="text-align: center;">aa6e5922a3ed5ded54f24247c11143c5</td>
+</tr>
+<tr>
+<td style="text-align: center;">dsp3.data.rom</td>
+<td style="text-align: center;">DSP3 co-processor firmware</td>
+<td style="text-align: center;">0a81210c0a940b997dd9843281008ee6</td>
+</tr>
+<tr>
+<td style="text-align: center;">dsp3.program.rom</td>
+<td style="text-align: center;">DSP3 co-processor firmware</td>
+<td style="text-align: center;">d99ca4562818d49cee1f242705bba6f8</td>
+</tr>
+<tr>
+<td style="text-align: center;">dsp4.data.rom</td>
+<td style="text-align: center;">DSP4 co-processor firmware</td>
+<td style="text-align: center;">ee4990879eb68e3cbca239c5bc20303d</td>
+</tr>
+<tr>
+<td style="text-align: center;">dsp4.program.rom</td>
+<td style="text-align: center;">DSP4 co-processor firmware</td>
+<td style="text-align: center;">a151023b948b90ffc23a5b594bb6fef2</td>
+</tr>
+<tr>
+<td style="text-align: center;">cx4.data.rom</td>
+<td style="text-align: center;">CX4 co-processor firmware</td>
+<td style="text-align: center;">037ac4296b6b6a5c47c440188d3c72e3</td>
+</tr>
+<tr>
+<td style="text-align: center;">st010.data.rom</td>
+<td style="text-align: center;">ST010 co-processor firmware</td>
+<td style="text-align: center;">254d70762b6f59f99c27c395aba7d07d</td>
+</tr>
+<tr>
+<td style="text-align: center;">st010.program.rom</td>
+<td style="text-align: center;">ST010 co-processor firmware</td>
+<td style="text-align: center;">1d70019179a59a566a0bb5d3f2845544</td>
+</tr>
+<tr>
+<td style="text-align: center;">st011.data.rom</td>
+<td style="text-align: center;">ST011 co-processor firmware</td>
+<td style="text-align: center;">10bd3f4aa949737ab9836512c35bcc29</td>
+</tr>
+<tr>
+<td style="text-align: center;">st011.program.rom</td>
+<td style="text-align: center;">ST011 co-processor firmware</td>
+<td style="text-align: center;">95222ebf1c0c2990bcf25db43743f032</td>
+</tr>
+<tr>
+<td style="text-align: center;">st018.data.rom</td>
+<td style="text-align: center;">ST018 co-processor firmware</td>
+<td style="text-align: center;">49c898b60d0f15e90d0ba780dd12f366</td>
+</tr>
+<tr>
+<td style="text-align: center;">st018.program.rom</td>
+<td style="text-align: center;">ST018 co-processor firmware</td>
+<td style="text-align: center;">dda40ccd57390c96e49d30a041f9a9e7</td>
+</tr>
+<tr>
+<td style="text-align: center;">sgb.boot.rom</td>
+<td style="text-align: center;">Super Game Boy BIOS</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the bsnes Accuracy core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The bsnes Accuracy core's internal core name is 'bsnes'</p>
+<p>The bsnes Accuracy core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Save directory</strong></p>
+<ul>
+<li>'content-name'.srm (Cartridge battery save)</li>
+</ul>
+<p><strong>Frontend's State directory</strong></p>
+<ul>
+<li>'content-name'.state# (State)</li>
+</ul>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The bsnes Accuracy core's core provided FPS is 60.0988118623 for NTSC games and 50.0069789082 for PAL games.</li>
+<li>The bsnes Accuracy core's core provided sample rate is 32040.5 Hz</li>
+<li>The bsnes Accuracy core's core provided aspect ratio is 4/3</li>
+</ul>
+<h2 id="super-gameboy">Super GameBoy</h2>
+<p>!!! warning
+Super GameBoy support in this core is <strong>Windows only</strong>, and has <strong>buggy save state support</strong> and <strong>visual glitches</strong>. <strong>Use the <a href="higan_accuracy.md#super-gameboy-support">higan Accuracy core</a> or the <a href="nside_balanced.md#super-gameboy-support">nSide Balanced core</a> for simplified, functional, and easily accessible Super Gameboy support.</strong></p>
+<p>For Super GameBoy support, you need sgb.boot.rom (in RetroArch's System directory), a GameBoy ROM and a Super GameBoy ROM.</p>
+<p>Please note that the Game Boy and Super GameBoy ROMs have to be unzipped.</p>
+<p>Super GameBoy is supported via the Subsystem API.</p>
+<p>There are two ways to access the Subsystem API.</p>
+<p><strong>One way is to access the Subsystem API through RetroArch's GUI like this.</strong></p>
+<p>First, we load our GameBoy ROM through 'Load Super GameBoy' in RetroArch's Main Menu.</p>
+<p><img src="../image/core/bsnes/menu1.png" alt="" /></p>
+<p><img src="../image/core/bsnes/gb.png" alt="" /></p>
+<p>Next, we load our Super GameBoy ROM through 'Load Super GameBoy' in RetroArch's Menu Menu.</p>
+<p><img src="../image/core/bsnes/menu2.png" alt="" /></p>
+<p><img src="../image/core/bsnes/sgb.png" alt="" /></p>
+<p>Then, we start the content by selecting 'Start GameBoy' In RetroArch's Menu Menu.</p>
+<p><img src="../image/core/bsnes/start.png" alt="" /></p>
+<p><strong>The other way is to launch RetroArch with commandline like this.</strong></p>
+<pre><code>retroarch -L {path to bsnes core} {path to Super GameBoy ROM} --subsystem sgb {path to GameBoy rom}
+</code></pre>
+<h2 id="msu-1">MSU-1</h2>
+<p>!!! attention
+MSU-1 support in this core is complex. <strong>Use the <a href="../library/snes9x#msu-1-support">Snes9x core</a> for simplified and easily accessible MSU-1 support.</strong></p>
+<p>MSU-1 support can be used by loading a correct .bml file.</p>
+<p>There's documentation for loading MSU-1 games in standalone higan <a href="https://higan.readthedocs.io/en/stable/guides/import/#msu-1-games">here</a>.</p>
+<h2 id="controllers">Controllers</h2>
+<p>The bsnes Accuracy core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<h3 id="user-1-device-types">User 1 device types</h3>
+<ul>
+<li>None - Disables input.</li>
+<li><strong><a href="http://nintendo.wikia.com/wiki/Super_Nintendo_Entertainment_System_controller">SNES Joypad</a></strong> - Joypad</li>
+<li><a href="https://en.wikipedia.org/wiki/Super_NES_Mouse">SNES Mouse</a> - Mouse</li>
+</ul>
+<h3 id="user-2-device-types">User 2 device types</h3>
+<ul>
+<li>None - Disables input.</li>
+<li><strong><a href="http://nintendo.wikia.com/wiki/Super_Nintendo_Entertainment_System_controller">SNES Joypad</a></strong> - Joypad</li>
+<li><a href="https://en.wikipedia.org/wiki/Super_NES_Mouse">SNES Mouse</a> - Mouse</li>
+<li><a href="http://nintendo.wikia.com/wiki/Super_Multitap">Multitap</a> - Joypad - Allows for up to five players to play together in multitap games.</li>
+<li><a href="https://en.wikipedia.org/wiki/Super_Scope">SuperScope</a> - Lightgun</li>
+<li><a href="https://en.wikipedia.org/wiki/Konami_Justifier">Justifier</a> - Lightgun</li>
+<li><a href="https://en.wikipedia.org/wiki/Konami_Justifier">Justifiers</a> - Lightgun - Two Justifiers are plugged in, for two-player Justifier games.</li>
+</ul>
+<h3 id="multitap-support">Multitap support</h3>
+<p>Activating multitap support in compatible games can be configured by switching to the <a href="#controllers">Multitap device type</a> for User 2.</p>
+<h3 id="controller-tables">Controller tables</h3>
+<h4 id="joypad">Joypad</h4>
+<p><img src="../image/controller/snes.png" alt="" /></p>
+<table>
+<thead>
+<tr>
+<th>User 1 - 5 Remap descriptors</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>Y</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+</tr>
+<tr>
+<td>Select</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+</tr>
+<tr>
+<td>Start</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>A</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+<tr>
+<td>X</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+</tr>
+<tr>
+<td>L</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+</tr>
+<tr>
+<td>R</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<h4 id="mouse">Mouse</h4>
+<table>
+<thead>
+<tr>
+<th>RetroMouse Inputs</th>
+<th>SNES Mouse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retromouse/retro_mouse.png" alt="" /> Mouse Cursor</td>
+<td>SNES Mouse Cursor</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_left.png" alt="" /> Mouse 1</td>
+<td>SNES Mouse Left Button</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_right.png" alt="" /> Mouse 2</td>
+<td>SNES Mouse Right Button</td>
+</tr>
+</tbody>
+</table>
+<h4 id="lightgun">Lightgun</h4>
+<table>
+<thead>
+<tr>
+<th>RetroLightgun Inputs</th>
+<th>SuperScope</th>
+<th>Justifier(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retromouse/retro_mouse.png" alt="" /> Gun Crosshair</td>
+<td>SuperScope Crosshair</td>
+<td>Justifier Crosshair</td>
+</tr>
+<tr>
+<td>Gun Trigger</td>
+<td>SuperScope Trigger</td>
+<td>Justifier Trigger</td>
+</tr>
+<tr>
+<td>Gun Aux A</td>
+<td>SuperScope Cursor</td>
+<td></td>
+</tr>
+<tr>
+<td>Gun Aux B</td>
+<td>SuperScope Turbo</td>
+<td></td>
+</tr>
+<tr>
+<td>Gun Start</td>
+<td>SuperScope Pause</td>
+<td>Justifier Start</td>
+</tr>
+</tbody>
+</table>
+<h2 id="compatibility">Compatibility</h2>
+<p>The bsnes Accuracy core fully emulates all SNES games that have ever been officially released.</p>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://byuu.org/">Official higan Website</a></li>
+<li><a href="https://byuu.org/emulation/higan/">Official higan Upstream Downloads</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/bsnes_accuracy_libretro.info">Libretro bsnes Accuracy Core info file</a></li>
+<li><a href="https://github.com/libretro/bsnes-libretro">Libretro bsnes Accuracy Github Repository</a></li>
+<li><a href="https://github.com/libretro/bsnes-libretro/issues">Report Libretro bsnes Accuracy Core Issues Here</a></li>
+</ul>
+<h3 id="see-also">See also</h3>
+<h4 id="nintendo-sufami-turbo">Nintendo - Sufami Turbo</h4>
+<ul>
+<li><a href="beetle_bsnes.md">Nintendo - SNES / Famicom (Beetle bsnes)</a></li>
+<li><a href="bsnes_mercury_accuracy.md">Nintendo - SNES / Famicom (bsnes-mercury Accuracy)</a></li>
+<li><a href="bsnes_mercury_balanced.md">Nintendo - SNES / Famicom (bsnes-mercury Balanced)</a></li>
+<li><a href="bsnes_mercury_performance.md">Nintendo - SNES / Famicom (bsnes-mercury Performance)</a></li>
+<li><a href="bsnes_balanced.md">Nintendo - SNES / Famicom (bsnes Balanced)</a></li>
+<li><a href="bsnes_cplusplus98.md">Nintendo - SNES / Famicom (bsnes C++98 (v085))</a></li>
+<li><a href="bsnes_performance.md">Nintendo - SNES / Famicom (bsnes Performance)</a></li>
+<li><a href="snes9x.md">Nintendo - SNES / Famicom (Snes9x)</a></li>
+<li><a href="snes9x_2002.md">Nintendo - SNES / Famicom (Snes9x 2002)</a></li>
+<li><a href="snes9x_2005_plus.md">Nintendo - SNES / Famicom (Snes9x 2005 Plus)</a></li>
+<li><a href="snes9x_2005.md">Nintendo - SNES / Famicom (Snes9x 2005)</a></li>
+<li><a href="snes9x_2010.md">Nintendo - SNES / Famicom (Snes9x 2010)</a></li>
+</ul>
+<h4 id="nintendo-super-nintendo-entertainment-system-hacks">Nintendo - Super Nintendo Entertainment System (+ Hacks)</h4>
+<ul>
+<li><a href="beetle_bsnes.md">Nintendo - SNES / Famicom (Beetle bsnes)</a></li>
+<li><a href="bsnes_mercury_accuracy.md">Nintendo - SNES / Famicom (bsnes-mercury Accuracy)</a></li>
+<li><a href="bsnes_mercury_balanced.md">Nintendo - SNES / Famicom (bsnes-mercury Balanced)</a></li>
+<li><a href="bsnes_mercury_performance.md">Nintendo - SNES / Famicom (bsnes-mercury Performance)</a></li>
+<li><a href="bsnes_balanced.md">Nintendo - SNES / Famicom (bsnes Balanced)</a></li>
+<li><a href="bsnes_cplusplus98.md">Nintendo - SNES / Famicom (bsnes C++98 (v085))</a></li>
+<li><a href="bsnes_performance.md">Nintendo - SNES / Famicom (bsnes Performance)</a></li>
+<li><a href="higan_accuracy.md">Nintendo - SNES / Famicom (higan Accuracy)</a></li>
+<li><a href="nside_balanced.md">Nintendo - SNES / Famicom (nSide Balanced)</a></li>
+<li><a href="mesen-s.md">Nintendo - SNES / Famicom (Mesen-S)</a></li>
+<li><a href="snes9x.md">Nintendo - SNES / Famicom (Snes9x)</a></li>
+<li><a href="snes9x_2002.md">Nintendo - SNES / Famicom (Snes9x 2002)</a></li>
+<li><a href="snes9x_2005_plus.md">Nintendo - SNES / Famicom (Snes9x 2005 Plus)</a></li>
+<li><a href="snes9x_2005.md">Nintendo - SNES / Famicom (Snes9x 2005)</a></li>
+<li><a href="snes9x_2010.md">Nintendo - SNES / Famicom (Snes9x 2010)</a></li>
+</ul>

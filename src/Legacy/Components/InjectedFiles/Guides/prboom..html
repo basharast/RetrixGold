@@ -1,0 +1,743 @@
+<h1 id="doom-prboom">Doom (PrBoom)</h1>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/4qNr0DZWrQo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2 id="background">Background</h2>
+<p>Port of prboom to libretro - plays Doom, Doom II, Final Doom and other Doom IWAD mods.</p>
+<p>The PrBoom core has been authored by</p>
+<ul>
+<li>Florian Schulze</li>
+</ul>
+<p>The PrBoom core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-prboom/blob/master/COPYING">GPLv2</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="bios">BIOS</h2>
+<p>Required or optional firmware files go in the frontend's system directory.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><a href="https://github.com/libretro/libretro-prboom/blob/master/prboom.wad">prboom.wad</a></td>
+<td style="text-align: center;">PrBoom requires data ROM 'prboom.wad' inside the SYSTEM directory.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the PrBoom core have the following file extensions:</p>
+<ul>
+<li>.wad</li>
+<li>.iwad</li>
+<li>.pwad</li>
+</ul>
+<p>RetroArch database(s) that are associated with the PrBoom core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/DOOM.rdb">DOOM</a></li>
+</ul>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the PrBoom core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The PrBoom core's library name is 'PrBoom'</p>
+<p>The PrBoom core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Save directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">(content name)/*.dsg</td>
+<td style="text-align: center;">Save</td>
+</tr>
+<tr>
+<td style="text-align: center;">(content name)/prboom.cfg</td>
+<td style="text-align: center;">DOOM Config</td>
+</tr>
+</tbody>
+</table>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The PrBoom core's core provided FPS (by default) is 60</li>
+<li>The PrBoom core's core provided sample rate is 44100 Hz</li>
+<li>The PrBoom core's base width is dependent on the Internal resolution core option.</li>
+<li>The PrBoom core's base height is dependent on the Internal resolution core option.</li>
+<li>The PrBoom core's max width is dependent on the Internal resolution core option.</li>
+<li>The PrBoom core's max height is dependent on the Internal resolution core option.</li>
+<li>The PrBoom core's core provided aspect ratio is 4/3</li>
+</ul>
+<h2 id="loading-doom">Loading DOOM</h2>
+<p>PrBoom can load wad, iwad, and pwad files. The PrBoom core requires data ROM <a href="https://github.com/libretro/libretro-prboom/blob/master/prboom.wad">'prboom.wad'</a> inside the loaded content's or system directory.</p>
+<p>!!! TIP
+If you start the games by loading prboom.wad they will all share the same content name (&quot;prboom&quot; in this case), so the core will put the saves for every game in a single retroarch/saves/prboom/ folder and when playing Doom 2 for example you'll see Doom 1 saves, etc. which will cause confusion for the user. The games will also share the same game overrides/options files/remaps/etc. History tab will also lists each game as &quot;prboom&quot;.</p>
+<p>An example folder structure would be like so:</p>
+<pre><code>└── contents/
+    └── dooms/
+        ├── doom/
+        │   └── doom.wad
+        └── doom2/
+            └── doom2.wad
+</code></pre>
+<pre><code>└── retroarch/
+    └── system
+	 └── prboom.wad
+</code></pre>
+<p>Game saves and internal configuration files will be created in the frontend-defined save directory, organised in folders matching the filenames of loaded content - for example:</p>
+<pre><code>└── saves/
+    └── PrBoom/
+        ├── doom/
+        │   ├── prbmsav0.dsg
+        │   ├── prbmsav1.dsg
+        │   └── prboom.cfg
+        └── doom2/
+            ├── prbmsav0.dsg
+            ├── prbmsav1.dsg
+            └── prboom.cfg
+</code></pre>
+<p>Game saves are numbered from 'prbmsav0.dsg' to 'prbmsav7.dsg'.</p>
+<h2 id="sigil">SIGIL</h2>
+<p>Sigil (stylized as SIGIL) is the unofficial fifth episode of the 1993 video game Doom. Published by Romero Games on May 31, 2019, the Megawad was created by an original co-creator of Doom, John Romero, independently of the main game's then-current owner, Bethesda Softworks. It has nine missions, each with a deathmatch version, and a new soundtrack created by James Paddock and Buckethead.</p>
+<p>You can get SIGIL <a href="https://romero.com/">here</a></p>
+<p>Turn off 'Look on parent folders for IWADs' inside Quick Menu - Options. This is usually enabled by default, so disable it.</p>
+<p>Make sure that you place the SIGIL wad files inside the same directory as your Doom/Ultimate Doom WAD file. You can name this either doomu.wad or doom.wad. Make sure there are NO doom2.wad files inside this same directory, or Sigil might not work properly.</p>
+<p>An example folder structure would be like so:</p>
+<pre><code>└── contents/
+    └── dooms/
+        └── doom/
+            ├── doom.wad
+            └── SIGIL.WAD
+</code></pre>
+<pre><code>└── retroarch/
+    └── system/
+	 └── prboom.wad
+</code></pre>
+<h2 id="config">Config</h2>
+<p>PrBoom's internal game settings can be found in the 'prboom.cfg' file inside each game's save directory.</p>
+<p>Many of these settings may be changed from the in-game menu. A few notable options are as follows:</p>
+<ul>
+<li><p>Options → General (page 1) → Framerate (35fps|40fps|50fps|<strong>60fps</strong>|70fps|72fps|75fps|90fps|100fps|
+119fps|120fps|140fps|144fps|240fps|244fps)</p>
+<p>Vanilla Doom has a native framerate of 35fps. This should be considered the 'correct' value, but it can lead to an irregular 'stuttering' effect on 60Hz LCD displays.</p>
+<p>All framerates should maintain the proper game speed.</p>
+</li>
+<li><p>Options → General (page 1) → Gamma Correction (<strong>Off</strong>|Lv. 1|Lv. 2|Lv. 3|Lv. 4)</p>
+<p>Sets display brightness.</p>
+</li>
+<li><p>Options → Screen Size (<strong>Low</strong>|High)</p>
+<p>When set to 'Low', the HUD is shown at the bottom of the screen.</p>
+<p>When set to 'High', the gameplay area fills the screen and no HUD is shown.</p>
+</li>
+<li><p>Options → Mouse Sensitivity</p>
+<p>The 'horizontal' slider sets the movement speed when looking left/right with either the mouse or the gamepad right analog stick.</p>
+</li>
+</ul>
+<h2 id="core-options">Core options</h2>
+<p>The PrBoom core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Internal resolution (restart)</strong> [prboom-resolution] (<strong>320x200</strong>|640x400|960x600|1280x800|1600x1000|1920x1200)</p>
+<p>Configure the resolution. Requires a restart.</p>
+</li>
+</ul>
+<p>??? note &quot;Internal resolution - 320x200&quot;
+<img src="../image/core/prboom/320x200.png" alt="" /></p>
+<p>??? note &quot;Internal resolution - 1920x1200&quot;
+<img src="../image/core/prboom/1920x1200.png" alt="" /></p>
+<ul>
+<li><p><strong>Mouse active when using Gamepad</strong> [prboom-mouse_on] (<strong>disabled</strong>|enabled)</p>
+<p>Allows you to use mouse inputs even when User 1's device type isn't set to 'RetroKeyboard/Mouse'.</p>
+</li>
+<li><p><strong>Look on parent folders for IWADs</strong> [prboom-find_recursive_on] (<strong>enabled</strong>|disabled)</p>
+<p>Scans parent folders for IWADs. NOTE: You need to disable this if you want to run SIGIL.</p>
+</li>
+<li><p><strong>Analog Deadzone (percent)</strong> [prboom-analog_deadzone] (<strong>15</strong>|20|25|30|0|5|10)</p>
+<p>Sets the deadzone of the Gamepad analog sticks when the input device type is set to 'Gamepad Modern'.</p>
+</li>
+</ul>
+<h2 id="user-1-device-types">User 1 device types</h2>
+<p>The PrBoom core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<ul>
+<li>None - Input disabled.</li>
+<li><strong>Gamepad Classic</strong> - Joypad</li>
+<li><strong>Gamepad Modern</strong> - Joypad</li>
+<li><strong>RetroKeyboard/Mouse</strong> - Keyboard and Mouse - Switch to this for keyboard and mouse input. Has keymapper support.</li>
+</ul>
+<h2 id="joypad">Joypad</h2>
+<table>
+<thead>
+<tr>
+<th>User 1 input descriptors for 'Gamepad Classic' device type</th>
+<th>RetroPad Inputs</th>
+<th>PrBoom inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Use</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>Use</td>
+</tr>
+<tr>
+<td>Run</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+<td>Run</td>
+</tr>
+<tr>
+<td>Show/Hide Map</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+<td>Show/Hide Map</td>
+</tr>
+<tr>
+<td>Show/Hide Menu</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+<td>Show/Hide Menu</td>
+</tr>
+<tr>
+<td>D-Pad Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>D-Pad Up</td>
+</tr>
+<tr>
+<td>D-Pad Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>D-Pad Down</td>
+</tr>
+<tr>
+<td>D-Pad Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>D-Pad Left</td>
+</tr>
+<tr>
+<td>D-Pad Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>D-Pad Right</td>
+</tr>
+<tr>
+<td>Fire</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>Fire</td>
+</tr>
+<tr>
+<td>Strafe</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+<td>Strafe</td>
+</tr>
+<tr>
+<td>Strafe Left</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+<td>Strafe Left</td>
+</tr>
+<tr>
+<td>Strafe Right</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+<td>Strafe Right</td>
+</tr>
+<tr>
+<td>Previous Weapon</td>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+<td>Previous Weapon</td>
+</tr>
+<tr>
+<td>Next Weapon</td>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+<td>Next Weapon</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>User 1 input descriptors for 'Gamepad Modern' device type</th>
+<th>RetroPad Inputs</th>
+<th>PrBoom inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Menu Cancel</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>Menu Cancel</td>
+</tr>
+<tr>
+<td>Quick Save</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+<td>Quick Save</td>
+</tr>
+<tr>
+<td>Show/Hide Map</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+<td>Show/Hide Map</td>
+</tr>
+<tr>
+<td>Show/Hide Menu</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+<td>Show/Hide Menu</td>
+</tr>
+<tr>
+<td>D-Pad Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>D-Pad Up</td>
+</tr>
+<tr>
+<td>D-Pad Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>D-Pad Down</td>
+</tr>
+<tr>
+<td>D-Pad Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>D-Pad Left</td>
+</tr>
+<tr>
+<td>D-Pad Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>D-Pad Right</td>
+</tr>
+<tr>
+<td>Menu Select</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>Menu Select</td>
+</tr>
+<tr>
+<td>Quick Load</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+<td>Quick Load</td>
+</tr>
+<tr>
+<td>Previous Weapon</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+<td>Previous Weapon</td>
+</tr>
+<tr>
+<td>Next Weapon</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+<td>Next Weapon</td>
+</tr>
+<tr>
+<td>Use</td>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+<td>Use</td>
+</tr>
+<tr>
+<td>Fire</td>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+<td>Fire</td>
+</tr>
+<tr>
+<td>Toggle Run</td>
+<td><img src="../image/retropad/retro_l3.png" alt="" /></td>
+<td>Toggle Run</td>
+</tr>
+<tr>
+<td>180 Turn</td>
+<td><img src="../image/retropad/retro_r3.png" alt="" /></td>
+<td>180 Turn</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> X</td>
+<td>Strafe Left/Right</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> Y</td>
+<td>Move Forwards/Backwards</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /> X</td>
+<td>Look Left/Right</td>
+</tr>
+</tbody>
+</table>
+<h2 id="keyboard-and-mouse">Keyboard and Mouse</h2>
+<table>
+<thead>
+<tr>
+<th>RetroKeyboard/Mouse inputs</th>
+<th>Weapons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keyboard 1</td>
+<td>Fist</td>
+</tr>
+<tr>
+<td>Keyboard 2</td>
+<td>Pistol</td>
+</tr>
+<tr>
+<td>Keyboard 3</td>
+<td>Shotgun</td>
+</tr>
+<tr>
+<td>Keyboard 4</td>
+<td>Chaingun</td>
+</tr>
+<tr>
+<td>Keyboard 5</td>
+<td>Rocket</td>
+</tr>
+<tr>
+<td>Keyboard 8</td>
+<td>Chainsaw</td>
+</tr>
+<tr>
+<td>Keyboard 0</td>
+<td>Best</td>
+</tr>
+<tr>
+<td>Keyboard Left Control</td>
+<td>Fire</td>
+</tr>
+<tr>
+<td>Keyboard Right Control</td>
+<td>Fire</td>
+</tr>
+<tr>
+<td>Wheel Up</td>
+<td>Next Weapon</td>
+</tr>
+<tr>
+<td>Wheel Down</td>
+<td>Previous Weapon</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_left.png" alt="" /> Mouse 1</td>
+<td>Fire</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>RetroKeyboard/Mouse inputs</th>
+<th>Movement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keyboard Up</td>
+<td>Forward</td>
+</tr>
+<tr>
+<td>Keyboard Down</td>
+<td>Backward</td>
+</tr>
+<tr>
+<td>Keyboard Left</td>
+<td>Turn Left</td>
+</tr>
+<tr>
+<td>Keyboard Right</td>
+<td>Turn Right</td>
+</tr>
+<tr>
+<td>Keyboard Left Shift</td>
+<td>Run</td>
+</tr>
+<tr>
+<td>Keyboard Right Shift</td>
+<td>Run</td>
+</tr>
+<tr>
+<td>Keyboard Less than &lt;</td>
+<td>Strafe Left</td>
+</tr>
+<tr>
+<td>Keyboard Greater than &gt;</td>
+<td>Strafe Right</td>
+</tr>
+<tr>
+<td>Keyboard Left Alt</td>
+<td>Strafe</td>
+</tr>
+<tr>
+<td>Keyboard Right Alt</td>
+<td>Strafe</td>
+</tr>
+<tr>
+<td>Keyboard Caps Lock</td>
+<td>Autorun</td>
+</tr>
+<tr>
+<td>Keyboard Slash /</td>
+<td>180 Turn</td>
+</tr>
+<tr>
+<td>Keyboard Space</td>
+<td>Use</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_mouse.png" alt="" /> Mouse Cursor</td>
+<td>Turn Left/Right</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_right.png" alt="" /> Mouse 2</td>
+<td>Strafe</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_middle.png" alt="" /> Mouse 3</td>
+<td>Use</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_middle.png" alt="" /> Mouse 3</td>
+<td>Forward</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>RetroKeyboard/Mouse inputs</th>
+<th>Game</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keyboard F2</td>
+<td>Save</td>
+</tr>
+<tr>
+<td>Keyboard F3</td>
+<td>Load</td>
+</tr>
+<tr>
+<td>Keyboard F6</td>
+<td>Quicksave</td>
+</tr>
+<tr>
+<td>Keyboard F7</td>
+<td>Endgame</td>
+</tr>
+<tr>
+<td>Keyboard F9</td>
+<td>Quickload</td>
+</tr>
+<tr>
+<td>Keyboard F10</td>
+<td>Quit</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>RetroKeyboard/Mouse inputs</th>
+<th>Screen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keyboard F1</td>
+<td>Help</td>
+</tr>
+<tr>
+<td>Keyboard Escape</td>
+<td>Menu</td>
+</tr>
+<tr>
+<td>Keyboard Home</td>
+<td>Setup</td>
+</tr>
+<tr>
+<td>Keyboard Pause</td>
+<td>Pause</td>
+</tr>
+<tr>
+<td>Keyboard Tab</td>
+<td>Automap</td>
+</tr>
+<tr>
+<td>Keyboard F4</td>
+<td>Sound Volume</td>
+</tr>
+<tr>
+<td>Keyboard F5</td>
+<td>HUD</td>
+</tr>
+<tr>
+<td>Keyboard F8</td>
+<td>Messages</td>
+</tr>
+<tr>
+<td>Keyboard F11</td>
+<td>Gamma Fix</td>
+</tr>
+<tr>
+<td>Keyboard F12</td>
+<td>Spy</td>
+</tr>
+<tr>
+<td>Keyboard Minus -</td>
+<td>Smaller View</td>
+</tr>
+<tr>
+<td>Keyboard Plus +</td>
+<td>Larger View</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>RetroKeyboard/Mouse inputs</th>
+<th>Automap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keyboard f</td>
+<td>Follow Mode</td>
+</tr>
+<tr>
+<td>Keyboard Minus -</td>
+<td>Zoom in</td>
+</tr>
+<tr>
+<td>Keyboard Plus +</td>
+<td>Zoom out</td>
+</tr>
+<tr>
+<td>Keyboard m</td>
+<td>Mark Place</td>
+</tr>
+<tr>
+<td>Keyboard c</td>
+<td>Clear Marks</td>
+</tr>
+<tr>
+<td>Keyboard o</td>
+<td>Full/Zoom</td>
+</tr>
+<tr>
+<td>Keyboard g</td>
+<td>Grid</td>
+</tr>
+</tbody>
+</table>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="http://prboom.sourceforge.net/">Official PrBoom Website</a></li>
+<li><a href="http://sourceforge.net/projects/prboom/">Official PrBoom SourceForge Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/prboom_libretro.info">Libretro PrBoom Core info file</a></li>
+<li><a href="https://github.com/libretro/libretro-prboom">Libretro PrBoom Github Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-prboom/issues">Report Libretro PrBoom Core Issues Here</a></li>
+</ul>
+<h2 id="id-software">id Software</h2>
+<ul>
+<li><a href="tyrquake.md">Quake 1 (TyrQuake)</a></li>
+</ul>

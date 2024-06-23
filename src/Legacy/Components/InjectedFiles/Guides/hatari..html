@@ -1,0 +1,909 @@
+<h1 id="atari-ststettfalcon-hatari">Atari - ST/STE/TT/Falcon (Hatari)</h1>
+<h2 id="background">Background</h2>
+<p>Hatari is an Atari ST/STE/TT/Falcon system emulator that can be used as a libretro core. Hatari tries to emulate the hardware as close as possible so that it is able to run most of the old Atari games and demos.</p>
+<h3 id="authorlicense">Author/License</h3>
+<p>The Hatari core has been authored by</p>
+<ul>
+<li>Nicolas Pomarède</li>
+</ul>
+<p>The Hatari core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/hatari/blob/master/readme.txt">GPLv2</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the Hatari core have the following file extensions:</p>
+<ul>
+<li>.st</li>
+<li>.msa</li>
+<li>.zip</li>
+<li>.stx</li>
+<li>.dim</li>
+<li>.ipf</li>
+</ul>
+<h2 id="bios">BIOS</h2>
+<p>Required or optional firmware files go in the frontend's system directory.</p>
+<p>!!! attention
+The plain ST mode only works with TOS 1.00, 1.02, 1.04, or 2.06. STE mode requires any of the TOS versions 1.xx or 2.xx. TOS 3.0x is for TT, and TOS 4.0x is for Falcon.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">tos.img</td>
+<td style="text-align: center;">TOS Boot Image - Required</td>
+<td style="text-align: center;">c1c57ce48e8ee4135885cee9e63a68a2</td>
+</tr>
+</tbody>
+</table>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the Hatari core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The Hatari core's internal core name is 'Hatari'</p>
+<p>The Hatari core saves/loads to/from these directories.</p>
+<p><strong>Frontend's System directory</strong></p>
+<ul>
+<li>hatari.cfg (Hatari Config file)</li>
+</ul>
+<p><strong>User directory</strong></p>
+<ul>
+<li>.hatari/ (Unused directory)</li>
+</ul>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The Hatari core's core provided FPS is (FPS)</li>
+<li>The Hatari core's core provided sample rate is (Rate)</li>
+<li>The Hatari core's core provided aspect ratio is (Ratio)</li>
+</ul>
+<h2 id="getting-started-with-hatari">Getting Started With Hatari</h2>
+<p>!!! attention
+This guide was written by <a href="https://forums.libretro.com/t/getting-started-with-hatari-atari-st-ste-tt-falcon-emulation/13237">AnicetusCer on the LibRetro Forums</a>.</p>
+<p>This was written using Lakka 2.1 rc6 x86_64</p>
+<p>I was excited to find out Lakka has an Atari ST core, but then disappointed that it chucked out some errors when I tried to “just load an .st image”. There really was not much of a guide out there, even to get started, So I picked apart a handful of posts and docs and wrote my own mini guide below.</p>
+<h3 id="quick-start">Quick Start</h3>
+<ul>
+<li><p>Get a copy of US TOS 1.02 , name and put it here; “/storage/system/tos.img”</p>
+</li>
+<li><p>Create a folder for your Atari ST games “/storage/roms/Atari - ST”</p>
+</li>
+<li><p>Create a hatari.cfg file in “/storage/system/hatari.cfg” with the following lines</p>
+</li>
+</ul>
+<pre><code>[Floppy]
+bAutoInsertDiskB = TRUE
+FastFloppy = TRUE
+nWriteProtection = 0
+szDiskAFileName = /storage/roms/Atari\ -\ ST/game.st
+szDiskBFileName =
+szDiskImageDirectory = /storage/roms/Atari\ -\ ST/
+szDiskAZipPath =
+szDiskBZipPath =
+
+[ROM]
+szCartridgeImageFileName =
+szTosImageFileName = /storage/system/tos.img
+</code></pre>
+<ul>
+<li><p>Changing Floppy disks can be achieved by accessing the Hatari menu and selecting the “Floppy” menu (see long winded explanation below)</p>
+</li>
+<li><p>So far I have found non of my own .st files get scanned into a playlist so I’ll have to build my own, but in the mean time to load a disk, in the Lakka menu go to “Load Content” &gt; select you first game disk &gt; then select to run it with the Hatari Core, it will now try to load the game without complaining it has no TOS. (ST games can have varying Hardware requirements, see “Long Winded Start” on how to change settings, but you should be able to play a lot of games with just the defaults.</p>
+</li>
+<li><p>Note on controllers, A controller can be used as both a mouse and joystick, see “Long Winded Start” for more info.</p>
+</li>
+</ul>
+<h3 id="long-winded-start">Long Winded Start</h3>
+<ul>
+<li><p>The TOS image (TOS stands for THE Operating System, cool huh) Consider TOS like a bios image used for other consoles, it needs adding to the the “/storage/system” directory. The one the retroarch Hatari documents mention is the US TOS version 1.02 this was an Atari ST OS and is probably the most compatible version for playing games, if you want to learn more about the different TOS versions and which hardware systems they correspond to (ST, STE, TT &amp; FALCON) here is a good link; <a href="http://www.atarimania.com/atari-st-tt-falcon.html9">http://www.atarimania.com/atari-st-tt-falcon.html9</a>.</p>
+</li>
+<li><p>I found Hatari would kick out this error when loading a game without the config set up “Can not load TOS file J’/usr/bin/TOS” This is because it was looking for the tos.img in the /usr/bin directory of Lakka, this is a read only location so we can not just drop the TOS image there, this is what the config file is needed for. This section tells Hatari to look for TOS in the location specified.</p>
+</li>
+</ul>
+<pre><code>[ROM]
+szCartridgeImageFileName =
+szTosImageFileName = /storage/system/tos.img
+</code></pre>
+<ul>
+<li>Hatari does not seem to have a default hatari.cfg in place when first loaded (Hence the error above), It expects it to be read from two places by default, /storage/.hatari/hatari.cfg and /storage/system/hatari.cfg, I prefer the latter as it is more visible, once you load your first game you can then access the Hatari menu and save over your first base config in either location with whatever settings you change.</li>
+</ul>
+<h3 id="controller-and-hatari-menu-and-changing-floppy-disk">Controller and Hatari Menu (And Changing Floppy Disk)</h3>
+<ul>
+<li><p>The Hatari menu can be accessed using the default controller button “Y” when the core is loaded (IE during a game&quot; (i was using a PlayStation 4 controller and it was the square button for me)</p>
+</li>
+<li><p>Once in the menu I found a real mouse is not usable, however you can press “select” on your controller to switch to mouse mode (there is also another button to display the mouse speed “ms” and another to change it), now you can navigate the menu.</p>
+</li>
+<li><p>The menu can be used to change your system settings, here you can;</p>
+<ul>
+<li>Point to new TOS images</li>
+<li>Change the CPU &amp; the amount of memory (needed sometimes to get some games working, dropping to 512k can help with some earlier games)</li>
+<li>Change floppy disks, “YOU WILL DO THIS A LOT WITH SOME GAMES” When the first game disk is loaded you can then access the Hatari menu, go to the “Floppy” Menu and then browse to a new disk to put into a drive (A or B). It is important that you choose not to reset the system when exiting the Hatari menu if still in a game (this is not selected by default , so you will be fine).</li>
+<li>Add a HDD not really needed (for die hard Atari fans).</li>
+<li>Change Keyboard and Joystick settings.</li>
+<li>Change the screen size (Warning Hatari is strict when it comes to aspect ratios it will always want to use the available resolutions of 1990s Monitors, with a little tweaking you can get it to fill most of your modern screen)</li>
+<li>Change the sound chip settings (don’t touch unless you know what you’re doing)</li>
+<li>There is also a save state option in the memory menu (Save state is not available directly from Lakka for Hatari, but it is inside the emulator :slight_smile: )</li>
+</ul>
+</li>
+<li><p>Once you have finished setting up your settings you can now save them using the save config button , rather than use the default location of /storage/.hatari/hatari.cfg I would navigate back to your initial basic config file /storage/hatari.cfg as it is more accessible and visible, Note if you like, you can have as many config files as you want, as long as you remember where you put them :blush: , &quot;The Immortal (one of the hardest games ever made), for instance, needs its memory setting back to 512k with a 68000 cpu in st mode 1.02 TOS, so why not create an “immortal.cfg” with the right system settings and floppy already in the drive, then you can load it and it is all just done.</p>
+</li>
+</ul>
+<h2 id="core-options">Core options</h2>
+<p>The Hatari core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Internal resolution</strong> [Hatari_resolution] (<strong>640x480</strong>|832x576|832x588|800x600|960x720|1024x768|1024x1024)</p>
+<p>Set the internal resolution.</p>
+</li>
+</ul>
+<h2 id="controllers">Controllers</h2>
+<p>The Hatari core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<h3 id="user-1-device-types">User 1 device types</h3>
+<ul>
+<li>None - Doesn't disable input. There's no reason to switch to this.</li>
+<li><strong>RetroPad</strong> - Joypad - Stay on this.</li>
+<li>RetroPad w/Analog - Joypad - Same as RetroPad. There's no reason to switch to this.</li>
+</ul>
+<h3 id="other-controllers">Other controllers</h3>
+<ul>
+<li>Mouse - The Hatari core can emulate mouse inputs but this is done automatically and cannot be manually selected as a device type.</li>
+</ul>
+<h3 id="controller-tables">Controller tables</h3>
+<h4 id="joypad">Joypad</h4>
+<table>
+<thead>
+<tr>
+<th>User 1 Remap descriptors</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enter GUI</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+</tr>
+<tr>
+<td>Mouse mode toggle</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+</tr>
+<tr>
+<td>Keyboard overlay</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+</tr>
+<tr>
+<td>Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>Fire</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+<tr>
+<td>Joystick number</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+</tr>
+<tr>
+<td>Mouse speed</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+</tr>
+<tr>
+<td>Toggle m/k status</td>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<h4 id="keyboard">Keyboard</h4>
+<table>
+<thead>
+<tr>
+<th>RetroKeyboard Inputs</th>
+<th>Hatari core Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keyboard Backspace</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Tab</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Clear</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Return</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Pause</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Escape</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Space</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Exclaim !</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Double Quote &quot;</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Hash #</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Dollar $</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Ampersand &amp;</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Quote '</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Left Parenthesis (</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Right Parenthesis )</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Asterisk *</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Plus +</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Comma ,</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Minus -</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Period .</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Slash /</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard 0</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard 1</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard 2</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard 3</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard 4</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard 5</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard 6</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard 7</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard 8</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard 9</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Colon :</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Semicolon ;</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Less than &lt;</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Equals =</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Greater than &gt;</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Question ?</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard At @</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Left Bracket [</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Backslash \</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Right Bracket ]</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Caret ^</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Underscore _</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Backquote `</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard a</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard b</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard c</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard d</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard e</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard f</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard g</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard h</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard i</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard j</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard k</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard l</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard m</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard n</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard o</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard p</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard q</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard r</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard s</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard t</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard u</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard v</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard w</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard x</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard y</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard z</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Delete</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 0</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 1</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 2</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 3</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 4</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 5</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 6</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 7</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 8</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 9</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Period .</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Divide /</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Multiply *</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Minus -</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Plus +</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Enter</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Equals =</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Up</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Down</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Right</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Left</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Insert</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Home</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard End</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Page Up</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Page Down</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard F1</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard F2</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard F3</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard F4</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard F5</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard F6</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard F7</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard F8</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard F9</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard F10</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard F11</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard F12</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard F13</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard F14</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard F15</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Num Lock</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Caps Lock</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Scroll Lock</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Right Shift</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Left Shift</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Right Control</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Left Control</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Right Alt</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Left Alt</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Right Meta</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Left Meta</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Right Super</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Left Super</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Mode</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Compose</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Help</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Print</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Sys Req</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Break</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Menu</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Power</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard €</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Undo</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Unmapped</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Keyboard Unknown</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h4 id="mouse">Mouse</h4>
+<table>
+<thead>
+<tr>
+<th>RetroMouse Inputs</th>
+<th>Hatari core inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retromouse/retro_mouse.png" alt="" /> Mouse Cursor</td>
+<td>Mouse Cursor</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_left.png" alt="" /> Mouse 1</td>
+<td>Mouse Left Button</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_right.png" alt="" /> Mouse 2</td>
+<td>Mouse Right Button</td>
+</tr>
+</tbody>
+</table>
+<h2 id="compatibility">Compatibility</h2>
+<ul>
+<li>Hatari compatibility can be found <a href="https://hg.tuxfamily.org/mercurialroot/hatari/hatari/raw-file/tip/doc/compatibility.html">here</a></li>
+</ul>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="http://hatari.tuxfamily.org/">Official Hatari Website</a></li>
+<li><a href="http://hatari.tuxfamily.org/download.html">Official Hatari Downloads</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/hatari_libretro.info">Libretro Hatari Core info file</a></li>
+<li><a href="https://github.com/libretro/hatari">Libretro Hatari Github Repository</a></li>
+<li><a href="https://github.com/libretro/hatari/issues">Report Libretro Hatari Core Issues Here</a></li>
+</ul>

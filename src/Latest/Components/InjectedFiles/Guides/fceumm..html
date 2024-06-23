@@ -1,0 +1,595 @@
+<h1 id="nintendo-nes-famicom-fceumm">Nintendo - NES / Famicom (FCEUmm)</h1>
+<h2 id="background">Background</h2>
+<p>FCEU &quot;mappers modified&quot; is an unofficial build of FCEU Ultra by CaH4e3, which supports a lot of new mappers including some obscure mappers such as one for unlicensed NES ROM's.</p>
+<h3 id="authorlicense">Author/License</h3>
+<p>The FCEUmm core has been authored by</p>
+<ul>
+<li>FCEU Team</li>
+<li>CaH4e3</li>
+</ul>
+<p>The FCEUmm core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-fceumm/blob/master/Copying">GPLv2</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the FCEUmm core have the following file extensions:</p>
+<ul>
+<li>.fds</li>
+<li>.nes</li>
+<li>.unif</li>
+<li>.unf</li>
+</ul>
+<h2 id="databases">Databases</h2>
+<p>RetroArch database(s) that are associated with the FCEUmm core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Nintendo%20Entertainment%20System.rdb">Nintendo - Nintendo Entertainment System</a></li>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Family%20Computer%20Disk%20System.rdb">Nintendo - Family Computer Disk System</a></li>
+</ul>
+<h2 id="bios">BIOS</h2>
+<p>Required or optional firmware files go in the frontend's system directory.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">disksys.rom</td>
+<td style="text-align: center;">Family Computer Disk System BIOS - Required for Famicom Disk System emulation</td>
+<td style="text-align: center;">ca30b50f880eb660a320674ed365ef7a</td>
+</tr>
+<tr>
+<td style="text-align: center;">gamegenie.nes</td>
+<td style="text-align: center;">Game Genie add-on cartridge - Required for Game Genei Add-on emulation</td>
+<td style="text-align: center;">7f98d77d7a094ad7d069b74bd553ec98</td>
+</tr>
+</tbody>
+</table>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the FCEUmm core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The FCEUmm core's internal core name is 'FCEUmm'</p>
+<p>The FCEUmm core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Save directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.srm</td>
+<td style="text-align: center;">Cartridge battery save</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Frontend's State directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.state#</td>
+<td style="text-align: center;">State</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Frontend's System directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">nes.pal</td>
+<td style="text-align: center;">Custom palette (64 triplets)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The FCEUmm core's core provided FPS is NTSC 60.10, PAL/Dendy 50.0</li>
+<li>The FCEUmm core's core provided sample rate is 48000 Hz</li>
+<li>The FCEUmm core's base width is 256 (602 when using NTSC Filters)</li>
+<li>The FCEUmm core's base height is 240</li>
+<li>The FCEUmm core's max width is 256 (602 when using NTSC Filters)</li>
+<li>The FCEUmm core's max height is 240</li>
+<li>The FCEUmm core's core provided aspect ratio is 4:3 DAR or 8:7 PAR</li>
+</ul>
+<h3 id="custom-color-palettes">Custom color palettes</h3>
+<p>To use custom color palettes in the FCEUmm core, the <a href="#core-options">'Color Palette' core option</a> must be set to custom and the custom color palette file you want to use must be in RetroArch's system directory.</p>
+<p>Make sure the custom palette file is named 'nes.pal'</p>
+<p>Custom color palettes for the NES can be generated with either of these tools.</p>
+<ul>
+<li><a href="http://bisqwit.iki.fi/utils/nespalette.php">Bisqwit's NTSC NES palette generator</a></li>
+<li><a href="http://drag.wootest.net/misc/palgen.html">Drag's NTSC NES palette generator</a></li>
+</ul>
+<h2 id="core-options">Core options</h2>
+<p>The FCEUmm core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Region</strong> [fceumm_region] (<strong>Auto</strong>|NTSC|PAL|Dendy)</p>
+<p>Force core to use NTSC, PAL or Dendy system audio / video timings.</p>
+</li>
+<li><p><strong>Preferred aspect ratio</strong> [fceumm_aspect] (<strong>8:7 PAR</strong>|4:3)</p>
+<p>Choose the preferred aspect ratio. RetroArch's aspect ratio must be set to Core provided in the Video settings.</p>
+</li>
+</ul>
+<p>??? note &quot;Preferred aspect ratio - 8:7 PAR&quot;
+<img src="../image/core/fceumm/8by7_PAR.png" alt="" /></p>
+<p>??? note &quot;Preferred aspect ratio - 4:3&quot;
+<img src="../image/core/fceumm/4by3.png" alt="" /></p>
+<ul>
+<li><p><strong>Color Palette</strong> [fceumm_palette] (<strong>default</strong>|asqrealc|nintendo-vc|rgb|yuv-v3|unsaturated-final|sony-cxa2025as-us|pal|bmf-final2|bmf-final3|smooth-fbx|composite-direct-fbx|pvm-style-d93-fbx|ntsc-hardware-fbx|nes-classic-fbx-fs|nescap|wavebeam|raw|custom)</p>
+<p>Choose which color palette is going to be used. The raw palette can used in combination with the nes-decoder shader to give colors based off on Bisqwit's NES palette generator and applies either an FCC color conversion matrix or specific Sony US matrix.</p>
+</li>
+</ul>
+<p>!!! attention &quot;Disclaimer&quot;
+These 'Color Palette core option screenshots have been taken with the 'Use NTSC Palette' core option set to Off.</p>
+<p>??? note &quot;Color Palette - default&quot;
+<img src="../image/core/fceumm/default.png" alt="" /></p>
+<p>??? note &quot;Color Palette - asqrealc&quot;
+<img src="../image/core/fceumm/asqrealc.png" alt="" /></p>
+<p>??? note &quot;Color Palette - nintendo-vc&quot;
+<img src="../image/core/fceumm/nintendo_vc.png" alt="" /></p>
+<p>??? note &quot;Color Palette - rgb&quot;
+<img src="../image/core/fceumm/rgb.png" alt="" /></p>
+<p>??? note &quot;Color Palette - yuv-v3&quot;
+<img src="../image/core/fceumm/yuv_v3.png" alt="" /></p>
+<p>??? note &quot;Color Palette - unsaturated-final&quot;
+<img src="../image/core/fceumm/unsaturated_final.png" alt="" /></p>
+<p>??? note &quot;Color Palette - sony-cxa2025as-us&quot;
+<img src="../image/core/fceumm/sony_cxa2025as_us.png" alt="" /></p>
+<p>??? note &quot;Color Palette - pal&quot;
+<img src="../image/core/fceumm/pal.png" alt="" /></p>
+<p>??? note &quot;Color Palette - bmf-final2&quot;
+<img src="../image/core/fceumm/bmf_final2.png" alt="" /></p>
+<p>??? note &quot;Color Palette - bmf-final3&quot;
+<img src="../image/core/fceumm/bmf_final3.png" alt="" /></p>
+<p>??? note &quot;Color Palette - smooth-fbx&quot;
+<img src="../image/core/fceumm/smooth_fbx.png" alt="" /></p>
+<p>??? note &quot;Color Palette - composite-direct-fbx&quot;
+<img src="../image/core/fceumm/direct_fbx.png" alt="" /></p>
+<p>??? note &quot;Color Palette - pvm-style-d93-fbx&quot;
+<img src="../image/core/fceumm/pvm_style_d93_fbx.png" alt="" /></p>
+<p>??? note &quot;Color Palette - ntsc-hardware-fbx&quot;
+<img src="../image/core/fceumm/ntsc_hardware_fbx.png" alt="" /></p>
+<p>??? note &quot;Color Palette - nes-classic-fbx-fs&quot;
+<img src="../image/core/fceumm/nes_classic_fbx_fs.png" alt="" /></p>
+<p>??? note &quot;Color Palette - nescap&quot;
+<img src="../image/core/fceumm/nescap.png" alt="" /></p>
+<p>??? note &quot;Color Palette - wavebeam&quot;
+<img src="../image/core/fceumm/wavebeam.png" alt="" /></p>
+<p>??? note &quot;Color Palette - raw&quot;
+<img src="../image/core/fceumm/raw.png" alt="" /></p>
+<ul>
+<li><p><strong>Allow Opposing Directions</strong> [fceumm_up_down_allowed] (<strong>disabled</strong>|enabled)</p>
+<p>Enabling this will allow pressing / quickly alternating / holding both left and right (or up and down in some games) directions at the same time.</p>
+<p>This may cause movement based glitches to occur in certain games.</p>
+<p>It's best to keep this core option disabled.</p>
+</li>
+<li><p><strong>Crop Overscan (Horizontal)</strong> [fceumm_overscan_h] (<strong>disabled</strong>|enabled)</p>
+<p>Crop out (horizontally) the potentially random glitchy video output that would have been hidden by the bezel around the edge of a standard-definition television screen.</p>
+</li>
+</ul>
+<p>??? note &quot;Crop Overscan (Horiontal) - Off&quot;
+<img src="../image/core/fceumm/horiz_off.png" alt="" /></p>
+<p>??? note &quot;Crop Overscan (Horizontal) - On&quot;
+<img src="../image/core/fceumm/horiz_on.png" alt="" /></p>
+<ul>
+<li><p><strong>Crop Overscan (Vertical)</strong> [fceumm_overscan_v] (<strong>enabled</strong>|disabled)</p>
+<p>Crop out (vertically) the potentially random glitchy video output that would have been hidden by the bezel around the edge of a standard-definition television screen.</p>
+</li>
+</ul>
+<p>??? note &quot;Crop Overscan (Vertical) - On&quot;
+<img src="../image/core/fceumm/vert_on.png" alt="" /></p>
+<p>??? note &quot;Crop Overscan (Vertical) - Off&quot;
+<img src="../image/core/fceumm/vert_off.png" alt="" /></p>
+<ul>
+<li><p><strong>No Sprite Limit</strong> [fceumm_nospritelimit] (<strong>disabled</strong>|enabled)</p>
+<p>Removes 8-sprites-per-scanline hardware limit.</p>
+</li>
+<li><p><strong>Sound Volume</strong> [fceumm_sndvolume] (0|1|2|3|4|5|6|<strong>7</strong>|8|9|10)</p>
+<p>Self-explanatory.</p>
+</li>
+<li><p><strong>Sound Quality</strong> [fceumm_sndquality] (<strong>Low</strong>|High|Very High)</p>
+<p>Enables high/higher sound quality for games using expansion audio (MMC5, VRC6, VRC7, Namco, Sunsoft). Use Low for slower devices.</p>
+</li>
+<li><p><strong>Swap Duty Cycles</strong> [fceumm_swapduty] (<strong>disabled</strong>|enabled)</p>
+<p>Replicates the sound of some famiclones that have duty cycles swapped for square channels. A quick sound comparison is in Contra's sound effect when shooting with normal bullets.</p>
+</li>
+<li><p><strong>Turbo Enable</strong> [fceumm_turbo_enable] (<strong>None</strong>|Player 1|Player 2|Both)</p>
+<p>Enable the use of the <a href="#controllers">Turbo B and Turbo A buttons</a>.</p>
+</li>
+<li><p><strong>Turbo Delay (in frames)</strong> [fceumm_turbo_delay] (<strong>3</strong>|5|10|15|30|60|1|2)</p>
+<p>The number of frames between consecutive button presses when the Turbo B or Turbo A buttons are held down.</p>
+</li>
+<li><p><strong>Zapper Mode</strong> [fceumm_zapper_mode] (<strong>lightgun</strong>|touchscreen|mouse)</p>
+<p>Pointer allows the Zapper Device Type to be used for touch-devices, but still can be used with regular mouse. Pointer and Mouse mode movement behaves differently with different input driver so user can choose which movement feels natural to them.</p>
+</li>
+<li><p><strong>Show Crosshair</strong> [fceumm_show_crosshair] (<strong>enabled</strong>|disabled)</p>
+<p>Show the crosshair for the Zapper device type.</p>
+</li>
+</ul>
+<p>??? note &quot;Show Crosshair - On&quot;
+<img src="../image/core/fceumm/cross_on.png" alt="" /></p>
+<p>??? note &quot;Show Crosshair - Off&quot;
+<img src="../image/core/fceumm/cross_off.png" alt="" /></p>
+<ul>
+<li><p><strong>Overclocking</strong> [fceumm_overclocking] (<strong>disabled</strong>|2x-Postrender|2x-VBlank)</p>
+<p>Overclocks the NES using PPU method to minimize ingame slowdowns of some games. Contra Force needs VBlank mode (stage 3 slowdowns). Choose which ever minimizes slowdowns without image distortion.</p>
+</li>
+<li><p><strong>RAM power up state (Restart)</strong> [fceumm_ramstate] (<strong>$FF</strong>|$00|random)</p>
+<p>Choose RAM startup during power up. Fill the ram with either $FF, $00 or random. Some games rely on initial ram values for random generator as an example.</p>
+<p>Some unlicensed carts and rom hacks prefers $00 or else rom will not boot up or causes graphics glitches or any other problems.</p>
+</li>
+<li><p><strong>NTSC Filter</strong> [fceumm_ntsc_filter] (<strong>disabled</strong>|composite|svideo|rgb|monochrome)</p>
+<p>Enable blargg NTSC filters.</p>
+</li>
+</ul>
+<p>!!! attention &quot;Disclaimer&quot;
+These 'NTSC Filter' core option screenshots have been taken with the 'Color Palette' core option set to smooth-fbx.</p>
+<p>??? note &quot;NTSC Filter - Off&quot;
+<img src="../image/core/fceumm/blargg_off.png" alt="" /></p>
+<p>??? note &quot;NTSC Filter - composite (color bleeding + artifacts)&quot;
+<img src="../image/core/fceumm/blargg_composite_normal.png" alt="" /></p>
+<p>??? note &quot;NTSC Filter - svideo (color bleeding only)&quot;
+<img src="../image/core/fceumm/blargg_svideo_normal.png" alt="" /></p>
+<p>??? note &quot;NTSC Filter - rgb (crisp image)&quot;
+<img src="../image/core/fceumm/blargg_rgb_normal.png" alt="" /></p>
+<p>??? note &quot;NTSC Filter - monochrome (desaturated + artifacts)&quot;
+<img src="../image/core/fceumm/blargg_monochrome_normal.png" alt="" /></p>
+<ul>
+<li><p><strong>Show Advanced System Options</strong> [fceumm_show_adv_system_options] (<strong>disabled</strong>|enabled)</p>
+<p>Show advanced system options and tweaks.</p>
+</li>
+<li><p><strong>Show Advanced Sound Options</strong> [fceumm_show_adv_sound_options] (<strong>disabled</strong>|enabled)</p>
+<p>Show advanced sound controls and tweaks.</p>
+</li>
+</ul>
+<h2 id="controllers">Controllers</h2>
+<p>The FCEUmm core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<h3 id="user-1-device-types">User 1 device types</h3>
+<ul>
+<li>None - Input disabled.</li>
+<li><strong>Auto</strong> - Joypad - Based off the loaded game's crc, the core will automatically select a regular controller (NES or Famicom) for User 1.</li>
+<li><a href="http://nintendo.wikia.com/wiki/Nintendo_Entertainment_System_controller">Gamepad</a> - Joypad - Manually selects a regular controller (NES or Famicom) for User 1.</li>
+<li><a href="http://nintendo.wikia.com/wiki/NES_Zapper">Zapper</a> - Mouse - Manually selects a Zapper light gun (NES or Famicom) for User 1.</li>
+</ul>
+<p><strong>NOTE 1: Zapper connected to user 1 is only required on VS Unisystem games. You will hear a loud alarm when a game requires one and no zapped device is selected or the game's CRC fails to match existing database for autodetection.</strong></p>
+<h3 id="user-2-device-types">User 2 device types</h3>
+<ul>
+<li>None - Input disabled.</li>
+<li><strong>Auto</strong> - Joypad - Based off the loaded game's crc, the core will automatically select a regular controller (NES or Famicom) or a Zapper light gun (NES or Famicom) or a Arkanoid Paddle (NES only) for User 2.</li>
+<li><a href="http://nintendo.wikia.com/wiki/Nintendo_Entertainment_System_controller">Gamepad</a> - Joypad - Manually selects a regular controller (NES or Famicom) for User 2.</li>
+<li><a href="https://en.wikipedia.org/wiki/Arkanoid_Controller">Arkanoid</a> - Mouse - Manually selects a Arkanoid Paddle (NES only) for User 2.</li>
+<li><a href="http://nintendo.wikia.com/wiki/NES_Zapper">Zapper</a> - Mouse - Manually selects a Zapper light gun (NES or Famicom) for User 2.</li>
+</ul>
+<p><strong>NOTE 2: Zapper connected to user 2 is required for most cases. See note 1 above.</strong></p>
+<h3 id="user-3-and-4-device-types-used-for-multitap">User 3 and 4 device types - used for multitap</h3>
+<ul>
+<li>None - Input disabled.</li>
+<li><strong>Auto</strong> - Joypad - Based off the loaded game's crc, the core will automatically select a regular controller (NES or Famicom) for User 3 and/or 4 in multitap games.</li>
+<li><a href="http://nintendo.wikia.com/wiki/Nintendo_Entertainment_System_controller">Gamepad</a> - Joypad - Manually selects a regular controller (NES or Famicom) for User 3/4.</li>
+</ul>
+<h3 id="other-controllers-user-5-device-type">Other controllers (User 5 device type)</h3>
+<p>The FCEUmm core will also auto select the following controllers for the <strong>Famicom</strong> based off the loaded game's crc.</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Arkanoid_Controller">Arkanoid Paddle (Famicom)</a> - Mouse</li>
+<li>Bandai Hyper Shot Gun (Famicom) - Mouse</li>
+<li>Oeka Kids Tablet (Famicom) - Mouse</li>
+<li>4-Player Adaptor - force enable multitap mode</li>
+</ul>
+<h3 id="multitap-support">Multitap support</h3>
+<p>The FCEUmm core supports up to 4 players in multitap games for the NES and Famicom, games with multitap usage are detected by their crc. Multitap can be manually enabled if selecting <strong>4-Player Adaptor</strong> in <strong>User 5 Device type</strong>.</p>
+<h3 id="controller-tables">Controller tables</h3>
+<h4 id="joypad">Joypad</h4>
+<p><img src="../image/controller/nes.png" alt="" /></p>
+<p>!!! warning
+In order to use the Turbo A and Turbo B buttons, the 'Turbo Enable' core option must be set to On.</p>
+<table>
+<thead>
+<tr>
+<th>User 1 Remap descriptors</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>Turbo B</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+</tr>
+<tr>
+<td>Select</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+</tr>
+<tr>
+<td>Start</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>A</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+<tr>
+<td>Turbo A</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+</tr>
+<tr>
+<td>(FDS) Disk Side Change</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+</tr>
+<tr>
+<td>(FDS) Insert/Eject Disk</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+</tr>
+<tr>
+<td>(VSSystem) Insert Coin</td>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>User 2 - 4 Remap descriptors</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>Turbo B</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+</tr>
+<tr>
+<td>Select</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+</tr>
+<tr>
+<td>Start</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>A</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+<tr>
+<td>Turbo A</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<h4 id="mouse">Mouse</h4>
+<table>
+<thead>
+<tr>
+<th>RetroMouse Inputs</th>
+<th>Zapper</th>
+<th>Arkanoid</th>
+<th>Oeka Kids Tablet</th>
+<th>Bandai Hyper Shot Gun</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retromouse/retro_mouse.png" alt="" /> or <img src="../image/Button_Pack/Gestures/Gesture_Finger_Front.png" alt="" /></td>
+<td>Zapper Crosshair</td>
+<td>Arkanoid Movement</td>
+<td>Oeka Kids Tablet Cursor</td>
+<td>Bandai Hyper Shot Gun Crosshair</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_left.png" alt="" /> or <img src="../image/Button_Pack/Gestures/Gesture_Tap.png" alt="" /></td>
+<td>Zapper Trigger</td>
+<td>Arkanoid Fire</td>
+<td>Oeka Kids Tablet Touch</td>
+<td>Bandai Hyper Shot Gun Trigger</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>When the 'Zapper Mode' core option is set to lightgun, the 'Zapper' device type can be controlled with lightgun inputs (such as Wii remote).</li>
+<li>When the 'Zapper Mode' core option is set to touchscreen, the 'Zapper' device type can be controlled with touch inputs.</li>
+<li>When the 'Zapper Mode' core option is set to mouse, the 'Zapper' device type can be controlled with mouse inputs.</li>
+</ul>
+<h2 id="compatibility">Compatibility</h2>
+<table>
+<thead>
+<tr>
+<th>Game</th>
+<th>Issue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Skull &amp; Crossbones</td>
+<td>Graphical glitches and screen shaking when in 2-player mode.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="http://cah4e3.shedevr.org.ru/fceultra.php">Official FCEUmm Website</a></li>
+<li><a href="https://sourceforge.net/projects/fceumm/">Official FCEUmm Sourceforge Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/fceumm_libretro.info">Libretro FCEUmm Core info file</a></li>
+<li><a href="https://github.com/libretro/libretro-fceumm">Libretro FCEUmm Github Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-fceumm/issues">Report Libretro FCEUmm Core Issues Here</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLRbgg4gk_0IfFhmpqSJMJgst6QCsWwxdD">Gameplay Videos</a></li>
+</ul>
+<h2 id="other-links">Other Links</h2>
+<ul>
+<li><a href="http://nes.dnsabr.com/">NES Header Database</a> - Verify, remove or add headers for known No-Intro roms.</li>
+</ul>
+<h3 id="see-also">See also</h3>
+<h4 id="nintendo-family-computer-disk-system">Nintendo - Family Computer Disk System</h4>
+<ul>
+<li><a href="mesen.md">Nintendo - NES / Famicom (Mesen)</a></li>
+<li><a href="nestopia_ue.md">Nintendo - NES / Famicom (Nestopia UE)</a></li>
+</ul>
+<h4 id="nintendo-nintendo-entertainment-system">Nintendo - Nintendo Entertainment System</h4>
+<ul>
+<li><a href="bnes.md">Nintendo - NES / Famicom (bnes)</a></li>
+<li><a href="emux_nes.md">Nintendo - NES / Famicom (Emux NES)</a></li>
+<li><a href="mesen.md">Nintendo - NES / Famicom (Mesen)</a></li>
+<li><a href="nestopia_ue.md">Nintendo - NES / Famicom (Nestopia UE)</a></li>
+<li><a href="quicknes.md">Nintendo - NES / Famicom (QuickNES)</a></li>
+</ul>

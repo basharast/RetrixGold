@@ -1,0 +1,302 @@
+<h1 id="d-engine">3D Engine</h1>
+<h2 id="contribute-to-this-documentation">Contribute to this documentation</h2>
+<p>In order to propose improvements to this document, <a href="https://github.com/libretro/docs/tree/master/docs/library/3d_engine.md">visit its corresponding source page on github</a>. Changes are proposed using &quot;Pull Requests.&quot;</p>
+<h2 id="background">Background</h2>
+<p>A tech demo for libretro GL with additional features (camera/location/etc).</p>
+<h3 id="why-use-this-core">Why use this core?</h3>
+<p>Awaiting description.</p>
+<h3 id="how-to-get-and-install-the-3d-engine-core">How to get and install the 3D Engine core:</h3>
+<ol>
+<li><p>Start up RetroArch. Inside the main menu, go to 'Online Updater'.</p>
+</li>
+<li><p>Just to make sure we have the latest info files, select 'Update Core Info Files'. Wait until this is done. Then, select 'Core Updater'.</p>
+</li>
+<li><p>Browse through the list and select '3D Engine'.</p>
+</li>
+</ol>
+<p>After this has finished downloading, the core should now be ready for use!</p>
+<h4 id="how-to-start-after-installation">How to start (after installation):</h4>
+<ol>
+<li><p>Go back to RetroArch's main menu screen. Select 'Load Content'.</p>
+</li>
+<li><p>Browse to the folder that contains the content you want to run.</p>
+</li>
+<li><p>Select the content that you want to run.</p>
+</li>
+<li><p>If you are asked which core to select, choose '3D Engine'.</p>
+</li>
+</ol>
+<p>The content should now start running!</p>
+<h3 id="authors">Authors</h3>
+<ul>
+<li><a href="https://www.libretro.com/">Team Libretro</a></li>
+</ul>
+<h2 id="license">License</h2>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-3dengine/blob/master/license">GPLv3</a></li>
+</ul>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the 3D Engine core have the following file extensions:</p>
+<ul>
+<li>.png</li>
+<li>.jpg</li>
+<li>.mtl</li>
+<li>.obj</li>
+</ul>
+<h2 id="features">Features</h2>
+<p>RetroArch features that the 3D Engine core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Softpatching</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The 3D Engine core's directory name is 'Libretro 3DEngine'</p>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<p>The 3D Engine core's internal FPS is 60.0.</p>
+<p>The 3D Engine core's internal sample rate is 30000.0 Hz.</p>
+<p>The 3D Engine core's core provided aspect ratio is (Ratio).</p>
+<h2 id="core-options">Core options</h2>
+<p>The 3D Engine core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><strong>Internal resolution</strong> (<strong>320x240</strong>/360x480/480x272/512x384/512x512/640x240/640x448/640x480/720x576/800x600/960x720/1024x768/1024x1024/1280x720/1280x960/1600x1200/1920x1080/1920x1440/1920x1600/2048x1152/2048x1536/2048x2048/320x240)</li>
+</ul>
+<center> Self explanatory. </center>
+<ul>
+<li><strong>Cube size</strong> (<strong>0</strong>/1/2/4/8/16/32/64/128)</li>
+</ul>
+<center> Awaiting description. </center>
+<ul>
+<li><strong>Cube stride</strong> (2.0 to 8.0 in increments of 1.0. <strong>2.0 is default</strong>)</li>
+</ul>
+<center> Awaiting description. </center>
+<ul>
+<li><strong>Camera enable</strong> (<strong>Off</strong>/On)</li>
+</ul>
+<center> Awaiting description. </center>
+<ul>
+<li><strong>Camera FB Type</strong> (<strong>texture/</strong>/raw framebuffer)</li>
+</ul>
+<center> Awaiting description. </center>
+<ul>
+<li><strong>Sensor enable</strong> (<strong>Off</strong>/On)</li>
+</ul>
+<center> Awaiting description. </center>
+<ul>
+<li><strong>Location enable</strong> (<strong>Off</strong>/On)</li>
+</ul>
+<center> Awaiting description. </center>
+<ul>
+<li><strong>Location camera control</strong> (<strong>Off</strong>/On)</li>
+</ul>
+<center> Awaiting description. </center>
+<ul>
+<li><strong>Discard hack enable</strong> (<strong>Off</strong>/On)</li>
+</ul>
+<center> Awaiting description. </center>
+<ul>
+<li><strong>Location position OSD</strong> (<strong>Off</strong>/On)</li>
+</ul>
+<center> Awaiting description. </center>
+<h2 id="controllers">Controllers</h2>
+<h3 id="device-types">Device types</h3>
+<p>The 3D Engine core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<h4 id="user-1-device-types">User 1 device types</h4>
+<ul>
+<li>None - Doesn't disable input.</li>
+<li><strong>RetroPad</strong> - Joypad</li>
+<li>RetroPad w/Analog - Joypad - <strong>There is no reason to switch to this.</strong></li>
+</ul>
+<h3 id="controller-tables">Controller tables</h3>
+<h4 id="joypad-and-analog-device-type-table">Joypad and analog device type table</h4>
+<table>
+<thead>
+<tr>
+<th>User 1 Remap descriptors</th>
+<th>RetroPad Inputs</th>
+<th>3D Engine core inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>Jump/Zoom-in</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>Move forwards</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>Move backwards</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>Turn left</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>Turn right</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>Zoom-out</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+<td>Move left</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+<td>Move right</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+<td>Adjust lighting</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+<td>Adjust lighting</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_r3.png" alt="" /></td>
+<td>Adjust lighting</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> X</td>
+<td>Move right or left/Rotate model</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> Y</td>
+<td>Move forwards and backwards/Rotate model</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /> X</td>
+<td>Look right and left</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /> Y</td>
+<td>Look up and down/Zoom-in or Zoom-out</td>
+</tr>
+</tbody>
+</table>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/3dengine_libretro.info">Libretro 3D Engine Core info file</a></li>
+<li><a href="https://github.com/libretro/libretro-3dengine">Libretro 3D Engine Github Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-3dengine/issues">Report Libretro 3D Engine Core Issues Here</a></li>
+</ul>

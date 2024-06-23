@@ -1,0 +1,297 @@
+<h1 id="ffmpeg">FFmpeg</h1>
+<h2 id="background">Background</h2>
+<p>Video/music player implemented in libretro. FFmpeg can play video and audio files of different formats in RetroArch. If a video file has more than one audio input, FFmpeg can switch between them. If there is a hard coded subtitle file in the video file, FFmpeg can switch between them in the same way.</p>
+<h3 id="authorlicense">Author/License</h3>
+<p>The FFmpeg core has been authored by</p>
+<ul>
+<li>Fabrice Bellard</li>
+<li>FFmpeg team</li>
+</ul>
+<p>The FFmpeg core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/FFmpeg/blob/master/LICENSE.md">LGPLv2, GPLv2</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="experience">Experience</h2>
+<p>!!! important
+RetroArch and LibRetro do not share any copyrighted content. RetroArch does not download any video or audio files. It does not stream content you have on different platforms.</p>
+<h3 id="watching-movies-with-subtitles">Watching Movies with Subtitles</h3>
+<p>You can open video files in the following formats(see: <a href="../ffmpeg/#extensions">Extensions</a>). If your video file in these formats has a subtitle file encoded with .SSA type, these subtitle files will appear automatically. External subtitles are currently not supported. The video files you have played will be added to the Videos section in the main menu.</p>
+<p>??? note &quot;Turkish subtitles encoded 95's Ghost in the Shell&quot;
+<img src="../image/core/ffmpeg/subtitle.png" alt="RetroArch and LibRetro do not share any copyrighted content." /></p>
+<h4 id="setup">Setup</h4>
+<p>Watch the video below for details:</p>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/zget1P8ptho" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h3 id="listening-to-music">Listening to Music</h3>
+<p>You can open audio files in the following formats (see: <a href="../ffmpeg/#extensions">Extensions</a>). In the example below, you can see and listen to an mp3 file running at the lowest settings. File quality will affect sound quality. The audio files you have played will be added to the Music section in the main menu.</p>
+<p>??? note &quot;Example&quot;
+<video width="320" height="240" controls>
+<source src="/image/core/ffmpeg/audio-preview.mp4" type="video/mp4">
+<source src="/image/core/ffmpeg/audio-preview.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video></p>
+<h4 id="setup-1">Setup</h4>
+<p>Watch the video below for details:</p>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/5f6nWBpagaM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the FFmpeg core have the following file extensions:</p>
+<ul>
+<li>.mkv</li>
+<li>.avi</li>
+<li>.f4v</li>
+<li>.f4f</li>
+<li>.3gp</li>
+<li>.ogm</li>
+<li>.flv</li>
+<li>.mp4</li>
+<li>.mp3</li>
+<li>.flac</li>
+<li>.ogg</li>
+<li>.m4a</li>
+<li>.webm</li>
+<li>.3g2</li>
+<li>.mov</li>
+<li>.wmv</li>
+<li>.mpg</li>
+<li>.mpeg</li>
+<li>.vob</li>
+<li>.asf</li>
+<li>.divx</li>
+<li>.m2p</li>
+<li>.m2ts</li>
+<li>.ps</li>
+<li>.ts</li>
+<li>.mxf</li>
+<li>.wma</li>
+<li>.wav</li>
+</ul>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the FFmpeg core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td><a href="../ffmpeg/#shaders">Shaders</a></td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The FFmpeg core's directory name is 'FFmpeg'</p>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The FFmpeg core's core provided FPS is dependant on the loaded media.</li>
+<li>The FFmpeg core's core provided sample rate is dependant on the loaded media.</li>
+<li>The FFmpeg core's core provided aspect ratio is dependant on the loaded media.</li>
+</ul>
+<h3 id="shaders">Shaders</h3>
+<p>Shaders can improve your viewing quality as well as deliver the excitement of the 80s or 90s. In the example below you can see how a VHS shader can affect view quality. You can also provide more innovative watching possibilities by stacking shaders on top of each other.</p>
+<p>??? note &quot;VHSPro Shader&quot;
+<img src="../image/core/ffmpeg/shader1.png" alt="RetroArch and LibRetro do not share any copyrighted content." /></p>
+<h2 id="core-options">Core options</h2>
+<p>The FFmpeg core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Temporal Interpolation</strong> [ffmpeg_temporal_interp] (<strong>Off</strong>/On)</p>
+<p>'Fake’ a higher framerate by using motion blur.</p>
+</li>
+<li><p><strong>FFT Resolution</strong> [ffmpeg_fft_resolution] (<strong>1280x720</strong>/1920x1080/2560x1440/3840x2160/640x360/320x180)</p>
+<p>Modify the resolution of the music visualizer.</p>
+</li>
+</ul>
+<p>??? note &quot;FFT Resolution - 320x180&quot;
+<img src="../image/core/ffmpeg/320x180.png" alt="" /></p>
+<p>??? note &quot;FFT Resolution - 3840x2160&quot;
+<img src="../image/core/ffmpeg/3840x2160.png" alt="" /></p>
+<ul>
+<li><p><strong>FFT Multisample</strong> [ffmpeg_fft_multisample] (<strong>1x</strong>/2x/4x)</p>
+<p>Modify the antialiasing of the music visualizer.</p>
+</li>
+<li><p><strong>Colorspace</strong> [ffmpeg_color_space] (<strong>auto</strong>/BT.70/BT.601/FCC/SMPTE240M)</p>
+<p>Choose <a href="https://trac.ffmpeg.org/wiki/colorspace">colorspaces</a> from different broadcast regions/standards.</p>
+</li>
+</ul>
+<p>??? note &quot;Colorspace&quot;
+<img src="../image/core/ffmpeg/BT.601.png" alt="" />
+<img src="../image/core/ffmpeg/BT.709.png" alt="" />
+<img src="../image/core/ffmpeg/FCC.png" alt="" />
+<img src="../image/core/ffmpeg/SMPTE240M.png" alt="" /></p>
+<h2 id="controllers">Controllers</h2>
+<p>The FFmpeg core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<h3 id="user-1-device-types">User 1 device types</h3>
+<ul>
+<li>None - Doesn't disable input.</li>
+<li><strong>RetroPad</strong> - Joypad</li>
+<li>RetroPad w/Analog - Joypad - There's no reason to switch to this.</li>
+</ul>
+<h3 id="other-controllers">Other controllers</h3>
+<ul>
+<li>Mouse - The FFmpeg core allows Wheel Up and Wheel Down mouse inputs for seeking. This is always active, completely separate from the device types in the Controls menu and cannot be manually selected.</li>
+</ul>
+<h3 id="controller-tables">Controller tables</h3>
+<h4 id="joypad">Joypad</h4>
+<table>
+<thead>
+<tr>
+<th>User 1 Remap descriptors</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Seek +60 seconds</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>Seek -60 seconds</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>Seek -10 seconds</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>Seek +10 seconds</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>Cycle Audio Track</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+</tr>
+<tr>
+<td>Cycle Subtitle Track</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<h4 id="mouse">Mouse</h4>
+<table>
+<thead>
+<tr>
+<th>RetroMouse Inputs</th>
+<th>FFmpeg Core Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wheel Up</td>
+<td>Seek +60 seconds</td>
+</tr>
+<tr>
+<td>Wheel Down</td>
+<td>Seek -60 seconds</td>
+</tr>
+</tbody>
+</table>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://www.ffmpeg.org/">Official FFmpeg Website</a></li>
+<li><a href="https://www.ffmpeg.org/download.html#repositories">Official FFmpeg Repositories</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/ffmpeg_libretro.info">Libretro FFmpeg Core info file</a></li>
+<li><a href="https://github.com/libretro/RetroArch/tree/master/cores/libretro-ffmpeg">Internal Libretro FFmpeg Github Repository</a></li>
+<li><a href="https://github.com/libretro/FFmpeg">Buildbot Libretro FFmpeg Github repository</a></li>
+<li><a href="https://github.com/libretro/RetroArch/issues">Report Libretro FFmpeg Core Issues Here</a></li>
+<li><a href="https://www.youtube.com/watch?v=zget1P8ptho">Video Setup</a></li>
+<li><a href="https://www.youtube.com/watch?v=5f6nWBpagaM">Audio Setup</a></li>
+</ul>

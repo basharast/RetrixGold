@@ -1,0 +1,503 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8F9BB3EE-E365-4FE0-B5EE-FB45D7E7FE41}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SharpCompress</RootNamespace>
+    <AssemblyName>SharpCompress</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.19041.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP;NETSTANDARD1_3;NETSTANDARD2_0</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NETFX_CORE;WINDOWS_UWP;NETSTANDARD1_3;NETSTANDARD2_0</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP;NETSTANDARD1_3;NETSTANDARD2_0</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <PlatformTarget>ARM</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NETFX_CORE;WINDOWS_UWP;NETSTANDARD1_3;NETSTANDARD2_0</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <PlatformTarget>ARM</PlatformTarget>
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP;NETSTANDARD1_3;NETSTANDARD2_0</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM64'">
+    <PlatformTarget>ARM64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM64\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NETFX_CORE;WINDOWS_UWP;NETSTANDARD1_3;NETSTANDARD2_0</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM64'">
+    <PlatformTarget>ARM64</PlatformTarget>
+    <OutputPath>bin\ARM64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP;NETSTANDARD1_3;NETSTANDARD2_0</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NETFX_CORE;WINDOWS_UWP;NETSTANDARD1_3;NETSTANDARD2_0</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP;NETSTANDARD1_3;NETSTANDARD2_0</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Algorithms\Alder32.cs" />
+    <Compile Include="Archives\AbstractArchive.cs" />
+    <Compile Include="Archives\AbstractWritableArchive.cs" />
+    <Compile Include="Archives\ArchiveFactory.cs" />
+    <Compile Include="Archives\GZip\GZipArchive.cs" />
+    <Compile Include="Archives\GZip\GZipArchiveEntry.cs" />
+    <Compile Include="Archives\GZip\GZipWritableArchiveEntry.cs" />
+    <Compile Include="Archives\IArchive.cs" />
+    <Compile Include="Archives\IArchiveEntry.cs" />
+    <Compile Include="Archives\IArchiveEntryExtensions.cs" />
+    <Compile Include="Archives\IArchiveExtensions.cs" />
+    <Compile Include="Archives\IArchiveExtractionListener.cs" />
+    <Compile Include="Archives\IWritableArchive.cs" />
+    <Compile Include="Archives\IWritableArchiveEntry.cs" />
+    <Compile Include="Archives\IWritableArchiveExtensions.cs" />
+    <Compile Include="Archives\Rar\FileInfoRarArchiveVolume.cs" />
+    <Compile Include="Archives\Rar\FileInfoRarFilePart.cs" />
+    <Compile Include="Archives\Rar\RarArchive.cs" />
+    <Compile Include="Archives\Rar\RarArchive.Extensions.cs" />
+    <Compile Include="Archives\Rar\RarArchiveEntry.cs" />
+    <Compile Include="Archives\Rar\RarArchiveEntryFactory.cs" />
+    <Compile Include="Archives\Rar\RarArchiveVolumeFactory.cs" />
+    <Compile Include="Archives\Rar\SeekableFilePart.cs" />
+    <Compile Include="Archives\Rar\StreamRarArchiveVolume.cs" />
+    <Compile Include="Archives\SevenZip\SevenZipArchive.cs" />
+    <Compile Include="Archives\SevenZip\SevenZipArchiveEntry.cs" />
+    <Compile Include="Archives\Tar\TarArchive.cs" />
+    <Compile Include="Archives\Tar\TarArchiveEntry.cs" />
+    <Compile Include="Archives\Tar\TarWritableArchiveEntry.cs" />
+    <Compile Include="Archives\Zip\ZipArchive.cs" />
+    <Compile Include="Archives\Zip\ZipArchiveEntry.cs" />
+    <Compile Include="Archives\Zip\ZipWritableArchiveEntry.cs" />
+    <Compile Include="Common\ArchiveEncoding.cs" />
+    <Compile Include="Common\ArchiveException.cs" />
+    <Compile Include="Common\ArchiveExtractionEventArgs.cs" />
+    <Compile Include="Common\ArchiveType.cs" />
+    <Compile Include="Common\CompressedBytesReadEventArgs.cs" />
+    <Compile Include="Common\CompressionType.cs" />
+    <Compile Include="Common\CryptographicException.cs" />
+    <Compile Include="Common\Entry.cs" />
+    <Compile Include="Common\EntryStream.cs" />
+    <Compile Include="Common\ExtractionException.cs" />
+    <Compile Include="Common\ExtractionMethods.cs" />
+    <Compile Include="Common\ExtractionOptions.cs" />
+    <Compile Include="Common\FilePart.cs" />
+    <Compile Include="Common\FilePartExtractionBeginEventArgs.cs" />
+    <Compile Include="Common\FlagUtility.cs" />
+    <Compile Include="Common\GZip\GZipEntry.cs" />
+    <Compile Include="Common\GZip\GZipFilePart.cs" />
+    <Compile Include="Common\GZip\GZipVolume.cs" />
+    <Compile Include="Common\IEntry.cs" />
+    <Compile Include="Common\IEntry.Extensions.cs" />
+    <Compile Include="Common\IExtractionListener.cs" />
+    <Compile Include="Common\IncompleteArchiveException.cs" />
+    <Compile Include="Common\InvalidFormatException.cs" />
+    <Compile Include="Common\IVolume.cs" />
+    <Compile Include="Common\MultipartStreamRequiredException.cs" />
+    <Compile Include="Common\MultiVolumeExtractionException.cs" />
+    <Compile Include="Common\OptionsBase.cs" />
+    <Compile Include="Common\PasswordProtectedException.cs" />
+    <Compile Include="Common\Rar\Headers\ArchiveCryptHeader.cs" />
+    <Compile Include="Common\Rar\Headers\ArchiveHeader.cs" />
+    <Compile Include="Common\Rar\Headers\AVHeader.cs" />
+    <Compile Include="Common\Rar\Headers\CommentHeader.cs" />
+    <Compile Include="Common\Rar\Headers\EndArchiveHeader.cs" />
+    <Compile Include="Common\Rar\Headers\FileHeader.cs" />
+    <Compile Include="Common\Rar\Headers\FileNameDecoder.cs" />
+    <Compile Include="Common\Rar\Headers\Flags.cs" />
+    <Compile Include="Common\Rar\Headers\IRarHeader.cs" />
+    <Compile Include="Common\Rar\Headers\MarkHeader.cs" />
+    <Compile Include="Common\Rar\Headers\NewSubHeaderType.cs" />
+    <Compile Include="Common\Rar\Headers\ProtectHeader.cs" />
+    <Compile Include="Common\Rar\Headers\RarHeader.cs" />
+    <Compile Include="Common\Rar\Headers\RarHeaderFactory.cs" />
+    <Compile Include="Common\Rar\Headers\SignHeader.cs" />
+    <Compile Include="Common\Rar\RarCrcBinaryReader.cs" />
+    <Compile Include="Common\Rar\RarCryptoBinaryReader.cs" />
+    <Compile Include="Common\Rar\RarCryptoWrapper.cs" />
+    <Compile Include="Common\Rar\RarEntry.cs" />
+    <Compile Include="Common\Rar\RarFilePart.cs" />
+    <Compile Include="Common\Rar\RarRijndael.cs" />
+    <Compile Include="Common\Rar\RarVolume.cs" />
+    <Compile Include="Common\ReaderExtractionEventArgs.cs" />
+    <Compile Include="Common\SevenZip\ArchiveDatabase.cs" />
+    <Compile Include="Common\SevenZip\ArchiveReader.cs" />
+    <Compile Include="Common\SevenZip\CBindPair.cs" />
+    <Compile Include="Common\SevenZip\CCoderInfo.cs" />
+    <Compile Include="Common\SevenZip\CFileItem.cs" />
+    <Compile Include="Common\SevenZip\CFolder.cs" />
+    <Compile Include="Common\SevenZip\CMethodId.cs" />
+    <Compile Include="Common\SevenZip\CStreamSwitch.cs" />
+    <Compile Include="Common\SevenZip\DataReader.cs" />
+    <Compile Include="Common\SevenZip\SevenZipEntry.cs" />
+    <Compile Include="Common\SevenZip\SevenZipFilePart.cs" />
+    <Compile Include="Common\SevenZip\SevenZipVolume.cs" />
+    <Compile Include="Common\Tar\Headers\EntryType.cs" />
+    <Compile Include="Common\Tar\Headers\TarHeader.cs" />
+    <Compile Include="Common\Tar\TarEntry.cs" />
+    <Compile Include="Common\Tar\TarFilePart.cs" />
+    <Compile Include="Common\Tar\TarHeaderFactory.cs" />
+    <Compile Include="Common\Tar\TarReadOnlySubStream.cs" />
+    <Compile Include="Common\Tar\TarVolume.cs" />
+    <Compile Include="Common\Volume.cs" />
+    <Compile Include="Common\Zip\Headers\DirectoryEndHeader.cs" />
+    <Compile Include="Common\Zip\Headers\DirectoryEntryHeader.cs" />
+    <Compile Include="Common\Zip\Headers\HeaderFlags.cs" />
+    <Compile Include="Common\Zip\Headers\IgnoreHeader.cs" />
+    <Compile Include="Common\Zip\Headers\LocalEntryHeader.cs" />
+    <Compile Include="Common\Zip\Headers\LocalEntryHeaderExtraFactory.cs" />
+    <Compile Include="Common\Zip\Headers\SplitHeader.cs" />
+    <Compile Include="Common\Zip\Headers\Zip64DirectoryEndHeader.cs" />
+    <Compile Include="Common\Zip\Headers\Zip64DirectoryEndLocatorHeader.cs" />
+    <Compile Include="Common\Zip\Headers\ZipFileEntry.cs" />
+    <Compile Include="Common\Zip\Headers\ZipHeader.cs" />
+    <Compile Include="Common\Zip\Headers\ZipHeaderType.cs" />
+    <Compile Include="Common\Zip\PkwareTraditionalCryptoStream.cs" />
+    <Compile Include="Common\Zip\PkwareTraditionalEncryptionData.cs" />
+    <Compile Include="Common\Zip\SeekableZipFilePart.cs" />
+    <Compile Include="Common\Zip\SeekableZipHeaderFactory.cs" />
+    <Compile Include="Common\Zip\StreamingZipFilePart.cs" />
+    <Compile Include="Common\Zip\StreamingZipHeaderFactory.cs" />
+    <Compile Include="Common\Zip\WinzipAesCryptoStream.cs" />
+    <Compile Include="Common\Zip\WinzipAesEncryptionData.cs" />
+    <Compile Include="Common\Zip\WinzipAesKeySize.cs" />
+    <Compile Include="Common\Zip\ZipCompressionMethod.cs" />
+    <Compile Include="Common\Zip\ZipEntry.cs" />
+    <Compile Include="Common\Zip\ZipFilePart.cs" />
+    <Compile Include="Common\Zip\ZipHeaderFactory.cs" />
+    <Compile Include="Common\Zip\ZipVolume.cs" />
+    <Compile Include="Compressors\ADC\ADCBase.cs" />
+    <Compile Include="Compressors\ADC\ADCStream.cs" />
+    <Compile Include="Compressors\BZip2\BZip2Constants.cs" />
+    <Compile Include="Compressors\BZip2\BZip2Stream.cs" />
+    <Compile Include="Compressors\BZip2\CBZip2InputStream.cs" />
+    <Compile Include="Compressors\BZip2\CBZip2OutputStream.cs" />
+    <Compile Include="Compressors\BZip2\CRC.cs" />
+    <Compile Include="Compressors\CompressionMode.cs" />
+    <Compile Include="Compressors\Deflate64\BlockType.cs" />
+    <Compile Include="Compressors\Deflate64\Deflate64Stream.cs" />
+    <Compile Include="Compressors\Deflate64\DeflateInput.cs" />
+    <Compile Include="Compressors\Deflate64\FastEncoderStatus.cs" />
+    <Compile Include="Compressors\Deflate64\HuffmanTree.cs" />
+    <Compile Include="Compressors\Deflate64\InflaterManaged.cs" />
+    <Compile Include="Compressors\Deflate64\InflaterState.cs" />
+    <Compile Include="Compressors\Deflate64\InputBuffer.cs" />
+    <Compile Include="Compressors\Deflate64\Match.cs" />
+    <Compile Include="Compressors\Deflate64\MatchState.cs" />
+    <Compile Include="Compressors\Deflate64\OutputWindow.cs" />
+    <Compile Include="Compressors\Deflate\CRC32.cs" />
+    <Compile Include="Compressors\Deflate\DeflateManager.cs" />
+    <Compile Include="Compressors\Deflate\DeflateStream.cs" />
+    <Compile Include="Compressors\Deflate\FlushType.cs" />
+    <Compile Include="Compressors\Deflate\GZipStream.cs" />
+    <Compile Include="Compressors\Deflate\Inflate.cs" />
+    <Compile Include="Compressors\Deflate\InfTree.cs" />
+    <Compile Include="Compressors\Deflate\Tree.cs" />
+    <Compile Include="Compressors\Deflate\Zlib.cs" />
+    <Compile Include="Compressors\Deflate\ZlibBaseStream.cs" />
+    <Compile Include="Compressors\Deflate\ZlibCodec.cs" />
+    <Compile Include="Compressors\Deflate\ZlibConstants.cs" />
+    <Compile Include="Compressors\Deflate\ZlibStream.cs" />
+    <Compile Include="Compressors\Filters\BCJ2Filter.cs" />
+    <Compile Include="Compressors\Filters\BCJFilter.cs" />
+    <Compile Include="Compressors\Filters\Filter.cs" />
+    <Compile Include="Compressors\LZMA\AesDecoderStream.cs" />
+    <Compile Include="Compressors\LZMA\Bcj2DecoderStream.cs" />
+    <Compile Include="Compressors\LZMA\BitVector.cs" />
+    <Compile Include="Compressors\LZMA\CRC.cs" />
+    <Compile Include="Compressors\LZMA\DecoderStream.cs" />
+    <Compile Include="Compressors\LZMA\ICoder.cs" />
+    <Compile Include="Compressors\LZMA\Log.cs" />
+    <Compile Include="Compressors\LZMA\LZipStream.cs" />
+    <Compile Include="Compressors\LZMA\LzmaBase.cs" />
+    <Compile Include="Compressors\LZMA\LzmaDecoder.cs" />
+    <Compile Include="Compressors\LZMA\LzmaEncoder.cs" />
+    <Compile Include="Compressors\LZMA\LzmaEncoderProperties.cs" />
+    <Compile Include="Compressors\LZMA\LzmaStream.cs" />
+    <Compile Include="Compressors\LZMA\LZ\LzBinTree.cs" />
+    <Compile Include="Compressors\LZMA\LZ\LzInWindow.cs" />
+    <Compile Include="Compressors\LZMA\LZ\LzOutWindow.cs" />
+    <Compile Include="Compressors\LZMA\RangeCoder\RangeCoder.cs" />
+    <Compile Include="Compressors\LZMA\RangeCoder\RangeCoderBit.cs" />
+    <Compile Include="Compressors\LZMA\RangeCoder\RangeCoderBitTree.cs" />
+    <Compile Include="Compressors\LZMA\Registry.cs" />
+    <Compile Include="Compressors\LZMA\Utilites\CrcBuilderStream.cs" />
+    <Compile Include="Compressors\LZMA\Utilites\CrcCheckStream.cs" />
+    <Compile Include="Compressors\LZMA\Utilites\IPasswordProvider.cs" />
+    <Compile Include="Compressors\LZMA\Utilites\Utils.cs" />
+    <Compile Include="Compressors\PPMd\H\FreqData.cs" />
+    <Compile Include="Compressors\PPMd\H\ModelPPM.cs" />
+    <Compile Include="Compressors\PPMd\H\Pointer.cs" />
+    <Compile Include="Compressors\PPMd\H\PPMContext.cs" />
+    <Compile Include="Compressors\PPMd\H\RangeCoder.cs" />
+    <Compile Include="Compressors\PPMd\H\RarMemBlock.cs" />
+    <Compile Include="Compressors\PPMd\H\RarNode.cs" />
+    <Compile Include="Compressors\PPMd\H\SEE2Context.cs" />
+    <Compile Include="Compressors\PPMd\H\State.cs" />
+    <Compile Include="Compressors\PPMd\H\StateRef.cs" />
+    <Compile Include="Compressors\PPMd\H\SubAllocator.cs" />
+    <Compile Include="Compressors\PPMd\I1\Allocator.cs" />
+    <Compile Include="Compressors\PPMd\I1\Coder.cs" />
+    <Compile Include="Compressors\PPMd\I1\MemoryNode.cs" />
+    <Compile Include="Compressors\PPMd\I1\Model.cs" />
+    <Compile Include="Compressors\PPMd\I1\ModelRestorationMethod.cs" />
+    <Compile Include="Compressors\PPMd\I1\Pointer.cs" />
+    <Compile Include="Compressors\PPMd\I1\PpmContext.cs" />
+    <Compile Include="Compressors\PPMd\I1\PpmState.cs" />
+    <Compile Include="Compressors\PPMd\I1\See2Context.cs" />
+    <Compile Include="Compressors\PPMd\PpmdProperties.cs" />
+    <Compile Include="Compressors\PPMd\PpmdStream.cs" />
+    <Compile Include="Compressors\PPMd\PpmdVersion.cs" />
+    <Compile Include="Compressors\Rar\IRarUnpack.cs" />
+    <Compile Include="Compressors\Rar\MultiVolumeReadOnlyStream.cs" />
+    <Compile Include="Compressors\Rar\RarCRC.cs" />
+    <Compile Include="Compressors\Rar\RarCrcStream.cs" />
+    <Compile Include="Compressors\Rar\RarStream.cs" />
+    <Compile Include="Compressors\Rar\UnpackV1\Decode\AudioVariables.cs" />
+    <Compile Include="Compressors\Rar\UnpackV1\Decode\BitDecode.cs" />
+    <Compile Include="Compressors\Rar\UnpackV1\Decode\CodeType.cs" />
+    <Compile Include="Compressors\Rar\UnpackV1\Decode\Decode.cs" />
+    <Compile Include="Compressors\Rar\UnpackV1\Decode\DistDecode.cs" />
+    <Compile Include="Compressors\Rar\UnpackV1\Decode\FilterType.cs" />
+    <Compile Include="Compressors\Rar\UnpackV1\Decode\LitDecode.cs" />
+    <Compile Include="Compressors\Rar\UnpackV1\Decode\LowDistDecode.cs" />
+    <Compile Include="Compressors\Rar\UnpackV1\Decode\MultDecode.cs" />
+    <Compile Include="Compressors\Rar\UnpackV1\Decode\PackDef.cs" />
+    <Compile Include="Compressors\Rar\UnpackV1\Decode\RepDecode.cs" />
+    <Compile Include="Compressors\Rar\UnpackV1\PPM\BlockTypes.cs" />
+    <Compile Include="Compressors\Rar\UnpackV1\Unpack.cs" />
+    <Compile Include="Compressors\Rar\UnpackV1\Unpack15.cs" />
+    <Compile Include="Compressors\Rar\UnpackV1\Unpack20.cs" />
+    <Compile Include="Compressors\Rar\UnpackV1\Unpack50.cs" />
+    <Compile Include="Compressors\Rar\UnpackV1\UnpackFilter.cs" />
+    <Compile Include="Compressors\Rar\UnpackV1\UnpackInline.cs" />
+    <Compile Include="Compressors\Rar\UnpackV1\UnpackUtility.cs" />
+    <Compile Include="Compressors\Rar\UnpackV2017\BitInput.getbits_cpp.cs" />
+    <Compile Include="Compressors\Rar\UnpackV2017\BitInput.getbits_hpp.cs" />
+    <Compile Include="Compressors\Rar\UnpackV2017\FragmentedWindow.unpack50frag_cpp.cs" />
+    <Compile Include="Compressors\Rar\UnpackV2017\PackDef.compress_hpp.cs" />
+    <Compile Include="Compressors\Rar\UnpackV2017\Unpack.cs" />
+    <Compile Include="Compressors\Rar\UnpackV2017\Unpack.rawint_hpp.cs" />
+    <Compile Include="Compressors\Rar\UnpackV2017\Unpack.unpack15_cpp.cs" />
+    <Compile Include="Compressors\Rar\UnpackV2017\Unpack.unpack20_cpp.cs" />
+    <Compile Include="Compressors\Rar\UnpackV2017\Unpack.unpack30_cpp.cs" />
+    <Compile Include="Compressors\Rar\UnpackV2017\Unpack.unpack50_cpp.cs" />
+    <Compile Include="Compressors\Rar\UnpackV2017\Unpack.unpackinline_cpp.cs" />
+    <Compile Include="Compressors\Rar\UnpackV2017\Unpack.unpack_cpp.cs" />
+    <Compile Include="Compressors\Rar\UnpackV2017\unpack_hpp.cs" />
+    <Compile Include="Compressors\Rar\VM\BitInput.cs" />
+    <Compile Include="Compressors\Rar\VM\RarVM.cs" />
+    <Compile Include="Compressors\Rar\VM\VMCmdFlags.cs" />
+    <Compile Include="Compressors\Rar\VM\VMCommands.cs" />
+    <Compile Include="Compressors\Rar\VM\VMFlags.cs" />
+    <Compile Include="Compressors\Rar\VM\VMOpType.cs" />
+    <Compile Include="Compressors\Rar\VM\VMPreparedCommand.cs" />
+    <Compile Include="Compressors\Rar\VM\VMPreparedOperand.cs" />
+    <Compile Include="Compressors\Rar\VM\VMPreparedProgram.cs" />
+    <Compile Include="Compressors\Rar\VM\VMStandardFilters.cs" />
+    <Compile Include="Compressors\Rar\VM\VMStandardFilterSignature.cs" />
+    <Compile Include="Compressors\Xz\BinaryUtils.cs" />
+    <Compile Include="Compressors\Xz\CheckType.cs" />
+    <Compile Include="Compressors\Xz\Crc32.cs" />
+    <Compile Include="Compressors\Xz\Crc64.cs" />
+    <Compile Include="Compressors\Xz\Filters\BlockFilter.cs" />
+    <Compile Include="Compressors\Xz\Filters\Lzma2Filter.cs" />
+    <Compile Include="Compressors\Xz\MultiByteIntegers.cs" />
+    <Compile Include="Compressors\Xz\ReadOnlyStream.cs" />
+    <Compile Include="Compressors\Xz\XZBlock.cs" />
+    <Compile Include="Compressors\Xz\XZFooter.cs" />
+    <Compile Include="Compressors\Xz\XZHeader.cs" />
+    <Compile Include="Compressors\Xz\XZIndex.cs" />
+    <Compile Include="Compressors\Xz\XZIndexMarkerReachedException.cs" />
+    <Compile Include="Compressors\Xz\XZIndexRecord.cs" />
+    <Compile Include="Compressors\Xz\XZReadOnlyStream.cs" />
+    <Compile Include="Compressors\Xz\XZStream.cs" />
+    <Compile Include="Crypto\Crc32Stream.cs" />
+    <Compile Include="Crypto\CryptoException.cs" />
+    <Compile Include="Crypto\DataLengthException.cs" />
+    <Compile Include="Crypto\IBlockCipher.cs" />
+    <Compile Include="Crypto\ICipherParameters.cs" />
+    <Compile Include="Crypto\KeyParameter.cs" />
+    <Compile Include="Crypto\RijndaelEngine.cs" />
+    <Compile Include="IO\BufferedSubStream.cs" />
+    <Compile Include="IO\CountingWritableSubStream.cs" />
+    <Compile Include="IO\ListeningStream.cs" />
+    <Compile Include="IO\MarkingBinaryReader.cs" />
+    <Compile Include="IO\NonDisposingStream.cs" />
+    <Compile Include="IO\ReadOnlySubStream.cs" />
+    <Compile Include="IO\RewindableStream.cs" />
+    <Compile Include="IO\StreamingMode.cs" />
+    <Compile Include="Lazy.cs" />
+    <Compile Include="LazyReadOnlyCollection.cs" />
+    <Compile Include="Polyfills\StreamExtensions.cs" />
+    <Compile Include="Polyfills\StringExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Readers\AbstractReader.cs" />
+    <Compile Include="Readers\GZip\GZipReader.cs" />
+    <Compile Include="Readers\IReader.cs" />
+    <Compile Include="Readers\IReaderExtensions.cs" />
+    <Compile Include="Readers\IReaderExtractionListener.cs" />
+    <Compile Include="Readers\Rar\MultiVolumeRarReader.cs" />
+    <Compile Include="Readers\Rar\NonSeekableStreamFilePart.cs" />
+    <Compile Include="Readers\Rar\RarReader.cs" />
+    <Compile Include="Readers\Rar\RarReaderEntry.cs" />
+    <Compile Include="Readers\Rar\RarReaderVolume.cs" />
+    <Compile Include="Readers\Rar\SingleVolumeRarReader.cs" />
+    <Compile Include="Readers\ReaderFactory.cs" />
+    <Compile Include="Readers\ReaderOptions.cs" />
+    <Compile Include="Readers\ReaderProgress.cs" />
+    <Compile Include="Readers\Tar\TarReader.cs" />
+    <Compile Include="Readers\Zip\ZipReader.cs" />
+    <Compile Include="ReadOnlyCollection.cs" />
+    <Compile Include="Utility.cs" />
+    <Compile Include="Writers\AbstractWriter.cs" />
+    <Compile Include="Writers\GZip\GZipWriter.cs" />
+    <Compile Include="Writers\GZip\GZipWriterOptions.cs" />
+    <Compile Include="Writers\IWriter.cs" />
+    <Compile Include="Writers\IWriterExtensions.cs" />
+    <Compile Include="Writers\Tar\TarWriter.cs" />
+    <Compile Include="Writers\Tar\TarWriterOptions.cs" />
+    <Compile Include="Writers\WriterFactory.cs" />
+    <Compile Include="Writers\WriterOptions.cs" />
+    <Compile Include="Writers\Zip\ZipCentralDirectoryEntry.cs" />
+    <Compile Include="Writers\Zip\ZipWriter.cs" />
+    <Compile Include="Writers\Zip\ZipWriterEntryOptions.cs" />
+    <Compile Include="Writers\Zip\ZipWriterOptions.cs" />
+    <EmbeddedResource Include="Properties\SharpCompress.rd.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETCore.Platforms">
+      <Version>6.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
+      <Version>6.2.13</Version>
+    </PackageReference>
+    <PackageReference Include="System.Memory">
+      <Version>4.5.5</Version>
+    </PackageReference>
+    <PackageReference Include="System.Text.Encoding.CodePages">
+      <Version>4.0.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Compressors\Rar\UnpackV2017\notes.txt" />
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Store|AnyCPU'">
+    <OutputPath>bin\Store\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Store|x86'">
+    <OutputPath>bin\x86\Store\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP;NETSTANDARD1_3;NETSTANDARD2_0</DefineConstants>
+    <Optimize>true</Optimize>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Store|ARM'">
+    <OutputPath>bin\ARM\Store\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP;NETSTANDARD1_3;NETSTANDARD2_0</DefineConstants>
+    <Optimize>true</Optimize>
+    <PlatformTarget>ARM</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Store|ARM64'">
+    <OutputPath>bin\ARM64\Store\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Store|x64'">
+    <OutputPath>bin\x64\Store\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP;NETSTANDARD1_3;NETSTANDARD2_0</DefineConstants>
+    <Optimize>true</Optimize>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

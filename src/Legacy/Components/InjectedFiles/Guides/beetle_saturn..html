@@ -1,0 +1,631 @@
+<h1 id="sega-saturn-beetle-saturn">Sega - Saturn (Beetle Saturn)</h1>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/QTIRtZ9q5PM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2 id="background">Background</h2>
+<p>This is fork of Mednafen Saturn. It has been ported to the libretro API. It currently runs on Linux, OSX and Windows.</p>
+<p>The Beetle Saturn core has been authored by</p>
+<ul>
+<li><a href="https://mednafen.github.io/">Mednafen Team</a></li>
+</ul>
+<p>The Beetle Saturn core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/beetle-saturn-libretro/blob/master/COPYING">GPLv2</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the Beetle Saturn core have the following file extensions:</p>
+<ul>
+<li>.cue</li>
+<li>.toc</li>
+<li>.m3u</li>
+<li>.ccd</li>
+<li>.chd</li>
+</ul>
+<p>RetroArch database(s) that are associated with the Beetle Saturn core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Sega%20-%20Saturn.rdb">Sega - Saturn</a></li>
+</ul>
+<h2 id="bios">BIOS</h2>
+<p>Required or optional firmware files go in the frontend's system directory.</p>
+<p>!!! attention
+The King of Fighters '95 and Ultraman: Hikari no Kyojin Densetsu ROM Cartridges can be manually selected with the <a href="#core-options">'Cartridge' core option</a>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">sega_101.bin</td>
+<td style="text-align: center;">Saturn JP BIOS - Required for JP games</td>
+<td style="text-align: center;">85ec9ca47d8f6807718151cbcca8b964</td>
+</tr>
+<tr>
+<td style="text-align: center;">mpr-17933.bin</td>
+<td style="text-align: center;">Saturn US.mdEU BIOS - Required for US/EU games</td>
+<td style="text-align: center;">3240872c70984b6cbfda1586cab68dbe</td>
+</tr>
+<tr>
+<td style="text-align: center;">mpr-18811-mx.ic1</td>
+<td style="text-align: center;">The King of Fighters '95 ROM Cartridge - Required for this game</td>
+<td style="text-align: center;">255113ba943c92a54facd25a10fd780c</td>
+</tr>
+<tr>
+<td style="text-align: center;">mpr-19367-mx.ic1</td>
+<td style="text-align: center;">Ultraman: Hikari no Kyojin Densetsu ROM Cartridge - Required for this game</td>
+<td style="text-align: center;">1cd19988d1d72a3e7caa0b73234c96b4</td>
+</tr>
+</tbody>
+</table>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the Beetle Saturn core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h2 id="directories">Directories</h2>
+<p>The Beetle Saturn core's library name is 'Beetle Saturn'</p>
+<p>The Beetle Saturn core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Save directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.bcr</td>
+<td style="text-align: center;">External cartridge backup save</td>
+</tr>
+<tr>
+<td style="text-align: center;">*.bkr</td>
+<td style="text-align: center;">Internal save</td>
+</tr>
+<tr>
+<td style="text-align: center;">*.smpc</td>
+<td style="text-align: center;">SMPC's emulated Real-Time Clock save</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Frontend's State directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.state#</td>
+<td style="text-align: center;">State</td>
+</tr>
+</tbody>
+</table>
+<h2 id="geometry-and-timing">Geometry and timing</h2>
+<ul>
+<li>The Beetle Saturn core's core provided FPS is 59.88 for NTSC games and 49.96 for PAL games</li>
+<li>The Beetle Saturn core's core provided sample rate is 44100 Hz</li>
+<li>The Beetle Saturn core's base width is 320</li>
+<li>The Beetle Saturn core's base height is 240</li>
+<li>The Beetle Saturn core's max width is 704</li>
+<li>The Beetle Saturn core's max height is 576</li>
+<li>The Beetle Saturn core's core provided aspect ratio is 4/3</li>
+</ul>
+<h2 id="loading-saturn-sega-content">Loading Saturn Sega content</h2>
+<p>Beetle Saturn needs a cue-sheet that points to an image file. A cue sheet, or cue file, is a metadata file which describes how the tracks of a CD or DVD are laid out.</p>
+<p>If you have e.g. <code>foo.bin</code>, you should create a text file and save it as <code>foo.cue</code>. If you're playing a single-track Saturn game, then the cue file contents should look like this:</p>
+<p><code>foobin.cue</code></p>
+<pre><code> FILE &quot;foo.bin&quot; BINARY
+  TRACK 01 MODE1/2352
+   INDEX 01 00:00:00
+</code></pre>
+<p>After that, you can load the <code>foo.cue</code> file in RetroArch with the Beetle Saturn core.</p>
+<p>!!! attention
+Certain Saturn games are multi-track, so their .cue files might be more complicated.</p>
+<h2 id="multiple-disk-games">Multiple-disk games</h2>
+<p>If foo is a multiple-disk game, you should have .cue files for each one, e.g. <code>foo (Disc 1).cue</code>, <code>foo (Disc 2).cue</code>, <code>foo (Disc 3).cue</code>.</p>
+<p>To take advantage of Beetle Saturn's Disk Control feature for disk swapping, an index file (a m3u file) should be made.</p>
+<p>Create a text file and save it as <code>foo.m3u</code>. Then enter your game's .cue files on it. The m3u file contents should look something like this:</p>
+<p><code>foo.m3u</code></p>
+<pre><code>foo (Disc 1).cue
+foo (Disc 2).cue
+foo (Disc 3).cue
+</code></pre>
+<h2 id="swapping-disks">Swapping disks</h2>
+<p>Swapping disks follows this procedure</p>
+<ol>
+<li><p>Open tray (Disk Cycle Tray Status)</p>
+</li>
+<li><p>Change the Disk Index to the disk you want to swap to.</p>
+</li>
+<li><p>Close tray (Disk Cycle Tray Status)</p>
+</li>
+<li><p>Return to the game and wait a few seconds to let it take effect</p>
+</li>
+</ol>
+<p>After that, you can load the <code>foo.m3u</code> file in RetroArch with the Beetle Saturn core.</p>
+<h2 id="core-options">Core options</h2>
+<p>The Beetle Saturn core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>System Region</strong> [beetle_saturn_region] (<strong>Auto Detect</strong>|Japan|North America|Europe|South Korea|Asia (NTSC)|Asia (PAL)|Brazil|Latin America)</p>
+<p>Choose which region the system is from.</p>
+</li>
+<li><p><strong>Cartridge</strong> [beetle_saturn_cart] (<strong>Auto Detect</strong>|None|Backup Memory|Extended RAM (1MB)|Extended RAM (4MB)|The King of Fighters '95|Ultraman: Hikari no Kyojin Densetsu)</p>
+<p>A list of games that require a cartridge can be found <a href="https://www.satakore.com/cartridge.php">here</a>.</p>
+</li>
+<li><p><strong>6Player Adaptor on Port 1</strong> [beetle_saturn_multitap_port1] (<strong>disabled</strong>|enabled)</p>
+<p>Enable <a href="https://segaretro.org/Saturn_6_Player_Adaptor">multitap</a> on Saturn port 1.</p>
+</li>
+<li><p><strong>6Player Adaptor on Port 2</strong> [beetle_saturn_multitap_port2] (<strong>disabled</strong>|enabled)</p>
+<p>Enable <a href="https://segaretro.org/Saturn_6_Player_Adaptor">multitap</a> on Saturn port 2.</p>
+</li>
+<li><p><strong>Analog Stick Deadzone</strong> [beetle_saturn_analog_stick_deadzone] (<strong>15%</strong>|20%|25%|30%|0%|5%|10%)</p>
+<p>Configure the '3D Control Pad' Device Type's analog deadzone.</p>
+</li>
+<li><p><strong>Trigger Deadzone</strong> [beetle_saturn_trigger_deadzone] (<strong>15%</strong>|20%|25%|30%|0%|5%|10%)</p>
+<p>Configure the '3D Control Pad' Device Type's trigger deadzone.</p>
+</li>
+<li><p><strong>Mouse Sensitivity</strong> [beetle_saturn_mouse_sensitivity] (5% to 200% in increments of 5%. <strong>100% is default</strong>)</p>
+<p>Configure the 'Mouse' device type's sensitivity.</p>
+</li>
+<li><p><strong>Gun Crosshair</strong> [beetle_saturn_virtuagun_crosshair] (<strong>Cross</strong>|Dot|Off)</p>
+<p>Choose the crosshair for the 'Stunner' and 'Virtua Gun' device types. Setting it to Off disables the crosshair.</p>
+</li>
+</ul>
+<p>??? note &quot;Gun - Crosshair - Cross&quot;
+<img src="../image/core/beetle_saturn/cross.png" alt="" /></p>
+<p>??? note &quot;Gun - Crosshair - Dot&quot;
+<img src="../image/core/beetle_saturn/dot.png" alt="" /></p>
+<p>??? note &quot;Gun - Crosshair - Off&quot;
+<img src="../image/core/beetle_saturn/off.png" alt="" /></p>
+<ul>
+<li><p><strong>CD Image Cache (restart)</strong> [beetle_saturn_cdimagecache] (<strong>disabled</strong>|enabled)</p>
+<p>Loads the complete image in memory at startup. Can potentially decrease loading times at the cost of increased startup time.
+Requires a restart in order for a change to take effect.</p>
+</li>
+<li><p><strong>Mid-frame Input Synchronization</strong> [beetle_saturn_midsync] (<strong>disabled</strong>|enabled)</p>
+<p>Mid-frame synchronization can reduce input latency, but it will increase CPU requirements.</p>
+</li>
+<li><p><strong>Automatically set RTC on game load</strong> [beetle_saturn_autortc] (<strong>enabled</strong>|disabled)</p>
+<p>Automatically set the SMPC's emulated Real-Time Clock to the host system's current time and date upon game load.</p>
+</li>
+<li><p><strong>BIOS language</strong> [beetle_saturn_autortc_lang] (<strong>english</strong>|german|french|spanish|italian|japanese)</p>
+<p>Self explanatory. Also affects language used in some games (e.g. the European release of &quot;Panzer Dragoon&quot;).</p>
+</li>
+<li><p><strong>Horizontal Overscan Mask</strong> [beetle_saturn_horizontal_overscan] (0 to 60 in increments of 2. <strong>0 is default</strong>)</p>
+<p>Self-explanatory.</p>
+</li>
+<li><p><strong>Initial scanline</strong> [beetle_saturn_initial_scanline] (0 to 40 in increments of 1. <strong>0 is default</strong>)</p>
+<p>Adjust the first displayed scanline in NTSC mode.</p>
+</li>
+<li><p><strong>Last scanline</strong> [beetle_saturn_last_scanline] (210 to 239 in increments of 1. <strong>239 is default</strong>)</p>
+<p>Adjust the last displayed scanline in NTSC mode.</p>
+</li>
+<li><p><strong>Initial scanline PAL</strong> [beetle_saturn_initial_scanline_pal] (0 to 60 in increments of 1. <strong>16 is default</strong>)</p>
+<p>Adjust the first displayed scanline in NTSC mode.</p>
+</li>
+<li><p><strong>Last scanline PAL</strong> [beetle_saturn_last_scanline_pal] (230 to 287 in increments of 1. <strong>271 is default</strong>)</p>
+<p>Adjust the last displayed scanline in PAL mode.</p>
+</li>
+<li><p><strong>Enable Horizontal Blend(blur)</strong> [beetle_saturn_horizontal_blend] (<strong>disabled</strong>|enabled)</p>
+<p>Enable horizontal blend(blur) filter. Has a more noticeable effect with the Saturn's higher horizontal resolution modes(640/704).</p>
+</li>
+</ul>
+<p>??? note &quot;Enable Horizontal Blend(blur) - Off&quot;
+<img src="../image/core/beetle_saturn/blend_off.png" alt="" /></p>
+<p>??? note &quot;Enable Horizontal Blend(blur) - On&quot;
+<img src="../image/core/beetle_saturn/blend_on.png" alt="" /></p>
+<h2 id="user-1-12-device-types">User 1 - 12 device types</h2>
+<p>The Beetle Saturn core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<ul>
+<li>None - Input disabled.</li>
+<li><a href="http://segaretro.org/Control_Pad_(Saturn)"><strong>Control Pad</strong></a> - Joypad</li>
+<li><a href="http://segaretro.org/3D_Control_Pad">3D Control Pad</a> - Analog</li>
+<li><a href="http://segaretro.org/Arcade_Racer_Joystick">Arcade Racer</a> - Analog</li>
+<li><a href="https://segaretro.org/Sega_Mission_Stick">Mission Stick</a> - Analog</li>
+<li><a href="http://segaretro.org/Shuttle_Mouse">Mouse</a> - Mouse</li>
+<li><a href="http://segaretro.org/Virtua_Gun">Stunner</a> - Lightgun</li>
+<li><a href="https://segaretro.org/Saturn_Twin-Stick">Twin-Stick</a> - Analog</li>
+<li><a href="https://segaretro.org/Virtua_Gun">Virtua Gun</a> - Lightgun</li>
+<li><a href="https://segaretro.org/Sega_Mission_Stick">Dual Mission Sticks</a> - Analog - Panzer Dragoon Zwei only</li>
+</ul>
+<h2 id="multitap">Multitap</h2>
+<p>Activating multitap support in compatible games can be configured by the <a href="#core-options">'6Player Adaptor on Port 1' and '6Player Adaptor on Port 2' core options</a>.</p>
+<h2 id="joypad">Joypad</h2>
+<p><img src="../image/controller/saturn.png" alt="" /></p>
+<table>
+<thead>
+<tr>
+<th>RetroPad Inputs</th>
+<th>User 1 - 12 input descriptors</th>
+<th>Control Pad</th>
+<th>3D Control Pad</th>
+<th>Arcade Racer</th>
+<th>Mission Stick</th>
+<th>Twin-Stick</th>
+<th>Dual Mission Sticks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>A Button</td>
+<td>A Button</td>
+<td>A Button</td>
+<td>A Button</td>
+<td>A Button</td>
+<td></td>
+<td>A Button</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+<td>X Button</td>
+<td>X Button</td>
+<td>X Button</td>
+<td>X Button</td>
+<td>X Button</td>
+<td></td>
+<td>X Button</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+<td>Mode Switch</td>
+<td></td>
+<td>Mode Switch</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+<td>Start Button</td>
+<td>Start Button</td>
+<td>Start Button</td>
+<td>Start Button</td>
+<td>Start Button</td>
+<td>Start Button</td>
+<td>Start Button</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>D-Pad Up</td>
+<td>D-Pad Up</td>
+<td>D-Pad Up</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>D-Pad Down</td>
+<td>D-Pad Down</td>
+<td>D-Pad Down</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>D-Pad Left</td>
+<td>D-Pad Left</td>
+<td>D-Pad Left</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>D-Pad Right</td>
+<td>D-Pad Right</td>
+<td>D-Pad Right</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>B Button</td>
+<td>B Button</td>
+<td>B Button</td>
+<td>B Button</td>
+<td>B Button</td>
+<td></td>
+<td>B Button</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+<td>Y Button</td>
+<td>Y Button</td>
+<td>Y Button</td>
+<td>Y Button</td>
+<td>Y Button</td>
+<td></td>
+<td>Y Button</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+<td>Z Button</td>
+<td>Z Button</td>
+<td>Z Button</td>
+<td>Z Button</td>
+<td>Z Button</td>
+<td>Left Stick Button</td>
+<td>Z Button</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+<td>C Button</td>
+<td>C Button</td>
+<td>C Button</td>
+<td>C Button</td>
+<td>C Button</td>
+<td>Right Stick Button</td>
+<td>C Button</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+<td>L Button</td>
+<td>L Button</td>
+<td>L Button</td>
+<td>Left shift paddle (Up)</td>
+<td>L Button</td>
+<td>Left Stick Trigger</td>
+<td>L Button</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+<td>R Button</td>
+<td>R Button</td>
+<td>R Button</td>
+<td>Right shift paddle (Down)</td>
+<td>R Button</td>
+<td>Right Stick Trigger</td>
+<td>R Button</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_r3.png" alt="" /></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Throttle latch</td>
+<td></td>
+<td>Throttle latch</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> X</td>
+<td>Analog X</td>
+<td></td>
+<td>Analog X</td>
+<td>Analog wheel</td>
+<td>Analog Stick X</td>
+<td>Left Stick X</td>
+<td>Left Analog Stick X</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> Y</td>
+<td>Analog Y</td>
+<td></td>
+<td>Analog Y</td>
+<td></td>
+<td>Analog Stick Y</td>
+<td>Left Stick Y</td>
+<td>Left Analog Stick Y</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /> X</td>
+<td>Analog X (Right)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Right Stick X</td>
+<td>Right Analog Stick X</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /> Y</td>
+<td>Analog Y (Right)</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Throttle</td>
+<td>Right Stick Y</td>
+<td>Right Analog Stick Y</td>
+</tr>
+</tbody>
+</table>
+<h2 id="mouse">Mouse</h2>
+<table>
+<thead>
+<tr>
+<th>RetroMouse Inputs</th>
+<th>Mouse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retromouse/retro_mouse.png" alt="" /> Mouse Cursor</td>
+<td>Mouse Cursor</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_left.png" alt="" /> Mouse 1</td>
+<td>Mouse A</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_right.png" alt="" /> Mouse 2</td>
+<td>Mouse B</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_middle.png" alt="" /> Mouse 3</td>
+<td>Mouse C</td>
+</tr>
+<tr>
+<td>Mouse 4</td>
+<td>Mouse Start</td>
+</tr>
+<tr>
+<td>Mouse 5</td>
+<td>Mouse Start</td>
+</tr>
+</tbody>
+</table>
+<h2 id="lightgun">Lightgun</h2>
+<table>
+<thead>
+<tr>
+<th>RetroLightgun Inputs</th>
+<th>Stunner</th>
+<th>Virtua Gun</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retromouse/retro_mouse.png" alt="" /> Gun Crosshair</td>
+<td>Stunner Crosshair</td>
+<td>Virtua Gun Crosshair</td>
+</tr>
+<tr>
+<td>Gun Trigger</td>
+<td>Stunner Trigger</td>
+<td>Virtua Gun Trigger</td>
+</tr>
+<tr>
+<td>Gun Reload</td>
+<td>Stunner Reload</td>
+<td>Virtua Gun Reload</td>
+</tr>
+<tr>
+<td>Gun Start</td>
+<td>Stunner Start</td>
+<td>Virtua Gun Start</td>
+</tr>
+</tbody>
+</table>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://mednafen.github.io/">Official Mednafen Website</a></li>
+<li><a href="https://mednafen.github.io/releases/">Official Mednafen Downloads</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/mednafen_saturn_libretro.info">Libretro Beetle Saturn Core info file</a></li>
+<li><a href="https://github.com/libretro/beetle-saturn-libretro">Libretro Beetle Saturn Github Repository</a></li>
+<li><a href="https://github.com/libretro/beetle-saturn-libretro/issues">Report Libretro Beetle Saturn Core Issues Here</a></li>
+</ul>
+<h2 id="saturn">Saturn</h2>
+<ul>
+<li><a href="beetle_saturn.md">Sega - Saturn (Beetle Saturn)</a></li>
+<li><a href="kronos.md">Sega - Saturn/ST-V (Kronos)</a></li>
+<li><a href="yabause.md">Sega - Saturn (Yabause)</a></li>
+<li><a href="yabasanshiro.md">Sega - Saturn (YabaSanshiro)</a></li>
+</ul>

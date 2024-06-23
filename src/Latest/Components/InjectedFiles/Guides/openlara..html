@@ -1,0 +1,378 @@
+<h1 id="tomb-raider-openlara">Tomb Raider (OpenLara)</h1>
+<p><mark>First, make sure these steps are permissible in your locale. RetroArch and LibRetro do not share any copyrighted content.</mark></p>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/F2GFAzouWQI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2 id="background">Background</h2>
+<p>A new work-in-progress Tomb Raider game engine ported to libretro.</p>
+<p>This game engine recreation seeks to allow you to play the original Tomb Raider engine games, from 1 all the way up to 5.</p>
+<p>OpenLara V1 Tomb Raider 1 is fully playable.</p>
+<p>The nice thing about OpenLara is that, while staying true to the original look and feel of the original, it also adds some enhancements to it that manages to make the boxy old-school Tomb Raider games look a bit less archaic. Some examples include :</p>
+<ul>
+<li>The framerate is no longer fixed to 30fps, and you can now run it at a smooth 60fps framerate. There are even more framerate options, allowing you to play at 90fps, 120fps or even 144fps.</li>
+<li>You can set the internal resolution of the game.</li>
+<li>New water effects which replaces the simple vertex manipulation of the water surface on the PSX. The Saturn version actually was the only version that tried to do something a bit more sophisticated with the water.</li>
+<li>Self-shadowing on all the player models (although this still has some visual anomalies at places).</li>
+<li>Improved lighting effects, including colored lighting (you can see the save crystals emanating a blue light for instance, something which definitely was not in any of the prior Tomb Raider versions).</li>
+<li>Shading effects – after Lara gets out of the water, her skin has a slightly wet shading effect.</li>
+<li>There is also a brand new local multiplayer mode. You toggle the game into splitscreen mode by pressing Start at any one time. From there, you can see a second Lara character, which is only distinguished from the main character by a slightly jerky animation update routine. Player 2 can now take control of this Lara and you can engage in ‘jolly co-operation’. At all times, Player 1 can beckon Player 2 back to his position by pressing the Start button, which resets player 2’s position back to Player 1’s so that Player 2 can always be brought back in case he/she is running too far astray.</li>
+<li>There is also a first person view that you can toggle into by pressing the Look button (L button) and then pressing the Action button (B button). This gives you a Mirror’s Edge-esque first person view.</li>
+<li>The ability to target two enemies at the same time individually.</li>
+<li>The graphical enhancements can all be toggled on/off inside the game’s inventory settings screen (toggleable by pressing the Select button).</li>
+</ul>
+<p>The OpenLara core has been authored by</p>
+<ul>
+<li>XProger</li>
+</ul>
+<p>The OpenLara core is licensed under</p>
+<ul>
+<li><a href="https://github.com/XProger/OpenLara/blob/master/LICENSE">2-clause BSD</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="requirements">Requirements</h2>
+<p>This core requires that you use OpenGL as the video driver. Go to Settings -&gt; Driver. If ‘video driver’ is set to ‘vulkan’, switch it back to ‘gl’, and then restart.</p>
+<p><img src="../image/core/openlara/gl.png" alt="" /></p>
+<p>!!! attention
+There is currently no ‘working’ macOS version available due to the OpenGL requirement.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the OpenLara core have the following file extensions:</p>
+<ul>
+<li>.phd</li>
+<li>.psx</li>
+<li>.tr2</li>
+</ul>
+<p>RetroArch dat that is associated with the OpenLara core:</p>
+<ul>
+<li><a href="https://raw.githubusercontent.com/libretro/libretro-database/master/dat/Tomb%20Raider.dat">Tomb Raider</a></li>
+</ul>
+<h2 id="setup">Setup</h2>
+<p>TR1 is officially supported while 2 or 3 is not. You can still load the levels of 2 or 3 and play them with the proper file scheme. You can download the demo from Online Updater &gt; Content Downloader &gt; Tomb Raider and test Level 2. You can also experience the OpenLara's features in the demo. Apart from that, you can buy it <a href="https://www.gog.com/game/tomb_raider_123">here on GOG</a> or <a href="https://store.steampowered.com/app/224960/Tomb_Raider_I/">here on Steam</a>. Tomb Raider has differences between ports. The Steam and GOG version do not install the DATA and FMV folders directly into the directory. In Console versions, these files are in the image file.</p>
+<h3 id="files">Files</h3>
+<ul>
+<li>DATA, with .phd and .pcx files inside. These are the level files and title screen textures.</li>
+<li>FMV, which contains a couple of .rpl files. These are the movies.</li>
+</ul>
+<p>Not all audio files are available in the Steam/GOG distribution. In this case, you cannot hear some audio streams. For example, in the GYM level, you cannot hear Lara's instructions, but you can hear the sounds of walking, jumping and taking damage.</p>
+<h2 id="getting-tomb-raider-files">Getting Tomb Raider files</h2>
+<p>First, make sure these steps are permissible in your locale RetroArch or LibRetro do not share copyrighted content.</p>
+<h3 id="rip-tomb-raider-1-image-from-steamgog">Rip Tomb Raider 1 Image from Steam/GOG</h3>
+<p>When you get Tomb Raider on digital platforms, you will see <em>GAME.GOG</em>(game file), <em>GAME.DAT</em>, dosbox.exe and configuration file of dosbox inside the folder.</p>
+<p>??? note &quot;Files inside Tomb Raider 1 from Steam&quot;
+<img src="../image/core/openlara/files.png" alt="RetroArch and LibRetro do not share any copyrighted content." /></p>
+<p>GOG files store audio samples in Drumagog format. This format was developed by WaveMachine Labs for a software plugin that offers access to acoustic drums samples. GOG files are associated with VST technology and are compatible with any software that supports it. GOG format was originally developed in 1999 and is regularly updated.</p>
+<p>Open the <strong>dosbox.conf</strong> file with a text editing file. Scroll down to until <strong>[autoexec]</strong>, lines in this section will be run at startup.</p>
+<pre><code>mount C .
+        imgmount d &quot;.\game.dat&quot; -t iso -fs iso
+        xcopy D:\DATA\ C:\DATA\
+        xcopy D:\FMV\ C:\FMV\
+</code></pre>
+<p>When you paste the code above, <strong>dosbox.exe</strong> will boot the image and copy the <strong>DATA</strong> and <strong>FMV</strong> files in it to the local machine each time it is opened. The computer version does not contain most audio files. For example, when you export existing audio files, you cannot hear Lara's instructions at the GYM level.</p>
+<p>??? note &quot;Folders from Tomb Raider 1 image&quot;
+<img src="../image/core/openlara/steam-folder.png" alt="RetroArch and LibRetro do not share any copyrighted content." /></p>
+<p>You must convert the audio files in the main folder of TR1 to .ogg format. You can do this with the small <a href="https://github.com/FFmpeg/FFmpeg">FFmpeg</a> script below. Apart from that, you can use console audio files with PC port.</p>
+<p>??? note &quot;Converting to OGG&quot;
+<code>for f in ./*.mp3; do ffmpeg -i &quot;$f&quot; -c:a libvorbis -q:a 4 &quot;${f/%mp3/ogg}&quot;; done</code>
+This will convert files from mp3 to ogg</p>
+<p>The PC Port also missing title and loading images, you can get them from the console version. Place the <strong>DELDATA</strong> folder from the Console port into the main TR1 directory.</p>
+<p>??? note &quot;Missing Title Screen / Title Screen from Console&quot;
+<img src="../image/core/openlara/missing-title-screen.png" alt="Missing Title Screen" />
+<img src="../image/core/openlara/title-screen-from-console.png" alt="Title Screen from Console" /></p>
+<h3 id="rip-tomb-raider-1-image-from-console">Rip Tomb Raider 1 Image from Console</h3>
+<p><a href="https://github.com/m35/jpsxdec">jPSXdec</a> is a modern, cross-platform PlayStation 1 audio/video converter. Check their documentation to understand how to use it.</p>
+<h2 id="folder-setup">Folder Setup</h2>
+<p>To achieve a continuous game that loads from one level to the next you can load directly from CD
+or preferably setup the content folder like this:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Folder</th>
+<th style="text-align: center;">File Type(s)</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">audio/1/</td>
+<td style="text-align: center;">track_XX.ogg or XXX.ogg</td>
+<td style="text-align: center;">X represents a number</td>
+</tr>
+<tr>
+<td style="text-align: center;">audio/2/</td>
+<td style="text-align: center;">track_XX.ogg and MAIN.SFX</td>
+<td style="text-align: center;">Both tracks and MAIN.SFX are required</td>
+</tr>
+<tr>
+<td style="text-align: center;">audio/3/</td>
+<td style="text-align: center;">track_XX.ogg and MAIN.SFX</td>
+<td style="text-align: center;">Both tracks and MAIN.SFX are required</td>
+</tr>
+<tr>
+<td style="text-align: center;">level/1/</td>
+<td style="text-align: center;">*.PNG and *.PHD or *.PSX or *.SAT</td>
+<td style="text-align: center;">Load-screens and levels</td>
+</tr>
+<tr>
+<td style="text-align: center;">level/2/</td>
+<td style="text-align: center;">*.PNG and *.TR2 or *.PSX</td>
+<td style="text-align: center;">Load-screens and levels</td>
+</tr>
+<tr>
+<td style="text-align: center;">level/3/</td>
+<td style="text-align: center;">*.PNG and *.TR2 or *.PSX</td>
+<td style="text-align: center;">Load-screens and levels</td>
+</tr>
+<tr>
+<td style="text-align: center;">video/1/</td>
+<td style="text-align: center;">*.RPL or *.FMV</td>
+<td style="text-align: center;">Video cut-scenes</td>
+</tr>
+<tr>
+<td style="text-align: center;">video/2/</td>
+<td style="text-align: center;">*.RPL or *.FMV</td>
+<td style="text-align: center;">Video cut-scenes</td>
+</tr>
+<tr>
+<td style="text-align: center;">video/3/</td>
+<td style="text-align: center;">*.RPL or *.FMV</td>
+<td style="text-align: center;">Video cut-scenes</td>
+</tr>
+</tbody>
+</table>
+<p>!!! note
+if you load from CD you won't have soundtrack in TR1</p>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the OpenLara core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fps-mode">FPS mode</h3>
+<p>With OpenLara, you can experience Tomb Raider like you've never played before. You can try it through the eyes of Lara Croft with the primary person camera, for this you can switch to this mode by pressing L1 + A and exit this mode with the same combination. FPS also available in 2-Player Mode.</p>
+<p>??? note &quot;FPS mode&quot;
+<img src="../image/core/openlara/fps.png" alt="RetroArch and LibRetro do not share any copyrighted content." /></p>
+<h3 id="player-mode">2-Player Mode</h3>
+<p>You can include your friend with whom you want to pass TR levels together. Press Start from Second Controller in order to go 2-Payer Mode.</p>
+<p>??? note &quot;2-Player Mode&quot;
+<img src="../image/core/openlara/2-player-mode.png" alt="RetroArch and LibRetro do not share any copyrighted content." /></p>
+<h2 id="directories">Directories</h2>
+<p>The OpenLara core's library name is 'OpenLara'</p>
+<p>The OpenLara core saves/loads to/from these directories.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">system/openlara/*.xsh</td>
+<td style="text-align: center;">Shader files</td>
+</tr>
+<tr>
+<td style="text-align: center;">saves/openlara/savegame.dat</td>
+<td style="text-align: center;">Savegame</td>
+</tr>
+<tr>
+<td style="text-align: center;">saves/openlara/settings</td>
+<td style="text-align: center;">Settings</td>
+</tr>
+</tbody>
+</table>
+<h2 id="geometry-and-timing">Geometry and timing</h2>
+<ul>
+<li>The OpenLara core's core provided FPS is dependent on the <a href="#core-options">'Framerate' core option</a>.</li>
+<li>The OpenLara core's core provided sample rate is 44100 Hz</li>
+<li>The OpenLara core's base width is 320</li>
+<li>The OpenLara core's base height is 240</li>
+<li>The OpenLara core's max width is dependent on the <a href="#core-options">'Internal resolution' core option</a></li>
+<li>The OpenLara core's max height is dependent on the <a href="#core-options">'Internal resolution' core option</a></li>
+<li>The OpenLara core's core provided aspect ratio is 4/3</li>
+</ul>
+<h2 id="core-options">Core options</h2>
+<p>The OpenLara core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Framerate (restart)</strong> [openlara_framerate] (<strong>60fps</strong>|70fps|72fps|75fps|90fps|100fps|119fps|120fps|
+144fps|240fps|244fps|15fps|30fps)</p>
+<p>Modify framerate. Requires a restart.</p>
+</li>
+<li><p><strong>Internal resolution (restart)</strong> [openlara_resolution] (<strong>320x240</strong>|360x480|480x272|512x384|512x512|640x240|
+640x448|640x480|720x576|800x600|960x720|1024x768|
+1024x1024|1280x720|1280x960|1600x1200|1920x1080|
+1920x1440|1920x1600|2048x2048|2560x1440|
+3840x2160|7680x4320|15360x8640|16000x9000)</p>
+<p>Modify the internal resolution. Requires a restart.</p>
+</li>
+</ul>
+<p>??? note &quot;Internal resolution - 320x240&quot;
+<img src="../image/core/openlara/320x240_2.png" alt="" /></p>
+<p>??? note &quot;Internal resolution - 1920x1080&quot;
+<img src="../image/core/openlara/1920x1080_2.png" alt="" /></p>
+<h2 id="joypad">Joypad</h2>
+<table>
+<thead>
+<tr>
+<th>RetroPad Inputs</th>
+<th>User 1 input descriptors</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>Action (Shoot/grab)</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+<td>Jump</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+<td>Inventory</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+<td>Start</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>Up</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>Down</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>Left</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>Right</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>Roll</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+<td>Draw weapon</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+<td>Walk (when holding)</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+<td>Duck/Crouch (TR3 and up)</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+<td>Dash (TR3 and up)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://github.com/XProger/OpenLara">Official OpenLara Github Repository</a></li>
+<li><a href="http://xproger.info/projects/OpenLara/">Official OpenLara Website</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/openlara_libretro.info">Libretro OpenLara Core info file</a></li>
+<li><a href="https://github.com/libretro/OpenLara">Libretro OpenLara Github Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-meta/issues">Report Libretro OpenLara Core Issues Here</a></li>
+</ul>

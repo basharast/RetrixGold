@@ -1,0 +1,16 @@
+/*----------------------------------------*/
+/*  08. Video CSS
+/*----------------------------------------*/
+.video-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative; }
+  .video-wrapper .single-video-title {
+    background-image: url(../images/video/video-bg.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover; }

@@ -1,0 +1,252 @@
+<h1 id="nintendo-nes-famicom-bnes">Nintendo - NES / Famicom (bnes)</h1>
+<h2 id="background">Background</h2>
+<p>A port of bNES v083 to libretro.</p>
+<h3 id="authorlicense">Author/License</h3>
+<p>The bnes core has been authored by</p>
+<ul>
+<li>byuu</li>
+<li>Ryphecha</li>
+</ul>
+<p>The bnes core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/bnes-libretro/blob/master/license">GPLv3</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the bnes core have the following file extensions:</p>
+<ul>
+<li>.nes</li>
+</ul>
+<h2 id="databases">Databases</h2>
+<p>RetroArch database(s) that are associated with the bnes core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Nintendo%20Entertainment%20System.rdb">Nintendo - Nintendo Entertainment System</a></li>
+</ul>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the bnes core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The bnes core's directory name is 'bnes'</p>
+<p>The bnes core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Save directory</strong></p>
+<ul>
+<li>'content-name'.srm (Cartridge battery save)</li>
+</ul>
+<p><strong>Frontend's State directory</strong></p>
+<ul>
+<li>'content-name'.state# (State)</li>
+</ul>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The bnes core's core provided FPS is 60</li>
+<li>The bnes core's core provided sample rate is 32000 Hz</li>
+<li>The bnes core's core provided aspect ratio is 16/15</li>
+</ul>
+<h2 id="controllers">Controllers</h2>
+<p>The bnes core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<h3 id="user-1-2-device-types">User 1 - 2 device types</h3>
+<ul>
+<li>None - Doesn't disable input.</li>
+<li><strong>RetroPad</strong> - Joypad</li>
+<li>RetroPad w/Analog - Joypad - There is no reason to switch to this.</li>
+</ul>
+<h3 id="controller-tables">Controller tables</h3>
+<h4 id="joypad">Joypad</h4>
+<p><img src="../image/controller/nes.png" alt="" /></p>
+<table>
+<thead>
+<tr>
+<th>User 1 - 2 Remap descriptors</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>Select</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+</tr>
+<tr>
+<td>Start</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>A</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<h2 id="compatibility">Compatibility</h2>
+<table>
+<thead>
+<tr>
+<th>Game</th>
+<th>Issue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Crisis Force</td>
+<td>Graphical glitches. (1)</td>
+</tr>
+<tr>
+<td>Huge Insect</td>
+<td>No enemies spawn.</td>
+</tr>
+<tr>
+<td>Lagrange Point</td>
+<td>No music.</td>
+</tr>
+<tr>
+<td>Ms. Pac-Man (Tengen version)</td>
+<td>Graphical glitches on the sides of the screen.</td>
+</tr>
+<tr>
+<td>Skull &amp; Crossbones</td>
+<td>Crashes on start.</td>
+</tr>
+</tbody>
+</table>
+<p>??? note &quot;(1)&quot;
+<img src="../image/core/bnes/crisisforce.png" alt="" /></p>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://byuu.org/">Official higan Website</a></li>
+<li><a href="https://byuu.org/emulation/higan/">Official higan Downloads</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/bnes_libretro.info">Libretro bnes Core info file</a></li>
+<li><a href="https://github.com/libretro/bnes-libretro">Libretro bnes Github Repository</a></li>
+<li><a href="https://github.com/libretro/bnes-libretro/issues">Report Libretro bnes Core Issues Here</a></li>
+</ul>
+<h3 id="see-also">See also</h3>
+<h4 id="nintendo-nintendo-entertainment-system">Nintendo - Nintendo Entertainment System</h4>
+<ul>
+<li><a href="emux_nes.md">Nintendo - NES / Famicom (Emux NES)</a></li>
+<li><a href="fceumm.md">Nintendo - NES / Famicom (FCEUmm)</a></li>
+<li><a href="mesen.md">Nintendo - NES / Famicom (Mesen)</a></li>
+<li><a href="nestopia_ue.md">Nintendo - NES / Famicom (Nestopia UE)</a></li>
+<li><a href="quicknes.md">Nintendo - NES / Famicom (QuickNES)</a></li>
+</ul>

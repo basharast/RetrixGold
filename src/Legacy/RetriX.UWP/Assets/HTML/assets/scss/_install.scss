@@ -1,0 +1,67 @@
+/*----------------------------------------*/
+/*  07. Funfact CSS
+/*----------------------------------------*/
+.install-image{
+    margin-left: -10px;
+    @media #{$large-mobile}{
+        margin-left: 0;
+    }
+    & img{
+        // Responsive
+        @media #{$tablet-device}{
+            max-width: 100%;
+            margin-bottom: 30px;
+        }
+        @media #{$large-mobile}{
+            max-width: 100%;
+            margin-bottom: 30px;
+        }
+    }
+}
+
+.install-content{
+    margin-left: -10px;
+    & h3{
+        font-size: 40px;
+        line-height: 45px;
+        margin-bottom: 20px;
+        // Responsive
+        @media #{$desktop-device}{
+            font-size: 30px;
+        }
+        @media #{$large-mobile}{
+            font-size: 30px;
+        }
+        @media #{$extra-small-mobile}{
+            font-size: 24px;
+            line-height: 34px;
+        }
+        & span.color-red{
+            color: $hover-color;
+        }
+        & span.color-blue{
+            color: $theme-color;
+        }
+    }
+    & p{
+        font-size: 20px;
+        line-height: 26px;
+        &:nth-child(1){
+            max-width: 430px;
+            font-family: $heading-font;
+        }
+        &:nth-child(2){
+            max-width: 480px;
+        }
+        //Responsive
+        @media #{$tablet-device}{
+            font-size: 18px;
+        }
+        @media #{$large-mobile}{
+            font-size: 16px;
+        }
+    }
+    & a{
+        margin-top: 15px;
+    }
+}

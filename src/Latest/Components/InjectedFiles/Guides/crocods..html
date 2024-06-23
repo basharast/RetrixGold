@@ -1,0 +1,647 @@
+<h1 id="amstrad-cpc-crocods">Amstrad - CPC (CrocoDS)</h1>
+<h2 id="background">Background</h2>
+<p>Based on Win-CPC. CrocoDS was originally an Amstrad CPC emulator created for the Nintendo DS and was ported to libretro some time after.</p>
+<h3 id="authorlicense">Author/License</h3>
+<p>The CrocoDS core has been authored by</p>
+<ul>
+<li>RedBug</li>
+</ul>
+<p>The CrocoDS core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-crocods/blob/master/LICENSE">MIT</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the CrocoDS core have the following file extensions:</p>
+<ul>
+<li>.dsk</li>
+<li>.sna</li>
+<li>.<a href="https://github.com/redbug26/crocods-core/wiki/kcr">kcr</a></li>
+</ul>
+<h2 id="databases">Databases</h2>
+<p>RetroArch database(s) that are associated with the CrocoDS core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Amstrad%20-%20CPC.rdb">Amstrad - CPC</a></li>
+</ul>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the CrocoDS core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The CrocoDS core's internal core name is 'crocods'</p>
+<p>The CrocoDS core saves/loads to/from these directories.</p>
+<p><strong>Frontend's State directory</strong></p>
+<ul>
+<li>'content-name'.state# (State)</li>
+</ul>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The CrocoDS core's core provided FPS is 50</li>
+<li>The CrocoDS core's core provided sample rate is 44100 Hz</li>
+<li>The CrocoDS core's core provided aspect ratio is 1</li>
+</ul>
+<h2 id="core-options">Core options</h2>
+<p>The CrocoDS core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Color Monitor</strong> [crocods_greenmonitor] (<strong>color</strong>|green)</p>
+<p>Self-explanatory.</p>
+</li>
+</ul>
+<p>??? note &quot;Color Monitor - color&quot;
+<img src="../image/core/crocods/color.png" alt="" /></p>
+<p>??? note &quot;Color Monitor - green&quot;
+<img src="../image/core/crocods/green.png" alt="" /></p>
+<ul>
+<li><p><strong>Resize</strong> [crocods_resize] (<strong>Auto</strong>|320x200|Overscan)</p>
+<p>Self-explanatory.</p>
+</li>
+</ul>
+<p>??? note &quot;Resize - 320x200&quot;
+<img src="../image/core/crocods/320x200.png" alt="" /></p>
+<p>??? note &quot;Resize - Overscan&quot;
+<img src="../image/core/crocods/overscan.png" alt="" /></p>
+<ul>
+<li><p><strong>Speed hack</strong> [crocods_hack] (<strong>no</strong>|yes)</p>
+<p>Awaiting description.</p>
+</li>
+</ul>
+<h2 id="controllers">Controllers</h2>
+<p>The CrocoDS core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<h3 id="user-1-2-device-types">User 1 - 2 device types</h3>
+<ul>
+<li>None - Doesn't disable input. There's no reason to switch to this.</li>
+<li><strong>RetroPad</strong> - Joypad</li>
+<li>RetroKeyboard - Joypad - Keyboard inputs are always active. Has keymapper support.</li>
+</ul>
+<h3 id="controller-tables">Controller tables</h3>
+<h4 id="joypad">Joypad</h4>
+<table>
+<thead>
+<tr>
+<th>User 1 Remap descriptors</th>
+<th>RetroPad Inputs</th>
+<th>CrocoDS core inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>JOY_FIRE2</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+<td>NIL</td>
+</tr>
+<tr>
+<td>Pause</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+<td>SPARE</td>
+</tr>
+<tr>
+<td>Start</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+<td>RETURN</td>
+</tr>
+<tr>
+<td>Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>JOY_UP</td>
+</tr>
+<tr>
+<td>Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>JOY_DOWN</td>
+</tr>
+<tr>
+<td>Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>JOY_LEFT</td>
+</tr>
+<tr>
+<td>Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>JOY_RIGHT</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>JOY_FIRE1</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+<td>NIL</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+<td>NIL</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+<td>NIL</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>User 2 Remap descriptors</th>
+<th>RetroPad Inputs</th>
+<th>CrocoDS core inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>SPARE</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+<td>NIL</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+<td>SPARE</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+<td>RETURN</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>CURSOR_UP</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>CURSOR_DOWN</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>CURSOR_LEFT</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>CURSOR_RIGHT</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>SPARE</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+<td>NIL</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+<td>NIL</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+<td>NIL</td>
+</tr>
+</tbody>
+</table>
+<h4 id="keyboard">Keyboard</h4>
+<table>
+<thead>
+<tr>
+<th>RetroKeyboard Inputs</th>
+<th>CrocoDS core Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keyboard Backspace</td>
+<td>DEL</td>
+</tr>
+<tr>
+<td>Keyboard Tab</td>
+<td>TAB</td>
+</tr>
+<tr>
+<td>Keyboard Return</td>
+<td>RETURN</td>
+</tr>
+<tr>
+<td>Keyboard Escape</td>
+<td>ESC</td>
+</tr>
+<tr>
+<td>Keyboard Space</td>
+<td>SPARE</td>
+</tr>
+<tr>
+<td>Keyboard Comma ,</td>
+<td>COMMA</td>
+</tr>
+<tr>
+<td>Keyboard Minus -</td>
+<td>MINUS</td>
+</tr>
+<tr>
+<td>Keyboard Period .</td>
+<td>DOT</td>
+</tr>
+<tr>
+<td>Keyboard 0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Keyboard 1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Keyboard 2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Keyboard 3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Keyboard 4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Keyboard 5</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Keyboard 6</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Keyboard 7</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Keyboard 8</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Keyboard 9</td>
+<td>9</td>
+</tr>
+<tr>
+<td>Keyboard Semicolon ;</td>
+<td>COLON</td>
+</tr>
+<tr>
+<td>Keyboard Equals =</td>
+<td>HAT</td>
+</tr>
+<tr>
+<td>Keyboard Left Bracket [</td>
+<td>AT</td>
+</tr>
+<tr>
+<td>Keyboard Right Bracket ]</td>
+<td>OPEN_SQUARE_BRACKET</td>
+</tr>
+<tr>
+<td>Keyboard a</td>
+<td>A</td>
+</tr>
+<tr>
+<td>Keyboard b</td>
+<td>B</td>
+</tr>
+<tr>
+<td>Keyboard c</td>
+<td>C</td>
+</tr>
+<tr>
+<td>Keyboard d</td>
+<td>D</td>
+</tr>
+<tr>
+<td>Keyboard e</td>
+<td>E</td>
+</tr>
+<tr>
+<td>Keyboard f</td>
+<td>F</td>
+</tr>
+<tr>
+<td>Keyboard g</td>
+<td>G</td>
+</tr>
+<tr>
+<td>Keyboard h</td>
+<td>H</td>
+</tr>
+<tr>
+<td>Keyboard i</td>
+<td>I</td>
+</tr>
+<tr>
+<td>Keyboard j</td>
+<td>J</td>
+</tr>
+<tr>
+<td>Keyboard k</td>
+<td>K</td>
+</tr>
+<tr>
+<td>Keyboard l</td>
+<td>L</td>
+</tr>
+<tr>
+<td>Keyboard m</td>
+<td>M</td>
+</tr>
+<tr>
+<td>Keyboard n</td>
+<td>N</td>
+</tr>
+<tr>
+<td>Keyboard o</td>
+<td>O</td>
+</tr>
+<tr>
+<td>Keyboard p</td>
+<td>P</td>
+</tr>
+<tr>
+<td>Keyboard q</td>
+<td>Q</td>
+</tr>
+<tr>
+<td>Keyboard r</td>
+<td>R</td>
+</tr>
+<tr>
+<td>Keyboard s</td>
+<td>S</td>
+</tr>
+<tr>
+<td>Keyboard t</td>
+<td>T</td>
+</tr>
+<tr>
+<td>Keyboard u</td>
+<td>U</td>
+</tr>
+<tr>
+<td>Keyboard v</td>
+<td>V</td>
+</tr>
+<tr>
+<td>Keyboard w</td>
+<td>W</td>
+</tr>
+<tr>
+<td>Keyboard x</td>
+<td>X</td>
+</tr>
+<tr>
+<td>Keyboard y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>Keyboard z</td>
+<td>Z</td>
+</tr>
+<tr>
+<td>Keyboard Delete</td>
+<td>JOY_LEFT</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 0</td>
+<td>F0</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 1</td>
+<td>F1</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 2</td>
+<td>F2</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 3</td>
+<td>F3</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 4</td>
+<td>F4</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 5</td>
+<td>F5</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 6</td>
+<td>F6</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 7</td>
+<td>F7</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 8</td>
+<td>F8</td>
+</tr>
+<tr>
+<td>Keyboard Keypad 9</td>
+<td>F9</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Period .</td>
+<td>FDOT</td>
+</tr>
+<tr>
+<td>Keyboard Keypad Enter</td>
+<td>SMALL_ENTER</td>
+</tr>
+<tr>
+<td>Keyboard Up</td>
+<td>CURSOR_UP</td>
+</tr>
+<tr>
+<td>Keyboard Down</td>
+<td>CURSOR_DOWN</td>
+</tr>
+<tr>
+<td>Keyboard Right</td>
+<td>CURSOR_RIGHT</td>
+</tr>
+<tr>
+<td>Keyboard Left</td>
+<td>CURSOR_LEFT</td>
+</tr>
+<tr>
+<td>Keyboard Insert</td>
+<td>JOY_FIRE1</td>
+</tr>
+<tr>
+<td>Keyboard Home</td>
+<td>JOY_UP</td>
+</tr>
+<tr>
+<td>Keyboard End</td>
+<td>JOY_DOWN</td>
+</tr>
+<tr>
+<td>Keyboard Page Up</td>
+<td>JOY_FIRE2</td>
+</tr>
+<tr>
+<td>Keyboard Page Down</td>
+<td>JOY_RIGHT</td>
+</tr>
+<tr>
+<td>Keyboard Caps Lock</td>
+<td>CAPS_LOCK</td>
+</tr>
+<tr>
+<td>Keyboard Right Shift</td>
+<td>SHIFT</td>
+</tr>
+<tr>
+<td>Keyboard Left Shift</td>
+<td>SHIFT</td>
+</tr>
+<tr>
+<td>Keyboard Right Control</td>
+<td>CONTROL</td>
+</tr>
+<tr>
+<td>Keyboard Left Control</td>
+<td>CONTROL</td>
+</tr>
+</tbody>
+</table>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://github.com/redbug26/crocods-core">Official CrocoDS Github Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/crocods_libretro.info">Libretro CrocoDS Core info file</a></li>
+<li><a href="https://github.com/libretro/libretro-crocods">Libretro CrocoDS Github Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-crocods/issues">Report Libretro CrocoDS Core Issues Here</a></li>
+</ul>
+<h3 id="see-also">See also</h3>
+<h4 id="amstrad-cpc">Amstrad - CPC</h4>
+<ul>
+<li><a href="caprice32.md">Amstrad - CPC (Caprice32)</a></li>
+</ul>

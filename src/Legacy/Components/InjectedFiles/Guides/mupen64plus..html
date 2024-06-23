@@ -1,0 +1,459 @@
+<h1 id="nintendo-64-mupen64plus-next">Nintendo 64 (Mupen64Plus-Next)</h1>
+<h2 id="background">Background</h2>
+<p>Mupen64Plus-Next for libretro is an up-to-date port of Mupen64Plus, a Nintendo 64 emulator. Mupen64Plus-Next for libretro uses GLideN64 as its default graphic plugin, though Angrylion and ParaLLEl-RDP plugs are also available.</p>
+<p>For Android there are two versions of Mupen64Plus-Next. One is designed to work with GLES 2.0 and another one with GLES 3.0, and the GLES 2.0 version will have graphical issues on a GLES 3.0-compatible system.</p>
+<p>How is this different from Parallel-N64?</p>
+<p>Parallel-N64 was forked off from the standalone Mupen64Plus codebase a number of years ago, and it has diverged fairly significantly since then. Also, the graphic plugin GLideN64 is not available in Parallel-N64.</p>
+<p>This core has the latest upstream accuracy improvements, along with the latest and greatest HLE improvements in GLideN64 and the latest LLE developments in ParaLLEl-RDP/RSP. Outstanding support of Hires Textures.</p>
+<p>The Meteor core has been authored by</p>
+<ul>
+<li>m4xw</li>
+<li>gillou</li>
+<li>gonetz</li>
+<li>Hacktarux</li>
+<li>Mupen64Plus Team</li>
+</ul>
+<p>The Mupen64Plus-Next core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/mupen64plus-libretro/blob/master/LICENSE">GPLv3</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the Mupen64plus-Next core have the following file extensions (*.gb via Transfer Pak emulation):</p>
+<ul>
+<li>.n64</li>
+<li>.v64</li>
+<li>.z64</li>
+<li>.bin</li>
+<li>.u1</li>
+<li>.ndd</li>
+<li>.gb</li>
+</ul>
+<h2 id="databases">Databases</h2>
+<p>RetroArch database(s) that are associated with the Mupen64plus-Next core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Nintendo%2064.rdb">Nintendo - Nintendo 64</a></li>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Nintendo%2064DD.rdb">Nintendo - Nintendo 64DD</a></li>
+</ul>
+<h2 id="features">Features</h2>
+<p>RetroArch-level settings or features that the Mupen64plus-Next core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The Mupen64plus-Next core's directory name is 'Mupen64Plus-Next'</p>
+<p>The Mupen64plus-Next core saves/loads to/from these directories.</p>
+<p><strong>RetroArch's Save directory</strong></p>
+<ul>
+<li>'content-name'.srm (Cartridge backup save)</li>
+</ul>
+<p><strong>RetroArch's State directory</strong></p>
+<ul>
+<li>'content-name'.state# (State)</li>
+</ul>
+<p><strong>RetroArch's System directory</strong></p>
+<pre><code>- Mupen64plus/
+			- mupen64plus.ini
+			- shaders/
+</code></pre>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The Mupen64plus-Next core's internal FPS is (FPS)</li>
+<li>The Mupen64plus-Next core's internal sample rate is 44100 Hz</li>
+<li>The Mupen64plus-Next core's core provided aspect ratio is (Ratio)</li>
+</ul>
+<h3 id="hires-textures">Hires Textures</h3>
+<p>You can either use pre-compiled hires texture packs (.htc format, available for download) or compile your own hires texture packs from uncompressed Rice sources.</p>
+<p>Pre-compiled hires textures in .htc format have to be put into Mupen64plus/cache. The name of the .htc file must match the system name of the game in the mupen64plus console. Pre-compiled hires packs will only work if the Retroarch core settings regarding textures are identical when compiled. This is why an own compilation of uncompressed textures is recommended.</p>
+<p>Recommended Core Options for pre-compiled very popular .htc texture packs, such as those of Djipi or Mollymutt, are:</p>
+<ul>
+<li>mupen64plus-EnableTextureCache = &quot;True&quot;</li>
+<li>mupen64plus-txHiresEnable = &quot;True&quot;</li>
+<li>mupen64plus-txCacheCompression = &quot;True&quot;</li>
+<li>mupen64plus-txHiresFullAlphaChannel = &quot;False&quot;</li>
+<li>mupen64plus-EnableEnhancedTextureStorage = &quot;False&quot;</li>
+<li>mupen64plus-EnableEnhancedHighResStorage = &quot;False&quot;</li>
+</ul>
+<p>For a compilation of your own hires texture pack, you need the high resolution textures in the uncompressed Rice format, and the folder name must match the system name of the game in the mupen64plus console. Put this folder into Mupen64plus/hires_texture. At the first start of the game, the .htc texture pack is created, which can take a while. After successful creation of the .htc file in the cache subdirectory, you can delete the uncompressed texture directory as it is no longer needed. If you want to re-use your newly created texture pack on a different system, you must enable the same core options on the new system that you used when you compiled the pack.
+If you compile your own texture pack, you should be sure to enable the further three for Alpha Channel and Enhanced Storage, which will then produce a hires texture pack with the *.hts extension.
+Compilation under Windows seems to be more complicated than under Linux or iOS. Rice texture packs must be converted to 32bit PNG.</p>
+<h2 id="using-the-transfer-pak">Using the Transfer Pak</h2>
+<p>First you have to virtually plug the Transfer Pak, so start a N64 game, then <strong>Quick Menu &gt; Options &gt; Player 1 Pak &gt; transfer</strong> and close content, then there are 2 ways of loading:</p>
+<h3 id="renaming-the-gb-save-and-the-gb-rom-to-match-the-n64-rom-filename-and-having-the-3-files-in-the-same-folder">Renaming the GB save and the GB rom to match the N64 rom filename and having the 3 files in the same folder</h3>
+<p>So for example if you have Pokemon Stadium (USA).z64, in the same folder you'll have:</p>
+<ul>
+<li><p>Pokemon Stadium (USA).z64 (the N64 rom).</p>
+</li>
+<li><p>Pokemon Stadium (USA).z64.sav (the GB save, change the .srm extension to .sav if needed, it won't work with .srm).</p>
+</li>
+<li><p>Pokemon Stadium (USA).z64.gb (the GB rom, if it's a GBC rom you'll need to rename .gbc to .gb).</p>
+</li>
+<li><p>So it should look <a href="https://i.imgur.com/U4fBma3.png">like this</a>. If you're on Windows, <a href="https://www.howtogeek.com/205086/beginner-how-to-make-windows-show-file-extensions/">make sure you don't have the extensions hidden</a></p>
+</li>
+<li><p>And then just load the .z64 file with Mupen64 core :)</p>
+</li>
+</ul>
+<h3 id="using-subsystems">Using subsystems</h3>
+<ul>
+<li><p>Go to <strong>retroarch/saves/</strong>, make a copy of your GB *.srm save file and rename it to *.sav (e.g. Pokemon Red.srm -&gt; Pokemon Red.sav).</p>
+</li>
+<li><p>Now go to <strong>Main Menu &gt; Load Core</strong> and load Mupen64Plus-Next. It will load the core without content.</p>
+</li>
+<li><p>Go to <strong>Main Menu &gt; Subsystems &gt; Load N64 Transferpak</strong> and load the .sav file.</p>
+</li>
+<li><p>Now, go back to <strong>Subsystems</strong> menu and load the *.gb file this time.</p>
+</li>
+<li><p>Go back to <strong>Subsystems</strong> menu again and this time load the N64 rom.</p>
+</li>
+<li><p>Go to <strong>Subsystems</strong> AGAIN (last time!) and click <strong>Start N64 Transferpak</strong>. If done properly <a href="https://i.imgur.com/v1vTGQT.png">you should see the .sav, the .gb and the .z64 listed</a>.</p>
+</li>
+</ul>
+<h2 id="core-options">Core options</h2>
+<p>The Mupen64plus-Next core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>CPU Core</strong> (<strong>dynamic_recompiler</strong>/cached_interpreter/pure_interpreter)</p>
+<p>Choose which kind of CPU emulation is going to be used. Dynamic recompiler is the fastest mode.</p>
+<p><strong>Dynamic recompilier is not available on all platforms.</strong></p>
+</li>
+<li><p><strong>RSP Mode</strong> (<strong>HLE</strong>/LLE)</p>
+<p>How the RSP is emulated, High Level Emulation or Low Level Emulation.
+Low level emulation should be more precise but it requires more computational power.</p>
+<p><strong>LLE mode is not available on all platforms</strong></p>
+</li>
+<li><p><strong>4:3 Resolution</strong> (<strong>320x240</strong>/640x480/960x720/1280x960/1600x1200/1920x1440/2240x1680/2560x1920/2880x2160/3200x2400/3520x2640/3840x2880)</p>
+<p>Select the internal rendering resolution for 4:3 Aspect Ratio mode. The 'Aspect Ratio' core option must be set to 4:3 for this to have an effect.
+Higher values require more computational power.</p>
+</li>
+<li><p><strong>16:9 Resolution</strong> (<strong>640x360</strong>/960x540/1280x720/1920x1080/2560x1440/3840x2160/7680x4320)</p>
+<p>Select the internal rendering resolution for 16:9 Aspect Ratio mode. The 'Aspect Ratio' core option must be set to 16:9 or 16:9 adjusted for this to have an effect.
+Higher values require more computational power.</p>
+</li>
+<li><p><strong>Aspect Ratio</strong> (<strong>4:3</strong>/16:9/16:9 adjusted)</p>
+<p>This setting adjusts the aspect ratio of the video output. All N64 games support 4:3. Some games support 16:9 within game settings.</p>
+</li>
+<li><p><strong>Bilinear filtering mode</strong> (<strong>standard</strong>/3point)</p>
+<p>Bilinear filtering: Textures will use standard PC-style bilinear filtering.
+3 point: Textures will be filtered more like the N64. The result is less smooth but more accurate.</p>
+</li>
+<li><p><strong>MSAA level</strong> (0/2/4/8/16)</p>
+<p>Enable/Disable MultiSampling Anti-aliasing (0=off, 2,4,8,16=quality).</p>
+<p><strong>This core option is not available on all platforms.</strong></p>
+</li>
+<li><p><strong>Framebuffer Emulation</strong> (<strong>True</strong>/False)</p>
+<p>Enable the framebuffer emulation.
+Frame buffer emulation is a set of techniques used to emulate manipulations with color and depth buffer areas on the real console.
+Unchecking this option disables many effects including cropping, aspect ratio, N64 resolution factor and more. Do not uncheck this option unless you have performance issues.</p>
+</li>
+<li><p><strong>Color buffer to RDRAM</strong> (<strong>Async</strong>/Sync/Off)</p>
+<p>Used with the framebuffer emulation.
+Frame buffer copy is used for some effects (e.g. TV monitor effect where TV shows part of the displayed picture).
+In some games GLideN64 cannot detect when the game uses the frame buffer.
+With these options, you can have GLideN64 copy each frame of your video cards frame buffer to N64 memory.
+Off: Disable copying buffers from video card.
+Synchronous: Effects are detected for all games, but it can be slow. Use for games where Asynchronous does not work.
+Asynchronous: Effects are detected for most games (best choice).</p>
+<p>The default setting is dependent on your platform.</p>
+</li>
+<li><p><strong>Depth buffer to RDRAM</strong> (<strong>Software</strong>/FromMem/Off)</p>
+<p>Used with the framebuffer emulation.
+The depth buffer is used to emulate some effects (e.g. coronas).
+Off: Depth buffer is disabled.
+FromMem: Your video card’s depth buffer is copied to N64 memory each frame, which can be slow on some games.
+Software: Generally faster than copying from VRAM, but the result can be imperfect.</p>
+</li>
+<li><p><strong>Hardware per-pixel lighting</strong> (<strong>False</strong>/True)</p>
+<p>In N64 games lighting is calculated per vertex.
+This option enables hardware per-pixel lighting calculation known as Phong shading, which provides smoother and more realistic lighting.
+Per-vertex lighting is instead calculated via software. HLE only.</p>
+</li>
+<li><p><strong>Continuous texrect coords</strong> (<strong>Off</strong>/Auto/Force)</p>
+<p>In some games the coordinates for parts of 2D elements are not aligned: there is a half-pixel split between adjacent elements.
+When rendering at the N64’s original resolution it is not visible, but when the image is scaled up it results in black lines.
+This option attempts to connect these 2D elements.</p>
+</li>
+<li><p><strong>Native res. 2D texrects</strong> (<strong>False</strong>/True)
+When checked, 2D elements are rendered at the N64s resolution before copying them to output.
+This usually eliminates display issues with 2D elements, but it can be slow.
+This option uses heuristics to detect adjacent 2D elements that does not work for every game.</p>
+</li>
+<li><p><strong>Less accurate blending mode</strong> (<strong>True</strong>/False)</p>
+<p>Do not use shaders to emulate N64 blending modes. Works faster on slow GPU. It can cause glitches.
+The default setting is dependent on your platform.</p>
+</li>
+<li><p><strong>GPU shader depth write</strong> (<strong>False</strong>/True)</p>
+<p>Enable writing of fragment depth. Some mobile GPUs do not support it, thus it made optional.
+The default setting is dependent on your platform.</p>
+</li>
+<li><p><strong>Cache GPU Shaders</strong> (<strong>True</strong>/False)</p>
+<p>When the option is enabled, plugin saves all new created shaders in a file.
+When user starts that game again, plugin loads all previously compiled shaders from that file and further gameplay goes smooth.</p>
+</li>
+<li><p><strong>Crop Mode</strong> (<strong>Auto</strong>/Off)</p>
+<p>Its purpose is to remove black borders, which many N64 games add around image. In auto mode plugins tries to detect empty space and remove it.
+It works only if frame buffer emulation is enabled, as all other post-processing filters.</p>
+</li>
+<li><p><strong>Texture filter</strong> (<strong>None</strong>/Smooth filtering 1/Smooth filtering 2/Smooth filtering 3/Smooth filtering 4/Sharp filtering 1/Sharp filtering 2)</p>
+<p>This filter smooths or sharpens textures. There are four smoothing filters and two sharpening filters. The higher the number, the stronger the effect.
+Performance may be affected depending on the game and/or your device.</p>
+</li>
+<li><p><strong>Texture Enhancement</strong> (<strong>None</strong>/As Is/X2/X2SAI/HQ2X/HQ2XS/LQ2X/LQ2XS/HQ4X/2xBRZ/3xBRZ/4xBRZ/5xBRZ/6xBRZ)</p>
+<p>Filter applied to textures. Depending on which filter, they may cause performance problems.
+When AS IS is selected, textures are saved to the cache as-is; this improves performance in games that load many textures;
+unset Filer background textures for the best performance.</p>
+</li>
+<li><p><strong>Filter background textures</strong> (<strong>True</strong>/False)</p>
+<p>This option skips texture enhancements for long, narrow textures that are usually used for backgrounds. This may save texture memory and improve performance.
+Set true unless Enhancement mode is set to AS IS.</p>
+</li>
+<li><p><strong>Use High-Res textures</strong> (<strong>False</strong>/True)</p>
+<p>Enable the high resolution textures. Usage of hires textures is explained above.</p>
+</li>
+<li><p><strong>Use High-Res Full Alpha Channel</strong> (<strong>False</strong>/True)</p>
+<p>When this option is selected, GlideN64 will check how the texture’s alpha channel was designed and will select the most appropriate format.
+This gives texture pack designers freedom to use semi-transparent textures.
+Clear this option for older or poorly designed texture packs.
+Recommended for newer texture packs.</p>
+</li>
+<li><p><strong>Analog Deadzone (percent)</strong> (<strong>15</strong>/20/25/30/0/5/10)</p>
+<p>The minimum absolute value of SDL analog Joystick axis to move the N64 controller axis value</p>
+</li>
+<li><p><strong>Analog Sensitivity (percent)</strong> (<strong>100</strong>/95/90/85/80/105/110)</p>
+<p>The sensitivity of the analog Joystick.</p>
+</li>
+<li><p><strong>Right C Button</strong> (<strong>C1</strong>/C2/C3/C4)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Left C Button</strong> (<strong>C2</strong>/C3/C4/C1)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Down C Button</strong> (<strong>C3</strong>/C4/C1/C2)</p>
+<p>Awaiting description.</p>
+</li>
+<li><p><strong>Up C Button</strong> (<strong>C4</strong>/C1/C2/C3)</p>
+<p>Awaiting description,</p>
+</li>
+<li><p><strong>Player 1 Pak</strong> (<strong>memory</strong>/rumble/none)</p>
+<p>Choose what Pak has been inserted in the player 1 controller.</p>
+</li>
+<li><p><strong>Player 2 Pak</strong> (<strong>none</strong>/memory/rumble)</p>
+<p>Choose what Pak has been inserted in the player 2 controller.</p>
+</li>
+<li><p><strong>Player 3 Pak</strong> (<strong>none</strong>/memory/rumble)</p>
+<p>Choose what Pak has been inserted in the player 3 controller.</p>
+</li>
+<li><p><strong>Player 4 Pak</strong> (<strong>none</strong>/memory/rumble)</p>
+<p>Choose what Pak has been inserted in the player 4 controller.</p>
+</li>
+<li><p><strong>Count Per Op</strong> (0/1/2/3)</p>
+<p>Force the number of cycle per emulated instructions.</p>
+</li>
+</ul>
+<h2 id="controllers">Controllers</h2>
+<h3 id="device-types">Device types</h3>
+<p>The Mupen64plus-Next core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<h4 id="user-1-4-device-types">User 1 - 4 device types</h4>
+<ul>
+<li>None - Input disabled.</li>
+<li><strong>Controller</strong> - Joypad</li>
+</ul>
+<h3 id="rumble-support">Rumble support</h3>
+<p>Rumble only works in the Mupen64plus-Next core when</p>
+<ul>
+<li>The content being ran has rumble support.</li>
+<li>The joypad input driver being used has rumble support. (e.g. Xinput)</li>
+<li>The joypad device being used has rumble support.</li>
+<li>The 'Player # Pak' core options are set to rumble for the respective players.</li>
+</ul>
+<p><a href="http://nintendo.wikia.com/wiki/List_of_Nintendo_64_games_with_Rumble_Pak_support">List of Nintendo 64 games with Rumble Pak support</a></p>
+<h3 id="controller-tables">Controller tables</h3>
+<h4 id="joypad-and-analog-device-type-table">Joypad and analog device type table</h4>
+<table>
+<thead>
+<tr>
+<th>User 1 - 4 Remap descriptors</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A Button (C3)</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>B Button (C2)</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+</tr>
+<tr>
+<td>START Button</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+</tr>
+<tr>
+<td>Up (digital)</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>Down (digital)</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>Left (digital)</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>Right (digital)</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>(C1)</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+<tr>
+<td>(C4)</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+</tr>
+<tr>
+<td>L-Trigger</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+</tr>
+<tr>
+<td>R-Trigger</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+</tr>
+<tr>
+<td>Z-Trigger</td>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+</tr>
+<tr>
+<td>C Buttons Mode</td>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+</tr>
+<tr>
+<td>Control Stick X</td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> X</td>
+</tr>
+<tr>
+<td>Control Stick Y</td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> Y</td>
+</tr>
+<tr>
+<td>C Buttons X</td>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /> X</td>
+</tr>
+<tr>
+<td>C Buttons Y</td>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /> Y</td>
+</tr>
+</tbody>
+</table>
+<h2 id="compatibility">Compatibility</h2>
+<p>Awaiting description.</p>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/mupen64plus_next_libretro.info">Libretro Mupen64plus-Next Core info file</a></li>
+<li><a href="https://github.com/libretro/mupen64plus-libretro-nx">Libretro Mupen64plus-Next Github Repository</a></li>
+<li><a href="https://github.com/libretro/mupen64plus-libretro-nx/issues">Report Libretro Mupen64plus-Next Core Issues Here</a></li>
+<li><a href="http://www.mupen64plus.org/">Official Mupen64Plus Website</a></li>
+<li><a href="https://github.com/mupen64plus">Official Mupen64Plus Github Organization</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLRbgg4gk_0IeBgJ8wFAH6Oh9aDNC-MBuU">Gameplay Videos</a></li>
+</ul>
+<h2 id="see-also">See also</h2>

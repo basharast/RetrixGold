@@ -1,0 +1,281 @@
+<h1 id="lua-engine-lutro">Lua Engine (Lutro)</h1>
+<h2 id="background">Background</h2>
+<p>Lutro is an experimental lua game framework that follows the <a href="https://love2d.org/wiki/Main_Page">LÖVE API</a>. Lutro games can be played with LibRetro/RetroArch through the Lutro core.</p>
+<h4 id="how-to-start-the-lutro-core">How to start the Lutro core:</h4>
+<ul>
+<li>As an example showcasing loading content with the Lutro core, we will load the Pong game hosted on RetroArch's Content Downloader.</li>
+</ul>
+<p>You can do this by going to RetroArch's main menu screen and selecting 'Online Updater'. From there, select 'Content Downloader'.</p>
+<center> ![](../image/core/all/download.png) </center>
+<ul>
+<li>Select 'Lutro', then select 'Pong.lutro'. This should download and extract this file to RetroArch's Downloads directory.</li>
+</ul>
+<center> ![](../image/core/lutro/lutro.png) </center>
+<ul>
+<li>Go back to RetroArch's main menu screen. Select 'Load Content', then 'Downloads'.</li>
+</ul>
+<center> ![](../image/core/all/load.png) </center>
+<center> ![](../image/core/all/downloads.png) </center>
+<ul>
+<li><p>Select 'Pong.lutro'.</p>
+</li>
+<li><p>If you are asked which core to select, choose 'Lua Engine (Lutro)'.</p>
+</li>
+</ul>
+<p>The content should now start running!</p>
+<h3 id="authorlicense">Author/License</h3>
+<p>The Lutro core has been authored by</p>
+<ul>
+<li>Higor Euripedes</li>
+<li>Jean-Andre Santoni</li>
+</ul>
+<p>The Lutro core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-lutro/blob/master/LICENSE">MIT</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the Lutro core have the following file extensions:</p>
+<ul>
+<li>.lutro</li>
+<li>.lua</li>
+</ul>
+<h2 id="databases">Databases</h2>
+<p>RetroArch database(s) that are associated with the Lutro core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Lutro.rdb">Lutro</a></li>
+</ul>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the Lutro core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The Lutro core's internal core name is 'lutro'</p>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The Lutro core's core provided FPS is 60</li>
+<li>The Lutro core's core provided sample rate is 44100 Hz</li>
+<li>The LUtro core's core provided aspect ratio is (Ratio)</li>
+</ul>
+<h2 id="controllers">Controllers</h2>
+<p>The Lutro core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<h3 id="user-1-device-types">User 1 device types</h3>
+<ul>
+<li>None - Doesn't disable input. There's no reason to switch to this.</li>
+<li><strong>RetroPad</strong> - Joypad - Stay on this.</li>
+<li>RetroPad w/Analog - Joypad - Same as RetroPad. There's no reason to switch to this.</li>
+</ul>
+<h3 id="controller-tables">Controller tables</h3>
+<h4 id="joypad">Joypad</h4>
+<p>!!! attention
+What the inputs do are game specific.</p>
+<table>
+<thead>
+<tr>
+<th>User 1 Remap descriptors</th>
+<th>RetroPad Inputs</th>
+<th>Lutro core inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>B</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+<td>Y</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+<td>Select</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+<td>Start</td>
+</tr>
+<tr>
+<td>Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>Up</td>
+</tr>
+<tr>
+<td>Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>Down</td>
+</tr>
+<tr>
+<td>Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>Left</td>
+</tr>
+<tr>
+<td>Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>Right</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>A</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+<td>X</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+<td>L1</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+<td>R1</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+<td>L2</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+<td>R2</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_l3.png" alt="" /></td>
+<td>L3</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="../image/retropad/retro_r3.png" alt="" /></td>
+<td>R3</td>
+</tr>
+</tbody>
+</table>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://www.lua.org/">Lua Website</a></li>
+<li><a href="https://love2d.org/">LÖVE API Website</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/lutro_libretro.info">Libretro Lutro Core info file</a></li>
+<li><a href="https://github.com/libretro/libretro-lutro">Libretro Lutro Github Repository</a></li>
+<li><a href="https://github.com/libretro/lutro-status">LUTRO LÖVE API Comparison</a></li>
+<li><a href="https://github.com/libretro/libretro-lutro/wiki">Lutro Github Wiki</a></li>
+<li><a href="https://github.com/libretro/libretro-lutro/issues">Report Libretro Lutro Core Issues Here</a></li>
+</ul>
+<h3 id="see-also">See also</h3>
+<h4 id="custom-engine">Custom Engine</h4>
+<ul>
+<li><a href="chailove.md">ChaiLove</a></li>
+</ul>

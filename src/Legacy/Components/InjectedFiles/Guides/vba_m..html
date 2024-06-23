@@ -1,0 +1,463 @@
+<h1 id="nintendo-game-boy-advance-vba-m">Nintendo - Game Boy Advance (VBA-M)</h1>
+<h2 id="background">Background</h2>
+<p>VBA-M is a Game Boy Advance emulator with the goal to improve upon VisualBoyAdvance by integrating the best features from the various builds floating around. It also supports Game Boy, Game Boy Color and Super Game Boy (borders, palette).</p>
+<h3 id="authorlicense">Author/License</h3>
+<p>The VBA-M core has been authored by</p>
+<ul>
+<li>Forgotten</li>
+<li>VBA-M Team</li>
+</ul>
+<p>The VBA-M core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/vbam-libretro/blob/master/doc/gpl.txt">GPLv2</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="bios">BIOS</h2>
+<p>Required or optional firmware files go in the frontend's system directory.</p>
+<p>!!! warning
+In order for the BIOS to be used, the 'Use BIOS file if found' core option must be set to On.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">gba_bios.bin</td>
+<td style="text-align: center;">Game Boy Advance BIOS - Optional</td>
+<td style="text-align: center;">a860e8c0b6d573d191e4ec7db1b1e4f6</td>
+</tr>
+<tr>
+<td style="text-align: center;">gb_bios.bin</td>
+<td style="text-align: center;">Game Boy BIOS - Optional</td>
+<td style="text-align: center;">32fbbd84168d3482956eb3c5051637f5</td>
+</tr>
+<tr>
+<td style="text-align: center;">gbc_bios.bin</td>
+<td style="text-align: center;">Game Boy Color BIOS - Optional</td>
+<td style="text-align: center;">dbfce9db9deaa2567f6a84fde55f9680</td>
+</tr>
+</tbody>
+</table>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the VBA-M core have the following file extensions:</p>
+<ul>
+<li>.gb</li>
+<li>.gbc</li>
+<li>.gba</li>
+</ul>
+<h2 id="databases">Databases</h2>
+<p>RetroArch database(s) that are associated with the VBA-M core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Game%20Boy.rdb">Nintendo - Game Boy</a></li>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Game%20Boy%20Color.rdb">Nintendo - Game Boy Color</a></li>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Game%20Boy%20Advance.rdb">Nintendo - Game Boy Advance</a></li>
+</ul>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the VBA-M core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The VBA-M core's directory name is 'VBA-M'</p>
+<p>The VBA-M core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Save directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.srm</td>
+<td style="text-align: center;">Cartridge battery save</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Frontend's State directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.state#</td>
+<td style="text-align: center;">State</td>
+</tr>
+</tbody>
+</table>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The VBA-M core's core provided FPS is 59.72</li>
+<li>The VBA-M core's core provided sample rate is 32768 Hz</li>
+<li>The VBA-M core's base width is GBA: 240, GB: 160 (256 with border/SGB mode)</li>
+<li>The VBA-M core's base height is GBA: 160, GB: 144 (224 with border/SGB mode)</li>
+<li>The VBA-M core's max width is 256</li>
+<li>The VBA-M core's max height is 224</li>
+<li>The VBA-M core's core provided aspect ratio is GBA: 3:2, GB: 10:9 (8:7 with border/SGB)</li>
+</ul>
+<h2 id="core-options">Core options</h2>
+<p>The VBA-M core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Solar sensor level</strong> [vbam_solarsensor] (<strong>0</strong>|1|2|3|4|5|6|7|8|9|10)</p>
+<p>For use with Boktai games (solar cartridge games). Manually adjust ingame's solar sensor meter.</p>
+</li>
+<li><p><strong>Use BIOS file if found</strong> [vbam_usebios] (Off/<strong>On</strong>)</p>
+<p>Uses BIOS present in RetroArch's system directory.</p>
+</li>
+<li><p><strong>Force enable RTC</strong> [vbam_forceRTCenable] (<strong>Off</strong>/On)</p>
+<p>Forces the internal real-time clock to be enabled regardless of rom. Usuable for rom patches that requires clock to be enabled (aka Pokemon).</p>
+</li>
+<li><p><strong>Sound Interpolation</strong> [vbam_soundinterpolation] (Off/<strong>On</strong>)</p>
+<p>Enable or disable sound filtering.</p>
+</li>
+<li><p><strong>Sound Filtering</strong> [vbam_soundfiltering] (0|1|2|3|4|<strong>5</strong>|6|7|8|9|10)</p>
+<p>Sets the cutoff-frequency for the interpolation filter. Higher value reduces more high frequencies.</p>
+</li>
+<li><p><strong>(GB) Color Palette</strong> [vbam_palettes] (<strong>black and white</strong>|blue sea|dark knight|green forest|hot desert|pink dreams|weird colors|original gameboy|gba sp)</p>
+<p>Set Game Boy palettes to use.</p>
+</li>
+</ul>
+<p>??? note &quot;(GB) Color Palette - black and white&quot;
+<img src="../image/core/vba_m/pal_1bw.png" alt="" /></p>
+<p>??? note &quot;(GB) Color Palette - blue sea&quot;
+<img src="../image/core/vba_m/pal_2bluesea.png" alt="" /></p>
+<p>??? note &quot;(GB) Color Palette - dark knight&quot;
+<img src="../image/core/vba_m/pal_3darkknight.png" alt="" /></p>
+<p>??? note &quot;(GB) Color Palette - green forest&quot;
+<img src="../image/core/vba_m/pal_4greenforest.png" alt="" /></p>
+<p>??? note &quot;(GB) Color Palette - hot desert&quot;
+<img src="../image/core/vba_m/pal_5hotdesert.png" alt="" /></p>
+<p>??? note &quot;(GB) Color Palette - pink dreams&quot;
+<img src="../image/core/vba_m/pal_6pinkdreams.png" alt="" /></p>
+<p>??? note &quot;(GB) Color Palette - weird colors&quot;
+<img src="../image/core/vba_m/pal_7weirdcolors.png" alt="" /></p>
+<p>??? note &quot;(GB) Color Palette - original gameboy&quot;
+<img src="../image/core/vba_m/pal_8originalgb.png" alt="" /></p>
+<p>??? note &quot;(GB) Color Palette - gba sp&quot;
+<img src="../image/core/vba_m/pal_9gbsp.png" alt="" /></p>
+<ul>
+<li><p><strong>(GB) Emulated Hardware (Requires Restart)</strong> [vbam_gbHardware] (Automatic|<strong>Game Boy Color</strong>|Super Game Boy|Game Boy|Game Boy Advance|Super Game Boy)</p>
+<p>Selects the type of game boy handheld to emulate. Automatic will select the most appropriate model for the current game.</p>
+</li>
+<li><p><strong>(GB) Enable Colorizer Hack (Needs Restart)</strong> [vbam_allowcolorizerhack] (<strong>Off</strong>/On)</p>
+<p>Allows some Colorizer/DX patched gb roms to run correctly. NOT RECOMMENDED for non-colorized patched games since this hack relies on inaccurate vram and palette access.</p>
+<p>See: <a href="https://github.com/libretro/vbam-libretro/issues/58">https://github.com/libretro/vbam-libretro/issues/58</a></p>
+</li>
+<li><p><strong>(GB) Show Borders</strong> [vbam_showborders] (auto|<strong>Off</strong>|On)</p>
+<p>Shows a solid-colored border around the normal window. If current game is SGB capable, an appropriate border from the cartridge will be loaded and shown instead.</p>
+</li>
+</ul>
+<p>??? note &quot;Show Borders - Off&quot;
+<img src="../image/core/vba_m/border_off.png" alt="" /></p>
+<p>??? note &quot;Show Borders - On&quot;
+<img src="../image/core/vba_m/border_on.png" alt="" /></p>
+<ul>
+<li><p><strong>(GB) Color Correction</strong> [vbam_gbcoloroption] (<strong>Off</strong>/On)</p>
+<p>Applies color correction to palette.</p>
+</li>
+</ul>
+<p>??? note &quot;(GB) Color Correction - Off&quot;
+<img src="../image/core/vba_m/cc_Off.png" alt="" /></p>
+<p>??? note &quot;(GB) Color Correction - On&quot;
+<img src="../image/core/vba_m/cc_On.png" alt="" /></p>
+<ul>
+<li><p><strong>Enable Turbo Buttons</strong> [vbam_turboenable] (<strong>Off</strong>/On)</p>
+<p>Enable or disable gamepad turbo buttons.</p>
+</li>
+<li><p><strong>Turbo Delay (in frames)</strong> [vbam_turbodelay] (1|2|<strong>3</strong>|4|5|6|7...|15)</p>
+<p>Repeat rate of turbo triggers in frames. Lower value triggers more buttons per second.</p>
+</li>
+<li><p><strong>Analog Deadzone (%)</strong> [vbam_astick_deadzone] (5|10|<strong>15</strong>|20|25|30)</p>
+<p>The minimum absolute value of the analog joystick axis to move the gyro/tilt controller axis value.</p>
+</li>
+<li><p><strong>Sensor Sensitivity (Gyroscope) (%)</strong> [vbam_gyro_sensitivity] (10|15|20|25|30|35|40|45|50|55|60|65|70|75|80|85|90|95|<strong>100</strong>|105|110|115|120)</p>
+<p>Used to adjust sensitivity level for gyro-enabled games. Default bind is left analog.</p>
+</li>
+<li><p><strong>Sensor Sensitivity (Tilt) (%)</strong> [vbam_tilt_sensitivity] (10|15|20|25|30|35|40|45|50|55|60|65|70|75|80|85|90|95|<strong>100</strong>|105|110|115|120)</p>
+<p>Used to adjust sensitivity level for gyro-enabled games. Default bind is right analog.</p>
+</li>
+<li><p><strong>Swap Left/Right Analog</strong> [vbam_swap_astick] (<strong>Off</strong>/On)</p>
+<p>Swaps left and right analog stick function for gyro and tilt</p>
+</li>
+<li><p><strong>Sound channel 1</strong> [vbam_sound_1] (Off/<strong>On</strong>)</p>
+<p>Self-explanatory.</p>
+</li>
+<li><p><strong>Sound channel 2</strong> [vbam_sound_2] (Off/<strong>On</strong>)</p>
+<p>Self-explanatory.</p>
+</li>
+<li><p><strong>Sound channel 3</strong> [vbam_sound_3] (Off/<strong>On</strong>)</p>
+<p>Self-explanatory.</p>
+</li>
+<li><p><strong>Sound channel 4</strong> [vbam_sound_4] (Off/<strong>On</strong>)</p>
+<p>Self-explanatory.</p>
+</li>
+<li><p><strong>Sound DMA channel A</strong> [vbam_sound_5] (Off/<strong>On</strong>)</p>
+<p>Self-explanatory.</p>
+</li>
+<li><p><strong>Sound DMA channel B</strong> [vbam_sound_6] (Off/<strong>On</strong>)</p>
+<p>Self-explanatory.</p>
+</li>
+<li><p><strong>Show layer 1</strong> [vbam_layer_1] (Off/<strong>On</strong>)</p>
+<p>Self-explanatory.</p>
+</li>
+<li><p><strong>Show layer 2</strong> [vbam_layer_2] (Off/<strong>On</strong>)</p>
+<p>Self-explanatory.</p>
+</li>
+<li><p><strong>Show layer 3</strong> [vbam_layer_3] (Off/<strong>On</strong>)</p>
+<p>Self-explanatory.</p>
+</li>
+<li><p><strong>Show layer 4</strong> [vbam_layer_4] (Off/<strong>On</strong>)</p>
+<p>Self-explanatory.</p>
+</li>
+<li><p><strong>Show sprite layer</strong> [vbam_layer_5] (Off/<strong>On</strong>)</p>
+<p>Self-explanatory.</p>
+</li>
+<li><p><strong>Show window layer 1</strong> [vbam_layer_6] (Off/<strong>On</strong>)</p>
+<p>Self-explanatory.</p>
+</li>
+<li><p><strong>Show window layer 2</strong> [vbam_layer_7] (Off/<strong>On</strong>)</p>
+<p>Self-explanatory.</p>
+</li>
+<li><p><strong>Show sprite window layer</strong> [vbam_layer_8] (Off/<strong>On</strong>)</p>
+<p>Self-explanatory.</p>
+</li>
+</ul>
+<h2 id="controllers">Controllers</h2>
+<p>The VBA-M core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<h3 id="user-1-device-types">User 1 device types</h3>
+<ul>
+<li>None - Input disabled.</li>
+<li><strong>GBA Joypad</strong> - Joypad</li>
+</ul>
+<h3 id="controller-tables">Controller tables</h3>
+<h4 id="joypad">Joypad</h4>
+<p><img src="../image/controller/gba.png" alt="" /></p>
+<table>
+<thead>
+<tr>
+<th>User 1 Remap descriptors</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>Turbo B</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+</tr>
+<tr>
+<td>Select</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+</tr>
+<tr>
+<td>Start</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>A</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+<tr>
+<td>Turbo A</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+</tr>
+<tr>
+<td>L</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+</tr>
+<tr>
+<td>R</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+</tr>
+<tr>
+<td>Solar Sensor (Darker)</td>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+</tr>
+<tr>
+<td>Solar Sensor (Lighter)</td>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+</tr>
+<tr>
+<td>Tilt X-Axis</td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /></td>
+</tr>
+<tr>
+<td>Tilt X-Yxis</td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /></td>
+</tr>
+<tr>
+<td>Gyro</td>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<h2 id="compatibility">Compatibility</h2>
+<table>
+<thead>
+<tr>
+<th>Game</th>
+<th>Issue</th>
+</tr>
+</thead>
+</table>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="http://vba-m.com/">Official VBA-M Website</a></li>
+<li><a href="https://github.com/visualboyadvance-m/visualboyadvance-m">Official VBA-M Github Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/vbam_libretro.info">Libretro VBA-M Core info file</a></li>
+<li><a href="https://github.com/libretro/vbam-libretro">Libretro VBA-M Github Repository</a></li>
+<li><a href="https://github.com/libretro/vbam-libretro/issues">Report Libretro VBA-M Core Issues Here</a></li>
+</ul>
+<h3 id="see-also">See also</h3>
+<h4 id="nintendo-game-boy-advance">Nintendo - Game Boy Advance</h4>
+<ul>
+<li><a href="beetle_gba.md">Nintendo - Game Boy Advance (Beetle GBA)</a></li>
+<li><a href="gpsp.md">Nintendo - Game Boy Advance (gpSP)</a></li>
+<li><a href="meteor.md">Nintendo - Game Boy Advance (Meteor)</a></li>
+<li><a href="mgba.md">Nintendo - Game Boy Advance (mGBA)</a></li>
+<li><a href="tempgba.md">Nintendo - Game Boy Advance (TempGBA)</a></li>
+<li><a href="vba_next.md">Nintendo - Game Boy Advance (VBA Next)</a></li>
+</ul>
+<h4 id="nintendo-game-boy-color">Nintendo - Game Boy (+ Color)</h4>
+<ul>
+<li><a href="emux_gb.md">Nintendo - Game Boy / Color (Emux GB)</a></li>
+<li><a href="gambatte.md">Nintendo - Game Boy / Color (Gambatte)</a></li>
+<li><a href="gearboy.md">Nintendo - Game Boy / Color (Gearboy)</a></li>
+<li><a href="sameboy.md">Nintendo - Game Boy / Color (SameBoy)</a></li>
+<li><a href="tgb_dual.md">Nintendo - Game Boy / Color (TGB Dual)</a></li>
+<li><a href="higan_accuracy.md">Nintendo - SNES / Famicom (higan Accuracy)</a></li>
+<li><a href="nside_balanced.md">Nintendo - SNES / Famicom (nSide Balanced)</a></li>
+<li><a href="mesen-s.md">Nintendo - SNES / Famicom (Mesen-S)</a></li>
+</ul>

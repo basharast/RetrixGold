@@ -1,0 +1,483 @@
+<h1 id="sega-msmdcd32x-picodrive">Sega - MS/MD/CD/32X (PicoDrive)</h1>
+<h2 id="background">Background</h2>
+<p>PicoDrive is an open-source Sega 8/16 bit and 32X emulator which was written having ARM-based handheld devices in mind.</p>
+<h2 id="features">Features</h2>
+<ul>
+<li>Supports 32x emulation.</li>
+<li>Designed to run on weak devices.</li>
+</ul>
+<p>The PicoDrive core has been authored by</p>
+<ul>
+<li>notaz</li>
+<li>fdave</li>
+</ul>
+<p>The PicoDrive core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/picodrive/blob/master/COPYING">Non-commercial</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="bios">BIOS</h2>
+<p>Required or optional firmware files go in the frontend's system directory.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">bios_CD_E.bin</td>
+<td style="text-align: center;">MegaCD EU BIOS - Required</td>
+<td style="text-align: center;">e66fa1dc5820d254611fdcdba0662372</td>
+</tr>
+<tr>
+<td style="text-align: center;">bios_CD_U.bin</td>
+<td style="text-align: center;">SegaCD US BIOS - Required</td>
+<td style="text-align: center;">2efd74e3232ff260e371b99f84024f7f</td>
+</tr>
+<tr>
+<td style="text-align: center;">bios_CD_J.bin</td>
+<td style="text-align: center;">MegaCD JP BIOS - Required</td>
+<td style="text-align: center;">278a9397d192149e84e820ac621a8edd</td>
+</tr>
+</tbody>
+</table>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the PicoDrive core have the following file extensions:</p>
+<ul>
+<li>.bin</li>
+<li>.gen</li>
+<li>.smd</li>
+<li>.md</li>
+<li>.32x</li>
+<li>.cue</li>
+<li>.iso</li>
+<li>.sms</li>
+<li>.68k</li>
+<li>.chd</li>
+</ul>
+<p>RetroArch database(s) that are associated with the PicoDrive core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Sega%20-%20Master%20System%20-%20Mark%20III.rdb">Sega - Master System - Mark III</a></li>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Sega%20-%20Mega-CD%20-%20Sega%20CD.rdb">Sega - Mega-CD - Sega CD</a></li>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Sega%20-%20Mega%20Drive%20-%20Genesis.rdb">Sega - Mega Drive - Genesis</a></li>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Sega%20-%20PICO.rdb">Sega - PICO</a></li>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Sega%20-%2032X.rdb">Sega - 32X</a></li>
+</ul>
+<h2 id="features-1">Features</h2>
+<p>Frontend-level settings or features that the PicoDrive core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h2 id="directories">Directories</h2>
+<p>The PicoDrive core's library name is 'PicoDrive'</p>
+<p>The PicoDrive core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Save directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.srm</td>
+<td style="text-align: center;">Cartridge backup save</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Frontend's State directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.state#</td>
+<td style="text-align: center;">State</td>
+</tr>
+</tbody>
+</table>
+<h2 id="geometry-and-timing">Geometry and timing</h2>
+<ul>
+<li>The PicoDrive core's core provided FPS is 60 for NTSC games and 50 for PAL games.</li>
+<li>The PicoDrive core's core provided sample rate is 44100 Hz</li>
+<li>The PicoDrive core's base width is 320</li>
+<li>The PicoDrive core's base height is 224</li>
+<li>The PicoDrive core's max width is 320</li>
+<li>The PicoDrive core's max height is 240</li>
+<li>The PicoDrive core's core provided aspect ratio is 10/7 when the <a href="#core-options">'Core-provided aspect ratio' core option</a> is set to PAR</li>
+<li>The PicoDrive core's core provided aspect ratio is 4/3 when the <a href="#core-options">'Core-provided aspect ratio' core option</a> is set to 4/3</li>
+<li>The PicoDrive core's core provided aspect ratio is 5/4 when the <a href="#core-options">'Core-provided aspect ratio' core option</a> is set to CRT</li>
+</ul>
+<h2 id="loading-sega-cd-games">Loading Sega CD games</h2>
+<p>When loading Sega CD games, PicoDrive needs a cue-sheet that points to an image file. A cue sheet, or cue file, is a metadata file which describes how the tracks of a CD or DVD are laid out.</p>
+<p>If you have e.g. <code>foo.bin</code>, you should create a text file and save it as <code>foo.cue</code>. If the Sega CD game is single-track, the cue file contents should look like this:</p>
+<pre><code> FILE &quot;foo.bin&quot; BINARY
+  TRACK 01 MODE1/2352
+   INDEX 01 00:00:00
+</code></pre>
+<p>After that, you can load the <code>foo.cue</code> file in RetroArch with the PicoDrive core.</p>
+<p>!!! warning &quot;&quot;
+Certain Sega CD games are multi-track, so their .cue files might be more complicated.</p>
+<p>Here's a cue file example done with Lunar - Eternal Blue (USA)</p>
+<p><img src="../image/core/genesis_plus_gx/cue.png" alt="" /></p>
+<h2 id="core-options">Core options</h2>
+<p>The PicoDrive core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Input device 1</strong> [picodrive_input1] (<strong>3 button pad</strong>/6 button pad/None)</p>
+<p>Choose which kind of controller is plugged in slot 1.</p>
+</li>
+<li><p><strong>&quot;Input device 2</strong> [picodrive_input2] (<strong>3 button pad</strong>/6 button pad/None)</p>
+<p>Choose which kind of controller is plugged in slot 2.</p>
+</li>
+<li><p><strong>No sprite limit</strong> [picodrive_sprlim] (<strong>disabled</strong>/enabled)</p>
+<p>Enable this to remove the sprite limit.</p>
+</li>
+<li><p><strong>MegaCD RAM cart</strong> [picodrive_ramcart] (<strong>disabled</strong>/enabled)</p>
+<p>Emulate a <a href="https://segaretro.org/CD_BackUp_RAM_Cart">MegaCD RAM cart</a>.</p>
+</li>
+<li><p><strong>Region</strong> [picodrive_region] (<strong>Auto</strong>/Japan NTSC/Japan PAL/US/Europe)</p>
+<p>Force a specific region.</p>
+</li>
+<li><p><strong>Core-provided aspect ratio</strong> [picodrive_aspect] (<strong>PAR</strong>/4/3/CRT)</p>
+<p>Choose the core-provided aspect ratio. RetroArch's aspect ratio must be set to Core provided in the Video settings.</p>
+</li>
+</ul>
+<p>??? note &quot;Core-provided aspect ratio - PAR&quot;
+<img src="../image/core/picodrive/par.png" alt="" /></p>
+<p>??? note &quot;Core-provided aspect ratio - 4/3&quot;
+<img src="../image/core/picodrive/4by3.png" alt="" /></p>
+<p>??? note &quot;Core-provided aspect ratio - CRT&quot;
+<img src="../image/core/picodrive/crt.png" alt="" /></p>
+<ul>
+<li><p><strong>Show Overscan</strong> [picodrive_overscan] (<strong>disabled</strong>/enabled)</p>
+<p>Crop out the potentially random glitchy video output that would have been hidden by the bezel around the edge of a standard-definition television screen.</p>
+</li>
+</ul>
+<p>??? note &quot;Show Overscan - Off&quot;
+<img src="../image/core/picodrive/off.png" alt="" /></p>
+<p>??? note &quot;Show Overscan - On&quot;
+<img src="../image/core/picodrive/on.png" alt="" /></p>
+<ul>
+<li><p><strong>68k overclock</strong> [picodrive_overclk68k] (<strong>disabled</strong>/+25%/+50%/+75%/+100%/+200%/+400%)</p>
+<p>Overclock the emulated <a href="http://segaretro.org/M68000">68k chip</a></p>
+</li>
+<li><p><strong>Dynamic recompilers</strong> [picodrive_drc] (<strong>enabled</strong>/disabled)</p>
+<p>Enable dynamic recompilers which help to improve performance. <strong>This core option is not available on all hardware.</strong></p>
+</li>
+<li><p><strong>Audio filter</strong> [picodrive_audio_filter] (<strong>disabled</strong>|low-pass)</p>
+<p>Enable a low pass audio filter to better simulate the characteristic sound of a Model 1 Genesis.</p>
+</li>
+</ul>
+<p>!!! attention
+This option is ignored when running Master System and PICO titles. Only the Genesis and its add-on hardware (Sega CD, 32X) employed a physical low pass filter.</p>
+<ul>
+<li><p><strong>Low-pass filter %</strong> [picodrive_lowpass_range] (<strong>60</strong>|65|70|75|80|85|90|95|5|10|15|20|25|30|35|40|45|50|55)</p>
+<p>Specify the cut-off frequency of the audio low pass filter. A higher value increases the perceived 'strength' of the filter, since a wider range of the high frequency spectrum is attenuated.</p>
+</li>
+</ul>
+<h2 id="user-1-2-device-types">User 1 - 2 device types</h2>
+<p>The PicoDrive core supports the following device type(s).</p>
+<ul>
+<li>None - Input is disabled - Can be switched to using the Input device core options.</li>
+<li><strong>3 button pad</strong> - Joypad - Can be switched to using the Input device core options.</li>
+<li>6 button pad - Joypad - Can be switched to using the Input device core options.</li>
+<li>SMS pad - Joypad - Is automatically switched to when a Sega Master System game is loaded.</li>
+</ul>
+<h2 id="joypad">Joypad</h2>
+<table>
+<thead>
+<tr>
+<th>RetroPad Inputs</th>
+<th>User 1 - 2 input descriptors</th>
+<th>3 button pad</th>
+<th>6 button pad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>B</td>
+<td>B</td>
+<td>B</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+<td>A</td>
+<td>A</td>
+<td>A</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+<td>Mode</td>
+<td></td>
+<td>Mode</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+<td>Start</td>
+<td>Start</td>
+<td>Start</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>D-Pad Up</td>
+<td>D-Pad Up</td>
+<td>D-Pad Up</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>D-Pad Down</td>
+<td>D-Pad Down</td>
+<td>D-Pad Down</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>D-Pad Left</td>
+<td>D-Pad Left</td>
+<td>D-Pad Left</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>D-Pad Right</td>
+<td>D-Pad Right</td>
+<td>D-Pad Right</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+<td>Y</td>
+<td></td>
+<td>Y</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+<td>X</td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+<td>Z</td>
+<td></td>
+<td>Z</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>RetroPad Inputs</th>
+<th>User 1 - 2 input descriptors</th>
+<th>SMS pad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>Button 1 Start</td>
+<td>Button 1 Start</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+<td>Button Pause</td>
+<td>Button Pause</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td>D-Pad Up</td>
+<td>D-Pad Up</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td>D-Pad Down</td>
+<td>D-Pad Down</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td>D-Pad Left</td>
+<td>D-Pad Left</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td>D-Pad Right</td>
+<td>D-Pad Right</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>Button 2</td>
+<td>Button 2</td>
+</tr>
+</tbody>
+</table>
+<h2 id="compatibility">Compatibility</h2>
+<table>
+<thead>
+<tr>
+<th>32x games</th>
+<th>Issue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Brutal Unleashed – Above the Claw</td>
+<td>Softlocks after the first fight.</td>
+</tr>
+<tr>
+<td>FIFA Soccer ’96</td>
+<td>Glitched main menu text.</td>
+</tr>
+<tr>
+<td>Knuckles’ Chaotix</td>
+<td>Glitched graphics on the Player Select screen.</td>
+</tr>
+<tr>
+<td>NBA Jam Tournament Edition</td>
+<td>Framerate issues.</td>
+</tr>
+<tr>
+<td>NFL Quarterback Club</td>
+<td>Some menu graphics are missing.</td>
+</tr>
+<tr>
+<td>Virtua Racing Deluxe</td>
+<td>Blinking line during the SEGA logo screen.</td>
+</tr>
+<tr>
+<td>World Series Baseball Starring Deion Sanders</td>
+<td>Crashes when starting a match.</td>
+</tr>
+<tr>
+<td>WWF Raw</td>
+<td>Various graphics are missing.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="http://notaz.gp2x.de/pico.php">Official PicoDrive Website</a></li>
+<li><a href="https://github.com/notaz/picodrive">Official PicoDrive Github Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/picodrive_libretro.info">Libretro PicoDrive Core info file</a></li>
+<li><a href="https://github.com/libretro/picodrive">Libretro PicoDrive Github Repository</a></li>
+<li><a href="https://github.com/libretro/picodrive/issues">Report Libretro PicoDrive Core Issues Here</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLRbgg4gk_0IcA87w16rzmzbYJrnxgJJgP">Gameplay Videos</a></li>
+</ul>
+<h2 id="sega-16-bit">Sega 16-bit</h2>
+<ul>
+<li><a href="emux_sms.md">Sega - Master System (Emux SMS)</a></li>
+<li><a href="genesis_plus_gx.md">Sega - MS/GG/MD/CD (Genesis Plus GX)</a></li>
+<li><a href="gearsystem.md">Sega - MS/GG/SG-1000 (Gearsystem)</a></li>
+<li><a href="bluemsx.md">MSX/SVI/ColecoVision/SG-1000 (blueMSX)</a></li>
+</ul>

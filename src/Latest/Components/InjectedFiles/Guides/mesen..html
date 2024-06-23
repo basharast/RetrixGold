@@ -1,0 +1,771 @@
+<h1 id="nintendo-nes-famicom-mesen">Nintendo - NES / Famicom (Mesen)</h1>
+<h2 id="background">Background</h2>
+<p>Mesen is a high-accuracy NES and Famicom emulator and NSF player for Windows and Linux.</p>
+<p>Features</p>
+<ul>
+<li>High Accuracy: A lot of effort has gone into making Mesen as accurate as possible.</li>
+<li>High Compatibility: Over 220 mappers supported (all licensed games supported)</li>
+<li>NES, Famicom, Famicom Disk System, Dendy, VS System, NSF and NSFe emulation is supported.</li>
+<li>General: Save States, Rewinding, Movie/Audio Recording, Overclocking, Cheat Codes.</li>
+<li>Video: Numerous video filters, customizable palettes/overscan, support for HDNes' HD packs.</li>
+<li>Audio: Stereo effects, per-channel volume and panning, equalizer, etc.</li>
+<li>Misc: Netplay, 7z/zip support, IPS/BPS patch support, automatic updates, and more!</li>
+</ul>
+<h3 id="authorlicense">Author/License</h3>
+<p>The Mesen core has been authored by</p>
+<ul>
+<li>
+<ol type="A" start="13">
+<li>Bibaud (aka Sour)</li>
+</ol>
+</li>
+</ul>
+<p>The Mesen core is licensed under</p>
+<ul>
+<li><a href="https://github.com/SourMesen/Mesen/blob/master/README.md">GPLv3</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the Mesen core have the following file extensions:</p>
+<ul>
+<li>.nes</li>
+<li>.fds</li>
+<li>.unf</li>
+<li>.unif</li>
+</ul>
+<h2 id="databases">Databases</h2>
+<p>RetroArch database(s) that are associated with the Mesen core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Nintendo%20Entertainment%20System.rdb">Nintendo - Nintendo Entertainment System</a></li>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Family%20Computer%20Disk%20System.rdb">Nintendo - Family Computer Disk System</a></li>
+</ul>
+<h2 id="bios">BIOS</h2>
+<p>Required or optional firmware files go in the frontend's system directory.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">disksys.rom</td>
+<td style="text-align: center;">Family Computer Disk System BIOS - Required for Family Computer Disk System emulation</td>
+<td style="text-align: center;">ca30b50f880eb660a320674ed365ef7a</td>
+</tr>
+</tbody>
+</table>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the Mesen core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The Mesen core's library name is 'Mesen'</p>
+<p>The Mesen core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Save directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.srm</td>
+<td style="text-align: center;">Cartridge battery save</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Frontend's State directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.state#</td>
+<td style="text-align: center;">State</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Frontend's System directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">MesenPalette.pal</td>
+<td style="text-align: center;">Custom palette</td>
+</tr>
+<tr>
+<td style="text-align: center;">HdPacks/*</td>
+<td style="text-align: center;">HD Pack directory</td>
+</tr>
+</tbody>
+</table>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The Mesen core's core provided FPS is NTSC 60, PAL/Dendy 50</li>
+<li>The Mesen core's core provided sample rate is 48000 Hz</li>
+<li>The Mesen core's base width is 256</li>
+<li>The Mesen core's base height is 240</li>
+<li>The Mesen core's max width is 256 (higher when using HD Packs)</li>
+<li>The Mesen core's max height is 240 (higher when using HD Packs)</li>
+<li>The Mesen core's core provided aspect ratio is dependent on the <a href="#core-options">'Aspect Ratio' core option</a>.</li>
+</ul>
+<h3 id="custom-palettes">Custom Palettes</h3>
+<p>To use custom color palettes in the Mesen core, the <a href="#core-options">'Palette' core option</a> must be set to Custom and the custom color palette file you want to use must be in RetroArch's system directory.</p>
+<p>Make sure the custom palette file is named 'MesenPalette.pal'</p>
+<p>Custom color palettes for the NES can be generated with either of these tools.</p>
+<ul>
+<li><a href="http://bisqwit.iki.fi/utils/nespalette.php">Bisqwit's NTSC NES palette generator</a></li>
+<li><a href="http://drag.wootest.net/misc/palgen.html">Drag's NTSC NES palette generator</a></li>
+</ul>
+<h2 id="hd-packs">HD packs</h2>
+<p>!!! attention
+There is more HD pack documentation at the <a href="https://www.mesen.ca/docs/hdpacks/#using-hd-packs">official Mesen documentation</a>.</p>
+<p>To use HD packs, first make sure to turn on the <a href="#core-options.">Enable HD Packs core option</a></p>
+<p>First, create a folder named 'HdPacks' in RetroArch's System directory.</p>
+<p>Next, create a folder inside the HdPacks directory that has the same name as the content you're going to load.</p>
+<p>So, if the content you're loading is Mega Man (USA).nes, the folder should be named 'Mega Man (USA)'.</p>
+<p>Finally, extract the HD pack content files to the Mega Man (USA) folder.</p>
+<p>Here's an example of a working HD pack setup done with <a href="https://www.romhacking.net/forum/index.php?topic=25426.0">Mega Man 1 (NES) - 30th Anniversary 16-bit Graphic Pack</a>.</p>
+<p>Pay attention to the file path.</p>
+<p><img src="../image/core/mesen/hdpack.png" alt="" /></p>
+<h2 id="core-options">Core options</h2>
+<p>The Mesen core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<p>!!! attention
+These core option descriptions have been sourced from the <a href="https://www.mesen.ca/docs/">official Mesen documentation</a>. Please go there for more information.</p>
+<ul>
+<li><p><strong>NTSC filter</strong> [mesen_ntsc_filter] (<strong>Disabled</strong>/Composite (Blargg)/S-Video (Blargg)/RGB (Blargg)/Monochrome (Blargg)/Bisqwit 2x/Bisqwit 4x/Bisqwit 8x)</p>
+<p>Selects a filter to apply to the picture.</p>
+<p>Blargg filters are fast.</p>
+<p>Bisqwit filters are slower.</p>
+</li>
+<li><p><strong>Palette</strong> [mesen_palette] (<strong>Default</strong>/Composite Direct (by FirebrandX)/Nes Classic/Nestopia (RGB)/Original Hardware (by FirebrandX)/PVM Style (by FirebrandX)/Sony CXA2025AS/Unsaturated v6 (by FirebrandX)/YUV v3 (by FirebrandX)/Custom)</p>
+<p>Mesen comes with a number of built-in palette options - you can select them from here.</p>
+</li>
+<li><p><strong>Overclock</strong> [mesen_overclock] (<strong>None</strong>/Low/Medium/High/Very High)</p>
+<p>Use this to overclock or underclock the CPU.</p>
+</li>
+</ul>
+<p>!!! warning
+Overclocking can cause issues in some games.</p>
+<ul>
+<li><p><strong>Overclock Type</strong> [mesen_overclock_type] (<strong>Before NMI (Recommended)</strong>/After NMI)</p>
+<p>Before NMI: Increases the number of scanlines in the PPU, before the NMI signal is triggered at the end of the visible frame. This effectively gives more time for games to perform calculations, which can reduce slowdowns in games. <strong>This is the preferred option for overclocking.</strong></p>
+<p>After NMI: Increases the number of scanlines in the PPU, after the NMI signal is triggered at the end of the visible frame. This effectively gives more time for games to perform calculations, which can reduce slowdowns in games. <strong>This option is less compatible and should only be used if the before NMI variation does not work as expected.</strong></p>
+</li>
+<li><p><strong>Region</strong> [mesen_region] (<strong>Auto</strong>/NTSC/PAL/Dendy)</p>
+<p>When set to Auto, the emulator will try to detect the game’s region (NTSC or PAL) - however, this is not always possible. When there is nothing to suggest a game is for the PAL region (Australia &amp; Europe), the NTSC region (North America &amp; Japan) will be used by default. Dendy is used to mimic a number of different NES clones, in particular, the Dendy, which was a popular clone in Russia.</p>
+</li>
+<li><p><strong>Vertical Overscan</strong> [mesen_overscan_vertical] (<strong>None</strong>/8px/16px)</p>
+<p>This overscan setting allow you to cut out pixels vertically on any edge of the screen. On a CRT TV, a few pixels on each side of the screen was usually invisible to the player. Because of this, games often have glitches or incorrect palette colors on the edges of the screen – this is normal and caused by the game itself. Setting a value of 8 or so on each side of the overscan configuration will usually hide most glitches.</p>
+</li>
+<li><p><strong>Horizontal Overscan</strong> [mesen_overscan_horizontal] (<strong>None</strong>/8px/16px)</p>
+<p>This overscan setting allow you to cut out pixels horizontally on any edge of the screen. On a CRT TV, a few pixels on each side of the screen was usually invisible to the player. Because of this, games often have glitches or incorrect palette colors on the edges of the screen – this is normal and caused by the game itself. Setting a value of 8 or so on each side of the overscan configuration will usually hide most glitches.</p>
+</li>
+<li><p><strong>Aspect Ratio</strong> [mesen_aspect_ratio] (<strong>Auto</strong>/No Stretching/NTSC/PAL/4:3/16:9)</p>
+<p>The NES’ internal aspect ratio is almost square (Default (No Stretching)), but it used to be displayed on CRT TVs that had a rectangular picture. To simulate a CRT TV, you can use the Auto option - it will switch between NTSC and PAL aspect ratios depending on the game you are playing. Using anything other than the Default (No Stretching) option may cause pixels to have irregular sizes. You can reduce this effect by using a combination of video filters and the bilinear filtering option.</p>
+</li>
+<li><p><strong>Controller Turbo Speed</strong> [mesen_controllerturbospeed] (<strong>Fast</strong>/Very Fast/Disabled/Slow/Normal)</p>
+<p>Configure the controller's turbo buttons' speed.</p>
+</li>
+<li><p><strong>Enable HD Packs</strong> [mesen_hdpacks] (Off/<strong>On</strong>)</p>
+<p>Enables the use of <a href="https://www.mesen.ca/docs/hdpacks/">HD packs</a>. <a href="#hd-packs">Look at the HD packs section for more information</a>.</p>
+</li>
+<li><p><strong>Remove sprite limit</strong> [mesen_nospritelimit] (Off/<strong>On</strong>)</p>
+<p>The NES can normally only draw up to 8 sprites per line – this limitation is indirectly responsible for some of the flickering seen in games at times. When this option is enabled, the limit is disabled, allowing up to 64 sprites to be drawn on the same line.</p>
+</li>
+<li><p><strong>Enable fake stereo effect</strong> [mesen_fake_stereo] (<strong>Off</strong>/On)</p>
+<p>Self-explanatory.</p>
+</li>
+<li><p><strong>Reduce popping on Triangle channel</strong> [mesen_mute_triangle_ultrasonic] (Off/<strong>On</strong>)</p>
+<p>This option mutes the triangle channel under certain conditions, which prevents it from causing popping sounds.</p>
+</li>
+<li><p><strong>Reduce popping on DMC channel</strong> [mesen_reduce_dmc_popping] (Off/<strong>On</strong>)</p>
+<p>Similar to the previous option, but for the DMC channel – this option prevents games from changing the output of the DMC channel too abruptly, which often causes popping sounds.</p>
+</li>
+<li><p><strong>Swap Square channel duty cycles</strong> [mesen_swap_duty_cycle] (<strong>Off</strong>/On)</p>
+<p>This option is to mimic some older NES clones that had incorrect sound output for both of the square channels. It greatly alters the sound in some games, and shouldn’t be enabled unless you want this behavior.</p>
+</li>
+<li><p><strong>Disable Noise channel mode flag</strong> [mesen_disable_noise_mode_flag] (<strong>Off</strong>/On)</p>
+<p>Very early Famicom models did not implement this feature, so this option is available to mimic early Famicom consoles. It changes the sound output of the noise channel in some games, and shouldn’t be enabled unless you want this behavior.</p>
+</li>
+<li><p><strong>Screen Rotation</strong> [mesen_screenrotation] (<strong>None</strong>/90 degrees/180 degrees/270 degrees)</p>
+<p>Rotates the display by the specified angle. This is useful to play games (generally homebrew games) designed for a vertical display.</p>
+</li>
+<li><p><strong>Default power-on state for RAM</strong> [mesen_ramstate] (<strong>All 0s (Default)</strong>/All 1s/Random Values)</p>
+<p>On a console, the RAM’s state at power on is undetermined and relatively random. This option lets you select Mesen’s behavior when initializing RAM - set all bits to 0, set all bits to 1, or randomize the value of each bit.</p>
+</li>
+<li><p><strong>FDS: Automatically insert disks</strong> [mesen_fdsautoinsertdisk] (<strong>Off</strong>/On)</p>
+<p>By default, the FDS boots with no disk inserted in the drive. This option makes it so the player does not need to manually insert disk 1, side A manually.</p>
+</li>
+<li><p><strong>FDS: Fast forward while loading</strong> [mesen_fdsfastforwardload] (<strong>Off</strong>/On)</p>
+<p>FDS games contain a large number of load screens due to their data being stored on floppy drives. Mesen needs to emulate this floppy drive’s speed to ensure accurate emulation. This option makes it so Mesen runs the emulation as fast as it can when a game is loading data from the disk, which greatly reduces the time spent on loading screens.</p>
+</li>
+</ul>
+<h2 id="controllers">Controllers</h2>
+<p>The Mesen core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<h3 id="user-1-2-device-types">User 1 - 2 device types</h3>
+<ul>
+<li>None - Input disabled.</li>
+<li><strong>Auto</strong> - Joypad - Automatically selects an input device according to the data in the game database.</li>
+<li><a href="https://wiki.nesdev.com/w/index.php/Standard_controller">Standard Controller</a> - Joypad - Manually selects a standard game controller.</li>
+<li><a href="https://wiki.nesdev.com/w/index.php/Zapper">Zapper</a> - Pointer - Manually selects a Zapper light gun.</li>
+<li><a href="https://wiki.nesdev.com/w/index.php/Power_Pad">Power Pad</a> - Joypad - Manually selects a Power Pad peripheral.</li>
+<li><a href="https://wiki.nesdev.com/w/index.php/Arkanoid_controller">Arkanoid</a> - Mouse - Manually selects an Arkanoid controller.</li>
+<li><a href="http://nintendo.wikia.com/wiki/Super_Nintendo_Entertainment_System_controller">SNES Controller</a> - Joypad - Manually selects a SNES Controller.</li>
+<li><a href="https://wiki.nesdev.com/w/index.php/Mouse">SNES Mouse</a> - Mouse - Manually selects a SNES Mouse.</li>
+</ul>
+<h3 id="user-3-device-types">User 3 device types</h3>
+<ul>
+<li>None - Input disabled.</li>
+<li><strong>Auto</strong> - Joypad - Automatically selects an input device according to the data in the game database.</li>
+<li><a href="https://wiki.nesdev.com/w/index.php/Standard_controller">Standard Controller</a> - Joypad - Manually selects a standard game controller.</li>
+</ul>
+<h3 id="user-4-device-types">User 4 device types</h3>
+<ul>
+<li>None - Input disabled.</li>
+<li><strong>Auto</strong> - Joypad - Automatically selects an input device according to the data in the game database.</li>
+<li><a href="https://wiki.nesdev.com/w/index.php/Standard_controller">Standard Controller</a> - Joypad - Manually selects a standard game controller.</li>
+</ul>
+<h3 id="user-5-device-types">User 5 device types</h3>
+<ul>
+<li>None - Input disabled.</li>
+<li><strong>Auto</strong> - Joypad - Automatically selects an input device according to the data in the game database.</li>
+<li><a href="https://wiki.nesdev.com/w/index.php/Arkanoid_controller">Arkanoid</a> - Mouse - Manually selects an Arkanoid controller.</li>
+<li><a href="https://en.wikipedia.org/wiki/Turbo_File_(ASCII)">Ascii Turbo Fire</a> - None - Manually selects an Ascii Turbo Fire device.</li>
+<li>Bandai Hypershot - Pointer - Manually selects a Bandai Hypershot light gun.</li>
+<li>Battle Box - None - Manually selects a Battle Box device.</li>
+<li><a href="https://wiki.nesdev.com/w/index.php/Exciting_Boxing_Punching_Bag">Exciting Boxing</a> - Joypad - Manually selects an Exciting Boxing punching bag.</li>
+<li><a href="https://wiki.nesdev.com/w/index.php/Power_Pad">Family Trainer</a> - Joypad - Manually selects a Family Trainer peripheral.</li>
+<li><a href="https://wiki.nesdev.com/w/index.php/Four_Score">Four Player Adapter</a> - None - Manually selects a Four Player Adapter device.</li>
+<li><a href="https://wiki.nesdev.com/w/index.php/Mouse#Hori_Track">Hori Track</a> - Mouse - Manually selects a Hori Track trackball.</li>
+<li><a href="https://wiki.nesdev.com/w/index.php/Konami_Hyper_Shot">Konami Hypershot</a> - Joypad - Manually selects a Konami Hypershot controller.</li>
+<li><a href="https://wiki.nesdev.com/w/index.php/Coconuts_Pachinko">Pachinko</a> - Joypad - Manually selects a Pachinko controller.</li>
+<li><a href="https://wiki.nesdev.com/w/index.php/Partytap">Partytap</a> - Joypad - Manually selects Partytap controllers.</li>
+</ul>
+<h3 id="other-controllers">Other controllers</h3>
+<ul>
+<li><a href="https://wiki.nesdev.com/w/index.php/Oeka_Kids_tablet">Oeka Kids Tablet</a> - Pointer - The Mesen core will automatically select the Oeka Kids Tablet input device according to the data in the game database. It cannot be manually selected as a device type in RetroArch's controls menu.</li>
+</ul>
+<h3 id="multitap-support">Multitap support</h3>
+<p>Multitap support can be activated in the Mesen core by switching User 5's device type to Four Player Adapter.</p>
+<h3 id="controller-tables">Controller tables</h3>
+<h4 id="joypad">Joypad</h4>
+<p>!!! attention
+The (FDS) Insert Next Disk and (FDS) Switch Disk Side inputs will NOT do anything while the <a href="#core-options">'FDS: Automatically insert disks' core option</a> is enabled.</p>
+<p><img src="../image/controller/nes.png" alt="" /></p>
+<table>
+<thead>
+<tr>
+<th>User Remap descriptors for 'Standard Controller' device type</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>B</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+</tr>
+<tr>
+<td>Select</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+</tr>
+<tr>
+<td>Start</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>Turbo A</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+<tr>
+<td>Turbo B</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+</tr>
+<tr>
+<td>(FDS) Insert Next Disk</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+</tr>
+<tr>
+<td>(FDS) Switch Disk Side</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+</tr>
+<tr>
+<td>(VS) Insert Coin 1</td>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+</tr>
+<tr>
+<td>(VS) Insert Coin 2</td>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+</tr>
+<tr>
+<td>(Famicom) Microphone</td>
+<td><img src="../image/retropad/retro_l3.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>User Remap descriptors for 'SNES Controller' device type</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>Y</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+</tr>
+<tr>
+<td>Select</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+</tr>
+<tr>
+<td>Start</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>A</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+<tr>
+<td>X</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+</tr>
+<tr>
+<td>L</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+</tr>
+<tr>
+<td>R</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>User Remap descriptors for 'Power Pad' and 'Family Trainer' device types</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Powerpad B1</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>Powerpad B3</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+</tr>
+<tr>
+<td>Powerpad B11</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+</tr>
+<tr>
+<td>Powerpad B12</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+</tr>
+<tr>
+<td>Powerpad B9</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>Powerpad B10</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>Powerpad B7</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>Powerpad B8</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>Powerpad B2</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+<tr>
+<td>Powerpad B4</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+</tr>
+<tr>
+<td>Powerpad B5</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+</tr>
+<tr>
+<td>Powerpad B6</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>User Remap descriptors for 'Exciting Boxing' device type</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Left Hook</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>Left Jab</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+</tr>
+<tr>
+<td>Move Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>Move Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>Right Hook</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+<tr>
+<td>Right Jab</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+</tr>
+<tr>
+<td>Body</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+</tr>
+<tr>
+<td>Straight</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>User Remap descriptors for 'Pachinko' device type</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Release Trigger</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+</tr>
+<tr>
+<td>Press Trigger</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>User Remap descriptors for 'Partytap' device type</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Partytap P1</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>Partytap P3</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+</tr>
+<tr>
+<td>Partytap P2</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+<tr>
+<td>Partytap P4</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+</tr>
+<tr>
+<td>Partytap P5</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+</tr>
+<tr>
+<td>Partytap P6</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>RetroPad Inputs</th>
+<th>Konami Hypershot</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td>Jump</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+<td>Run</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td>Turbo Jump</td>
+</tr>
+<tr>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+<td>Turbo Run</td>
+</tr>
+</tbody>
+</table>
+<h4 id="mouse">Mouse</h4>
+<table>
+<thead>
+<tr>
+<th>RetroMouse Inputs</th>
+<th>Arkanoid</th>
+<th>SNES Mouse</th>
+<th>Hori Track</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retromouse/retro_mouse.png" alt="" /> Mouse Cursor</td>
+<td>Arkanoid Movement</td>
+<td>SNES Mouse Cursor</td>
+<td>Hori Track Cursor</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_left.png" alt="" /> Mouse 1</td>
+<td>Arkanoid Fire</td>
+<td>SNES Mouse Left Button</td>
+<td>Hori Track Left Button</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_right.png" alt="" /> Mouse 2</td>
+<td></td>
+<td>SNES Mouse Right Button</td>
+<td>Hori Track Right Button</td>
+</tr>
+</tbody>
+</table>
+<h4 id="pointer">Pointer</h4>
+<table>
+<thead>
+<tr>
+<th>RetroPointer Inputs</th>
+<th>Zapper</th>
+<th>Bandai Hypershot</th>
+<th>Oeka Kids Tablet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retromouse/retro_mouse.png" alt="" /> or <img src="../image/Button_Pack/Gestures/Gesture_Finger_Front.png" alt="" /> Pointer Position</td>
+<td>Zapper Crosshair</td>
+<td>Bandai Hypershot Crosshair</td>
+<td>Oeka Kids Tablet Stylus</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_left.png" alt="" /> Mouse 1</td>
+<td>Zapper Fire</td>
+<td>Bandai Hypershot Fire</td>
+<td>Oeka Kids Tablet Click/Touch</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_right.png" alt="" /> Mouse 2</td>
+<td>Zapper Offscreen</td>
+<td>Bandai Hypershot Offscreen</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="compatibility">Compatibility</h2>
+<ul>
+<li><a href="https://github.com/SourMesen/Mesen/blob/master/Core/MapperFactory.cpp#L275">Mesen Mapper Support List</a></li>
+</ul>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://www.mesen.ca/">Official Mesen Website</a></li>
+<li><a href="https://www.mesen.ca/docs/">Official Mesen Documentation</a></li>
+<li><a href="https://www.mesen.ca/#Downloads">Official Mesen Downloads</a></li>
+<li><a href="https://www.mesen.ca/#Changelog">Official Mesen Changelog</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/mesen_libretro.info">Libretro Mesen Core info file</a></li>
+<li><a href="https://github.com/SourMesen/Mesen">Official Mesen Github Repository</a></li>
+<li><a href="https://github.com/SourMesen/Mesen/issues">Report Libretro Mesen Core Issues Here</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLRbgg4gk_0IdbTgE4bID9L5s5f323IewO">Gameplay Videos</a></li>
+</ul>
+<h3 id="see-also">See also</h3>
+<h4 id="nintendo-family-computer-disk-system">Nintendo - Family Computer Disk System</h4>
+<ul>
+<li><a href="fceumm.md">Nintendo - NES / Famicom (FCEUmm)</a></li>
+<li><a href="nestopia_ue.md">Nintendo - NES / Famicom (Nestopia UE)</a></li>
+</ul>
+<h4 id="nintendo-nintendo-entertainment-system">Nintendo - Nintendo Entertainment System</h4>
+<ul>
+<li><a href="bnes.md">Nintendo - NES / Famicom (bnes)</a></li>
+<li><a href="emux_nes.md">Nintendo - NES / Famicom (Emux NES)</a></li>
+<li><a href="fceumm.md">Nintendo - NES / Famicom (FCEUmm)</a></li>
+<li><a href="nestopia_ue.md">Nintendo - NES / Famicom (Nestopia UE)</a></li>
+<li><a href="quicknes.md">Nintendo - NES / Famicom (QuickNES)</a></li>
+</ul>

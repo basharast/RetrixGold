@@ -1,0 +1,334 @@
+<h1 id="nec-pc-fx-beetle-pc-fx">NEC - PC-FX (Beetle PC-FX)</h1>
+<h2 id="background">Background</h2>
+<p>Beetle PC-FX is a port of Mednafen PC-FX video game system emulator for the NEC PC-FX.</p>
+<h3 id="authorlicense">Author/License</h3>
+<p>The Beetle PC-FX core has been authored by</p>
+<ul>
+<li><a href="https://mednafen.github.io/">Mednafen Team</a></li>
+</ul>
+<p>The Beetle PC-FX core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/beetle-pcfx-libretro/blob/master/COPYING">GPLv2</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the Beetle PC-FX core have the following file extensions:</p>
+<ul>
+<li>.cue</li>
+<li>.ccd</li>
+<li>.toc</li>
+<li>.chd</li>
+</ul>
+<h2 id="databases">Databases</h2>
+<p>RetroArch database(s) that are associated with the Beetle PC-FX core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/NEC%20-%20PC-FX.rdb">NEC - PC-FX</a></li>
+</ul>
+<h2 id="bios">BIOS</h2>
+<p>Required or optional firmware files go in the frontend's system directory.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">pcfx.rom</td>
+<td style="text-align: center;">PC-FX BIOS v1.00 - 2 Sep 1994 - Required</td>
+<td style="text-align: center;">08e36edbea28a017f79f8d4f7ff9b6d7</td>
+</tr>
+</tbody>
+</table>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the Beetle PC-FX core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The Beetle PC-FX core's internal core name is 'Beetle PC-FX'</p>
+<p>The Beetle PC-FX core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Save directory</strong></p>
+<ul>
+<li>'content-name'.srm (Save)</li>
+</ul>
+<p><strong>Frontend's State directory</strong></p>
+<ul>
+<li>'content-name-.state# (State)</li>
+</ul>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The Beetle PC-FX core's core provided FPS is 60</li>
+<li>The Beetle PC-FX core's core provided sample rate is 44100 Hz</li>
+<li>The Beetle PC-FX core's core provided aspect ratio is 4/3</li>
+</ul>
+<h3 id="loading-pc-fx-content">Loading PC-FX content</h3>
+<p>Beetle PC-FX needs a cue-sheet that points to an image file. A cue sheet, or cue file, is a metadata file which describes how the tracks of a CD or DVD are laid out.</p>
+<p>If you have e.g. <code>foo.bin</code>, you should create a text file and save it as <code>foo.cue</code>. If you're playing a single-track Saturn game, then the cue file contents should look like this:</p>
+<p><code>foobin.cue</code></p>
+<pre><code> FILE &quot;foo.bin&quot; BINARY
+  TRACK 01 MODE1/2352
+   INDEX 01 00:00:00
+</code></pre>
+<p>After that, you can load the <code>foo.cue</code> file in RetroArch with the Beetle PC-FX core.</p>
+<p>!!! attention
+Certain PC-FX games are multi-track, so their .cue files might be more complicated.</p>
+<h2 id="core-options">Core options</h2>
+<p>The Beetle PC-FX core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>High Dotclock Width (Restart)</strong> [pcfx_high_dotclock_width] (<strong>1024</strong>/256/341)</p>
+<p>Emulated width for 7.16MHz dot-clock mode. Lower values are faster, but will cause some degree of pixel distortion.</p>
+</li>
+<li><p><strong>Suppress Channel Reset Clicks (Restart)</strong> [pcfx_suppress_channel_reset_clicks] (<strong>enabled</strong>/disabled)</p>
+<p>Hack to suppress clicks caused by forced channel resets.</p>
+</li>
+<li><p><strong>Emulate Buggy Codec (Restart)</strong> [pcfx_emulate_buggy_codec] (<strong>disabled</strong>/enabled)</p>
+<p>Hack that emulates the codec a buggy ADPCM encoder used for some games' ADPCM.</p>
+</li>
+<li><p><strong>Sound Quality (Restart)</strong> [pcfx_resamp_quality] (<strong>3</strong>/4/5/0/1/2)</p>
+<p>Higher values correspond to better SNR and better preservation of higher frequencies(&quot;brightness&quot;), at the cost of increased computational complexity and a negligible increase in latency.</p>
+</li>
+<li><p><strong>Chroma channel bilinear interpolation  (Restart)</strong> [pcfx_rainbow_chromaip] (<strong>disabled</strong>/enabled)</p>
+<p>Enable bilinear interpolation on the chroma channel of RAINBOW YUV output. Enabling it may cause graphical glitches with some games.</p>
+</li>
+<li><p><strong>No Sprite Limit (Restart)</strong> [pcfx_nospritelimit] (<strong>disabled</strong>/enabled)</p>
+<p>Remove 16-sprites-per-scanline hardware limit.</p>
+</li>
+<li><p><strong>Initial scanline</strong> [pcfx_initial_scanline] ((0 to 40 in increments of 1. <strong>4 is default</strong>.)</p>
+<p>Adjust first display scanline.</p>
+</li>
+<li><p><strong>Last scanline</strong> [pcfx_last_scanline] (208 to 238 in increments of 1. <strong>235 is default</strong>.)</p>
+<p>Adjust last display scanline.</p>
+</li>
+<li><p><strong>Mouse Sensitivity</strong> [pcfx_mouse_sensitivity] (1.00 to 5.00 in increments of 0.25. <strong>1.25 is default</strong>.)</p>
+<p>Configure the sensitivity of the 'PCFX Mouse' device type,</p>
+</li>
+</ul>
+<h2 id="controllers">Controllers</h2>
+<p>The Beetle PC-FX core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<h3 id="user-1-2-device-types">User 1 - 2 device types</h3>
+<ul>
+<li>None - Doesn't disable input.</li>
+<li><strong>PCFX Joypad</strong> - Joypad</li>
+<li>PCFX Mouse - Mouse</li>
+</ul>
+<h3 id="controller-tables">Controller tables</h3>
+<h4 id="joypad">Joypad</h4>
+<table>
+<thead>
+<tr>
+<th>User 1 - 6 Remap descriptors</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>II</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>IV</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+</tr>
+<tr>
+<td>Select</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+</tr>
+<tr>
+<td>Run</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>I</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+<tr>
+<td>III</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+</tr>
+<tr>
+<td>V</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+</tr>
+<tr>
+<td>VI</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+</tr>
+<tr>
+<td>MODE 1 (Switch)</td>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+</tr>
+<tr>
+<td>MODE 2 (Switch)</td>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<h4 id="mouse">Mouse</h4>
+<table>
+<thead>
+<tr>
+<th>RetroMouse Inputs</th>
+<th>PCFX Mouse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/retromouse/retro_mouse.png" alt="" /> Mouse Cursor</td>
+<td>PCFX Mouse Cursor</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_left.png" alt="" /> Mouse 1</td>
+<td>PCFX Mouse Left Button</td>
+</tr>
+<tr>
+<td><img src="../image/retromouse/retro_right.png" alt="" /> Mouse 2</td>
+<td>PCFX Mouse Right Button</td>
+</tr>
+</tbody>
+</table>
+<h2 id="compatibility">Compatibility</h2>
+<table>
+<thead>
+<tr>
+<th>Game</th>
+<th>Issue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://mednafen.github.io/">Official Mednafen Website</a></li>
+<li><a href="https://mednafen.github.io/releases/">Official Mednafen Downloads</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/mednafen_pcfx_libretro.info">Libretro Beetle PC-FX Core info file</a></li>
+<li><a href="https://github.com/libretro/beetle-pcfx-libretro">Libretro Beetle PC-FX Github Repository</a></li>
+<li><a href="https://github.com/libretro/beetle-pcfx-libretro/issues">Report Libretro Beetle PC-FX Core Issues Here</a></li>
+</ul>

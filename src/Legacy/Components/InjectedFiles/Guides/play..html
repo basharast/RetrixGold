@@ -1,0 +1,360 @@
+<h1 id="sony-playstation-2-play">Sony - PlayStation 2 (Play!)</h1>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/smbhFWfkgMI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2 id="background">Background</h2>
+<p>A PS2 emulator for Android, iOS, Windows, MacOS and Linux, written in C++.</p>
+<p>The Play! core supports OpenGL rendering.</p>
+<p>The Play! core has been authored by</p>
+<ul>
+<li>Jean-Philip Desjardins</li>
+</ul>
+<p>The Play! core is licensed under</p>
+<ul>
+<li><a href="https://github.com/jpd002/Play-/blob/master/License.txt">MIT</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>OpenGL 3.0 or Open GL ES 3.2 or higher for the OpenGL renderer.</li>
+</ul>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the Play! core have the following file extensions:</p>
+<ul>
+<li>.chd</li>
+<li>.cso</li>
+<li>.cue</li>
+<li>.elf</li>
+<li>.iso</li>
+<li>.isz</li>
+</ul>
+<p>RetroArch database(s) that are associated with the Play! core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Sony%20-%20PlayStation%202.rdb">Sony - PlayStation 2</a></li>
+</ul>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the Play! core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h2 id="core-options">Core options</h2>
+<p>The Play! core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Resolution Multiplier</strong> [play_res_multi] (<strong>1x</strong>|2x|4x|8x)</p>
+<p>Controls the internal resolution of the graphics, significant performance impact if your GPU is not powerful enough for certain resolutions.</p>
+</li>
+<li><p><strong>Presentation Mode</strong> [play_presentation_mode] (<strong>Fit Screen</strong>|Fill Screen|Original Size)</p>
+<p>Change layout to Fit Screen, Fill Screen or Original Size.</p>
+</li>
+<li><p><strong>Force Bilinear Filtering</strong> [play_bilinear_filtering] (enabled|<strong>disabled</strong>)</p>
+<p>Enable bilinear filtering.</p>
+</li>
+</ul>
+<h2 id="joypad">Joypad</h2>
+<p><img src="../image/controller/psx.png" alt="" /></p>
+<table>
+<thead>
+<tr>
+<th>User 1 - 8 input descriptors</th>
+<th>RetroPad Inputs</th>
+<th>PlayStation Controller Inputs</th>
+<th>DualShock Inputs</th>
+<th>Analog Controller Inputs</th>
+<th>Analog Joystick Inputs</th>
+<th>neGcon Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cross</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Cross.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Cross.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Cross.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Cross.png" alt="" /></td>
+<td>Analog button I</td>
+</tr>
+<tr>
+<td>Square</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Square.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Square.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Square.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Square.png" alt="" /></td>
+<td>Analog button II</td>
+</tr>
+<tr>
+<td>Select</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Select.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Select.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Select.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Select.png" alt="" /></td>
+<td></td>
+</tr>
+<tr>
+<td>Start</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Start.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Start.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Start.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Start.png" alt="" /></td>
+<td>Start</td>
+</tr>
+<tr>
+<td>D-Pad Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Dpad_Up.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Dpad_Up.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Dpad_Up.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Dpad_Up.png" alt="" /></td>
+<td>D-Pad Up</td>
+</tr>
+<tr>
+<td>D-Pad Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Dpad_Down.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Dpad_Down.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Dpad_Down.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Dpad_Down.png" alt="" /></td>
+<td>D-Pad Down</td>
+</tr>
+<tr>
+<td>D-Pad Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Dpad_Left.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Dpad_Left.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Dpad_Left.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Dpad_Left.png" alt="" /></td>
+<td>D-Pad Left</td>
+</tr>
+<tr>
+<td>D-Pad Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Dpad_Right.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Dpad_Right.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Dpad_Right.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Dpad_Right.png" alt="" /></td>
+<td>D-Pad Right</td>
+</tr>
+<tr>
+<td>Circle</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Circle.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Circle.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Circle.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Circle.png" alt="" /></td>
+<td>A</td>
+</tr>
+<tr>
+<td>Triangle</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Triangle.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Triangle.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Triangle.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Triangle.png" alt="" /></td>
+<td>B</td>
+</tr>
+<tr>
+<td>L1</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_L1.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_L1.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_L1.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_L1.png" alt="" /></td>
+<td>Left shoulder button (analog)</td>
+</tr>
+<tr>
+<td>R1</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_R1.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_R1.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_R1.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_R1.png" alt="" /></td>
+<td>Right shoulder button (digital)</td>
+</tr>
+<tr>
+<td>L2</td>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_L2.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_L2.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_L2.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_L2.png" alt="" /></td>
+<td>Analog button II</td>
+</tr>
+<tr>
+<td>R2</td>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_R2.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_R2.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_R2.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_R2.png" alt="" /></td>
+<td>Analog button I</td>
+</tr>
+<tr>
+<td>L3</td>
+<td><img src="../image/retropad/retro_l3.png" alt="" /></td>
+<td></td>
+<td><img src="../image/Button_Pack/PS3/PS3_L3.png" alt="" /></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>R3</td>
+<td><img src="../image/retropad/retro_r3.png" alt="" /></td>
+<td></td>
+<td><img src="../image/Button_Pack/PS3/PS3_R3.png" alt="" /></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Left Analog X</td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> X</td>
+<td></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Left_Stick.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Left_Stick.png" alt="" /></td>
+<td>Left Joystick X</td>
+<td>Twist</td>
+</tr>
+<tr>
+<td>Left Analog Y</td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> Y</td>
+<td></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Left_Stick.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Left_Stick.png" alt="" /></td>
+<td>Left Joystick Y</td>
+<td></td>
+</tr>
+<tr>
+<td>Right Analog X</td>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /> X</td>
+<td></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Right_Stick.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Right_Stick.png" alt="" /></td>
+<td>Right Joystick X</td>
+<td></td>
+</tr>
+<tr>
+<td>Right Analog Y</td>
+<td><img src="../image/retropad/retro_right_stick.png" alt="" /> Y</td>
+<td></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Right_Stick.png" alt="" /></td>
+<td><img src="../image/Button_Pack/PS3/PS3_Right_Stick.png" alt="" /></td>
+<td>Right Joystick Y</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="compatibility">Compatibility</h2>
+<p>Play! core is still experimental but promising. Some games are already <a href="https://github.com/jpd002/Play-Compatibility/issues?q=is%3Aopen+is%3Aissue+label%3Astate-playable+sort%3Aupdated-desc">playable</a>.</p>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://purei.org">Official Play! Website</a></li>
+<li><a href="https://github.com/jpd002/Play-">Official Play! Github Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/play_libretro.info">Libretro Play! Core info file</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLRbgg4gk_0If5ArC48Kw2vSC0NmTOdivu">Gameplay Videos</a></li>
+</ul>
+<h2 id="libretro-ps2-cores">Libretro PS2 cores</h2>
+<ul>
+<li><a href="pcsx2.md">PlayStation 2 (PCSX2)</a></li>
+</ul>

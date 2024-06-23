@@ -1,0 +1,366 @@
+<h1 id="sega-saturnst-v-kronos">Sega - Saturn/ST-V (Kronos)</h1>
+<h2 id="background">Background</h2>
+<p>Kronos is a fork of <a href="yabause.md">Yabause</a>. It requires OpenGL 4.2, with higher versions being recommended. It emulates both the Sega Saturn and its arcade board version, the Sega Titan Video (ST-V).</p>
+<p>It's a fairly active project and the only Sega Saturn libretro core being officially supported by upstream.</p>
+<h3 id="authorlicense">Author/License</h3>
+<p>The Kronos core has been authored by</p>
+<ul>
+<li>Guillaume Duhammel</li>
+<li>Theo Berkau</li>
+<li>Anders Montonen</li>
+<li>devmiyax</li>
+<li>François Caron</li>
+</ul>
+<p>The Kronos core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/yabause/blob/kronos/yabause/COPYING">GPLv2</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the Kronos core have the following file extensions:</p>
+<ul>
+<li>.cue</li>
+<li>.iso</li>
+<li>.ccd</li>
+<li>.mds</li>
+<li>.chd</li>
+<li>.zip</li>
+</ul>
+<h2 id="databases">Databases</h2>
+<p>RetroArch database(s) that are associated with the Kronos core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Sega%20-%20Saturn.rdb">Sega - Saturn</a></li>
+</ul>
+<h2 id="bios">BIOS</h2>
+<p>Required or optional firmware files go in the frontend's system directory.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">kronos/saturn_bios.bin</td>
+<td style="text-align: center;">Saturn BIOS - Required</td>
+<td style="text-align: center;">af5828fdff51384f99b3c4926be27762</td>
+</tr>
+<tr>
+<td style="text-align: center;">kronos/stvbios.zip</td>
+<td style="text-align: center;">ST-V BIOS - Optional</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">mpr-18811-mx.ic1</td>
+<td style="text-align: center;">The King of Fighters '95 ROM Cartridge - Required for this game</td>
+<td style="text-align: center;">255113ba943c92a54facd25a10fd780c</td>
+</tr>
+<tr>
+<td style="text-align: center;">mpr-19367-mx.ic1</td>
+<td style="text-align: center;">Ultraman: Hikari no Kyojin Densetsu ROM Cartridge - Required for this game</td>
+<td style="text-align: center;">1cd19988d1d72a3e7caa0b73234c96b4</td>
+</tr>
+</tbody>
+</table>
+<p>This md5sum for the Saturn BIOS is just a hint, any valid saturn bios should work.</p>
+<p>Kronos will try searching for locations commonly used by other Sega Saturn libretro cores if it can't find a Sega Saturn bios at the expected path.</p>
+<p>Note that unlike yabause, Kronos won't automatically switch to HLE bios if a bios file is not present, because the Kronos project doesn't recommend using this HLE bios and actually won't provide support for any issue related to its usage.
+This is the reason for the file to be required.</p>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the Kronos core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="savefiles">Savefiles</h3>
+<p>Their location depends on the content running and the core options.
+By default they'll be stored in a <code>kronos</code> subdirectory of your savefiles directory, which will be split further between <code>saturn</code> and <code>stv</code> directories.
+However Kronos also has a core option named &quot;Share saves with beetle&quot;, which will try to match Sega Saturn savefiles with Beetle-saturn.</p>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The Kronos core's core provided FPS is 60 for NTSC games and 50 for PAL games</li>
+<li>The Kronos core's core provided sample rate is 44100 Hz</li>
+<li>The Kronos core's core provided aspect ratio is 4/3</li>
+<li>The Kronos core will ask the frontend to rotate display for (ST-V) vertical games</li>
+</ul>
+<h2 id="loading-sega-saturn-content">Loading Sega Saturn content</h2>
+<ul>
+<li>Kronos is not compatible with cue sheets containing references to audio files with wav/mp3/ogg/flac/ape extensions.</li>
+<li>Zip files containing cue+bin files can be loaded directly, however the dump will be loaded in RAM (meaning it will use around 700MB of RAM depending on the size of the dump).</li>
+<li>It is recommended to use <a href="http://redump.org/">Redump</a> releases because this is the most thoroughly tested format.</li>
+</ul>
+<h2 id="core-options">Core options</h2>
+<p>The Kronos core has the following options that can be tweaked from the core options menu. The default settings are bolded.</p>
+<ul>
+<li><p><strong>Force HLE BIOS</strong> [kronos_force_hle_bios] (<strong>disabled</strong>|enabled)</p>
+<p>HLE BIOS will be forced. Use at your own risk, this is mainly for debugging purpose and is neither recommended nor supported. Requires a restart.</p>
+</li>
+<li><p><strong>Video format</strong> [kronos_videoformattype] (<strong>auto</strong>|NTSC|PAL)</p>
+<p>Force video format to PAL or NTSC, default is auto which will try to detect from loaded content.</p>
+</li>
+<li><p><strong>Frameskip</strong> [kronos_skipframe] (<strong>0</strong>|1|2|3|4|5)</p>
+<p>It will skip rendering at a fixed rate, it can improve playability dramatically on lower end devices</p>
+</li>
+<li><p><strong>SH-2 cpu core</strong> [kronos_sh2coretype] (<strong>kronos</strong>|old)</p>
+<p>Use Kronos's new SH-2 interpreter or older SH-2 interpreter inherited from yabause. Change at your own risk, this is mainly for debugging purpose and is neither recommended nor supported. Requires a restart.</p>
+</li>
+<li><p><strong>Video renderer</strong> [kronos_videocoretype] (<strong>opengl</strong>|opengl_cs)</p>
+<p>OpenGL CS is the new and more accurate video renderer, however it has higher requirements which is why it's not the default (yet). More details about the differences <a href="https://www.libretro.com/index.php/kronos-2-1-2-progress-report-sega-saturn-emulator/">here</a>. Requires a restart.</p>
+</li>
+<li><p><strong>Share saves with beetle</strong> [kronos_use_beetle_saves] (<strong>disabled</strong>|enabled)</p>
+<p>Details above. Requires a restart.</p>
+</li>
+<li><p><strong>Addon Cartridge</strong> [kronos_addon_cartridge] (<strong>none</strong> | 1M_extended_ram | 4M_extended_ram | 16M_extended_ram | 512K_backup_ram | 1M_backup_ram | 2M_backup_ram | 4M_backup_ram)</p>
+<p>This is the default cartridge you want Kronos to use. Note that your choice will be ignored if Kronos detects that the game requires a specific cartridge. Requires a restart.</p>
+</li>
+<li><p><strong>6Player Adaptor on Port 1</strong> [kronos_multitap_port1] (<strong>disabled</strong>|enabled)</p>
+<p>Enable multitap in port 1.</p>
+</li>
+<li><p><strong>6Player Adaptor on Port 2</strong> [kronos_multitap_port2] (<strong>disabled</strong>|enabled)</p>
+<p>Enable multitap in port 2.</p>
+</li>
+<li><p><strong>Resolution</strong> [kronos_resolution_mode] (<strong>original</strong>|480p|720p|1080p|4k|8k)</p>
+<p>Modify rendering resolution. Requires a restart.</p>
+</li>
+<li><p><strong>Output to original resolution</strong> [kronos_force_downsampling] (<strong>disabled</strong>|enabled)</p>
+<p>Useful when using resolution higher than your screen's, will also replace meshed transparency by real transparency to avoid moiré effect.</p>
+</li>
+<li><p><strong>Polygon Mode</strong> [kronos_polygon_mode] (<strong>cpu_tesselation</strong>|gpu_tesselation|perspective_correction)</p>
+<p>Select method for applying textures on polygons, OpenGL CS renderer will ignore this and use its own method.</p>
+</li>
+<li><p><strong>Improved mesh</strong> [kronos_meshmode] (<strong>disabled</strong>|enabled)</p>
+<p>Replace meshed transparency by real transparency.</p>
+</li>
+<li><p><strong>Improved banding</strong> [kronos_bandingmode] (<strong>disabled</strong>|enabled)</p>
+<p>Apply gouraud shading instead of flat shading, requires OpenGL CS renderer.</p>
+</li>
+<li><p><strong>RBG Compute shaders</strong> [kronos_use_cs] (<strong>disabled</strong>|enabled)</p>
+<p>Use compute shaders for upscaling RBG, requires OpenGL 4.3+.</p>
+</li>
+<li><p><strong>Wireframe mode</strong> [kronos_wireframe_mode] (<strong>disabled</strong>|enabled)</p>
+<p>Wireframe mode, requires OpenGL CS renderer.</p>
+</li>
+<li><p><strong>ST-V Service/Test Buttons</strong> [kronos_service_enabled] (<strong>disabled</strong>|enabled)</p>
+<p>Enable Service/Test for ST-V, to enter cabinet settings. By default they aren't mapped so that you won't press them by mistake.</p>
+</li>
+<li><p><strong>ST-V Favorite Region</strong> [kronos_stv_favorite_region] (<strong>EU</strong>|US|JP|TW)</p>
+<p>Choose your favorite bios region for ST-V. It will be ignored if not compatible with your game.</p>
+</li>
+<li><p><strong>Bios Language</strong> [kronos_language_id] (<strong>English</strong>|German|French|Spanish|Italian|Japanese)</p>
+<p>Choose your favorite language, will translate some games. Requires a restart.</p>
+</li>
+</ul>
+<h2 id="controllers">Controllers</h2>
+<p>The Kronos core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<h3 id="user-device-types">User device types</h3>
+<ul>
+<li>None</li>
+<li><strong>Saturn Pad</strong></li>
+<li>Saturn 3D Pad</li>
+<li>Saturn Wheel</li>
+<li>Saturn Mouse</li>
+</ul>
+<h3 id="multitap-support">Multitap support</h3>
+<p>Must be enabled in core options.</p>
+<h3 id="controller-tables">Controller tables</h3>
+<h4 id="joypad">Joypad</h4>
+<p><img src="../image/controller/saturn.png" alt="" /></p>
+<table>
+<thead>
+<tr>
+<th>User 1 - 12 Remap descriptors</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>X</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+</tr>
+<tr>
+<td>Start</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>B</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+<tr>
+<td>Y</td>
+<td><img src="../image/retropad/retro_x.png" alt="" /></td>
+</tr>
+<tr>
+<td>C</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+</tr>
+<tr>
+<td>Z</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+</tr>
+<tr>
+<td>L</td>
+<td><img src="../image/retropad/retro_l2.png" alt="" /></td>
+</tr>
+<tr>
+<td>R</td>
+<td><img src="../image/retropad/retro_r2.png" alt="" /></td>
+</tr>
+<tr>
+<td>Analog X</td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> X</td>
+</tr>
+<tr>
+<td>Analog Y</td>
+<td><img src="../image/retropad/retro_left_stick.png" alt="" /> Y</td>
+</tr>
+</tbody>
+</table>
+<h2 id="compatibility">Compatibility</h2>
+<ul>
+<li><a href="http://tradu-france.com/tfwiki-1.28.2/index.php?title=Compatibility_list_of_Kronos">Official Kronos Compatibility List</a></li>
+</ul>
+<h2 id="known-issues">Known issues</h2>
+<ul>
+<li>Savestates work but can sometime be quite unstable</li>
+<li>Enabling both multitaps at the same time causes some kind of &quot;autofire&quot; bug</li>
+<li>Switching between windowed and fullscreen will cause issues, you need to start the core in your prefered mode and stick with it</li>
+<li>It seems there are compatibility issues between RetroArch's &quot;threaded video&quot; setting and this core.</li>
+</ul>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://github.com/FCare/Kronos">Official Kronos Repository</a></li>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/kronos_libretro.info">Libretro Kronos Core info file</a></li>
+<li><a href="https://github.com/libretro/yabause/tree/kronos">Libretro Kronos Github Repository</a></li>
+<li><a href="https://github.com/libretro/yabause/issues">Report Issues Here</a> or <a href="https://github.com/FCare/Kronos/issues">Here</a></li>
+</ul>
+<h2 id="saturn">Saturn</h2>
+<ul>
+<li><a href="beetle_saturn.md">Sega - Saturn (Beetle Saturn)</a></li>
+<li><a href="kronos.md">Sega - Saturn/ST-V (Kronos)</a></li>
+<li><a href="yabause.md">Sega - Saturn (Yabause)</a></li>
+<li><a href="yabasanshiro.md">Sega - Saturn (YabaSanshiro)</a></li>
+</ul>

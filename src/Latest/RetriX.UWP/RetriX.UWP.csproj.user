@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <UapAppxPackageBuildMode>SideloadOnly</UapAppxPackageBuildMode>
+    <AppxShowAllApps>True</AppxShowAllApps>
+    <AppxBuildConfigurationSelection>x64</AppxBuildConfigurationSelection>
+    <PackageOptionalProjectsInIdeBuilds>False</PackageOptionalProjectsInIdeBuilds>
+    <Source>C:\Users\Bashar Astifan\Documents\GitHub\RetrixGold\assets\logo.png</Source>
+    <SmallTileSource>D:\Logo Pack\SmallTile.scale-400.png</SmallTileSource>
+    <MediumTileSource>D:\Projects\Retrix\Branding\Logo\Logo Pack\RetrixLogo Large.png</MediumTileSource>
+    <WideTileSource>D:\Projects\Retrix\Branding\Logo\Logo Pack\RetrixLogo Large.png</WideTileSource>
+    <LargeTileSource>D:\Projects\Retrix\Branding\Logo\Logo Pack\RetrixLogo Large.png</LargeTileSource>
+    <AppIconSource>D:\Projects\Retrix\Branding\Logo\Logo Pack\RetrixLogo.png</AppIconSource>
+    <SplashScreenSource>D:\Projects\Retrix\Branding\Logo\Logo Pack\Splash.png</SplashScreenSource>
+    <BadgeLogoSource>D:\New Icons\Logo Pack\RetrixLogo Badget.png</BadgeLogoSource>
+    <PackageLogoSource>D:\Projects\Retrix\Branding\Logo\Logo Pack\Package.scale-400-Light.png</PackageLogoSource>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DeviceId>30f105c9-681e-420b-a277-7c086ead8a4e</DeviceId>
+    <UseEmulator>true</UseEmulator>
+    <RemoteDebugMachine>192.168.137.128</RemoteDebugMachine>
+    <AuthenticationMode>Windows</AuthenticationMode>
+    <RemoteDebugEnabled>false</RemoteDebugEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <DeviceId>30f105c9-681e-420b-a277-7c086ead8a4e</DeviceId>
+    <UseEmulator>true</UseEmulator>
+    <RemoteDebugMachine>127.0.0.1:4024 (WinDev2009Eval)</RemoteDebugMachine>
+    <RemoteDebugEnabled>false</RemoteDebugEnabled>
+    <CreateCleanLayout>true</CreateCleanLayout>
+    <DeployOptionalPackages>false</DeployOptionalPackages>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <UseSimulator>false</UseSimulator>
+    <DeviceId>30f105c9-681e-420b-a277-7c086ead8a4e</DeviceId>
+    <UseEmulator>false</UseEmulator>
+    <RemoteDebugMachine>172.16.80.3</RemoteDebugMachine>
+    <AuthenticationMode>Universal</AuthenticationMode>
+    <RemoteDebugEnabled>false</RemoteDebugEnabled>
+    <CreateCleanLayout>true</CreateCleanLayout>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DeviceId>30f105c9-681e-420b-a277-7c086ead8a4e</DeviceId>
+    <UseEmulator>false</UseEmulator>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <DeviceId>30f105c9-681e-420b-a277-7c086ead8a4e</DeviceId>
+    <UseEmulator>false</UseEmulator>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Store|ARM'">
+    <DeviceId>30f105c9-681e-420b-a277-7c086ead8a4e</DeviceId>
+    <UseEmulator>true</UseEmulator>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM64'">
+    <RemoteDebugMachine>192.168.137.128</RemoteDebugMachine>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM64'">
+    <RemoteDebugMachine>127.0.0.1:4024 (WinDev2009Eval)</RemoteDebugMachine>
+  </PropertyGroup>
+</Project>

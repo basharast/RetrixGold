@@ -1,0 +1,295 @@
+<h1 id="nintendo-game-boy-advance-vba-next">Nintendo - Game Boy Advance (VBA Next)</h1>
+<h2 id="background">Background</h2>
+<p>VBA Next is a Game Boy Advance emulator based on VBA-M 2011 with backported patches for performance and compatibility improvements.</p>
+<h3 id="authorlicense">Author/License</h3>
+<p>The VBA Next core has been authored by</p>
+<ul>
+<li>Forgotten</li>
+<li>VBA-M Team</li>
+<li>Squarepusher</li>
+</ul>
+<p>The VBA Next core is licensed under</p>
+<ul>
+<li><a href="https://github.com/libretro/vba-next/blob/master/LICENSE">GPLv2</a></li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the VBA Next core have the following file extensions:</p>
+<ul>
+<li>.gba</li>
+</ul>
+<h2 id="databases">Databases</h2>
+<p>RetroArch database(s) that are associated with the VBA Next core:</p>
+<ul>
+<li><a href="https://github.com/libretro/libretro-database/blob/master/rdb/Nintendo%20-%20Game%20Boy%20Advance.rdb">Nintendo - Game Boy Advance</a></li>
+</ul>
+<h2 id="bios">BIOS</h2>
+<p>Required or optional firmware files go in the frontend's system directory.</p>
+<p>!!! warning
+In order for the Game Boy Advance BIOS to be used, the 'Use bios if available' core option must be set to On.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">gba_bios.bin</td>
+<td style="text-align: center;">Game Boy Advance Image - Optional</td>
+<td style="text-align: center;">a860e8c0b6d573d191e4ec7db1b1e4f6</td>
+</tr>
+</tbody>
+</table>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the VBA Next core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The VBA Next core's directory name is 'VBA Next'</p>
+<p>The VBA Next core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Save directory</strong></p>
+<ul>
+<li>'content-name'.srm (Cartridge battery save)</li>
+</ul>
+<p><strong>Frontend's State directory</strong></p>
+<ul>
+<li>'content-name'.state# (State)</li>
+</ul>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The VBA Next core's core provided FPS is 59.727</li>
+<li>The VBA Next core's core provided sample rate is 32000 Hz</li>
+<li>The VBA Next core's core provided aspect ratio is 3/2</li>
+</ul>
+<h2 id="core-options">Core options</h2>
+<p>The VBA Next core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<p>Settings with (Restart) means that core has to be closed for the new setting to be applied on next launch.</p>
+<ul>
+<li><p><strong>Use bios if available (Restart)</strong> [vbanext_bios] (Off/<strong>On</strong>)</p>
+<p>Uses BIOS present in RetroArch's system directory. Look at the <a href="#bios">BIOS section</a> for more information.</p>
+</li>
+</ul>
+<p>??? note &quot;Use bios if available - On&quot;
+<img src="../image/core/vba_next/bios.png" alt="" /></p>
+<h2 id="controllers">Controllers</h2>
+<p>The VBA Next core supports the following device type(s) in the controls menu, bolded device types are the default for the specified user(s):</p>
+<h3 id="user-1-device-types">User 1 device types</h3>
+<ul>
+<li>None - Doesn't disable input</li>
+<li><strong>RetroPad</strong> - Joypad</li>
+<li>RetroPad w/Analog - Joypad - There's no reason to switch to this.</li>
+</ul>
+<h3 id="controller-tables">Controller tables</h3>
+<h4 id="joypad">Joypad</h4>
+<p><img src="../image/controller/gba.png" alt="" /></p>
+<table>
+<thead>
+<tr>
+<th>User 1 Remap descriptors</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>Select</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+</tr>
+<tr>
+<td>Start</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Up</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Down</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Left</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>D-Pad Right</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>A</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+<tr>
+<td>L</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+</tr>
+<tr>
+<td>R</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<h2 id="compatibility">Compatibility</h2>
+<table>
+<thead>
+<tr>
+<th>Game</th>
+<th>Issue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Boktai Trilogy</td>
+<td>The solar sensor is not emulated.</td>
+</tr>
+<tr>
+<td>Croket! 2 – Yami no Bank to Banqueen</td>
+<td>Heavy slowdown when approaching the snowman in the beginning.</td>
+</tr>
+<tr>
+<td>Koro Koro Puzzle Happy Panechu!</td>
+<td>The tilt sensor is not emulated.</td>
+</tr>
+<tr>
+<td>Super Mario Advance 2: Super Mario World (Europe)</td>
+<td>The program crashes during the final fight, when Bowser approaches (zoom mode 7)</td>
+</tr>
+<tr>
+<td>WarioWare: Twisted!</td>
+<td>The tilt sensor is not emulated.</td>
+</tr>
+<tr>
+<td>Yoshi’s Universal Gravitation</td>
+<td>The tilt sensor is not emulated.</td>
+</tr>
+</tbody>
+</table>
+<p>??? note &quot;1&quot;
+<img src="../image/core/vba_next/ssx.png" alt="" /></p>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://github.com/libretro/libretro-super/blob/master/dist/info/vba_next_libretro.info">Libretro VBA Next Core info file</a></li>
+<li><a href="https://github.com/libretro/vba-next">Libretro VBA Next Github Repository</a></li>
+<li><a href="https://github.com/libretro/vba-next/issues">Report Libretro VBA Next Core Issues Here</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLRbgg4gk_0IdpkFrAP_ZvZFlLTXuXU7mM">Gameplay Videos</a></li>
+</ul>
+<h3 id="see-also">See also</h3>
+<h4 id="nintendo-game-boy-advance">Nintendo - Game Boy Advance</h4>
+<ul>
+<li><a href="beetle_gba.md">Nintendo - Game Boy Advance (Beetle GBA)</a></li>
+<li><a href="gpsp.md">Nintendo - Game Boy Advance (gpSP)</a></li>
+<li><a href="meteor.md">Nintendo - Game Boy Advance (Meteor)</a></li>
+<li><a href="mgba.md">Nintendo - Game Boy Advance (mGBA)</a></li>
+<li><a href="tempgba.md">Nintendo - Game Boy Advance (TempGBA)</a></li>
+<li><a href="vba_m.md">Nintendo - Game Boy Advance (VBA-M)</a></li>
+</ul>

@@ -1,0 +1,370 @@
+<h1 id="nec-pc-8000-pc-8800-series-quasi88">NEC PC-8000 / PC-8800 series (QUASI88)</h1>
+<h2 id="background">Background</h2>
+<p>QUASI88 is an emulator by Showzoh Fukunaga licensed under the BSD 3-Clause license. This libretro port is distributed in the same way.</p>
+<p>The sound processing portion of QUASI88 uses source code from MAME and XMAME. The copyright to this source code belongs to its corresponding authors.</p>
+<p>The sound processing portion of QUASI88 also uses source code from the FM audio generator &quot;fmgen&quot;. The copyright to this source code belongs to cisc.</p>
+<p>The QUASI88 core is licensed under</p>
+<ul>
+<li>BSD 3-Clause</li>
+</ul>
+<p>A summary of the licenses behind RetroArch and its cores can be found <a href="../development/licenses.md">here</a>.</p>
+<h2 id="bios">BIOS</h2>
+<h3 id="real-bios-recommended">Real BIOS (recommended)</h3>
+<p>Required or optional firmware files go in the frontend's system directory. They can also be placed in a &quot;quasi88&quot; subfolder.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filename</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">md5sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">n88.rom</td>
+<td style="text-align: center;">Required.</td>
+<td style="text-align: center;">4f984e04a99d56c4cfe36115415d6eb8</td>
+</tr>
+<tr>
+<td style="text-align: center;">n88n.rom</td>
+<td style="text-align: center;">Required for PC-8000 series emulation. (N BASIC mode)</td>
+<td style="text-align: center;">2ff07b8769367321128e03924af668a0</td>
+</tr>
+<tr>
+<td style="text-align: center;">disk.rom</td>
+<td style="text-align: center;">Required for loading disk images.</td>
+<td style="text-align: center;">793f86784e5608352a5d7f03f03e0858</td>
+</tr>
+<tr>
+<td style="text-align: center;">n88knj1.rom</td>
+<td style="text-align: center;">Required for viewing kanji.</td>
+<td style="text-align: center;">d81c6d5d7ad1a4bbbd6ae22a01257603</td>
+</tr>
+<tr>
+<td style="text-align: center;">n88_0.rom</td>
+<td style="text-align: center;">Required.</td>
+<td style="text-align: center;">d675a2ca186c6efcd6277b835de4c7e5</td>
+</tr>
+<tr>
+<td style="text-align: center;">n88_1.rom</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">e844534dfe5744b381444dbe61ef1b66</td>
+</tr>
+<tr>
+<td style="text-align: center;">n88_2.rom</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">6548fa45061274dee1ea8ae1e9e93910</td>
+</tr>
+<tr>
+<td style="text-align: center;">n88_3.rom</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">fc4b76a402ba501e6ba6de4b3e8b4273</td>
+</tr>
+</tbody>
+</table>
+<h3 id="pseudo-bios">Pseudo BIOS</h3>
+<p>The core will fall back on pseudo BIOS if required files are missing. In this mode, only PC-8800 series software will be playable and there may be compatibility issues, so providing real BIOS is recommended.</p>
+<h3 id="font">Font</h3>
+<p>The files <strong>font.rom</strong>, <strong>font2.rom</strong>, and <strong>font3.rom</strong> can also be loaded from the system directory to specify a font. If these are not found, the core will fall back on a built-in recreation.</p>
+<h2 id="loading-content">Loading Content</h2>
+<p>QUASI88 can start using between 0 and 6 disks as content. To start software that requires only one disk, you can load content in any fashion.</p>
+<h3 id="no-disks">No disks</h3>
+<p><img src="https://media.discordapp.net/attachments/190711783894417410/629547214603026442/unknown.png" alt="" /></p>
+<p>First, load the QUASI88 core. The option &quot;Start Core&quot; will appear on the main menu, which you can use to start the core with no disks inserted.</p>
+<h3 id="multiple-disks-subsystem-interface">Multiple disks (subsystem interface)</h3>
+<p><img src="https://media.discordapp.net/attachments/190711783894417410/629547618644525056/unknown.png" alt="" /></p>
+<p>First, load the QUASI88 core. Options for starting software with between 2 to 6 disks will appear on the main menu.</p>
+<p><img src="https://cdn.discordapp.com/attachments/190711783894417410/629547869183016971/unknown.png" alt="" /></p>
+<p>Choose the appropriate option and then select the disks you wish to load. Once all the disks have been selected, choose the option labelled &quot;Start X-Disk Game&quot;</p>
+<h3 id="multiple-disks-m3u-playlist">Multiple disks (M3U playlist)</h3>
+<p>You can create an M3U playlist to easily start the core with multiple disks preloaded instead of using the subsystem interface. Create a text file with the extension &quot;.m3u&quot; and write the filename of each disk on a new line like in the example below.</p>
+<pre><code># Ys II (Falcom)
+Ys II (Program disk).d88
+Ys II (Disk A).d88
+Ys II (Disk B).d88
+Ys II (User disk).d88
+</code></pre>
+<h3 id="cycling-between-disks">Cycling between disks</h3>
+<p>If you've loaded multiple disks, you can hold one of the trigger buttons and use the D-Pad to change the disk that's loaded in each drive. Use L for Drive 1 and R for Drive 2. When the shoulder button is released, the chosen disk will be inserted.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Content that can be loaded by the QUASI88 core have the following file extensions:</p>
+<ul>
+<li><strong>.d88</strong> (PC-8000 / PC-8800 series disk image)</li>
+<li><strong>.u88</strong> (User disk, same functionality as .d88)</li>
+<li><strong>.m3u</strong> (Playlist file)</li>
+</ul>
+<h2 id="features">Features</h2>
+<p>Frontend-level settings or features that the QUASI88 core respects.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Saves</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>States</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Netplay</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Core Options</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroAchievements</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>RetroArch Cheats</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Native Cheats</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Remapping</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Multi-Mouse</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Location</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Subsystem</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td><a href="../guides/softpatching.md">Softpatching</a></td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Disk Control</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Username</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Language</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>Crop Overscan</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directories">Directories</h3>
+<p>The QUASI88 core's library name is 'QUASI88'</p>
+<p>The QUASI88 core saves/loads to/from these directories.</p>
+<p><strong>Frontend's Save directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.srm</td>
+<td style="text-align: center;">Differential of changes to loaded disc image (by default, see Core Options below)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Frontend's State directory</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*.state#</td>
+<td style="text-align: center;">State</td>
+</tr>
+</tbody>
+</table>
+<h3 id="geometry-and-timing">Geometry and timing</h3>
+<ul>
+<li>The QUASI88 core's core provided FPS is 60.</li>
+<li>The QUASI88 core's core provided sample rate is 44100 Hz.</li>
+<li>The QUASI88 core's base width is 640.</li>
+<li>The QUASI88 core's base height is 400.</li>
+<li>The QUASI88 core's max width is 640.</li>
+<li>The QUASI88 core's max height is 400.</li>
+<li>The QUASI88 core's core provided aspect ratio is 8/5.</li>
+</ul>
+<h2 id="core-options">Core Options</h2>
+<p>The QUASI88 core has the following option(s) that can be tweaked from the core options menu. The default setting is bolded.</p>
+<ul>
+<li><p><strong>Basic mode</strong> [q88_basic_mode] (<strong>N88 V2</strong>|N88 V1H|N88 V1S|N)</p>
+<p>This option selects the PC model being emulated. Some games may refuse to boot or behave incorrectly if an inappropriate model is chosen (missing colors, fast game speed).</p>
+<p>Using N BASIC mode for PC-8000 series software requires the <strong>n88n.rom</strong> BIOS.</p>
+</li>
+<li><p><strong>CPU clock</strong> [q88_cpu_clock] (<strong>4 MHz</strong>|8 MHz|16 MHz (overclock)|32 MHz (overclock)|64 MHz (overclock)|1 MHz (underclock)|2 MHz (underclock))</p>
+<p>This option sets the CPU clock speed of the emulated PC. Overclocking options will make most software run faster than normal, though some will instead load faster and exhibit less slowdown (Ys series).</p>
+</li>
+<li><p><strong>Sound board</strong> [q88_sound_board] (<strong>OPN</strong>|OPNA)</p>
+<p>This option changes the Yamaha sound board on the emulated PC. <a href="https://en.wikipedia.org/wiki/Yamaha_YM2203">OPN</a> is the default option. <a href="https://en.wikipedia.org/wiki/Yamaha_YM2608">OPNA</a> sound supports more FM channels and PCM samples.</p>
+</li>
+<li><p><strong>Use FDC-Wait</strong> [q88_use_fdc_wait] (<strong>enabled</strong>|disabled)</p>
+<p>This option enables more accurate IO timing for the floppy disk controller. Some software will not work properly with this disabled.</p>
+</li>
+<li><p><strong>Use PCG-8100</strong> [q88_pcg-8100] (<strong>disabled</strong>|enabled)</p>
+<p>This option selects whether or not to emulate the PCG-8100. This option may be required for some PC-8000 series software.</p>
+</li>
+<li><p><strong>Save to disk image</strong> [q88_save_to_disk_image] (<strong>disabled</strong>|enabled)</p>
+<p>This option changes the core's saving behavior. By default, if a disk is rewritten to, the differences will be stored to a &quot;.srm&quot; file in the frontend save directory. If this option is enabled, the changes will be written directly to the loaded disk and flushed on exit.</p>
+</li>
+<li><p><strong>Rumble on disk access</strong> [q88_rumble] (<strong>enabled</strong>|disabled)</p>
+<p>This option allows the controller's rumble feature to imitate the read sounds on the floppy disk controller.</p>
+</li>
+</ul>
+<h2 id="joypad">Joypad</h2>
+<p>The default RetroPad inputs are based on the keys often used for simple games playable via QUASI88. For full remapping, change the input type from &quot;Retro Joypad&quot; to &quot;Retro Keyboard.&quot;</p>
+<p>When using software that requires full keyboard input, it's recommended to use game focus mode as well.</p>
+<h3 id="player-1">Player 1</h3>
+<table>
+<thead>
+<tr>
+<th>User 1 input descriptors</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Z Key</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>Space Key</td>
+<td><img src="../image/retropad/retro_y.png" alt="" /></td>
+</tr>
+<tr>
+<td>I Key</td>
+<td><img src="../image/retropad/retro_select.png" alt="" /></td>
+</tr>
+<tr>
+<td>Return Key</td>
+<td><img src="../image/retropad/retro_start.png" alt="" /></td>
+</tr>
+<tr>
+<td>Keypad 8 (Up)</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>Keypad 2 (Down)</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>Keypad 4 (Left)</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>Keypad 6 (Right)</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>X Key</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+<tr>
+<td>Change loaded disk in drive 1</td>
+<td><img src="../image/retropad/retro_l1.png" alt="" /></td>
+</tr>
+<tr>
+<td>Change loaded disk in drive 2</td>
+<td><img src="../image/retropad/retro_r1.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<h3 id="player-2">Player 2</h3>
+<table>
+<thead>
+<tr>
+<th>User 2 input descriptors</th>
+<th>RetroPad Inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q Key</td>
+<td><img src="../image/retropad/retro_b.png" alt="" /></td>
+</tr>
+<tr>
+<td>R Key</td>
+<td><img src="../image/retropad/retro_dpad_up.png" alt="" /></td>
+</tr>
+<tr>
+<td>F Key</td>
+<td><img src="../image/retropad/retro_dpad_down.png" alt="" /></td>
+</tr>
+<tr>
+<td>D Key</td>
+<td><img src="../image/retropad/retro_dpad_left.png" alt="" /></td>
+</tr>
+<tr>
+<td>G Key</td>
+<td><img src="../image/retropad/retro_dpad_right.png" alt="" /></td>
+</tr>
+<tr>
+<td>Tab Key</td>
+<td><img src="../image/retropad/retro_a.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<h2 id="external-links">External Links</h2>
+<ul>
+<li><a href="https://github.com/libretro/quasi88-libretro">Libretro core Github Repository</a></li>
+<li><a href="http://www.retropc.net/cisc/m88/download.html">Pseudo BIOS, provided by cisc</a></li>
+</ul>
