@@ -15,10 +15,14 @@ You need the following:
 - SDK: 10.0.19041.0 and 10.0.17134.0
 - Visual Studio 2022
 
+## Built-in cores
+
+- Cores are located at `Components\InjectedFiles\Cores`
+- Those cores will automaticlly copied with the package
 
 ## Legacy support
 
 - Refer to the Legacy folder
-- Downgrade Win2D to compatible version
-- Keep project target at 16299
+- Ensure Win2D is compatible with older builds (1.21 current)
+- Keep project min target at 16299
 - After building the package, re-target it to 15035
