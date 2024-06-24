@@ -24,9 +24,10 @@ App notice:
 - No tracking or analytics should be added at all
 
 
-# Surface (ARM64)
-- Please note Qualcomm and Windows are no longer support ARM32 (which what I do)
-- My work is focus on legacy support for older devices and ARM devices that still support ARM32
+# ARM64
+- RetrixGold is a libretro frontend
+- As long there are no ARM64 cores ready, any ARM64 will be pointless
+- For ARM64 please refer to libretro for any update [Click here](https://retroarch.com/?page=platforms)
 
 
 # Download
