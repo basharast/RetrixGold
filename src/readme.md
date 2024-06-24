@@ -27,6 +27,8 @@ You need the following:
 ## Legacy support
 
 - Refer to the Legacy folder
+- You need as extra SDK: 16299
 - Ensure Win2D is compatible with older builds (1.21 current)
 - Keep project min target at 16299
 - After building the package, re-target it to 15035
+- Legacy release don't support 14393 or lower
