@@ -1,10 +1,14 @@
 # RetriXGold III
 
-There are few stuff has no logic, those were tests for older devices like changing the dll to dat
+In the code there are few stuff has no logic, those were tests for older devices like changing the dll to dat
 
-so don't spend time figuring out what is this,
+skip whatever is not clear don't spend time figuring out what is this,
 
-skip whatever is not clear, in anyway modification should be easy as all things now are in one project
+in anyway modification should be easy as all things now are in one project
+
+also because this was meant to support touch devices there are a lot of mixed codes
+
+try to work around them in case your target machine don't support touch 
 
 you should be able to build it for ARM, x86, x64 (ARM64 prepared but not actually fully ready)
 
