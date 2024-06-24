@@ -28,6 +28,7 @@ App notice:
 - RetrixGold is a libretro frontend
 - As long there are no ARM64 cores ready, any ARM64 release will be pointless
 - For ARM64 please refer to libretro for any update [Click here](https://retroarch.com/?page=platforms)
+- Try the x86 release it may work
 
 
 # Download
