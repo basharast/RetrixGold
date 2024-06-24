@@ -26,7 +26,7 @@ App notice:
 
 # ARM64
 - RetrixGold is a libretro frontend
-- As long there are no ARM64 cores ready, any ARM64 will be pointless
+- As long there are no ARM64 cores ready, any ARM64 release will be pointless
 - For ARM64 please refer to libretro for any update [Click here](https://retroarch.com/?page=platforms)
 
 
@@ -129,9 +129,6 @@ Based on RetriX by <a href="https://github.com/albertofustinoni">Alberto Fustino
 Yo can help me to keep this kind of projects a live by supporting my projects like:
 
 - <a href="https://github.com/basharast/wut">W.U.T</a>
-
-- <a href="https://github.com/basharast/AstifanSystem">Astifan System</a>
-
 
 # Thanks
 
