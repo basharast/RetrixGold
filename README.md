@@ -30,6 +30,30 @@ App notice:
 - For ARM64 please refer to libretro for any update [Click here](https://retroarch.com/?page=platforms)
 - Try the x86 release it may work
 
+# Roadmap
+When I started this modified version, I had early understanding in UWP
+
+many things, in my view can be better, for certain things understanding C/C++ is important to solve some important issues
+
+good now I have both side covered, UWP and C/C++ even I got to understand more about DirectX stuff
+
+I know the latest release was in Sep.2022, but will try to pick this again soon
+
+some things has to be translated to C++, and we can get benfits from the UWP APIs (...FromApp) 
+
+those APIs can greatly improve loading perfomance.
+
+## Why no 3D support yet
+This is C#/.NET project, it has it's limited capacity within it's current ~software render
+
+whatever I spent on that cannot be better than RetroArch, 
+
+even on 2D level I had to make many tricks to avoid the GC hiccups, so it's not something I can rely on it for 3D
+
+also no one seems to be ready to join and get that ready, if I did it I'm sure it will be bad 
+
+I don't really have good understanding in DirectX and others.
+
 
 # Download
 
