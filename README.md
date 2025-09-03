@@ -1,6 +1,6 @@
 > ⚠️⚠️⚠️
 
-> I'm moving toward [ImMobile](https://github.com/basharast/ImMobile) environment and [ImLibretro](https://github.com/basharast/ImLibretro).<br/>
+> I'm moving toward [ImMobile](https://github.com/basharast/ImMobile) environment and [ImLibretro](https://github.com/basharast/ImLibretro).
 
 ---
 
@@ -36,7 +36,7 @@ App notice:
 - For ARM64 please refer to libretro for any update [Click here](https://retroarch.com/?page=platforms)
 - Try the x86 release it may work
 
-# Roadmap
+# Roadmap (Outdated)
 ~~When I started this modified version, I had early understanding in UWP~~
 
 ~~many things, in my view can be better, for certain things understanding C/C++ is important to solve some important issues~~
