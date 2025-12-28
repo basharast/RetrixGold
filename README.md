@@ -2,6 +2,16 @@
 
 > I'm moving toward [ImMobile](https://github.com/basharast/ImMobile) environment and [ImLibretro](https://github.com/basharast/ImLibretro).
 
+✨✨ Why [ImLibretro](https://github.com/basharast/ImLibretro)? ✨✨
+
+- Designed for low-end hardware
+- Windows ARM platform support
+- Cores can use JIT (thanks to ImMobile)
+- Easy to use, better play history
+- TouchPad highly customizable
+- Easy to manage sub content (BIOS..etc)
+- Easy to download cores
+
 ---
 
 <p align="center">
